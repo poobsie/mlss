@@ -21208,7 +21208,7 @@ _08028224:
 	movs r1, #0x08
 	adds r2, r4, #0x0
 	movs r3, #0x00
-	bl sub_812538C
+	bl load_init_812538C
 _0802823E:
 	pop {r4, r5, r6}
 	pop {r0}

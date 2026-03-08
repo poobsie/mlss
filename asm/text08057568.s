@@ -367603,7 +367603,7 @@ _08114998:
 	ldr r3, _081149BC @ =0x0000FFFF
 	movs r1, #0x08
 	adds r2, r4, #0x0
-	bl sub_812538C
+	bl load_init_812538C
 	b _08114A74
 _081149B4: .4byte 0x08CDC348
 _081149B8: .4byte 0x08201194
@@ -389830,8 +389830,8 @@ _08125320: .4byte 0x0000089A
 	.byte 0x50, 0x1C, 0x18, 0x18, 0x61, 0x18, 0x00, 0x78, 0x0C, 0x18, 0x90, 0x1C, 0x18, 0x18, 0x01, 0x78
 	.byte 0xD0, 0x1C, 0x18, 0x18, 0x61, 0x18, 0x00, 0x78, 0x0C, 0x18, 0x04, 0x32, 0xAA, 0x42, 0xED, 0xDB
 	.byte 0x20, 0x1C, 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47
-	thumb_func_start sub_812538C
-sub_812538C:
+	thumb_func_start load_init_812538C
+load_init_812538C:
 	push {r4, r5, r6, lr}
 	mov r6, r10
 	mov r5, r9
@@ -389880,7 +389880,7 @@ sub_812538C:
 	bl alloc_Zero
 	movs r1, #0x08
 	adds r2, r4, #0x0
-	bl sub_8127A94
+	bl tld_init_8127A94
 	mov r1, r9
 	str r0, [r1, #0x00]
 	movs r2, #0xAE
@@ -392926,8 +392926,8 @@ _081279BA:
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-	thumb_func_start sub_81279D8
-sub_81279D8:
+	thumb_func_start tld_update_81279D8
+tld_update_81279D8:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -393013,8 +393013,8 @@ _08127A84: .4byte 0x03000D48
 _08127A88: .4byte 0x0203FFB8
 _08127A8C: .4byte 0x00000A14
 _08127A90: .4byte 0x03000D4C
-	thumb_func_start sub_8127A94
-sub_8127A94:
+	thumb_func_start tld_init_8127A94
+tld_init_8127A94:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	lsls r1, r1, #0x18

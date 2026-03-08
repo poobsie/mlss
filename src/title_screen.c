@@ -1035,7 +1035,7 @@ void open_update(struct TitleScreen* ts) {
                     sub_801AFE4(0);
                     BUFFER_REG_BLDCNT = 0;
                     //! Change this when other function is matching too.
-                    sub_812538C(alloc_Zero(356, 0, (char*)0x081E2784 /*"LOAD"*/, 0), 8,
+                    load_init_812538C(alloc_Zero(356, 0, (char*)0x081E2784 /*"LOAD"*/, 0), 8,
                                 (char*)0x081E2784 /*"LOAD"*/, 0xFFFF);
                     return;
 
