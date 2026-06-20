@@ -8,9 +8,72 @@
 asm_unified(".include \"asm/nonmatching/generate_window_bg_8051B98.s\"");
 #endif
 
-#ifndef NONMATCHING
-asm_unified(".include \"asm/nonmatching/sub_8051EE0.s\"");
-#endif
+void sub_8051EE0(struct WindowAttr* arg0)
+{
+    u8 xOff, yOff;
+    s32 xSize;
+    s32 ySize;
+    s32 xySize;
+
+    if (arg0->field_1 == 0)
+        return;
+
+    xSize = arg0->xSize * arg0->field_1;
+    if (xSize < 0)
+        xSize += 0xF;
+    xOff = xSize >> 4;
+
+    ySize = arg0->ySize * arg0->field_1;
+    if (ySize < 0)
+        ySize += 0xF;
+    yOff = ySize >> 4;
+
+    {
+        u8 *ptr = *(u8**)0x0839EC80;
+        ySize = (arg0->xSize >> 1) + arg0->xStart;
+        xySize = xOff + ySize;
+        ptr += 0x40;
+        *ptr = xySize;
+    }
+
+    {
+        u8 *ptr = *(u8**)0x0839EC80;
+        xSize = (arg0->xSize >> 1) + arg0->xStart;
+        xSize = xSize - xOff;
+        ptr += 0x41;
+        *ptr = xSize;
+    }
+
+    {
+        u8 *ptr = *(u8**)0x0839EC80;
+        xSize = (arg0->ySize >> 1) + arg0->yStart;
+        ySize = yOff + xSize;
+        ptr += 0x44;
+        *ptr = ySize;
+    }
+
+    {
+        u8 *ptr = *(u8**)0x0839EC80;
+        xSize = (arg0->ySize >> 1) + arg0->yStart;
+        xSize = xSize - yOff;
+        ptr += 0x45;
+        *ptr = xSize;
+    }
+
+    if (!arg0->field_0_0) {
+        if (arg0->field_1 == 8) {
+            (*(s8**)0x0839EC80)[1] &= 0xDF;
+            arg0->field_1 = 0;
+        } else {
+            arg0->field_1++;
+        }
+    } else {
+        if (--arg0->field_1 == 0) {
+            (*(s8**)0x0839EC80)[1] &= 0xDF;
+            *(vu16*)0x02000000 &= 0xFDFF;
+        }
+    }
+}
 
 // https://decomp.me/scratch/PDUDz
 #ifndef NONMATCHING
