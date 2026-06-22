@@ -197,6 +197,14 @@ struct OPTNProcess {
     struct Sprite* sprite;
 };
 
+// ORST (options/open-screen runtime data) — 340 bytes, tagged "ORST"
+struct ORSTData {
+    s32 field_0[5];   /* palette scroll accumulators, fixed-point */
+    u16 field_14;     /* BG1HOFS value */
+    u16 field_16;     /* BG0HOFS source for DMA */
+    u8  _pad[316];
+};
+
 // Function prototypes
 void sub_800063C();
 void sub_8017E34(void);
@@ -247,7 +255,7 @@ extern struct struc_203FFF8 stru_203FFF8;
 // IWRAM
 extern void (*dword_3000D48)(int, int);
 extern int (*dword_3000D4C)(int, int);
-extern int* dword_3000DA0;
+extern struct ORSTData* dword_3000DA0;
 extern struct EeprStruct1* dword_3000FFC;
 extern struct GameState gGameState;
 extern void (*dword_3000C78)();
@@ -279,6 +287,7 @@ extern int dword_83A7140[];
 extern int dword_83A7300[];
 extern u16 word_83A74C0[];
 extern u8 byte_83A74E9[];
+extern u8 dword_83A74E4[];
 extern s16 word_83A74EC[];
 extern s16 word_83A7530[];
 extern s16 word_83A7574[];
