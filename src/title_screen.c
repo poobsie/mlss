@@ -507,40 +507,55 @@ void open_8055F74(struct TitleScreen* ts, int selection) {
 }
 #endif
 
-// https://decomp.me/scratch/lYYDD
-#ifndef NONMATCHING
-asm_unified(".include \"asm/nonmatching/text08056224.s\"");
-#else
-void open_8056224(void) {
-    u16* r4;
-    int i;
-    u8 j;
-
-    dword_3000DA0->field_0[0] -= 64;
-    dword_3000DA0->field_0[1] -= 128;
-    dword_3000DA0->field_0[2] -= 64;
-    dword_3000DA0->field_0[3] -= 32;
-
-    j = 0;
-    r4 = &dword_3000DA0->field_14;
-
-    for (i = 0; i < 5; i++) {
-        int r0 = dword_3000DA0->field_0[i];
-        if (r0 < 0) {
-            r0 += 255;
-        }
-
-        while (j <= dword_83A74E4[i]) {
-            *r4 = r0;
-            j++;
-            r4++;
-        }
+void sub_8056224(void)
+{
+  u16 *dst;
+  s32 i;
+  u8 j;
+  const u8 *table;
+  s32 value;
+  u16 out;
+  u8 limit;
+  dword_3000DA0->field_0[0] -= 0x40;
+  dword_3000DA0->field_0[1] -= 0x80;
+  dword_3000DA0->field_0[2] -= 0x40;
+  dword_3000DA0->field_0[3] -= 0x20;
+  j = 0;
+  dst = &dword_3000DA0->field_14;
+  i = 0;
+  table = dword_83A74E4;
+  do
+  {
+    value = dword_3000DA0->field_0[i];
+    if (value < 0)
+    {
+      value += 0xFF;
+    }
+    value <<= 8;
+    out = ((u32) value) >> 16;
+    limit = *(const u8 *)((u32)i + (u32)table);
+    while (j <= limit)
+    {
+      *dst = out;
+      j = (u8) (j + 1);
+      dst++;
     }
 
-    REG_BG1HOFS = dword_3000DA0->field_14;
-    DmaCopy32(0, &dword_3000DA0->field_16, &REG_BG0HOFS, 4);
+    i += 1;
+  }
+  while (i <= 4);
+  {
+    vu16 *bg = (vu16 *) 0x04000014;
+    struct ORSTData *data = dword_3000DA0;
+    vu32 *dma;
+    *bg = data->field_14;
+    dma = (vu32 *) 0x040000B0;
+    *((vu16 *) 0x040000BA) = 0;
+    dma[0] = (u32) (&data->field_16);
+    dma[1] = (u32) bg;
+    dma[2] = 0xA2400001;
+  }
 }
-#endif
 
 void open_update(struct TitleScreen* ts) {
     int i, j;
