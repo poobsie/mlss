@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 C_FUNCTION = re.compile(
-    r"^[A-Za-z_][A-Za-z0-9_\s*]*\s+[A-Za-z_][A-Za-z0-9_]*\([^;]*\)\s*\{",
+    r"^[A-Za-z_][A-Za-z0-9_ \t*]*[ \t]+[A-Za-z_][A-Za-z0-9_]*\([^;{]*\)[ \t]*\{",
     re.MULTILINE,
 )
 ASM_FUNCTION = re.compile(r"^\s*(?:thumb|arm)_func_start\s+\S+", re.MULTILINE)

@@ -19,6 +19,7 @@ SECTIONS
     .text :
     {
         asm/text08000000.o(.text);
+        src/interrupt.o(.text);
         asm/heap.o(.text);
         src/heap.o(.text);
         asm/text08018E24.o(.text);
@@ -28,6 +29,7 @@ SECTIONS
         asm/text0801A548.o(.text);
         src/option_screens.o(.text);
         asm/option_screens.o(.text);
+        src/option_screens_tail.o(.text);
         asm/text080542C4.o(.text);
         src/title_screen.o(.text);
         asm/text08057568.o(.text);
