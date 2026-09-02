@@ -57,7 +57,7 @@ SUBDIRS  := $(sort $(dir $(OBJS)))
 $(shell mkdir -p $(SUBDIRS))
 
 # Rules
-.PHONY: rom compare clean tools
+.PHONY: rom compare clean tools progress
 
 rom: tools $(ROM) compare
 
@@ -70,6 +70,9 @@ clean:
 
 tools:
 	@$(MAKE) -C tools/gbafix
+
+progress: rom
+	@python3 scripts/progress.py
 
 $(C_BUILDDIR)/%.o : $(C_SUBDIR)/%.c
 	@$(CPP) $(CPPFLAGS) $< -o $(C_BUILDDIR)/$*.i

@@ -34,6 +34,15 @@ matching reference ELF, so it is the primary diff view when moving new functions
 files. `asm-differ` is ready for functions in the C translation units represented in its frozen expected-object
 directory.
 
+To rebuild, verify the ROM, and print the current decompilation percentage in one step, run:
+
+```powershell
+.\scripts\progress-wsl.ps1
+```
+
+From WSL, the equivalent command is `make progress`. The report also shows the change from
+`upstream/master`, which is the untouched project baseline.
+
 ## Function workflow
 
 1. Choose one reasonably small function from an assembly file.

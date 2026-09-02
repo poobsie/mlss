@@ -213,7 +213,7 @@ void sub_8018B78(int, void (*)(void));
 void free_heap_8018D9C(void*);
 void free_heap_8018DA8(void* ptr);
 void* alloc_zero_8018DB4(int, bool32, char*, int);
-void* alloc_Zero(int, bool32, char*, int);
+void* alloc_Zero(int, bool32, char*, u8);
 void sub_80193B4(int, int, int);
 void play_sfx_80195B4(int, int);
 u32 sub_80198B0(int*);

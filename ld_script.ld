@@ -20,6 +20,7 @@ SECTIONS
     {
         asm/text08000000.o(.text);
         asm/heap.o(.text);
+        src/heap.o(.text);
         asm/text08018E24.o(.text);
         src/process.o(.text);
         asm/text08019CA4.o(.text);
