@@ -10043,10 +10043,14 @@ _08F55B54:
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-	thumb_func_start nullsub_12
-nullsub_12: @ 08F55B64
+	.section .discard.mb_aegis_nullsub_12, "ax"
+	.align 2
+	thumb_func_start asm_discard_nullsub_12
+asm_discard_nullsub_12: @ 08F55B64
 	bx lr
 	.byte 0x00, 0x00
+	.section .text.mb_after_aegis_nullsub_12, "ax"
+	.align 2
 	thumb_func_start sub_8F55B68
 sub_8F55B68:
 	push {r4, r5, lr}
@@ -14335,10 +14339,14 @@ _08F57F18: .4byte 0x08F9F66C
 _08F57F1C: .4byte 0x00000C5B
 _08F57F20: .4byte 0x0000032F
 _08F57F24: .4byte 0x0000034F
-	thumb_func_start nullsub_9
-nullsub_9: @ 08F57F28
+	.section .discard.mb_aegis_nullsub_9, "ax"
+	.align 2
+	thumb_func_start asm_discard_nullsub_9
+asm_discard_nullsub_9: @ 08F57F28
 	bx lr
 	.byte 0x00, 0x00
+	.section .text.mb_after_aegis_nullsub_9, "ax"
+	.align 2
 	thumb_func_start sub_8F57F2C
 sub_8F57F2C:
 	push {r4, r5, r6, r7, lr}
@@ -15022,8 +15030,10 @@ _08F5859C:
 _08F585A4: .4byte 0x03000F50
 _08F585A8: .4byte 0x0000447C
 _08F585AC: .4byte 0x00000C5A
-	thumb_func_start sub_8F585B0
-sub_8F585B0:
+	.section .discard.mb_aegis_sub_8F585B0, "ax"
+	.align 2
+	thumb_func_start asm_discard_sub_8F585B0
+asm_discard_sub_8F585B0:
 	push {lr}
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10
@@ -15040,6 +15050,8 @@ _08F585BA:
 	pop {r0}
 	bx r0
 _08F585CC: .4byte 0x000003FF
+	.section .text.mb_after_aegis_sub_8F585B0, "ax"
+	.align 2
 	thumb_func_start sub_8F585D0
 sub_8F585D0:
 	push {r4, r5, r6, r7, lr}
@@ -29451,10 +29463,14 @@ _08F5FFF2:
 	pop {r4, r5, r6}
 	pop {r1}
 	bx r1
-	thumb_func_start nullsub_13
-nullsub_13: @ 08F5FFF8
+	.section .discard.mb_aegis_nullsub_13, "ax"
+	.align 2
+	thumb_func_start asm_discard_nullsub_13
+asm_discard_nullsub_13: @ 08F5FFF8
 	bx lr
 	.byte 0x00, 0x00
+	.section .text.mb_after_aegis_nullsub_13, "ax"
+	.align 2
 	thumb_func_start sub_8F5FFFC
 sub_8F5FFFC:
 	push {r4, r5, lr}
@@ -38808,12 +38824,18 @@ _08F648A0:
 	strb r2, [r3, #0x0B]
 	pop {r0}
 	bx r0
-	thumb_func_start nullsub_14
-nullsub_14: @ 08F648A8
+	.section .discard.mb_aegis_nullsub_14, "ax"
+	.align 2
+	thumb_func_start asm_discard_nullsub_14
+asm_discard_nullsub_14: @ 08F648A8
 	bx lr
 	.byte 0x00, 0x00
-	thumb_func_start sub_8F648AC
-sub_8F648AC:
+	.section .text.mb_after_aegis_nullsub_14, "ax"
+	.align 2
+	.section .discard.mb_aegis_sub_8F648AC, "ax"
+	.align 2
+	thumb_func_start asm_discard_sub_8F648AC
+asm_discard_sub_8F648AC:
 	push {lr}
 	adds r3, r0, #0x0
 	ldrb r2, [r3, #0x0C]
@@ -38836,6 +38858,8 @@ _08F648CE:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.mb_after_aegis_sub_8F648AC, "ax"
+	.align 2
 	thumb_func_start sub_8F648D4
 sub_8F648D4:
 	push {r4, r5, r6, r7, lr}

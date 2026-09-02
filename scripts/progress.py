@@ -11,12 +11,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 C_FUNCTION = re.compile(
     r"^(?:[A-Z_][A-Z0-9_]*\([^()\n]*\)[ \t]+)?"
-    r"[A-Za-z_][A-Za-z0-9_ \t*]*[ \t]+[A-Za-z_][A-Za-z0-9_]*"
+    r"[A-Za-z_][A-Za-z0-9_ \t*]*[ \t]+(?P<name>[A-Za-z_][A-Za-z0-9_]*)"
     r"\([^;{}]*\)\s*\{",
     re.MULTILINE,
 )
 GENERATED_FUNCTION = re.compile(
-    r"^\s*DEFINE_[A-Z0-9_]+\(\s*[A-Za-z_][A-Za-z0-9_]*\s*,",
+    r"^\s*DEFINE_[A-Z0-9_]+\(\s*(?P<name>[A-Za-z_][A-Za-z0-9_]*)\s*[,)]",
     re.MULTILINE,
 )
 ASM_FUNCTION = re.compile(r"^\s*(?:thumb|arm)_func_start\s+\S+", re.MULTILINE)
@@ -31,13 +31,21 @@ def active_c_source(source: str) -> str:
 
 
 def c_function_count(source: str) -> int:
+    return len(c_function_names(source))
+
+
+def c_function_names(source: str) -> set[str]:
     source = active_c_source(source)
-    return len(C_FUNCTION.findall(source)) + len(GENERATED_FUNCTION.findall(source))
+    return {match.group("name") for match in C_FUNCTION.finditer(source)} | {
+        match.group("name") for match in GENERATED_FUNCTION.finditer(source)
+    }
 
 
 def tracked(pattern: str) -> list[Path]:
     output = subprocess.check_output(
-        ["git", "ls-files", pattern], cwd=ROOT, text=True
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "--", pattern],
+        cwd=ROOT,
+        text=True,
     )
     return [ROOT / line for line in output.splitlines() if line]
 
@@ -85,22 +93,70 @@ def c_text_size() -> int | None:
     return total
 
 
+def linked_function_counts(asm_files: list[Path]) -> tuple[int, int, int] | None:
+    """Count only function symbols that survived the final link."""
+    elf = ROOT / "mlss.elf"
+    nm_tool = shutil.which("arm-none-eabi-nm")
+    if nm_tool is None or not elf.exists() or elf.stat().st_size == 0:
+        return None
+
+    c_names: set[str] = set()
+    for obj in sorted((ROOT / "build" / "src").glob("*.o")):
+        output = subprocess.check_output([nm_tool, "-S", "--defined-only", obj], text=True)
+        for line in output.splitlines():
+            fields = line.split()
+            if len(fields) < 4 or fields[2] not in {"T", "t"}:
+                continue
+            name = fields[3]
+            if not name.endswith("_padding") and not name.startswith(("draft_", "rejected_")):
+                c_names.add(name)
+    asm_names: set[str] = set()
+    for path in asm_files:
+        asm_names |= {
+            match.group(0).split()[-1]
+            for match in ASM_FUNCTION.finditer(path.read_text(encoding="utf-8"))
+        }
+
+    output = subprocess.check_output([nm_tool, "-S", "--defined-only", elf], text=True)
+    linked_text: dict[str, int] = {}
+    for line in output.splitlines():
+        fields = line.split()
+        if len(fields) >= 4 and fields[2] in {"T", "t"}:
+            linked_text[fields[3]] = int(fields[1], 16)
+        elif len(fields) >= 3 and fields[1] in {"T", "t"}:
+            linked_text[fields[2]] = 0
+    linked_names = set(linked_text)
+    linked_c = linked_names & c_names
+    return (
+        len(linked_c),
+        len(linked_names & asm_names),
+        sum(linked_text[name] for name in linked_c),
+    )
+
+
 parser = argparse.ArgumentParser(description="Report decompilation progress")
 parser.add_argument("--base", default="upstream/master", help="Git ref used for the delta")
 args = parser.parse_args()
 
 c_files = tracked("src/*.c")
 asm_files = tracked("*.s")
-c_functions = sum(c_function_count(path.read_text(encoding="utf-8")) for path in c_files)
-asm_functions = sum(len(ASM_FUNCTION.findall(path.read_text(encoding="utf-8"))) for path in asm_files)
+linked_counts = linked_function_counts(asm_files)
+if linked_counts is None:
+    c_functions = sum(c_function_count(path.read_text(encoding="utf-8")) for path in c_files)
+    asm_functions = sum(len(ASM_FUNCTION.findall(path.read_text(encoding="utf-8"))) for path in asm_files)
+    count_mode = "source fallback"
+    text_size = c_text_size()
+else:
+    c_functions, asm_functions, text_size = linked_counts
+    count_mode = "linked symbols"
 total_functions = c_functions + asm_functions
 percent = 100.0 * c_functions / total_functions
 
 print("Decompilation progress")
 print(f"  Functions in C:         {c_functions:4d} / {total_functions} ({percent:.4f}%)")
 print(f"  Functions in assembly:  {asm_functions:4d} / {total_functions} ({100.0 - percent:.4f}%)")
+print(f"  Count mode:             {count_mode}")
 
-text_size = c_text_size()
 if text_size is not None:
     print(f"  Matched C .text:        {text_size:8d} bytes")
 

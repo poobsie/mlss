@@ -42,6 +42,19 @@ call names, an m2c draft, and a strict result contract. Give each worker a disjo
 address range and request the five-field result described in the packet. Integrate
 accepted functions in batches, then run one clean full-ROM build.
 
+Do not accept object size or instruction shape as proof. Audit every linked C
+symbol against the reference ROM, then read progress from the linked ELF:
+
+```sh
+python3 scripts/verify_exact_functions.py
+python3 scripts/progress.py
+```
+
+`verify_exact_functions.py` fails if any linked C function differs. The progress
+report uses linked symbols when a built ELF is present, so rejected drafts,
+padding objects, declarations, and unlinked experiments cannot inflate the
+percentage. It falls back to source counting only when no linked ELF is available.
+
 The benchmark reports two baselines: the complete assembly source and a more
 conservative 200-line local window. It measures prompt material only. It does not
 claim to measure hidden reasoning, generated output, or provider-side caching.
@@ -52,3 +65,6 @@ The first trial packet targeted `sub_8158E10`. It contained 246 `o200k_base`
 tokens, produced clean C, and the cold rebuild retained the exact ROM SHA-1
 `7C303CDDE5061EE329296948060B875CB50BA410`. The corresponding assembly source
 contained 8,945,270 tokens, a 99.9972% reduction in supplied source context.
+
+The 5% milestone used the same flow. A representative `sub_815FACC` packet was
+357 tokens versus 2,666 tokens for a 200-line local window, an 86.61% reduction.

@@ -7,6 +7,7 @@ import argparse
 import json
 import re
 import subprocess
+import sys
 import tempfile
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -177,6 +178,7 @@ def m2c_draft(candidate: Candidate, block: str) -> str:
     with tempfile.NamedTemporaryFile(
         mode="w", suffix=".s", encoding="utf-8", delete=False
     ) as temporary:
+        temporary.write("\t.syntax unified\n\t.text\n")
         temporary.write(block)
         temporary_path = Path(temporary.name)
     command = [
@@ -188,12 +190,39 @@ def m2c_draft(candidate: Candidate, block: str) -> str:
         "--valid-syntax",
         str(temporary_path),
     ]
+    if sys.platform == "win32":
+        def wsl_path(path: Path) -> str:
+            resolved = str(path.resolve())
+            if len(resolved) < 3 or resolved[1:3] != ":\\":
+                raise ValueError(f"cannot translate Windows path: {resolved}")
+            drive = resolved[0].lower()
+            relative = resolved[3:].replace("\\", "/")
+            return f"/mnt/{drive}/{relative}"
+
+        try:
+            linux_executable = wsl_path(executable)
+            linux_temporary = wsl_path(temporary_path)
+            command = [
+                "wsl",
+                "--",
+                linux_executable,
+                "--target",
+                "gba",
+                "--function",
+                candidate.name,
+                "--valid-syntax",
+                linux_temporary,
+            ]
+        except (OSError, ValueError) as error:
+            temporary_path.unlink(missing_ok=True)
+            return f"(m2c unavailable through WSL: {error})"
     try:
         result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True)
     finally:
         temporary_path.unlink(missing_ok=True)
     if result.returncode:
-        return f"(m2c failed: {result.stderr.strip()})"
+        detail = result.stderr.strip() or result.stdout.strip() or f"exit {result.returncode}"
+        return f"(m2c failed: {detail})"
     return result.stdout.strip()
 
 
