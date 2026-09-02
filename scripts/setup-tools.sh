@@ -61,7 +61,7 @@ fi
 "$venv_root/bin/python" -m pip install --quiet \
     -e "$source_root/m2c" \
     -e "$source_root/asm-differ" \
-    pynacl toml
+    pynacl toml tiktoken==0.12.0
 
 make -C "$project_root" DEVKITARM=/usr -j"$(nproc)"
 mkdir -p "$tool_root/reference"
@@ -78,4 +78,8 @@ printf 'Tooling is ready.\n'
 printf 'Build:     make\n'
 printf 'Diff:      .decomp-tools/venv/bin/asm-differ -mwo <existing-C-symbol>\n'
 printf 'Decompile: scripts/decompile-function.sh <asm-file> <symbol>\n'
+printf 'Candidates: .decomp-tools/venv/bin/python scripts/decomp_workflow.py scan\n'
+printf 'Packet:     .decomp-tools/venv/bin/python scripts/decomp_workflow.py packet <symbol>\n'
+printf 'Benchmark:  .decomp-tools/venv/bin/python scripts/decomp_workflow.py benchmark <symbol>\n'
+printf 'Self-test:  .decomp-tools/venv/bin/python scripts/test_decomp_workflow.py\n'
 printf 'Progress:  .decomp-tools/venv/bin/python scripts/progress.py\n'

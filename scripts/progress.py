@@ -80,9 +80,8 @@ def c_text_size() -> int | None:
         output = subprocess.check_output([size_tool, "-A", obj], text=True)
         for line in output.splitlines():
             fields = line.split()
-            if len(fields) >= 2 and fields[0] == ".text":
+            if len(fields) >= 2 and fields[0].startswith(".text"):
                 total += int(fields[1])
-                break
     return total
 
 

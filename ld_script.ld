@@ -70,6 +70,8 @@ SECTIONS
         asm/text08057568.o(.text.after_8158A50);
         src/battle_object_wrappers.o(.text.sub_8158AEC);
         asm/text08057568.o(.text.after_8158AEC);
+        src/decomp_packet_proof.o(.text.sub_8158E10);
+        asm/text08057568.o(.text.after_8158E10);
         src/battle_object_wrappers_late.o(.text.sub_8159904);
         asm/text08057568.o(.text.after_8159904);
         src/battle_object_wrappers_late.o(.text.sub_8159984);
