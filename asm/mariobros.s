@@ -16417,8 +16417,10 @@ _08F591E8: .4byte 0x0600EB58
 _08F591EC: .4byte 0x08F9F7EA
 _08F591F0: .4byte 0x0600EB98
 _08F591F4: .4byte 0x08F9F7F0
-	thumb_func_start sub_8F591F8
-sub_8F591F8:
+	.section .discard.mb_aegis2_sub_8F591F8, "ax", %progbits
+	.align 2, 0
+	thumb_func_start asm_discard_sub_8F591F8
+asm_discard_sub_8F591F8:
 	push {r4, lr}
 	movs r2, #0x00
 	ldr r4, _08F59224 @ =0x0600EAD8
@@ -16444,6 +16446,8 @@ _08F59208:
 	pop {r0}
 	bx r0
 _08F59224: .4byte 0x0600EAD8
+	.section .text.mb_after_aegis2_sub_8F591F8, "ax", %progbits
+	.align 2, 0
 	thumb_func_start sub_8F59228
 sub_8F59228:
 	ldr r1, _08F59280 @ =0x03000F50
@@ -37435,8 +37439,10 @@ _08F63DAC:
 	bx r0
 	.byte 0x00, 0x00
 _08F63DB4: .4byte 0xFFFFFE80
-	thumb_func_start sub_8F63DB8
-sub_8F63DB8:
+	.section .discard.mb_aegis2_sub_8F63DB8, "ax", %progbits
+	.align 2, 0
+	thumb_func_start asm_discard_sub_8F63DB8
+asm_discard_sub_8F63DB8:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	ldrb r0, [r4, #0x04]
@@ -37452,6 +37458,8 @@ _08F63DCC:
 	bx r0
 	.byte 0x00, 0x00
 _08F63DD4: .4byte 0xFFFFFE80
+	.section .text.mb_after_aegis2_sub_8F63DB8, "ax", %progbits
+	.align 2, 0
 	thumb_func_start sub_8F63DD8
 sub_8F63DD8:
 	push {r4, r5, r6, lr}

@@ -42,12 +42,12 @@ call names, an m2c draft, and a strict result contract. Give each worker a disjo
 address range and request the five-field result described in the packet. Integrate
 accepted functions in batches, then run one clean full-ROM build.
 
-Do not accept object size or instruction shape as proof. Audit every linked C
-symbol against the reference ROM, then read progress from the linked ELF:
+Do not accept object size or instruction shape as proof. The single milestone
+command rebuilds the exact ROM, audits every linked C symbol against the
+reference, then reads progress from the linked ELF:
 
 ```sh
-python3 scripts/verify_exact_functions.py
-python3 scripts/progress.py
+make progress
 ```
 
 `verify_exact_functions.py` fails if any linked C function differs. The progress

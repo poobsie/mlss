@@ -50,6 +50,8 @@ def main() -> None:
     mismatches: list[tuple[int, int, str]] = []
     checked = 0
     for name in sorted(object_symbols & linked.keys()):
+        if name.endswith("_padding") or name.startswith(("draft_", "rejected_")):
+            continue
         address, size = linked[name]
         if size == 0 or not 0x08000000 <= address < 0x0A000000:
             continue

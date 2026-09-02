@@ -93,14 +93,17 @@ def c_text_size() -> int | None:
     return total
 
 
-def linked_function_counts(asm_files: list[Path]) -> tuple[int, int, int] | None:
+def linked_function_counts(c_files: list[Path], asm_files: list[Path]) -> tuple[int, int, int] | None:
     """Count only function symbols that survived the final link."""
     elf = ROOT / "mlss.elf"
     nm_tool = shutil.which("arm-none-eabi-nm")
     if nm_tool is None or not elf.exists() or elf.stat().st_size == 0:
         return None
 
-    c_names: set[str] = set()
+    source_c_names: set[str] = set()
+    for path in c_files:
+        source_c_names |= c_function_names(path.read_text(encoding="utf-8"))
+    object_c_names: set[str] = set()
     for obj in sorted((ROOT / "build" / "src").glob("*.o")):
         output = subprocess.check_output([nm_tool, "-S", "--defined-only", obj], text=True)
         for line in output.splitlines():
@@ -109,7 +112,8 @@ def linked_function_counts(asm_files: list[Path]) -> tuple[int, int, int] | None
                 continue
             name = fields[3]
             if not name.endswith("_padding") and not name.startswith(("draft_", "rejected_")):
-                c_names.add(name)
+                object_c_names.add(name)
+    c_names = source_c_names & object_c_names
     asm_names: set[str] = set()
     for path in asm_files:
         asm_names |= {
@@ -140,7 +144,7 @@ args = parser.parse_args()
 
 c_files = tracked("src/*.c")
 asm_files = tracked("*.s")
-linked_counts = linked_function_counts(asm_files)
+linked_counts = linked_function_counts(c_files, asm_files)
 if linked_counts is None:
     c_functions = sum(c_function_count(path.read_text(encoding="utf-8")) for path in c_files)
     asm_functions = sum(len(ASM_FUNCTION.findall(path.read_text(encoding="utf-8"))) for path in asm_files)
@@ -161,7 +165,7 @@ if text_size is not None:
     print(f"  Matched C .text:        {text_size:8d} bytes")
 
 base_counts = function_counts_at_ref(args.base)
-if base_counts is not None:
+if base_counts is not None and count_mode == "source fallback":
     base_c, base_asm = base_counts
     base_total = base_c + base_asm
     base_percent = 100.0 * base_c / base_total
