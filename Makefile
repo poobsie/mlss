@@ -7,6 +7,7 @@ REVISION		:= 0
 ROM				:= mlss.gba
 
 # Tools
+DEVKITARM		?= /usr
 BIN_DIR			:= $(DEVKITARM)/bin
 PREFIX			:= arm-none-eabi-
 CPP				:= $(BIN_DIR)/./$(PREFIX)cpp
@@ -64,8 +65,8 @@ compare: $(ROM)
 	@$(SHA1) rom.sha1
 
 clean:
-	rm -f $(ROM) $(ELF) $(MAP)
-	rm -r build/*
+	rm -f $(ROM) $(ELF) $(MAP) $(C_SUBDIR)/*.o $(ASM_SUBDIR)/*.o
+	rm -rf $(OBJ_DIR)
 
 tools:
 	@$(MAKE) -C tools/gbafix
@@ -78,6 +79,15 @@ $(C_BUILDDIR)/%.o : $(C_SUBDIR)/%.c
 
 $(ASM_BUILDDIR)/%.o: $(ASM_SUBDIR)/%.s
 	$(AS) $(ASFLAGS) -o $@ $<
+
+# The GNU linker map is written from inside build/, so analysis tools see
+# object paths such as src/title_screen.o. Forward those paths to the real
+# build objects instead of allowing Make's host-compiler rule to claim them.
+$(C_SUBDIR)/%.o: $(C_BUILDDIR)/%.o
+	cp $< $@
+
+$(ASM_SUBDIR)/%.o: $(ASM_BUILDDIR)/%.o
+	cp $< $@
 
 $(ELF): $(OBJS)
 	cd $(OBJ_DIR) && $(LD) -Map ../$(MAP) -T ../ld_script.ld -o ../$@ $(LDFLAGS) $(OBJS_REL)

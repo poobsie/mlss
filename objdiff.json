@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/encounter/objdiff/main/config.schema.json",
+  "min_version": "3.8.1",
+  "custom_make": "powershell.exe",
+  "custom_args": [
+    "-NoProfile",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "scripts/build-wsl.ps1"
+  ],
+  "build_base": true,
+  "build_target": false,
+  "units": [
+    {
+      "name": "MLSS ELF",
+      "target_path": ".decomp-tools/reference/mlss.elf",
+      "base_path": "mlss.elf"
+    }
+  ]
+}

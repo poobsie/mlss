@@ -13,10 +13,19 @@ cmake-build-*
 # tools
 tools/agbcc
 tools/binutils
+.decomp-tools/
+
+# reverse-engineering workspaces
+.ghidra/
+*.gpr
+*.rep/
+*.m2c
 
 # scripts
 *.py
 *.pl
+!diff_settings.py
+!scripts/*.py
 
 # graphics
 *.1bpp
