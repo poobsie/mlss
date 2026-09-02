@@ -10,7 +10,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 C_FUNCTION = re.compile(
-    r"^[A-Za-z_][A-Za-z0-9_ \t*]*[ \t]+[A-Za-z_][A-Za-z0-9_]*\([^;{]*\)[ \t]*\{",
+    r"^(?:[A-Z_][A-Z0-9_]*\([^()\n]*\)[ \t]+)?"
+    r"[A-Za-z_][A-Za-z0-9_ \t*]*[ \t]+[A-Za-z_][A-Za-z0-9_]*"
+    r"\([^;{}]*\)\s*\{",
+    re.MULTILINE,
+)
+GENERATED_FUNCTION = re.compile(
+    r"^\s*DEFINE_[A-Z0-9_]+\(\s*[A-Za-z_][A-Za-z0-9_]*\s*,",
     re.MULTILINE,
 )
 ASM_FUNCTION = re.compile(r"^\s*(?:thumb|arm)_func_start\s+\S+", re.MULTILINE)
@@ -22,6 +28,11 @@ NONMATCHING_BLOCK = re.compile(
 def active_c_source(source: str) -> str:
     """Remove fallback C bodies that are disabled in matching builds."""
     return NONMATCHING_BLOCK.sub(lambda match: match.group("active"), source)
+
+
+def c_function_count(source: str) -> int:
+    source = active_c_source(source)
+    return len(C_FUNCTION.findall(source)) + len(GENERATED_FUNCTION.findall(source))
 
 
 def tracked(pattern: str) -> list[Path]:
@@ -52,7 +63,7 @@ def function_counts_at_ref(ref: str) -> tuple[int, int] | None:
             ["git", "show", f"{ref}:{name}"], cwd=ROOT, text=True
         )
         if name.endswith(".c"):
-            c_count += len(C_FUNCTION.findall(active_c_source(contents)))
+            c_count += c_function_count(contents)
         else:
             asm_count += len(ASM_FUNCTION.findall(contents))
     return c_count, asm_count
@@ -81,10 +92,7 @@ args = parser.parse_args()
 
 c_files = tracked("src/*.c")
 asm_files = tracked("*.s")
-c_functions = sum(
-    len(C_FUNCTION.findall(active_c_source(path.read_text(encoding="utf-8"))))
-    for path in c_files
-)
+c_functions = sum(c_function_count(path.read_text(encoding="utf-8")) for path in c_files)
 asm_functions = sum(len(ASM_FUNCTION.findall(path.read_text(encoding="utf-8"))) for path in asm_files)
 total_functions = c_functions + asm_functions
 percent = 100.0 * c_functions / total_functions

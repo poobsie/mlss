@@ -434,8 +434,9 @@ _0801A274:
 _0801A294: .4byte 0x03000D0C
 _0801A298: .4byte 0x04000004
 _0801A29C: .4byte 0x05000004
-	thumb_func_start sub_801A2A0
-sub_801A2A0:
+	.section .text.after_801A1D4, "ax", %progbits
+	.align 2, 0
+asm_sub_801A2A0:
 	push {r4, r5, lr}
 	ldr r5, _0801A300 @ =0x03000D0C
 	ldr r2, [r5, #0x00]
