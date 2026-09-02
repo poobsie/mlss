@@ -8064,24 +8064,7 @@ _08018A38: .4byte 0x040000B0
 _08018A3C: .4byte 0x0000C5FF
 _08018A40: .4byte 0x00007FFF
 _08018A44: .4byte 0x040000D4
-	thumb_func_start nullsub_17
-nullsub_17: @ 08018A48
-	bx lr
-	.byte 0x00, 0x00
-	thumb_func_start sub_8018A4C
-sub_8018A4C:
-	ldr r1, _08018A60 @ =0x0300034C
-	str r0, [r1, #0x24]
-	ldr r0, _08018A64 @ =0x00000889
-	adds r1, r1, r0
-	ldrb r0, [r1, #0x00]
-	movs r2, #0x01
-	orrs r0, r2
-	strb r0, [r1, #0x00]
-	bx lr
-	.byte 0x00, 0x00
-_08018A60: .4byte 0x0300034C
-_08018A64: .4byte 0x00000889
+	.section .text.after_startup_tail_early, "ax", %progbits
 	thumb_func_start sub_8018A68
 sub_8018A68:
 	push {r4, r5, r6, r7, lr}

@@ -471996,16 +471996,7 @@ _081583F4:
 	.byte 0x00, 0x22, 0x00, 0x23, 0xC5, 0xF6, 0x8E, 0xFE, 0x0A, 0x20, 0xE0, 0x86, 0x24, 0x34, 0x02, 0x20
 	.byte 0x20, 0x70, 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x18, 0x10, 0x00, 0x03
 	.byte 0x1C, 0x1F, 0x00, 0x00
-	thumb_func_start sub_8158450
-sub_8158450:
-	push {lr}
-	ldr r2, _08158460 @ =0x08CDC5B0
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08158460: .4byte 0x08CDC5B0
+	.section .text.after_8158450, "ax", %progbits
 	thumb_func_start sub_8158464
 sub_8158464:
 	push {r4, r5, lr}
@@ -472096,16 +472087,7 @@ _08158510:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_8158518
-sub_8158518:
-	push {lr}
-	ldr r2, _08158528 @ =0x08CDC5F0
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08158528: .4byte 0x08CDC5F0
+	.section .text.after_8158518, "ax", %progbits
 	thumb_func_start sub_815852C
 sub_815852C:
 	push {r4, r5, lr}
@@ -472163,16 +472145,7 @@ _08158592:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_815859C
-sub_815859C:
-	push {lr}
-	ldr r2, _081585AC @ =0x08CDC670
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_081585AC: .4byte 0x08CDC670
+	.section .text.after_815859C, "ax", %progbits
 	thumb_func_start sub_81585B0
 sub_81585B0:
 	push {r4, r5, lr}
@@ -472192,16 +472165,7 @@ sub_81585B0:
 	bx r1
 	.byte 0x00, 0x00
 _081585D4: .4byte 0x08CDC670
-	thumb_func_start sub_81585D8
-sub_81585D8:
-	push {lr}
-	ldr r2, _081585E8 @ =0x08CDC630
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_081585E8: .4byte 0x08CDC630
+	.section .text.after_81585D8, "ax", %progbits
 	thumb_func_start sub_81585EC
 sub_81585EC:
 	push {r4, r5, lr}
@@ -472254,16 +472218,7 @@ _0815864A:
 	pop {r0}
 	bx r0
 _08158650: .4byte 0x03001014
-	thumb_func_start sub_8158654
-sub_8158654:
-	push {lr}
-	ldr r2, _08158664 @ =0x08CDC6B0
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08158664: .4byte 0x08CDC6B0
+	.section .text.after_8158654, "ax", %progbits
 	thumb_func_start sub_8158668
 sub_8158668:
 	push {r4, lr}
@@ -472343,16 +472298,7 @@ _081586F4:
 	pop {r4}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_81586FC
-sub_81586FC:
-	push {lr}
-	ldr r2, _0815870C @ =0x08CDC6F0
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0815870C: .4byte 0x08CDC6F0
+	.section .text.after_81586FC, "ax", %progbits
 	thumb_func_start sub_8158710
 sub_8158710:
 	push {r4, r5, lr}
@@ -472483,16 +472429,7 @@ _08158802:
 	pop {r4, r5, r6}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_8158808
-sub_8158808:
-	push {lr}
-	ldr r2, _08158818 @ =0x08CDC770
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08158818: .4byte 0x08CDC770
+	.section .text.after_8158808, "ax", %progbits
 	thumb_func_start sub_815881C
 sub_815881C:
 	push {r4, r5, lr}
@@ -472578,16 +472515,7 @@ _081588AC:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_81588C8
-sub_81588C8:
-	push {lr}
-	ldr r2, _081588D8 @ =0x08CDC930
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_081588D8: .4byte 0x08CDC930
+	.section .text.after_81588C8, "ax", %progbits
 	thumb_func_start sub_81588DC
 sub_81588DC:
 	push {r4, r5, lr}
@@ -472619,16 +472547,7 @@ sub_81588DC:
 _08158914: .4byte 0x08CDC930
 _08158918: .4byte 0x000001FF
 	.byte 0x00, 0x20, 0x70, 0x47
-	thumb_func_start sub_8158920
-sub_8158920:
-	push {lr}
-	ldr r2, _08158930 @ =0x08CDC970
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08158930: .4byte 0x08CDC970
+	.section .text.after_8158920, "ax", %progbits
 	.byte 0x30, 0xB5, 0x05, 0x1C, 0x14, 0x04, 0x24, 0x0C, 0x06, 0xF0, 0xDA, 0xFF, 0x03, 0x48, 0x28, 0x63
 	.byte 0xAC, 0x86, 0x28, 0x1C, 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0x70, 0xC9, 0xCD, 0x08
 	thumb_func_start sub_8158954
@@ -472664,16 +472583,7 @@ sub_8158988:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8158994
-sub_8158994:
-	push {lr}
-	ldr r2, _081589A4 @ =0x08CDC7B0
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_081589A4: .4byte 0x08CDC7B0
+	.section .text.after_8158994, "ax", %progbits
 	thumb_func_start sub_81589A8
 sub_81589A8:
 	push {r4, r5, lr}
@@ -472701,16 +472611,7 @@ sub_81589D0:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_81589DC
-sub_81589DC:
-	push {lr}
-	ldr r2, _081589EC @ =0x08CDC7F0
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_081589EC: .4byte 0x08CDC7F0
+	.section .text.after_81589DC, "ax", %progbits
 	thumb_func_start sub_81589F0
 sub_81589F0:
 	push {r4, r5, lr}
@@ -472758,16 +472659,7 @@ _08158A3E:
 	pop {r4}
 	pop {r0}
 	bx r0
-	thumb_func_start sub_8158A50
-sub_8158A50:
-	push {lr}
-	ldr r2, _08158A60 @ =0x08CDC830
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08158A60: .4byte 0x08CDC830
+	.section .text.after_8158A50, "ax", %progbits
 	thumb_func_start sub_8158A64
 sub_8158A64:
 	push {r4, r5, lr}
@@ -472836,16 +472728,7 @@ _08158ADA:
 	pop {r4}
 	pop {r0}
 	bx r0
-	thumb_func_start sub_8158AEC
-sub_8158AEC:
-	push {lr}
-	ldr r2, _08158AFC @ =0x08CDC870
-	str r2, [r0, #0x30]
-	bl sub_815FB14
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08158AFC: .4byte 0x08CDC870
+	.section .text.after_8158AEC, "ax", %progbits
 	thumb_func_start sub_8158B00
 sub_8158B00:
 	push {r4, r5, lr}
@@ -611825,4 +611708,3 @@ sub_81DD77C:
 	bx pc
 	.byte 0xC0, 0x46, 0x25, 0xEF, 0xFE, 0xEA, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 	.byte 0x00, 0x00
-	
