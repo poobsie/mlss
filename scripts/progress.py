@@ -14,6 +14,14 @@ C_FUNCTION = re.compile(
     re.MULTILINE,
 )
 ASM_FUNCTION = re.compile(r"^\s*(?:thumb|arm)_func_start\s+\S+", re.MULTILINE)
+NONMATCHING_BLOCK = re.compile(
+    r"#ifndef\s+NONMATCHING(?P<active>.*?)#else.*?#endif", re.DOTALL
+)
+
+
+def active_c_source(source: str) -> str:
+    """Remove fallback C bodies that are disabled in matching builds."""
+    return NONMATCHING_BLOCK.sub(lambda match: match.group("active"), source)
 
 
 def tracked(pattern: str) -> list[Path]:
@@ -44,7 +52,7 @@ def function_counts_at_ref(ref: str) -> tuple[int, int] | None:
             ["git", "show", f"{ref}:{name}"], cwd=ROOT, text=True
         )
         if name.endswith(".c"):
-            c_count += len(C_FUNCTION.findall(contents))
+            c_count += len(C_FUNCTION.findall(active_c_source(contents)))
         else:
             asm_count += len(ASM_FUNCTION.findall(contents))
     return c_count, asm_count
@@ -73,7 +81,10 @@ args = parser.parse_args()
 
 c_files = tracked("src/*.c")
 asm_files = tracked("*.s")
-c_functions = sum(len(C_FUNCTION.findall(path.read_text(encoding="utf-8"))) for path in c_files)
+c_functions = sum(
+    len(C_FUNCTION.findall(active_c_source(path.read_text(encoding="utf-8"))))
+    for path in c_files
+)
 asm_functions = sum(len(ASM_FUNCTION.findall(path.read_text(encoding="utf-8"))) for path in asm_files)
 total_functions = c_functions + asm_functions
 percent = 100.0 * c_functions / total_functions

@@ -78884,8 +78884,10 @@ _080519E8:
 	pop {r0}
 	bx r0
 	.byte 0xA8, 0xC1, 0xCD, 0x08, 0xB8, 0xC1, 0xCD, 0x08
-	thumb_func_start sub_8051A00
-sub_8051A00:
+	.section .discard.text0801A548_tail, "ax"
+	.align 2
+	@ Decompiled in src/text0801A548_tail.c. The discarded bytes remain as a reference for now.
+decompiled_asm_sub_8051A00:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	ldr r2, [r4, #0x3C]
@@ -78950,8 +78952,7 @@ _08051A78:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8051A80
-sub_8051A80:
+decompiled_asm_sub_8051A80:
 	push {r4, r5, r6, lr}
 	ldr r4, _08051AB8 @ =0x0300034C
 	movs r0, #0x88
@@ -78982,8 +78983,7 @@ _08051ABC: .4byte 0x03000D48
 _08051AC0: .4byte 0x0203FFB8
 _08051AC4: .4byte 0x00000A14
 _08051AC8: .4byte 0x03000D4C
-	thumb_func_start sub_8051ACC
-sub_8051ACC:
+decompiled_asm_sub_8051ACC:
 	push {lr}
 	adds r2, r0, #0x0
 	movs r1, #0x1C

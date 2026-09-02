@@ -23,10 +23,12 @@ SECTIONS
         asm/heap.o(.text);
         src/heap.o(.text);
         asm/text08018E24.o(.text);
+        src/runtime_tail.o(.text);
         src/process.o(.text);
         asm/text08019CA4.o(.text);
         src/game_boy_player_logo.o(.text);
         asm/text0801A548.o(.text);
+        src/text0801A548_tail.o(.text);
         src/option_screens.o(.text);
         asm/option_screens.o(.text);
         src/option_screens_tail.o(.text);
@@ -39,6 +41,8 @@ SECTIONS
         asm/rodata081E2764.o(.rodata);
 
         asm/mariobros.o(.text);
+        src/mariobros_f26c.o(.text);
+        asm/mariobros.o(.text.mariobros_after_f314);
     }
     
     /* DWARF 2 sections */
