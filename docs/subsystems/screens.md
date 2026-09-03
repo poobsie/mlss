@@ -127,6 +127,8 @@ The exact record semantics are not yet proven, so the synchronization function d
 
 All currently decompiled screen C now has a subsystem path, canonical public header, typed process ownership, and evidence-backed lifecycle names. Some adjacent assembly remains in `asm/screens/options_and_backup.s`; it should be split further as those functions are converted to C.
 
+Six late screen helpers now live in `src/screens/runtime_helpers.c`. Two launch the menu/save and shop processes; their ROM allocation labels are literally `MENU`, `SAVE`, and `SHOP`, and their distinct allocation sizes and constructors are preserved. Four configure a layer object through the shared hardware-backed layer routine, with three setting their owner's proven completion byte afterward. One of those also fades music over sixteen steps. The sparse owner layouts remain separate because matching field offsets alone does not prove a common screen class.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

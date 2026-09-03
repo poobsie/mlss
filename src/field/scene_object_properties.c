@@ -5,6 +5,7 @@
 
 void sub_8116654(void* table, u8 index);
 void sub_8116680(void* table, u8 index);
+void sub_804761C(struct FieldSceneObject* object, u32 value);
 
 struct __attribute__((packed)) LowBit {
     u8 value : 1;
@@ -99,4 +100,12 @@ void field_apply_position_delta(void* unused, struct FieldSceneObject* object)
 void field_apply_position_delta(void* unused, struct FieldSceneObject* object) {
     object->positionX += object->positionDeltaX;
     object->positionY += object->positionDeltaY;
+}
+
+void field_clear_scene_object_modes(struct FieldSceneObject* object)
+    FIELD_SECTION(".text.upper.sub_8150590");
+void field_clear_scene_object_modes(struct FieldSceneObject* object)
+{
+    field_set_flag_20c_01(object, 0);
+    sub_804761C(object, 0);
 }

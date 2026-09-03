@@ -32,6 +32,8 @@ Thirteen high-address graphics helpers now have mechanical names for their prove
 
 A second packed-value decoder obtains its mode halfword through an owner and source pointer before performing the related normalization. `GraphicsWorkspaceOwner` also exposes the allocation at offset `0x288`; its destructor copies the current global result to `0x02000000`, frees that workspace, and conditionally frees the owner. Neither layout is assigned a narrower rendering role without recovered construction code.
 
+`SpriteVisibilityController` exposes its owned sprite at offset `0x0C` and the comparison value at `0x34` used by the neighboring assembly visibility update. The recovered refresh wrapper runs the shared setup, visibility update, and finalization sequence; the cleanup helper releases and clears that sprite. A narrower gameplay or screen identity is not visible in current callers.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

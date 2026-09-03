@@ -12,6 +12,8 @@
 #define process_timed_update sub_801B820
 #define process_destroy_owned_buffer sub_801BC98
 #define process_remove_global_owned_buffer sub_801BD30
+#define process_initialize_tld tld_init_8127A94
+#define process_initialize_definition_c4a0 sub_81367C0
 
 struct Process* process_add(struct Process* process, u8 priority, char* label);
 void process_execute_all(void);
@@ -25,5 +27,9 @@ void process_destroy_definition_bd98(struct Process* process, u32 flags);
 void process_timed_update(struct TimedProcess* process);
 void process_destroy_owned_buffer(struct OwnedBufferProcess* process, u32 flags);
 void process_remove_global_owned_buffer(void);
+struct Process* process_initialize_tld(
+    struct Process* process, u8 priority, char* label);
+struct Process* process_initialize_definition_c4a0(
+    struct Process* process, u8 priority, char* label);
 
 #endif

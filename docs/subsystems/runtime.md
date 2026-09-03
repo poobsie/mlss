@@ -38,3 +38,7 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,
 `RuntimeCallbackPacket` records two signed arguments and a callback at offset `0x14`. Its recovered trampoline invokes that callback with the stored argument pair, replacing the former raw byte offsets and cast-through-`void` expression.
 
 `runtime_dereference_pointer` is the narrow indirect-pointer adapter used by two assembly construction paths. Those callers do not expose a common owned type, so the helper states the exact pointer operation without inventing object semantics.
+
+`runtime_release_global_state_ff4` releases and clears the shared pointer at `0x03000FF4`. Many object and screen paths consume that state, but its allocation and copying logic do not yet prove a narrower class name, so the global suffix remains explicit.
+
+`RuntimeIntrusiveList` and `RuntimeIntrusiveNode` recover the generic head, tail, count, previous, and next fields used near `0x08163CD4`. `runtime_intrusive_list_append_unique` first rejects a node already present in the list, then appends it and increments the count. The node payload at offset `0` is intentionally unnamed because this routine never reads it.

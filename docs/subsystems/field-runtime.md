@@ -92,6 +92,8 @@ Ten event callback helpers now share `FieldEventContext`. Three read a byte from
 
 Fifteen upper-region callbacks now expose the callback-chain portion of `FieldSceneObject`. The dispatcher sits at `0x198`, the active and linked chain callbacks at `0x1A0` and `0x1A4`, and an optional auxiliary callback at `0x1AC`. Initializers select a preparation profile, install a dispatcher and starting callback, then invoke the dispatcher immediately. One chain callback conditionally runs the existing field cleanup operation when flag `0x40` at `0x214` is set before forwarding through the next slot. Two variants also prepare the linked scene object at `0x344`. Variant letters remain because the installed assembly callbacks expose mechanics but not stable scene identities.
 
+The final two upper field helpers now share those types. `field_clear_scene_object_modes` clears the proven low mode bit at `0x20C` and invokes the adjacent still-unidentified mode setter with zero. `field_prepare_callback_slot_3_and_dispatch` resets its scene object, installs the known callback in slot three of a four-entry callback packet, and invokes it immediately.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

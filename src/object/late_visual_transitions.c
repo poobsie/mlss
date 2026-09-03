@@ -1,8 +1,12 @@
 #include "global.h"
 #include "audio/sound_effects.h"
 #include "object/runtime_object.h"
+#include "object/functions.h"
 
 #define SEC(name) __attribute__((section(".text.object_late_visual_transitions." #name)))
+#define STRINGIFY_INNER(value) #value
+#define STRINGIFY(value) STRINGIFY_INNER(value)
+#define UPPER_SEC(name) __attribute__((section(".text.upper." STRINGIFY(name))))
 
 void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
 void sub_80883A0(struct RuntimeObject*, s32);
@@ -16,6 +20,7 @@ void sub_81109D0(struct RuntimeObject*);
 void sub_8110A94(struct RuntimeObject*);
 void sub_81127B8(struct RuntimeObject*);
 void sub_81135C0(struct RuntimeObject*);
+void sub_8132594(struct RuntimeObject*);
 
 struct ObjectPositionSource {
     u8 unknown00[0xD8];
@@ -115,4 +120,14 @@ SEC(sub_811458C) void sub_811458C(struct RuntimeObject* object)
     object->followup = sub_81135C0;
     object->update = (RuntimeObjectCallback)0x081141F5;
     sound_effect_play(0x120, SOUND_VOLUME_UNCHANGED);
+}
+
+UPPER_SEC(object_when_global_gate_clear_start_duration_10)
+void object_when_global_gate_clear_start_duration_10(
+    struct RuntimeObject* object)
+{
+    if ((sub_8087CE4() << 0x18) == 0) {
+        sub_80883A0(object, 0x0A);
+        object->update = sub_8132594;
+    }
 }

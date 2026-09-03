@@ -8,6 +8,10 @@ typedef void (*FieldSceneDispatch)(u32, struct FieldSceneObject*);
 typedef void (*FieldSceneChainCallback)(
     u32, struct FieldSceneObject*, void* callbackSlot);
 
+struct FieldCallbackSlots {
+    FieldSceneChainCallback slots[4];
+};
+
 struct FieldSceneObject {
     u8 unknown000[0x0C];
     s32 positionX;

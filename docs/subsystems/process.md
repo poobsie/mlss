@@ -29,6 +29,8 @@ The early destructor that installs the definition at `0x08CDBD98` is now in the 
 
 `ProcessCallbackOwner` is a separate process overlay with a signed resource identifier at `0x1C`, an optional callback at `0x20`, and its callback value at `0x24`. Its destructor installs descriptor `0x08CDC2D8`, releases the resource when the identifier is valid, invokes the callback when present, and removes the process.
 
+Two upper-region constructors now use the canonical `Process` prefix and the full three-argument `process_add` contract. `process_initialize_tld` is supported by the `TLD` label passed at its recovered call site and installs definition `0x08CDC3C8`. The second installs definition `0x08CDC4A0`; its class remains mechanically named until a caller or descriptor identifies it.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

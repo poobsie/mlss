@@ -72,6 +72,8 @@
 #define field_initialize_callback_chain_variant_k sub_813D64C
 #define field_initialize_callback_chain_variant_l sub_814432C
 #define field_initialize_callback_chain_variant_m sub_8145AB0
+#define field_clear_scene_object_modes sub_8150590
+#define field_prepare_callback_slot_3_and_dispatch sub_81506B4
 
 #define field_activate_actor_a_kind_2 sub_80A0AF4
 #define field_activate_actor_b_kind_2 sub_80A1CC4

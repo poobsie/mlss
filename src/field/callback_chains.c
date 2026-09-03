@@ -20,6 +20,9 @@ void sub_813CDB8(u32 context, struct FieldSceneObject* object);
 void sub_813D284(u32 context, struct FieldSceneObject* object);
 void sub_81435E4(u32 context, struct FieldSceneObject* object);
 void sub_814448C(u32 context, struct FieldSceneObject* object);
+void sub_815041C(struct FieldSceneObject* object, s32 value);
+void sub_814E8B0(
+    u32 context, struct FieldSceneObject* object, void* callbackSlots);
 
 void sub_8139508(
     u32, struct FieldSceneObject*, void*);
@@ -169,4 +172,14 @@ void field_initialize_callback_chain_variant_m(
     object->callback1A0 = sub_8139420;
     object->callback1A4 = sub_8139420;
     sub_814448C(context, object);
+}
+
+SEC(field_prepare_callback_slot_3_and_dispatch)
+void field_prepare_callback_slot_3_and_dispatch(
+    u32 context, struct FieldSceneObject* object,
+    struct FieldCallbackSlots* callbacks)
+{
+    sub_815041C(object, 0);
+    callbacks->slots[3] = sub_814E8B0;
+    sub_814E8B0(context, object, callbacks);
 }
