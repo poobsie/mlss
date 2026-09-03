@@ -8,6 +8,7 @@ struct BattleSprite;
 struct BattleSpriteOwner;
 struct BattleSpriteMotionOwner;
 struct BattleSceneRuntime;
+struct BattleControlObject;
 
 /* Semantic C names mapped to original symbols still referenced by assembly. */
 #define battle_initialize_definition_00 sub_8158450
@@ -82,5 +83,10 @@ void battle_sprite_motion_configure_mode_4(
 void battle_sprite_motion_configure_mode_3(
     struct BattleSpriteMotionOwner* object, s32 value);
 void battle_tick_countdown_1f2a(struct BattleSceneRuntime* runtime);
+void battle_set_flag_12d_10(struct BattleControlObject* object);
+void battle_set_flag_12d_20(struct BattleControlObject* object);
+void battle_set_flag_12c_01(struct BattleControlObject* object);
+void battle_set_flags_12c_mode(
+    struct BattleControlObject* object, s32 value);
 
 #endif

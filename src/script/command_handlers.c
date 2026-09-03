@@ -1,4 +1,6 @@
 #include "global.h"
+#include "battle/functions.h"
+#include "battle/object.h"
 #include "field/selection_sequence.h"
 #include "script/command_handlers.h"
 #include "script/command_context.h"
@@ -23,6 +25,14 @@ extern void sub_805B618(void *, u16);
 extern void sub_8047E50(void *, u16);
 extern void sub_8047364(void *, u8);
 extern void sub_80473DC(void *);
+extern u8 sub_8027378(void* objectRegistry);
+extern void sub_805C78C(void* object, u8 value0, u8 value1);
+
+struct ScriptObjectBytePairArguments {
+    u8 value0;
+    u8 padding01[3];
+    u8 value1;
+};
 MISC3_SEC(script_command_return_from_battle)
 u8 script_command_return_from_battle(
     struct ScriptBattleReturnContext* context,
@@ -57,6 +67,82 @@ SEC(sub_80F0780) s32 sub_80F0780(struct ScriptCommandContext* context, void* sta
         sub_803C898(context->objectRegistry, index);
     return 1;
 }
+
+SEC(sub_80F087C)
+s32 script_wait_for_battle_flag_208_10(
+    struct ScriptCommandContext* context,
+    struct ScriptExecutionState* state)
+{
+    s32 result;
+
+    if (((u8*)context->objectRegistry)[0x208] & 0x10) {
+        result = 1;
+    } else {
+        state->cursor = state->resumeCursor;
+        result = 0;
+    }
+    return result;
+}
+
+SEC(sub_80F0914)
+s32 script_command_set_battle_flag_12d(
+    struct ScriptCommandContext* context, void* state,
+    const u32* operation)
+{
+    switch (*operation) {
+    case 0:
+        battle_set_flag_12d_10(
+            (struct BattleControlObject*)context->objectRegistry);
+        break;
+    case 1:
+        battle_set_flag_12d_20(
+            (struct BattleControlObject*)context->objectRegistry);
+        break;
+    }
+    return 1;
+}
+SEC(sub_80F0914) const u16 sub_80F0914_padding = 0;
+
+SEC(sub_80F0938)
+s32 script_command_set_battle_flags_12c(
+    struct ScriptCommandContext* context, void* state,
+    const s32* mode)
+{
+    if (*mode != -32)
+        battle_set_flags_12c_mode(
+            (struct BattleControlObject*)context->objectRegistry, *mode);
+    else
+        battle_set_flag_12c_01(
+            (struct BattleControlObject*)context->objectRegistry);
+    return 0;
+}
+SEC(sub_80F0938) const u16 sub_80F0938_padding = 0;
+
+SEC(sub_80F0984)
+s32 script_wait_for_battle_control_ready(
+    struct ScriptCommandContext* context,
+    struct ScriptExecutionState* state)
+{
+    u8 result = sub_8027378(context->objectRegistry);
+    if (result == 1) {
+        state->cursor = state->resumeCursor;
+        return 0;
+    }
+    return 1;
+}
+SEC(sub_80F0984) const u16 sub_80F0984_padding = 0;
+
+SEC(sub_80F0BA4)
+s32 script_command_configure_object_slot_183(
+    struct ScriptCommandContext* context, void* state,
+    const struct ScriptObjectBytePairArguments* arguments)
+{
+    sub_805C78C(
+        context->objectRegistry->objects[SCRIPT_OBJECT_SLOT_183],
+        arguments->value0, arguments->value1);
+    return 1;
+}
+SEC(sub_80F0BA4) const u16 sub_80F0BA4_padding = 0;
 
 #define DEFINE_OBJECT_COMMAND(name, argument_type, action, result)      \
     SEC(name) s32 name(struct ScriptCommandContext* context, void* state, argument_type* arguments) \

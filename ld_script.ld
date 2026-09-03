@@ -1345,6 +1345,16 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80F0724);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80F0780);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80F0780);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80F087C);
+        asm/text08057568.o(.text.script_command_helpers_after_sub_80F087C);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80F0914);
+        asm/text08057568.o(.text.script_command_helpers_after_sub_80F0914);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80F0938);
+        asm/text08057568.o(.text.script_command_helpers_after_sub_80F0938);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80F0984);
+        asm/text08057568.o(.text.script_command_helpers_after_sub_80F0984);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80F0BA4);
+        asm/text08057568.o(.text.script_command_helpers_after_sub_80F0BA4);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80F0BC0);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80F0BC0);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80F0BD8);

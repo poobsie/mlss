@@ -61,6 +61,11 @@ documents the relationship while the source preserves the exact ROM bytes.
 | `sub_80F1AE4` | `script_command_copy_word` | Copies one command-supplied word to the destination selected by the dispatcher. |
 | `sub_80F7E80` | `script_command_noop` | Returns the interpreter's successful-completion value without changing state. |
 | `sub_80F80B4` | `script_command_forward_pair` | Forwards two consecutive command words to the same callee. The callee's semantics remain unknown. |
+| `sub_80F087C` | `script_wait_for_battle_flag_208_10` | Yields and restores the saved cursor until battle-control flag `0x10` at offset `0x208` is set. |
+| `sub_80F0914` | `script_command_set_battle_flag_12d` | Selects battle-control flag `0x10` or `0x20` at offset `0x12D`. |
+| `sub_80F0938` | `script_command_set_battle_flags_12c` | Applies the established flags-mode operation, with `-32` selecting the dedicated flag `0x01` path. |
+| `sub_80F0984` | `script_wait_for_battle_control_ready` | Restores the saved cursor and yields when the battle-control readiness predicate returns one. |
+| `sub_80F0BA4` | `script_command_configure_object_slot_183` | Forwards two command bytes to the object in the already established registry slot 183. |
 
 The execution state now exposes the saved cursor at offset `0x14`. Three wait handlers restore that cursor and yield when their respective condition becomes true: the primary actor height test, field flag `0x291` bit 0, or a context-owned asynchronous operation. `script_command_branch_if_condition` decodes its aligned condition, operand, and target-cursor record and updates the current cursor only when the shared condition evaluator succeeds.
 
@@ -70,4 +75,4 @@ The execution state now exposes the saved cursor at offset `0x14`. Three wait ha
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,379 linked C functions checked, 1,379 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,392 linked C functions checked, 1,392 exact, and zero mismatches.
