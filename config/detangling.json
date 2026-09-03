@@ -79,7 +79,7 @@
         "src/*landing*.c"
       ],
       "documentation": "docs/subsystems/object-runtime.md",
-      "next_action": "Audit remaining object-runtime patterns and separate generic render-object and descriptor destructor types."
+      "next_action": "Move generic callback-table forwarders out of this queue, then mark current object-runtime C detangled."
     },
     {
       "id": "unclassified",

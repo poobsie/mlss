@@ -1,14 +1,14 @@
 #include "global.h"
+#include "object/render_object.h"
 
-#define FIELD(object, type, offset) (*(type *)((u8 *)(object) + (offset)))
 #define SEC(name) __attribute__((section(".text.object_destructors." #name)))
 
-extern void sub_8163B60(void *, s32);
+extern void sub_8163B60(struct DescriptorObject*, s32);
 
-#define DEFINE_OBJECT_DESTRUCTOR(name, descriptor)                     \
-    SEC(name) void name(void *object, s32 flags)                        \
+#define DEFINE_OBJECT_DESTRUCTOR(name, descriptor_address)             \
+    SEC(name) void name(struct DescriptorObject* object, s32 flags)     \
     {                                                                    \
-        FIELD(object, void *, 0x0C) = (void *)(descriptor);             \
+        object->descriptor = (void *)(descriptor_address);              \
         sub_8163B60(object, flags);                                     \
     }
 

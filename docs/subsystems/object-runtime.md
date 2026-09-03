@@ -56,9 +56,15 @@ Seven conditional setup and activation callbacks now use the runtime-object visu
 
 The similarly named actor-command wrappers were deliberately left outside this subsystem. They select actors through a global field context and belong to field runtime, even though their final animation calls look similar.
 
+## Separate object layouts
+
+The two callback-result helpers use `RuntimeObject` because they only replace its update callback and return success. The seven render-object initializers and fifteen descriptor-restoring destructors do not use that layout. They now use the separate `RenderObject` and `DescriptorObject` types in `include/object/render_object.h`.
+
+`RenderObject` has an active byte at `0x24`, descriptor at `0x30`, and 16-bit value at `0x34`. `DescriptorObject` has its descriptor at `0x0C` and delegates teardown to `sub_8163B60`. Their class-specific entry points remain address-named because current C proves layout and lifecycle mechanics, but not the identity of each descriptor.
+
 ## Next boundary
 
-Trace the entry dispatcher around `0x0808CC08` and group complete setup-to-completion behavior sequences. Keep the two descriptor families separate until the global source records are understood.
+Move the generic callback-table forwarders out of the object queue, then mark the current object-runtime C detangled. Future semantic sequence names depend on the entry dispatcher and neighboring assembly.
 
 ## Verification
 

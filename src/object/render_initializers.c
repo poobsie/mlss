@@ -1,28 +1,28 @@
 #include "global.h"
+#include "object/render_object.h"
 
-#define FIELD(object, type, offset) (*(type *)((u8 *)(object) + (offset)))
 #define SEC(name) __attribute__((section(".text.render_object_initializers." #name)))
 
 extern void sub_815F8F4();
-extern void sub_815F97C(void *, s32);
+extern void sub_815F97C(struct RenderObject*, s32);
 
-#define DEFINE_RENDER_OBJECT_INITIALIZER(name, descriptor)              \
-    SEC(name) void *name(void *object, s32 mode, u16 value)             \
+#define DEFINE_RENDER_OBJECT_INITIALIZER(name, descriptor_address)      \
+    SEC(name) struct RenderObject* name(struct RenderObject* object, s32 unusedMode, u16 value) \
     {                                                                    \
         sub_815F8F4();                                                   \
-        FIELD(object, void *, 0x30) = (void *)(descriptor);             \
-        FIELD(object, u16, 0x34) = value;                               \
+        object->descriptor = (void *)(descriptor_address);              \
+        object->value = value;                                          \
         sub_815F97C(object, 0);                                         \
         return object;                                                   \
     }
 
-#define DEFINE_ACTIVE_RENDER_OBJECT_INITIALIZER(name, descriptor)       \
-    SEC(name) void *name(void *object, s32 mode, u16 value)             \
+#define DEFINE_ACTIVE_RENDER_OBJECT_INITIALIZER(name, descriptor_address) \
+    SEC(name) struct RenderObject* name(struct RenderObject* object, s32 unusedMode, u16 value) \
     {                                                                    \
         sub_815F8F4();                                                   \
-        FIELD(object, void *, 0x30) = (void *)(descriptor);             \
-        FIELD(object, u16, 0x34) = value;                               \
-        FIELD(object, u8, 0x24) = 1;                                   \
+        object->descriptor = (void *)(descriptor_address);              \
+        object->value = value;                                          \
+        object->active = 1;                                             \
         return object;                                                   \
     }
 
