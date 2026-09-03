@@ -13,11 +13,6 @@ void sub_8029A0C(void*, void*, s32);
 void sub_8139AA0(void*);
 void sub_80514C4(void);
 
-s32 sub_803E9F0(void* arg0) SECTION(sub_803E9F0);
-s32 sub_803E9F0(void* arg0) {
-    return 1 & FIELD_AT(arg0, u8*, 0x291);
-}
-
 void sub_803C538(void* arg0, void* arg1) SECTION(sub_803C538);
 void sub_803C538(void* arg0, void* arg1) {
     sub_802FAE4(arg0, arg1, 1);

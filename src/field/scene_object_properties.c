@@ -65,6 +65,12 @@ int field_test_flag_2b5_08(struct FieldSceneObject* object) {
     return (object->flags2B5 >> 3) & 1;
 }
 
+int field_test_flag_291_01(struct FieldSceneObject* object)
+    FIELD_SECTION(".text.early_code_helpers.sub_803E9F0");
+int field_test_flag_291_01(struct FieldSceneObject* object) {
+    return 1 & object->flags291;
+}
+
 void field_shift_value_266_to_previous(struct FieldSceneObject* object, u16 value)
     FIELD_SECTION(".text.early_bitfield_updates.sub_8047B5C");
 void field_shift_value_266_to_previous(struct FieldSceneObject* object, u16 value) {

@@ -29,7 +29,9 @@ struct FieldSceneObject {
     u16 previousValue268;
     u8 unknown26A[4];
     u8 selectedEntryIndex;
-    u8 unknown26F[0x25];
+    u8 unknown26F[0x22];
+    u8 flags291;
+    u8 unknown292[2];
     struct Sprite* sprite;
     u8 unknown298[0x1D];
     u8 flags2B5;
