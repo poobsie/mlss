@@ -10,10 +10,12 @@ typedef void (*InterruptCallback)(void);
 #define runtime_noop_interrupt_callback nullsub_16
 #define runtime_install_interrupt_callback sub_8018B78
 #define runtime_clear_state_3000d28 sub_801AE1C
+#define runtime_release_global_resource_callback sub_8150A38
 
 void game_state_set_play_time(u32 playTime);
 void runtime_noop_interrupt_callback(void);
 void runtime_install_interrupt_callback(int interrupt, InterruptCallback callback);
 void runtime_clear_state_3000d28(void);
+void runtime_release_global_resource_callback(void* unused);
 
 #endif

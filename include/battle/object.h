@@ -77,4 +77,10 @@ struct BattleResourceControlObject {
     void* resource304;
 };
 
+struct BattleSceneRuntime {
+    u8 unknown0000[0x1F28];
+    u16 value1F28;
+    s16 countdown1F2A;
+};
+
 #endif

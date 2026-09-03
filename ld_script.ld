@@ -1631,7 +1631,7 @@ SECTIONS
         asm/text08057568.o(.text.after_text_late_helpers_sub_8150A00);
         src/save/flags.o(.text.text_late_helpers.sub_8150A1C);
         asm/text08057568.o(.text.after_text_late_helpers_sub_8150A1C);
-        src/text_late_helpers.o(.text.text_late_helpers.sub_8150A38);
+        src/runtime/resource_release.o(.text.text_late_helpers.sub_8150A38);
         asm/text08057568.o(.text.after_text_late_helpers_sub_8150A38);
         src/graphics/circular_mask.o(.text.sub_8150DE8);
         src/graphics/circular_mask.o(.text.sub_8150DEC);
@@ -1716,7 +1716,7 @@ SECTIONS
         asm/text08057568.o(.text.after_8158E10);
         src/text_upper_structural.o(.text.text_upper_structural.sub_8158EEC);
         asm/text08057568.o(.text.after_text_upper_structural_sub_8158EEC);
-        src/text_late_helpers.o(.text.text_late_helpers.sub_8158F60);
+        src/battle/scene_countdown.o(.text.text_late_helpers.sub_8158F60);
         asm/text08057568.o(.text.after_text_late_helpers_sub_8158F60);
         src/runtime/noop_callbacks.o(.text.nullsub_21);
         asm/text08057568.o(.text.after_nullsub_21);

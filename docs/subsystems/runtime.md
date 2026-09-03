@@ -26,3 +26,5 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,
 `DefinitionState` is a six-word base overlay used by several differently sized late-runtime allocations. Two initializer families clear the same fields and install distinct definitions while setting value `0x10` to `0x7E00`; paired reset functions replace the definition and clear state. The initializer return types now match callers that retain `r0` as the initialized object pointer.
 
 `word_triplet_copy` copies one exact three-word value from source to destination. The words are named by order because its current callers prove the value width and copy direction, but not the payload semantics.
+
+`runtime_release_global_resource_callback` adapts the no-argument global resource-release operation to callback sites that supply an unused object pointer. The underlying resource owner is still identified only through globals, so the name does not claim a narrower subsystem.
