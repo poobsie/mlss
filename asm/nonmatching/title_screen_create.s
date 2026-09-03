@@ -1,7 +1,7 @@
 	.include "asm/macros.inc"
 
-	thumb_func_start open_init_8055A00
-open_init_8055A00: @ 08055A00
+	thumb_func_start title_screen_create
+title_screen_create: @ 08055A00
 	push {r4, r5, r6, r7, lr}
 	mov r7, r10
 	mov r6, r9
@@ -106,7 +106,7 @@ open_init_8055A00: @ 08055A00
 	str r1, [sp, #0x000]
 	movs r1, #0x08
 	adds r2, r4, #0x0
-	bl mbsv_init
+	bl title_screen_score_display_create
 	str r0, [r6, #0x00]
 	mov r3, r10
 	str r3, [r0, #0x14]
@@ -442,7 +442,7 @@ _08055DDC: .4byte 0x083A7140
 _08055DE0: .4byte 0x02000080
 _08055DE4: .4byte 0x00007FFF
 _08055DE8: .4byte 0x0000FFFF
-_08055DEC: .4byte sub_8056224
+_08055DEC: .4byte title_screen_scanline_effect_update
 _08055DF0: .4byte 0x00001241
 _08055DF4:
 	mov r0, r10

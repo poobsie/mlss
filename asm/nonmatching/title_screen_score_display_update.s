@@ -1,5 +1,5 @@
-thumb_func_start opdr_update2
-opdr_update2:
+thumb_func_start title_screen_score_display_update
+title_screen_score_display_update:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r10
 	mov r6, r9

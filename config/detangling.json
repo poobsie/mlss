@@ -40,13 +40,12 @@
       "id": "screens",
       "state": "active",
       "patterns": [
-        "src/title_screen.c",
         "src/option_screens.c",
         "src/option_screens_tail.c",
         "src/screens/*.c"
       ],
       "documentation": "docs/subsystems/screens.md",
-      "next_action": "Continue from the recovered Game Boy Player logo process into shared title and option-screen lifecycle code."
+      "next_action": "Recover the shared option-window and menu types, then split option-screen lifecycles into bounded files."
     },
     {
       "id": "script_engine",

@@ -167,7 +167,7 @@ SECTIONS
         asm/option_screens.o(.text);
         src/option_screens_tail.o(.text);
         asm/text080542C4.o(.text);
-        src/title_screen.o(.text);
+        src/screens/title_screen.o(.text);
         src/link/multiplayer.o(.text);
         asm/text08057568.o(.text);
         src/text_small_functions_12.o(.text.small_functions_12.sub_8057B58);
@@ -2319,7 +2319,7 @@ SECTIONS
         asm/text08057568.o(.text.high_after_sub_81DD69C);
 
         asm/rodata081DD790.o(.rodata);
-        src/title_screen.o(.rodata);
+        src/screens/title_screen.o(.rodata);
         asm/rodata081E2764.o(.rodata);
 
         asm/mariobros.o(.text);

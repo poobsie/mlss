@@ -92,14 +92,42 @@ struct CompanyIntro {
     struct Sprite* alphaDreamLogo;
 };
 
+struct TitleScreenScoreDisplay {
+    struct Process process;
+    char topScore[6];
+    char playerScore[2];
+};
+
+struct TitleScreen;
+
 extern struct ProcessDefinition gCompanyIntroProcessDefinition __asm__("stru_8CDC258");
 extern struct ProcessDefinition gScreenRenderProcessDefinition __asm__("stru_8CDC268");
+extern struct ProcessDefinition gTitleScreenProcessDefinition __asm__("stru_8CDC238");
+extern struct ProcessDefinition gTitleScreenScoreDisplayProcessDefinition
+    __asm__("stru_8CDC248");
 
 struct CompanyIntro* company_intro_create(struct CompanyIntro* intro, u8 priority, char* label);
 void company_intro_update(struct CompanyIntro* intro);
 void company_intro_destroy(struct CompanyIntro* intro, int flags);
 struct Process* screen_render_process_create(struct Process* process, u8 priority, char* label);
 void screen_render_process_update(void);
+struct TitleScreen* title_screen_create(
+    struct TitleScreen* titleScreen,
+    u8 priority,
+    char* label,
+    int selection);
+void title_screen_update(struct TitleScreen* titleScreen);
+void title_screen_destroy(struct TitleScreen* titleScreen, int flags);
+void title_screen_prepare_press_start(struct TitleScreen* titleScreen);
+void title_screen_prepare_game_select(struct TitleScreen* titleScreen, int selection);
+void title_screen_scanline_effect_update(void);
+struct TitleScreenScoreDisplay* title_screen_score_display_create(
+    struct TitleScreenScoreDisplay* display,
+    u8 priority,
+    char* label,
+    u32 topScore,
+    u8 playerScore);
+void title_screen_score_display_update(struct TitleScreenScoreDisplay* display);
 
 struct TitleScreen {
     struct Process process;
@@ -112,44 +140,44 @@ struct TitleScreen {
     // Index used for game selection text sprites.
     u8 spriteIdx : 2;
 
-    int xPosSuitcase;
-    int yPosSuitcase;
-    s16 xVelocitySuitcase;
-    s16 yVelocitySuitcase;
+    int suitcaseX;
+    int suitcaseY;
+    s16 suitcaseVelocityX;
+    s16 suitcaseVelocityY;
 
-    s16 mlTextProgression;
-    int mlTextPosY;
-    int mlTextScaleX;
-    int mlTextScaleY;
+    s16 titleLogoProgress;
+    int titleLogoY;
+    int titleLogoScaleX;
+    int titleLogoScaleY;
 
-    s16 ssTextProgression;
-    int ssTextPosY;
-    int ssTextScaleX;
-    int ssTextScaleY;
+    s16 subtitleProgress;
+    int subtitleY;
+    int subtitleScaleX;
+    int subtitleScaleY;
 
-    s16 nTextProgression;
-    int nTextPosY;
-    int nTextScaleX;
-    int nTextScaleY;
+    s16 licenseTextProgress;
+    int licenseTextY;
+    int licenseTextScaleX;
+    int licenseTextScaleY;
 
-    s16 psTextVelocity;
-    int psTextPosY;
+    s16 pressStartVelocity;
+    int pressStartY;
 
-    int beanPosX;
-    int beanPosY;
-    s16 beanVelocityX;
-    s16 beanVelocityY;
+    int selectionPointerX;
+    int selectionPointerY;
+    s16 selectionPointerVelocityX;
+    s16 selectionPointerVelocityY;
 
     char pad1[16];
 
-    s8 states[6];
-    u16 timer;
+    s8 itemStates[6];
+    u16 animationTimer;
 
     char pad2[12];
 
-    struct BgAffineSrcData mlTextAffineSrc;
-    struct BgAffineDstData mlTextAffineDst;
-    struct MarioBrosScoreVisual* mbsv;
+    struct BgAffineSrcData titleLogoAffineSource;
+    struct BgAffineDstData titleLogoAffineDestination;
+    struct TitleScreenScoreDisplay* scoreDisplay;
     s8 selection;
     struct Sprite* sprites[9];
 };

@@ -514,7 +514,7 @@ void optn_update(struct OPTNProcess* optn) {
                     process_remove(&optn->process, 3);
                 }
                 //! Fix this when other functions are also matching.
-                open_init_8055A00(
+                title_screen_create(
                     alloc_Zero(sizeof(struct TitleScreen), 0, (char*)0x081E2714 /*"OPEN"*/, 0), 8,
                     (char*)0x081E2714 /*"OPEN"*/, 3);
                 return;

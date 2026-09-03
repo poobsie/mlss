@@ -100,12 +100,6 @@ struct EeprStruct1 {
     u8 field_8_6 : 1;
 };
 
-struct MarioBrosScoreVisual {
-    struct Process process;
-    char topScore[6];
-    char pScore[2];
-};
-
 struct struc_11 {
     u16 field_0;
     u16 field_2;
@@ -211,7 +205,6 @@ int try_save_options(struct OPTNProcess*);
 void sub_8052EFC(struct OPTNProcess*);
 void sub_805420C(struct OPTNProcess*);
 void option_screen_set_ok_button(struct OPTNProcess*, int, int);
-void open_init_8055A00(void*, int, char*, int);
 void open_8056224();
 int sub_812454C(void);
 struct struc_203FFF8* sub_81251DC();
@@ -268,5 +261,3 @@ extern s16 word_83A75B8[];
 extern s16 word_83A75C8[];
 extern u8* off_839EC80;
 extern struct ProcessDefinition stru_8CDC1F8;
-extern struct ProcessDefinition stru_8CDC238;
-extern struct ProcessDefinition stru_8CDC248;

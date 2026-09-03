@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common.h"
 #include "process/process.h"
+#include "screens/title_screen.h"
 
 void generate_window_bg_8051B98(struct WindowAttr*, int*, u8, u8, u8, u8, int);
 
@@ -50,7 +51,7 @@ void sub_8053FC4(struct OptionTailProcess* optn) {
                 *(u16*)0x02000050 = value;
                 process_remove(&optn->process, 3);
             }
-            open_init_8055A00(alloc_Zero(0xE4, 0, (char*)0x081E2714, 0), 8,
+            title_screen_create(alloc_Zero(0xE4, 0, (char*)0x081E2714, 0), 8,
                               (char*)0x081E2714, 2);
         }
         }
