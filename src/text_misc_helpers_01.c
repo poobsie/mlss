@@ -355,42 +355,6 @@ SEC(sub_808C190) s32 sub_808C190(void* arg0) {
     return 1;
 }
 
-SEC(sub_808C324) void sub_808C324(void* arg0) {
-    FIELD_AT(arg0, s16*, 0xAC) = 0xC;
-    sub_80873B8(arg0, 2, 0xC);
-    FIELD_AT(arg0, UnknownWord**, 0x50) = (UnknownWord*)&sub_808B2D4;
-}
-
-SEC(sub_808C39C) void sub_808C39C(void* arg0) {
-    FIELD_AT(arg0, s16*, 0xAC) = 5;
-    sub_80873B8(arg0, 6, 5);
-    FIELD_AT(arg0, UnknownWord**, 0x50) = (UnknownWord*)&sub_808C62C;
-}
-
-SEC(sub_808C3C0) void sub_808C3C0(void* arg0) {
-    FIELD_AT(arg0, s16*, 0xAC) = 5;
-    sub_80873B8(arg0, 2, 5);
-    FIELD_AT(arg0, UnknownWord**, 0x50) = (UnknownWord*)&sub_808C65C;
-}
-
-SEC(sub_808C3E4) void sub_808C3E4(void* arg0) {
-    FIELD_AT(arg0, s16*, 0xAC) = 5;
-    sub_80873B8(arg0, 6, 5);
-    FIELD_AT(arg0, UnknownWord**, 0x50) = (UnknownWord*)&sub_808C68C;
-}
-
-SEC(sub_808C408) void sub_808C408(void* arg0) {
-    FIELD_AT(arg0, s16*, 0xAC) = 5;
-    sub_80873B8(arg0, 2, 5);
-    FIELD_AT(arg0, UnknownWord**, 0x50) = (UnknownWord*)&sub_808C6BC;
-}
-
-SEC(sub_808C4C8) void sub_808C4C8(void* arg0) {
-    FIELD_AT(arg0, s16*, 0xAC) = 3;
-    sub_80873B8(arg0, 7, 3);
-    FIELD_AT(arg0, UnknownWord**, 0x50) = (UnknownWord*)&sub_808C724;
-}
-
 SEC(sub_809C954) void sub_809C954(void* arg0) {
     FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_809CA24;
 }

@@ -82,6 +82,8 @@ Eleven neighboring terminal gates now form two more typed families. Five wait fo
 
 Nine setup callbacks now use `RuntimeObject` directly. Six forward the stored `positionOwner` into the shared setup routine and optionally install a continuation. Three take the owner as an explicit argument; one also initializes `behaviorState` to 1. Variant names remain structural because the assembly callers do not yet identify the gameplay sequences.
 
+Six timed follow-up setups now expose the shared `timer` and `followup` fields. They configure kinds 2, 6, or 7 for durations of 3, 5, or 12 ticks, then install distinct assembly continuations. The numeric kind remains explicit until the underlying setup routine and its resource table are recovered.
+
 Three additional visual-completion variants now use the shared object layout. They select animations from state at `0x9C` or flags at `0x98`; one also starts effect `0x151D`, installs a secondary update at `0x5C`, and advances the primary update at `0x4C`.
 
 Four late visual transitions now expose linked-object completion, linked-chain flag propagation at `0xA8`, animation and sound setup, and terminal cleanup. Their semantic aliases describe the proven gate and effect; unresolved sound and animation values remain numeric.

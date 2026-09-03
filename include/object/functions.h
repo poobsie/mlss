@@ -121,6 +121,13 @@
 #define object_setup_from_owner_a sub_806D340
 #define object_setup_from_owner_b sub_8075C48
 
+#define object_setup_followup_kind_2_for_12_ticks sub_808C324
+#define object_setup_followup_kind_6_for_5_ticks_a sub_808C39C
+#define object_setup_followup_kind_2_for_5_ticks_a sub_808C3C0
+#define object_setup_followup_kind_6_for_5_ticks_b sub_808C3E4
+#define object_setup_followup_kind_2_for_5_ticks_b sub_808C408
+#define object_setup_followup_kind_7_for_3_ticks sub_808C4C8
+
 /* Middle-address behavior families whose owning callback tables remain in assembly. */
 #define object_invoke_shared_terminal_action_a sub_80D2D28
 #define object_invoke_shared_terminal_action_b sub_80DEC60
