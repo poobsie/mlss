@@ -1057,13 +1057,13 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_809BA28);
         src/object/activation_command_transitions.o(.text.activation_command_transitions.sub_809BA44);
         asm/text08057568.o(.text.activation_command_transitions_after_sub_809BA44);
-        src/vertical_boundary_callbacks.o(.text.vertical_boundary_callbacks.sub_809C13C);
+        src/object/boundary_callbacks.o(.text.vertical_boundary_callbacks.sub_809C13C);
         asm/text08057568.o(.text.vertical_boundary_callbacks_after_sub_809C13C);
-        src/vertical_boundary_callbacks.o(.text.vertical_boundary_callbacks.sub_809C1E8);
+        src/object/boundary_callbacks.o(.text.vertical_boundary_callbacks.sub_809C1E8);
         asm/text08057568.o(.text.vertical_boundary_callbacks_after_sub_809C1E8);
         src/object/command_transitions.o(.text.command_transitions.sub_809C448);
         asm/text08057568.o(.text.command_transitions_after_sub_809C448);
-        src/vertical_boundary_callbacks.o(.text.vertical_boundary_callbacks.sub_809C570);
+        src/object/boundary_callbacks.o(.text.vertical_boundary_callbacks.sub_809C570);
         asm/text08057568.o(.text.vertical_boundary_callbacks_after_sub_809C570);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_809C954);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_809C954);

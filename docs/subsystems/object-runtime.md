@@ -64,7 +64,9 @@ The two callback-result helpers use `RuntimeObject` because they only replace it
 
 ## Next boundary
 
-Move the generic callback-table forwarders out of the object queue, then mark the current object-runtime C detangled. Future semantic sequence names depend on the entry dispatcher and neighboring assembly.
+Future semantic sequence names depend on the entry dispatcher and neighboring assembly. Newly decompiled helpers should join this subsystem only when they use the established object layouts or call graph.
+
+Three boundary callbacks now share `RuntimeObject` and `RuntimeObjectVisual`. Each performs the same base update, adds the visual's coordinate at offset `0` to the object's signed adjustment at offset `0x45`, and invokes the still-unidentified operation at `sub_807C298` when the result is nonpositive. Their variant suffixes remain until the callback-table owners are identified.
 
 ## Verification
 

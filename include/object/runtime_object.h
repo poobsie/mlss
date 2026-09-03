@@ -23,7 +23,8 @@ struct RuntimeObject;
 typedef void (*RuntimeObjectCallback)(struct RuntimeObject* object);
 
 struct RuntimeObjectVisual {
-    u8 unknown00[0x12];
+    s16 coordinate0;
+    u8 unknown02[0x10];
     u8 flags;
     u8 unknown13[0x0D];
     u8 parameter20;
@@ -42,7 +43,9 @@ struct RuntimeObject {
     s32 positionX;
     s32 positionY;
     s32 positionZBase;
-    u8 unknown44[8];
+    u8 unknown44;
+    s8 boundaryOffset45;
+    u8 unknown46[6];
     RuntimeObjectCallback update;
     u8 unknown50[0x18];
     RuntimeObjectCallback cleanup;
