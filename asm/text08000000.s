@@ -6347,7 +6347,7 @@ _08017C1E:
 	ands r0, r1
 	cmp r0, #0x02
 	bne _08017C70
-	bl sub_8057568
+	bl mario_bros_sync_records
 	lsls r0, r0, #0x07
 	ldrb r2, [r4, #0x06]
 	adds r1, r5, #0x0
@@ -6435,7 +6435,7 @@ _08017CE4:
 	bl alloc_Zero
 	ldr r2, _08017DE0 @ =0x081DD7B8
 	movs r1, #0x08
-	bl sub_8053CB4
+	bl mario_bros_save_error_screen_create
 	b _08017E1C
 _08017D24: .4byte 0x04000204
 _08017D28: .4byte 0x00004014

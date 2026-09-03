@@ -1469,8 +1469,8 @@ _08053CA0:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8053CB4
-sub_8053CB4:
+	thumb_func_start mario_bros_save_error_screen_create
+mario_bros_save_error_screen_create:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r10
 	mov r6, r9
@@ -1768,7 +1768,7 @@ _08053EEC:
 	adds r0, #0x02
 	strh r4, [r0, #0x00]
 	adds r0, r7, #0x0
-	bl sub_80540B0
+	bl mario_bros_save_error_screen_prepare_dialog
 	ldr r1, _08053FBC @ =0x02000050
 	movs r0, #0xBF
 	strh r0, [r1, #0x00]

@@ -38,17 +38,16 @@
     },
     {
       "id": "screens",
-      "state": "active",
+      "state": "detangled",
       "patterns": [
-        "src/option_screens_tail.c",
         "src/screens/*.c"
       ],
       "documentation": "docs/subsystems/screens.md",
-      "next_action": "Decode the separate 64-byte startup message process trigger and message before assigning its domain name and moving its lifecycle."
+      "next_action": "Expand when the remaining options, backup-clear, and Mario Bros return-path assembly is converted to C."
     },
     {
       "id": "script_engine",
-      "state": "queued",
+      "state": "active",
       "patterns": ["src/script_*.c"],
       "documentation": "docs/subsystems/script-engine.md",
       "next_action": "Recover the command context and dispatch-table types before renaming handlers."

@@ -165,7 +165,8 @@ SECTIONS
         src/text0801A548_tail.o(.text);
         src/screens/options.o(.text);
         asm/screens/options_and_backup.o(.text);
-        src/option_screens_tail.o(.text);
+        src/screens/mario_bros_save_error.o(.text);
+        src/screens/backup_clear_helpers.o(.text);
         src/screens/options_dialogs.o(.text);
         asm/text080542C4.o(.text);
         src/screens/title_screen.o(.text);

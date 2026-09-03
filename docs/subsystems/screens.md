@@ -106,9 +106,26 @@ Its 76-byte layout is now `BackupClearScreen` in `include/screens/backup_clear.h
 
 Only bit zero of the byte after the process header is understood: it selects the affirmative or negative cursor position. The remaining bits stay `unknownFlags`. `writeProgress` is passed to and replaced by the backup-write operation, but the format of its intermediate values is not yet recovered.
 
+## Mario Bros save-error screen
+
+The former option-screen tail is a 64-byte error screen used only on the Mario Bros return path. Selecting Mario Bros from the title sets the shared handoff state to 1. When the embedded game returns with state 2, `mario_bros_sync_records` compares its records with the saved values and attempts to persist any improvements. A failed synchronization creates this error screen; a successful one returns directly to title-screen entry path 2.
+
+`MarioBrosSaveErrorScreen` owns the rendered message, its tilemap and text context, and one `WindowAnimation`. `mario_bros_save_error_screen_update` waits for the centered message window to finish opening, holds it for up to 240 frames or until A, B, or Start is pressed, closes it, frees the owned buffers, and recreates the title screen. Its source is now `src/screens/mario_bros_save_error.c`. The backup-clear helpers that previously followed it are isolated in `src/screens/backup_clear_helpers.c`.
+
+| Previous name | Recovered name | Evidence |
+| --- | --- | --- |
+| `sub_8053CB4` | `mario_bros_save_error_screen_create` | The Mario Bros return dispatcher creates it only when record synchronization reports failure; it builds one centered message screen. |
+| `sub_8053FC4` | `mario_bros_save_error_screen_update` | Holds the message for 240 frames or input, animates it closed, destroys the process, and returns to the title screen. |
+| `sub_805410C` | `mario_bros_save_error_screen_destroy` | Frees the exact five allocations owned by the 64-byte message process and removes it. |
+| `sub_80540B0` | `mario_bros_save_error_screen_prepare_dialog` | Reads this message's dimensions and initializes its centered window animation. |
+| `sub_8057568` | `mario_bros_sync_records` | Compares the returned Mario Bros record values with persistent values, updates improvements, and invokes the save operation. |
+| `0x08CDC1C8` | `gMarioBrosSaveErrorScreenProcessDefinition` | Its update pointer is `mario_bros_save_error_screen_update`. |
+
+The exact record semantics are not yet proven, so the synchronization function deliberately uses `records` rather than `scores`. Its field-level data model should be recovered with the surrounding Mario Bros subsystem.
+
 ## Remaining screen work
 
-The remaining option-screen tail contains a separate 64-byte startup message process selected by a low-level startup/link-state branch. It owns a single centered message and returns to title-screen entry path 2. Its specific message and triggering condition need to be decoded before assigning a domain name. The main options and backup-clear screens no longer depend on its unknown process type, apart from shared window helpers.
+All currently decompiled screen C now has a subsystem path, canonical public header, typed process ownership, and evidence-backed lifecycle names. Some adjacent assembly remains in `asm/screens/options_and_backup.s`; it should be split further as those functions are converted to C.
 
 ## Verification
 

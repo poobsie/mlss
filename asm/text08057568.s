@@ -3,8 +3,8 @@
 	.syntax unified
 	.text
 
-	thumb_func_start sub_8057568
-sub_8057568:
+	thumb_func_start mario_bros_sync_records
+mario_bros_sync_records:
 	push {r4, r5, lr}
 	bl sub_81251DC
 	adds r2, r0, #0x0
