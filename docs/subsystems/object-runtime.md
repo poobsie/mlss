@@ -76,6 +76,8 @@ Six neighboring upper-region callbacks now extend that command-transition family
 
 The last isolated upper object callback now joins the late visual transitions. It waits for the same global gate used by neighboring sequences, starts the established timed visual operation with duration ten, and installs its next update. The gate remains generic because its implementation and gameplay owner are still assembly-only.
 
+Twenty-nine callbacks extracted from the first large miscellaneous bucket now complete the visual-command family. Sixteen wait for visual completion, issue command `0` with no secondary value, and stop their update. Thirteen perform the same terminal transition with secondary command value `0x2000`; they directly pair with the thirteen previously recovered `0x204D` variants. One parameterized typed implementation now expresses all three families. Variant suffixes preserve distinct callback-table entry points whose sequence owners remain in assembly.
+
 Three additional visual-completion variants now use the shared object layout. They select animations from state at `0x9C` or flags at `0x98`; one also starts effect `0x151D`, installs a secondary update at `0x5C`, and advances the primary update at `0x4C`.
 
 Four late visual transitions now expose linked-object completion, linked-chain flag propagation at `0xA8`, animation and sound setup, and terminal cleanup. Their semantic aliases describe the proven gate and effect; unresolved sound and animation values remain numeric.
