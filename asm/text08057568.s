@@ -62900,7 +62900,7 @@ _08079F3E:
 	ldr r0, [r3, #0x1C]
 	cmp r0, #0x00
 	beq _08079F5A
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 _08079F5A:
 	mov r4, r8
 	ldr r1, [r4, #0x20]
@@ -64270,7 +64270,7 @@ _0807AFB4:
 	ldr r0, [r4, #0x0C]
 	cmp r0, #0x00
 	beq _0807AFC4
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 _0807AFC4:
 	movs r0, #0x00
 	str r0, [r4, #0x04]
@@ -81457,7 +81457,7 @@ sub_80843C0:
 	ldr r2, _080844BC @ =0x082000D4
 	movs r0, #0x01
 	adds r1, r5, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	movs r2, #0xA2
 	lsls r2, r2, #0x02
@@ -261200,7 +261200,7 @@ sub_80DEEA8:
 	lsls r1, r1, #0x02
 	ldr r2, _080DF00C @ =0x082000E0
 	movs r0, #0x01
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r5, r0, #0x0
 	str r5, [r4, #0x0C]
 	subs r7, #0x01
@@ -269430,7 +269430,7 @@ sub_80E4FC8:
 	push {r4, lr}
 	ldr r4, _080E4FE8 @ =0x03000F94
 	ldr r0, [r4, #0x00]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	movs r0, #0x00
 	str r0, [r4, #0x00]
 	ldr r0, _080E4FEC @ =0x03000FA0
@@ -270013,7 +270013,7 @@ _080E5400:
 	lsls r1, r1, #0x03
 	ldr r2, _080E5470 @ =0x08200120
 	movs r0, #0x01
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	str r0, [r6, #0x00]
 	ldr r0, _080E5474 @ =0x03000F98
 	str r5, [r0, #0x00]
@@ -270175,7 +270175,7 @@ sub_80E5810:
 	adds r1, r4, r1
 	ldr r2, _080E5884 @ =0x08200130
 	movs r0, #0x00
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	str r1, [r6, #0x00]
 	lsls r2, r5, #0x09
@@ -270245,7 +270245,7 @@ sub_80E588C:
 	ldr r2, _080E5958 @ =0x08200148
 	movs r0, #0x01
 	adds r1, r4, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	mov r0, r8
 	str r1, [r0, #0x04]
@@ -270268,7 +270268,7 @@ sub_80E588C:
 	ldr r2, _080E5960 @ =0x08200158
 	movs r0, #0x01
 	adds r1, r6, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	mov r3, r8
 	ldr r2, [r3, #0x04]
 	movs r3, #0xBE
@@ -270437,10 +270437,10 @@ _080E5A62:
 	ldr r0, [r0, #0x00]
 	cmp r0, #0x00
 	beq _080E5A74
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 _080E5A74:
 	ldr r0, [r7, #0x04]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	movs r0, #0x00
 	str r0, [r7, #0x04]
 _080E5A7E:
@@ -273996,7 +273996,7 @@ sub_80E7B48:
 	ldr r2, _080E7DEC @ =0x08200160
 	movs r0, #0x01
 	movs r1, #0x80
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	str r0, [sp, #0x020]
 	ldr r4, _080E7DF0 @ =0x040000D4
 	adds r0, r7, #0x0
@@ -274278,7 +274278,7 @@ sub_80E7B48:
 	mov r3, r9
 	bl _call_via_r4
 	ldr r0, [sp, #0x020]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	add sp, #0x058
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -274330,7 +274330,7 @@ sub_80E7E0C:
 	ldr r2, _080E8208 @ =0x08200160
 	movs r0, #0x01
 	movs r1, #0x80
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	mov r9, r0
 	ldr r4, _080E820C @ =0x040000D4
 	movs r1, #0xC8
@@ -274783,7 +274783,7 @@ sub_80E7E0C:
 	ldr r3, [sp, #0x05C]
 	bl _call_via_r4
 	mov r0, r9
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	add sp, #0x064
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -274838,7 +274838,7 @@ sub_80E8228:
 	ldr r2, _080E849C @ =0x08200160
 	movs r0, #0x01
 	movs r1, #0x80
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	str r0, [sp, #0x018]
 	movs r4, #0x90
 	lsls r4, r4, #0x03
@@ -275097,7 +275097,7 @@ sub_80E8228:
 	mov r3, r9
 	bl _call_via_r6
 	ldr r0, [sp, #0x018]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	add sp, #0x040
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -275481,7 +275481,7 @@ sub_80E87E4:
 	ldr r2, _080E8864 @ =0x08200168
 	movs r0, #0x01
 	movs r1, #0x40
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	str r0, [r7, #0x00]
 	adds r4, r0, #0x0
 	ldr r0, _080E8868 @ =0x03001034
@@ -276239,7 +276239,7 @@ sub_80E8D90:
 	ldr r2, _080E8DB8 @ =0x08200180
 	movs r0, #0x01
 	movs r1, #0x34
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	str r1, [r4, #0x00]
 	ldr r0, _080E8DBC @ =0x03001034
@@ -276264,7 +276264,7 @@ sub_80E8DE4:
 	ldr r2, _080E8E58 @ =0x08200170
 	movs r0, #0x01
 	movs r1, #0x34
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	str r1, [r4, #0x00]
 	ldr r0, _080E8E5C @ =0x03001034
@@ -276282,7 +276282,7 @@ sub_80E8DE4:
 	adds r1, r0, #0x0
 	ldr r2, _080E8E64 @ =0x08200178
 	movs r0, #0x01
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r5, r0, #0x0
 	ldr r0, _080E8E68 @ =0x03000C84
 	ldr r2, [r0, #0x00]
@@ -276297,7 +276297,7 @@ sub_80E8DE4:
 	str r0, [r1, #0x08]
 	ldr r0, [r1, #0x08]
 	adds r0, r5, #0x0
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -276972,7 +276972,7 @@ sub_80E94AC:
 	ldr r2, _080E9504 @ =0x08200188
 	movs r0, #0x01
 	adds r1, r4, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	str r1, [r6, #0x0C]
 	ldr r0, _080E9508 @ =0x03001034
@@ -277652,7 +277652,7 @@ sub_80E9B0C:
 	ldr r2, _080E9B44 @ =0x08200198
 	movs r0, #0x00
 	adds r1, r4, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	str r1, [r6, #0x00]
 	lsls r4, r4, #0x0A
@@ -277882,7 +277882,7 @@ sub_80E9D1C:
 	ldr r2, _080E9D48 @ =0x08200190
 	movs r0, #0x01
 	adds r1, r5, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	str r1, [r4, #0x00]
 	ldr r0, _080E9D4C @ =0x03001034
@@ -285379,7 +285379,7 @@ _080EF442:
 	ldr r2, _080EF4C8 @ =0x082001A0
 	movs r0, #0x01
 	adds r1, r4, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	str r1, [r5, #0x00]
 	ldr r0, _080EF4CC @ =0x03001034
@@ -286140,7 +286140,7 @@ sub_80EFA14:
 	ldr r2, _080EFB10 @ =0x082001B0
 	movs r0, #0x01
 	adds r1, r5, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	ldr r0, [r7, #0x00]
 	ldr r4, _080EFB14 @ =0x000004AC
@@ -287030,7 +287030,7 @@ sub_80F0184:
 	ldr r4, _080F01C8 @ =0x000004AC
 	adds r0, r0, r4
 	ldr r0, [r0, #0x00]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	ldr r0, [r5, #0x00]
 	adds r0, r0, r4
 	movs r4, #0x00
@@ -287208,7 +287208,7 @@ _080F037E:
 	bl sub_80E8DC0
 	ldr r0, _080F03C0 @ =0x03000FD0
 	ldr r0, [r0, #0x00]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	movs r0, #0x02
 	mov r1, r8
 	ands r0, r1
@@ -290426,7 +290426,7 @@ sub_80F1EE8:
 	ldr r2, _080F1F68 @ =0x082001C0
 	movs r0, #0x01
 	movs r1, #0x40
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	str r0, [r7, #0x00]
 	adds r5, r0, #0x0
 	ldr r0, _080F1F6C @ =0x03001034
@@ -290622,7 +290622,7 @@ init_ybai_process_80F2070: @ 080F2070
 	ldr r2, _080F2100 @ =0x082001C8
 	movs r0, #0x01
 	adds r1, r4, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	str r1, [r5, #0x2C]
 	ldr r0, _080F2104 @ =0x03001034
@@ -290722,7 +290722,7 @@ _080F2150:
 	cmp r4, #0x00
 	beq _080F2174
 	ldr r0, [r4, #0x00]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	adds r0, r4, #0x0
 	bl free_heap_8018DA8
 	str r7, [r5, #0x28]
@@ -290730,7 +290730,7 @@ _080F2174:
 	ldr r0, [r5, #0x2C]
 	cmp r0, #0x00
 	beq _080F2180
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	str r7, [r5, #0x2C]
 _080F2180:
 	str r7, [r5, #0x30]
@@ -305398,7 +305398,7 @@ sub_80FB080:
 	ldr r2, _080FB0FC @ =0x082001E0
 	movs r0, #0x01
 	adds r1, r5, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	str r1, [r4, #0x24]
 	ldr r0, _080FB100 @ =0x03001034
@@ -307876,7 +307876,7 @@ _080FC3C0:
 	adds r0, #0x02
 	strh r1, [r0, #0x00]
 	ldr r0, [r4, #0x00]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	movs r0, #0x00
 	str r0, [r4, #0x00]
 	bl sub_8021FD4
@@ -307885,7 +307885,7 @@ _080FC3F0:
 	ldr r0, [r4, #0x00]
 	cmp r0, #0x00
 	beq _080FC400
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	movs r0, #0x00
 	str r0, [r4, #0x00]
 _080FC400:
@@ -307923,7 +307923,7 @@ btl_80FC438: @ 080FC438
 	ldr r2, _080FC58C @ =0x082001F8
 	movs r0, #0x00
 	adds r1, r4, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	mov r2, r8
 	str r1, [r2, #0x00]
@@ -307944,7 +307944,7 @@ btl_80FC438: @ 080FC438
 	ldr r2, _080FC59C @ =0x08200200
 	movs r0, #0x01
 	adds r1, r6, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	str r1, [r5, #0x00]
 	mov r0, r9
@@ -378396,7 +378396,7 @@ sub_8127E50:
 	ldr r2, _08127E7C @ =0x08210F64
 	movs r0, #0x01
 	adds r1, r5, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r7, r0, #0x0
 	ldr r0, _08127E80 @ =0x03000C84
 	ldr r2, [r0, #0x00]
@@ -378410,7 +378410,7 @@ _08127E84:
 	ldr r2, _08127EC4 @ =0x08210F64
 	movs r0, #0x01
 	adds r1, r5, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r4, r0, #0x0
 	ldr r0, _08127EC8 @ =0x03000C84
 	ldr r2, [r0, #0x00]
@@ -378431,7 +378431,7 @@ _08127EA4:
 	adds r1, r7, #0x0
 	bl CpuSet
 	adds r0, r4, #0x0
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 _08127EBC:
 	adds r0, r5, #0x0
 	pop {r4, r5, r6, r7}
@@ -449356,7 +449356,7 @@ _08151598:
 	lsls r1, r1, #0x03
 	ldr r2, _08151630 @ =0x082125E0
 	movs r0, #0x00
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	str r0, [r4, #0x00]
 	ldr r1, _08151634 @ =0x00001CB4
 	adds r4, r7, r1
@@ -449471,7 +449471,7 @@ _081516AE:
 	bl sub_8150F60
 _081516C8:
 	ldr r0, [r5, #0x00]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	ldr r1, _08151748 @ =0x0300034C
 	ldr r0, _0815174C @ =0x0000FFFF
 	strh r0, [r1, #0x02]
@@ -458613,7 +458613,7 @@ _0815A2F6:
 _0815A306:
 	ldr r0, _0815A380 @ =0x0300101C
 	ldr r0, [r0, #0x00]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	ldr r1, _0815A384 @ =0x0300034C
 	ldr r0, _0815A388 @ =0x0000FFFF
 	strh r0, [r1, #0x02]
@@ -472110,7 +472110,7 @@ sub_8163DB8:
 	ldr r2, _08163E04 @ =0x0821280C
 	movs r0, #0x01
 	adds r1, r6, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r4, r0, #0x0
 	ldr r0, _08163E08 @ =0x03000C84
 	ldr r2, [r0, #0x00]
@@ -472125,7 +472125,7 @@ sub_8163DB8:
 	movs r3, #0x10
 	bl sub_8018218
 	adds r0, r4, #0x0
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	add sp, #0x004
 	pop {r3}
 	mov r8, r3
@@ -472352,7 +472352,7 @@ _08164044:
 	ldr r2, _081640A4 @ =0x08212AE0
 	movs r0, #0x01
 _0816404A:
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	str r0, [r7, #0x00]
 	ldr r1, [r7, #0x00]
 	adds r1, #0x1F
@@ -472373,7 +472373,7 @@ _0816404A:
 	ldr r1, _081640AC @ =0x00000403
 	ldr r2, _081640B0 @ =0x08212AE8
 	movs r0, #0x00
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	str r0, [r7, #0x08]
 	adds r0, #0x03
 	movs r1, #0x04
@@ -472608,7 +472608,7 @@ _0816423C:
 	adds r1, r5, #0x3
 	ldr r2, _08164290 @ =0x08212AF0
 	movs r0, #0x00
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r4, r0, #0x0
 	str r4, [r7, #0x1C]
 	adds r4, #0x03
@@ -472667,7 +472667,7 @@ sub_8164294:
 	lsls r1, r1, #0x01
 	ldr r2, _08164318 @ =0x08212AF8
 	movs r0, #0x01
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	str r0, [r7, #0x24]
 	ldr r1, _0816431C @ =0x08212B30
 	adds r0, r7, #0x0
@@ -472770,7 +472770,7 @@ _08164380:
 	ldr r1, _0816448C @ =0x0000301F
 	ldr r2, _08164490 @ =0x08212B00
 	movs r0, #0x01
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	str r0, [r7, #0x1C]
 	cmp r0, #0x00
 	bne _0816439C
@@ -472961,7 +472961,7 @@ _08164514:
 	ldr r2, _0816462C @ =0x08212B08
 	movs r0, #0x00
 	adds r1, r4, #0x0
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r1, r0, #0x0
 	str r1, [r7, #0x44]
 	movs r0, #0x00
@@ -472989,7 +472989,7 @@ _08164514:
 	adds r1, r6, #0x3
 	ldr r2, _08164644 @ =0x08212B00
 	movs r0, #0x00
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	str r0, [r7, #0x48]
 	cmp r0, #0x00
 	beq _08164608
@@ -474054,22 +474054,22 @@ sub_8165144:
 	ldr r0, [r4, #0x48]
 	cmp r0, #0x00
 	beq _0816516A
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 _0816516A:
 	ldr r0, [r4, #0x44]
 	cmp r0, #0x00
 	beq _08165174
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 _08165174:
 	ldr r0, [r4, #0x1C]
 	cmp r0, #0x00
 	beq _0816517E
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 _0816517E:
 	ldr r0, [r4, #0x24]
 	cmp r0, #0x00
 	beq _08165188
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 _08165188:
 	bl sub_80E8D74
 	movs r0, #0x01
@@ -474241,14 +474241,14 @@ sub_8165454:
 	adds r4, r0, #0x0
 	adds r5, r1, #0x0
 	ldr r0, [r4, #0x1C]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	ldr r0, [r4, #0x08]
 	cmp r0, #0x00
 	beq _0816546A
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 _0816546A:
 	ldr r0, [r4, #0x00]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	movs r0, #0x01
 	ands r0, r5
 	cmp r0, #0x00
@@ -475387,7 +475387,7 @@ _08165EAE:
 	adds r1, r7, #0x3
 	ldr r2, _08166130 @ =0x08212B90
 	movs r0, #0x00
-	bl alloc_heap_8018CEC
+	bl heap_alloc_block
 	adds r4, r0, #0x0
 	ldr r2, [sp, #0x030]
 	movs r1, #0x8C
@@ -475709,7 +475709,7 @@ _0816618A:
 	lsls r1, r1, #0x02
 	adds r0, r4, r1
 	ldr r0, [r0, #0x00]
-	bl free_heap_memory_8018C68
+	bl heap_free_block
 	adds r0, r4, #0x0
 	bl free_heap_8018DA8
 _081661A2:

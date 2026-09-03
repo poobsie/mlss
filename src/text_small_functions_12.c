@@ -18,7 +18,7 @@ UnknownWord sub_80790CC();
 UnknownWord sub_8082E1C();
 UnknownWord sub_80880C4();
 UnknownWord sub_808843C();
-UnknownWord free_heap_memory_8018C68();
+UnknownWord heap_free_block();
 UnknownWord sub_80E5968();
 UnknownWord sub_80E8EFC();
 UnknownWord sub_80FAEFC();
@@ -212,7 +212,7 @@ SEC(sub_80FAFD8) void sub_80FAFD8(void* arg0, s32 arg1) {
         sub_80E5968(temp_r0_2, 3);
         FIELD_AT(arg0, s32*, 0x28) = 0;
     }
-    free_heap_memory_8018C68(FIELD_AT(arg0, s32*, 0x24));
+    heap_free_block(FIELD_AT(arg0, s32*, 0x24));
     temp_r1 = *(void**)0x03000FC0;
     FIELD_AT(temp_r1, s32*, 0x55C) = (s32) * (s32*)0x083B9704;
     FIELD_AT(temp_r1, s32*, 0x560) = (s32) * (s32*)0x083B98C4;

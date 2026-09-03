@@ -3,8 +3,8 @@
 	.syntax unified
 	.text
 
-	thumb_func_start init_heap
-init_heap: @ 08018BC0
+	thumb_func_start heap_init
+heap_init: @ 08018BC0
 	push {r4, r5, r6, lr}
 	mov r6, r9
 	mov r5, r8
@@ -80,8 +80,8 @@ _08018C58: .4byte 0x02000C80
 _08018C5C: .4byte 0x0500FCDE
 _08018C60: .4byte 0x0003F379
 _08018C64: .4byte 0x02000C8C
-	thumb_func_start free_heap_memory_8018C68
-free_heap_memory_8018C68: @ 08018C68
+	thumb_func_start heap_free_block
+heap_free_block: @ 08018C68
 	push {r4, r5, r6, r7, lr}
 	adds r3, r0, #0x0
 	cmp r3, #0x00
@@ -149,8 +149,8 @@ _08018CE2:
 	pop {r0}
 	bx r0
 _08018CE8: .4byte 0x081DD7C8
-	thumb_func_start alloc_heap_8018CEC
-alloc_heap_8018CEC: @ 08018CEC
+	thumb_func_start heap_alloc_block
+heap_alloc_block: @ 08018CEC
 	push {r4, r5, r6, r7, lr}
 	adds r4, r1, #0x0
 	adds r6, r2, #0x0

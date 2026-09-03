@@ -5,7 +5,7 @@
 #define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
 typedef u32 UnknownWord;
 
-extern int free_heap_memory_8018C68();
+extern int heap_free_block();
 extern int sub_801B0AC();
 extern int sub_8047364();
 extern int sub_80473DC();
@@ -775,15 +775,15 @@ SEC(sub_80DC4C0) void sub_80DC4C0(void* arg0) {
 SEC(sub_80DC4C0) const u16 sub_80DC4C0_padding = 0;
 
 SEC(sub_80E57FC) void sub_80E57FC(void) {
-    free_heap_memory_8018C68(*(s32*)0x03000FB4);
+    heap_free_block(*(s32*)0x03000FB4);
 }
 
 SEC(sub_80E9AF8) void sub_80E9AF8(void) {
-    free_heap_memory_8018C68(*(s32*)0x03000FC4);
+    heap_free_block(*(s32*)0x03000FC4);
 }
 
 SEC(sub_80E9D04) void sub_80E9D04(void) {
-    free_heap_memory_8018C68(*(s32*)0x03000FC0);
+    heap_free_block(*(s32*)0x03000FC0);
     *(s32*)0x03000FC0 = 0;
 }
 

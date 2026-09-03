@@ -17,7 +17,7 @@ UnknownWord sub_8082E1C();
 UnknownWord sub_810DD7C();
 UnknownWord sub_807F4FC();
 UnknownWord sub_807C298();
-UnknownWord free_heap_memory_8018C68();
+UnknownWord heap_free_block();
 UnknownWord process_remove();
 UnknownWord sub_80E4FC8();
 UnknownWord sub_808DD2C();
@@ -86,7 +86,7 @@ SEC(sub_807A658) void sub_807A658(void* arg0, s32 arg1) {
     if (FIELD_AT(arg0, s32*, 0x1C) != -1) {
         sub_80E4FC8();
         if (FIELD_AT(arg0, s32*, 0x1C) != 0) {
-            free_heap_memory_8018C68();
+            heap_free_block();
         }
         temp_r1 = FIELD_AT(arg0, UnknownWord(**)(s32), 0x20);
         if (temp_r1 != NULL) {

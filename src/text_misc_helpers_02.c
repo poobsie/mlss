@@ -6,7 +6,7 @@
 typedef u32 UnknownWord;
 
 extern int free_heap_8018DA8();
-extern int free_heap_memory_8018C68();
+extern int heap_free_block();
 extern int script_cmd_return();
 extern int script_test_condition();
 extern int sub_801ABE8();
@@ -280,7 +280,7 @@ SEC(sub_80DB1C4) const u16 sub_80DB1C4_padding = 0;
 
 SEC(sub_80E8D74) void sub_80E8D74(void) {
     if (*(s32*)0x03000FBC != 0) {
-        free_heap_memory_8018C68();
+        heap_free_block();
         *(s32*)0x03000FBC = 0;
     }
 }
@@ -740,7 +740,7 @@ SEC(sub_80EA8DC) s32 sub_80EA8DC(UnknownWord arg0, void* arg1, void* arg2) {
 SEC(sub_80EA8DC) const u16 sub_80EA8DC_padding = 0;
 
 SEC(sub_80E8EFC) void sub_80E8EFC(s32* arg0, s32 arg1) {
-    free_heap_memory_8018C68(*arg0);
+    heap_free_block(*arg0);
     if (1 & arg1) {
         free_heap_8018DA8(arg0);
     }
@@ -933,7 +933,7 @@ SEC(sub_808C1FC) void sub_808C1FC(void* arg0) {
 
 SEC(sub_80E9484) void sub_80E9484(void* arg0, s32 arg1) {
     if (FIELD_AT(arg0, s32*, 0xC) != 0) {
-        free_heap_memory_8018C68();
+        heap_free_block();
         FIELD_AT(arg0, s32*, 0xC) = 0;
     }
     if (1 & arg1) {
@@ -959,7 +959,7 @@ SEC(sub_8081FB0) void sub_8081FB0(void* arg0) {
 SEC(sub_80E8DC0) void sub_80E8DC0(void) {
     sub_80E57FC();
     if (*(s32*)0x03000FB8 != 0) {
-        free_heap_memory_8018C68();
+        heap_free_block();
         *(s32*)0x03000FB8 = 0;
     }
     sub_80E8D74();

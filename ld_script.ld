@@ -39,7 +39,7 @@ SECTIONS
         asm/text08000000.o(.text.after_startup_tail_early);
         src/interrupt.o(.text);
         asm/heap.o(.text);
-        src/heap.o(.text);
+        src/memory/heap.o(.text);
         asm/text08018E24.o(.text);
         src/audio/sound_effects.o(.text.audio_sound_effects);
         src/audio/music.o(.text.audio_music);
