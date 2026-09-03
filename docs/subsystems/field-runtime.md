@@ -12,6 +12,8 @@ The reversed family performs the same operation with actor B active and actor A 
 
 Activation transitions now select `actorA` or `actorB` directly, activate the embedded action, inspect the actor's state and readiness flag, store the returned sound handle, and install the next action update. The sound kinds remain numeric because their table identities have not been recovered.
 
+Command and interaction transitions now expose their readiness checks through `action.visual.flags`, issue the observed kind and command pair against the embedded action, normalize the visual mode bits, and install the next update. Interaction transitions additionally activate the action first and gate on actor flag `0x20`.
+
 ## Next boundary
 
 Convert activation, command, interaction, and state transition families to the shared actor and runtime types, preserving volatile accesses where code generation requires them.
