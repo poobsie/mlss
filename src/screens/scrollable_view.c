@@ -1,7 +1,6 @@
 #include "screens/scrollable_view.h"
 
 void sub_8057C9C(void*, int, int);
-void sub_8057B58(void*, int);
 void sub_81166AC(void*, int);
 
 void scrollable_view_update_hardware_and_arrows(struct ScrollableViewProcess* self) {
@@ -56,7 +55,7 @@ void scrollable_view_destroy(struct ScrollableViewProcess* self, u32 flags) {
     self->process.definition = (struct ProcessDefinition*)0x08CDC1A8;
     sub_8021FD4();
     if (self->content != 0)
-        sub_8057B58(self->content, 3);
+        scrollable_view_content_destroy(self->content, 3);
     if (self->childProcess != 0) {
         self->childProcess->definition = (struct ProcessDefinition*)0x08CDC1B8;
         process_remove(self->childProcess, 3);

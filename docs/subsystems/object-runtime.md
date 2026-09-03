@@ -102,6 +102,12 @@ The next object sequence recovers an owner-supplied starting X position, command
 
 `object_traverse_child_tree_noop` recursively visits both child links of an independently observed tree-node layout. It performs no action at each node. The explicit `noop` suffix is intentional: assigning cleanup or rendering semantics to a side-effect-free traversal would be fiction.
 
+The recovered repeating-command sequence starts command `0x4029`, retriggers its action and sound every six ticks, and exits after six cycles once the visual completion flag is present. The alternative finishing animation still depends on the unresolved word at `0x03000F6C`, so that choice remains structural.
+
+Two shared-motion callbacks now expose their 24.8 fixed-point coordinate flow. Both poll the handle at `0x03000E18`; one updates X/Y and removes the object when complete, while the other updates X/Z, advances the visual angle, and installs its continuation. Their output globals remain address-bound because the producer is still assembly-only.
+
+`object_begin_effect_centered_between_field_actors` positions an effect from its owner's X coordinate and the active field actors' Y coordinates. It uses the lone active actor's Y or their average when both are active, then starts the proven animation, scale, sound, and continuation. The effect's gameplay identity is not visible in current C.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

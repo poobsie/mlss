@@ -180,7 +180,7 @@ SECTIONS
         src/screens/title_screen.o(.text);
         src/link/multiplayer.o(.text);
         asm/text08057568.o(.text);
-        src/text_small_functions_12.o(.text.small_functions_12.sub_8057B58);
+        src/screens/scrollable_view_content.o(.text.small_functions_12.sub_8057B58);
         asm/text08057568.o(.text.small_functions_12_after_sub_8057B58);
         src/graphics/process_state.o(.text.graphics_process_state.sub_8059F24);
         asm/text08057568.o(.text.small_functions_02_after_sub_8059F24);
@@ -284,7 +284,7 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_02_after_sub_8062F00);
         src/object/visual_completion_variants.o(.text.object_visual_completion_variants.sub_8062F40);
         asm/text08057568.o(.text.small_functions_06_after_sub_8062F40);
-        src/text_small_functions_12.o(.text.small_functions_12.sub_8063248);
+        src/object/shared_motion.o(.text.small_functions_12.sub_8063248);
         asm/text08057568.o(.text.small_functions_12_after_sub_8063248);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_80632E4);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80632E4);
@@ -310,7 +310,7 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_806446C);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_8064540);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8064540);
-        src/text_small_functions_12.o(.text.small_functions_12.sub_8064908);
+        src/object/shared_motion.o(.text.small_functions_12.sub_8064908);
         asm/text08057568.o(.text.small_functions_12_after_sub_8064908);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_8064C80);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8064C80);
@@ -614,9 +614,9 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8079BA8);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_8079C0C);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8079C0C);
-        src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_8079C70);
+        src/object/repeating_command.o(.text.misc_helpers_03.sub_8079C70);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8079C70);
-        src/text_small_functions_12.o(.text.small_functions_12.sub_8079C9C);
+        src/object/repeating_command.o(.text.small_functions_12.sub_8079C9C);
         asm/text08057568.o(.text.small_functions_12_after_sub_8079C9C);
         src/process/callback_owner.o(.text.process_callback_owner.sub_807A658);
         asm/text08057568.o(.text.small_functions_05_after_sub_807A658);
@@ -1077,7 +1077,7 @@ SECTIONS
         asm/text08057568.o(.text.timed_command_transitions_after_sub_809D454);
         src/object/timed_command_transitions.o(.text.timed_command_transitions.sub_809D49C);
         asm/text08057568.o(.text.timed_command_transitions_after_sub_809D49C);
-        src/text_small_functions_12.o(.text.small_functions_12.sub_809D4E4);
+        src/object/field_actor_effect.o(.text.small_functions_12.sub_809D4E4);
         asm/text08057568.o(.text.small_functions_12_after_sub_809D4E4);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_809E438);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_809E438);
@@ -1361,9 +1361,9 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_01_after_sub_80FAEC4);
         src/field/metadata.o(.text.middle.sub_80FAEEC);
         asm/text08057568.o(.text.after_middle_sub_80FAEEC);
-        src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_80FAEFC);
+        src/field/resource_loader.o(.text.misc_helpers_03.sub_80FAEFC);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80FAEFC);
-        src/text_small_functions_12.o(.text.small_functions_12.sub_80FAFD8);
+        src/field/resource_loader.o(.text.small_functions_12.sub_80FAFD8);
         asm/text08057568.o(.text.small_functions_12_after_sub_80FAFD8);
         src/field/metadata.o(.text.middle.get_field_object_count);
         asm/text08057568.o(.text.after_middle_get_field_object_count);
@@ -1373,7 +1373,7 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80FB7E0);
         src/field/metadata.o(.text.middle.sub_80FB7F0);
         asm/text08057568.o(.text.after_middle_sub_80FB7F0);
-        src/text_small_functions_12.o(.text.small_functions_12.sub_80FD8BC);
+        src/field/alternate_actor_action.o(.text.small_functions_12.sub_80FD8BC);
         asm/text08057568.o(.text.small_functions_12_after_sub_80FD8BC);
         src/field/object_slide_sequence.o(.text.field_object_slide_sequence.sub_81040DC);
         asm/text08057568.o(.text.small_functions_13_after_sub_81040DC);

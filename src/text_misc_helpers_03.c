@@ -1,5 +1,6 @@
 #include "global.h"
 #include "audio/sound_effects.h"
+#include "object/repeating_command.h"
 #include "object/runtime_object.h"
 
 #define SEC(name)         __attribute__((section(".text.misc_helpers_03." #name)))
@@ -49,7 +50,6 @@ extern int sub_80789B4();
 extern int sub_8078A5C();
 extern int sub_807940C();
 extern int sub_8079BA8();
-extern int sub_8079C9C();
 extern int sub_807C298();
 extern int sub_807F4FC();
 extern int sub_807F708();
@@ -175,7 +175,6 @@ void sub_8070F64(void* arg0);
 void sub_80F8C8C(void* arg0, void* arg1);
 void sub_807F4C4(void* arg0, s32 arg1);
 void sub_8107118(void* arg0);
-void sub_8079C70(void* arg0);
 void sub_8099FFC(void* arg0);
 void sub_809A06C(void* arg0);
 void sub_809B038(void* arg0);
@@ -218,7 +217,6 @@ void sub_80799B4(void* arg0);
 void sub_80D2D6C(void* arg0);
 u8 script_cmd_btl_return(s32 arg0, s32 arg1, s32* arg2);
 void sub_8114854(void* arg0);
-void sub_80FAEFC(s32 arg0);
 void sub_81145C8(void* arg0);
 void sub_8112498(void* arg0);
 s32 sub_80F7CD0(void* arg2);
@@ -563,13 +561,6 @@ SEC(sub_8070F64) void sub_8070F64(void* arg0) {
     }
 }
 
-SEC(sub_8079C70) void sub_8079C70(void* arg0) {
-    sub_8082E1C(arg0, 0xD, 0x4029, 0);
-    FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8079C9C;
-    FIELD_AT(arg0, s32*, 0xA4) = 0;
-    FIELD_AT(arg0, s32*, 0xA8) = 0;
-}
-
 SEC(sub_810CAD0) void sub_810CAD0(void) {
     void* temp_r1;
     void* temp_r1_2;
@@ -807,15 +798,6 @@ SEC(sub_8114854) void sub_8114854(void* arg0) {
         sub_8082E1C(arg0, -1, -1, 0);
         FIELD_AT(arg0, s32*, 0x4C) = 0;
     }
-}
-
-SEC(sub_80FAEFC) void sub_80FAEFC(s32 arg0) {
-    void* temp_r1;
-
-    sub_80F94A8();
-    sub_80FADD4(arg0);
-    temp_r1 = *(void**)0x03000FC0;
-    FIELD_AT(temp_r1, s32*, 0x100) = (s32)(FIELD_AT(temp_r1, s32*, 0x100) & ~1);
 }
 
 SEC(sub_8112498) void sub_8112498(void* arg0) {

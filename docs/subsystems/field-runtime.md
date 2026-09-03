@@ -80,6 +80,10 @@ The scene-state accessor at `0x080FAEEC` is now `field_get_scene_state_value_9a1
 
 `field_clear_flags_11e_high_nibble` preserves the low twelve bits of a field object's halfword at `0x11E`. Its callers prove the mask but do not yet identify the four cleared flags individually, so the member remains offset-named.
 
+`FieldResourceLoaderProcess` owns two independently released resources and one heap workspace. Its shutdown path clears the runtime-active flag; destruction restores five default resource pointers before removing the process. The five resource roles remain offset-named because only their tables and lifecycle are recovered.
+
+`field_start_alternate_actor_action` chooses the object at runtime offset `0x80` or `0x84` from flag `0x04` at `0x2C0`, starts the corresponding command and visual placement, installs the next selection callback, and plays sound `0x2B`. The two objects are deliberately not given character names without evidence from their construction paths.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.
