@@ -28,7 +28,7 @@ Actor transition entry points are also named by observable contract. The names r
 
 ## Next boundary
 
-Name callback-forwarding entry points from their base operations, then audit and organize the remaining field-runtime source files.
+The currently decompiled field-runtime slice is detangled. Further names depend on base operations and scene-specific callers that remain in assembly. Resume when those dependencies can replace callback-slot and variant suffixes with evidence-backed identities.
 
 ## Verification
 

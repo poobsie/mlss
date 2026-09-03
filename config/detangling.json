@@ -61,10 +61,10 @@
     },
     {
       "id": "field_runtime",
-      "state": "active",
-      "patterns": ["src/field_*.c", "src/actor_*.c", "src/activation_*.c", "src/field/*.c"],
+      "state": "detangled",
+      "patterns": ["src/field/*.c"],
       "documentation": "docs/subsystems/field-runtime.md",
-      "next_action": "Name callback-forwarding entry points from their base operations, then audit remaining field files."
+      "next_action": "Expand when the underlying base operations or scene-specific callers are decompiled enough to replace slot and variant names."
     },
     {
       "id": "object_runtime",
@@ -82,7 +82,7 @@
     },
     {
       "id": "unclassified",
-      "state": "queued",
+      "state": "active",
       "patterns": ["src/*.c", "src/*/*.c", "src/*/*/*.c"],
       "documentation": "docs/subsystems/unclassified.md",
       "next_action": "Extract the smallest caller-connected cluster into a real subsystem; do not clean these files wholesale."
