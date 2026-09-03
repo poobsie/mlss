@@ -57,7 +57,7 @@
       "state": "active",
       "patterns": ["src/mariobros_*.c", "src/mario_bros/*.c"],
       "documentation": "docs/subsystems/mario-bros.md",
-      "next_action": "Classify the global dispatch wrappers and remaining late helper file."
+      "next_action": "Split register setup, object movement, and callback-forwarder families; trace forwarded globals."
     },
     {
       "id": "field_runtime",

@@ -18,9 +18,11 @@ The surviving contents of that catch-all file are now grouped under `src/mario_b
 
 The byte at global runtime offset `0xC5A` is now `sequenceIndex`: two helpers advance it after emitting an event, and three wrappers use it to select a callback from parallel tables. The recovered `MarioBrosRuntime` also names the pointer chain used to obtain that event's argument. Unobserved ranges remain explicit padding.
 
+All currently decompiled Mario Bros code now lives under `src/mario_bros`. Legacy no-op callbacks, object transitions and command wrappers, movement/platform helpers, and the small tilemap helper are named by their observed roles rather than by extraction order.
+
 ## Next boundary
 
-Classify the global dispatch wrappers and the remaining late helper file, then move the proven groups under `src/mario_bros`.
+Split the mixed platform and movement file into register setup, object movement, and callback-forwarder families. Trace the forwarded globals before assigning narrower names.
 
 ## Verification
 
