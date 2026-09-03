@@ -14,3 +14,5 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,
 `UiStyleState` initializes a two-halfword style block to flags `0x10` and value zero. `UiDefinitionNode` initializes a four-word node with definition `0x08CDD0E8`; its recovered return type matches callers that retain the initialized pointer.
 
 The same construction layer now exposes an empty-pointer query, a shared-halfword reset at `0x0300102C`, and structural setters for a layout object's origin at `0x24/0x28` and data word at `0x64`. The data word remains offset-named until its consumers establish whether it holds text, graphics, or another descriptor.
+
+`ui_set_flag_490_08` names the sole recovered operation on a larger late UI owner. Its object layout and flag meaning remain unresolved, so both the offset and mask stay explicit.

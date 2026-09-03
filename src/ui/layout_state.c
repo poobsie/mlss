@@ -14,3 +14,9 @@ void ui_reset_shared_halfword(void) { *(u16*)0x0300102C = 0; }
 void ui_layout_set_origin(struct UiLayoutObject* object, u32 x, u32 y) __attribute__((section(".text.sub_816544C")));
 void ui_layout_set_origin(struct UiLayoutObject* object, u32 x, u32 y) { object->originX = x; object->originY = y; }
 __attribute__((section(".text.sub_816544C"))) const u16 ui_layout_set_origin_padding = 0;
+
+void ui_set_flag_490_08(void* object)
+    __attribute__((section(".text.sub_816AFF0")));
+void ui_set_flag_490_08(void* object) {
+    *(u32*)((u8*)object + 0x490) |= 8;
+}

@@ -1828,7 +1828,7 @@ SECTIONS
         asm/text08057568.o(.text.freeing_destructors_after_sub_81615B4);
         src/graphics/transfer.o(.text.upper.sub_81615E4);
         asm/text08057568.o(.text.after_upper_sub_81615E4);
-        src/text08057568_easy.o(.text.sub_816168C);
+        src/runtime/definition_slot.o(.text.sub_816168C);
         asm/text08057568.o(.text.after_816168C);
         src/text_upper_functions/sub_81617F4.o(.text.upper.sub_81617F4);
         asm/text08057568.o(.text.after_upper_sub_81617F4);
@@ -1899,7 +1899,7 @@ SECTIONS
         asm/text08057568.o(.text.process_destructors_after_sub_8168294);
         src/text_high_helpers.o(.text.high.sub_816AFDC);
         asm/text08057568.o(.text.high_after_sub_816AFDC);
-        src/text08057568_easy.o(.text.sub_816AFF0);
+        src/ui/layout_state.o(.text.sub_816AFF0);
         asm/text08057568.o(.text.after_816AFF0);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_816B0E0);
         asm/text08057568.o(.text.object_destructors_after_sub_816B0E0);

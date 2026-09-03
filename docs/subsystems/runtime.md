@@ -28,3 +28,5 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,
 `word_triplet_copy` copies one exact three-word value from source to destination. The words are named by order because its current callers prove the value width and copy direction, but not the payload semantics.
 
 `runtime_release_global_resource_callback` adapts the no-argument global resource-release operation to callback sites that supply an unused object pointer. The underlying resource owner is still identified only through globals, so the name does not claim a narrower subsystem.
+
+`DefinitionSlot` is the one-word payload embedded in late-runtime list nodes. Its initializer installs definition `0x08CDD0B8`; the paired assembly destructor now has the semantic alias `definition_slot_destroy`.
