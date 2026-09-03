@@ -27,6 +27,8 @@ The early destructor that installs the definition at `0x08CDBD98` is now in the 
 
 `OwnedBufferProcess` extends the base process with an optional owned buffer. Its destructor installs definition `0x08CDBDA8`, frees the buffer when present, and removes the process. A global-slot helper destroys the instance stored at `0x03000D44` and clears that slot.
 
+`ProcessCallbackOwner` is a separate process overlay with a signed resource identifier at `0x1C`, an optional callback at `0x20`, and its callback value at `0x24`. Its destructor installs descriptor `0x08CDC2D8`, releases the resource when the identifier is valid, invokes the callback when present, and removes the process.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

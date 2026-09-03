@@ -66,6 +66,8 @@ The later completion callback for that sequence now shares the same typed runtim
 
 A separate field-effect process now exposes its gate at runtime offset `0x248`, entry identifier at process offset `0x0C`, and 12-tick delay at `0x10`. Once the gate clears, it resets the surrounding dispatch state, resolves the entry, forwards the entry metadata's 16-bit dispatch value when present, and advances. The metadata value remains structural because the receiving assembly routine has not established whether it identifies text, graphics, or another effect resource.
 
+The primary actor-pair flag helper now uses `FieldRuntime` and `FieldActor` directly. For each of actors A and B, state bits `1..2` equal to `2` cause flag `0x04` to be set at actor offset `0x81`, after which the field process advances.
+
 The recovered actor-pair completion helper updates actor B's action, waits for its `0x20` flag, resumes actor A only for state bits `2` or `4`, and clears actor B's action update. It shares the same `FieldRuntime`, `FieldActor`, and embedded `FieldAction` layout as the other actor transitions.
 
 The field runtime also exposes actors C and D at offsets `0x80` and `0x84`. A recovered dispatcher installs the supplied action update on each actor whose state bits equal `2`; actor D is optional, while current callers guarantee actor C is present.
@@ -74,4 +76,4 @@ The field runtime also exposes actors C and D at offsets `0x80` and `0x84`. A re
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

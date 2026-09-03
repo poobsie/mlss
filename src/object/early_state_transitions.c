@@ -31,10 +31,30 @@ void sub_806D290(struct RuntimeObject*);
 void sub_806E8E8(struct RuntimeObject*);
 void sub_806F47C(struct RuntimeObject*);
 void sub_80711A4(struct RuntimeObject*);
+void sub_80706B0(struct RuntimeObject*);
+void sub_8079284(struct RuntimeObject*);
+void sub_80797E0(struct RuntimeObject*);
+void sub_80798C4(struct RuntimeObject*);
+void sub_807F47C(struct RuntimeObject* object);
 
 struct ObjectConditionOwner {
     u8 unknown00[0x40];
     s32 conditionValue;
+};
+
+struct ObjectPositionSourceX {
+    u8 unknown00[0xD8];
+    s32 positionX;
+};
+
+struct ObjectPositionSourceOwner {
+    u8 unknown00[0x28];
+    struct ObjectPositionSourceX* source;
+};
+
+struct ObjectPositionHistoryNode {
+    struct ObjectPositionHistoryNode* next;
+    s32 positionX;
 };
 
 SEC(sub_8060324) void sub_8060324(struct RuntimeObject* object)
@@ -199,6 +219,67 @@ SEC(sub_806A24C) void sub_806A24C(struct RuntimeObject* object)
         range = object->valueA4 - object->valueA0;
         object->valueA8 = object->valueA0 + (sub_8199F30() % range);
         object->update = sub_806A348;
+    }
+}
+
+SEC(sub_8070670) s32 sub_8070670(struct RuntimeObject* object, void* owner)
+{
+    struct ObjectPositionSourceOwner* positionOwner;
+
+    sub_810DD7C(object, owner, 0xFF);
+    sub_807F47C(object);
+    positionOwner = object->positionOwner;
+    object->currentPositionX = positionOwner->source->positionX;
+    sub_8082E1C(object, 8, 0, 0);
+    object->timer = 2;
+    object->update = sub_80706B0;
+    return 0;
+}
+
+SEC(sub_8079348) void sub_8079348(struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        sub_8082E1C(object, 4, 0x4029, 0);
+        sound_effect_play(0xE6, SOUND_VOLUME_UNCHANGED);
+        object->timer = 4;
+        object->update = sub_8079284;
+        sub_807F4FC(object);
+        object->tertiaryUpdate = sub_80797E0;
+    }
+}
+
+SEC(sub_807940C) void sub_807940C(struct RuntimeObject* object)
+{
+    if (*(s32*)0x03000F6C == 0)
+        sub_8082E1C(object, 2, 0x4029, 0);
+    else
+        sub_8082E1C(object, 7, 0x4029, 0);
+    object->update = sub_80798C4;
+}
+
+SEC(sub_80794FC) void sub_80794FC(struct RuntimeObject* object)
+{
+    s32 previousPosition;
+    s32 nextPosition;
+    s32 roundedPosition;
+    struct ObjectPositionHistoryNode* node;
+
+    previousPosition = object->currentPositionX;
+    object->currentPositionX = previousPosition - 0x280;
+    node = object->positionHistory;
+    if (node != NULL) {
+        do {
+            nextPosition = node->positionX;
+            node->positionX = previousPosition;
+            previousPosition = nextPosition;
+            node = node->next;
+        } while (node != NULL);
+    }
+    roundedPosition = object->currentPositionX;
+    if (roundedPosition < 0)
+        roundedPosition += 0xFF;
+    if ((roundedPosition >> 8) <= -0x28) {
+        sub_807C298(object);
     }
 }
 

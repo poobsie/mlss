@@ -24,6 +24,7 @@ struct RuntimeObjectState {
 };
 
 struct RuntimeObject;
+struct ObjectPositionHistoryNode;
 typedef void (*RuntimeObjectCallback)(struct RuntimeObject* object);
 
 struct RuntimeObjectVisual {
@@ -42,7 +43,7 @@ struct RuntimeObjectVisual {
 struct RuntimeObject {
     u8 unknown00[8];
     struct RuntimeObjectVisual* visual;
-    u8 unknown0C[4];
+    struct ObjectPositionHistoryNode* positionHistory;
     s32 currentPositionX;
     s32 currentPositionY;
     s32 verticalPosition;

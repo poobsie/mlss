@@ -1,4 +1,5 @@
 #include "global.h"
+#include "audio/sound_effects.h"
 #include "object/runtime_object.h"
 
 #define SEC(name) __attribute__((section(".text.object_visual_completion_variants." #name)))
@@ -11,6 +12,7 @@ extern void sub_806541C(struct RuntimeObject*);
 extern void sub_809A178(struct RuntimeObject*);
 extern void sub_80D9E34(struct RuntimeObject*);
 extern void sub_80DA098(struct RuntimeObject*);
+extern void sub_809A858(struct RuntimeObject*);
 
 SEC(sub_8062F40) void sub_8062F40(struct RuntimeObject* object)
 {
@@ -61,5 +63,17 @@ SEC(sub_80D9F50) void sub_80D9F50(struct RuntimeObject* object)
         }
         object->timer = 0x18;
         object->update = sub_80DA098;
+    }
+}
+
+SEC(sub_809A808) void sub_809A808(struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        if (!(object->flags98 & 1))
+            sub_8082E1C(object, 3, 0, 0);
+        else
+            sub_8082E1C(object, 4, 0, 0);
+        sound_effect_play(0x88, SOUND_VOLUME_UNCHANGED);
+        object->update = sub_809A858;
     }
 }

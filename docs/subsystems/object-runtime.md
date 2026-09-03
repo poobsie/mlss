@@ -80,6 +80,8 @@ Two neighboring callbacks now complete this late-transition group. One waits for
 
 Three identical delayed-motion callbacks now form one explicit family. They abort through the common action exit when object flags `0x38` are set, count down `behaviorState`, write `0xB400` and `-0x1CC` to the linked object's words at `0xA0` and `0xA4`, start animation 2, set visual flag `0x10`, and branch to family-specific continuations. The two linked words remain structural until the downstream motion code proves their units.
 
+Three parallel callbacks use the same delayed-motion template with linked value `0xA00` instead of `-0x1CC`. Keeping both parameter sets in one generated family makes the behavioral difference explicit without duplicating the control flow.
+
 Two more late callbacks now expose `value80` and `auxiliaryState` instead of raw offsets. One waits for visual completion and selects animation `0x0A` or `0x0B` from `valueA8`, with the zero branch installing a secondary effect update. The other waits for `value80` to clear, starts animation 5, arms a 32-tick timer, and plays sound `0x84`.
 
 The widely reused state-action entry gate now has a typed home. It rejects incompatible object mode bits, requires an attached state whose reservation bit is clear, installs the action callback, clears `value80`, registers a state callback, marks the state reserved, and activates it. The gameplay action itself remains unnamed because both installed callbacks are still assembly-only.
@@ -94,8 +96,10 @@ Three remaining early callbacks now expose their actual control flow. One update
 
 Ten neighboring callbacks extend the same early object sequences with paired animations, effect setup, a four-way continuation selected by `valueA8`, vertical integration through `value8C`, linked-chain teardown, and visual offset decay. The visual halfwords at `0x04`, `0x06`, and `0x0C` and state members at `0x38` and `0xB4` remain structural; their update relationships are proven, but their rendering units are not.
 
+The next object sequence recovers an owner-supplied starting X position, command `0x4029` setup, and a linked position-history list. Each motion tick shifts the object left by `0x280` fixed-point units and propagates the previous X position through the list until the object crosses screen X `-40`.
+
 `object_traverse_child_tree_noop` recursively visits both child links of an independently observed tree-node layout. It performs no action at each node. The explicit `noop` suffix is intentional: assigning cleanup or rendering semantics to a side-effect-free traversal would be fiction.
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,328 linked C functions checked, 1,328 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.
