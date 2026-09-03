@@ -101,7 +101,7 @@ SECTIONS
         asm/text0801A548.o(.text.early15a_after_sub_8029788);
         src/text_early_helpers_04.o(.text.text_early_helpers_04.sub_80297B8);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_80297B8);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_8029878);
+        src/audio/scene_cues.o(.text.early_code_helpers.sub_8029878);
         asm/text0801A548.o(.text.after_early_code_helpers_8029878);
         src/early_code_helpers.o(.text.early_code_helpers.sub_803C424);
         asm/text0801A548.o(.text.after_early_code_helpers_803C424);
@@ -111,7 +111,7 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_code_helpers_803C4D8);
         src/early_code_helpers.o(.text.early_code_helpers.sub_803C538);
         asm/text0801A548.o(.text.after_early_code_helpers_803C538);
-        src/text_early_helpers_04.o(.text.text_early_helpers_04.sub_803C610);
+        src/audio/scene_cues.o(.text.text_early_helpers_04.sub_803C610);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_803C610);
         src/text_early_helpers_04.o(.text.text_early_helpers_04.sub_803C638);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_803C638);

@@ -1,5 +1,4 @@
 #include "global.h"
-#include "audio/sound_effects.h"
 
 #define FIELD_AT(ptr, type, offset) (*(type)((u8*)(ptr) + (offset)))
 #define SECTION(name)               __attribute__((section(".text.early_code_helpers." #name)))
@@ -106,11 +105,6 @@ void sub_801DC38(u8* arg0) {
     ((void (*)(s32, s32)) * (void**)(arg0 + 0x14))(*(s32*)arg0, *(s32*)(arg0 + 4));
 }
 SECTION(sub_801DC38) const u16 sub_801DC38_padding = 0;
-
-void sub_8029878(void) SECTION(sub_8029878);
-void sub_8029878(void) {
-    sound_effect_play(0x50, SOUND_VOLUME_UNCHANGED);
-}
 
 void sub_8028E4C(u8* object) SECTION(sub_8028E4C);
 void sub_8028E4C(u8* object) {
