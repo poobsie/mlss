@@ -150,6 +150,8 @@ Four miscellaneous-bucket callbacks now form the saved-update transition group. 
 
 The first forty-two callbacks recovered from miscellaneous bucket 03 are now grouped by their actual transition contracts. The visual-completion family selects fixed animations and continuations, with `idle` used only for the established common idle callback. A second family decrements the 16-bit timer first but tests the signed pre-decrement value, preserving the original edge behavior. Timed visual transitions set explicit delays from 1 through 60 ticks. The setup group exposes direct `value84` and `value8C` initialization, `value80` gates, readiness, and sound-stop ordering. Lettered variants remain where the assembly-only sequence owners do not justify gameplay names.
 
+The same bucket's remaining straightforward visual transitions now expose commands `0x4071` and `0x4029`, relative animation selection from `valueA8`, a signed `behaviorState` countdown, fixed leftward motion, and terminal gates combining object flags, visual completion, `value21`, and linked-object presence. These names describe the observed state-machine decisions; they do not assign encounter identities that the current assembly does not prove.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.
