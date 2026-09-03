@@ -13,23 +13,6 @@ SEC(sub_8116610) void sub_8116610(void *object)
 }
 SEC(sub_8116610) const u16 sub_8116610_padding = 0;
 
-SEC(sub_8150E2C) void sub_8150E2C(void *object)
-{
-    s32 value = FIELD(object, u16, 0x2C);
-    s32 mask = -2;
-    mask &= value;
-    FIELD(object, u16, 0x2C) = mask;
-}
-
-SEC(sub_8150E38) void sub_8150E38(void *object)
-{
-    s32 value = FIELD(object, u16, 0x2C);
-    s32 mask = 1;
-    mask |= value;
-    FIELD(object, u16, 0x2C) = mask;
-}
-SEC(sub_8150E38) const u16 sub_8150E38_padding = 0;
-
 SEC(sub_819B0F8) void sub_819B0F8(s32 index, s32 value)
 {
     void *global = *(void **)0x03007FF0;

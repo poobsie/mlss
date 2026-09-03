@@ -12,6 +12,8 @@ Three destructor entry points install vtable `0x08CDD090` in a `GraphicsResource
 
 `sprite_heap_initialize_allocation_header` initializes the four-word header returned by `sprite_heap_alloc`: reference count 1, a copied owner value, the allocation's data pointer, and a cleared final word. The two copied values retain offset-bearing names until the sprite-heap allocator and consumers are recovered.
 
+`CircularMask` owns a 240-line scanline-boundary buffer plus fixed-point screen and center offsets. `circular_mask_enable` and `circular_mask_disable` control the proven flag that selects between generating circular scanline bounds and clearing the buffer. Other flag bits and intermediate fields remain unnamed until their setters and update paths are decompiled.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
