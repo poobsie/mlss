@@ -72,6 +72,8 @@ Three boundary callbacks now share `RuntimeObject` and `RuntimeObjectVisual`. Ea
 
 Four late command transitions now use the same `RuntimeObject` visual and update fields. Three wait for visual completion before issuing command `0` or `13`; the fourth tests the still-structural word at `0x80` before issuing command `10`. Their names expose those exact gates and effects without claiming a gameplay owner.
 
+Six neighboring upper-region callbacks now extend that command-transition family. Three wait for the common readiness poll before selecting animations `8`, `4`, or `2`; one waits for visual completion before selecting animation `9` and setting a 60-tick delay; one waits for `linkedObject` to clear before selecting animation `13` and returning to the shared idle callback. The sixth integrates `value8C` into vertical position, subtracts the established vertical acceleration, then adjusts the position and selects animation `12` with sound `0xD5` when the step becomes nonpositive. Its name keeps `value8C` structural because other sequences use that slot differently.
+
 Three additional visual-completion variants now use the shared object layout. They select animations from state at `0x9C` or flags at `0x98`; one also starts effect `0x151D`, installs a secondary update at `0x5C`, and advances the primary update at `0x4C`.
 
 Four late visual transitions now expose linked-object completion, linked-chain flag propagation at `0xA8`, animation and sound setup, and terminal cleanup. Their semantic aliases describe the proven gate and effect; unresolved sound and animation values remain numeric.
