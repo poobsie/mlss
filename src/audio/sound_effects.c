@@ -1,11 +1,9 @@
 #include "global.h"
 #include "audio/sound_effects.h"
+#include "audio/driver.h"
 
 #define SECTION(name) __attribute__((section(name)))
 
-extern void sub_819BA00(void);
-extern void sub_819B9E8(int soundId);
-extern void sub_819B9D0(int soundId);
 extern int sub_819BABC(int soundId);
 
 struct AudioStateOverlay {
@@ -26,17 +24,17 @@ const u16 sound_effect_is_playing_padding SECTION(".text.audio_sound_effects") =
 
 SECTION(".text.audio_sound_effects")
 void sound_effects_stop_all(void) {
-    sub_819BA00();
+    audio_driver_stop_all_sounds();
 }
 
 SECTION(".text.audio_sound_effects")
 void sound_effect_stop(int soundId) {
-    sub_819B9E8(soundId);
+    audio_driver_stop_sound(soundId);
 }
 
 SECTION(".text.audio_sound_effects")
 void sound_effect_play(int soundId, int volume) {
-    sub_819B9D0(soundId);
+    audio_driver_play_sound(soundId);
 
     if (volume != SOUND_VOLUME_UNCHANGED || gAudioState.volume == 0) {
         if (gAudioState.volume == 0)

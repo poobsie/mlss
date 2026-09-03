@@ -14,7 +14,6 @@ extern void sub_8021308(void*);
 extern void sub_816391C(void*, void*, u16);
 extern void sub_8163B60(void*);
 extern u32 sub_81DA690(s16, s16);
-extern u32 sub_819B418(u16);
 extern u16 sub_81DA870(u16, u32, u32);
 extern void sub_81DC7CC(void);
 extern void _call_via_r0(void);
@@ -161,17 +160,6 @@ SEC(sub_8171DD4) void sub_8171DD4(void* p) {
     }
 }
 
-#define DEFINE_SOUND1(name, expr)                                                                      \
-    SEC(name) u32 name(u32 a, u32 b) {                                                                 \
-        return sub_819B418((u16)(expr));                                                               \
-    }
-DEFINE_SOUND1(sub_819B970, (a << 8) | b)
-DEFINE_SOUND1(sub_819B984, (a << 8) | 0x1000)
-DEFINE_SOUND1(sub_819B99C, (a << 8) | 0x2000)
-DEFINE_SOUND1(sub_819B9D0, a | 0x5000)
-DEFINE_SOUND1(sub_819B9E8, a | 0x6000)
-DEFINE_SOUND1(sub_819BA00, 0x7000)
-
 SEC(sub_81DA85C) u16 sub_81DA85C(u16 value, u32 arg) {
     return sub_81DA870(value, arg, 1);
 }
@@ -198,8 +186,4 @@ PAD(sub_816AFDC);
 PAD(sub_816D6D4);
 PAD(sub_816D6F0);
 PAD(sub_8171DD4);
-PAD(sub_819B970);
-PAD(sub_819B9D0);
-PAD(sub_819B9E8);
-PAD(sub_819BA00);
 PAD(sub_81DD690);

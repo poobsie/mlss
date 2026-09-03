@@ -1,11 +1,10 @@
 #include "global.h"
 #include "audio/music.h"
+#include "audio/driver.h"
 
 #define SECTION(name) __attribute__((section(name)))
 
 extern int sub_819BA2C(void);
-extern void sub_819B984(int player);
-extern void sub_819B99C(int player);
 
 struct MusicStateOverlay {
     u8 padding[0x898];
@@ -28,13 +27,13 @@ u16 music_get_song_id(int player) {
 
 SECTION(".text.audio_music")
 void music_stop(int player) {
-    sub_819B984(player + 1);
+    audio_driver_stop_music_player(player + 1);
     gMusicState.volumes[player] = 0;
 }
 
 SECTION(".text.audio_music")
 void music_resume(int player, int volume, u8 fadeDuration) {
-    sub_819B99C(player + 1);
+    audio_driver_resume_music_player(player + 1);
 
     if (volume == MUSIC_VOLUME_UNCHANGED) {
         volume = gMusicState.savedVolumes[player] >> 8;
