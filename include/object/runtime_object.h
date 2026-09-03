@@ -28,7 +28,12 @@ typedef void (*RuntimeObjectCallback)(struct RuntimeObject* object);
 
 struct RuntimeObjectVisual {
     s16 coordinate0;
-    u8 unknown02[0x10];
+    u8 unknown02[2];
+    s16 value04;
+    s16 value06;
+    u8 unknown08[4];
+    s16 value0C;
+    u8 unknown0E[4];
     u8 flags;
     u8 unknown13[0x0D];
     u8 parameter20;
@@ -68,7 +73,9 @@ struct RuntimeObject {
     u8 flags79;
     u8 unknown7A[6];
     s32 value80;
-    u8 unknown84[0x10];
+    u8 unknown84[8];
+    s32 value8C;
+    u8 unknown90[4];
     s32 verticalAcceleration;
     u32 flags98;
     s32 behaviorState;

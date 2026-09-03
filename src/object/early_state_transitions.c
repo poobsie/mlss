@@ -3,6 +3,8 @@
 #include "object/runtime_object.h"
 
 #define SEC(name) __attribute__((section(".text.object_early_state_transitions." #name)))
+#define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
+typedef u32 UnknownWord;
 
 void sub_807F4FC(struct RuntimeObject* object);
 void sub_8082E1C(struct RuntimeObject* object, s32 animation, s32 value, s32 flags);
@@ -19,8 +21,16 @@ u8 sub_801B1C8(void* handle, s32* positionX, s32* positionY);
 void free_heap_8018DA8(void* handle);
 void sub_807C298();
 s32 sub_8082B00(void);
-void sub_810DD7C(struct RuntimeObject* object, struct RuntimeObject* owner, s32 value);
+void sub_810DD7C(struct RuntimeObject* object, void* owner, s32 value);
 u32 sub_8199F30(void);
+void sub_807F4FC(struct RuntimeObject* object);
+void sub_806D048(struct RuntimeObject*);
+void sub_806D104(struct RuntimeObject*);
+void sub_806D1D4(struct RuntimeObject*);
+void sub_806D290(struct RuntimeObject*);
+void sub_806E8E8(struct RuntimeObject*);
+void sub_806F47C(struct RuntimeObject*);
+void sub_80711A4(struct RuntimeObject*);
 
 struct ObjectConditionOwner {
     u8 unknown00[0x40];
@@ -189,5 +199,106 @@ SEC(sub_806A24C) void sub_806A24C(struct RuntimeObject* object)
         range = object->valueA4 - object->valueA0;
         object->valueA8 = object->valueA0 + (sub_8199F30() % range);
         object->update = sub_806A348;
+    }
+}
+
+SEC(sub_806D548) s32 sub_806D548(void* arg0, UnknownWord arg1) {
+    UnknownWord* var_r0;
+    s32 temp_r0;
+
+    sub_810DD7C(arg0, (void*)arg1, 0xFF);
+    temp_r0 = FIELD_AT(arg0, s32*, 0xA8);
+    switch (temp_r0) {
+        case 0:
+            var_r0 = (UnknownWord*)&sub_806D048;
+            break;
+        case 1:
+            var_r0 = (UnknownWord*)&sub_806D104;
+            break;
+        case 2:
+            var_r0 = (UnknownWord*)&sub_806D1D4;
+            break;
+        default:
+            var_r0 = (UnknownWord*)&sub_806D290;
+            break;
+    }
+    FIELD_AT(arg0, UnknownWord**, 0x4C) = var_r0;
+    return 0;
+}
+
+SEC(sub_806E624) void sub_806E624(void* arg0) {
+    if (FIELD_AT(arg0, s32*, 0x80) == 0) {
+        sound_effect_stop(0x99);
+        sub_8082E1C(arg0, 4, 0, 0);
+        sub_807F4FC(arg0);
+        sound_effect_play(0x118, SOUND_VOLUME_UNCHANGED);
+        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_806E8E8;
+    }
+}
+
+SEC(sub_8070D88) void sub_8070D88(struct RuntimeObject* object)
+{
+    s32 remaining;
+
+    object->verticalPosition += object->value8C;
+    object->value8C -= 0x80;
+    if (object->verticalPosition <= 0) {
+        object->verticalPosition = 0;
+        remaining = object->behaviorState - 1;
+        object->behaviorState = remaining;
+        if (remaining == 0) {
+            object->value8C = 0x300;
+            return;
+        }
+        object->update = sub_806F47C;
+    }
+}
+
+SEC(sub_8071018) s32 sub_8071018(void* arg0) {
+    sound_effect_stop(0xA7);
+    sub_8082E1C(arg0, 4, 0x40E7, 0);
+    FIELD_AT(arg0, s32*, 0x80) = 0;
+    FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_80711A4;
+    sound_effect_play(0x55, SOUND_VOLUME_UNCHANGED);
+    return 0;
+}
+
+SEC(sub_80745A8) void sub_80745A8(void* arg0) {
+    void* temp_r4;
+    void* temp_r5;
+    void* temp_r6;
+
+    temp_r6 = FIELD_AT(arg0, void**, 0x30);
+    temp_r5 = FIELD_AT(temp_r6, void**, 0x30);
+    temp_r4 = FIELD_AT(temp_r5, void**, 0x30);
+    sub_807C298(FIELD_AT(temp_r4, void**, 0x30));
+    sub_807C298(temp_r4);
+    sub_807C298(temp_r5);
+    sub_807C298(temp_r6);
+    sound_effect_stop(0x5E);
+    FIELD_AT(arg0, s32*, 0x4C) = 0;
+}
+
+SEC(sub_8075DF4) void sub_8075DF4(void* arg0) {
+    s32 temp_r0;
+    s32 temp_r0_2;
+    s32 temp_r1;
+    void* temp_r1_2;
+
+    if (FIELD_AT(arg0, s32*, 0x9C) == 2) {
+        temp_r1 = FIELD_AT(arg0, s32*, 0xA0) + 0xFFFFFA00;
+        FIELD_AT(arg0, s32*, 0xA0) = temp_r1;
+        FIELD_AT(FIELD_AT(arg0, void**, 8), s16*, 0xC) = (s16)temp_r1;
+    }
+    temp_r0 = FIELD_AT(arg0, s32*, 0xA4);
+    if (temp_r0 > 0) {
+        temp_r0_2 = temp_r0 - 8;
+        FIELD_AT(arg0, s32*, 0xA4) = temp_r0_2;
+        temp_r1_2 = FIELD_AT(arg0, void**, 8);
+        FIELD_AT(temp_r1_2, s16*, 6) = (s16)temp_r0_2;
+        FIELD_AT(temp_r1_2, s16*, 4) = (s16)temp_r0_2;
+    }
+    if (FIELD_AT(arg0, s32*, 0x80) == 0) {
+        sub_807C298(arg0);
     }
 }

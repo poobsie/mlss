@@ -92,6 +92,8 @@ Seven early visual transitions now share a second explicit family. They wait on 
 
 Three remaining early callbacks now expose their actual control flow. One updates an owner until a signed timer expires, then clears a state halfword when its controlling word is zero. One moves left by `0x133` fixed-point units per tick while lowering toward height `0x800`, finishing after crossing screen X `-32`. The third waits for `value80` to clear and chooses `valueA8` uniformly from the half-open range defined by `valueA0` and `valueA4`.
 
+Ten neighboring callbacks extend the same early object sequences with paired animations, effect setup, a four-way continuation selected by `valueA8`, vertical integration through `value8C`, linked-chain teardown, and visual offset decay. The visual halfwords at `0x04`, `0x06`, and `0x0C` and state members at `0x38` and `0xB4` remain structural; their update relationships are proven, but their rendering units are not.
+
 `object_traverse_child_tree_noop` recursively visits both child links of an independently observed tree-node layout. It performs no action at each node. The explicit `noop` suffix is intentional: assigning cleanup or rendering semantics to a side-effect-free traversal would be fiction.
 
 ## Verification
