@@ -836,11 +836,6 @@ SEC(sub_810707C) void sub_810707C(void* arg0) {
     }
 }
 
-SEC(sub_810D00C) void sub_810D00C(void) {
-    sub_8085260(FIELD_AT(*(void**)0x03000FD8, s32*, 0x250), 0);
-    sub_8085260(FIELD_AT(*(void**)0x03000FD8, s32*, 0x250), 1);
-}
-
 SEC(sub_80D8D18) void sub_80D8D18(void* arg0) {
     void* temp_r1;
     void* temp_r4;

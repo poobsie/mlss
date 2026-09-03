@@ -64,6 +64,8 @@ The recovered actor-pair completion helper updates actor B's action, waits for i
 
 The field runtime also exposes actors C and D at offsets `0x80` and `0x84`. A recovered dispatcher installs the supplied action update on each actor whose state bits equal `2`; actor D is optional, while current callers guarantee actor C is present.
 
+`FieldDisplayRuntime` consolidates the display manager at `0x250` and four owned display-process slots from `0x284` through `0x290`. The recovered lifecycle helpers release or finish those processes while disabling the associated layer pairs 0/1, 2/3, and 4/5; a separate entry configures layer 0 with the caller's value.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

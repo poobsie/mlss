@@ -39,24 +39,6 @@ SEC(sub_8106D9C) void sub_8106D9C(void* arg0) {
     }
 }
 
-SEC(sub_810CDB4) void sub_810CDB4(void) {
-    void* temp_r1;
-
-    temp_r1 = *(void**)0x03000FD8;
-    if (FIELD_AT(temp_r1, void**, 0x290) != NULL) {
-        sub_8085260(FIELD_AT(temp_r1, s32*, 0x250), 4);
-        sub_8085260(FIELD_AT(*(void**)0x03000FD8, s32*, 0x250), 5);
-        FIELD_AT(FIELD_AT(*(void**)0x03000FD8, void**, 0x290), s32*, 4) = 0x0810CD99;
-    }
-}
-
-SEC(sub_810D038) void sub_810D038(s32 arg0) {
-    sub_810D00C();
-    sub_8084578(FIELD_AT(*(void**)0x03000FD8, s32*, 0x250), 0, 0, 0xD, 0, 0x12, 3);
-    sub_80847B0(FIELD_AT(*(void**)0x03000FD8, s32*, 0x250), 1, 0, 0);
-    sub_808520C(FIELD_AT(*(void**)0x03000FD8, s32*, 0x250), 0, 7, 6, arg0, 0x91);
-}
-
 SEC(sub_810FD10) void sub_810FD10(void* arg0) {
     void* temp_r2;
 

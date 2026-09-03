@@ -169,34 +169,3 @@ SEC(sub_81071F0) void sub_81071F0(void* arg0) {
     }
 }
 
-SEC(sub_810C950) void sub_810C950(void) {
-    void* temp_r4;
-    void* temp_r4_2;
-
-    temp_r4 = FIELD_AT(*(void**)0x03000FD8, void**, 0x284);
-    if (temp_r4 != NULL) {
-        sub_807FB34(FIELD_AT(temp_r4, s32*, 8));
-        FIELD_AT(*(void**)0x03000FD8, void**, 0x284) = NULL;
-        FIELD_AT(temp_r4, s32*, 4) = 0;
-    }
-    temp_r4_2 = FIELD_AT(*(void**)0x03000FD8, void**, 0x288);
-    if (temp_r4_2 != NULL) {
-        sub_807FB34(FIELD_AT(temp_r4_2, s32*, 8));
-        FIELD_AT(*(void**)0x03000FD8, void**, 0x288) = NULL;
-        FIELD_AT(temp_r4_2, s32*, 4) = 0;
-    }
-}
-
-SEC(sub_810CCF4) void sub_810CCF4(void) {
-    void* temp_r1;
-    void* temp_r3;
-
-    temp_r3 = *(void**)0x03000FD8;
-    temp_r1 = FIELD_AT(temp_r3, void**, 0x28C);
-    if (temp_r1 != NULL) {
-        FIELD_AT(temp_r3, void**, 0x28C) = NULL;
-        FIELD_AT(temp_r1, s32*, 4) = 0;
-        sub_8085260(FIELD_AT(temp_r3, s32*, 0x250), 2);
-        sub_8085260(FIELD_AT(*(void**)0x03000FD8, s32*, 0x250), 3);
-    }
-}
