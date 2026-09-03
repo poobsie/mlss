@@ -108,6 +108,8 @@ Two shared-motion callbacks now expose their 24.8 fixed-point coordinate flow. B
 
 `object_begin_effect_centered_between_field_actors` positions an effect from its owner's X coordinate and the active field actors' Y coordinates. It uses the lone active actor's Y or their average when both are active, then starts the proven animation, scale, sound, and continuation. The effect's gameplay identity is not visible in current C.
 
+Nineteen small object callbacks from the former root bucket now form explicit visual-completion, readiness-setup, `value80`-gated, and state-helper families. Their names expose animation choices, sounds, timers, callback installation, linked-object behavior, and the one ballistic motion update. Variant suffixes and offset-bearing value names remain where neighboring assembly does not establish a gameplay identity.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

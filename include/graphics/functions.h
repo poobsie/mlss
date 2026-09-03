@@ -3,6 +3,8 @@
 
 #include "global.h"
 
+struct GraphicsPackedValueOwner;
+
 #define graphics_transfer_copy_2048_bytes sub_8160E4C
 #define graphics_destroy_resource_owner_a sub_816154C
 #define graphics_destroy_resource_owner_b sub_8161580
@@ -24,7 +26,11 @@
 #define graphics_clear_value_pair sub_8167F30
 #define graphics_advance_by_nibble_width sub_810D260
 #define graphics_extract_mode_relative_index sub_8127E38
+#define graphics_extract_owner_mode_relative_index sub_80E8F1C
 
 u32 graphics_extract_mode_relative_index(u32 value);
+u32 graphics_extract_owner_mode_relative_index(
+    struct GraphicsPackedValueOwner* owner,
+    s32 value);
 
 #endif

@@ -30,6 +30,8 @@ Thirteen high-address graphics helpers now have mechanical names for their prove
 
 `graphics_extract_mode_relative_index` subtracts a base selected by bits 2 and 3 of the halfword at `0x02000008`, then extracts the normalized packed index. The global's owner and the index's concrete resource type remain unknown, so the name records only the proven transformation.
 
+A second packed-value decoder obtains its mode halfword through an owner and source pointer before performing the related normalization. `GraphicsWorkspaceOwner` also exposes the allocation at offset `0x288`; its destructor copies the current global result to `0x02000000`, frees that workspace, and conditionally frees the owner. Neither layout is assigned a narrower rendering role without recovered construction code.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

@@ -1,0 +1,16 @@
+#ifndef GUARD_OBJECT_SMALL_VALUE_TRANSITIONS_H
+#define GUARD_OBJECT_SMALL_VALUE_TRANSITIONS_H
+
+#include "object/runtime_object.h"
+
+#define object_when_value80_clear_start_paired_animation_5 sub_806E794
+#define object_when_value80_clear_start_animation_16_delay_4 sub_8070F98
+#define object_when_value80_clear_start_animation_25 sub_807116C
+#define object_when_value80_clear_prepare_followup_after_18 sub_808C6EC
+
+void object_when_value80_clear_start_paired_animation_5(struct RuntimeObject* object);
+void object_when_value80_clear_start_animation_16_delay_4(struct RuntimeObject* object);
+void object_when_value80_clear_start_animation_25(struct RuntimeObject* object);
+void object_when_value80_clear_prepare_followup_after_18(struct RuntimeObject* object);
+
+#endif

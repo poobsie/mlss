@@ -1,0 +1,18 @@
+#ifndef GUARD_OBJECT_SMALL_SETUP_TRANSITIONS_H
+#define GUARD_OBJECT_SMALL_SETUP_TRANSITIONS_H
+
+#include "object/runtime_object.h"
+
+#define object_when_ready_start_animation_2_sound_118 sub_805F604
+#define object_use_link_or_when_ready_start_animation_0a sub_8062150
+#define object_when_ready_start_animation_2_values_a4_a8 sub_806947C
+#define object_when_ready_start_animation_2_values_8c_a8 sub_806A3C0
+#define object_start_animation_2_sound_11a_delay_30 sub_80DBDE8
+
+void object_when_ready_start_animation_2_sound_118(struct RuntimeObject* object);
+void object_use_link_or_when_ready_start_animation_0a(struct RuntimeObject* object);
+void object_when_ready_start_animation_2_values_a4_a8(struct RuntimeObject* object);
+void object_when_ready_start_animation_2_values_8c_a8(struct RuntimeObject* object);
+void object_start_animation_2_sound_11a_delay_30(struct RuntimeObject* object);
+
+#endif

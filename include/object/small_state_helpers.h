@@ -1,0 +1,16 @@
+#ifndef GUARD_OBJECT_SMALL_STATE_HELPERS_H
+#define GUARD_OBJECT_SMALL_STATE_HELPERS_H
+
+#include "object/runtime_object.h"
+
+#define object_when_link_chain_empty_start_animation_0c sub_8065ED4
+#define object_move_right_and_fall_to_ground sub_8067A4C
+#define object_restore_saved_update_on_flag_20 sub_80886BC
+#define object_when_nested_link_ready_continue sub_811488C
+
+void object_when_link_chain_empty_start_animation_0c(struct RuntimeObject* object);
+void object_move_right_and_fall_to_ground(struct RuntimeObject* object);
+void object_restore_saved_update_on_flag_20(struct RuntimeObject* object);
+void object_when_nested_link_ready_continue(struct RuntimeObject* object);
+
+#endif

@@ -1,0 +1,20 @@
+#ifndef GUARD_OBJECT_SMALL_VISUAL_TRANSITIONS_H
+#define GUARD_OBJECT_SMALL_VISUAL_TRANSITIONS_H
+
+#include "object/runtime_object.h"
+
+#define object_on_visual_complete_animation_0_then_idle sub_80613FC
+#define object_on_visual_complete_animation_3_parameter_10 sub_8061480
+#define object_on_visual_complete_animation_3_then_continue sub_806829C
+#define object_when_visual_value21_clears_reset_timer sub_80DA0E0
+#define object_on_visual_complete_animation_0e_delay_1e_a sub_810FE94
+#define object_on_visual_complete_animation_0e_delay_1e_b sub_810FF18
+
+void object_on_visual_complete_animation_0_then_idle(struct RuntimeObject* object);
+void object_on_visual_complete_animation_3_parameter_10(struct RuntimeObject* object);
+void object_on_visual_complete_animation_3_then_continue(struct RuntimeObject* object);
+void object_when_visual_value21_clears_reset_timer(struct RuntimeObject* object);
+void object_on_visual_complete_animation_0e_delay_1e_a(struct RuntimeObject* object);
+void object_on_visual_complete_animation_0e_delay_1e_b(struct RuntimeObject* object);
+
+#endif

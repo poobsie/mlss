@@ -35,4 +35,9 @@ void field_wait_then_finish_selection_setup(struct FieldSelectionProcess* proces
 
 void field_start_alternate_actor_action(struct FieldSelectionProcess* process);
 
+#define field_when_ready_prepare_selection_and_continue sub_81072A8
+
+void field_when_ready_prepare_selection_and_continue(
+    struct FieldSelectionProcess* process);
+
 #endif

@@ -84,6 +84,10 @@ The scene-state accessor at `0x080FAEEC` is now `field_get_scene_state_value_9a1
 
 `field_start_alternate_actor_action` chooses the object at runtime offset `0x80` or `0x84` from flag `0x04` at `0x2C0`, starts the corresponding command and visual placement, installs the next selection callback, and plays sound `0x2B`. The two objects are deliberately not given character names without evidence from their construction paths.
 
+The small field-runtime utilities now have typed homes: a visual-completion branch process, a fixed five-command setup, nested flag clearing, conditional flag toggling, a three-tier random result for identifier `0x200`, selection readiness, and construction of two linked display nodes. Constants remain in the public names when current C proves their use but not their design meaning.
+
+`field_set_mode_3a5_and_mark_pending` writes the requested mode and marks runtime flag `0x40`. Its byte update intentionally retains a raw offset expression because the exact compiler otherwise reverses the temporary registers and breaks the ROM match.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

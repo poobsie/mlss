@@ -38,6 +38,7 @@ struct RuntimeObjectVisual {
     u8 flags;
     u8 unknown13[0x0D];
     u8 parameter20;
+    u8 value21;
 };
 
 struct RuntimeObject {
