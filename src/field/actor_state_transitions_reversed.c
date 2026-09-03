@@ -1,6 +1,6 @@
 #include "global.h"
+#include "field/actor.h"
 
-#define FIELD(object, type, offset) (*(type *)((u8 *)(object) + (offset)))
 #define SEC(name) __attribute__((section(".text.actor_state_transitions_reversed." #name)))
 
 typedef s32 (*SoundFunction)(s32, s32);
@@ -10,31 +10,31 @@ extern int loc_819832C();
 
 #define DEFINE_REVERSED_ACTOR_STATE(name, next)                          \
     extern void next(void);                                               \
-    SEC(name) void name(void *object)                                     \
+    SEC(name) void name(struct FieldAction *action)                       \
     {                                                                     \
         s32 inactive;                                                     \
         s32 mask;                                                         \
         s32 flag_value;                                                   \
         s32 state;                                                        \
-        void *global = *(void **)0x03000FD8;                              \
-        void *other = FIELD(global, void * volatile, 0x70);              \
-        void *actor = FIELD(global, void * volatile, 0x74);              \
+        struct FieldRuntime *runtime = gFieldRuntime;                     \
+        struct FieldActor *other = *(struct FieldActor * volatile *)&runtime->actorA; \
+        struct FieldActor *actor = *(struct FieldActor * volatile *)&runtime->actorB; \
         volatile u8 *flags;                                               \
-        inactive = FIELD(other, s32, 0x54);                              \
+        inactive = (s32)other->action.update;                            \
         if (inactive == 0) {                                              \
-            state = FIELD(actor, u8, 0x7E) & 6;                          \
+            state = actor->stateFlags & 6;                               \
             if (state == 2 || state == 4) {                              \
-                FIELD(actor, s16, 0x82) =                                \
+                actor->soundHandle =                                     \
                     ((SoundFunction)(*(u32 *)0x03001038                   \
                         + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 16); \
-                FIELD(actor, s16, 0x86) = inactive;                      \
-                flags = (u8 *)actor + 0x81;                              \
+                actor->value86 = inactive;                               \
+                flags = &actor->flags81;                                 \
                 flag_value = *flags;                                     \
                 mask = -0x21;                                            \
                 flag_value &= mask;                                      \
                 *flags = flag_value;                                     \
             }                                                             \
-            FIELD(object, void *, 0x4C) = next;                          \
+            action->update = next;                                       \
         }                                                                 \
     }
 
