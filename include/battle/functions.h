@@ -50,6 +50,7 @@ struct BattleSceneRuntime;
 #define battle_reset_motion_values sub_8028E4C
 #define battle_activate_resource_flags_0780 sub_8029788
 #define battle_forward_sprite_y sub_815F56C
+#define battle_sync_process_buffers sub_801AF50
 
 #define battle_destroy_sprite_owner_a sub_815F7FC
 #define battle_destroy_sprite_owner_b sub_815F838

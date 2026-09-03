@@ -8,7 +8,6 @@ struct CallbackAt1A0 {
     void (*function)(void*, u8*, void*);
 };
 
-void sub_80FC1F8(void);
 void sub_802FAE4(void*, void*, s32);
 void sub_8029A0C(void*, void*, s32);
 void sub_8139AA0(void*);
@@ -18,12 +17,6 @@ s32 sub_803E9F0(void* arg0) SECTION(sub_803E9F0);
 s32 sub_803E9F0(void* arg0) {
     return 1 & FIELD_AT(arg0, u8*, 0x291);
 }
-
-void sub_801AF50(void) SECTION(sub_801AF50);
-void sub_801AF50(void) {
-    sub_80FC1F8();
-}
-SECTION(sub_801AF50) const u16 sub_801AF50_padding = 0;
 
 void sub_803C538(void* arg0, void* arg1) SECTION(sub_803C538);
 void sub_803C538(void* arg0, void* arg1) {

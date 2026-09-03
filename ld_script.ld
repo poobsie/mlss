@@ -63,7 +63,7 @@ SECTIONS
         asm/text0801A548.o(.text);
         src/runtime/state_clear.o(.text.early_system_helpers.sub_801AE1C);
         asm/text0801A548.o(.text.after_early_system_helpers_801AE1C);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_801AF50);
+        src/battle/buffer_sync.o(.text.early_code_helpers.sub_801AF50);
         asm/text0801A548.o(.text.after_early_code_helpers_801AF50);
         src/math/interpolation.o(.text.early_code_helpers.sub_801B748);
         asm/text0801A548.o(.text.after_early_code_helpers_801B748);
