@@ -87,3 +87,10 @@ void field_selected_entry_change_state_1_to_2(struct FieldSceneObject* object)
 void field_selected_entry_change_state_1_to_2(struct FieldSceneObject* object) {
     sub_8116680(object->entryStateTable, object->selectedEntryIndex);
 }
+
+void field_apply_position_delta(void* unused, struct FieldSceneObject* object)
+    FIELD_SECTION(".text.text_late_helpers.sub_81507EC");
+void field_apply_position_delta(void* unused, struct FieldSceneObject* object) {
+    object->positionX += object->positionDeltaX;
+    object->positionY += object->positionDeltaY;
+}

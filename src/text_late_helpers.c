@@ -14,11 +14,6 @@ SEC(sub_8150A38) void sub_8150A38(void* object) {
 }
 SEC(sub_8150A38) const u16 sub_8150A38_padding = 0;
 
-SEC(sub_81507EC) void sub_81507EC(void* unused, void* object) {
-    U32AT(object, 0xC) += *(s16*)((u8*)object + 0x242);
-    U32AT(object, 0x10) += *(s16*)((u8*)object + 0x244);
-}
-
 SEC(sub_8158F60) void sub_8158F60(void* object) {
     s16* timer = (s16*)((u8*)object + 0x1F2A);
 

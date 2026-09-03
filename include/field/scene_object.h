@@ -4,7 +4,10 @@
 #include "common.h"
 
 struct FieldSceneObject {
-    u8 unknown000[0x20C];
+    u8 unknown000[0x0C];
+    s32 positionX;
+    s32 positionY;
+    u8 unknown014[0x1F8];
     u8 flags20C;
     u8 flags20D;
     u8 unknown20E;
@@ -18,7 +21,10 @@ struct FieldSceneObject {
     u8 unknown23C;
     u8 state23D;
     u16 value23E;
-    u8 unknown240[0x26];
+    u8 unknown240[2];
+    s16 positionDeltaX;
+    s16 positionDeltaY;
+    u8 unknown246[0x20];
     u16 value266;
     u16 previousValue268;
     u8 unknown26A[4];

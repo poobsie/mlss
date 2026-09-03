@@ -38,6 +38,8 @@ The object also selects one 28-byte entry through an index at `0x26E` and a tabl
 
 Four dispatch wrappers share another proven precondition: set bit `0x10` in `flags33E` and bit `0x40` in `flags2B6`, then call a variant-specific handler. The wrapper variants remain lettered because current C does not identify their scene owners.
 
+`field_apply_position_delta` adds the object's signed deltas at `0x242` and `0x244` to its 24.8 position words at `0x0C` and `0x10`. The caller supplies an unused context argument, which remains in the public signature because this function is installed through a two-argument callback interface.
+
 `FieldCollisionRecord` is the `0x4C`-byte record allocated in an eight-element set. Its initializer stores the record index in the low three flag bits and returns the record pointer used by the caller. The recovered maintenance helpers preserve four current bounds into their previous-value slots and release the resource at `0x44` while clearing the active flag. The geometric axis meanings are inferred from their grouped use and retain rectangle-oriented names pending full collision update recovery.
 
 ## Verification

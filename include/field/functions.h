@@ -41,6 +41,7 @@
 #define field_set_dispatch_flags_variant_b sub_813D74C
 #define field_set_dispatch_flags_variant_c sub_813D8A0
 #define field_set_dispatch_flags_variant_d sub_81433D0
+#define field_apply_position_delta sub_81507EC
 
 #define field_activate_actor_a_kind_2 sub_80A0AF4
 #define field_activate_actor_b_kind_2 sub_80A1CC4

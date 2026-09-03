@@ -1625,7 +1625,7 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8150590);
         src/text_upper_functions/sub_81506B4.o(.text.upper.sub_81506B4);
         asm/text08057568.o(.text.after_upper_sub_81506B4);
-        src/text_late_helpers.o(.text.text_late_helpers.sub_81507EC);
+        src/field/scene_object_properties.o(.text.text_late_helpers.sub_81507EC);
         asm/text08057568.o(.text.after_text_late_helpers_sub_81507EC);
         src/save/flags.o(.text.text_late_helpers.sub_8150A00);
         asm/text08057568.o(.text.after_text_late_helpers_sub_8150A00);
