@@ -1,6 +1,8 @@
 #ifndef GUARD_BATTLE_FUNCTIONS_H
 #define GUARD_BATTLE_FUNCTIONS_H
 
+struct BattleValueObject;
+
 /* Semantic C names mapped to original symbols still referenced by assembly. */
 #define battle_initialize_definition_00 sub_8158450
 #define battle_initialize_definition_01 sub_8158518
@@ -31,6 +33,7 @@
 #define battle_set_runtime_value_52c sub_8159904
 #define battle_enable_runtime_value_514 sub_8159984
 #define battle_effect_hide_sprite_and_reset sub_815EC3C
+#define battle_clear_value_14 sub_8158E10
 #define battle_forward_sprite_y sub_815F56C
 
 #define battle_destroy_sprite_owner_a sub_815F7FC
@@ -43,5 +46,7 @@
 #define battle_sprite_owner_hide_sprite sub_815FA40
 #define battle_sprite_owner_show_sprite sub_815FA50
 #define battle_sprite_owner_release_sprite sub_815FAFC
+
+void battle_clear_value_14(struct BattleValueObject* object);
 
 #endif

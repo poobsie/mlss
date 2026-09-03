@@ -1712,7 +1712,7 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8158C6C);
         src/text_upper_structural.o(.text.text_upper_structural.sub_8158C98);
         asm/text08057568.o(.text.after_text_upper_structural_sub_8158C98);
-        src/decomp_packet_proof.o(.text.sub_8158E10);
+        src/battle/value_state.o(.text.sub_8158E10);
         asm/text08057568.o(.text.after_8158E10);
         src/text_upper_structural.o(.text.text_upper_structural.sub_8158EEC);
         asm/text08057568.o(.text.after_text_upper_structural_sub_8158EEC);

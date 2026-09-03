@@ -7,6 +7,7 @@ The current C boundary is organized under `src/battle/` by responsibility:
 - `definition_initializers.c` stores one immutable definition at offset `0x30`, then calls the common initializer.
 - `effect_state.c` hides an attached sprite and clears the effect state byte.
 - `runtime_values.c` updates the independently observed fields at offsets `0x514`, `0x518`, and `0x52C`.
+- `value_state.c` clears a separate object's halfword at offset `0x14`.
 - `sprite_owner.c` provides sprite access, visibility, coordinate forwarding, and release operations.
 - `destructors.c` installs the common terminal vtable and optionally frees the owner.
 

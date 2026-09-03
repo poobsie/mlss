@@ -36,4 +36,9 @@ struct BattleRuntimeValues {
     u32 value52C;
 };
 
+struct BattleValueObject {
+    u8 unknown00[0x14];
+    u16 value14;
+};
+
 #endif
