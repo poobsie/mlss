@@ -79,7 +79,7 @@ SECTIONS
         asm/text0801A548.o(.text.early15a_after_sub_801BD30);
         src/early_code_helpers.o(.text.early_code_helpers.sub_801DC38);
         asm/text0801A548.o(.text.after_early_code_helpers_801DC38);
-        src/early_code_helpers_2.o(.text.sub_80208E0);
+        src/graphics/sprite_heap.o(.text.sub_80208E0);
         asm/text0801A548.o(.text.after_80208E0);
         src/early_code_helpers.o(.text.early_code_helpers.sub_8028E4C);
         asm/text0801A548.o(.text.after_early_code_helpers_8028E4C);
