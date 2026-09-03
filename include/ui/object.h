@@ -15,7 +15,8 @@ struct UiObject {
 };
 
 struct UiSpritePair {
-    u8 unknown00[0x10];
+    u8 unknown00[0x0C];
+    const void* vtable;
     void* firstSprite;
     void* secondSprite;
 };

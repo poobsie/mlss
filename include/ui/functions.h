@@ -6,5 +6,7 @@
 #define ui_sprite_pair_hide sub_8163A24
 #define ui_sprite_pair_show sub_8163A44
 #define ui_object_set_values_18_20 sub_8163A64
+#define ui_sprite_pair_destroy_base sub_8163B60
+#define ui_sprite_pair_destroy_variant sub_8163D4C
 
 #endif

@@ -1867,7 +1867,7 @@ SECTIONS
         asm/text08057568.o(.text.after_ui_object_helpers_3a64);
         src/text08057568_easy.o(.text.sub_8163B5C);
         asm/text08057568.o(.text.after_8163B5C);
-        src/text_upper_functions/sub_8163B60.o(.text.upper.sub_8163B60);
+        src/ui/destructors.o(.text.upper.sub_8163B60);
         asm/text08057568.o(.text.after_upper_sub_8163B60);
         src/text08057568_easy.o(.text.sub_8163BB8);
         asm/text08057568.o(.text.after_8163BB8);
@@ -1875,7 +1875,7 @@ SECTIONS
         asm/text08057568.o(.text.after_8163BC4);
         src/text_upper_functions/sub_8163CD4.o(.text.upper.sub_8163CD4);
         asm/text08057568.o(.text.after_upper_sub_8163CD4);
-        src/freeing_destructors.o(.text.freeing_destructors.sub_8163D4C);
+        src/ui/destructors.o(.text.freeing_destructors.sub_8163D4C);
         asm/text08057568.o(.text.freeing_destructors_after_sub_8163D4C);
         src/text08057568_easy.o(.text.sub_8163FA8);
         asm/text08057568.o(.text.after_8163FA8);
