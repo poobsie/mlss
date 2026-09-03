@@ -756,8 +756,8 @@ _0805322C: .4byte 0x00000CC4
 _08053230: .4byte 0x00008010
 _08053234: .4byte 0x00008030
 _08053238: .4byte 0x00001C88
-	thumb_func_start bclr_init
-bclr_init:
+	thumb_func_start backup_clear_screen_create
+backup_clear_screen_create:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r10
 	mov r6, r9
@@ -1240,7 +1240,7 @@ _080535F0:
 	ldrh r1, [r0, #0x00]
 	ldrh r2, [r0, #0x02]
 	adds r0, r7, #0x0
-	bl sub_80541B0
+	bl backup_clear_screen_prepare_dialog
 	ldr r1, _080536E0 @ =0x02000050
 	movs r0, #0xBF
 	strh r0, [r1, #0x00]
@@ -1290,8 +1290,8 @@ _080536D8: .4byte 0x00001D01
 _080536DC: .4byte 0x02000010
 _080536E0: .4byte 0x02000050
 _080536E4: .4byte 0x02000054
-	thumb_func_start sub_80536E8
-sub_80536E8:
+	thumb_func_start backup_clear_screen_destroy
+backup_clear_screen_destroy:
 	push {r4, r5, lr}
 	adds r4, r0, #0x0
 	adds r5, r1, #0x0
@@ -1358,8 +1358,8 @@ _08053726:
 _0805376C: .4byte 0x08CDC1D8
 _08053770: .4byte 0x0300034C
 _08053774: .4byte 0x00000888
-	thumb_func_start bclr_update_8053778
-bclr_update_8053778:
+	thumb_func_start backup_clear_screen_update
+backup_clear_screen_update:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r9
 	mov r6, r8

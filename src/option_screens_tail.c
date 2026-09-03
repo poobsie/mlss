@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common.h"
 #include "process/process.h"
+#include "screens/backup_clear.h"
 #include "screens/options.h"
 #include "screens/title_screen.h"
 
@@ -87,7 +88,7 @@ void sub_805410C(struct OptionTailProcess* optn, u32 flags) {
     process_remove(&optn->process, flags);
 }
 
-void sub_8054164(void) {
+void backup_clear_render_process_update(void) {
     int value = gGameState.field_880;
 
     sub_8020A78();
@@ -96,12 +97,18 @@ void sub_8054164(void) {
     gGameState.field_880 = value;
 }
 
-void sub_80541B0(void* optn, int width, int height) {
+void backup_clear_screen_prepare_dialog(
+    struct BackupClearScreen* backupClear, int width, int height) {
     int x = 15 - width / 2;
     int y = 10 - height / 2;
-    struct WindowAnimation* window = optn + 0x40;
-    int* winw = *(int**)(optn + 0x38);
 
-    window_animation_prepare(window, winw, x, y, width, height, 0xE000);
+    window_animation_prepare(
+        &backupClear->dialogWindow,
+        backupClear->windowAnimationTilemap,
+        x,
+        y,
+        width,
+        height,
+        0xE000);
     *(u8*)(*(u32*)0x0839EC80 + 0x4A) |= 0x10;
 }

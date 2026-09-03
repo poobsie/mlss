@@ -88,9 +88,27 @@ The main options process now lives in `src/screens/options.c`; its small dialog-
 
 The one-bit `entryArgument` and three-bit `unknownFlags` fields retain deliberately narrow names. The only recovered caller passes zero, and the current C never reads either field, so a stronger semantic name would be fiction. The text context type also remains structurally incomplete even though its ownership by the options screen is established.
 
+## Backup-clear screen
+
+The startup `bclr` process is the backup-clear confirmation flow. The startup dispatcher selects it for saved-state marker `0x0307` instead of launching the company intro. It renders a two-position confirmation, invokes the backup-clear routine for the affirmative path, writes the result, handles a write error, closes its window, and then creates the company intro.
+
+Its 76-byte layout is now `BackupClearScreen` in `include/screens/backup_clear.h`. The process shares `WindowAnimation` with the options screen but has its own message tiles, dialog tilemaps, text context, selection cursor, write progress, and render child. The six outer states are named in `BackupClearScreenState` from their observed transitions. The mixed recovered assembly is grouped under `asm/screens/options_and_backup.s` until its individual functions are converted to C.
+
+| Previous name | Recovered name | Evidence |
+| --- | --- | --- |
+| `bclr_init` | `backup_clear_screen_create` | Creates the 76-byte startup process, its render child, two-choice cursor, text resources, and initial dialog. |
+| `bclr_update_8053778` | `backup_clear_screen_update` | Its six states run confirmation, backup clearing and writing, error handling, and exit to the company intro. |
+| `sub_80536E8` | `backup_clear_screen_destroy` | Removes the render child, frees every owned buffer and text context, restores display state, and removes the process. |
+| `sub_8054164` | `backup_clear_render_process_update` | Services and submits the sprite render list; descriptor `0x08CDC1E8` invokes it. |
+| `sub_80541B0` | `backup_clear_screen_prepare_dialog` | Centers a requested dialog size and initializes the process's shared window animation record. |
+| `0x08CDC1D8` | `gBackupClearScreenProcessDefinition` | Its update pointer is `backup_clear_screen_update`. |
+| `0x08CDC1E8` | `gBackupClearRenderProcessDefinition` | Its update pointer is `backup_clear_render_process_update`. |
+
+Only bit zero of the byte after the process header is understood: it selects the affirmative or negative cursor position. The remaining bits stay `unknownFlags`. `writeProgress` is passed to and replaced by the backup-write operation, but the format of its intermediate values is not yet recovered.
+
 ## Remaining screen work
 
-The remaining option-screen tail and adjacent assembly contain at least one separate process whose resources and descriptor are shared with the `bclr` routines. Its lifecycle should be identified from the title/menu transition before moving or naming it. The main options menu no longer depends on that unknown process type, apart from shared window helpers.
+The remaining option-screen tail contains a separate 64-byte startup message process selected by a low-level startup/link-state branch. It owns a single centered message and returns to title-screen entry path 2. Its specific message and triggering condition need to be decoded before assigning a domain name. The main options and backup-clear screens no longer depend on its unknown process type, apart from shared window helpers.
 
 ## Verification
 

@@ -44,7 +44,7 @@
         "src/screens/*.c"
       ],
       "documentation": "docs/subsystems/screens.md",
-      "next_action": "Identify the separate option-tail process from its bclr lifecycle and title-screen transition, then give it a bounded screen module."
+      "next_action": "Decode the separate 64-byte startup message process trigger and message before assigning its domain name and moving its lifecycle."
     },
     {
       "id": "script_engine",

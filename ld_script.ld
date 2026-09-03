@@ -164,7 +164,7 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_code_helpers_8051614);
         src/text0801A548_tail.o(.text);
         src/screens/options.o(.text);
-        asm/option_screens.o(.text);
+        asm/screens/options_and_backup.o(.text);
         src/option_screens_tail.o(.text);
         src/screens/options_dialogs.o(.text);
         asm/text080542C4.o(.text);
