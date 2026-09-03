@@ -4,7 +4,8 @@
 #include "common.h"
 
 struct FieldSceneObject {
-    u8 unknown000[0x20D];
+    u8 unknown000[0x20C];
+    u8 flags20C;
     u8 flags20D;
     u8 unknown20E;
     u8 flags20F;
@@ -24,7 +25,8 @@ struct FieldSceneObject {
     struct Sprite* sprite;
     u8 unknown298[0x1D];
     u8 flags2B5;
-    u8 unknown2B6[0x88];
+    u8 flags2B6;
+    u8 unknown2B7[0x87];
     u16 flags33E;
     s16 value340;
 };

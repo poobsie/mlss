@@ -11,15 +11,6 @@ struct LowTwoBits {
     u8 value : 2;
 };
 
-struct LowBit {
-    u8 value : 1;
-};
-
-struct MiddleTwoBits {
-    u8 low : 4;
-    u8 value : 2;
-};
-
 struct BitSix {
     u8 low : 6;
     u8 value : 1;
@@ -127,21 +118,6 @@ void sub_803C898(void* arg0, void* arg1) {
 void sub_8047D44(u8* arg0) SECTION(sub_8047D44);
 void sub_8047D44(u8* arg0) {
     sub_8116654(*(s32*)(arg0 + 0x334), arg0[0x26E]);
-}
-
-void sub_804776C(u8* object, u32 value) SECTION(sub_804776C);
-void sub_804776C(u8* object, u32 value) {
-    ((struct LowBit*)(object + 0x20C))->value = value;
-}
-
-void sub_8047958(u8* object) SECTION(sub_8047958);
-void sub_8047958(u8* object) {
-    ((struct MiddleTwoBits*)(object + 0x2B6))->value = 0;
-}
-
-void sub_80479A8(u8* object) SECTION(sub_80479A8);
-void sub_80479A8(u8* object) {
-    ((struct MiddleTwoBits*)(object + 0x2B5))->value = 0;
 }
 
 void sub_8047D64(u8* arg0) SECTION(sub_8047D64);

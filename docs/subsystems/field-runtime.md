@@ -32,7 +32,7 @@ The currently decompiled field-runtime slice is detangled. Further names depend 
 
 `FieldSceneObject` covers the independently observed scene-object tail from offset `0x20F` through `0x340`. Its current helpers clear state under a value guard, mark an attached sprite while selecting state 7, and reset two sprite mode fields after common setup. The no-op entry points adjacent to the sprite reset remain address-named because their callback-table roles are not yet known.
 
-The recovered layout now begins at offset `0x20D` and includes six property operations: two flag setters, two value setters, one flag query, and a current-to-previous halfword update at offsets `0x266` and `0x268`. Offset-bearing names are retained where the gameplay meaning is not yet proven.
+The recovered layout now begins at offset `0x20C` and includes nine property operations: three flag setters or clears, two value setters, one flag query, two narrow two-bit clears, and a current-to-previous halfword update at offsets `0x266` and `0x268`. Offset-bearing names are retained where the gameplay meaning is not yet proven.
 
 ## Verification
 

@@ -3,6 +3,21 @@
 
 #define FIELD_SECTION(name) __attribute__((section(name)))
 
+struct __attribute__((packed)) LowBit {
+    u8 value : 1;
+};
+
+struct __attribute__((packed)) MiddleTwoBits {
+    u8 low : 4;
+    u8 value : 2;
+};
+
+void field_set_flag_20c_01(struct FieldSceneObject* object, u32 value)
+    FIELD_SECTION(".text.early_code_helpers.sub_804776C");
+void field_set_flag_20c_01(struct FieldSceneObject* object, u32 value) {
+    ((struct LowBit*)&object->flags20C)->value = value;
+}
+
 void field_set_flags_20d_217(struct FieldSceneObject* object)
     FIELD_SECTION(".text.sub_8047784");
 void field_set_flags_20d_217(struct FieldSceneObject* object) {
@@ -23,10 +38,22 @@ void field_set_value_23e(struct FieldSceneObject* object, u16 value) {
     object->value23E = value;
 }
 
+void field_clear_flags_2b6_30(struct FieldSceneObject* object)
+    FIELD_SECTION(".text.early_code_helpers.sub_8047958");
+void field_clear_flags_2b6_30(struct FieldSceneObject* object) {
+    ((struct MiddleTwoBits*)&object->flags2B6)->value = 0;
+}
+
 void field_clear_flags_2b5_high_bits(struct FieldSceneObject* object)
     FIELD_SECTION(".text.sub_8047994");
 void field_clear_flags_2b5_high_bits(struct FieldSceneObject* object) {
     ((u8*)object)[0x2B5] &= 0x3F;
+}
+
+void field_clear_flags_2b5_30(struct FieldSceneObject* object)
+    FIELD_SECTION(".text.early_code_helpers.sub_80479A8");
+void field_clear_flags_2b5_30(struct FieldSceneObject* object) {
+    ((struct MiddleTwoBits*)&object->flags2B5)->value = 0;
 }
 
 int field_test_flag_2b5_08(struct FieldSceneObject* object)

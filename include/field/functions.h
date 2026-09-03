@@ -26,9 +26,12 @@
 #define field_mark_sprite_and_set_state_7 sub_8051368
 #define field_reset_sprite_modes sub_8051484
 #define field_set_flags_20d_217 sub_8047784
+#define field_set_flag_20c_01 sub_804776C
 #define field_set_value_239_and_sprite_20 sub_804790C
 #define field_set_value_23e sub_804794C
 #define field_clear_flags_2b5_high_bits sub_8047994
+#define field_clear_flags_2b6_30 sub_8047958
+#define field_clear_flags_2b5_30 sub_80479A8
 #define field_test_flag_2b5_08 sub_8047AF4
 #define field_shift_value_266_to_previous sub_8047B5C
 
