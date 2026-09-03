@@ -28,10 +28,16 @@ The former mixed platform file is split into hardware setup, object movement, gl
 
 Replicated helpers now follow the same rule. Their names state the observable contract, including selector-based callback dispatch, frame-table bit updates, state-controller reset, command 12 forwarding, and event emission followed by sequence advancement. Letter suffixes distinguish parallel implementations whose owning gameplay classes are still in assembly.
 
+Four additional selectors copy one of two local table values into `value18` according
+to object flag bit 2. Four animation clocks advance the frame byte and wrap or toggle
+the variant at their proven limits. The `a` through `d` suffixes remain because the
+parallel ROM and work-RAM tables do not yet identify the gameplay classes that own
+them; the frame limits and zero-based or one-based wrap behavior are now explicit.
+
 ## Next boundary
 
 The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,387 linked C functions checked, 1,387 exact, and zero mismatches.

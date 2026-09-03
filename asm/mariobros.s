@@ -25351,23 +25351,7 @@ _08F5DFB4: .4byte 0x00000C34
 _08F5DFB8: .4byte 0x00000C38
 _08F5DFBC: .4byte 0x08F9FCB4
 _08F5DFC0: .4byte 0x0000447C
-	thumb_func_start sub_8F5DFC4
-sub_8F5DFC4:
-	add sp, #-0x008
-	ldrb r3, [r0, #0x08]
-	ldr r1, _08F5DFE0 @ =0x08F9FD50
-	ldr r2, [r1, #0x04]
-	ldr r1, [r1, #0x00]
-	str r1, [sp, #0x000]
-	str r2, [sp, #0x004]
-	movs r1, #0x04
-	ands r1, r3
-	add r1, sp
-	ldr r1, [r1, #0x00]
-	str r1, [r0, #0x18]
-	add sp, #0x008
-	bx lr
-_08F5DFE0: .4byte 0x08F9FD50
+	.section .text.after_mariobros_helpers_sub_8F5DFC4, "ax", %progbits
 	thumb_func_start sub_8F5DFE4
 sub_8F5DFE4:
 	push {lr}
@@ -26136,32 +26120,7 @@ _08F5E5FC:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8F5E604
-sub_8F5E604:
-	push {lr}
-	adds r3, r0, #0x0
-	ldrb r1, [r3, #0x0C]
-	ldrb r2, [r3, #0x0B]
-	adds r0, r2, #0x1
-	lsls r0, r0, #0x18
-	lsrs r2, r0, #0x18
-	cmp r2, #0x07
-	bls _08F5E62A
-	movs r2, #0x00
-	adds r0, r1, #0x1
-	lsls r0, r0, #0x18
-	lsrs r1, r0, #0x18
-	cmp r1, #0x04
-	bls _08F5E624
-	movs r1, #0x00
-_08F5E624:
-	strb r1, [r3, #0x0C]
-	adds r0, r1, #0x1
-	strh r0, [r3, #0x06]
-_08F5E62A:
-	strb r2, [r3, #0x0B]
-	pop {r0}
-	bx r0
+	.section .text.after_mariobros_helpers_sub_8F5E604, "ax", %progbits
 	thumb_func_start sub_8F5E630
 sub_8F5E630:
 	push {r4, r5, r6, r7, lr}
@@ -36518,30 +36477,7 @@ _08F6362C:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8F63634
-sub_8F63634:
-	push {lr}
-	adds r3, r0, #0x0
-	ldrb r1, [r3, #0x0C]
-	ldrb r2, [r3, #0x0B]
-	adds r0, r2, #0x1
-	lsls r0, r0, #0x18
-	lsrs r2, r0, #0x18
-	cmp r2, #0x07
-	bls _08F63656
-	movs r2, #0x00
-	adds r0, r1, #0x1
-	lsls r0, r0, #0x18
-	lsrs r1, r0, #0x18
-	cmp r1, #0x04
-	bls _08F63654
-	movs r1, #0x01
-_08F63654:
-	strb r1, [r3, #0x0C]
-_08F63656:
-	strb r2, [r3, #0x0B]
-	pop {r0}
-	bx r0
+	.section .text.after_mariobros_helpers_sub_8F63634, "ax", %progbits
 	thumb_func_start sub_8F6365C
 sub_8F6365C:
 	push {r4, r5, r6, r7, lr}
@@ -37385,23 +37321,7 @@ _08F63D02:
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
-	thumb_func_start sub_8F63D08
-sub_8F63D08:
-	add sp, #-0x008
-	ldrb r3, [r0, #0x08]
-	ldr r1, _08F63D24 @ =0x08FA02D4
-	ldr r2, [r1, #0x04]
-	ldr r1, [r1, #0x00]
-	str r1, [sp, #0x000]
-	str r2, [sp, #0x004]
-	movs r1, #0x04
-	ands r1, r3
-	add r1, sp
-	ldr r1, [r1, #0x00]
-	str r1, [r0, #0x18]
-	add sp, #0x008
-	bx lr
-_08F63D24: .4byte 0x08FA02D4
+	.section .text.after_mariobros_helpers_sub_8F63D08, "ax", %progbits
 	thumb_func_start sub_8F63D28
 sub_8F63D28:
 	push {r4, lr}
@@ -38843,29 +38763,7 @@ _08F64878:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8F64880
-sub_8F64880:
-	push {lr}
-	adds r3, r0, #0x0
-	ldrb r1, [r3, #0x0C]
-	ldrb r2, [r3, #0x0B]
-	adds r0, r2, #0x1
-	lsls r0, r0, #0x18
-	lsrs r2, r0, #0x18
-	cmp r2, #0x02
-	bls _08F648A0
-	movs r2, #0x00
-	adds r0, r1, #0x1
-	lsls r0, r0, #0x18
-	lsrs r1, r0, #0x18
-	cmp r1, #0x03
-	bls _08F648A0
-	movs r1, #0x01
-_08F648A0:
-	strb r1, [r3, #0x0C]
-	strb r2, [r3, #0x0B]
-	pop {r0}
-	bx r0
+	.section .text.after_mariobros_helpers_sub_8F64880, "ax", %progbits
 	.section .discard.mariobros_helpers_nullsub_14, "ax"
 	.align 2
 	thumb_func_start asm_discard_nullsub_14
@@ -40673,29 +40571,7 @@ _08F65684:
 	bx r0
 	.byte 0x00, 0x00
 _08F6568C: .4byte 0x08FA044C
-	thumb_func_start sub_8F65690
-sub_8F65690:
-	push {lr}
-	adds r3, r0, #0x0
-	ldrb r2, [r3, #0x0C]
-	ldrb r1, [r3, #0x0B]
-	adds r0, r1, #0x1
-	lsls r0, r0, #0x18
-	lsrs r1, r0, #0x18
-	cmp r1, #0x13
-	bls _08F656A8
-	movs r1, #0x00
-	movs r0, #0x01
-	eors r2, r0
-_08F656A8:
-	adds r0, r2, #0x0
-	adds r0, #0x09
-	strh r0, [r3, #0x06]
-	strb r2, [r3, #0x0C]
-	strb r1, [r3, #0x0B]
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
+	.section .text.after_mariobros_helpers_sub_8F65690, "ax", %progbits
 	thumb_func_start sub_8F656B8
 sub_8F656B8:
 	push {r4, r5, r6, r7, lr}
@@ -71893,23 +71769,7 @@ _08F84778: .4byte 0x0201E014
 	.byte 0x00, 0x20, 0x41, 0x46, 0x88, 0x60, 0x05, 0xB0, 0x08, 0xBC, 0x98, 0x46, 0xF0, 0xBC, 0x01, 0xBC
 	.byte 0x00, 0x47, 0x00, 0x00, 0x84, 0xE0, 0x01, 0x02, 0x40, 0x0F, 0x00, 0x03, 0x34, 0x0C, 0x00, 0x00
 	.byte 0x38, 0x0C, 0x00, 0x00, 0xFC, 0xDF, 0x01, 0x02, 0x7C, 0x44, 0x00, 0x00
-	thumb_func_start sub_8F84918
-sub_8F84918:
-	add sp, #-0x008
-	ldrb r3, [r0, #0x08]
-	ldr r1, _08F84934 @ =0x0201E098
-	ldr r2, [r1, #0x04]
-	ldr r1, [r1, #0x00]
-	str r1, [sp, #0x000]
-	str r2, [sp, #0x004]
-	movs r1, #0x04
-	ands r1, r3
-	add r1, sp
-	ldr r1, [r1, #0x00]
-	str r1, [r0, #0x18]
-	add sp, #0x008
-	bx lr
-_08F84934: .4byte 0x0201E098
+	.section .text.after_mariobros_helpers_sub_8F84918, "ax", %progbits
 	thumb_func_start sub_8F84938
 sub_8F84938:
 	push {lr}
@@ -78588,23 +78448,7 @@ _08F8A518: .4byte 0x00000C78
 	.byte 0xFA, 0xF7, 0x9A, 0xFE, 0x08, 0xE0, 0x00, 0x26, 0x06, 0xE0, 0x00, 0x2E, 0x01, 0xD1, 0x01, 0x26
 	.byte 0x02, 0xE0, 0x28, 0x1C, 0xFA, 0xF7, 0x90, 0xFE, 0x26, 0x72, 0x06, 0xE0, 0x28, 0x1C, 0xFA, 0xF7
 	.byte 0x8B, 0xFE, 0x02, 0xE0, 0x28, 0x1C, 0xFB, 0xF7, 0xAF, 0xF9, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	thumb_func_start sub_8F8A65C
-sub_8F8A65C:
-	add sp, #-0x008
-	ldrb r3, [r0, #0x08]
-	ldr r1, _08F8A678 @ =0x0201E61C
-	ldr r2, [r1, #0x04]
-	ldr r1, [r1, #0x00]
-	str r1, [sp, #0x000]
-	str r2, [sp, #0x004]
-	movs r1, #0x04
-	ands r1, r3
-	add r1, sp
-	ldr r1, [r1, #0x00]
-	str r1, [r0, #0x18]
-	add sp, #0x008
-	bx lr
-_08F8A678: .4byte 0x0201E61C
+	.section .text.after_mariobros_helpers_sub_8F8A65C, "ax", %progbits
 	thumb_func_start sub_8F8A67C
 sub_8F8A67C:
 	push {r4, lr}

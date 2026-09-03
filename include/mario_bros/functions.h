@@ -38,6 +38,14 @@
 #define mario_bros_set_table_bits_from_clamped_frame_a sub_8F5FCAC
 #define mario_bros_set_table_bits_from_clamped_frame_b sub_8F86600
 #define mario_bros_advance_animation_pair sub_8F648AC
+#define mario_bros_select_local_pair_a sub_8F5DFC4
+#define mario_bros_select_local_pair_b sub_8F63D08
+#define mario_bros_select_local_pair_c sub_8F84918
+#define mario_bros_select_local_pair_d sub_8F8A65C
+#define mario_bros_advance_animation_cycle_zero_based sub_8F5E604
+#define mario_bros_advance_animation_cycle_one_based sub_8F63634
+#define mario_bros_advance_animation_cycle_three_frame sub_8F64880
+#define mario_bros_advance_animation_toggle_slow sub_8F65690
 
 #define mario_bros_normalize_variant_a sub_8F66A40
 #define mario_bros_normalize_variant_b sub_8F8D394
