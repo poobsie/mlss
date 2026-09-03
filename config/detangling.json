@@ -70,6 +70,7 @@
       "id": "object_runtime",
       "state": "active",
       "patterns": [
+        "src/object/*.c",
         "src/object_*.c",
         "src/render_object_*.c",
         "src/callback_*.c",
@@ -78,7 +79,7 @@
         "src/*landing*.c"
       ],
       "documentation": "docs/subsystems/object-runtime.md",
-      "next_action": "Apply the shared runtime-object prefix across adjacent variant, setup, jump, landing, and cleanup sequences."
+      "next_action": "Apply the shared runtime-object prefix across fixed-jump, initialization, completion, and cleanup sequences."
     },
     {
       "id": "unclassified",

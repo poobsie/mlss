@@ -1,15 +1,15 @@
 #include "global.h"
+#include "object/runtime_object.h"
 
-#define FIELD(object, type, offset) (*(type *)((u8 *)(object) + (offset)))
 #define SEC(name) __attribute__((section(".text.landing_transitions_alternate." #name)))
 
-extern void sub_8082E1C(void *, s32, s32, s32);
+extern void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
 
 #define DEFINE_LANDING_ALT(name, next)                                   \
-    extern void next(void);                                              \
-    SEC(name) void name(void *object)                                    \
+    extern void next(struct RuntimeObject*);                             \
+    SEC(name) void name(struct RuntimeObject* object)                    \
     {                                                                    \
-        s16 *velocity = (s16 *)((u8 *)object + 0xB2);                    \
+        s16 *velocity = &object->verticalVelocity;                       \
         u16 current;                                                     \
         s32 step;                                                        \
         s32 position;                                                    \
@@ -17,23 +17,22 @@ extern void sub_8082E1C(void *, s32, s32, s32);
         volatile u8 *flags;                                              \
         s32 flag_value;                                                  \
         s32 mask;                                                        \
-        step = FIELD(object, s32, 0x94);                                \
+        step = object->verticalAcceleration;                            \
         current = *velocity;                                             \
         current += step;                                                 \
         *velocity = current;                                             \
-        position = FIELD(object, s32, 0x40) + *velocity;                \
-        FIELD(object, s32, 0x18) = position;                            \
-        floor = FIELD(FIELD(object, void *, 0x28), s32, 0xE0);          \
+        position = object->verticalBase + *velocity;                    \
+        object->verticalPosition = position;                            \
+        floor = object->state->floorHeight;                             \
         if (position <= floor) {                                         \
-            flags = (u8 *)object + 0x77;                                \
+            flags = &object->flags77;                                   \
             flag_value = *flags;                                        \
             mask = -8;                                                   \
             flag_value &= mask;                                         \
             *flags = flag_value;                                        \
-            FIELD(object, s32, 0x18) =                                  \
-                FIELD(FIELD(object, void *, 0x28), s32, 0xE0);          \
+            object->verticalPosition = object->state->floorHeight;      \
             sub_8082E1C(object, 8, 0x2000, 0);                          \
-            FIELD(object, void *, 0x4C) = next;                         \
+            object->update = next;                                      \
         }                                                                \
     }
 
