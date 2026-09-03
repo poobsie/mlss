@@ -95,6 +95,13 @@
       "next_action": "Expand when callers identify the values at offsets 0x18 through 0x20 or the update routine at sub_8161E38."
     },
     {
+      "id": "graphics_runtime",
+      "state": "detangled",
+      "patterns": ["src/graphics/*.c"],
+      "documentation": "docs/subsystems/graphics-runtime.md",
+      "next_action": "Expand when users of the transfer destination or vtable 0x08CDD090 identify the resource class."
+    },
+    {
       "id": "unclassified",
       "state": "active",
       "patterns": ["src/*.c", "src/*/*.c", "src/*/*/*.c"],

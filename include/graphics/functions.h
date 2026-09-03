@@ -1,0 +1,10 @@
+#ifndef GUARD_GRAPHICS_FUNCTIONS_H
+#define GUARD_GRAPHICS_FUNCTIONS_H
+
+#define graphics_transfer_copy_2048_bytes sub_8160E4C
+#define graphics_destroy_resource_owner_a sub_816154C
+#define graphics_destroy_resource_owner_b sub_8161580
+#define graphics_destroy_resource_owner_c sub_81615B4
+#define graphics_copy_runtime_transfer_pair sub_81615E4
+
+#endif

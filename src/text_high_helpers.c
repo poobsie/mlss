@@ -106,14 +106,6 @@ SEC(sub_816391C) void sub_816391C(void* p, void* owner, u16 value) {
     PTRAT(p, 0x40) = owner;
 }
 
-SEC(sub_8160E4C) void sub_8160E4C(void* source) {
-    vu32* dma = (vu32*)0x040000D4;
-    dma[0] = (u32)source;
-    dma[1] = U32AT(source, 0x810);
-    dma[2] = 0x84000200;
-    (void)dma[2];
-}
-
 SEC(sub_8165250) void sub_8165250(void* p, u32 index, u16 a, u16 b, u16 c) {
     ((u16*)PTRAT(p, 0x18))[index] = a | (b << 5) | (c << 10);
 }
@@ -124,7 +116,6 @@ SEC(sub_8165250) void sub_8165250(void* p, u32 index, u16 a, u16 b, u16 c) {
         if (flags & 1)                                                                                 \
             free_heap_8018DA8(p);                                                                      \
     }
-DEFINE_DESTROY(sub_816154C, 4, 0x08CDD090)
 DEFINE_DESTROY(sub_8167E9C, 0x10, 0x08CDD158)
 DEFINE_DESTROY(sub_81DD5B0, 0x338, 0x08CDBDE8)
 DEFINE_DESTROY(sub_81DD5D4, 0x338, 0x08CDBDE8)

@@ -1812,7 +1812,7 @@ SECTIONS
         asm/text08057568.o(.text.after_text_upper_structural_sub_815FAE4);
         src/battle/sprite_owner.o(.text.sub_815FAFC);
         asm/text08057568.o(.text.after_815FAFC);
-        src/text_high_helpers.o(.text.high.sub_8160E4C);
+        src/graphics/transfer.o(.text.high.sub_8160E4C);
         asm/text08057568.o(.text.high_after_sub_8160E4C);
         src/text_upper_functions/sub_8160E6C.o(.text.upper.sub_8160E6C);
         asm/text08057568.o(.text.after_upper_sub_8160E6C);
@@ -1820,13 +1820,13 @@ SECTIONS
         asm/text08057568.o(.text.high_after_sub_81612E4);
         src/text_high_helpers.o(.text.high.sub_816132C);
         asm/text08057568.o(.text.high_after_sub_816132C);
-        src/text_high_helpers.o(.text.high.sub_816154C);
+        src/graphics/destructors.o(.text.high.sub_816154C);
         asm/text08057568.o(.text.high_after_sub_816154C);
-        src/freeing_destructors.o(.text.freeing_destructors.sub_8161580);
+        src/graphics/destructors.o(.text.freeing_destructors.sub_8161580);
         asm/text08057568.o(.text.freeing_destructors_after_sub_8161580);
-        src/freeing_destructors.o(.text.freeing_destructors.sub_81615B4);
+        src/graphics/destructors.o(.text.freeing_destructors.sub_81615B4);
         asm/text08057568.o(.text.freeing_destructors_after_sub_81615B4);
-        src/text_upper_functions/sub_81615E4.o(.text.upper.sub_81615E4);
+        src/graphics/transfer.o(.text.upper.sub_81615E4);
         asm/text08057568.o(.text.after_upper_sub_81615E4);
         src/text08057568_easy.o(.text.sub_816168C);
         asm/text08057568.o(.text.after_816168C);
