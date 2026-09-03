@@ -55,4 +55,11 @@ struct BattleControlObject {
     u8 flags12D;
 };
 
+struct BattleResourceControlObject {
+    u8 unknown000[0xFC];
+    u16 flagsFC;
+    u8 unknown0FE[0x206];
+    void* resource304;
+};
+
 #endif

@@ -6,5 +6,6 @@
 #define graphics_destroy_resource_owner_b sub_8161580
 #define graphics_destroy_resource_owner_c sub_81615B4
 #define graphics_copy_runtime_transfer_pair sub_81615E4
+#define graphics_upload_fixed_tile_regions sub_8029460
 
 #endif

@@ -8,6 +8,8 @@ The pair helper deliberately reloads the global runtime pointer for the second t
 
 Three destructor entry points install vtable `0x08CDD090` in a `GraphicsResourceOwner` and optionally free it. Their class-specific identities are not available in current C, so the variants remain lettered.
 
+`graphics_upload_fixed_tile_regions` follows two resource pointers from an owning object and copies their sources to `0x06010400` and `0x060108C0`, with lengths `0x4C0` and `0x500`. The common transfer routine's final mode parameters are not yet named.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

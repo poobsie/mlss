@@ -95,9 +95,9 @@ SECTIONS
         asm/text0801A548.o(.text.after_8029070);
         src/battle/control_flags.o(.text.early_bitfield_updates.sub_80290CC);
         asm/text0801A548.o(.text.after_80290CC);
-        src/early_code_helpers_3.o(.text.early_code_helpers_3.sub_8029460);
+        src/graphics/transfer.o(.text.early_code_helpers_3.sub_8029460);
         asm/text0801A548.o(.text.early15a_after_sub_8029460);
-        src/early_code_helpers_3.o(.text.early_code_helpers_3.sub_8029788);
+        src/battle/resource_control.o(.text.early_code_helpers_3.sub_8029788);
         asm/text0801A548.o(.text.early15a_after_sub_8029788);
         src/text_early_helpers_04.o(.text.text_early_helpers_04.sub_80297B8);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_80297B8);

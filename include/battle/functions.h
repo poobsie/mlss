@@ -41,6 +41,7 @@ struct BattleValueObject;
 #define battle_set_flag_12c_02 sub_8029060
 #define battle_set_flag_12c_01 sub_8029070
 #define battle_set_flags_12c_mode sub_80290CC
+#define battle_activate_resource_flags_0780 sub_8029788
 #define battle_forward_sprite_y sub_815F56C
 
 #define battle_destroy_sprite_owner_a sub_815F7FC

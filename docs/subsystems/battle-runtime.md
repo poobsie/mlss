@@ -9,6 +9,7 @@ The current C boundary is organized under `src/battle/` by responsibility:
 - `runtime_values.c` updates the independently observed fields at offsets `0x514`, `0x518`, and `0x52C`.
 - `value_state.c` clears a separate object's halfword at offset `0x14`.
 - `control_flags.c` groups seven bit and value updates on the battle control layout from offsets `0xF8` through `0x12D`.
+- `resource_control.c` conditionally forwards the resource at offset `0x304`, then sets control bits `0x780` in the word at offset `0xFC`.
 - `sprite_owner.c` provides sprite access, visibility, coordinate forwarding, and release operations.
 - `destructors.c` installs the common terminal vtable and optionally frees the owner.
 
