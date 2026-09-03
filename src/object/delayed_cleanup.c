@@ -1,16 +1,16 @@
 #include "global.h"
-#define FIELD(object, type, offset) (*(type *)((u8 *)(object) + (offset)))
+#include "object/runtime_object.h"
 #define SEC(name) __attribute__((section(".text.delayed_cleanup_transitions." #name)))
-extern void sub_808DD2C(void *);
+extern void sub_808DD2C(struct RuntimeObject*);
 #define DEFINE_DELAYED_CLEANUP_TRANSITION(name, limit)                   \
-    SEC(name) void name(void *object)                                    \
+    SEC(name) void name(struct RuntimeObject* object)                    \
     {                                                                    \
-        void *child = FIELD(object, void *, 0x28);                      \
-        if (child != 0)                                                  \
-            FIELD(child, s8, 0x111) &= -5;                              \
-        if (FIELD(object, u8, 0x76) & 0x38)                             \
+        struct RuntimeObjectState* state = object->state;                \
+        if (state != 0)                                                  \
+            state->flags111 &= -5;                                      \
+        if (object->flags76 & 0x38)                                     \
             sub_808DD2C(object);                                         \
-        else if (FIELD(object, s16, 0xAC)++ > limit)                    \
+        else if (object->timer++ > limit)                               \
             sub_808DD2C(object);                                         \
     }
 DEFINE_DELAYED_CLEANUP_TRANSITION(sub_808EBB8, 0x17)

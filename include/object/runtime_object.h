@@ -13,6 +13,8 @@ struct RuntimeObjectState {
     s32 floorHeight;
     u8 unknownE4[8];
     s16 variant;
+    u8 unknownEE[0x23];
+    s8 flags111;
 };
 
 struct RuntimeObject;

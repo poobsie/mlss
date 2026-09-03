@@ -18,9 +18,11 @@ The ten fixed-jump transitions share the same visual flag and update fields. Unl
 
 The seventeen completion gates and actions now use `flags76`, the linked visual flags, and the active `update` callback directly. A completion signal is bit 3 of the visual flags. Some sequences additionally terminate when any of object flag bits 3 through 5 are set; the shared destination `sub_808DD2C` remains unnamed until its complete teardown path is recovered.
 
+Five setup transitions now expose their animation selection, signed delay timer at `0xAC`, visual mode bits, and next update callback. Three delayed-cleanup transitions use the same timer, terminate early on object flag bits 3 through 5, and clear bit 2 in the linked state's signed `flags111` byte. Five cleanup gates call the common cleanup routine when visual completion bit 3 is set.
+
 ## Next boundary
 
-Apply the shared object prefix to initialization and cleanup files, then group each complete setup-to-completion behavior sequence. Recover stable names at sequence level rather than assigning names independently to nearly identical callbacks.
+Recover the descriptor and global-source fields shared by object initialization and visual setup, then group each complete setup-to-completion behavior sequence. Recover stable names at sequence level rather than assigning names independently to nearly identical callbacks.
 
 ## Verification
 
