@@ -50,7 +50,7 @@
       "state": "active",
       "patterns": ["src/script_*.c", "src/script/*.c"],
       "documentation": "docs/subsystems/script-engine.md",
-      "next_action": "Recover the command-handler context at offset 0x14 and its indexed object collection before naming handler operations."
+      "next_action": "Recover the shared object and nested status layouts used by the dispatch wrappers around 0x0808ECDC."
     },
     {
       "id": "mario_bros",
