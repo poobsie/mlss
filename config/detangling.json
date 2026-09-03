@@ -79,7 +79,7 @@
         "src/*landing*.c"
       ],
       "documentation": "docs/subsystems/object-runtime.md",
-      "next_action": "Recover descriptor and global-source fields shared by initialization and visual setup, then group complete behavior sequences."
+      "next_action": "Group complete setup-to-completion behavior sequences and trace callers for stable gameplay names."
     },
     {
       "id": "unclassified",

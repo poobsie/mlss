@@ -20,9 +20,15 @@ The seventeen completion gates and actions now use `flags76`, the linked visual 
 
 Five setup transitions now expose their animation selection, signed delay timer at `0xAC`, visual mode bits, and next update callback. Three delayed-cleanup transitions use the same timer, terminate early on object flag bits 3 through 5, and clear bit 2 in the linked state's signed `flags111` byte. Five cleanup gates call the common cleanup routine when visual completion bit 3 is set.
 
+## Initialization and visual setup
+
+Eight initialization and visual-setup callbacks now share the behavior descriptor at `0x6C`, object flag byte at `0x77`, linked-state snapshot at `0x114`, visual parameter byte at `0x20`, behavior state at `0x9C`, and next update callback. Descriptor values `0x084FE8A8` and `0x084FE9A4` distinguish the two setup families.
+
+The snapshot is copied from offset `0x2A` of one of two records reached through the global pointer at `0x03000FF4`; one family uses the base record and the other uses the record at `+0x3C`. Neither the record type nor the snapshot's gameplay meaning is established, so `snapshot114` and the raw global address remain explicit.
+
 ## Next boundary
 
-Recover the descriptor and global-source fields shared by object initialization and visual setup, then group each complete setup-to-completion behavior sequence. Recover stable names at sequence level rather than assigning names independently to nearly identical callbacks.
+Group complete setup-to-completion behavior sequences and trace their callers to identify stable gameplay names. Keep the two descriptor families separate until the global source records are understood.
 
 ## Verification
 

@@ -15,6 +15,8 @@ struct RuntimeObjectState {
     s16 variant;
     u8 unknownEE[0x23];
     s8 flags111;
+    u8 unknown112[2];
+    u32 snapshot114;
 };
 
 struct RuntimeObject;
@@ -23,6 +25,8 @@ typedef void (*RuntimeObjectCallback)(struct RuntimeObject* object);
 struct RuntimeObjectVisual {
     u8 unknown00[0x12];
     u8 flags;
+    u8 unknown13[0x0D];
+    u8 parameter20;
 };
 
 struct RuntimeObject {
@@ -44,7 +48,9 @@ struct RuntimeObject {
     u8 flags77;
     u8 unknown78[0x1C];
     s32 verticalAcceleration;
-    u8 unknown98[0x14];
+    u8 unknown98[4];
+    s32 behaviorState;
+    u8 unknownA0[0x0C];
     s16 timer;
     u8 unknownAE[4];
     s16 verticalVelocity;
