@@ -1,12 +1,11 @@
 #include "object/functions.h"
 #include "object/runtime_object.h"
+#include "audio/sound_effects.h"
 
 #define STRINGIFY_INNER(value) #value
 #define STRINGIFY(value) STRINGIFY_INNER(value)
 #define SECTION(name) \
     __attribute__((section(".text.text_late_helpers." STRINGIFY(name))))
-#define VALUE_AT(object, type, offset) (*(type*)((u8*)(object) + (offset)))
-
 void sub_8082E1C(struct RuntimeObject* object, u32 command, u32 arg2, u32 arg3);
 void sub_808750C(struct RuntimeObject* object);
 void sub_8133C7C(struct RuntimeObject* object);
@@ -40,8 +39,20 @@ void object_on_visual_complete_command_13_and_continue(struct RuntimeObject* obj
 
 SECTION(object_when_value80_clear_command_10)
 void object_when_value80_clear_command_10(struct RuntimeObject* object) {
-    if (VALUE_AT(object, u32, 0x80) == 0) {
+    if (object->value80 == 0) {
         sub_8082E1C(object, 10, 0, 0);
         object->update = sub_8133C7C;
+    }
+}
+
+extern void sub_80DBFBC(struct RuntimeObject* object);
+
+SECTION(object_when_value80_clear_start_animation_5)
+void object_when_value80_clear_start_animation_5(struct RuntimeObject* object) {
+    if (object->value80 == 0) {
+        sub_8082E1C(object, 5, 0, 0);
+        sound_effect_play(0x84, SOUND_VOLUME_UNCHANGED);
+        object->timer = 0x20;
+        object->update = sub_80DBFBC;
     }
 }

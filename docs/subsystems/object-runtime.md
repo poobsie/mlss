@@ -78,8 +78,14 @@ Four late visual transitions now expose linked-object completion, linked-chain f
 
 Two neighboring callbacks now complete this late-transition group. One waits for visual completion, snaps both live and base coordinates to a position supplied by its owner, clears the visual, stops sound `0x119`, and advances. The other starts animation 4 on a nested linked object, installs a 32-tick timer and follow-up callback, then plays sound `0x120`. The owner and source layouts are named only as far as their observed position relationship proves.
 
+Three identical delayed-motion callbacks now form one explicit family. They abort through the common action exit when object flags `0x38` are set, count down `behaviorState`, write `0xB400` and `-0x1CC` to the linked object's words at `0xA0` and `0xA4`, start animation 2, set visual flag `0x10`, and branch to family-specific continuations. The two linked words remain structural until the downstream motion code proves their units.
+
+Two more late callbacks now expose `value80` and `auxiliaryState` instead of raw offsets. One waits for visual completion and selects animation `0x0A` or `0x0B` from `valueA8`, with the zero branch installing a secondary effect update. The other waits for `value80` to clear, starts animation 5, arms a 32-tick timer, and plays sound `0x84`.
+
+The widely reused state-action entry gate now has a typed home. It rejects incompatible object mode bits, requires an attached state whose reservation bit is clear, installs the action callback, clears `value80`, registers a state callback, marks the state reserved, and activates it. The gameplay action itself remains unnamed because both installed callbacks are still assembly-only.
+
 `object_traverse_child_tree_noop` recursively visits both child links of an independently observed tree-node layout. It performs no action at each node. The explicit `noop` suffix is intentional: assigning cleanup or rendering semantics to a side-effect-free traversal would be fiction.
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,325 linked C functions checked, 1,325 exact, and zero mismatches.

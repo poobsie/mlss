@@ -9,6 +9,8 @@ extern void sub_8062F8C(struct RuntimeObject*);
 extern void sub_80651B0(struct RuntimeObject*);
 extern void sub_806541C(struct RuntimeObject*);
 extern void sub_809A178(struct RuntimeObject*);
+extern void sub_80D9E34(struct RuntimeObject*);
+extern void sub_80DA098(struct RuntimeObject*);
 
 SEC(sub_8062F40) void sub_8062F40(struct RuntimeObject* object)
 {
@@ -40,5 +42,24 @@ SEC(sub_809A858) void sub_809A858(struct RuntimeObject* object)
         else
             sub_8082E1C(object, 7, 0, 0);
         object->update = sub_809A178;
+    }
+}
+
+SEC(sub_80D9F50) void sub_80D9F50(struct RuntimeObject* object)
+{
+    s32 value;
+
+    if (object->visual->flags & 8) {
+        value = object->valueA8;
+        if (value != 0) {
+            sub_8082E1C(object, 0xA, 0, 0);
+        } else {
+            sub_8082E1C(object, 0xB, 0, 0);
+            sub_8086858(object, 0x13CA);
+            object->secondaryUpdate = sub_80D9E34;
+            object->auxiliaryState = value;
+        }
+        object->timer = 0x18;
+        object->update = sub_80DA098;
     }
 }

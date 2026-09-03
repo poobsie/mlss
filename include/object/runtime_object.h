@@ -50,7 +50,8 @@ struct RuntimeObject {
     u8 unknown46[6];
     RuntimeObjectCallback update;
     RuntimeObjectCallback followup;
-    u8 unknown54[8];
+    s32 auxiliaryState;
+    u8 unknown58[4];
     RuntimeObjectCallback secondaryUpdate;
     u8 unknown60[8];
     RuntimeObjectCallback cleanup;
@@ -60,11 +61,14 @@ struct RuntimeObject {
     u8 flags77;
     u8 unknown78;
     u8 flags79;
-    u8 unknown7A[0x1A];
+    u8 unknown7A[6];
+    s32 value80;
+    u8 unknown84[0x10];
     s32 verticalAcceleration;
     u32 flags98;
     s32 behaviorState;
-    u8 unknownA0[8];
+    s32 valueA0;
+    s32 valueA4;
     s32 valueA8;
     s16 timer;
     s16 secondaryTimer;

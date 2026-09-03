@@ -4,6 +4,7 @@
 #define FIELD_RUNTIME (*(struct FieldSlideRuntime**)0x03000FD8)
 
 void sub_8106AC8(struct FieldSlideProcess* process);
+void sub_8104184(struct FieldSlideProcess* process);
 void sub_8082C58(FieldViewState* view, s32* x, s32* y, s32* depth, s32 unused);
 void sub_8082E1C(void* object, s32 animation, s32 value, s32 flags);
 
@@ -43,5 +44,18 @@ SEC(sub_81040DC) void sub_81040DC(struct FieldSlideProcess* process)
     }
 }
 
+SEC(sub_8106AC8) void sub_8106AC8(struct FieldSlideProcess* process)
+{
+    struct FieldSlideObject* second = FIELD_RUNTIME->secondObject;
+
+    if (second->visual->flags & 8) {
+        sub_8082E1C(second, 5, 0, 0);
+        second->visual->parameter20 = 0x10;
+        process->update = sub_8104184;
+    }
+}
+
 void field_slide_pair_to_screen_x_208(struct FieldSlideProcess* process)
     __attribute__((alias("sub_81040DC")));
+void field_wait_then_start_second_object_animation_5(struct FieldSlideProcess* process)
+    __attribute__((alias("sub_8106AC8")));

@@ -62,6 +62,10 @@ A fourth selection-setup stage waits on an external readiness poll and flag `0x0
 
 The paired-object slide sequence moves the objects at runtime offsets `0x37C` and `0x278` left by one 24.8 fixed-point pixel per tick. Once view conversion places them at screen X 208, it snaps both positions to that boundary, starts animation 4 on the second object, clears the flag at `0x342`, and installs the next process callback.
 
+The later completion callback for that sequence now shares the same typed runtime. It waits for visual completion on the second object, starts animation 5, sets its visual parameter to `0x10`, and advances the field process.
+
+A separate field-effect process now exposes its gate at runtime offset `0x248`, entry identifier at process offset `0x0C`, and 12-tick delay at `0x10`. Once the gate clears, it resets the surrounding dispatch state, resolves the entry, forwards the entry metadata's 16-bit dispatch value when present, and advances. The metadata value remains structural because the receiving assembly routine has not established whether it identifies text, graphics, or another effect resource.
+
 The recovered actor-pair completion helper updates actor B's action, waits for its `0x20` flag, resumes actor A only for state bits `2` or `4`, and clears actor B's action update. It shares the same `FieldRuntime`, `FieldActor`, and embedded `FieldAction` layout as the other actor transitions.
 
 The field runtime also exposes actors C and D at offsets `0x80` and `0x84`. A recovered dispatcher installs the supplied action update on each actor whose state bits equal `2`; actor D is optional, while current callers guarantee actor C is present.

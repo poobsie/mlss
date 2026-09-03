@@ -3,9 +3,12 @@
 
 #include "global.h"
 #include "field/view_state.h"
+#include "object/runtime_object.h"
 
 struct FieldSlideObject {
-    u8 unknown00[0x10];
+    u8 unknown00[8];
+    struct RuntimeObjectVisual* visual;
+    u8 unknown0C[4];
     s32 positionX;
 };
 
@@ -26,5 +29,6 @@ struct FieldSlideProcess {
 };
 
 void field_slide_pair_to_screen_x_208(struct FieldSlideProcess* process);
+void field_wait_then_start_second_object_animation_5(struct FieldSlideProcess* process);
 
 #endif
