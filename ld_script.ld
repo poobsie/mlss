@@ -156,7 +156,7 @@ SECTIONS
         asm/text0801A548.o(.text.after_field_state_transition_804FCD4);
         src/field/state_preservation.o(.text.field_state_preservation);
         asm/text0801A548.o(.text.after_field_state_preservation_804FDF4);
-        src/field_object_wrappers.o(.text);
+        src/field/object_callback_forwarding.o(.text);
         asm/text0801A548.o(.text.after_8050518);
         src/text0801A548_early.o(.text);
         asm/text0801A548.o(.text.after_8051330);

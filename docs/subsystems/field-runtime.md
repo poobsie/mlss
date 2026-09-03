@@ -18,9 +18,11 @@ Command and interaction transitions now expose their readiness checks through `a
 
 The preservation wrappers now snapshot and restore the low three bits of `flags024` and `flags214` around a state-dependent operation. Configuration helpers expose the signed configuration value, its dirty flag, selector, and source kind instead of offsets `0x26C`, `0x20E`, `0x26E`, `0x294`, and `0x21`.
 
+`FieldObjectWrapper` now owns a typed sparse callback table. Every entry records a signed receiver adjustment and an unprototyped callback, and forwarding consistently invokes that callback on the adjusted child. Slot names remain offset-based because the base operations are still address-named; the layout no longer relies on byte-pointer arithmetic.
+
 ## Next boundary
 
-Type the field object callback wrapper and classify its callback slots, then organize the remaining field-runtime source files.
+Name callback-forwarding entry points from their base operations, then audit and organize the remaining field-runtime source files.
 
 ## Verification
 
