@@ -46,4 +46,13 @@ struct BattleValueObject {
     u16 value14;
 };
 
+struct BattleControlObject {
+    u8 unknown000[0xF8];
+    u8 flagsF8;
+    u8 unknown0F9[0x32];
+    u8 value12B;
+    u8 flags12C;
+    u8 flags12D;
+};
+
 #endif

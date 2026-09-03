@@ -19,36 +19,6 @@ void sub_80208E0(u8* object) {
     target[3] = 0;
 }
 
-void sub_8028EE8(u8* object) SECTION(sub_8028EE8);
-void sub_8028EE8(u8* object) {
-    object[0xF8] |= 0x40;
-}
-
-void sub_8028F2C(u8* object) SECTION(sub_8028F2C);
-void sub_8028F2C(u8* object) {
-    object[0x12D] |= 0x20;
-}
-
-void sub_8028F40(u8* object) SECTION(sub_8028F40);
-void sub_8028F40(u8* object) {
-    object[0x12D] |= 0x10;
-}
-
-void sub_8029024(u8* object, u8 value) SECTION(sub_8029024);
-void sub_8029024(u8* object, u8 value) {
-    object[0x12B] = value;
-}
-
-void sub_8029060(u8* object) SECTION(sub_8029060);
-void sub_8029060(u8* object) {
-    object[0x12C] |= 2;
-}
-
-void sub_8029070(u8* object) SECTION(sub_8029070);
-void sub_8029070(u8* object) {
-    object[0x12C] |= 1;
-}
-
 void sub_8047784(u8* object) SECTION(sub_8047784);
 void sub_8047784(u8* object) {
     object[0x20D] |= 0x10;

@@ -34,6 +34,13 @@ struct BattleValueObject;
 #define battle_enable_runtime_value_514 sub_8159984
 #define battle_effect_hide_sprite_and_reset sub_815EC3C
 #define battle_clear_value_14 sub_8158E10
+#define battle_set_flag_f8_40 sub_8028EE8
+#define battle_set_flag_12d_20 sub_8028F2C
+#define battle_set_flag_12d_10 sub_8028F40
+#define battle_set_value_12b sub_8029024
+#define battle_set_flag_12c_02 sub_8029060
+#define battle_set_flag_12c_01 sub_8029070
+#define battle_set_flags_12c_mode sub_80290CC
 #define battle_forward_sprite_y sub_815F56C
 
 #define battle_destroy_sprite_owner_a sub_815F7FC

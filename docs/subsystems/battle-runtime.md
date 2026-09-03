@@ -8,6 +8,7 @@ The current C boundary is organized under `src/battle/` by responsibility:
 - `effect_state.c` hides an attached sprite and clears the effect state byte.
 - `runtime_values.c` updates the independently observed fields at offsets `0x514`, `0x518`, and `0x52C`.
 - `value_state.c` clears a separate object's halfword at offset `0x14`.
+- `control_flags.c` groups seven bit and value updates on the battle control layout from offsets `0xF8` through `0x12D`.
 - `sprite_owner.c` provides sprite access, visibility, coordinate forwarding, and release operations.
 - `destructors.c` installs the common terminal vtable and optionally frees the owner.
 
@@ -20,6 +21,8 @@ The destructor file also groups seven entry points that install vtable `0x08CDCA
 ## Matching constraint
 
 The byte update in `battle_effect_hide_sprite_and_reset` is intentionally expressed through a byte pointer. A direct nested structure-field expression makes this compiler save an additional register, growing the function by eight bytes. The receiver and stored sprite pointer remain typed; the local expression preserves the original instruction selection.
+
+The bitwise assignments in `control_flags.c` likewise retain byte-pointer expressions. Direct structure-member compound assignments reverse temporary-register selection in this compiler. `BattleControlObject` still provides the canonical layout and readable field inventory.
 
 ## Remaining evidence
 
