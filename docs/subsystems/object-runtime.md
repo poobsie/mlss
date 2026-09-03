@@ -96,6 +96,8 @@ Three remaining early callbacks now expose their actual control flow. One update
 
 Ten neighboring callbacks extend the same early object sequences with paired animations, effect setup, a four-way continuation selected by `valueA8`, vertical integration through `value8C`, linked-chain teardown, and visual offset decay. The visual halfwords at `0x04`, `0x06`, and `0x0C` and state members at `0x38` and `0xB4` remain structural; their update relationships are proven, but their rendering units are not.
 
+Twenty-seven middle-address callbacks now form five explicit object-transition families: terminal action wrappers, visual-completion finishers, readiness-poll continuations, visual-flag continuations, and two follow-up initializers. Their C-facing names describe those families, with letter suffixes where the assembly-only owning behavior tables do not yet support gameplay-specific identities. The repeated control flow is represented once per family instead of as unrelated address-named functions.
+
 The next object sequence recovers an owner-supplied starting X position, command `0x4029` setup, and a linked position-history list. Each motion tick shifts the object left by `0x280` fixed-point units and propagates the previous X position through the list until the object crosses screen X `-40`.
 
 `object_traverse_child_tree_noop` recursively visits both child links of an independently observed tree-node layout. It performs no action at each node. The explicit `noop` suffix is intentional: assigning cleanup or rendering semantics to a side-effect-free traversal would be fiction.

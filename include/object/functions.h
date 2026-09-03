@@ -61,4 +61,33 @@
 #define object_select_command_4029_animation_from_global sub_807940C
 #define object_shift_position_history_left sub_80794FC
 
+/* Middle-address behavior families whose owning callback tables remain in assembly. */
+#define object_invoke_shared_terminal_action_a sub_80D2D28
+#define object_invoke_shared_terminal_action_b sub_80DEC60
+#define object_finish_when_visual_complete_a sub_80D9984
+#define object_finish_when_visual_complete_b sub_80D99D4
+#define object_finish_when_visual_complete_c sub_80DA9E0
+#define object_finish_when_visual_complete_d sub_80DA9FC
+#define object_advance_when_ready_a sub_80D9A7C
+#define object_advance_when_ready_b sub_80D9B08
+#define object_advance_when_ready_c sub_80DB844
+#define object_advance_when_ready_d sub_80DBD50
+#define object_advance_when_ready_e sub_80DBD6C
+#define object_advance_when_ready_f sub_80DC4A4
+#define object_advance_when_ready_g sub_80DC4D8
+#define object_advance_when_ready_h sub_80DD6D0
+#define object_advance_when_ready_i sub_80DD6EC
+#define object_advance_when_ready_j sub_80DD708
+#define object_advance_when_ready_k sub_80DD724
+#define object_advance_when_ready_l sub_80DEC44
+#define object_advance_when_ready_m sub_80DED30
+#define object_advance_when_visual_complete_a sub_80DA1EC
+#define object_advance_when_visual_complete_b sub_80DA208
+#define object_advance_when_visual_complete_c sub_80DA324
+#define object_advance_when_visual_complete_d sub_80DA3E0
+#define object_initialize_followup_with_argument_4 sub_80DAAA4
+#define object_initialize_followup_with_argument_2 sub_80DAAC8
+#define object_return_to_idle_when_value80_clear_a sub_80DC3A0
+#define object_return_to_idle_when_value80_clear_b sub_80DE948
+
 #endif

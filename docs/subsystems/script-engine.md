@@ -32,6 +32,26 @@ Three commands use registry slot 183, the pointer at offset `0x304`. Its role is
 
 The former `script_dispatch_helpers.c` cluster was found to be object lifecycle code and moved to the object-runtime queue. The currently recovered script C now has subsystem placement and shared state types; further script work depends on converting adjacent assembly or recovering command data tables.
 
+## Command execution state
+
+`ScriptExecutionState` captures the command interpreter fields proven by the handlers around `0x080EA514` through `0x080EB248`. The interpreter has a current cursor, an end cursor, one saved return cursor, a 16-word value stack and depth, a wait timer, and two parallel value/flag/mode channels. The purpose and units of the two channels are not yet established, so their names remain structural instead of pretending they are coordinates or animation state.
+
+The extracted command handlers now expose stack push/pop, stored-value assignment, call/end control flow, current-object configuration, a word-copy operation, a successful no-op, and a two-argument forwarding command. The stack access retains explicit byte-offset arithmetic because the original compiler otherwise emits two extra instructions; the shared structure documents the relationship while the source preserves the exact ROM bytes.
+
+| Previous name | Recovered name | Evidence |
+| --- | --- | --- |
+| `sub_80EA514` | `script_state_set_secondary_channel` | Writes the second value pair, flag halfword, and mode byte. |
+| `sub_80EA530` | `script_state_set_primary_channel` | Writes the first value pair, clears the return cursor, and writes the first flag/mode pair. |
+| `sub_80EA904` | `script_command_pop_value` | Decrements the depth byte and clears the vacated 32-bit stack entry. |
+| `sub_80EA91C` | `script_command_store_value` | Copies the command argument into the interpreter's standalone stored word. |
+| `sub_80EA928` | `script_command_push_value` | Writes the argument at the current stack depth, then increments the depth. |
+| `script_cmd_call` | `script_command_call` | Optionally saves the current cursor and jumps to the command-supplied cursor. |
+| `script_cmd_end` | `script_command_end` | Marks the current cursor as the end cursor and clears the saved return cursor. |
+| `sub_80F14C4` | `script_command_set_current_object_configuration` | Applies the supplied 16-bit configuration to the object passed as the active command target. |
+| `sub_80F1AE4` | `script_command_copy_word` | Copies one command-supplied word to the destination selected by the dispatcher. |
+| `sub_80F7E80` | `script_command_noop` | Returns the interpreter's successful-completion value without changing state. |
+| `sub_80F80B4` | `script_command_forward_pair` | Forwards two consecutive command words to the same callee. The callee's semantics remain unknown. |
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.
