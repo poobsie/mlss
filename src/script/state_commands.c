@@ -82,6 +82,43 @@ SEC(sub_80EA530) void script_state_set_primary_channel(
 }
 SEC(sub_80EA530) const u16 sub_80EA530_padding = 0;
 
+SEC(sub_80EA550) void script_state_clear_secondary_channel(
+    void* context, struct ScriptExecutionState* state, u32 linkedState)
+{
+    if (state->primaryFlags & 8)
+        ((struct ScriptExecutionState*)linkedState)->primaryFlags &= ~4;
+    state->secondaryValue1 = 0;
+    state->secondaryValue0 = 0;
+    state->secondaryMode = 0;
+    state->secondaryFlags = 0;
+}
+
+SEC(sub_80EA584) void script_state_replace_secondary_channel(
+    void* context, struct ScriptExecutionState* state,
+    u32 value0, u32 value1, u16 flags, u8 mode)
+{
+    script_state_clear_secondary_channel(context, state, value0);
+    script_state_set_secondary_channel(
+        context, state, value0, value1, flags, mode);
+}
+
+SEC(sub_80EA5C8) void script_state_replace_primary_channel(
+    void* context, struct ScriptExecutionState* state,
+    u32 value0, u32 value1, u16 flags, u8 mode)
+{
+    script_state_clear_secondary_channel(context, state, value0);
+    script_state_set_primary_channel(
+        context, state, value0, value1, flags, mode);
+}
+
+SEC(sub_80EA778) void script_state_tick_wait_timer(
+    void* context, struct ScriptExecutionState* state)
+{
+    --state->waitTimer;
+    if (state->waitTimer == 0)
+        state->primaryFlags &= ~0x10;
+}
+
 SEC(sub_80EA904) int script_command_pop_value(
     void* context, struct ScriptExecutionState* state)
 {
@@ -117,6 +154,21 @@ SEC(script_cmd_call) int script_command_call(
     return 1;
 }
 SEC(script_cmd_call) const u16 script_cmd_call_padding = 0;
+
+SEC(script_cmd_wait_frames) int script_command_wait_frames(
+    void* context, struct ScriptExecutionState* state, const u32* argument)
+{
+    int result;
+
+    state->waitTimer = *argument;
+    if (state->waitTimer != 0) {
+        state->primaryFlags |= 0x10;
+        result = 0;
+    } else {
+        result = 1;
+    }
+    return result;
+}
 
 SEC(script_cmd_end) int script_command_end(
     void* context, struct ScriptExecutionState* state)

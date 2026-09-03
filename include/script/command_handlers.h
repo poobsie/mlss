@@ -4,12 +4,13 @@
 #include "global.h"
 
 struct ScriptBattleReturnContext;
+struct ScriptExecutionState;
 
 #define script_command_return_from_battle script_cmd_btl_return
 
 u8 script_command_return_from_battle(
     struct ScriptBattleReturnContext* context,
-    s32 state,
+    struct ScriptExecutionState* state,
     s32* shouldMarkReturn);
 
 #endif

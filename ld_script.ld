@@ -1311,6 +1311,14 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80EA514);
         src/script/state_commands.o(.text.middle.sub_80EA530);
         asm/text08057568.o(.text.after_middle_sub_80EA530);
+        src/script/state_commands.o(.text.middle.sub_80EA550);
+        asm/text08057568.o(.text.after_middle_sub_80EA550);
+        src/script/state_commands.o(.text.middle.sub_80EA584);
+        asm/text08057568.o(.text.after_middle_sub_80EA584);
+        src/script/state_commands.o(.text.middle.sub_80EA5C8);
+        asm/text08057568.o(.text.after_middle_sub_80EA5C8);
+        src/script/state_commands.o(.text.middle.sub_80EA778);
+        asm/text08057568.o(.text.after_middle_sub_80EA778);
         src/script/state_commands.o(.text.misc_helpers_02.sub_80EA8DC);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80EA8DC);
         src/script/state_commands.o(.text.middle.sub_80EA904);
@@ -1321,6 +1329,8 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80EA928);
         src/script/command_handlers.o(.text.script_command_handlers.script_command_set_input_mask);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EA9A8);
+        src/script/state_commands.o(.text.middle.script_cmd_wait_frames);
+        asm/text08057568.o(.text.after_middle_script_cmd_wait_frames);
         src/script/state_commands.o(.text.middle.script_cmd_call);
         asm/text08057568.o(.text.after_middle_script_cmd_call);
         src/script/state_commands.o(.text.middle.script_cmd_end);

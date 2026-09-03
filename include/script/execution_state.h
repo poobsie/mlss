@@ -39,6 +39,10 @@ struct ScriptConditionBranchArguments {
 
 #define script_state_set_secondary_channel sub_80EA514
 #define script_state_set_primary_channel sub_80EA530
+#define script_state_clear_secondary_channel sub_80EA550
+#define script_state_replace_secondary_channel sub_80EA584
+#define script_state_replace_primary_channel sub_80EA5C8
+#define script_state_tick_wait_timer sub_80EA778
 #define script_command_pop_value sub_80EA904
 #define script_command_store_value sub_80EA91C
 #define script_command_push_value sub_80EA928
@@ -47,6 +51,8 @@ struct ScriptConditionBranchArguments {
 #define script_wait_for_field_flag_291 sub_80F0724
 #define script_wait_for_context_operation sub_80FA6BC
 #define script_command_call script_cmd_call
+#define script_command_wait_frames script_cmd_wait_frames
+#define script_command_return script_cmd_return
 #define script_command_end script_cmd_end
 #define script_command_set_current_object_configuration sub_80F14C4
 #define script_command_copy_word sub_80F1AE4
@@ -57,5 +63,20 @@ struct ScriptConditionBranchArguments {
 void script_state_enable_primary_flag_2(
     void* context, void* object, struct ScriptExecutionState* state,
     const void* arguments);
+
+void script_state_clear_secondary_channel(
+    void* context, struct ScriptExecutionState* state, u32 linkedState);
+void script_state_replace_secondary_channel(
+    void* context, struct ScriptExecutionState* state,
+    u32 value0, u32 value1, u16 flags, u8 mode);
+void script_state_replace_primary_channel(
+    void* context, struct ScriptExecutionState* state,
+    u32 value0, u32 value1, u16 flags, u8 mode);
+void script_state_tick_wait_timer(
+    void* context, struct ScriptExecutionState* state);
+int script_command_wait_frames(
+    void* context, struct ScriptExecutionState* state, const u32* argument);
+u8 script_command_return(
+    void* context, struct ScriptExecutionState* state);
 
 #endif
