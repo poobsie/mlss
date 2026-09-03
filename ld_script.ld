@@ -170,7 +170,7 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_code_helpers_8051608);
         src/early_code_helpers.o(.text.early_code_helpers.sub_8051614);
         asm/text0801A548.o(.text.after_early_code_helpers_8051614);
-        src/text0801A548_tail.o(.text);
+        src/screens/scrollable_view.o(.text);
         src/screens/options.o(.text);
         asm/screens/options_and_backup.o(.text);
         src/screens/mario_bros_save_error.o(.text);

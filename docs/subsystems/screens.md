@@ -130,3 +130,8 @@ All currently decompiled screen C now has a subsystem path, canonical public hea
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
+## Scrollable view process
+
+`ScrollableViewProcess` owns a content area, a `240 x 160` viewport position, hardware scroll output, and four edge-arrow sprites. Its update routine writes the scroll registers and hides each arrow when movement in that direction has reached the corresponding content boundary. Its clamp routine constrains the viewport and forwards the position to the content object.
+
+The recovered lifecycle methods initialize the base process and release the owned content, child process, and auxiliary object. A separate update passes game-state value `0x880` through two still-unidentified transforms, so its name deliberately stops at `scrollable_view_update_persistent_value`.
