@@ -10,6 +10,8 @@ The paired-actor state transitions now show the full relationship: they wait unt
 
 The reversed family performs the same operation with actor B active and actor A as the wait condition. Its runtime actor-pointer reads remain volatile, matching the original routines' observable access contract.
 
+Activation transitions now select `actorA` or `actorB` directly, activate the embedded action, inspect the actor's state and readiness flag, store the returned sound handle, and install the next action update. The sound kinds remain numeric because their table identities have not been recovered.
+
 ## Next boundary
 
 Convert activation, command, interaction, and state transition families to the shared actor and runtime types, preserving volatile accesses where code generation requires them.
