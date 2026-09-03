@@ -79,7 +79,7 @@
         "src/*landing*.c"
       ],
       "documentation": "docs/subsystems/object-runtime.md",
-      "next_action": "Trace the entry dispatcher around 0x0808CC08 and classify remaining countdown and transition families."
+      "next_action": "Classify command, signal, and conditional transition families that share runtime-object callbacks."
     },
     {
       "id": "unclassified",

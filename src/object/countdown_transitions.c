@@ -1,21 +1,21 @@
 #include "global.h"
+#include "object/runtime_object.h"
 
-#define FIELD(object, type, offset) (*(type *)((u8 *)(object) + (offset)))
 #define SEC(name) __attribute__((section(".text.countdown_transitions." #name)))
 
-extern void sub_8082E1C(void *, s32, s32, s32);
+extern void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
 
 #define DEFINE_COUNTDOWN_TRANSITION(name, kind, next)                   \
-    extern void next(void);                                              \
-    SEC(name) void name(void *object)                                    \
+    extern void next(struct RuntimeObject*);                             \
+    SEC(name) void name(struct RuntimeObject* object)                    \
     {                                                                    \
         s32 current;                                                     \
-        if (FIELD(FIELD(object, void *, 8), u8, 0x12) & 8) {            \
-            current = FIELD(object, u16, 0xAC) - 1;                     \
-            FIELD(object, u16, 0xAC) = current;                         \
+        if (object->visual->flags & 8) {                                \
+            current = (u16)object->timer - 1;                            \
+            object->timer = current;                                    \
             if ((s32)(current << 16) <= 0) {                            \
                 sub_8082E1C(object, kind, 0, 0);                        \
-                FIELD(object, void *, 0x4C) = next;                     \
+                object->update = next;                                  \
             }                                                            \
         }                                                                \
     }

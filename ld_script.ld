@@ -192,7 +192,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_805DE90);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_805DEB4);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_805DEB4);
-        src/countdown_transitions.o(.text.countdown_transitions.sub_805DF4C);
+        src/object/countdown_transitions.o(.text.countdown_transitions.sub_805DF4C);
         asm/text08057568.o(.text.countdown_transitions_after_sub_805DF4C);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_805F5E4);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_805F5E4);
@@ -222,7 +222,7 @@ SECTIONS
         asm/text08057568.o(.text.conditional_setup_transitions_after_sub_806048C);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_80604B8);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80604B8);
-        src/countdown_handlers.o(.text.countdown_handlers.sub_80604E0);
+        src/object/countdown_handlers.o(.text.countdown_handlers.sub_80604E0);
         asm/text08057568.o(.text.countdown_handlers_after_sub_80604E0);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_80605A4);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80605A4);
@@ -292,7 +292,7 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_03_after_sub_8063BA8);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_8063C60);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8063C60);
-        src/countdown_transitions.o(.text.countdown_transitions.sub_8063C8C);
+        src/object/countdown_transitions.o(.text.countdown_transitions.sub_8063C8C);
         asm/text08057568.o(.text.countdown_transitions_after_sub_8063C8C);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_806424C);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_806424C);
@@ -356,7 +356,7 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_03_after_sub_8066E0C);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_8066EB4);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8066EB4);
-        src/countdown_callbacks.o(.text.countdown_callbacks.sub_8067874);
+        src/object/countdown_callbacks.o(.text.countdown_callbacks.sub_8067874);
         asm/text08057568.o(.text.countdown_callbacks_after_sub_8067874);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_80679FC);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80679FC);
@@ -390,7 +390,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8068EF4);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_8068F10);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8068F10);
-        src/countdown_actions.o(.text.countdown_actions.sub_8069394);
+        src/object/countdown_actions.o(.text.countdown_actions.sub_8069394);
         asm/text08057568.o(.text.countdown_actions_after_sub_8069394);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_8069450);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8069450);
@@ -454,9 +454,9 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_806CBA0);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_806D340);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_806D340);
-        src/countdown_actions.o(.text.countdown_actions.sub_806D35C);
+        src/object/countdown_actions.o(.text.countdown_actions.sub_806D35C);
         asm/text08057568.o(.text.countdown_actions_after_sub_806D35C);
-        src/countdown_actions.o(.text.countdown_actions.sub_806D390);
+        src/object/countdown_actions.o(.text.countdown_actions.sub_806D390);
         asm/text08057568.o(.text.countdown_actions_after_sub_806D390);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_806D4F0);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_806D4F0);
@@ -482,7 +482,7 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_04_after_sub_806E98C);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_806EAA8);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_806EAA8);
-        src/countdown_transitions.o(.text.countdown_transitions.sub_806EADC);
+        src/object/countdown_transitions.o(.text.countdown_transitions.sub_806EADC);
         asm/text08057568.o(.text.countdown_transitions_after_sub_806EADC);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_80703F0);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80703F0);
@@ -494,13 +494,13 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_05_after_sub_8070670);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_80706E8);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80706E8);
-        src/countdown_handlers.o(.text.countdown_handlers.sub_80708F8);
+        src/object/countdown_handlers.o(.text.countdown_handlers.sub_80708F8);
         asm/text08057568.o(.text.countdown_handlers_after_sub_80708F8);
-        src/countdown_handlers.o(.text.countdown_handlers.sub_8070918);
+        src/object/countdown_handlers.o(.text.countdown_handlers.sub_8070918);
         asm/text08057568.o(.text.countdown_handlers_after_sub_8070918);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_8070A50);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8070A50);
-        src/countdown_callbacks.o(.text.countdown_callbacks.sub_8070A7C);
+        src/object/countdown_callbacks.o(.text.countdown_callbacks.sub_8070A7C);
         asm/text08057568.o(.text.countdown_callbacks_after_sub_8070A7C);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_8070C5C);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8070C5C);
@@ -524,7 +524,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80710E0);
         src/text_small_functions_01.o(.text.small_functions_01.sub_807116C);
         asm/text08057568.o(.text.small_functions_01_after_sub_807116C);
-        src/countdown_actions.o(.text.countdown_actions.sub_80712B0);
+        src/object/countdown_actions.o(.text.countdown_actions.sub_80712B0);
         asm/text08057568.o(.text.countdown_actions_after_sub_80712B0);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_8072370);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8072370);
@@ -536,7 +536,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8072650);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_8072738);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8072738);
-        src/countdown_handlers.o(.text.countdown_handlers.sub_807411C);
+        src/object/countdown_handlers.o(.text.countdown_handlers.sub_807411C);
         asm/text08057568.o(.text.countdown_handlers_after_sub_807411C);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_80742D4);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80742D4);
@@ -548,7 +548,7 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_80746A8);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_80746C4);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80746C4);
-        src/countdown_handlers.o(.text.countdown_handlers.sub_80746EC);
+        src/object/countdown_handlers.o(.text.countdown_handlers.sub_80746EC);
         asm/text08057568.o(.text.countdown_handlers_after_sub_80746EC);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_8075B54);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8075B54);

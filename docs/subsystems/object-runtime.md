@@ -32,6 +32,12 @@ The common exit at `0x0808DD2C` is now `runtime_object_finish_action`. It is not
 
 Three later conditional mode transitions now use the same visual and update fields. Each tests an external readiness gate, selects animation kind 7 or 8 only when the gate is clear, sets visual mode 2, and installs its next update callback. Their gameplay owners remain unidentified, so the individual entry points retain address names.
 
+## Countdown callbacks
+
+Fourteen countdown callbacks from four former top-level files now share the signed `timer`, linked `state`, visual completion flag, and active `update` callback. The variants either release linked-state resources, stop sound `0xD2` and select animation 6, invoke a release callback, install another update, or wait for visual completion before selecting the next animation.
+
+Several routines intentionally load the signed timer as `u16`, subtract one, store it back, then test the shifted signed result. That arithmetic is preserved rather than normalized because it controls zero crossing and wraparound exactly.
+
 ## Next boundary
 
 Trace the entry dispatcher around `0x0808CC08` and group complete setup-to-completion behavior sequences. Keep the two descriptor families separate until the global source records are understood.
