@@ -1491,7 +1491,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8114854);
         src/text_small_functions_01.o(.text.small_functions_01.sub_811488C);
         asm/text08057568.o(.text.small_functions_01_after_sub_811488C);
-        src/state_field_helpers.o(.text.state_field_helpers.sub_8116610);
+        src/field/value_transfer.o(.text.field_value_transfer.sub_8116610);
         asm/text08057568.o(.text.state_field_helpers_after_sub_8116610);
         src/text_middle_helpers.o(.text.middle.sub_81218C8);
         asm/text08057568.o(.text.after_middle_sub_81218C8);

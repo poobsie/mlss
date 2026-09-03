@@ -54,6 +54,8 @@ Two adjacent wrappers call their respective field-object operations with enabled
 
 `FieldDefinitionCallbacks` replaces the final root-level early helper family. Its initializer parses the object's definition, installs an update trampoline at `0x198`, and installs the definition callback at `0x1A0`; the trampoline passes the callback slot itself so the target may replace the next callback.
 
+`FieldValueTransfer` exposes one half of a reversible state transfer: the recovered routine moves the halfword at `0x34` to `0x44` and clears the source. The adjacent assembly routine performs the inverse move, with additional mode bookkeeping that is not yet decompiled.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
