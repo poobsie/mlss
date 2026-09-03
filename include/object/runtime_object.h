@@ -13,8 +13,12 @@ struct RuntimeObjectValueSource {
     s8 value6;
 };
 
+struct RuntimeObjectVisual;
+
 struct RuntimeObjectState {
-    u8 unknown00[0x38];
+    u8 unknown00[0x10];
+    struct RuntimeObjectVisual* visual10;
+    u8 unknown14[0x24];
     s32 value38;
     u8 unknown3C[0x68];
     s32 valueA4;

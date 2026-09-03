@@ -146,6 +146,8 @@ The 170 scripted-action factory wrappers formerly collected in `text_upper_helpe
 
 The individual factory symbols remain address-named ABI entry points because their owners are ROM callback tables and their callbacks are still assembly-only. Their declarations now expose the complete construction recipe, which is the strongest current evidence; assigning attack or entity names from numeric visual IDs alone would be unreliable.
 
+Four miscellaneous-bucket callbacks now form the saved-update transition group. One stores the active update in `auxiliaryState`, runs the established setup routine, and installs a polling continuation when setup remains pending. That continuation starts animation 2 and restores the saved update after visual byte `0x21` clears. A related callback observes the visual pointer at state offset `0x10` before releasing the object, while the fourth invokes the callback at descriptor offset 4 after the shared field-readiness gate clears. `auxiliaryState` and the descriptor remain structural outside these proven uses.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.

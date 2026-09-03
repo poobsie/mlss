@@ -186,6 +186,10 @@
 #define object_start_animation_9_sound_86 sub_81126BC
 #define object_start_animation_5_sound_46 sub_8070D60
 #define object_on_visual_complete_disable_command sub_809E49C
+#define object_save_update_and_run_setup sub_80DBC3C
+#define object_restore_update_when_visual_value21_clear sub_80DBC60
+#define object_release_when_state_visual_value21_clear sub_809F068
+#define object_when_field_ready_invoke_descriptor_callback sub_808759C
 
 #define object_setup_followup_kind_2_for_12_ticks sub_808C324
 #define object_setup_followup_kind_6_for_5_ticks_a sub_808C39C

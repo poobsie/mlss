@@ -664,7 +664,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8087360);
         src/object/small_state_helpers.o(.text.misc_helpers_01.sub_8087524);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8087524);
-        src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_808759C);
+        src/object/saved_update_transitions.o(.text.misc_helpers_02.sub_808759C);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_808759C);
         src/field/actor_pair_flags.o(.text.field_actor_pair_flags.sub_8087AE0);
         asm/text08057568.o(.text.small_functions_05_after_sub_8087AE0);
@@ -1087,7 +1087,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_809EB58);
         src/object/terminal_gates.o(.text.misc_helpers_01.sub_809EB70);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_809EB70);
-        src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_809F068);
+        src/object/saved_update_transitions.o(.text.misc_helpers_02.sub_809F068);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_809F068);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_809F084);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_809F084);
@@ -1209,9 +1209,9 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DB1C4);
         src/object/middle_transitions.o(.text.middle.sub_80DB844);
         asm/text08057568.o(.text.after_middle_sub_80DB844);
-        src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_80DBC3C);
+        src/object/saved_update_transitions.o(.text.misc_helpers_02.sub_80DBC3C);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DBC3C);
-        src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_80DBC60);
+        src/object/saved_update_transitions.o(.text.misc_helpers_02.sub_80DBC60);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DBC60);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_80DBC84);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DBC84);
