@@ -42,6 +42,8 @@ Four dispatch wrappers share another proven precondition: set bit `0x10` in `fla
 
 `FieldCollisionRecord` is the `0x4C`-byte record allocated in an eight-element set. Its initializer stores the record index in the low three flag bits and returns the record pointer used by the caller. The recovered maintenance helpers preserve four current bounds into their previous-value slots and release the resource at `0x44` while clearing the active flag. The geometric axis meanings are inferred from their grouped use and retain rectangle-oriented names pending full collision update recovery.
 
+`FieldViewState` now owns the adjacent view-origin and pan fields at offsets `0x774` through `0x77A`. Callers use the first pair to convert world positions into screen positions, while the second pair is incremented or replaced to request view movement. The broader object remains opaque until its assembly-only update routines are recovered.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

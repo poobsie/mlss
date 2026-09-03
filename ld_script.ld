@@ -646,13 +646,13 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8081FB0);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_8082158);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8082158);
-        src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_8082D00);
+        src/field/view_state.o(.text.field_view_state.sub_8082D00);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8082D00);
-        src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_8082D24);
+        src/field/view_state.o(.text.field_view_state.sub_8082D24);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8082D24);
-        src/offset_reads.o(.text.offset_reads.sub_8082D40);
+        src/field/view_state.o(.text.field_view_state.sub_8082D40);
         asm/text08057568.o(.text.offset_reads_after_sub_8082D40);
-        src/offset_reads.o(.text.offset_reads.sub_8082D50);
+        src/field/view_state.o(.text.field_view_state.sub_8082D50);
         asm/text08057568.o(.text.offset_reads_after_sub_8082D50);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_8083E78);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8083E78);

@@ -114,8 +114,6 @@ void sub_8079704(void* arg0);
 void sub_807F6D0(void);
 void sub_807F6EC(s32 arg0);
 void sub_8081C54(void* arg0);
-void sub_8082D00(void* arg0, s32 arg1, s32 arg2);
-void sub_8082D24(void* arg0, s16 arg1, s16 arg2);
 s8 sub_8083E78(void* arg0);
 void sub_8087524(void* arg0);
 void sub_808862C(void* arg0);
@@ -511,16 +509,6 @@ SEC(sub_8081C54) void sub_8081C54(void* arg0) {
     if (!(1 & FIELD_AT(FIELD_AT(FIELD_AT(arg0, void**, 8), void**, 0x28), u8*, 0x111))) {
         FIELD_AT(arg0, UnknownWord**, 4) = (UnknownWord*)&sub_8081F84;
     }
-}
-
-SEC(sub_8082D00) void sub_8082D00(void* arg0, s32 arg1, s32 arg2) {
-    FIELD_AT(arg0, u16*, 0x778) = (u16)(FIELD_AT(arg0, u16*, 0x778) + arg1);
-    FIELD_AT(arg0, u16*, 0x77A) = (u16)(FIELD_AT(arg0, u16*, 0x77A) + arg2);
-}
-
-SEC(sub_8082D24) void sub_8082D24(void* arg0, s16 arg1, s16 arg2) {
-    FIELD_AT(arg0, s16*, 0x778) = arg1;
-    FIELD_AT(arg0, s16*, 0x77A) = arg2;
 }
 
 SEC(sub_8083E78) s8 sub_8083E78(void* arg0) {
