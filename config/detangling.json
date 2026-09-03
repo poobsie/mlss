@@ -81,8 +81,15 @@
       "next_action": "Expand when entry dispatchers or neighboring assembly provide stable gameplay sequence identities."
     },
     {
-      "id": "unclassified",
+      "id": "battle_runtime",
       "state": "active",
+      "patterns": ["src/battle_object_*.c", "src/battle/*.c"],
+      "documentation": "docs/subsystems/battle-runtime.md",
+      "next_action": "Type later definition wrappers, then separate sprite, runtime-value, and destructor families."
+    },
+    {
+      "id": "unclassified",
+      "state": "queued",
       "patterns": ["src/*.c", "src/*/*.c", "src/*/*/*.c"],
       "documentation": "docs/subsystems/unclassified.md",
       "next_action": "Extract the smallest caller-connected cluster into a real subsystem; do not clean these files wholesale."
