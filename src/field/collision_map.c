@@ -1,7 +1,10 @@
 #include "field/collision_map.h"
+#include "memory/heap.h"
 
 #define COLLISION_MAP_SEC(symbol) \
     __attribute__((section(".text.field.collision_map." #symbol)))
+
+void sub_80184F4(void* address);
 
 COLLISION_MAP_SEC(sub_805A0EC)
 void field_collision_map_copy_indexed_values_36_3c(
@@ -33,4 +36,18 @@ struct FieldCollisionDefinition* field_collision_map_get_definition_at(
     index = x + map->rowStride * z;
     return field_collision_map_get_definition(
         map, map->definitionIndices[index]);
+}
+
+COLLISION_MAP_SEC(sub_805A1A8)
+void field_collision_map_reset_vram_workspace(struct FieldCollisionMap* map)
+{
+    u32 zero;
+    void* vram = (void*)0x06000000;
+
+    sub_80184F4(vram);
+    if (map->workspace != NULL) {
+        free_heap_8018D9C(map->workspace);
+    }
+    zero = 0;
+    CpuFastSet(&zero, vram, 0x01002000);
 }

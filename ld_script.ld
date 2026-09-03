@@ -190,6 +190,8 @@ SECTIONS
         src/field/collision_map.o(.text.field.collision_map.get_coldef_ptr_by_idx);
         src/field/collision_map.o(.text.field.collision_map.get_coldef_ptr_by_xz);
         asm/text08057568.o(.text.field_collision_map_after_get_definition);
+        src/field/collision_map.o(.text.field.collision_map.sub_805A1A8);
+        asm/text08057568.o(.text.field_collision_map_after_reset_vram);
         src/field/view_state.o(.text.misc_helpers_01.sub_805A954);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_805A954);
         src/graphics/process_state.o(.text.misc_helpers_03.sub_805A95C);

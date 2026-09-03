@@ -19,14 +19,17 @@ struct FieldCollisionMap {
     u8 unknown4E[0x4E];
     u8* definitionIndices;
     struct FieldCollisionDefinition* definitions;
+    void* workspace;
 };
 
 #define field_collision_map_get_definition get_coldef_ptr_by_idx
 #define field_collision_map_get_definition_at get_coldef_ptr_by_xz
 #define field_collision_map_copy_indexed_values_36_3c sub_805A0EC
+#define field_collision_map_reset_vram_workspace sub_805A1A8
 
 void field_collision_map_copy_indexed_values_36_3c(
     struct FieldCollisionMap* map, u16 index, u16* value36, u16* value3C);
+void field_collision_map_reset_vram_workspace(struct FieldCollisionMap* map);
 struct FieldCollisionDefinition* field_collision_map_get_definition(
     struct FieldCollisionMap* map, u8 index);
 struct FieldCollisionDefinition* field_collision_map_get_definition_at(

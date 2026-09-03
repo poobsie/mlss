@@ -118,6 +118,11 @@ arrays used beside the collision grid. Their offsets and indexed-copy behavior
 are proven; their gameplay meaning remains unknown, so the member and function
 names retain the offsets instead of guessing.
 
+`field_collision_map_reset_vram_workspace` resets the VRAM base, releases the
+map workspace at offset `0xA4` when present, and fills the first `0x8000` VRAM
+bytes with zero. Both observed callers run it immediately before disabling the
+owning field process.
+
 The display runtime now exposes its object and process slots at `0x278`, `0x27C`, and `0x280`. One helper releases and clears the object slot; another sends both process slots to the established display-finishing callback. Two process callbacks copy the staging halfwords at `0x0200001A` and `0x0200001E` into their matching display registers, either stopping before the copy or immediately after it when the owner becomes inactive.
 
 Two view wrappers now obtain the active `FieldViewState` from the established field runtime and forward complete coordinate or record arguments to the underlying view transforms. The lower-level transforms remain address-named because their arithmetic is still assembly-only; the wrappers no longer disguise field-view ownership behind raw global-pointer casts.
@@ -126,4 +131,4 @@ The final five field-runtime helpers expose the nested flag container at runtime
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,372 linked C functions checked, 1,372 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,373 linked C functions checked, 1,373 exact, and zero mismatches.
