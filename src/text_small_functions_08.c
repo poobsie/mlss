@@ -24,21 +24,6 @@ UnknownWord sub_80880C4();
 UnknownWord sub_808843C();
 u8 sub_8087CE4();
 
-SEC(sub_8106D9C) void sub_8106D9C(void* arg0) {
-    void* temp_r2;
-
-    if ((sub_810591C() << 0x18) != 0) {
-        temp_r2 = *(void**)0x03000FD8;
-        if (!(4 & FIELD_AT(temp_r2, u8*, 0x2BF))) {
-            if (FIELD_AT(temp_r2, u8*, 0x346) == 2) {
-                sub_810CB04(0, 0);
-                sub_810CB04(1, 0);
-            }
-            FIELD_AT(arg0, UnknownWord**, 4) = &sub_80FCC78;
-        }
-    }
-}
-
 SEC(sub_8110A30) void sub_8110A30(void* arg0) {
     s32 temp_r0;
     s32 temp_r0_2;

@@ -1385,7 +1385,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8106A10);
         src/text_small_functions_07.o(.text.small_functions_07.sub_8106AC8);
         asm/text08057568.o(.text.small_functions_07_after_sub_8106AC8);
-        src/text_small_functions_08.o(.text.small_functions_08.sub_8106D9C);
+        src/field/selection_sequence.o(.text.field_selection_sequence.sub_8106D9C);
         asm/text08057568.o(.text.small_functions_08_after_sub_8106D9C);
         src/field/selection_sequence.o(.text.field_selection_sequence.sub_8106E1C);
         asm/text08057568.o(.text.small_functions_09_after_sub_8106E1C);
