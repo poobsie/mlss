@@ -20,12 +20,18 @@ void sub_808942C(struct RuntimeObject* object);
 void sub_809EA4C(struct RuntimeObject* object);
 void sub_80DA480(struct RuntimeObject* object);
 void sub_8110034(struct RuntimeObject* object);
+void sub_80605A4(struct RuntimeObject* object);
+void sub_80613FC(struct RuntimeObject* object);
+void sub_8070C5C(struct RuntimeObject* object);
+void sub_807197C(struct RuntimeObject* object);
 
 #define SEC(symbol) __attribute__((section(".text.small_functions_01." #symbol)))
 #define STRINGIFY_INNER(value) #value
 #define STRINGIFY(value) STRINGIFY_INNER(value)
 #define MISC_SEC(symbol) \
     __attribute__((section(".text.misc_helpers_01." STRINGIFY(symbol))))
+#define MISC2_SEC(symbol) \
+    __attribute__((section(".text.misc_helpers_02." STRINGIFY(symbol))))
 
 SEC(sub_806E794)
 void object_when_value80_clear_start_paired_animation_5(struct RuntimeObject* object)
@@ -171,3 +177,38 @@ void object_on_visual_complete_delay_12(struct RuntimeObject* object)
 }
 
 DEFINE_LOWER_TO_IDLE(object_lower_vertical_position_then_idle_b)
+
+#define DEFINE_VALUE80_ANIMATION(name, animation, next)                \
+    MISC2_SEC(name) void name(struct RuntimeObject* object)             \
+    {                                                                   \
+        if (object->value80 == 0) {                                    \
+            sub_8082E1C(object, animation, 0, 0);                     \
+            object->update = next;                                     \
+        }                                                               \
+    }
+
+DEFINE_VALUE80_ANIMATION(
+    object_when_value80_clear_start_animation_4, 4, sub_80605A4)
+DEFINE_VALUE80_ANIMATION(
+    object_when_value80_clear_start_animation_9, 9, sub_808750C)
+DEFINE_VALUE80_ANIMATION(
+    object_when_value80_clear_start_animation_7, 7, sub_80613FC)
+DEFINE_VALUE80_ANIMATION(
+    object_when_value80_clear_start_animation_0, 0, sub_808750C)
+DEFINE_VALUE80_ANIMATION(
+    object_when_value80_clear_start_animation_18, 0x18, sub_8070C5C)
+DEFINE_VALUE80_ANIMATION(
+    object_when_value80_clear_start_animation_16, 0x16, sub_807197C)
+
+MISC2_SEC(object_when_value80_clear_start_animation_0_and_stop)
+void object_when_value80_clear_start_animation_0_and_stop(
+    struct RuntimeObject* object)
+{
+    s32 value;
+
+    value = object->value80;
+    if (value == 0) {
+        sub_8082E1C(object, 0, 0, 0);
+        object->update = (RuntimeObjectCallback)value;
+    }
+}

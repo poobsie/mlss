@@ -94,6 +94,8 @@ Fourteen setup forwarders from miscellaneous bucket 02 now form a parameterized 
 
 Fourteen readiness-gated animation transitions now share one typed implementation. Each waits for the field readiness query to clear, starts animation 2 or 3 with zero command arguments, and installs its own continuation. Variant suffixes preserve callback-table entry points whose gameplay owners remain in assembly.
 
+Seven `value80`-gated callbacks now select animations 0, 4, 7, 9, `0x16`, or `0x18` and install their established continuations. Nine visual-completion callbacks form two terminal families: four disable the visual with `-1` parameters and stop, while five select animation 0 or 6 and invoke the shared cleanup transition.
+
 Three additional visual-completion variants now use the shared object layout. They select animations from state at `0x9C` or flags at `0x98`; one also starts effect `0x151D`, installs a secondary update at `0x5C`, and advances the primary update at `0x4C`.
 
 Four late visual transitions now expose linked-object completion, linked-chain flag propagation at `0xA8`, animation and sound setup, and terminal cleanup. Their semantic aliases describe the proven gate and effect; unresolved sound and animation values remain numeric.
