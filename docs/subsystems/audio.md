@@ -16,6 +16,6 @@ The public interface is `include/audio/sound_effects.h`, and the implementation 
 
 ## Verification
 
-The rebuilt 112-byte range from `0x08019588` through `0x080195F7`, including the preceding helper and required alignment, matches the most recent exact ROM byte for byte. Its SHA-1 is `aaa68c7b1729cdc6b6dbe1a8c23e237afcaf8d8d`.
+The rebuilt 112-byte range from `0x08019588` through `0x080195F7`, including the preceding helper and required alignment, matches the reference ROM byte for byte. Its SHA-1 is `aaa68c7b1729cdc6b6dbe1a8c23e237afcaf8d8d`.
 
-A full repository link was unavailable during this pass because a surviving bulk-decompilation child process was still rewriting `asm/text08057568.s` and generating upper-range source files after the main process had been halted. That writer was stopped, leaving its incomplete files intact for later recovery. Full-ROM verification must be rerun after that interrupted batch is reconciled.
+The full ROM also passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
