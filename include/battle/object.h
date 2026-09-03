@@ -27,6 +27,11 @@ struct BattleSpriteOwner {
     const void* vtable;
 };
 
+struct BattleVtableObject {
+    void* value00;
+    const void* vtable;
+};
+
 struct BattleRuntimeValues {
     u8 unknown000[0x514];
     u16 value514;

@@ -11,6 +11,8 @@ The current C boundary is organized under `src/battle/` by responsibility:
 - `sprite_owner.c` provides sprite access, visibility, coordinate forwarding, and release operations.
 - `destructors.c` installs the common terminal vtable and optionally frees the owner.
 
+The destructor file also groups seven entry points that install vtable `0x08CDCA30`, including the base entry referenced by that vtable itself. Their shared `BattleVtableObject` layout proves a value pointer at offset `0` and vtable at offset `4`; subclass identities remain unknown.
+
 `BattleDefinitionObject`, `BattleEffectObject`, `BattleRuntimeValues`, and `BattleSpriteOwner` represent separate observed layouts. They are not merged into a speculative inheritance tree.
 
 `include/battle/functions.h` supplies semantic C names while retaining the original linker symbols for assembly callers. Definition initializers use numbered identities because their descriptor contents and gameplay roles have not been recovered. The runtime-value names retain offsets for the same reason. These names should become gameplay names only when callers or descriptor data prove them.

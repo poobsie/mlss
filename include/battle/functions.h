@@ -42,6 +42,14 @@ struct BattleValueObject;
 #define battle_destroy_sprite_owner_d sub_815F898
 #define battle_destroy_sprite_owner_e sub_815F8BC
 
+#define battle_destroy_definition_ca30_a sub_8159378
+#define battle_destroy_definition_ca30_b sub_81593B8
+#define battle_destroy_definition_ca30_c sub_81593DC
+#define battle_destroy_definition_ca30_d sub_8159400
+#define battle_destroy_definition_ca30_e sub_8159440
+#define battle_destroy_definition_ca30_f sub_8159464
+#define battle_destroy_definition_ca30_base sub_81DD648
+
 #define battle_sprite_owner_get_sprite sub_815FA3C
 #define battle_sprite_owner_hide_sprite sub_815FA40
 #define battle_sprite_owner_show_sprite sub_815FA50
