@@ -16,6 +16,8 @@ Three generic callback forwarders now live in `src/runtime/callback_forwarders.c
 
 The explicit zero padding after the two no-op functions is required. Splitting the old mixed source objects otherwise causes the assembler to fill each alignment gap with a Thumb `nop`, changing two non-function halfwords even though every function still matches.
 
+Eight additional side-effect-free callback entries live in `src/runtime/noop_callbacks.c`. They retain their `nullsub_` symbols because their owning callback tables are still in assembly; naming them for a guessed subsystem would provide false certainty.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
