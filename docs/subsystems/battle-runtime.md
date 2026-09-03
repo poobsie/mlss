@@ -13,6 +13,10 @@ The current C boundary is organized under `src/battle/` by responsibility:
 - `buffer_sync.c` exposes the wrapper around the assembly routine that DMA-copies the active battle process buffers.
 - `sprite_owner.c` provides sprite access, visibility, coordinate forwarding, and release operations.
 - `sprite_motion.c` configures two structural motion modes on sprite-owning derived objects.
+- `sprite_motion_variants.c` groups construction, state preparation, child cleanup, owned-resource cleanup, and attached-position synchronization for the shared sprite-motion layout.
+- `single_sprite_destructors.c` groups cleanup for owners containing one sprite, a sprite in their second slot, or three sprite slots.
+- `sprite_variant_container.c` owns a two-variant container that constructs exactly one sprite-backed child and dispatches to the matching destructor.
+- `large_resource_cleanup.c` contains cleanup for the independently proven large-object resource slots at `0x524`, `0x804`, and `0x80C`.
 - `destructors.c` installs the common terminal vtable and optionally frees the owner.
 
 The destructor file also groups seven entry points that install vtable `0x08CDCA30`, including the base entry referenced by that vtable itself. Their shared `BattleVtableObject` layout proves a value pointer at offset `0` and vtable at offset `4`; subclass identities remain unknown.
@@ -23,7 +27,13 @@ The destructor file also groups seven entry points that install vtable `0x08CDCA
 
 `BattleSpriteMotion` is the broader sprite-backed position object initialized by `sub_815F8F4`. It records 24.8 X and Y positions, their previous values, signed per-frame velocities, a state byte, a descriptor, and overlapping subclass storage from `0x34` onward. The overlap is represented explicitly: the same slot can be a 16-bit constructor value or an owned child pointer depending on the installed descriptor.
 
-The recovered variant family includes four initializers, two state preparations, four child-destructor variants, and two owned-resource destructors. Semantic aliases state the proven lifecycle behavior, while `variant_a` and `variant_b` remain until the descriptor tables identify their battle entities. The shared motion helper adds X velocity and Y velocity plus the caller's Y offset each tick.
+The recovered sprite-motion variant family includes four initializers, two state preparations, four child-destructor variants, five owned-resource destructor variants, and two identical attached-position synchronization entry points. Semantic aliases state the proven lifecycle behavior, while variant suffixes remain until descriptor tables or construction callers identify their battle entities. The shared motion helper adds X velocity and Y velocity plus the caller's Y offset each tick.
+
+The sprite variant container clears its state, installs descriptor `0x08CDC4D0`, and allocates one `0x34`-byte child. The signed low five bits of byte `0x03001010` select between the two child constructors at a threshold of five. This is enough to name the ownership and lifecycle, but not the gameplay meaning of either variant or the selector byte.
+
+The five compact sprite-owner destructors share cleanup shape but not enough class evidence to merge their layouts. Three unconditional single-sprite variants use offset `0`; one nullable sprite uses offset `4`; one owns three nullable sprites at offsets `0`, `4`, and `8`. Their semantic names describe those proven layouts and preserve variant suffixes where separate ROM entry points remain unexplained.
+
+The large cleanup helpers are deliberately kept separate from `BattleSpriteMotion`. Their observed fields occur at offsets `0x524`, `0x804`, and `0x80C`, and no evidence yet proves that the two large layouts are the same class.
 
 `battle_tick_countdown_1f2a` decrements a signed counter in the large battle-scene runtime and clears the adjacent value at `0x1F28` once the counter becomes negative. Both fields retain offset-bearing names until the code that arms the counter is recovered.
 
@@ -39,7 +49,7 @@ The late fields at `0x2F8` and `0x2FC` are named as motion values because their 
 
 ## Remaining evidence
 
-Gameplay-specific definition names require recovered descriptor contents or identifiable construction call sites. The five identical destructor entry points require class ownership evidence before their `a` through `e` suffixes can be replaced honestly.
+Gameplay-specific definition names require recovered descriptor contents or identifiable construction call sites. The identical destructor and synchronization entry points require class ownership evidence before their variant suffixes can be replaced honestly. The sprite-container selector needs a recovered owner for `0x03001010` before it can receive a stable domain name.
 
 ## Verification
 

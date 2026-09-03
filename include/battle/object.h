@@ -29,6 +29,19 @@ struct BattleSpriteOwner {
     const void* vtable;
 };
 
+struct BattleSingleSpriteOwner {
+    struct BattleSprite* sprite;
+};
+
+struct BattleSpriteSlotOwner {
+    void* unknown00;
+    struct BattleSprite* sprite;
+};
+
+struct BattleSpriteTripleOwner {
+    struct BattleSprite* sprites[3];
+};
+
 struct BattleSpriteMotionOwner {
     struct BattleSprite* sprite;
     const void* vtable;

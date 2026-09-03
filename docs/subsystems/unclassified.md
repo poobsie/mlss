@@ -7,3 +7,5 @@ Take one caller-connected family at a time. Establish its actual ownership befor
 The former `text_upper_structural.c` bucket has been retired. Its event callback wiring belongs to field runtime, its sprite-backed lifecycle and motion variants belong to battle runtime, and its text cursor setter belongs to UI runtime. This split is based on callers and shared layouts, not the original address range.
 
 The former `text_upper_helpers.c` bucket has also been retired. Its 170 entries are parameterized constructors for the same scripted object-action runtime, so they now live in `src/object/action_factories.c` with a typed shared construction contract.
+
+Fourteen former `text_upper_functions/` entries have been assigned to battle runtime. Their evidence is structural and caller-connected: five release one or more owned sprites, five operate on the already recovered `BattleSpriteMotion` layout, two clean up large late-offset resources, and two form the construction/destruction pair for a two-variant sprite container. Gameplay identities remain explicitly unresolved where the available descriptors and assembly callers do not prove them.

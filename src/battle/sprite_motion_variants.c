@@ -9,7 +9,13 @@ extern struct BattleSprite* sub_815FA3C(struct BattleSpriteMotion*);
 extern void sub_815FA70(struct BattleSpriteMotion*, s32);
 extern void sub_815FAFC(struct BattleSpriteMotion*);
 extern void sub_815FB14(struct BattleSpriteMotion*, void*);
+extern void sub_815FAA4(struct BattleSpriteMotion*, void*);
 extern void sub_8021308(void*);
+
+struct BattleSpritePosition {
+    u16 x;
+    u16 y;
+};
 
 #define DEFINE_INITIALIZER(name, descriptor_value)                       \
 SEC(name) void* name(                                                    \
@@ -59,6 +65,23 @@ SEC(name) void name(struct BattleSpriteMotion* object, void* argument)   \
 
 DEFINE_OWNED_RESOURCE_DESTRUCTOR(sub_8158C98, 0x08CDC8F0, ownedResource40)
 DEFINE_OWNED_RESOURCE_DESTRUCTOR(sub_815EFAC, 0x08CDCC50, slot34.ownedResource)
+DEFINE_OWNED_RESOURCE_DESTRUCTOR(sub_8158764, 0x08CDC730, slot34.ownedResource)
+DEFINE_OWNED_RESOURCE_DESTRUCTOR(sub_8158BB4, 0x08CDC8B0, ownedResource40)
+
+SEC(sub_815F3F0)
+void sub_815F3F0(struct BattleSpriteMotion* object, void* argument)
+{
+    object->descriptor = (void*)0x08CDCDD0;
+    if (object->ownedResource40 != 0) {
+        sub_8021308(object->ownedResource40);
+        object->ownedResource40 = 0;
+    }
+    if (object->slot3C.child != 0) {
+        sub_8021308(object->slot3C.child);
+        object->slot3C.child = 0;
+    }
+    sub_815FB14(object, argument);
+}
 
 #define DEFINE_LINKED_CHILD_DESTRUCTOR(name, descriptor_value)           \
 SEC(name) void name(struct BattleSpriteMotion* object, void* argument)   \
@@ -92,6 +115,21 @@ SEC(name) void name(struct BattleSpriteMotion* object)                   \
 
 DEFINE_PREPARE_STATE(sub_8158A20, 4)
 DEFINE_PREPARE_STATE(sub_8158ABC, 2)
+
+#define DEFINE_ATTACHED_POSITION_SYNC(name)                              \
+SEC(name) void name(struct BattleSpriteMotion* object, void* origin)     \
+{                                                                        \
+    sub_815FAA4(object, origin);                                         \
+    if (object->ownedResource40 != 0) {                                  \
+        ((struct BattleSpritePosition*)object->ownedResource40)->x =     \
+            ((struct BattleSpritePosition*)sub_815FA3C(object))->x;      \
+        ((struct BattleSpritePosition*)object->ownedResource40)->y =     \
+            ((struct BattleSpritePosition*)sub_815FA3C(object))->y;      \
+    }                                                                    \
+}
+
+DEFINE_ATTACHED_POSITION_SYNC(sub_8158B64)
+DEFINE_ATTACHED_POSITION_SYNC(sub_8158C6C)
 
 #define DEFINE_CHILD_WRAPPER_DESTRUCTOR(name, descriptor_value)          \
 SEC(name) void name(struct BattleSpriteMotion* object, void* argument)   \
@@ -148,3 +186,18 @@ void battle_destroy_sprite_motion_child_3c_variant_a(
 void battle_destroy_sprite_motion_child_3c_variant_b(
     struct BattleSpriteMotion*, void*)
     __attribute__((alias("sub_815F58C")));
+void battle_destroy_sprite_motion_resource_34_variant_c(
+    struct BattleSpriteMotion*, void*)
+    __attribute__((alias("sub_8158764")));
+void battle_destroy_sprite_motion_resource_40_variant_c(
+    struct BattleSpriteMotion*, void*)
+    __attribute__((alias("sub_8158BB4")));
+void battle_destroy_sprite_motion_resources_3c_and_40(
+    struct BattleSpriteMotion*, void*)
+    __attribute__((alias("sub_815F3F0")));
+void battle_sync_attached_sprite_position_variant_a(
+    struct BattleSpriteMotion*, void*)
+    __attribute__((alias("sub_8158B64")));
+void battle_sync_attached_sprite_position_variant_b(
+    struct BattleSpriteMotion*, void*)
+    __attribute__((alias("sub_8158C6C")));

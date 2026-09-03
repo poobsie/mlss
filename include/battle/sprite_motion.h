@@ -59,5 +59,15 @@ void* battle_initialize_sprite_motion_with_position_snapshot_variant_b(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
 void battle_prepare_sprite_motion_state_4(struct BattleSpriteMotion* object);
 void battle_prepare_sprite_motion_state_2(struct BattleSpriteMotion* object);
+void battle_destroy_sprite_motion_resource_34_variant_c(
+    struct BattleSpriteMotion*, void*);
+void battle_destroy_sprite_motion_resource_40_variant_c(
+    struct BattleSpriteMotion*, void*);
+void battle_destroy_sprite_motion_resources_3c_and_40(
+    struct BattleSpriteMotion*, void*);
+void battle_sync_attached_sprite_position_variant_a(
+    struct BattleSpriteMotion*, void*);
+void battle_sync_attached_sprite_position_variant_b(
+    struct BattleSpriteMotion*, void*);
 
 #endif
