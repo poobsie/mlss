@@ -123,7 +123,7 @@ SECTIONS
         asm/text0801A548.o(.text.after_8047784);
         src/early_code_helpers_2.o(.text.sub_804790C);
         asm/text0801A548.o(.text.after_804790C);
-        src/field_configuration.o(.text.field_configuration.sub_8047928);
+        src/field/configuration.o(.text.field_configuration.sub_8047928);
         asm/text0801A548.o(.text.after_field_configuration_8047928);
         src/early_code_helpers_2.o(.text.sub_804794C);
         asm/text0801A548.o(.text.after_804794C);
@@ -140,7 +140,7 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_code_helpers_8047D44);
         src/early_code_helpers.o(.text.early_code_helpers.sub_8047D64);
         asm/text0801A548.o(.text.after_early_code_helpers_8047D64);
-        src/field_configuration.o(.text.field_configuration.sub_8047E50);
+        src/field/configuration.o(.text.field_configuration.sub_8047E50);
         asm/text0801A548.o(.text.after_field_configuration_8047E50);
         src/text_early_helpers_04.o(.text.text_early_helpers_04.sub_8048040);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_8048040);
@@ -152,9 +152,9 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_code_helpers_804FB28);
         src/text_early_helpers_04.o(.text.text_early_helpers_04.sub_804FBDC);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_804FBDC);
-        src/field_state_transition.o(.text.field_state_transition.sub_804FCD4);
+        src/field/state_transition.o(.text.field_state_transition.sub_804FCD4);
         asm/text0801A548.o(.text.after_field_state_transition_804FCD4);
-        src/field_state_preservation.o(.text.field_state_preservation);
+        src/field/state_preservation.o(.text.field_state_preservation);
         asm/text0801A548.o(.text.after_field_state_preservation_804FDF4);
         src/field_object_wrappers.o(.text);
         asm/text0801A548.o(.text.after_8050518);

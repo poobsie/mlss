@@ -14,9 +14,13 @@ Activation transitions now select `actorA` or `actorB` directly, activate the em
 
 Command and interaction transitions now expose their readiness checks through `action.visual.flags`, issue the observed kind and command pair against the embedded action, normalize the visual mode bits, and install the next update. Interaction transitions additionally activate the action first and gate on actor flag `0x20`.
 
+`FieldStateObject` consolidates the overlapping state-transition, state-preservation, and configuration views. The first converted transition now names its state, mode, packed flag bytes, and late status flags while keeping the command values `0x1001`, `0x1028`, and `0x1002` numeric until their command table is identified.
+
+The preservation wrappers now snapshot and restore the low three bits of `flags024` and `flags214` around a state-dependent operation. Configuration helpers expose the signed configuration value, its dirty flag, selector, and source kind instead of offsets `0x26C`, `0x20E`, `0x26E`, `0x294`, and `0x21`.
+
 ## Next boundary
 
-Convert activation, command, interaction, and state transition families to the shared actor and runtime types, preserving volatile accesses where code generation requires them.
+Type the field object callback wrapper and classify its callback slots, then organize the remaining field-runtime source files.
 
 ## Verification
 
