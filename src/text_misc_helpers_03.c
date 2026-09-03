@@ -259,50 +259,6 @@ SEC(sub_80F8C60) void sub_80F8C60(void* arg0, void* arg1) {
     }
 }
 
-SEC(sub_810CBDC) void sub_810CBDC(void* arg0) {
-    s32 temp_r0;
-
-    temp_r0 = FIELD_AT(FIELD_AT(arg0, void**, 8), s32*, 4);
-    if (temp_r0 == 0) {
-        FIELD_AT(arg0, s32*, 4) = temp_r0;
-        return;
-    }
-    FIELD_AT((void*)0x0400001A, u16*, 0) = (u16) * (u16*)0x0200001A;
-    FIELD_AT((void*)0x0400001A, u16*, 4) = (u16) * (u16*)0x0200001E;
-}
-
-SEC(sub_810D5F4) void sub_810D5F4(void* arg0) {
-    s32 temp_r0;
-
-    temp_r0 = FIELD_AT(FIELD_AT(arg0, void**, 8), s32*, 4);
-    if (temp_r0 == 0) {
-        FIELD_AT(arg0, s32*, 4) = temp_r0;
-    }
-    FIELD_AT((void*)0x0400001A, u16*, 0) = (u16) * (u16*)0x0200001A;
-    FIELD_AT((void*)0x0400001A, u16*, 4) = (u16) * (u16*)0x0200001E;
-}
-
-SEC(sub_805A95C) void sub_805A95C(void* arg0) {
-    FIELD_AT((void*)0x02000010, s16*, 0) = (s16)(0x1FF & FIELD_AT(arg0, u16*, 0x30));
-    *(s16*)0x02000014 = 0x1FF & FIELD_AT(arg0, u16*, 0x32);
-    FIELD_AT((void*)0x02000010, s16*, 2) = (s16)(0xFF & FIELD_AT(arg0, u16*, 0x34));
-    *(s16*)0x02000016 = 0xFF & FIELD_AT(arg0, u16*, 0x36);
-}
-
-SEC(sub_810CAD0) void sub_810CAD0(void) {
-    void* temp_r1;
-    void* temp_r1_2;
-
-    temp_r1 = FIELD_AT(*(void**)0x03000FD8, void**, 0x27C);
-    if (temp_r1 != NULL) {
-        FIELD_AT(temp_r1, UnknownWord**, 4) = (UnknownWord*)&sub_810C05C;
-    }
-    temp_r1_2 = FIELD_AT(*(void**)0x03000FD8, void**, 0x280);
-    if (temp_r1_2 != NULL) {
-        FIELD_AT(temp_r1_2, UnknownWord**, 4) = (UnknownWord*)&sub_810C05C;
-    }
-}
-
 SEC(sub_8114558) void sub_8114558(void* arg0) {
     UnknownWord* var_r1;
     s32 temp_r0;
@@ -423,17 +379,6 @@ SEC(sub_8064C80) void sub_8064C80(void* arg0) {
     }
 }
 SEC(sub_8064C80) const u16 sub_8064C80_padding = 0;
-SEC(sub_810D170) void sub_810D170(void) {
-    void* temp_r1;
-
-    temp_r1 = FIELD_AT(*(void**)0x03000FD8, void**, 0x278);
-    if (temp_r1 != NULL) {
-        FIELD_AT(temp_r1, s32*, 0x80) = 0;
-        sub_807C298(temp_r1);
-        FIELD_AT(*(void**)0x03000FD8, void**, 0x278) = NULL;
-    }
-}
-
 SEC(sub_80F7770) void sub_80F7770(void* arg0) {
     void* temp_r1;
 

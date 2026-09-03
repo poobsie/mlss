@@ -102,6 +102,8 @@ Bucket 02 adds three typed field-process transitions: one finishes an action whe
 
 The resource-loader boundary now includes two owned allocations. `FieldOwnedResource` releases its allocation at offset zero, while `FieldResourceBlockList` releases its block array at offset `0x0C`; both conditionally release their owner when destructor flag 1 is present. The latter is constructed and destroyed by the adjacent field resource system, which supports the subsystem assignment without guessing the payload format.
 
+The display runtime now exposes its object and process slots at `0x278`, `0x27C`, and `0x280`. One helper releases and clears the object slot; another sends both process slots to the established display-finishing callback. Two process callbacks copy the staging halfwords at `0x0200001A` and `0x0200001E` into their matching display registers, either stopping before the copy or immediately after it when the owner becomes inactive.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.

@@ -8,6 +8,8 @@
     __attribute__((section(".text.misc_helpers_01." STRINGIFY(name))))
 #define MISC2_SEC(name) \
     __attribute__((section(".text.misc_helpers_02." STRINGIFY(name))))
+#define MISC3_SEC(name) \
+    __attribute__((section(".text.misc_helpers_03." STRINGIFY(name))))
 
 void free_heap_8018D9C();
 void sub_8029888(s32 channel, s32 value);
@@ -25,6 +27,16 @@ void graphics_apply_staging_source(struct GraphicsStagingSource* source)
     sub_80587BC(source, 0);
     sub_8058278(source);
     sub_80584F8(source);
+}
+
+MISC3_SEC(graphics_copy_compact_staging_values)
+void graphics_copy_compact_staging_values(
+    struct GraphicsCompactStagingSource* source)
+{
+    *(s16*)0x02000010 = source->maskedValue0 & 0x1FF;
+    *(s16*)0x02000014 = source->maskedValue1 & 0x1FF;
+    *(s16*)0x02000012 = source->component0 & 0xFF;
+    *(s16*)0x02000016 = source->component1 & 0xFF;
 }
 
 SEC(sub_8059F24) void sub_8059F24(struct GraphicsStagingSource* source)
