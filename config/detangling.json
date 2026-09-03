@@ -79,7 +79,7 @@
         "src/*landing*.c"
       ],
       "documentation": "docs/subsystems/object-runtime.md",
-      "next_action": "Classify state-reset, signal, and conditional transition families that share runtime-object callbacks."
+      "next_action": "Classify conditional setup and command-transition families, then audit remaining object-runtime files."
     },
     {
       "id": "unclassified",

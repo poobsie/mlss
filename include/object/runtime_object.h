@@ -56,7 +56,8 @@ struct RuntimeObject {
     s32 behaviorState;
     u8 unknownA0[0x0C];
     s16 timer;
-    u8 unknownAE[4];
+    s16 secondaryTimer;
+    u16 stateValueB0;
     s16 verticalVelocity;
 };
 

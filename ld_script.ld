@@ -592,7 +592,7 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_80796B8);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_8079704);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8079704);
-        src/state_and_signal_transitions.o(.text.state_and_signal_transitions.sub_807972C);
+        src/object/state_and_signal_transitions.o(.text.state_and_signal_transitions.sub_807972C);
         asm/text08057568.o(.text.state_and_signal_transitions_after_sub_807972C);
         src/text_low_helpers.o(.text.sub_80798A8);
         asm/text08057568.o(.text.after_sub_80798A8);
@@ -600,7 +600,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_807991C);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_80799B4);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80799B4);
-        src/state_and_signal_transitions.o(.text.state_and_signal_transitions.sub_8079A90);
+        src/object/state_and_signal_transitions.o(.text.state_and_signal_transitions.sub_8079A90);
         asm/text08057568.o(.text.state_and_signal_transitions_after_sub_8079A90);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_8079BA8);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8079BA8);
@@ -676,9 +676,9 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8089AB0);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_8089AC8);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8089AC8);
-        src/state_and_signal_transitions.o(.text.state_and_signal_transitions.sub_8089B4C);
+        src/object/state_and_signal_transitions.o(.text.state_and_signal_transitions.sub_8089B4C);
         asm/text08057568.o(.text.state_and_signal_transitions_after_sub_8089B4C);
-        src/state_and_signal_transitions.o(.text.state_and_signal_transitions.sub_8089B90);
+        src/object/state_and_signal_transitions.o(.text.state_and_signal_transitions.sub_8089B90);
         asm/text08057568.o(.text.state_and_signal_transitions_after_sub_8089B90);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_808A098);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_808A098);

@@ -44,6 +44,12 @@ Seven command-related callbacks now use the shared visual, timer, linked-object,
 
 The former `verticalBase` field is now `positionZBase`: effect spawning reads it alongside the proven X and Y coordinates, while airborne updates add vertical velocity to the same Z base.
 
+## State and signal transitions
+
+Four state and signal transitions now expose `secondaryTimer` at `0xAE`, `stateValueB0` at `0xB0`, the shared `verticalVelocity` storage at `0xB2`, visual completion, and the next update callback. Two reset transient state after a polling routine returns zero. Two use the secondary timer to repeat sound `0x54`, then advance through command 13 and command 0 when visual completion arrives.
+
+The name `stateValueB0` remains structural. Current C only proves that it is cleared during state reset; assigning a gameplay meaning would outrun the evidence.
+
 ## Next boundary
 
 Trace the entry dispatcher around `0x0808CC08` and group complete setup-to-completion behavior sequences. Keep the two descriptor families separate until the global source records are understood.
