@@ -31,15 +31,15 @@
     },
     {
       "id": "screens",
-      "state": "queued",
+      "state": "active",
       "patterns": [
         "src/title_screen.c",
         "src/option_screens.c",
         "src/option_screens_tail.c",
-        "src/game_boy_player_logo.c"
+        "src/screens/*.c"
       ],
       "documentation": "docs/subsystems/screens.md",
-      "next_action": "Separate shared screen lifecycle, resource loading, and concrete screen state."
+      "next_action": "Continue from the recovered Game Boy Player logo process into shared title and option-screen lifecycle code."
     },
     {
       "id": "script_engine",

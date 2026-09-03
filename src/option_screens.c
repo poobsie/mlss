@@ -186,7 +186,7 @@ struct OPTNProcess* optn_init(struct OPTNProcess* optn, u8 priority, char* label
     optn->sprite->xPosition = 40;
     optn->sprite->yPosition = 55;
 
-    if (gGameState.field_888_1 == 0) {
+    if (gGameState.gameBoyPlayerDetected == 0) {
         CpuFastSet(off_83A2880, (void*)0x2000280, 16);
         CpuFastSet(dword_83A1BA0, (void*)0x2000080, 120);
     } else {
@@ -338,7 +338,7 @@ void optn_update(struct OPTNProcess* optn) {
                     break;
 
                 case 1:
-                    if (gGameState.field_888_1 == 1) {
+                    if (gGameState.gameBoyPlayerDetected == 1) {
                         if (!(optn->options_4 & OPTION_FLAGS_RUMBLE_FEATURE)) {
                             if (gGameState.field_2A & DPAD_LEFT) {
                                 optn->options_4 |= OPTION_FLAGS_RUMBLE_FEATURE;
@@ -541,7 +541,7 @@ void sub_8052B54(struct OPTNProcess* optn, int a2) {
     dword_3001034(0, (void*)optn->field_28, 6144);
 
     for (i = 0; i < 3; i++) {
-        if (gGameState.field_888_1 != 1 && i == 1) {
+        if (gGameState.gameBoyPlayerDetected != 1 && i == 1) {
             sub_8199D78(optn->bbwi, optn->field_28, 32, 4, 0, 0, 1, 2, 7, 0);
         } else {
             sub_8199D78(optn->bbwi, optn->field_28, 32, 4, 0, 0, 1, 2, 5, 0);

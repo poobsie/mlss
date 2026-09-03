@@ -51,7 +51,7 @@ SECTIONS
         src/process/process.o(.text);
         asm/text08019CA4.o(.text);
         src/text08019CA4_tail.o(.text);
-        src/game_boy_player_logo.o(.text);
+        src/screens/game_boy_player_logo.o(.text);
         asm/text0801A548.o(.text);
         src/early_system_helpers.o(.text.early_system_helpers.sub_801AE1C);
         asm/text0801A548.o(.text.after_early_system_helpers_801AE1C);

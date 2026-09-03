@@ -70,7 +70,7 @@ struct COMPProcess* comp_init(struct COMPProcess* comp, u8 priority, char* label
     stru_203FFF8.field_7_2 = dword_3000FFC->field_8_3;
     stru_203FFF8.field_7_3 = dword_3000FFC->field_8_5;
     stru_203FFF8.field_7_4 = dword_3000FFC->field_8_0;
-    stru_203FFF8.field_7_7 = gGameState.field_888_1;
+    stru_203FFF8.field_7_7 = gGameState.gameBoyPlayerDetected;
 
     BUFFER_REG_BG0CNT = BGCNT_CHARBASE(2) | BGCNT_SCREENBASE(28);
     BUFFER_REG_BG0HOFS = 0;
@@ -266,7 +266,7 @@ struct TitleScreen* open_init_8055A00(struct TitleScreen* open, u8 priority, cha
     stru_203FFF8.field_7_2 = dword_3000FFC->field_8_3;
     stru_203FFF8.field_7_3 = dword_3000FFC->field_8_5;
     stru_203FFF8.field_7_4 = dword_3000FFC->field_8_0;
-    stru_203FFF8.field_7_7 = gGameState.field_888_1;
+    stru_203FFF8.field_7_7 = gGameState.gameBoyPlayerDetected;
 
     dword_3000DA0 = alloc_Zero(340, 0, "ORST", 1);
     open->mbsv = mbsv_init(alloc_Zero(0x24, 0, "OPDR", 0), 8, "OPDR", stru_203FFF8.field_0,
@@ -345,7 +345,8 @@ struct TitleScreen* open_init_8055A00(struct TitleScreen* open, u8 priority, cha
     (*(vu16*)(0x2000000 + 0x14)) = 0;
     (*(vu16*)(0x2000000 + 0x16)) = 0;
 
-    CpuFastSet(gGameState.field_888_1 == 0 ? dword_83A7300 : dword_83A7140, (void*)0x2000080, 112);
+    CpuFastSet(gGameState.gameBoyPlayerDetected == 0 ? dword_83A7300 : dword_83A7140,
+               (void*)0x2000080, 112);
 
     (*(vu16*)(0x2000000 + 0x80)) = 0x7FFF;
     gGameState.field_2 = -1;
