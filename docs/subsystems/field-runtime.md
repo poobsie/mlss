@@ -90,6 +90,8 @@ The small field-runtime utilities now have typed homes: a visual-completion bran
 
 Ten event callback helpers now share `FieldEventContext`. Three read a byte from the context's selection table using its current index and a variant-specific displacement, store it as the selected value, and install the same callback-chain endpoints. Five enable event processing and install continuations, with three also clearing the proven reset halfword at `0x1D4`. Two replace a caller-owned callback after one of the two asynchronous gates clears. The variant suffixes remain because their owning event scripts are still assembly-only.
 
+Fifteen upper-region callbacks now expose the callback-chain portion of `FieldSceneObject`. The dispatcher sits at `0x198`, the active and linked chain callbacks at `0x1A0` and `0x1A4`, and an optional auxiliary callback at `0x1AC`. Initializers select a preparation profile, install a dispatcher and starting callback, then invoke the dispatcher immediately. One chain callback conditionally runs the existing field cleanup operation when flag `0x40` at `0x214` is set before forwarding through the next slot. Two variants also prepare the linked scene object at `0x344`. Variant letters remain because the installed assembly callbacks expose mechanics but not stable scene identities.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.
