@@ -14,6 +14,8 @@ Three destructor entry points install vtable `0x08CDD090` in a `GraphicsResource
 
 `CircularMask` owns a 240-line scanline-boundary buffer plus fixed-point screen and center offsets. `circular_mask_enable` and `circular_mask_disable` control the proven flag that selects between generating circular scanline bounds and clearing the buffer. Other flag bits and intermediate fields remain unnamed until their setters and update paths are decompiled.
 
+The mask now also exposes its pixel radius at `0x30` and animated 8.8-scale value at `0x34`. The scale is used by nearby distance tests and transition interpolation; the setters for its target and step remain in assembly.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

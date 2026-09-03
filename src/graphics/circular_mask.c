@@ -1,5 +1,17 @@
 #include "graphics/circular_mask.h"
 
+void circular_mask_set_radius(struct CircularMask* mask, u32 radius)
+    __attribute__((section(".text.sub_8150DE8")));
+void circular_mask_set_radius(struct CircularMask* mask, u32 radius) {
+    mask->radius = radius;
+}
+
+u32 circular_mask_get_scale(struct CircularMask* mask)
+    __attribute__((section(".text.sub_8150DEC")));
+u32 circular_mask_get_scale(struct CircularMask* mask) {
+    return mask->scale;
+}
+
 void circular_mask_disable(struct CircularMask* mask)
     __attribute__((section(".text.state_field_helpers.sub_8150E2C")));
 void circular_mask_disable(struct CircularMask* mask) {

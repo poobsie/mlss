@@ -1633,8 +1633,8 @@ SECTIONS
         asm/text08057568.o(.text.after_text_late_helpers_sub_8150A1C);
         src/text_late_helpers.o(.text.text_late_helpers.sub_8150A38);
         asm/text08057568.o(.text.after_text_late_helpers_sub_8150A38);
-        src/text08057568_easy.o(.text.sub_8150DE8);
-        src/text08057568_easy.o(.text.sub_8150DEC);
+        src/graphics/circular_mask.o(.text.sub_8150DE8);
+        src/graphics/circular_mask.o(.text.sub_8150DEC);
         asm/text08057568.o(.text.after_8150DEC);
         src/graphics/circular_mask.o(.text.state_field_helpers.sub_8150E2C);
         asm/text08057568.o(.text.state_field_helpers_after_sub_8150E2C);

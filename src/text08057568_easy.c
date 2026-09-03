@@ -53,16 +53,6 @@ DEFINE_EASY_INIT(sub_815E9EC, 0x08CDCAD0);
 DEFINE_EASY_CALLBACK(sub_8158198, 0x08CDCA30);
 DEFINE_EASY_CALLBACK(sub_815EA08, 0x08CDCF50);
 
-void sub_8150DE8(void* object, u32 value) FUNCTION_SECTION(".text.sub_8150DE8");
-void sub_8150DE8(void* object, u32 value) {
-    *(u32*)((u8*)object + 0x30) = value;
-}
-
-u32 sub_8150DEC(void* object) FUNCTION_SECTION(".text.sub_8150DEC");
-u32 sub_8150DEC(void* object) {
-    return *(u32*)((u8*)object + 0x34);
-}
-
 void sub_81582C4(void* object) FUNCTION_SECTION(".text.sub_81582C4");
 void sub_81582C4(void* object) {
     *(u32*)((u8*)object + 0x20) = 0;
