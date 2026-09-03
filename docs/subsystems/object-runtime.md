@@ -70,6 +70,8 @@ Three boundary callbacks now share `RuntimeObject` and `RuntimeObjectVisual`. Ea
 
 `BehaviorObject` is a narrower alternate overlay used by 49 callbacks that previously occupied `text_low_helpers.c`. It exposes a visual pointer, active update callback, and signed countdown at `0x9C`. The callbacks form three repeated families: starting an action before installing another update, conditionally forwarding when visual flag `0x08` is set, and counting down before setting visual state `0x10`. The entry points retain address names because their owning dispatch tables are still assembly; the shared control flow and object fields no longer do.
 
+Four late command transitions now use the same `RuntimeObject` visual and update fields. Three wait for visual completion before issuing command `0` or `13`; the fourth tests the still-structural word at `0x80` before issuing command `10`. Their names expose those exact gates and effects without claiming a gameplay owner.
+
 `object_traverse_child_tree_noop` recursively visits both child links of an independently observed tree-node layout. It performs no action at each node. The explicit `noop` suffix is intentional: assigning cleanup or rendering semantics to a side-effect-free traversal would be fiction.
 
 ## Verification

@@ -8,43 +8,11 @@
 
 extern void* sub_815FA3C(void* object);
 extern void sub_8021FD4(void* object);
-extern void sub_8082E1C(void* object, int mode, int arg2, int arg3);
-extern void sub_808750C(void* object);
-extern void sub_8133C7C(void* object);
 
 SEC(sub_8150A38) void sub_8150A38(void* object) {
     sub_8021FD4(object);
 }
 SEC(sub_8150A38) const u16 sub_8150A38_padding = 0;
-
-SEC(sub_8132D4C) void sub_8132D4C(void* object) {
-    if (U8AT(PTRAT(object, 8), 0x12) & 8) {
-        sub_8082E1C(object, 0, 0, 0);
-        PTRAT(object, 0x4C) = sub_808750C;
-    }
-}
-
-SEC(sub_8132D78) void sub_8132D78(void* object) {
-    if (U8AT(PTRAT(object, 8), 0x12) & 8) {
-        sub_8082E1C(object, 0, 0, 0);
-        PTRAT(object, 0x4C) = 0;
-    }
-}
-SEC(sub_8132D78) const u16 sub_8132D78_padding = 0;
-
-SEC(sub_81332BC) void sub_81332BC(void* object) {
-    if (U8AT(PTRAT(object, 8), 0x12) & 8) {
-        sub_8082E1C(object, 13, 0, 0);
-        PTRAT(object, 0x4C) = sub_808750C;
-    }
-}
-
-SEC(sub_8133CF0) void sub_8133CF0(void* object) {
-    if (U32AT(object, 0x80) == 0) {
-        sub_8082E1C(object, 10, 0, 0);
-        PTRAT(object, 0x4C) = sub_8133C7C;
-    }
-}
 
 SEC(sub_81507EC) void sub_81507EC(void* unused, void* object) {
     U32AT(object, 0xC) += *(s16*)((u8*)object + 0x242);

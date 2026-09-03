@@ -6,4 +6,9 @@
 #define object_update_then_trigger_at_boundary_b sub_809C1E8
 #define object_update_then_trigger_at_boundary_c sub_809C570
 
+#define object_on_visual_complete_command_0_and_continue sub_8132D4C
+#define object_on_visual_complete_command_0_and_stop sub_8132D78
+#define object_on_visual_complete_command_13_and_continue sub_81332BC
+#define object_when_value80_clear_command_10 sub_8133CF0
+
 #endif
