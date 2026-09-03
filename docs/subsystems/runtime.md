@@ -18,9 +18,11 @@ The explicit zero padding after the two no-op functions is required. Splitting t
 
 Eight additional side-effect-free callback entries live in `src/runtime/noop_callbacks.c`. They retain their `nullsub_` symbols because their owning callback tables are still in assembly; naming them for a guessed subsystem would provide false certainty.
 
+Five high-address helpers now have narrow runtime overlays. They capture the low byte of `VCOUNT`, select an indexed pointer from the table at `0x03001070`, set the pointer slot at `0x03001074`, and latch bytes `0x16` or `0x1A` while clearing their associated flag fields. These structural names deliberately stop short of assigning audio or graphics ownership without callers that prove it.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.
 `pointer_list_count_value` walks a singly linked list and returns the number of nodes whose payload pointer equals the requested value. The second word in each node remains unknown; traversal proves only the payload at `0x00` and next pointer at `0x08`.
 
 `DefinitionState` is a six-word base overlay used by several differently sized late-runtime allocations. Two initializer families clear the same fields and install distinct definitions while setting value `0x10` to `0x7E00`; paired reset functions replace the definition and clear state. The initializer return types now match callers that retain `r0` as the initialized object pointer.

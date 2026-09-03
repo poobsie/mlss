@@ -26,9 +26,6 @@ SEC(sub_816132C) u32 sub_816132C(void) {
     return 0;
 }
 
-SEC(sub_8199F24) void sub_8199F24(void* p) {
-    *(void**)0x03001074 = p;
-}
 SEC(sub_81DD2E0) void* sub_81DD2E0(void) {
     return *(void**)0x08CDBD64;
 }
@@ -36,26 +33,6 @@ SEC(sub_81DD2E0) void* sub_81DD2E0(void) {
 SEC(sub_8167F30) void sub_8167F30(void* p) {
     U16AT(p, 0x6C) = 0;
     U16AT(p, 0x6E) = 0;
-}
-
-SEC(sub_8199470) u8 sub_8199470(u8* p) {
-    *p = *(vu16*)0x04000006;
-    return *p;
-}
-
-SEC(sub_8199D48) u32 sub_8199D48(void* p, u32 index) {
-    PTRAT(p, 4) = ((void**)*(void**)0x03001070)[index];
-    return 0;
-}
-
-SEC(sub_819A694) void sub_819A694(void* p) {
-    U16AT(p, 0) &= 0xCFFF;
-    U8AT(p, 0x17) = U8AT(p, 0x16);
-}
-
-SEC(sub_819A718) void sub_819A718(void* p) {
-    U16AT(p, 0) &= 0xF9FF;
-    U8AT(p, 0x1B) = U8AT(p, 0x1A);
 }
 
 SEC(sub_81DD69C) void sub_81DD69C(void* p) {
