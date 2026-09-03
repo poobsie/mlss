@@ -79,27 +79,6 @@ struct Sprite {
     u8 field_22;
 };
 
-struct struc_203FFF8 {
-    u32 field_0;
-    u8 field_4;
-    u8 field_5;
-    u8 field_6;
-    u8 field_7_0 : 2;
-    u8 field_7_2 : 1;
-    u8 field_7_3 : 1;
-    u8 field_7_4 : 3;
-    u8 field_7_7 : 1;
-};
-
-struct EeprStruct1 {
-    char name[8];
-    u8 field_8_0 : 3;
-    u8 field_8_3 : 1;
-    u8 field_8_4 : 1;
-    u8 field_8_5 : 1;
-    u8 field_8_6 : 1;
-};
-
 struct struc_11 {
     u16 field_0;
     u16 field_2;
@@ -168,7 +147,6 @@ void sub_8021F7C(void);
 void sub_8021FD4(void);
 void open_8056224();
 int sub_812454C(void);
-struct struc_203FFF8* sub_81251DC();
 struct Process* load_init_812538C(struct Process*, u8, char*, int);
 u16 sub_8199624(struct struc_15*);
 void sub_8199D5C(struct struc_15*, int, u8, int);
@@ -177,13 +155,11 @@ void sub_81DA6C8(int);
 
 // EWRAM
 extern struct struc_203FFB8 stru_203FFB8;
-extern struct struc_203FFF8 stru_203FFF8;
 
 // IWRAM
 extern void (*dword_3000D48)(int, int);
 extern int (*dword_3000D4C)(int, int);
 extern struct ORSTData* dword_3000DA0;
-extern struct EeprStruct1* dword_3000FFC;
 extern struct GameState gGameState;
 extern void (*dword_3000C78)();
 extern void (*dword_3000C84)(int*, void*);

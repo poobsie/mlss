@@ -5,6 +5,7 @@
 #include "process/process.h"
 #include "screens/title_screen.h"
 #include "screens/options.h"
+#include "save/profile.h"
 
 #ifndef NONMATCHING
 asm_unified(".include \"asm/nonmatching/window_animation_prepare.s\"");
@@ -117,7 +118,7 @@ struct OptionsScreen* options_screen_create(
     optionsScreen->fadeTimer = 16;
     optionsScreen->windowAnimationTilemap = alloc_zero_8018DB4(2048, 1, "WINW", 0);
     optionsScreen->pendingSettings =
-        gGameState.field_88A_4 | gGameState.field_88B_0 << 1 | dword_3000FFC->field_8_5 << 2;
+        gGameState.field_88A_4 | gGameState.field_88B_0 << 1 | gSaveState->autoSleepEnabled << 2;
     optionsScreen->inputCooldown = 0;
 
     dword_3001034(0, (void*)&optionsScreen->dialogWindow, 8);
@@ -535,9 +536,9 @@ void options_screen_update(struct OptionsScreen* optionsScreen) {
 int options_screen_save_settings(struct OptionsScreen* optionsScreen) {
     gGameState.field_88A_4 = ((optionsScreen->pendingSettings >> OPTION_SETTINGS_SHIFT_EASY_SLEEP) & 1) != 0;
     gGameState.field_88B_0 = ((optionsScreen->pendingSettings >> OPTION_SETTINGS_SHIFT_RUMBLE) & 1) != 0;
-    dword_3000FFC->field_8_3 = ((optionsScreen->pendingSettings >> OPTION_SETTINGS_SHIFT_EASY_SLEEP) & 1) != 0;
-    dword_3000FFC->field_8_4 = ((optionsScreen->pendingSettings >> OPTION_SETTINGS_SHIFT_RUMBLE) & 1) != 0;
-    dword_3000FFC->field_8_5 = ((optionsScreen->pendingSettings >> OPTION_SETTINGS_SHIFT_AUTO_SLEEP) & 1) != 0;
+    gSaveState->easySleepEnabled = ((optionsScreen->pendingSettings >> OPTION_SETTINGS_SHIFT_EASY_SLEEP) & 1) != 0;
+    gSaveState->rumbleEnabled = ((optionsScreen->pendingSettings >> OPTION_SETTINGS_SHIFT_RUMBLE) & 1) != 0;
+    gSaveState->autoSleepEnabled = ((optionsScreen->pendingSettings >> OPTION_SETTINGS_SHIFT_AUTO_SLEEP) & 1) != 0;
 
     return sub_812454C();
 }

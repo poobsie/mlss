@@ -4,13 +4,14 @@
 #include "common.h"
 #include "link/multiplayer.h"
 #include "runtime/functions.h"
+#include "save/profile.h"
 #include "screens/options.h"
 #include "screens/title_screen.h"
 
 struct CompanyIntro* company_intro_create(struct CompanyIntro* intro, u8 priority, char* label) {
     struct Process* renderProcess;
     void* cgdw;
-    struct struc_203FFF8* v11;
+    struct TitleSaveSummary* saveSummary;
     vu32 zero;
 
     process_add(&intro->process, priority, label);
@@ -66,14 +67,14 @@ struct CompanyIntro* company_intro_create(struct CompanyIntro* intro, u8 priorit
     free_heap_8018DA8(cgdw);
 
     dword_3000C78 = sub_800063C;
-    v11 = sub_81251DC();
-    stru_203FFF8.field_0 = v11->field_0;
-    stru_203FFF8.field_4 = v11->field_4;
-    stru_203FFF8.field_7_0 = 0;
-    stru_203FFF8.field_7_2 = dword_3000FFC->field_8_3;
-    stru_203FFF8.field_7_3 = dword_3000FFC->field_8_5;
-    stru_203FFF8.field_7_4 = dword_3000FFC->field_8_0;
-    stru_203FFF8.field_7_7 = gGameState.gameBoyPlayerDetected;
+    saveSummary = save_get_title_summary();
+    gTitleSaveSummary.value0 = saveSummary->value0;
+    gTitleSaveSummary.value4 = saveSummary->value4;
+    gTitleSaveSummary.titleState = 0;
+    gTitleSaveSummary.easySleepEnabled = gSaveState->easySleepEnabled;
+    gTitleSaveSummary.autoSleepEnabled = gSaveState->autoSleepEnabled;
+    gTitleSaveSummary.value7_4 = gSaveState->value8_0;
+    gTitleSaveSummary.gameBoyPlayerDetected = gGameState.gameBoyPlayerDetected;
 
     BUFFER_REG_BG0CNT = BGCNT_CHARBASE(2) | BGCNT_SCREENBASE(28);
     BUFFER_REG_BG0HOFS = 0;
@@ -241,7 +242,7 @@ asm_unified(".include \"asm/nonmatching/title_screen_create.s\"");
 #else
 struct TitleScreen* title_screen_create(struct TitleScreen* titleScreen, u8 priority, char* label,
                                       int selection) {
-    struct struc_203FFF8* v5;
+    struct TitleSaveSummary* saveSummary;
     void* cgdw;
     u32 i;
     // int sel;
@@ -260,18 +261,18 @@ struct TitleScreen* title_screen_create(struct TitleScreen* titleScreen, u8 prio
     sub_8017E34();
     gGameState.field_31 = 8;
 
-    v5 = sub_81251DC();
-    stru_203FFF8.field_0 = v5->field_0;
-    stru_203FFF8.field_4 = v5->field_4;
-    stru_203FFF8.field_7_0 = 0;
-    stru_203FFF8.field_7_2 = dword_3000FFC->field_8_3;
-    stru_203FFF8.field_7_3 = dword_3000FFC->field_8_5;
-    stru_203FFF8.field_7_4 = dword_3000FFC->field_8_0;
-    stru_203FFF8.field_7_7 = gGameState.gameBoyPlayerDetected;
+    saveSummary = save_get_title_summary();
+    gTitleSaveSummary.value0 = saveSummary->value0;
+    gTitleSaveSummary.value4 = saveSummary->value4;
+    gTitleSaveSummary.titleState = 0;
+    gTitleSaveSummary.easySleepEnabled = gSaveState->easySleepEnabled;
+    gTitleSaveSummary.autoSleepEnabled = gSaveState->autoSleepEnabled;
+    gTitleSaveSummary.value7_4 = gSaveState->value8_0;
+    gTitleSaveSummary.gameBoyPlayerDetected = gGameState.gameBoyPlayerDetected;
 
     dword_3000DA0 = alloc_Zero(340, 0, "ORST", 1);
-    titleScreen->scoreDisplay = title_screen_score_display_create(alloc_Zero(0x24, 0, "OPDR", 0), 8, "OPDR", stru_203FFF8.field_0,
-                           stru_203FFF8.field_4);
+    titleScreen->scoreDisplay = title_screen_score_display_create(alloc_Zero(0x24, 0, "OPDR", 0), 8, "OPDR", gTitleSaveSummary.value0,
+                           gTitleSaveSummary.value4);
     titleScreen->scoreDisplay->process.parentProcess = &titleScreen->process;
 
     titleScreen->selection = selection != 0 ? selection - 1 : 0;
@@ -1058,7 +1059,7 @@ void title_screen_update(struct TitleScreen* titleScreen) {
                     return;
 
                 case 1:
-                    stru_203FFF8.field_7_0 = 1;
+                    gTitleSaveSummary.titleState = 1;
                     BUFFER_REG_BLDCNT = 0;
                     sub_81DA6C8(64);
                     return;

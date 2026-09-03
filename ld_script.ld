@@ -1505,7 +1505,7 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8122BA0);
         src/text_upper_functions/sub_8123340.o(.text.upper.sub_8123340);
         asm/text08057568.o(.text.after_upper_sub_8123340);
-        src/text_upper_singletons.o(.text.text_upper_singletons.sub_81251DC);
+        src/save/profile.o(.text.text_upper_singletons.sub_81251DC);
         asm/text08057568.o(.text.after_text_upper_singletons_sub_81251DC);
         src/text_upper_functions/tld_init_8127A94.o(.text.upper.tld_init_8127A94);
         asm/text08057568.o(.text.after_upper_tld_init_8127A94);
