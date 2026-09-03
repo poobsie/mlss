@@ -1,17 +1,17 @@
 #include "global.h"
+#include "object/runtime_object.h"
 
-#define FIELD(object, type, offset) (*(type *)((u8 *)(object) + (offset)))
 #define SEC(name) __attribute__((section(".text.conditional_setup_transitions." #name)))
 
-extern void sub_8082E1C(void *, s32, s32, s32);
+extern void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
 
 #define DEFINE_CONDITIONAL_SETUP_TRANSITION(name, kind, next)           \
-    extern void next(void);                                              \
-    SEC(name) void name(void *object)                                    \
+    extern void next(struct RuntimeObject*);                             \
+    SEC(name) void name(struct RuntimeObject* object)                    \
     {                                                                    \
-        if (FIELD(FIELD(object, void *, 8), u8, 0x12) & 8) {            \
+        if (object->visual->flags & 8) {                                \
             sub_8082E1C(object, kind, 0, 0);                            \
-            FIELD(object, void *, 0x4C) = next;                         \
+            object->update = next;                                      \
         }                                                                \
     }
 

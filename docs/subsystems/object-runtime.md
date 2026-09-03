@@ -50,6 +50,12 @@ Four state and signal transitions now expose `secondaryTimer` at `0xAE`, `stateV
 
 The name `stateValueB0` remains structural. Current C only proves that it is cleared during state reset; assigning a gameplay meaning would outrun the evidence.
 
+## Conditional command transitions
+
+Seven conditional setup and activation callbacks now use the runtime-object visual, update, and `flags79` fields. Three wait for visual completion before selecting animation kinds 8, 5, or 0. Two issue command `0x40BE` or `0x40C2` after completion and force visual mode 2. Two call an activation poll, require bit `0x20` in `flags79`, issue command `0x40C2`, play sound `0x15D`, and install their next update.
+
+The similarly named actor-command wrappers were deliberately left outside this subsystem. They select actors through a global field context and belong to field runtime, even though their final animation calls look similar.
+
 ## Next boundary
 
 Trace the entry dispatcher around `0x0808CC08` and group complete setup-to-completion behavior sequences. Keep the two descriptor families separate until the global source records are understood.

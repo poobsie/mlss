@@ -79,7 +79,7 @@
         "src/*landing*.c"
       ],
       "documentation": "docs/subsystems/object-runtime.md",
-      "next_action": "Classify conditional setup and command-transition families, then audit remaining object-runtime files."
+      "next_action": "Audit remaining object-runtime patterns and separate generic render-object and descriptor destructor types."
     },
     {
       "id": "unclassified",
