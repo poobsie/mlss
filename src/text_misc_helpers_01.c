@@ -1,11 +1,11 @@
 #include "global.h"
+#include "audio/sound_effects.h"
 
 #define SEC(name)         __attribute__((section(".text.misc_helpers_01." #name)))
 #define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
 typedef u32 UnknownWord;
 
 extern int free_heap_memory_8018C68();
-extern int stop_sfx_80195A8();
 extern int sub_801B0AC();
 extern int sub_8047364();
 extern int sub_80473DC();
@@ -268,7 +268,7 @@ SEC(sub_8068E60) s32 sub_8068E60(void* arg0) {
 }
 
 SEC(sub_8068EF4) void sub_8068EF4(void* arg0) {
-    stop_sfx_80195A8(0x11A);
+    sound_effect_stop(0x11A);
     FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_808750C;
 }
 

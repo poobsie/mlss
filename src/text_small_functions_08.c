@@ -1,4 +1,5 @@
 #include "global.h"
+#include "audio/sound_effects.h"
 #define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
 typedef u32 UnknownWord;
 #define SEC(name) __attribute__((section(".text.small_functions_08." #name)))
@@ -15,10 +16,8 @@ UnknownWord sub_8084578();
 UnknownWord sub_80847B0();
 UnknownWord sub_808520C();
 UnknownWord sub_810D00C();
-UnknownWord play_sfx_80195B4();
 UnknownWord sub_8082E1C();
 UnknownWord sub_80883A0();
-UnknownWord stop_sfx_80195A8();
 s32 sub_8086C64();
 UnknownWord sub_807FB64();
 UnknownWord sub_80880C4();
@@ -65,7 +64,7 @@ SEC(sub_810FD10) void sub_810FD10(void* arg0) {
     if (8 & FIELD_AT(FIELD_AT(temp_r2, void**, 8), u8*, 0x12)) {
         sub_8082E1C(temp_r2, 0, 0, 0);
         sub_80883A0(arg0, 0xC);
-        play_sfx_80195B4(0x10F, -1);
+        sound_effect_play(0x10F, SOUND_VOLUME_UNCHANGED);
         FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_810F824;
     }
 }
@@ -84,7 +83,7 @@ SEC(sub_811090C) s32 sub_811090C(void* arg0) {
             } while (var_r1 != NULL);
         }
         FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_81109D0;
-        stop_sfx_80195A8(0x10F);
+        sound_effect_stop(0x10F);
         var_r0 = 0;
     }
     return var_r0;
@@ -109,7 +108,7 @@ SEC(sub_8110A30) void sub_8110A30(void* arg0) {
         FIELD_AT(arg0, s32*, 0x18) = temp_r0_3;
         FIELD_AT(arg0, s32*, 0x40) = temp_r0_3;
         sub_807FB64(FIELD_AT(arg0, void**, 8));
-        stop_sfx_80195A8(0x119);
+        sound_effect_stop(0x119);
         FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_8110A94;
     }
 }
@@ -133,7 +132,7 @@ SEC(sub_81124D0) void sub_81124D0(void* arg0) {
     sub_80880C4(arg0, 0x380);
     sub_8082E1C(arg0, 0xA, 0, 0);
     FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_81127B8;
-    play_sfx_80195B4(0x11B, -1);
+    sound_effect_play(0x11B, SOUND_VOLUME_UNCHANGED);
 }
 
 SEC(sub_811448C) void sub_811448C(void* arg0) {
@@ -155,5 +154,5 @@ SEC(sub_811458C) void sub_811458C(void* arg0) {
     FIELD_AT(arg0, s16*, 0xAC) = 0x20;
     FIELD_AT(arg0, UnknownWord**, 0x50) = &sub_81135C0;
     FIELD_AT(arg0, s32*, 0x4C) = 0x081141F5;
-    play_sfx_80195B4(0x120, -1);
+    sound_effect_play(0x120, SOUND_VOLUME_UNCHANGED);
 }

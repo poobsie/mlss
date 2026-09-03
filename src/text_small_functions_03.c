@@ -1,4 +1,5 @@
 #include "global.h"
+#include "audio/sound_effects.h"
 #define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
 typedef u32 UnknownWord;
 #define SEC(name) __attribute__((section(".text.small_functions_03." #name)))
@@ -16,8 +17,6 @@ UnknownWord sub_807C298();
 UnknownWord sub_810DD7C();
 UnknownWord sub_8082E1C();
 s32 sub_8086858();
-UnknownWord play_sfx_80195B4();
-UnknownWord stop_sfx_80195A8();
 u32 sub_8199F30();
 
 SEC(sub_8062C48) void sub_8062C48(void* arg0) {
@@ -81,7 +80,7 @@ SEC(sub_80665AC) void sub_80665AC(void* arg0) {
         var_r0 = FIELD_AT(arg0, void**, 0x30);
     }
     if (var_r0 == NULL) {
-        play_sfx_80195B4(0x114, -1);
+        sound_effect_play(0x114, SOUND_VOLUME_UNCHANGED);
         if (FIELD_AT(arg0, s32*, 0x9C) == 0) {
             sub_8082E1C(arg0, 8, 0, 0);
         } else {
@@ -100,7 +99,7 @@ SEC(sub_8066E0C) void sub_8066E0C(void* arg0) {
         }
         FIELD_AT(arg0, s16*, 0xAC) = 4;
         FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_8066E5C;
-        play_sfx_80195B4(0xD5, -1);
+        sound_effect_play(0xD5, SOUND_VOLUME_UNCHANGED);
     }
 }
 
@@ -132,7 +131,7 @@ SEC(sub_806A24C) void sub_806A24C(void* arg0) {
     u32 temp_r4;
 
     if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        stop_sfx_80195A8(0x81);
+        sound_effect_stop(0x81);
         temp_r4 = FIELD_AT(arg0, s32*, 0xA4) - FIELD_AT(arg0, s32*, 0xA0);
         FIELD_AT(arg0, s32*, 0xA8) = (s32)(FIELD_AT(arg0, s32*, 0xA0) + (sub_8199F30() % temp_r4));
         FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_806A348;

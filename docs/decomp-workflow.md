@@ -51,20 +51,15 @@ make progress
 ```
 
 `verify_exact_functions.py` fails if any linked C function differs. The progress
-report uses linked symbols when a built ELF is present, so rejected drafts,
-padding objects, declarations, and unlinked experiments cannot inflate the
-percentage. It falls back to source counting only when no linked ELF is available.
+report classifies linked symbols by the C or assembly object that defines them,
+so rejected drafts, disabled assembly blocks, padding objects, declarations,
+and unlinked experiments cannot inflate the percentage. It does not guess from
+source when build products are absent.
 
 The benchmark reports two baselines: the complete assembly source and a more
 conservative 200-line local window. It measures prompt material only. It does not
 claim to measure hidden reasoning, generated output, or provider-side caching.
 
-## Validated trial
-
-The first trial packet targeted `sub_8158E10`. It contained 246 `o200k_base`
-tokens, produced clean C, and the cold rebuild retained the exact ROM SHA-1
-`7C303CDDE5061EE329296948060B875CB50BA410`. The corresponding assembly source
-contained 8,945,270 tokens, a 99.9972% reduction in supplied source context.
-
-The 5% milestone used the same flow. A representative `sub_815FACC` packet was
-357 tokens versus 2,666 tokens for a 200-line local window, an 86.61% reduction.
+Token counts change as assembly is converted. Run the benchmark command when a
+current measurement is useful instead of preserving historical milestone data
+in this document.

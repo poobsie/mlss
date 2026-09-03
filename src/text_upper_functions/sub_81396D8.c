@@ -1,7 +1,7 @@
 #include "global.h"
 #define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
 typedef u32 UnknownWord;
-#define SEC(name) __attribute__((section(".text.upper_gate." #name)))
+#define SEC(name) __attribute__((section(".text.upper." #name)))
 UnknownWord sub_80473DC(void*); /* extern */
 
 SEC(sub_81396D8) void sub_81396D8(s32 arg0, void* arg1, void* arg2) {

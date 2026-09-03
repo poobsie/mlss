@@ -1,4 +1,5 @@
 #include "global.h"
+#include "audio/sound_effects.h"
 
 #define FIELD_AT(ptr, type, offset) (*(type)((u8*)(ptr) + (offset)))
 #define SECTION(name)               __attribute__((section(".text.early_code_helpers." #name)))
@@ -33,7 +34,6 @@ struct CallbackAt1A0 {
 void sub_80FC1F8(void);
 void sub_802FAE4(void*, void*, s32);
 void sub_8029A0C(void*, void*, s32);
-void play_sfx_80195B4(s32, s32);
 void sub_8020D40(s32);
 void sub_8116654(s32, u8);
 void sub_8116680(s32, u8);
@@ -117,7 +117,7 @@ SECTION(sub_801DC38) const u16 sub_801DC38_padding = 0;
 
 void sub_8029878(void) SECTION(sub_8029878);
 void sub_8029878(void) {
-    play_sfx_80195B4(0x50, -1);
+    sound_effect_play(0x50, SOUND_VOLUME_UNCHANGED);
 }
 
 void sub_8028E4C(u8* object) SECTION(sub_8028E4C);

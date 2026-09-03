@@ -1,4 +1,5 @@
 #include "global.h"
+#include "audio/sound_effects.h"
 #include "common.h"
 #include "process.h"
 #include "title_screen.h"
@@ -309,13 +310,13 @@ void optn_update(struct OPTNProcess* optn) {
                 if (optn->selection < 0) {
                     optn->selection = 2;
                 }
-                play_sfx_80195B4(95, -1);
+                sound_effect_play(95, SOUND_VOLUME_UNCHANGED);
             } else if (gGameState.field_2E & DPAD_DOWN) {
                 optn->selection++;
                 if (optn->selection > 2) {
                     optn->selection = 0;
                 }
-                play_sfx_80195B4(95, -1);
+                sound_effect_play(95, SOUND_VOLUME_UNCHANGED);
             }
             optn->sprite->yPosition = 24 * optn->selection + 55;
             switch (optn->selection) {
@@ -324,13 +325,13 @@ void optn_update(struct OPTNProcess* optn) {
                         if (gGameState.field_2A & DPAD_LEFT) {
                             optn->options_4 |= OPTION_FLAGS_EASY_SLEEP;
                             option_screen_set_ok_button(optn, word_83A2900[0], word_83A2900[1]);
-                            play_sfx_80195B4(95, -1);
+                            sound_effect_play(95, SOUND_VOLUME_UNCHANGED);
                             optn->process.state = OPTS_STATE_EASY_SLEEP_CONFIRMATION;
                         }
                     } else {
                         if (gGameState.field_2A & DPAD_RIGHT) {
                             optn->options_4 &= ~OPTION_FLAGS_EASY_SLEEP;
-                            play_sfx_80195B4(95, -1);
+                            sound_effect_play(95, SOUND_VOLUME_UNCHANGED);
                         }
                     }
                     break;
@@ -341,14 +342,14 @@ void optn_update(struct OPTNProcess* optn) {
                             if (gGameState.field_2A & DPAD_LEFT) {
                                 optn->options_4 |= OPTION_FLAGS_RUMBLE_FEATURE;
                                 option_screen_set_ok_button(optn, word_83A2900[2], word_83A2900[3]);
-                                play_sfx_80195B4(95, -1);
+                                sound_effect_play(95, SOUND_VOLUME_UNCHANGED);
                                 optn->process.state = OPTS_STATE_RUMBLE_FEATURE_CONFIRMATION;
                             }
                         } else {
                             if (gGameState.field_2A & DPAD_RIGHT) {
                                 optn->options_4 &= ~OPTION_FLAGS_RUMBLE_FEATURE;
                                 gGameState.field_88B_0 = 0;
-                                play_sfx_80195B4(95, -1);
+                                sound_effect_play(95, SOUND_VOLUME_UNCHANGED);
                             }
                         }
                     }
@@ -359,13 +360,13 @@ void optn_update(struct OPTNProcess* optn) {
                         if (gGameState.field_2A & DPAD_LEFT) {
                             optn->options_4 |= OPTION_FLAGS_AUTO_FEATURE;
                             option_screen_set_ok_button(optn, word_83A2900[4], word_83A2900[5]);
-                            play_sfx_80195B4(95, -1);
+                            sound_effect_play(95, SOUND_VOLUME_UNCHANGED);
                             optn->process.state = OPTS_STATE_AUTO_SLEEP_CONFIRMATION;
                         }
                     } else {
                         if (gGameState.field_2A & DPAD_RIGHT) {
                             optn->options_4 &= ~OPTION_FLAGS_AUTO_FEATURE;
-                            play_sfx_80195B4(95, -1);
+                            sound_effect_play(95, SOUND_VOLUME_UNCHANGED);
                         }
                     }
                     break;
@@ -381,7 +382,7 @@ void optn_update(struct OPTNProcess* optn) {
                     optn->field_48.field_0_0 = 1;
                     optn->field_48.field_1 = 7;
                     BUFFER_REG_DISPCNT &= ~DISPCNT_BG0_ON;
-                    play_sfx_80195B4(96, -1);
+                    sound_effect_play(96, SOUND_VOLUME_UNCHANGED);
                     optn->process.state = OPTS_STATE_SELECT_OPTION;
                 }
             } else {
@@ -411,7 +412,7 @@ void optn_update(struct OPTNProcess* optn) {
                     gGameState.field_88B_0 = 1;
                     optn->field_1D = 16;
                     sub_801ABE8(0, 16, 0);
-                    play_sfx_80195B4(96, -1);
+                    sound_effect_play(96, SOUND_VOLUME_UNCHANGED);
                     optn->process.state = OPTS_STATE_SELECT_OPTION;
                 }
             } else {
@@ -437,7 +438,7 @@ void optn_update(struct OPTNProcess* optn) {
                     optn->field_48.field_0_0 = 1;
                     optn->field_48.field_1 = 7;
                     BUFFER_REG_DISPCNT &= ~DISPCNT_BG0_ON;
-                    play_sfx_80195B4(96, -1);
+                    sound_effect_play(96, SOUND_VOLUME_UNCHANGED);
                     optn->process.state = OPTS_STATE_SELECT_OPTION;
                 }
             } else {

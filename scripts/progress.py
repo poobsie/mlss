@@ -1,47 +1,14 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import argparse
-import re
 import shutil
 import subprocess
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
-C_FUNCTION = re.compile(
-    r"^(?:[A-Z_][A-Z0-9_]*\([^()\n]*\)[ \t]+)?"
-    r"[A-Za-z_][A-Za-z0-9_ \t]*[ \t*]+(?P<name>[A-Za-z_][A-Za-z0-9_]*)"
-    r"\([^;{}]*\)\s*\{",
-    re.MULTILINE,
-)
-GENERATED_FUNCTION = re.compile(
-    r"^\s*DEFINE_[A-Z0-9_]+\(\s*(?P<name>[A-Za-z_][A-Za-z0-9_]*)\s*[,)]",
-    re.MULTILINE,
-)
-ASM_FUNCTION = re.compile(r"^\s*(?:thumb|arm)_func_start\s+\S+", re.MULTILINE)
-NONMATCHING_BLOCK = re.compile(
-    r"#ifndef\s+NONMATCHING(?P<active>.*?)#else.*?#endif", re.DOTALL
-)
-
-
-def active_c_source(source: str) -> str:
-    """Remove fallback C bodies that are disabled in matching builds."""
-    return NONMATCHING_BLOCK.sub(lambda match: match.group("active"), source)
-
-
-def c_function_count(source: str) -> int:
-    return len(c_function_names(source))
-
-
-def c_function_names(source: str) -> set[str]:
-    source = active_c_source(source)
-    return {match.group("name") for match in C_FUNCTION.finditer(source)} | {
-        match.group("name") for match in GENERATED_FUNCTION.finditer(source)
-    }
-
-
-def tracked(pattern: str) -> list[Path]:
+def worktree_files(pattern: str) -> list[Path]:
+    """Return tracked and untracked, non-ignored files used by the current build."""
     output = subprocess.check_output(
         ["git", "ls-files", "--cached", "--others", "--exclude-standard", "--", pattern],
         cwd=ROOT,
@@ -65,124 +32,86 @@ def built_objects(c_files: list[Path]) -> list[Path]:
     return objects
 
 
-def function_counts_at_ref(ref: str) -> tuple[int, int] | None:
-    try:
-        names = subprocess.check_output(
-            ["git", "ls-tree", "-r", "--name-only", ref], cwd=ROOT, text=True
-        ).splitlines()
-    except subprocess.CalledProcessError:
-        return None
-
-    c_count = 0
-    asm_count = 0
-    for name in names:
-        if not (name.endswith(".s") or (name.startswith("src/") and name.endswith(".c"))):
-            continue
-        contents = subprocess.check_output(
-            ["git", "show", f"{ref}:{name}"], cwd=ROOT, text=True
-        )
-        if name.endswith(".c"):
-            c_count += c_function_count(contents)
-        else:
-            asm_count += len(ASM_FUNCTION.findall(contents))
-    return c_count, asm_count
+def parse_function_symbols(output: str) -> dict[str, int]:
+    """Parse defined FUNC symbols and sizes from arm-none-eabi-readelf output."""
+    found: dict[str, int] = {}
+    for line in output.splitlines():
+        fields = line.split()
+        if len(fields) >= 8 and fields[3] == "FUNC" and fields[6] != "UND":
+            found[fields[7]] = int(fields[2], 10)
+    return found
 
 
-def c_text_size(c_files: list[Path]) -> int | None:
-    size_tool = shutil.which("arm-none-eabi-size")
-    objects = built_objects(c_files)
-    if size_tool is None or not objects:
-        return None
-
-    total = 0
+def object_function_symbols(objects: list[Path], readelf_tool: str) -> set[str]:
+    names: set[str] = set()
     for obj in objects:
-        output = subprocess.check_output([size_tool, "-A", obj], text=True)
-        for line in output.splitlines():
-            fields = line.split()
-            if len(fields) >= 2 and fields[0].startswith(".text"):
-                total += int(fields[1])
-    return total
+        output = subprocess.check_output(
+            [readelf_tool, "-sW", obj], text=True
+        )
+        names.update(parse_function_symbols(output))
+    return names
+
+
+def classify_linked_symbols(
+    linked: dict[str, int], c_object_names: set[str], asm_object_names: set[str]
+) -> tuple[set[str], set[str]]:
+    """Classify final symbols by the object kind that actually defines them."""
+    linked_names = set(linked)
+    linked_c = {
+        name
+        for name in linked_names & c_object_names
+        if not name.endswith("_padding")
+        and not name.startswith(("draft_", "rejected_"))
+    }
+    linked_asm = linked_names & asm_object_names
+    overlap = linked_c & linked_asm
+    if overlap:
+        names = ", ".join(sorted(overlap)[:5])
+        raise RuntimeError(f"symbols classified as both C and assembly: {names}")
+    return linked_c, linked_asm
 
 
 def linked_function_counts(c_files: list[Path], asm_files: list[Path]) -> tuple[int, int, int] | None:
-    """Count only function symbols that survived the final link."""
+    """Count linked functions from their defining build objects."""
     elf = ROOT / "mlss.elf"
-    nm_tool = shutil.which("arm-none-eabi-nm")
-    if nm_tool is None or not elf.exists() or elf.stat().st_size == 0:
+    readelf_tool = shutil.which("arm-none-eabi-readelf")
+    if readelf_tool is None or not elf.exists() or elf.stat().st_size == 0:
         return None
-
-    source_c_names: set[str] = set()
-    for path in c_files:
-        source_c_names |= c_function_names(path.read_text(encoding="utf-8"))
-    object_c_names: set[str] = set()
-    for obj in built_objects(c_files):
-        output = subprocess.check_output([nm_tool, "-S", "--defined-only", obj], text=True)
-        for line in output.splitlines():
-            fields = line.split()
-            if len(fields) < 4 or fields[2] not in {"T", "t"}:
-                continue
-            name = fields[3]
-            if not name.endswith("_padding") and not name.startswith(("draft_", "rejected_")):
-                object_c_names.add(name)
-    c_names = source_c_names & object_c_names
-    asm_names: set[str] = set()
-    for path in asm_files:
-        asm_names |= {
-            match.group(0).split()[-1]
-            for match in ASM_FUNCTION.finditer(path.read_text(encoding="utf-8"))
-        }
-
-    output = subprocess.check_output([nm_tool, "-S", "--defined-only", elf], text=True)
-    linked_text: dict[str, int] = {}
-    for line in output.splitlines():
-        fields = line.split()
-        if len(fields) >= 4 and fields[2] in {"T", "t"}:
-            linked_text[fields[3]] = int(fields[1], 16)
-        elif len(fields) >= 3 and fields[1] in {"T", "t"}:
-            linked_text[fields[2]] = 0
-    linked_names = set(linked_text)
-    linked_c = linked_names & c_names
+    c_objects = built_objects(c_files)
+    asm_objects = built_objects(asm_files)
+    if not c_objects or not asm_objects:
+        return None
+    c_names = object_function_symbols(c_objects, readelf_tool)
+    asm_names = object_function_symbols(asm_objects, readelf_tool)
+    output = subprocess.check_output(
+        [readelf_tool, "-sW", elf], text=True
+    )
+    linked_text = parse_function_symbols(output)
+    linked_c, linked_asm = classify_linked_symbols(linked_text, c_names, asm_names)
     return (
         len(linked_c),
-        len(linked_names & asm_names),
+        len(linked_asm),
         sum(linked_text[name] for name in linked_c),
     )
 
 
-parser = argparse.ArgumentParser(description="Report decompilation progress")
-parser.add_argument("--base", default="upstream/master", help="Git ref used for the delta")
-args = parser.parse_args()
-
-c_files = tracked("src/*.c")
-asm_files = tracked("*.s")
-linked_counts = linked_function_counts(c_files, asm_files)
-if linked_counts is None:
-    c_functions = sum(c_function_count(path.read_text(encoding="utf-8")) for path in c_files)
-    asm_functions = sum(len(ASM_FUNCTION.findall(path.read_text(encoding="utf-8"))) for path in asm_files)
-    count_mode = "source fallback"
-    text_size = c_text_size(c_files)
-else:
+def main() -> None:
+    c_files = worktree_files("src/*.c")
+    asm_files = worktree_files("asm/*.s")
+    linked_counts = linked_function_counts(c_files, asm_files)
+    if linked_counts is None:
+        raise SystemExit("A current linked ELF and build objects are required; run `make progress`.")
     c_functions, asm_functions, text_size = linked_counts
-    count_mode = "linked symbols"
-total_functions = c_functions + asm_functions
-percent = 100.0 * c_functions / total_functions
+    total_functions = c_functions + asm_functions
+    percent = 100.0 * c_functions / total_functions
 
-print("Decompilation progress")
-print(f"  Functions in C:         {c_functions:4d} / {total_functions} ({percent:.4f}%)")
-print(f"  Functions in assembly:  {asm_functions:4d} / {total_functions} ({100.0 - percent:.4f}%)")
-print(f"  Count mode:             {count_mode}")
-
-if text_size is not None:
+    print("Decompilation progress")
+    print(f"  Functions in C:         {c_functions:4d} / {total_functions} ({percent:.4f}%)")
+    print(f"  Functions in assembly:  {asm_functions:4d} / {total_functions} ({100.0 - percent:.4f}%)")
+    print("  Count mode:             linked object symbols")
     print(f"  Matched C .text:        {text_size:8d} bytes")
+    print(f"  C source in worktree:   {len(c_files):4d} files, {line_count(c_files)} lines")
 
-base_counts = function_counts_at_ref(args.base)
-if base_counts is not None and count_mode == "source fallback":
-    base_c, base_asm = base_counts
-    base_total = base_c + base_asm
-    base_percent = 100.0 * base_c / base_total
-    print(
-        f"  Change vs {args.base}:  {c_functions - base_c:+4d} C functions, "
-        f"{percent - base_percent:+.4f} percentage points"
-    )
 
-print(f"  Tracked C source:       {len(c_files):4d} files, {line_count(c_files)} lines")
+if __name__ == "__main__":
+    main()

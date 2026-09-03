@@ -19,7 +19,7 @@ the repository, and no checked-in source should depend on a particular disassemb
 - mGBA provides runtime debugging, breakpoints, watchpoints, and GDB integration.
 
 The Python tools and a frozen reference ELF live in `.decomp-tools`, which is intentionally ignored by
-Git. Run `scripts/setup-tools.sh` from WSL to recreate them at their pinned revisions.
+Git. Run `scripts/setup-tools.sh` from the repository root to recreate them at their pinned revisions.
 
 ## Routine commands
 
@@ -29,11 +29,13 @@ From the project root in a compatible Unix-like environment:
 make
 .decomp-tools/venv/bin/python scripts/progress.py
 .decomp-tools/venv/bin/asm-differ -mwo sub_8056224
-scripts/decompile-function.sh asm/text08057568.s sub_8057568 > scratch.c
+mkdir -p scratch
+scripts/decompile-function.sh asm/text08057568.s sub_8057568 > scratch/sub_8057568.c
 ```
 
-On Windows, `scripts/build-wsl.ps1` performs the same verified build through WSL. The `objdiff.json`
-configuration uses that wrapper automatically. objdiff compares the complete current ELF with the frozen,
+On Windows, `scripts/build-wsl.ps1` performs the same build through WSL and accepts ordinary Make targets,
+for example `scripts/build-wsl.ps1 verify`. The default `objdiff.json` is shell-independent and expects
+objdiff to run in the same Unix-like environment as Make. objdiff compares the complete current ELF with the frozen,
 matching reference ELF, so it is the primary diff view when moving new functions out of the large assembly
 files. `asm-differ` is ready for functions in the C translation units represented in its frozen expected-object
 directory.
@@ -44,8 +46,8 @@ To rebuild, verify the ROM, and print the current decompilation percentage in on
 .\scripts\progress-wsl.ps1
 ```
 
-The portable equivalent is `make progress`. The report also shows the change from
-`upstream/master`, which is the untouched project baseline.
+The portable equivalent is `make progress`. Progress is calculated from symbols in the linked C and assembly
+objects. It deliberately refuses to estimate a percentage when the linked ELF or build objects are missing.
 
 ## Function workflow
 

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "audio/sound_effects.h"
 #include "common.h"
 #include "title_screen.h"
 
@@ -103,7 +104,7 @@ void comp_update(struct COMPProcess* comp) {
                 comp->brightness = 16;
                 comp->verticalOffset = 0;
                 comp->velocity = -1324;
-                play_sfx_80195B4(134, -1);
+                sound_effect_play(134, SOUND_VOLUME_UNCHANGED);
                 comp->process.state = 1;
             }
             break;
@@ -124,7 +125,7 @@ void comp_update(struct COMPProcess* comp) {
 
         case 2:
             if (comp->brightness == 80) {
-                play_sfx_80195B4(221, -1);
+                sound_effect_play(221, SOUND_VOLUME_UNCHANGED);
             }
             comp->brightness--;
             if (comp->brightness == 0) {
@@ -841,7 +842,7 @@ void open_update(struct TitleScreen* ts) {
                 ts->states[TS_ITEM_PRESS_START_TEXT] = 2;
                 ts->xVelocitySuitcase = 0;
                 ts->states[TS_ITEM_SUITCASE] = TS_ITEM_SC_STATE_MOVE_LEFT;
-                play_sfx_80195B4(96, -1);
+                sound_effect_play(96, SOUND_VOLUME_UNCHANGED);
                 ts->process.state = TS_STATE_SUITCASE_OPENS;
             }
             break;
@@ -988,7 +989,7 @@ void open_update(struct TitleScreen* ts) {
                 BUFFER_REG_BLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_LIGHTEN;
                 BUFFER_REG_BLDY = 0;
                 ts->brightness = 16;
-                play_sfx_80195B4(96, -1);
+                sound_effect_play(96, SOUND_VOLUME_UNCHANGED);
                 sub_80193B4(0, 0, 16);
                 ts->process.state = TS_STATE_FADE_OUT;
             } else {
@@ -998,13 +999,13 @@ void open_update(struct TitleScreen* ts) {
                     if (ts->selection < 0) {
                         ts->selection = 2;
                     }
-                    play_sfx_80195B4(95, -1);
+                    sound_effect_play(95, SOUND_VOLUME_UNCHANGED);
                 } else if (gGameState.field_2E & DPAD_DOWN) {
                     ts->selection++;
                     if (ts->selection > 2) {
                         ts->selection = 0;
                     }
-                    play_sfx_80195B4(95, -1);
+                    sound_effect_play(95, SOUND_VOLUME_UNCHANGED);
                 }
 
                 if (ts->selection != selection) {

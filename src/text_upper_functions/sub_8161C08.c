@@ -1,5 +1,5 @@
 #include "global.h"
-#define SEC(name) __attribute__((section(".text.upper_gate." #name)))
+#define SEC(name) __attribute__((section(".text.upper." #name)))
 typedef u32 UnknownWord;
 UnknownWord free_heap_8018DA8(s32*);
 UnknownWord sub_8021308(s32);

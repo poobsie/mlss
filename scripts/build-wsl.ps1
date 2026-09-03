@@ -5,14 +5,13 @@ param(
 
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $fullProjectRoot = [System.IO.Path]::GetFullPath($projectRoot)
-if ($fullProjectRoot -notmatch '^([A-Za-z]):(.*)$') {
-    throw "The project must be on a Windows drive mounted by WSL."
+$linuxRoot = (& wsl.exe wslpath -a -u $fullProjectRoot).Trim()
+if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($linuxRoot)) {
+    throw "WSL could not translate the repository path."
 }
-$driveLetter = $Matches[1].ToLowerInvariant()
-$pathWithinDrive = $Matches[2].Replace('\', '/')
-$linuxRoot = "/mnt/$driveLetter$pathWithinDrive"
 
-wsl.exe bash -lc "cd '$linuxRoot' && DEVKITARM=/usr make -j4"
+$wslArguments = @("--cd", $linuxRoot, "make") + @($RequestedTargets)
+& wsl.exe @wslArguments
 if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE
 }

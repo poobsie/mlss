@@ -3,14 +3,10 @@
 #define SECTION(name) __attribute__((section(name)))
 
 extern int sub_819BABC(void);
-extern void sub_819BA00(void);
-extern void sub_819B9E8(void);
-extern void sub_819B9D0(int value);
 extern void sub_819B9B4(int channel, int value);
 extern void sub_819A43C(void);
 extern void sub_819AFA8(void* address);
 extern void sub_8018E88(int value, int count);
-extern void sub_8019508(u8 value, u8 duration);
 extern int sub_819BA2C(void);
 extern void sub_819B984(int value);
 extern void sub_819B99C(int value);
@@ -24,7 +20,7 @@ struct RuntimeStateOverlay {
     u8 flags88C;
     u8 flags88D;
     u8 pad88E[2];
-    u16 setting890;
+    u16 soundVolume;
     u8 byte892;
     u8 byte893;
     u16 value894;
@@ -41,49 +37,32 @@ extern u32 dword_3000C6C;
 extern u32 dword_3000C78;
 extern u32 dword_80000F4;
 
-SECTION(".text.runtime_helpers_main")
+SECTION(".text.runtime_helpers_before_audio")
 int sub_8019588(void) {
     int value = sub_819BABC();
     return ((u32)(-value | value)) >> 31;
 }
 
-SECTION(".text.runtime_helpers_main")
-void stop_all_sfx_801959C(void) {
-    sub_819BA00();
-}
+// Preserve the original zero-filled alignment before the audio subsystem.
+const u16 runtime_helpers_before_audio_padding SECTION(".text.runtime_helpers_before_audio") = 0;
 
-SECTION(".text.runtime_helpers_main")
-void stop_sfx_80195A8(void) {
-    sub_819B9E8();
-}
-
-SECTION(".text.runtime_helpers_main")
-void play_sfx_80195B4(int value, int selector) {
-    sub_819B9D0(value);
-    if (selector != -1 || gRuntimeState.setting890 == 0) {
-        if (gRuntimeState.setting890 == 0)
-            selector = 0xFF;
-        sub_8019508((u8)selector, 0);
-    }
-}
-
-SECTION(".text.runtime_helpers_main")
+SECTION(".text.runtime_helpers_after_audio")
 int sub_80195F8(int index) {
     return (sub_819BA2C() >> (index + 1)) & 1;
 }
 
-SECTION(".text.runtime_helpers_main")
+SECTION(".text.runtime_helpers_after_audio")
 u16 sub_8019610(int index) {
     return gRuntimeState.values898[index];
 }
 
-SECTION(".text.runtime_helpers_main")
+SECTION(".text.runtime_helpers_after_audio")
 void sub_8019628(int index) {
     sub_819B984(index + 1);
     gRuntimeState.values89C[index] = 0;
 }
 
-SECTION(".text.runtime_helpers_main")
+SECTION(".text.runtime_helpers_after_audio")
 void sub_8019650(int index, int value, u8 arg) {
     sub_819B99C(index + 1);
     if (value == -1) {
@@ -94,7 +73,7 @@ void sub_8019650(int index, int value, u8 arg) {
     sub_80193B4(index, (u8)value, (u8)arg);
 }
 
-SECTION(".text.runtime_helpers_main")
+SECTION(".text.runtime_helpers_after_audio")
 void sub_8019694(void) {
     if (gRuntimeState.flags88C & 1) {
         sub_819B95C();
@@ -102,7 +81,7 @@ void sub_8019694(void) {
     }
 }
 
-SECTION(".text.runtime_helpers_main")
+SECTION(".text.runtime_helpers_after_audio")
 void sub_80196BC(void) {
     if (gRuntimeState.flags88C & 1)
         sub_819A5D2();

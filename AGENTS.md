@@ -20,6 +20,18 @@ Every source change must preserve the reference ROM unless a task explicitly say
 - Keep declarations in headers when they are shared. Temporary local declarations are acceptable while a subsystem is still being reconstructed, but should not spread between files.
 - Keep disabled, rejected, and nonmatching drafts under the ignored `scratch/` directory. Files under `src/` are part of the build and should contain accepted code.
 
+## Subsystem recovery workflow
+
+Work on one subsystem at a time. Do not treat raw C coverage as completion.
+
+1. Identify a narrow boundary from behavior, callers, shared state, and data tables.
+2. Move accepted code into a subsystem folder under `src/`, with a matching public header under `include/` when callers share an API.
+3. Replace address-derived names only when the evidence supports a stable semantic name. Record uncertain meanings instead of guessing.
+4. Recover function signatures, parameter names, constants, structures, and ownership together. A renamed function surrounded by raw offsets and conflicting declarations is not finished.
+5. Update every caller to use the shared interface, then remove duplicate local declarations.
+6. Preserve code and data order in the linker script, including deliberate alignment bytes required for an exact match.
+7. Require an exact ROM comparison before proceeding to the next subsystem. If unrelated work makes a full link unavailable, verify the affected byte range against the most recent exact build and clearly record the limitation.
+
 ## Verification
 
 1. Build the ROM with `make` in a compatible Unix-like environment.

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "audio/sound_effects.h"
 #define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
 typedef u32 UnknownWord;
 #define SEC(name) __attribute__((section(".text.small_functions_01." #name)))
@@ -22,10 +23,8 @@ extern UnknownWord sub_810D5F4;
 extern UnknownWord sub_810D624;
 extern UnknownWord sub_810FF78;
 extern UnknownWord sub_8110078;
-UnknownWord play_sfx_80195B4();
 s32 sub_8082B00();
 UnknownWord sub_8082E1C();
-UnknownWord stop_sfx_80195A8();
 UnknownWord sub_807DC8C();
 u8 sub_8080168();
 UnknownWord sub_8082AAC();
@@ -45,7 +44,7 @@ UnknownWord sub_81147B4();
 SEC(sub_805F604) void sub_805F604(void* arg0) {
     if (sub_8082B00() == 0) {
         sub_8082E1C(arg0, 2, 0, 0);
-        play_sfx_80195B4(0x118, -1);
+        sound_effect_play(0x118, SOUND_VOLUME_UNCHANGED);
         FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_805F638;
     }
 }
@@ -135,7 +134,7 @@ SEC(sub_806A3C0) void sub_806A3C0(void* arg0) {
 
 SEC(sub_806E794) void sub_806E794(void* arg0) {
     if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        stop_sfx_80195A8(0x6C);
+        sound_effect_stop(0x6C);
         sub_8082E1C(arg0, 5, 0, 0);
         sub_8082E1C(FIELD_AT(arg0, void**, 0x30), 5, 0, 0);
         FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_806E98C;
@@ -144,7 +143,7 @@ SEC(sub_806E794) void sub_806E794(void* arg0) {
 
 SEC(sub_8070F98) void sub_8070F98(void* arg0) {
     if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        stop_sfx_80195A8(0x11C);
+        sound_effect_stop(0x11C);
         sub_8082E1C(arg0, 0x16, 0, 0);
         FIELD_AT(arg0, s16*, 0xAC) = 4;
         FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_806F90C;
@@ -153,7 +152,7 @@ SEC(sub_8070F98) void sub_8070F98(void* arg0) {
 
 SEC(sub_807116C) void sub_807116C(void* arg0) {
     if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        stop_sfx_80195A8(0x11C);
+        sound_effect_stop(0x11C);
         FIELD_AT(arg0, s32*, 0x8C) = 0x14;
         sub_8082E1C(arg0, 0x25, 0, 0);
         FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_806FCF0;
@@ -201,7 +200,7 @@ SEC(sub_80886BC) void sub_80886BC(void* arg0) {
 
 SEC(sub_808C6EC) void sub_808C6EC(void* arg0) {
     if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        stop_sfx_80195A8(0x81);
+        sound_effect_stop(0x81);
         sub_807F4FC(arg0);
         FIELD_AT(arg0, s16*, 0xAC) = 0x18;
         sub_80873B8(arg0, 3, 0);
@@ -221,7 +220,7 @@ SEC(sub_80DA0E0) void sub_80DA0E0(void* arg0) {
 
 SEC(sub_80DBDE8) void sub_80DBDE8(void* arg0) {
     sub_8082E1C(arg0, 2, 0, 0);
-    play_sfx_80195B4(0x11A, -1);
+    sound_effect_play(0x11A, SOUND_VOLUME_UNCHANGED);
     FIELD_AT(arg0, s16*, 0xAC) = 0x30;
     FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_80DB860;
 }
@@ -300,7 +299,7 @@ SEC(sub_810FF18) void sub_810FF18(void* arg0) {
 
 SEC(sub_811488C) void sub_811488C(void* arg0) {
     if ((sub_8087CE4(FIELD_AT(FIELD_AT(arg0, void**, 0x30), s32*, 0x30)) << 0x18) == 0) {
-        stop_sfx_80195A8(0xD5);
+        sound_effect_stop(0xD5);
         FIELD_AT(arg0, UnknownWord(**)(void*), 0x4C) = sub_81147B4;
         sub_81147B4(arg0);
     }

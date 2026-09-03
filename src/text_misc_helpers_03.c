@@ -1,4 +1,5 @@
 #include "global.h"
+#include "audio/sound_effects.h"
 
 #define SEC(name)         __attribute__((section(".text.misc_helpers_03." #name)))
 #define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
@@ -7,9 +8,7 @@ extern int sub_806EADC();
 extern int sub_8095548();
 extern int sub_80DC638();
 
-extern int play_sfx_80195B4();
 extern int script_cmd_return();
-extern int stop_sfx_80195A8();
 extern int sub_8018818();
 extern int sub_8027030();
 extern int sub_8047A5C();
@@ -861,7 +860,7 @@ SEC(sub_80D8D18) void sub_80D8D18(void* arg0) {
 
 SEC(sub_806025C) void sub_806025C(void* arg0) {
     if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        stop_sfx_80195A8(0x5C);
+        sound_effect_stop(0x5C);
         sub_8082E1C(arg0, 4, 0, 0);
         FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8060404;
     }
@@ -869,7 +868,7 @@ SEC(sub_806025C) void sub_806025C(void* arg0) {
 
 SEC(sub_8060288) void sub_8060288(void* arg0) {
     if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        stop_sfx_80195A8(0x5C);
+        sound_effect_stop(0x5C);
         sub_8082E1C(arg0, 4, 0, 0);
         FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8060438;
     }
@@ -898,7 +897,7 @@ SEC(sub_8065B48) void sub_8065B48(void* arg0) {
     if (FIELD_AT(arg0, s32*, 0x80) == 0) {
         sub_8082E1C(arg0, 4, 0, 0);
         FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8065510;
-        stop_sfx_80195A8(0x81);
+        sound_effect_stop(0x81);
     }
 }
 

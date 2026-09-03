@@ -1,32 +1,36 @@
-# Prerequisites
+# Prerequisites and installation
 
-This project is only tested in WSL2.
+The canonical build uses a Unix-like shell, GNU Make, Python 3, Git, matching
+`agbcc`, and ARM GNU binutils. Linux can run it directly. Windows users can use
+WSL; the PowerShell wrappers under `scripts/` are optional conveniences.
 
-Install the **devkitARM** toolchain of [devkitPro](https://devkitpro.org/wiki/Getting_Started) and add its environment variables.
+Install `arm-none-eabi-as`, `arm-none-eabi-ld`, `arm-none-eabi-objcopy`,
+`arm-none-eabi-objdump`, `arm-none-eabi-nm`, `arm-none-eabi-readelf`, Git,
+Make, Python 3, and Python virtual-environment support through the host package
+manager. If the ARM tools use a custom prefix, set `DEVKITARM` to the directory
+containing their `bin/` directory before running setup or Make.
 
-	export DEVKITPRO=/opt/devkitpro
-	echo "export DEVKITPRO=$DEVKITPRO" >> ~/.bashrc
-	export DEVKITARM=$DEVKITPRO/devkitARM
-	echo "export DEVKITARM=$DEVKITARM" >> ~/.bashrc
+The game ROM is copyrighted and is not distributed with this repository.
+Supply a clean US ROM when installing the local analysis tools. The setup
+script installs the pinned matching compiler and analysis tools, then validates
+the ROM's SHA-1 before copying it under the ignored
+`.decomp-tools/reference/` directory:
 
-# Installation
+```sh
+scripts/setup-tools.sh /path/to/clean-us-rom.gba
+```
 
-To set up the repository:
+The path may instead be supplied through `MLSS_REFERENCE_ROM`:
 
-	git clone https://github.com/jellees/mlss
-	git clone https://github.com/jiangzhengwenjz/agbcc
+```sh
+MLSS_REFERENCE_ROM=/path/to/clean-us-rom.gba scripts/setup-tools.sh
+```
 
-	cd ./agbcc
-    git checkout new_newlib_pret
-	./build.sh
-	./install.sh ../mlss
+From the repository root, verify the installation:
 
-	cd ../mlss
+```sh
+make verify
+```
 
-To build run
-
-    make
-
-# Notes
-
-For this project I opted to use `jiangzhengwenjz/agbcc` for the debug_line fix. This project should also compile matching with `pret/agbcc`.
+The build must finish with `mlss.gba: OK`, followed by zero mismatched linked
+C functions.

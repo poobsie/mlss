@@ -927,22 +927,22 @@ sub_8019588:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start stop_all_sfx_801959C
-stop_all_sfx_801959C: @ 0801959C
+	thumb_func_start sound_effects_stop_all
+sound_effects_stop_all: @ 0801959C
 	push {lr}
 	bl sub_819BA00
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start stop_sfx_80195A8
-stop_sfx_80195A8: @ 080195A8
+	thumb_func_start sound_effect_stop
+sound_effect_stop: @ 080195A8
 	push {lr}
 	bl sub_819B9E8
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start play_sfx_80195B4
-play_sfx_80195B4: @ 080195B4
+	thumb_func_start sound_effect_play
+sound_effect_play: @ 080195B4
 	push {r4, lr}
 	adds r4, r1, #0x0
 	bl sub_819B9D0

@@ -999,7 +999,7 @@ sub_801B084:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x50
-	bl play_sfx_80195B4
+	bl sound_effect_play
 _0801B09E:
 	pop {r0}
 	bx r0
@@ -14466,7 +14466,7 @@ _080247AA:
 _08024818:
 	adds r0, r1, #0x0
 	adds r1, r6, #0x0
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	mov r0, r10
 	movs r1, #0x00
 	bl sub_802E854
@@ -14491,7 +14491,7 @@ _08024830:
 _0802484C:
 	adds r0, r1, #0x0
 	adds r1, r6, #0x0
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	b _08024874
 _08024856:
 	movs r4, #0xDA
@@ -14577,7 +14577,7 @@ _080248B2:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x54
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	movs r1, #0x95
 	lsls r1, r1, #0x01
 	add r1, r10
@@ -17823,7 +17823,7 @@ _080263A6:
 	ldrb r0, [r0, #0x00]
 	movs r1, #0x01
 	negs r1, r1
-	bl play_sfx_80195B4
+	bl sound_effect_play
 _08026406:
 	add sp, #0x004
 	pop {r3, r4, r5}
@@ -19870,7 +19870,7 @@ sub_80277C4:
 	add r0, sp, #0x028
 	ldrb r0, [r0, #0x00]
 	str r0, [sp, #0x000]
-	bl stop_all_sfx_801959C
+	bl sound_effects_stop_all
 	movs r1, #0xC7
 	lsls r1, r1, #0x02
 	adds r0, r6, r1
@@ -20106,7 +20106,7 @@ _08027984:
 	ldrh r0, [r0, #0x00]
 	movs r1, #0x01
 	negs r1, r1
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	movs r0, #0x01
 	ldr r2, [sp, #0x000]
 	ands r2, r0
@@ -23043,19 +23043,6 @@ _0802909C:
 _080290C0: .4byte 0x03000C24
 _080290C4: .4byte 0x03000C78
 _080290C8: .4byte 0x0800063C
-	.section .text.restore_80290CC, "ax", %progbits
-	thumb_func_start sub_80290CC
-sub_80290CC:
-	movs r2, #0x96
-	lsls r2, r2, #0x01
-	adds r0, r0, r2
-	lsls r1, r1, #0x02
-	ldrb r3, [r0, #0x00]
-	movs r2, #0x03
-	ands r2, r3
-	orrs r2, r1
-	strb r2, [r0, #0x00]
-	bx lr
 	.section .text.after_80290CC, "ax", %progbits
 	.align 2, 0
 	thumb_func_start sub_80290E0
@@ -23926,7 +23913,7 @@ sub_8029878:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x50
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r0}
 	bx r0
 .endif
@@ -29158,7 +29145,7 @@ _0802D722:
 	movs r1, #0x01
 	negs r1, r1
 	adds r0, r2, #0x0
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	b _0802D8D4
 _0802D72E:
 	movs r3, #0x80
@@ -30021,7 +30008,7 @@ _0802DEC8:
 	beq _0802DF6E
 	movs r1, #0x01
 	negs r1, r1
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	b _0802DF6E
 	.byte 0x00, 0x00
 _0802DF4C: .4byte 0x03000FC0
@@ -34708,7 +34695,7 @@ _0803066A:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x2B
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	add sp, #0x00C
 	pop {r3, r4}
 	mov r8, r3
@@ -35225,7 +35212,7 @@ _08031356:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x2B
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	add sp, #0x00C
 	pop {r3, r4}
 	mov r8, r3
@@ -35383,7 +35370,7 @@ sub_80313C0:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x3C
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6, r7}
@@ -35528,7 +35515,7 @@ sub_8031518:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x56
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3, r4, r5}
 	mov r8, r3
 	mov r9, r4
@@ -35610,7 +35597,7 @@ sub_8031650:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x56
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -36024,7 +36011,7 @@ _08031986:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x57
-	bl play_sfx_80195B4
+	bl sound_effect_play
 _08031A0C:
 	movs r6, #0x81
 	lsls r6, r6, #0x02
@@ -36913,7 +36900,7 @@ _080326BE:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x2B
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	add sp, #0x00C
 	pop {r3, r4}
 	mov r8, r3
@@ -37132,11 +37119,11 @@ _080327BC:
 	orrs r2, r0
 	strb r2, [r4, #0x1F]
 	movs r0, #0x5D
-	bl stop_sfx_80195A8
+	bl sound_effect_stop
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x8E
-	bl play_sfx_80195B4
+	bl sound_effect_play
 _08032892:
 	add sp, #0x010
 	pop {r3, r4, r5}
@@ -38059,7 +38046,7 @@ sub_80339B8:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x3C
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	mov r0, r8
 	ldrb r1, [r0, #0x00]
 	movs r0, #0x04
@@ -38221,7 +38208,7 @@ _08033C32:
 	negs r5, r5
 	movs r0, #0x38
 	adds r1, r5, #0x0
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	ldrb r1, [r4, #0x00]
 	movs r0, #0x02
 	ands r0, r1
@@ -38546,7 +38533,7 @@ _08033F26:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x2B
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	add sp, #0x00C
 	pop {r3, r4}
 	mov r8, r3
@@ -38719,7 +38706,7 @@ _080346AE:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x38
-	bl play_sfx_80195B4
+	bl sound_effect_play
 _080346DC:
 	add sp, #0x00C
 	pop {r3, r4}
@@ -38889,7 +38876,7 @@ _080347A0:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x38
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6, r7}
@@ -39002,7 +38989,7 @@ _080348E4:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x46
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6, r7}
@@ -39126,7 +39113,7 @@ sub_803495C:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x3C
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6, r7}
@@ -39331,7 +39318,7 @@ _08034BC0:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x2B
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	add sp, #0x00C
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -39528,7 +39515,7 @@ _0803503E:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x2B
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	add sp, #0x00C
 	pop {r4, r5, r6, r7}
 	pop {r0}
@@ -40033,7 +40020,7 @@ _08035AF8:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x3C
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3, r4}
 	mov r8, r3
 	mov r9, r4
@@ -40309,7 +40296,7 @@ _08035D7A:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x2B
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	add sp, #0x00C
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -40936,7 +40923,7 @@ sub_8036E14:
 	ldr r0, _08036F80 @ =0x00000157
 	movs r1, #0x01
 	negs r1, r1
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3, r4, r5}
 	mov r8, r3
 	mov r9, r4
@@ -41117,7 +41104,7 @@ _08037094:
 	movs r0, #0x53
 	movs r1, #0x01
 	negs r1, r1
-	bl play_sfx_80195B4
+	bl sound_effect_play
 _08037128:
 	adds r0, r7, #0x0
 	bl sub_802E2F4
@@ -41744,7 +41731,7 @@ sub_8038140:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x87
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3, r4, r5}
 	mov r8, r3
 	mov r9, r4
@@ -42136,7 +42123,7 @@ _0803854E:
 	movs r0, #0x53
 	movs r1, #0x01
 	negs r1, r1
-	bl play_sfx_80195B4
+	bl sound_effect_play
 _080385C2:
 	movs r4, #0x81
 	lsls r4, r4, #0x02
@@ -42177,7 +42164,7 @@ _080385C2:
 	movs r0, #0x53
 	movs r1, #0x01
 	negs r1, r1
-	bl play_sfx_80195B4
+	bl sound_effect_play
 _08038618:
 	movs r3, #0x00
 	str r3, [sp, #0x00C]
@@ -42560,9 +42547,9 @@ _08038E3A:
 	bl sub_8020D40
 	movs r0, #0xAB
 	lsls r0, r0, #0x01
-	bl stop_sfx_80195A8
+	bl sound_effect_stop
 	movs r0, #0xDA
-	bl stop_sfx_80195A8
+	bl sound_effect_stop
 	ldr r0, [sp, #0x00C]
 	cmp r0, #0x01
 	bne _08038F7C
@@ -42966,7 +42953,7 @@ _080391CA:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x3C
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3, r4}
 	mov r8, r3
 	mov r9, r4
@@ -43217,7 +43204,7 @@ _080399D6:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0xD6
-	bl play_sfx_80195B4
+	bl sound_effect_play
 _080399F0:
 	add sp, #0x00C
 	pop {r3}
@@ -43371,7 +43358,7 @@ sub_8039A00:
 	subs r0, #0xE2
 	movs r1, #0x01
 	negs r1, r1
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3, r4}
 	mov r8, r3
 	mov r9, r4
@@ -43522,7 +43509,7 @@ sub_8039B5C:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x87
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3, r4}
 	mov r8, r3
 	mov r9, r4
@@ -43992,7 +43979,7 @@ _0803A558:
 	movs r1, #0x01
 	negs r1, r1
 	adds r0, r2, #0x0
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
@@ -44299,7 +44286,7 @@ sub_803AAE4:
 	strb r0, [r3, #0x00]
 	movs r0, #0x59
 	mov r1, r8
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3, r4, r5}
 	mov r8, r3
 	mov r9, r4
@@ -45635,7 +45622,7 @@ sub_803C7D8:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x53
-	bl play_sfx_80195B4
+	bl sound_effect_play
 _0803C82C:
 	pop {r4, r5, r6}
 	pop {r0}
@@ -46688,7 +46675,7 @@ sub_803DBE4:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x38
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -46804,7 +46791,7 @@ _0803DD44:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x4A
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -46897,7 +46884,7 @@ _0803DDC2:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x46
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
@@ -46992,7 +46979,7 @@ sub_803DE2C:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x46
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6, r7}
@@ -47064,7 +47051,7 @@ sub_803DF00:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x56
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -47163,7 +47150,7 @@ _0803E022:
 	bl _call_via_r2
 	movs r0, #0x49
 	adds r1, r5, #0x0
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
@@ -60684,8 +60671,9 @@ asm_sub_804790C:
 _08047924: .4byte 0x00000239
 	.section .text.after_804790C, "ax", %progbits
 	.align 2, 0
-	thumb_func_start sub_8047928
-sub_8047928:
+	.section .discard.field_configuration_sub_8047928, "ax", %progbits
+	thumb_func_start asm_sub_8047928
+asm_sub_8047928:
 	push {lr}
 	add sp, #-0x004
 	movs r1, #0xA5
@@ -60703,6 +60691,7 @@ sub_8047928:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.after_field_configuration_8047928, "ax", %progbits
 	.section .discard.early_helpers_2_804794C, "ax", %progbits
 	thumb_func_start asm_sub_804794C
 asm_sub_804794C:
@@ -60955,21 +60944,7 @@ _08047B3A:
 	.byte 0x00, 0x00
 _08047B54: .4byte 0x0000023E
 _08047B58: .4byte 0x000002B5
-	thumb_func_start sub_8047B5C
-sub_8047B5C:
-	push {r4, lr}
-	ldr r2, _08047B74 @ =0x00000266
-	adds r3, r0, r2
-	ldrh r2, [r3, #0x00]
-	movs r4, #0x9A
-	lsls r4, r4, #0x02
-	adds r0, r0, r4
-	strh r2, [r0, #0x00]
-	strh r1, [r3, #0x00]
-	pop {r4}
-	pop {r0}
-	bx r0
-_08047B74: .4byte 0x00000266
+	.section .text.after_early_bitfield_8047B5C, "ax", %progbits
 	thumb_func_start sub_8047B78
 sub_8047B78:
 	push {lr}
@@ -61350,8 +61325,9 @@ _08047E3A:
 _08047E44: .4byte 0x0000FFFF
 _08047E48: .4byte 0x0000026E
 _08047E4C: .4byte 0x00000216
-	thumb_func_start sub_8047E50
-sub_8047E50:
+	.section .discard.field_configuration_sub_8047E50, "ax", %progbits
+	thumb_func_start asm_sub_8047E50
+asm_sub_8047E50:
 	push {lr}
 	movs r3, #0x9B
 	lsls r3, r3, #0x02
@@ -61371,6 +61347,7 @@ sub_8047E50:
 	bx r0
 _08047E74: .4byte 0x0000020E
 _08047E78: .4byte 0x0000026E
+	.section .text.after_field_configuration_8047E50, "ax", %progbits
 	.byte 0x00, 0xB5, 0x02, 0x1C, 0x11, 0x69, 0x90, 0x6B, 0x81, 0x42, 0x06, 0xD1, 0xD1, 0x68, 0x50, 0x6B
 	.byte 0x81, 0x42, 0x02, 0xD1, 0x01, 0x20, 0x40, 0x42, 0x0D, 0xE0, 0x90, 0x6B, 0x11, 0x69, 0x40, 0x1A
 	.byte 0x00, 0x04, 0x00, 0x14, 0xD1, 0x68, 0x52, 0x6B, 0x89, 0x1A, 0x09, 0x04, 0x09, 0x14, 0x92, 0xF1
@@ -63155,7 +63132,7 @@ _0804929C:
 	strh r0, [r5, #0x04]
 	movs r0, #0xD7
 	adds r1, r4, #0x0
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -63290,7 +63267,7 @@ _080493B6:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x3C
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	b _080493F2
 	.byte 0x00, 0x00
 _080493E4: .4byte 0x0000103F
@@ -63298,7 +63275,7 @@ _080493E8:
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x3C
-	bl play_sfx_80195B4
+	bl sound_effect_play
 _080493F2:
 	movs r0, #0x05
 	strh r0, [r4, #0x04]
@@ -63389,7 +63366,7 @@ _080494A0:
 	movs r1, #0x01
 	negs r1, r1
 	adds r0, r2, #0x0
-	bl play_sfx_80195B4
+	bl sound_effect_play
 	movs r1, #0x00
 	movs r0, #0x0A
 	strh r0, [r4, #0x04]
@@ -63460,7 +63437,7 @@ _08049522:
 	adds r1, #0xD0
 _08049536:
 	adds r0, r1, #0x0
-	bl stop_sfx_80195A8
+	bl sound_effect_stop
 	ldrb r0, [r5, #0x00]
 	movs r1, #0xAB
 	lsls r1, r1, #0x01
@@ -63469,7 +63446,7 @@ _08049536:
 	adds r1, #0x02
 _08049548:
 	adds r0, r1, #0x0
-	bl stop_sfx_80195A8
+	bl sound_effect_stop
 	movs r0, #0x00
 	strh r0, [r4, #0x04]
 	pop {r4, r5}
@@ -75339,8 +75316,9 @@ _0804FCCA:
 	pop {r0}
 	bx r0
 _0804FCD0: .4byte 0x00000352
-	thumb_func_start sub_804FCD4
-sub_804FCD4:
+	.section .discard.field_state_transition_sub_804FCD4, "ax", %progbits
+	thumb_func_start asm_sub_804FCD4
+asm_sub_804FCD4:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	movs r0, #0x85
@@ -75390,6 +75368,7 @@ _0804FD16:
 	bx r0
 _0804FD34: .4byte 0x00001002
 _0804FD38: .4byte 0x00000212
+	.section .text.after_field_state_transition_804FCD4, "ax", %progbits
 	thumb_func_start sub_804FD3C
 sub_804FD3C:
 	push {r4, r5, lr}
@@ -75424,8 +75403,9 @@ _0804FD62:
 	bx r0
 _0804FD78: .4byte 0x00001053
 _0804FD7C: .4byte 0x0000035A
-	thumb_func_start sub_804FD80
-sub_804FD80:
+	.section .discard.field_state_preservation_sub_804FD80, "ax", %progbits
+	thumb_func_start asm_sub_804FD80
+asm_sub_804FD80:
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0x0
 	lsls r1, r1, #0x18
@@ -75483,8 +75463,9 @@ _0804FDC4:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_804FDF4
-sub_804FDF4:
+	.section .discard.field_state_preservation_sub_804FDF4, "ax", %progbits
+	thumb_func_start asm_sub_804FDF4
+asm_sub_804FDF4:
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0x0
 	lsls r1, r1, #0x18
@@ -75542,6 +75523,7 @@ _0804FE38:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.after_field_state_preservation_804FDF4, "ax", %progbits
 	thumb_func_start sub_804FE68
 sub_804FE68:
 	push {r4, lr}

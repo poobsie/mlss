@@ -1,6 +1,6 @@
 #include "global.h"
 #define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
-#define SEC(name)         __attribute__((section(".text.upper_gate." #name)))
+#define SEC(name)         __attribute__((section(".text.upper." #name)))
 SEC(sub_8163CD4) void sub_8163CD4(void* arg0, void* arg1) {
     void* temp_r0;
     void* var_r0 = FIELD_AT(arg0, void**, 0);
