@@ -2415,7 +2415,7 @@ SECTIONS
         asm/mariobros.o(.text.mariobros_late_after_sub_8F6E20C);
         src/mariobros_late_helpers.o(.text.mariobros_late.sub_8F6F210);
         asm/mariobros.o(.text.mariobros_late_after_sub_8F6F210);
-        src/mariobros_f26c.o(.text);
+        src/mario_bros/command_readers_primary.o(.text);
         asm/mariobros.o(.text.mariobros_after_f314);
         src/mariobros_late_helpers.o(.text.mariobros_late.sub_8F85D1C);
         asm/mariobros.o(.text.mariobros_late_after_sub_8F85D1C);
@@ -2437,7 +2437,7 @@ SECTIONS
         asm/mariobros.o(.text.mariobros_late_after_sub_8F94D78);
         src/mariobros_late_helpers.o(.text.mariobros_late.sub_8F94D8C);
         asm/mariobros.o(.text.mariobros_late_after_sub_8F94D8C);
-        src/mariobros_f95dec.o(.text);
+        src/mario_bros/command_readers_secondary.o(.text);
         asm/mariobros.o(.text.mariobros_after_f95e94);
     }
     

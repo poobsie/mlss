@@ -55,9 +55,9 @@
     {
       "id": "mario_bros",
       "state": "active",
-      "patterns": ["src/mariobros_*.c"],
+      "patterns": ["src/mariobros_*.c", "src/mario_bros/*.c"],
       "documentation": "docs/subsystems/mario-bros.md",
-      "next_action": "Partition command decoding, state transitions, and global dispatch."
+      "next_action": "Unify overlapping object layouts used by table selection, animation frames, and movement."
     },
     {
       "id": "field_runtime",
