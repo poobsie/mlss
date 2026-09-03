@@ -30,3 +30,5 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,
 `runtime_release_global_resource_callback` adapts the no-argument global resource-release operation to callback sites that supply an unused object pointer. The underlying resource owner is still identified only through globals, so the name does not claim a narrower subsystem.
 
 `DefinitionSlot` is the one-word payload embedded in late-runtime list nodes. Its initializer installs definition `0x08CDD0B8`; the paired assembly destructor now has the semantic alias `definition_slot_destroy`.
+
+`RuntimeCallbackPacket` records two signed arguments and a callback at offset `0x14`. Its recovered trampoline invokes that callback with the stored argument pair, replacing the former raw byte offsets and cast-through-`void` expression.

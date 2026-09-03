@@ -77,7 +77,7 @@ SECTIONS
         asm/text0801A548.o(.text.early15a_after_sub_801BC98);
         src/process/owned_buffer.o(.text.early_code_helpers_3.sub_801BD30);
         asm/text0801A548.o(.text.early15a_after_sub_801BD30);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_801DC38);
+        src/runtime/callback_forwarders.o(.text.early_code_helpers.sub_801DC38);
         asm/text0801A548.o(.text.after_early_code_helpers_801DC38);
         src/graphics/sprite_heap.o(.text.sub_80208E0);
         asm/text0801A548.o(.text.after_80208E0);

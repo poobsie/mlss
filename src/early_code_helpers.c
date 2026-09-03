@@ -25,12 +25,6 @@ void sub_801AF50(void) {
 }
 SECTION(sub_801AF50) const u16 sub_801AF50_padding = 0;
 
-void sub_801DC38(u8* arg0) SECTION(sub_801DC38);
-void sub_801DC38(u8* arg0) {
-    ((void (*)(s32, s32)) * (void**)(arg0 + 0x14))(*(s32*)arg0, *(s32*)(arg0 + 4));
-}
-SECTION(sub_801DC38) const u16 sub_801DC38_padding = 0;
-
 void sub_803C538(void* arg0, void* arg1) SECTION(sub_803C538);
 void sub_803C538(void* arg0, void* arg1) {
     sub_802FAE4(arg0, arg1, 1);
