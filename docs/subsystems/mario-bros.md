@@ -30,7 +30,7 @@ Replicated helpers now follow the same rule. Their names state the observable co
 
 ## Next boundary
 
-Name the remaining replicated transition and table-selection families by observable contract, then defer gameplay identities that require assembly callers or initialization paths not yet decompiled.
+The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.
 
 ## Verification
 

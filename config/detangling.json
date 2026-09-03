@@ -54,14 +54,14 @@
     },
     {
       "id": "mario_bros",
-      "state": "active",
-      "patterns": ["src/mariobros_*.c", "src/mario_bros/*.c"],
+      "state": "detangled",
+      "patterns": ["src/mario_bros/*.c"],
       "documentation": "docs/subsystems/mario-bros.md",
-      "next_action": "Name replicated transitions and table-selection families by observable contract; defer gameplay identities lacking evidence."
+      "next_action": "Expand when assembly callers or callback initialization paths are decompiled enough to identify the remaining gameplay-specific variants."
     },
     {
       "id": "field_runtime",
-      "state": "queued",
+      "state": "active",
       "patterns": ["src/field_*.c", "src/actor_*.c", "src/activation_*.c"],
       "documentation": "docs/subsystems/field-runtime.md",
       "next_action": "Unify the actor overlay and identify state and command fields from callers."
