@@ -1,26 +1,19 @@
 #include "global.h"
+#include "mario_bros/object.h"
 
 #define SECTION(name) __attribute__((section(".text.mariobros_transitions." #name)))
-
-struct __attribute__((packed)) LowTwoBits { u8 value : 2; };
-struct __attribute__((packed)) TransitionBits {
-    u8 low : 2;
-    u8 enabled : 1;
-    u8 middle : 4;
-    u8 high : 1;
-};
 
 extern u8 sub_8F611F8(void *);
 extern void sub_8F6DEA4(u32);
 
 #define DEFINE_TRANSITION(name, code) \
-    SECTION(name) void name(void *object) \
+    SECTION(name) void name(struct MarioBrosObject *object) \
     { \
         if (sub_8F611F8(object)) { \
-            ((struct LowTwoBits *)((u8 *)object + 8))->value = 2; \
-            ((struct TransitionBits *)((u8 *)object + 10))->high = 0; \
-            ((struct TransitionBits *)((u8 *)object + 10))->enabled = 1; \
-            *((u8 *)object + 4) = 3; \
+            ((struct MarioBrosFlags08 *)&object->flags08)->mode = 2; \
+            ((struct MarioBrosFlags0A *)&object->flags0A)->high = 0; \
+            ((struct MarioBrosFlags0A *)&object->flags0A)->enabled = 1; \
+            object->state = 3; \
             sub_8F6DEA4(code); \
         } \
     }

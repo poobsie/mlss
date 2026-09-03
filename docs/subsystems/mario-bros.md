@@ -6,9 +6,15 @@ Two command-reader families near `0x08F6F26C` and `0x08F95DEC` use the same 68-b
 
 The shared layout lives in `include/mario_bros/command_context.h`; the primary and secondary reader objects live under `src/mario_bros`. Field names remain offset-based because current C does not show how the command dispatcher or later consumers interpret those bytes. Both families also contain a no-op command handler.
 
+## Object layout
+
+The overlapping object views used by table selection, animation, movement, and state transitions now share `MarioBrosObject` from `include/mario_bros/object.h`. Repeated behavior supports names for the state byte, packed flag bytes, display and animation frames, animation variant, and X/Y position.
+
+Offsets `0x18` and `0x1C` deliberately remain `value18` and `value1C`. Movement routines treat them as coordinate deltas, while table-selection routines store a selected value at `0x18`; this likely represents related object classes with a shared prefix. Naming them as universal velocity or handler fields would discard that distinction. Packed overlays document the independently accessed bits in flag bytes `0x08` and `0x0A`.
+
 ## Next boundary
 
-Unify the overlapping `MbObject`, `MbBitObject`, `MbLateObject`, and `Mb604Object` layouts from their table-selection, animation-frame, and movement users. Preserve separate overlays where offsets have different proven roles.
+Separate the stream command layout and the remaining state, tagged, scale, and list-node object families in `mariobros_helpers.c`, then classify the global dispatch wrappers.
 
 ## Verification
 

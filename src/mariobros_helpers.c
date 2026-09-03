@@ -1,31 +1,7 @@
 #include "global.h"
+#include "mario_bros/object.h"
 
 #define MB_SECTION(name) __attribute__((section(".text.mariobros_helpers_" #name)))
-
-struct MbObject {
-    u8 pad_00[4];
-    u8 field_04;
-    u8 pad_05;
-    u16 field_06;
-    u8 field_08;
-    u8 field_09;
-    u8 field_0A;
-    u8 field_0B;
-    u8 field_0C;
-    u8 pad_0D[3];
-    u32 field_10;
-    u32 field_14;
-    u32 field_18;
-    u32 field_1C;
-    u16 field_20;
-    u8 pad_22[2];
-    u16 field_24;
-    u8 field_26;
-    u8 pad_27[9];
-    void* field_30;
-    void* field_34;
-    void* field_38;
-};
 
 struct MbStream {
     u8 field_00;
@@ -91,24 +67,6 @@ struct MbTaggedObject {
     u32 tag;
 };
 
-struct MbBitObject {
-    u8 pad_00[8];
-    u8 low_08 : 2;
-    u8 variant : 1;
-    u8 high_08 : 5;
-    u8 frame : 3;
-    u8 high_09 : 5;
-    u8 field_0A;
-    u8 pad_0B[0x0D];
-    u32 field_18;
-};
-
-struct __attribute__((packed)) MbBits0A {
-    u8 low : 3;
-    u8 value : 4;
-    u8 high : 1;
-};
-
 void sub_8F6F360(void*, void*);
 void sub_8F6F364(void*, void*, void*);
 void sub_8F95EC0(void*, void*);
@@ -137,7 +95,7 @@ MB_SECTION(nullsub_14) void nullsub_14(void) {
 MB_SECTION(nullsub_14) const u16 nullsub_14_padding = 0;
 
 #define DEFINE_TABLE_CALL(name, offset, table)                                                         \
-    MB_SECTION(name) void name(struct MbObject* obj) {                                                 \
+    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
         void** entries = (void**)(table);                                                              \
         u8 index = *((u8*)obj + (offset));                                                             \
         sub_8F6F360(obj, entries[index]);                                                              \
@@ -160,36 +118,30 @@ DEFINE_TABLE_CALL(sub_8F6C8CC, 2, gMarioData_08FA16CC)
 DEFINE_TABLE_CALL(sub_8F6D148, 2, gMarioData_08FA186C)
 
 #define DEFINE_DIRECT_HANDLER(name, table)                                                             \
-    MB_SECTION(name) void name(struct MbObject* obj) {                                                 \
-        u32 flags = obj->field_08;                                                                     \
+    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
+        u32 flags = obj->flags08;                                                                      \
         u32 offset = 4;                                                                                \
         u32* entries = (u32*)(table);                                                                  \
         offset &= flags;                                                                               \
-        obj->field_18 = *(u32*)((u8*)entries + offset);                                                \
+        obj->value18 = *(u32*)((u8*)entries + offset);                                                 \
     }
 
 DEFINE_DIRECT_HANDLER(sub_8F65118, gMarioData_08FA0444)
 DEFINE_DIRECT_HANDLER(sub_8F8BA6C, gMarioData_0201E78C)
 
 #define DEFINE_STACK_HANDLER(name, table)                                                              \
-    MB_SECTION(name) void name(struct MbObject* obj) {                                                 \
-        u32 offset = obj->field_08;                                                                    \
+    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
+        u32 offset = obj->flags08;                                                                     \
         struct MbPair choices = *(struct MbPair*)(table);                                              \
         offset &= 4;                                                                                   \
-        obj->field_18 = *(u32*)((u8*)&choices + offset);                                               \
-    }
-
-#define DEFINE_FRAME_HANDLER(name, table)                                                              \
-    MB_SECTION(name) void name(struct MbBitObject* obj) {                                              \
-        u32 frame = obj->frame & 3;                                                                    \
-        obj->field_18 = ((u32(*)[2])(table))[frame][obj->variant];                                     \
+        obj->value18 = *(u32*)((u8*)&choices + offset);                                                \
     }
 
 #define DEFINE_FRAME_BITS(name, table)                                                                 \
-    MB_SECTION(name) void name(struct MbObject* obj) {                                                 \
-        u32 frame = ((struct MbBitObject*)obj)->frame;                                                 \
+    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
+        u32 frame = ((struct MarioBrosDisplayFrame*)&obj->displayFrame)->frame;                         \
         frame &= 3;                                                                                    \
-        ((struct MbBits0A*)&obj->field_0A)->value = ((u8*)(table))[frame] & 0xF;                        \
+        ((struct MarioBrosFlags0A*)&obj->flags0A)->tableValue = ((u8*)(table))[frame] & 0xF;            \
     }
 
 DEFINE_FRAME_BITS(sub_8F61E58, 0x08FA0134)
@@ -198,12 +150,12 @@ DEFINE_FRAME_BITS(sub_8F887AC, 0x0201E47C)
 DEFINE_FRAME_BITS(sub_8F88E20, 0x0201E4EC)
 
 #define DEFINE_OBJECT_INIT(name)                                                                       \
-    MB_SECTION(name) void name(struct MbObject* obj) {                                                 \
+    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
         u32 zero = 0;                                                                                  \
-        obj->field_0C = 9;                                                                             \
-        obj->field_0B = zero;                                                                          \
-        obj->field_0A |= 0x80;                                                                         \
-        obj->field_04 = 4;                                                                             \
+        obj->animationVariant = 9;                                                                     \
+        obj->animationFrame = zero;                                                                    \
+        obj->flags0A |= 0x80;                                                                          \
+        obj->state = 4;                                                                                \
     }
 
 MB_SECTION(sub_8F66A40) u32 sub_8F66A40(u8 value) {
@@ -278,46 +230,46 @@ DEFINE_GLOBAL_INCREMENT(sub_8F58398)
     }
 
 #define DEFINE_CLAMP_BITS(name, table)                                                                 \
-    MB_SECTION(name) void name(struct MbObject* obj) {                                                 \
-        u32 frame = ((struct MbBitObject*)obj)->frame;                                                 \
+    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
+        u32 frame = ((struct MarioBrosDisplayFrame*)&obj->displayFrame)->frame;                         \
         if (frame > 2)                                                                                 \
             frame = 2;                                                                                 \
-        ((struct MbBits0A*)&obj->field_0A)->value = ((u8*)(table))[frame] & 0xF;                        \
+        ((struct MarioBrosFlags0A*)&obj->flags0A)->tableValue = ((u8*)(table))[frame] & 0xF;            \
     }
 
 DEFINE_CLAMP_BITS(sub_8F5FCAC, 0x08F9FEE0)
 DEFINE_CLAMP_BITS(sub_8F86600, 0x0201E228)
 
 #define DEFINE_CLAMP_HANDLER(name, table)                                                              \
-    MB_SECTION(name) void name(struct MbObject* obj) {                                                 \
-        u32 frame = obj->field_09 & 7;                                                                 \
-        u32 variant = (obj->field_08 >> 5) & 1;                                                        \
+    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
+        u32 frame = obj->displayFrame & 7;                                                             \
+        u32 variant = (obj->flags08 >> 5) & 1;                                                         \
         if (frame > 2)                                                                                 \
             frame = 2;                                                                                 \
-        obj->field_18 = ((u32*)(table))[variant + frame * 2];                                          \
+        obj->value18 = ((u32*)(table))[variant + frame * 2];                                           \
     }
 
 #define DEFINE_COMPLEX_HANDLER(name, table)                                                            \
-    MB_SECTION(name) void name(struct MbObject* obj) {                                                 \
-        u32 frame = obj->field_09 & 7;                                                                 \
-        u32 variant = (obj->field_08 >> 5) & 1;                                                        \
-        frame = (u8)(frame + *(u8*)obj->field_38);                                                     \
+    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
+        u32 frame = obj->displayFrame & 7;                                                             \
+        u32 variant = (obj->flags08 >> 5) & 1;                                                         \
+        frame = (u8)(frame + *(u8*)obj->value38);                                                      \
         if (frame > 3)                                                                                 \
             frame = 3;                                                                                 \
-        obj->field_18 = ((u32*)(table))[variant + frame * 2];                                          \
+        obj->value18 = ((u32*)(table))[variant + frame * 2];                                           \
     }
 
-MB_SECTION(sub_8F648AC) void sub_8F648AC(struct MbObject* obj) {
-    u8 variant = obj->field_0C;
-    u8 frame = obj->field_0B;
+MB_SECTION(sub_8F648AC) void sub_8F648AC(struct MarioBrosObject* obj) {
+    u8 variant = obj->animationVariant;
+    u8 frame = obj->animationFrame;
     if (variant <= 5) {
         frame++;
         if (frame > 3) {
             frame = 0;
             variant++;
         }
-        obj->field_0C = variant;
-        obj->field_0B = frame;
+        obj->animationVariant = variant;
+        obj->animationFrame = frame;
     }
 }
 MB_SECTION(sub_8F648AC) const u16 sub_8F648AC_padding = 0;
