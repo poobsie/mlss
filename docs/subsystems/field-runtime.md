@@ -52,6 +52,8 @@ The guarded movement entry point now records `positionX` and `positionY` as the 
 
 Two adjacent wrappers call their respective field-object operations with enabled mode `1`. They remain variant `a` and `b` until the assembly-only operations at `0x802FAE4` and `0x8029A0C` are recovered.
 
+`FieldDefinitionCallbacks` replaces the final root-level early helper family. Its initializer parses the object's definition, installs an update trampoline at `0x198`, and installs the definition callback at `0x1A0`; the trampoline passes the callback slot itself so the target may replace the next callback.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

@@ -164,11 +164,11 @@ SECTIONS
         asm/text0801A548.o(.text.after_8051330);
         src/field/scene_object_sprite.o(.text);
         asm/text0801A548.o(.text.after_8051484);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_80515DC);
+        src/field/definition_callbacks.o(.text.field_definition_callbacks.sub_80515DC);
         asm/text0801A548.o(.text.after_early_code_helpers_80515DC);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_8051608);
+        src/field/definition_callbacks.o(.text.field_definition_callbacks.sub_8051608);
         asm/text0801A548.o(.text.after_early_code_helpers_8051608);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_8051614);
+        src/field/definition_callbacks.o(.text.field_definition_callbacks.sub_8051614);
         asm/text0801A548.o(.text.after_early_code_helpers_8051614);
         src/screens/scrollable_view.o(.text);
         src/screens/options.o(.text);
