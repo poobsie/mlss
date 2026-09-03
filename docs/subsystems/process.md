@@ -23,6 +23,10 @@ Address-named subclass destructors are grouped in `src/process/destructors.c`, b
 
 The early destructor that installs the definition at `0x08CDBD98` is now in the same file and uses the shared `Process` layout and `process_remove` declaration. Its mechanical name retains the definition suffix until the owning process class is identified.
 
+`TimedProcess` extends the base process with a limit, current count, and step byte. Its update increments the count, reports progress through `sub_801B7B0`, then removes itself with definition `0x08CDBD98` when the limit is reached.
+
+`OwnedBufferProcess` extends the base process with an optional owned buffer. Its destructor installs definition `0x08CDBDA8`, frees the buffer when present, and removes the process. A global-slot helper destroys the instance stored at `0x03000D44` and clears that slot.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

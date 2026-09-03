@@ -69,13 +69,13 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_code_helpers_801B748);
         src/early_code_helpers_2.o(.text.sub_801B75C);
         asm/text0801A548.o(.text.after_801B75C);
-        src/early_code_helpers_3.o(.text.early_code_helpers_3.sub_801B820);
+        src/process/timed.o(.text.early_code_helpers_3.sub_801B820);
         asm/text0801A548.o(.text.early15a_after_sub_801B820);
         src/process/destructors.o(.text.early_system_helpers.sub_801B85C);
         asm/text0801A548.o(.text.after_early_system_helpers_801B85C);
-        src/early_code_helpers_3.o(.text.early_code_helpers_3.sub_801BC98);
+        src/process/owned_buffer.o(.text.early_code_helpers_3.sub_801BC98);
         asm/text0801A548.o(.text.early15a_after_sub_801BC98);
-        src/early_code_helpers_3.o(.text.early_code_helpers_3.sub_801BD30);
+        src/process/owned_buffer.o(.text.early_code_helpers_3.sub_801BD30);
         asm/text0801A548.o(.text.early15a_after_sub_801BD30);
         src/early_code_helpers.o(.text.early_code_helpers.sub_801DC38);
         asm/text0801A548.o(.text.after_early_code_helpers_801DC38);

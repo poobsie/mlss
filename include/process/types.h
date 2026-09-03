@@ -27,6 +27,18 @@ struct Process {
     struct ProcessDefinition* definition;
 };
 
+struct TimedProcess {
+    struct Process process;
+    u16 limit;
+    u16 current;
+    u8 step;
+};
+
+struct OwnedBufferProcess {
+    struct Process process;
+    void* buffer;
+};
+
 extern struct ProcessDefinition gBaseProcessDefinition __asm__("stru_8CDBD68");
 
 #endif

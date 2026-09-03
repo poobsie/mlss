@@ -9,6 +9,9 @@
 
 /* Class identity is unknown; the installed definition address is proven. */
 #define process_destroy_definition_bd98 sub_801B85C
+#define process_timed_update sub_801B820
+#define process_destroy_owned_buffer sub_801BC98
+#define process_remove_global_owned_buffer sub_801BD30
 
 struct Process* process_add(struct Process* process, u8 priority, char* label);
 void process_execute_all(void);
@@ -19,5 +22,8 @@ void process_enable(struct Process* process);
 void process_disable(struct Process* process);
 void process_remove(struct Process* process, u32 flags);
 void process_destroy_definition_bd98(struct Process* process, u32 flags);
+void process_timed_update(struct TimedProcess* process);
+void process_destroy_owned_buffer(struct OwnedBufferProcess* process, u32 flags);
+void process_remove_global_owned_buffer(void);
 
 #endif
