@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common.h"
 #include "link/multiplayer.h"
+#include "runtime/functions.h"
 
 void multiplayer_serial_interrupt(void) {
     REG_SIOMLT_SEND = 0xFEFE;
@@ -18,7 +19,7 @@ void multiplayer_serial_disable(void) {
 }
 
 void multiplayer_serial_enable(void) {
-    sub_8018B78(1, multiplayer_serial_interrupt);
+    runtime_install_interrupt_callback(1, multiplayer_serial_interrupt);
 
     REG_IME = 0;
     REG_RCNT = 0;

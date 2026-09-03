@@ -10,6 +10,12 @@ The recovered bootstrap code now lives under `src/runtime` instead of the generi
 
 Three generic callback forwarders now live in `src/runtime/callback_forwarders.c`. `RuntimeCallbackTable` records the proven callback slot at offset `0x1A0`; each trampoline loads that callback and invokes it with the original argument, table, and address of the callback slot. The entry points remain address-named because their owning table types are not yet distinguishable.
 
+`src/runtime/interrupts.c` owns interrupt callback installation. Null callbacks are replaced by a no-op callback, installation is protected by `REG_IME`, and selector 2 uses the callback slot embedded in `gGameState` while other selectors address the callback table beginning at `0x03000014`.
+
+`src/runtime/game_state.c` contains the recovered play-time setter and its adjacent no-op. The setter writes `GameState.playTime` and marks bit 0 of the still-partially-understood byte at offset `0x889`. `src/runtime/state_clear.c` clears two 32-bit words at `0x03000D28`; the state owner remains unknown, so the address is retained in its name.
+
+The explicit zero padding after the two no-op functions is required. Splitting the old mixed source objects otherwise causes the assembler to fill each alignment gap with a Thumb `nop`, changing two non-function halfwords even though every function still matches.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

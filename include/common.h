@@ -148,7 +148,6 @@ struct ORSTData {
 void sub_800063C();
 void sub_8017E34(void);
 void sub_8018218(void*, void*, size_t, int, int);
-void sub_8018B78(int, void (*)(void));
 void free_heap_8018D9C(void*);
 void free_heap_8018DA8(void* ptr);
 void* alloc_zero_8018DB4(int, bool32, char*, int);

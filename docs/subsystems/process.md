@@ -21,6 +21,8 @@ The base process definition is exposed as `gBaseProcessDefinition`. Its internal
 
 Address-named subclass destructors are grouped in `src/process/destructors.c`, but are not renamed yet. Their class identities cannot be established from the destructor wrappers alone.
 
+The early destructor that installs the definition at `0x08CDBD98` is now in the same file and uses the shared `Process` layout and `process_remove` declaration. Its mechanical name retains the definition suffix until the owning process class is identified.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

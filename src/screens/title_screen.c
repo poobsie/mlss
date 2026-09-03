@@ -3,6 +3,7 @@
 #include "audio/sound_effects.h"
 #include "common.h"
 #include "link/multiplayer.h"
+#include "runtime/functions.h"
 #include "screens/options.h"
 #include "screens/title_screen.h"
 
@@ -351,7 +352,7 @@ struct TitleScreen* title_screen_create(struct TitleScreen* titleScreen, u8 prio
     (*(vu16*)(0x2000000 + 0x80)) = 0x7FFF;
     gGameState.field_2 = -1;
     gGameState.field_0 = -1;
-    sub_8018B78(2, open_8056224);
+    runtime_install_interrupt_callback(2, open_8056224);
     music_play(0, 41, MUSIC_VOLUME_UNCHANGED);
 
     if (selection == 0) {
@@ -1029,7 +1030,7 @@ void title_screen_update(struct TitleScreen* titleScreen) {
             if (titleScreen != NULL) {
                 titleScreen->process.definition = &gTitleScreenProcessDefinition;
                 DmaStop(0);
-                sub_8018B78(2, 0);
+                runtime_install_interrupt_callback(2, 0);
 
                 if (titleScreen->scoreDisplay) {
                     process_remove(&titleScreen->scoreDisplay->process, 3);
@@ -1201,7 +1202,7 @@ struct TitleScreenScoreDisplay* title_screen_score_display_create(
 void title_screen_destroy(struct TitleScreen* titleScreen, int flags) {
     titleScreen->process.definition = &gTitleScreenProcessDefinition;
     DmaStop(0);
-    sub_8018B78(2, 0);
+    runtime_install_interrupt_callback(2, 0);
 
     if (titleScreen->scoreDisplay) {
         process_remove(&titleScreen->scoreDisplay->process, 3);

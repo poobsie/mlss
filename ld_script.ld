@@ -41,9 +41,11 @@ SECTIONS
     .text :
     {
         asm/text08000000.o(.text);
-        src/startup_tail_early.o(.text);
+        src/runtime/game_state.o(.text.nullsub_17);
+        src/runtime/game_state.o(.text.sub_8018A4C);
         asm/text08000000.o(.text.after_startup_tail_early);
-        src/interrupt.o(.text);
+        src/runtime/interrupts.o(.text.nullsub_16);
+        src/runtime/interrupts.o(.text.sub_8018B78);
         asm/heap.o(.text);
         src/memory/heap.o(.text);
         asm/text08018E24.o(.text);
@@ -59,7 +61,7 @@ SECTIONS
         src/text08019CA4_tail.o(.text);
         src/screens/game_boy_player_logo.o(.text);
         asm/text0801A548.o(.text);
-        src/early_system_helpers.o(.text.early_system_helpers.sub_801AE1C);
+        src/runtime/state_clear.o(.text.early_system_helpers.sub_801AE1C);
         asm/text0801A548.o(.text.after_early_system_helpers_801AE1C);
         src/early_code_helpers.o(.text.early_code_helpers.sub_801AF50);
         asm/text0801A548.o(.text.after_early_code_helpers_801AF50);
@@ -69,7 +71,7 @@ SECTIONS
         asm/text0801A548.o(.text.after_801B75C);
         src/early_code_helpers_3.o(.text.early_code_helpers_3.sub_801B820);
         asm/text0801A548.o(.text.early15a_after_sub_801B820);
-        src/early_system_helpers.o(.text.early_system_helpers.sub_801B85C);
+        src/process/destructors.o(.text.early_system_helpers.sub_801B85C);
         asm/text0801A548.o(.text.after_early_system_helpers_801B85C);
         src/early_code_helpers_3.o(.text.early_code_helpers_3.sub_801BC98);
         asm/text0801A548.o(.text.early15a_after_sub_801BC98);
