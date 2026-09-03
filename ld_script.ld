@@ -187,6 +187,7 @@ SECTIONS
         src/graphics/process_state.o(.text.misc_helpers_02.sub_8059FE4);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8059FE4);
         src/field/collision_map.o(.text.field.collision_map.get_coldef_ptr_by_idx);
+        src/field/collision_map.o(.text.field.collision_map.get_coldef_ptr_by_xz);
         asm/text08057568.o(.text.field_collision_map_after_get_definition);
         src/field/view_state.o(.text.misc_helpers_01.sub_805A954);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_805A954);
