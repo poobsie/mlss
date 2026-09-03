@@ -152,6 +152,8 @@ The first forty-two callbacks recovered from miscellaneous bucket 03 are now gro
 
 The same bucket's remaining straightforward visual transitions now expose commands `0x4071` and `0x4029`, relative animation selection from `valueA8`, a signed `behaviorState` countdown, fixed leftward motion, and terminal gates combining object flags, visual completion, `value21`, and linked-object presence. These names describe the observed state-machine decisions; they do not assign encounter identities that the current assembly does not prove.
 
+Eight further bucket-03 callbacks now expose linked-object motion, owner suspension, flag-`0x20` cleanup, and vertical integration. Five coordinate an object's animation and update with its linked object or position owner, two poll the shared object status operation before stopping, resuming, or deactivating a visual, and one integrates `verticalPosition` through `value8C` until reaching fixed-point height `0x2800`. The owner and linked-object relationships are proven by their shared layouts; their gameplay identities remain unresolved.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.

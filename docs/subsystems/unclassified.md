@@ -47,3 +47,5 @@ The first bucket-03 extraction moves forty-two object callbacks into four typed 
 Five non-object callbacks have now left bucket 03. Four operate on the field display runtime's object and process slots from `0x278` through `0x280`, including the two display-register synchronization callbacks. One copies a compact four-value graphics staging record into the established interleaved staging halfwords. Thirty-three callable routines remain unclassified.
 
 Eight more object transitions now use the shared runtime layout. They cover two fixed command selections, timer increment and relative-animation setup after visual completion, signed state countdown, fixed X motion, a combined flags-or-visual finish gate, and a visual/link terminal gate. Twenty-five callable routines remain in the staging file.
+
+Two field-view wrappers and eight object callbacks have now left the final staging bucket. The object group covers linked motion, paired owner/update changes, flag-`0x20` cleanup, and a fixed-point vertical step. Fifteen callable routines remain unclassified.
