@@ -1,4 +1,5 @@
 #include "global.h"
+#include "mario_bros/runtime.h"
 
 #define MB_SECTION(name) __attribute__((section(".text.mariobros_helpers_" #name)))
 
@@ -48,12 +49,10 @@ DEFINE_STATE_RESET(sub_8F8CD08, sub_8F8CCB4)
 
 #define DEFINE_GLOBAL_INCREMENT(name)                                                                 \
     MB_SECTION(name) void name(void) {                                                                \
-        u8* base = (u8*)0x03000F50;                                                                   \
-        u8* root = *(u8**)(base + 0x447C);                                                            \
-        u8* object = *(u8**)(root + 0x54);                                                            \
-        sub_8F568DC(0x19, 0x58, *(void**)(object + 8));                                               \
+        struct MarioBrosEventSource* source = gMarioGlobal_03000F50.root->eventSource;                 \
+        sub_8F568DC(0x19, 0x58, source->eventArgument);                                                \
         sub_8F57F2C();                                                                                \
-        base[0xC5A]++;                                                                                \
+        gMarioGlobal_03000F50.sequenceIndex++;                                                        \
     }
 
 DEFINE_GLOBAL_INCREMENT(sub_8F58360)

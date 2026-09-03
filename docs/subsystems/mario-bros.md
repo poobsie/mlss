@@ -16,6 +16,8 @@ Unused stream, scale, tagged, list-node, and halfword layouts were removed from 
 
 The surviving contents of that catch-all file are now grouped under `src/mario_bros`: object animation and table selection, state helpers, no-op callbacks, and a fixed-size buffer fill. The linker still selects the original per-function sections, so this organization does not imply false source-level ownership.
 
+The byte at global runtime offset `0xC5A` is now `sequenceIndex`: two helpers advance it after emitting an event, and three wrappers use it to select a callback from parallel tables. The recovered `MarioBrosRuntime` also names the pointer chain used to obtain that event's argument. Unobserved ranges remain explicit padding.
+
 ## Next boundary
 
 Classify the global dispatch wrappers and the remaining late helper file, then move the proven groups under `src/mario_bros`.
