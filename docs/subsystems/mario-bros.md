@@ -12,9 +12,11 @@ The overlapping object views used by table selection, animation, movement, and s
 
 Offsets `0x18` and `0x1C` deliberately remain `value18` and `value1C`. Movement routines treat them as coordinate deltas, while table-selection routines store a selected value at `0x18`; this likely represents related object classes with a shared prefix. Naming them as universal velocity or handler fields would discard that distinction. Packed overlays document the independently accessed bits in flag bytes `0x08` and `0x0A`.
 
+Unused stream, scale, tagged, list-node, and halfword layouts were removed from `mariobros_helpers.c`. They had no generated functions or consumers and therefore supplied no recoverable evidence. Keeping such speculative scaffolding would make later field inference less reliable, not more.
+
 ## Next boundary
 
-Separate the stream command layout and the remaining state, tagged, scale, and list-node object families in `mariobros_helpers.c`, then classify the global dispatch wrappers.
+Split the remaining table selection, state reset, global-state, and buffer-fill helpers into focused source files, then classify the global dispatch wrappers.
 
 ## Verification
 

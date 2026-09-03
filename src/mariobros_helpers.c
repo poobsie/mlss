@@ -3,79 +3,16 @@
 
 #define MB_SECTION(name) __attribute__((section(".text.mariobros_helpers_" #name)))
 
-struct MbStream {
-    u8 field_00;
-    u8 pad_01;
-    u8 field_02;
-    u8 pad_03[7];
-    u8 field_0A;
-    u8 pad_0B;
-    u8 field_0C;
-    u8 pad_0D;
-    u8 field_0E;
-    u8 field_0F;
-    u8 pad_10[2];
-    u8 field_12;
-    u8 pad_13;
-    u8 field_14;
-    u8 pad_15;
-    u8 field_16;
-    u8 pad_17;
-    u8 field_18;
-    u8 pad_19;
-    u8 field_1A;
-    u8 field_1B;
-    u8 pad_1C;
-    u8 field_1D;
-    u8 pad_1E[2];
-    u32 field_20;
-    u8 pad_24[4];
-    u32 field_28;
-    u32 field_2C;
-    u32 field_30;
-    u32 field_34;
-    u8 pad_38[8];
-    u8* cursor;
-    u32 saved[3];
-};
-
-struct MbScaleObject {
-    u8 pad_00[0x1C];
-    u16 field_1C;
-    u16 field_1E;
-    u16 field_20;
-};
-
-struct MbPair {
-    u32 first;
-    u32 second;
-};
-
-struct MbStateObject {
-    u8 field_00;
+struct MarioBrosStateController {
+    u8 unknown00;
     u8 state;
-    u8 pad_02[0x3C];
-    u8 field_3E;
-    u8 pad_3F[2];
-    u8 field_41;
-};
-
-struct MbTaggedObject {
-    u8 pad_00[4];
-    u32 flags;
-    u8 pad_08[0x2C];
-    u32 tag;
+    u8 unknown02[0x3C];
+    u8 flags3E;
+    u8 unknown3F[2];
+    u8 value41;
 };
 
 void sub_8F6F360(void*, void*);
-void sub_8F6F364(void*, void*, void*);
-void sub_8F95EC0(void*, void*);
-void sub_8F6124C(void);
-void sub_8F87BA0(void);
-void sub_8F6D634(void*, struct MbStream*);
-void sub_8F6D170(void);
-void sub_8F5CC20(void*);
-u8 sub_8F65EA0(void*);
 void sub_8F66360(void*, u32);
 void sub_8F8CCB4(void*, u32);
 void sub_8F568DC(u32, u32, void*);
@@ -129,14 +66,6 @@ DEFINE_TABLE_CALL(sub_8F6D148, 2, gMarioData_08FA186C)
 DEFINE_DIRECT_HANDLER(sub_8F65118, gMarioData_08FA0444)
 DEFINE_DIRECT_HANDLER(sub_8F8BA6C, gMarioData_0201E78C)
 
-#define DEFINE_STACK_HANDLER(name, table)                                                              \
-    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
-        u32 offset = obj->flags08;                                                                     \
-        struct MbPair choices = *(struct MbPair*)(table);                                              \
-        offset &= 4;                                                                                   \
-        obj->value18 = *(u32*)((u8*)&choices + offset);                                                \
-    }
-
 #define DEFINE_FRAME_BITS(name, table)                                                                 \
     MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
         u32 frame = ((struct MarioBrosDisplayFrame*)&obj->displayFrame)->frame;                         \
@@ -148,15 +77,6 @@ DEFINE_FRAME_BITS(sub_8F61E58, 0x08FA0134)
 DEFINE_FRAME_BITS(sub_8F624CC, 0x08FA01A4)
 DEFINE_FRAME_BITS(sub_8F887AC, 0x0201E47C)
 DEFINE_FRAME_BITS(sub_8F88E20, 0x0201E4EC)
-
-#define DEFINE_OBJECT_INIT(name)                                                                       \
-    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
-        u32 zero = 0;                                                                                  \
-        obj->animationVariant = 9;                                                                     \
-        obj->animationFrame = zero;                                                                    \
-        obj->flags0A |= 0x80;                                                                          \
-        obj->state = 4;                                                                                \
-    }
 
 MB_SECTION(sub_8F66A40) u32 sub_8F66A40(u8 value) {
     switch (value) {
@@ -176,11 +96,11 @@ MB_SECTION(sub_8F8D394) u32 sub_8F8D394(u8 value) {
 }
 
 #define DEFINE_STATE_RESET(name, callback)                                                            \
-    MB_SECTION(name) void name(struct MbStateObject* obj) {                                           \
+    MB_SECTION(name) void name(struct MarioBrosStateController* obj) {                                \
         if (obj->state <= 7) {                                                                        \
             callback(obj, 1);                                                                         \
-            obj->field_3E = 0x80;                                                                     \
-            obj->field_41 = 0;                                                                        \
+            obj->flags3E = 0x80;                                                                      \
+            obj->value41 = 0;                                                                         \
             obj->state = 3;                                                                           \
         }                                                                                             \
     }
@@ -201,34 +121,6 @@ DEFINE_STATE_RESET(sub_8F8CD08, sub_8F8CCB4)
 DEFINE_GLOBAL_INCREMENT(sub_8F58360)
 DEFINE_GLOBAL_INCREMENT(sub_8F58398)
 
-#define DEFINE_MAGIC_CLEAR(name)                                                                       \
-    MB_SECTION(name) void name(u32* obj) {                                                             \
-        u32* ptr = obj;                                                                                \
-        if (ptr[13] == 0x68736D53)                                                                     \
-            ptr[1] &= 0x7FFFFFFF;                                                                      \
-    }
-
-#define DEFINE_STREAM_FLAGS(name)                                                                      \
-    MB_SECTION(name) void name(void* unused, struct MbStream* stream) {                                \
-        u8 bits;                                                                                       \
-        stream->field_16 = 0;                                                                          \
-        stream->field_1A = 0;                                                                          \
-        bits = stream->field_18 == 0 ? 0x0C : 3;                                                       \
-        stream->field_00 |= bits;                                                                      \
-    }
-
-#define DEFINE_GLOBAL_CALL(name, callback, address)                                                    \
-    MB_SECTION(name) void name(void* arg) {                                                            \
-        callback(arg, *(void**)(address));                                                             \
-    }
-
-#define DEFINE_STREAM_STORE(name, field, adjust, bits)                                                 \
-    MB_SECTION(name) void name(void* arg, struct MbStream* stream) {                                   \
-        sub_8F6D634(arg, stream);                                                                      \
-        stream->field = (u8)(*stream->cursor - (adjust));                                              \
-        stream->field_00 |= (bits);                                                                    \
-    }
-
 #define DEFINE_CLAMP_BITS(name, table)                                                                 \
     MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
         u32 frame = ((struct MarioBrosDisplayFrame*)&obj->displayFrame)->frame;                         \
@@ -239,25 +131,6 @@ DEFINE_GLOBAL_INCREMENT(sub_8F58398)
 
 DEFINE_CLAMP_BITS(sub_8F5FCAC, 0x08F9FEE0)
 DEFINE_CLAMP_BITS(sub_8F86600, 0x0201E228)
-
-#define DEFINE_CLAMP_HANDLER(name, table)                                                              \
-    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
-        u32 frame = obj->displayFrame & 7;                                                             \
-        u32 variant = (obj->flags08 >> 5) & 1;                                                         \
-        if (frame > 2)                                                                                 \
-            frame = 2;                                                                                 \
-        obj->value18 = ((u32*)(table))[variant + frame * 2];                                           \
-    }
-
-#define DEFINE_COMPLEX_HANDLER(name, table)                                                            \
-    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
-        u32 frame = obj->displayFrame & 7;                                                             \
-        u32 variant = (obj->flags08 >> 5) & 1;                                                         \
-        frame = (u8)(frame + *(u8*)obj->value38);                                                      \
-        if (frame > 3)                                                                                 \
-            frame = 3;                                                                                 \
-        obj->value18 = ((u32*)(table))[variant + frame * 2];                                           \
-    }
 
 MB_SECTION(sub_8F648AC) void sub_8F648AC(struct MarioBrosObject* obj) {
     u8 variant = obj->animationVariant;
@@ -274,27 +147,6 @@ MB_SECTION(sub_8F648AC) void sub_8F648AC(struct MarioBrosObject* obj) {
 }
 MB_SECTION(sub_8F648AC) const u16 sub_8F648AC_padding = 0;
 
-#define DEFINE_COPY_256(name, address)                                                                 \
-    MB_SECTION(name) void name(u16* src) {                                                             \
-        u8 i = 0;                                                                                      \
-        volatile u8* state = (volatile u8*)(address);                                                  \
-        do {                                                                                           \
-            ((u16*)*(u32*)(state + 0x24))[i] = src[i];                                                 \
-            i++;                                                                                       \
-        } while (i != 0);                                                                              \
-        *(u8*)(*(u32*)(state + 0x24) + 2) = state[4];                                                  \
-        *(u8*)(*(u32*)(state + 0x24) + 3) = state[1];                                                  \
-    }
-
-void _08F6F340(u32);
-
-struct MbDeaEntry {
-    void* arg;
-    u16 pad_04;
-    u16 index;
-};
-void sub_8F6E5D8(void*, void*);
-
 MB_SECTION(sub_8F585B0) void sub_8F585B0(u16 value, u16* dst) {
     u16 i = 0;
     do {
@@ -302,23 +154,3 @@ MB_SECTION(sub_8F585B0) void sub_8F585B0(u16 value, u16* dst) {
         i++;
     } while (i <= 0x3FF);
 }
-
-void sub_8F61D74(void);
-
-struct MbListNode {
-    u8 pad_00[0x20];
-    struct MbListNode* alternate;
-    u8 pad_24[8];
-    struct MbListNode* owner;
-    struct MbListNode* prev;
-    struct MbListNode* next;
-};
-
-struct MbTaggedHalfwords {
-    u8 pad_00[0x24];
-    u16 first;
-    u16 second;
-    u16 scale;
-    u8 pad_2A[0x0A];
-    u32 tag;
-};
