@@ -16,6 +16,8 @@ Three destructor entry points install vtable `0x08CDD090` in a `GraphicsResource
 
 The mask now also exposes its pixel radius at `0x30` and animated 8.8-scale value at `0x34`. The scale is used by nearby distance tests and transition interpolation; the setters for its target and step remain in assembly.
 
+Two additional mask accessors clear the word at `0x20` and return the signed halfword at `0x1C`. Those members remain offset-named because their initialization and consumers do not yet establish whether they are coordinates, limits, or transition state.
+
 `PositionBinding` connects 24.8 fixed-point world coordinates to an optional signed screen-coordinate pair. `position_binding_update_relative` subtracts a fixed-point origin and writes the integer X/Y results. Four identical callback entry points share that operation; their suffixes remain until the owning callback tables are recovered.
 
 ## Verification

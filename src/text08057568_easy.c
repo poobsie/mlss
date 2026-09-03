@@ -14,18 +14,6 @@ struct EasyPair3320 {
     u16 field_02;
 };
 
-void sub_81582C4(void* object) FUNCTION_SECTION(".text.sub_81582C4");
-void sub_81582C4(void* object) {
-    *(u32*)((u8*)object + 0x20) = 0;
-}
-FUNCTION_SECTION(".text.sub_81582C4") const u16 sub_81582C4_padding = 0;
-
-s32 sub_8158308(void* object) FUNCTION_SECTION(".text.sub_8158308");
-s32 sub_8158308(void* object) {
-    return *(s16*)((u8*)object + 0x1C);
-}
-FUNCTION_SECTION(".text.sub_8158308") const u16 sub_8158308_padding = 0;
-
 void sub_816168C(void* object) FUNCTION_SECTION(".text.sub_816168C");
 void sub_816168C(void* object) {
     *(void**)object = (void*)0x08CDD0B8;

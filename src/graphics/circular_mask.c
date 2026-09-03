@@ -12,6 +12,24 @@ u32 circular_mask_get_scale(struct CircularMask* mask) {
     return mask->scale;
 }
 
+void circular_mask_clear_value_20(struct CircularMask* mask)
+    __attribute__((section(".text.sub_81582C4")));
+void circular_mask_clear_value_20(struct CircularMask* mask) {
+    mask->value20 = 0;
+}
+
+__attribute__((section(".text.sub_81582C4")))
+const u16 circular_mask_clear_value_20_padding = 0;
+
+s32 circular_mask_get_value_1c(struct CircularMask* mask)
+    __attribute__((section(".text.sub_8158308")));
+s32 circular_mask_get_value_1c(struct CircularMask* mask) {
+    return mask->value1C;
+}
+
+__attribute__((section(".text.sub_8158308")))
+const u16 circular_mask_get_value_1c_padding = 0;
+
 void circular_mask_disable(struct CircularMask* mask)
     __attribute__((section(".text.state_field_helpers.sub_8150E2C")));
 void circular_mask_disable(struct CircularMask* mask) {
