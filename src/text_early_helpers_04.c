@@ -5,7 +5,6 @@ typedef u32 UnknownWord;
 UnknownWord sub_805BFF0();
 UnknownWord sub_80494D4();
 UnknownWord sub_804FCD4();
-u8 sub_8041FFC();
 
 SEC(sub_80297B8) void sub_80297B8(void* arg0) {
     if (((s32)(FIELD_AT(arg0, u16*, 0xFC) << 0x15) >> 0x1C) == 0) {
@@ -26,16 +25,4 @@ SEC(sub_803C638) void sub_803C638(void* arg0) {
     if ((u32)(u16)(temp_r2 - 0xA) <= 2U) {
         sub_80494D4(temp_r1);
     }
-}
-
-SEC(sub_804FBDC) u8 sub_804FBDC(void* arg0) {
-    u8 var_r4;
-
-    var_r4 = 0;
-    if (((0x801 & FIELD_AT(arg0, u16*, 0x20C)) == 0x801) && !(2 & FIELD_AT(arg0, u8*, 0x35A))) {
-        FIELD_AT(arg0, s32*, 0x348) = (s32)FIELD_AT(arg0, s32*, 0xC);
-        FIELD_AT(arg0, s32*, 0x34C) = (s32)FIELD_AT(arg0, s32*, 0x10);
-        var_r4 = sub_8041FFC(arg0);
-    }
-    return var_r4;
 }

@@ -5,6 +5,7 @@
 #define field_destroy_scene_object_variant_a sub_81DD5B0
 #define field_destroy_scene_object_variant_b sub_81DD5D4
 #define field_destroy_scene_object_variant_c sub_81DD5F8
+#define field_try_process_movement sub_804FBDC
 
 /* Semantic C names mapped to original symbols still referenced by assembly. */
 #define field_object_forward_slot70 sub_8050518

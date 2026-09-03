@@ -40,6 +40,11 @@ struct FieldSceneObject {
     u16 unknown33C;
     u16 flags33E;
     s16 value340;
+    u8 unknown342[6];
+    s32 movementStartX;
+    s32 movementStartY;
+    u8 unknown350[0x0A];
+    u8 flags35A;
 };
 
 #endif

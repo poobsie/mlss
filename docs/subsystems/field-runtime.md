@@ -46,6 +46,8 @@ Four dispatch wrappers share another proven precondition: set bit `0x10` in `fla
 
 The base field-scene destructor and three variant destructors all restore descriptor `0x08CDBDE8` at offset `0x338`, then release the object when requested. Keeping the variants separate preserves their callback-table identities while sharing the proven object layout.
 
+The guarded movement entry point now records `positionX` and `positionY` as the movement-start coordinates before invoking the collision-aware movement routine. Its two observed gates remain named by offset: packed flags `0x0801` at `0x20C` and inhibit bit `0x02` at `0x35A`.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
