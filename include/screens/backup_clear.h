@@ -5,7 +5,7 @@
 #include "screens/options.h"
 
 struct Sprite;
-struct struc_15;
+struct TextContext;
 
 enum BackupClearScreenState {
     BACKUP_CLEAR_STATE_OPEN_INITIAL_PROMPT,
@@ -26,7 +26,7 @@ struct BackupClearScreen {
     u8* messageTiles;
     u16* dialogTilemaps;
     int* textEngineCode;
-    struct struc_15* textContext;
+    struct TextContext* textContext;
     struct Process* renderProcess;
     int* windowAnimationTilemap;
     u16 writeProgress;

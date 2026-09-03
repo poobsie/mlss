@@ -1,5 +1,6 @@
 #include "global.h"
 #include "process/types.h"
+#include "ui/text_context.h"
 
 // Structs
 struct GameState {
@@ -102,19 +103,6 @@ struct struc_203FFB8 {
     u32 field_3C;
 };
 
-struct struc_15 {
-    u32 field_0;
-    u32 field_4;
-    // Probably a char string but not sure.
-    u8* field_8;
-    u32 field_C;
-    u32 field_10;
-    u32 field_14;
-    u32 field_18;
-    u32 field_1C;
-    u32 field_20;
-};
-
 // ORST (options/open-screen runtime data) — 340 bytes, tagged "ORST"
 struct ORSTData {
     s32 field_0[5];   /* palette scroll accumulators, fixed-point */
@@ -148,9 +136,9 @@ void sub_8021FD4(void);
 void open_8056224();
 int sub_812454C(void);
 struct Process* load_init_812538C(struct Process*, u8, char*, int);
-u16 sub_8199624(struct struc_15*);
-void sub_8199D5C(struct struc_15*, int, u8, int);
-void sub_8199D78(struct struc_15*, u8*, int, int, int, int, int, int, int, int);
+u16 sub_8199624(struct TextContext*);
+const u8* sub_8199D5C(struct TextContext*, u8, u8, const u8*);
+void sub_8199D78(struct TextContext*, u8*, int, int, int, int, int, int, int, int);
 void sub_81DA6C8(int);
 
 // EWRAM

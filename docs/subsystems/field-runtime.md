@@ -88,6 +88,8 @@ The small field-runtime utilities now have typed homes: a visual-completion bran
 
 `field_set_mode_3a5_and_mark_pending` writes the requested mode and marks runtime flag `0x40`. Its byte update intentionally retains a raw offset expression because the exact compiler otherwise reverses the temporary registers and breaks the ROM match.
 
+Ten event callback helpers now share `FieldEventContext`. Three read a byte from the context's selection table using its current index and a variant-specific displacement, store it as the selected value, and install the same callback-chain endpoints. Five enable event processing and install continuations, with three also clearing the proven reset halfword at `0x1D4`. Two replace a caller-owned callback after one of the two asynchronous gates clears. The variant suffixes remain because their owning event scripts are still assembly-only.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

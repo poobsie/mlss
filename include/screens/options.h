@@ -4,7 +4,7 @@
 #include "process/types.h"
 
 struct Sprite;
-struct struc_15;
+struct TextContext;
 
 #define OPTION_SETTINGS_SHIFT_EASY_SLEEP 0
 #define OPTION_SETTINGS_SHIFT_RUMBLE     1
@@ -44,7 +44,7 @@ struct OptionsScreen {
     u8* confirmationDialogTiles;
     u16* confirmationDialogTilemaps;
     int* textEngineCode;
-    struct struc_15* textContext;
+    struct TextContext* textContext;
     s8 entryArgument : 1;
     s8 unknownFlags : 3;
     u8 pendingSettings : 3;

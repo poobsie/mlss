@@ -21,6 +21,10 @@ The destructor file also groups seven entry points that install vtable `0x08CDCA
 
 `BattleSpriteMotionOwner` extends the proven sprite-owner prefix with values at `0x18`, `0x20`, `0x24`, and `0x38`. Its two recovered configuration methods select mode `4` with `0xC8` or mode `3` with `0x64`, negate the supplied value into `0x20`, clear `0x38`, and clear the attached sprite's halfword at `0x0C`. Those values remain structural until the assembly update routines establish their physical units.
 
+`BattleSpriteMotion` is the broader sprite-backed position object initialized by `sub_815F8F4`. It records 24.8 X and Y positions, their previous values, signed per-frame velocities, a state byte, a descriptor, and overlapping subclass storage from `0x34` onward. The overlap is represented explicitly: the same slot can be a 16-bit constructor value or an owned child pointer depending on the installed descriptor.
+
+The recovered variant family includes four initializers, two state preparations, four child-destructor variants, and two owned-resource destructors. Semantic aliases state the proven lifecycle behavior, while `variant_a` and `variant_b` remain until the descriptor tables identify their battle entities. The shared motion helper adds X velocity and Y velocity plus the caller's Y offset each tick.
+
 `battle_tick_countdown_1f2a` decrements a signed counter in the large battle-scene runtime and clears the adjacent value at `0x1F28` once the counter becomes negative. Both fields retain offset-bearing names until the code that arms the counter is recovered.
 
 `include/battle/functions.h` supplies semantic C names while retaining the original linker symbols for assembly callers. Definition initializers use numbered identities because their descriptor contents and gameplay roles have not been recovered. The runtime-value names retain offsets for the same reason. These names should become gameplay names only when callers or descriptor data prove them.
@@ -39,4 +43,4 @@ Gameplay-specific definition names require recovered descriptor contents or iden
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C symbol exact, with zero mismatches.

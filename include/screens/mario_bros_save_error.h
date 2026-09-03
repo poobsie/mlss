@@ -4,7 +4,7 @@
 #include "process/types.h"
 #include "screens/options.h"
 
-struct struc_15;
+struct TextContext;
 
 enum MarioBrosSaveErrorScreenState {
     MARIO_BROS_SAVE_ERROR_STATE_WAIT,
@@ -19,7 +19,7 @@ struct MarioBrosSaveErrorScreen {
     u8* messageTiles;
     u16* dialogTilemap;
     int* textEngineCode;
-    struct struc_15* textContext;
+    struct TextContext* textContext;
     int* windowAnimationTilemap;
     struct WindowAnimation dialogWindow;
     u8 padding2[2];

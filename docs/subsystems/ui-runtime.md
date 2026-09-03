@@ -20,3 +20,5 @@ The same construction layer now exposes an empty-pointer query, a shared-halfwor
 `ui_set_flag_490_08` names the sole recovered operation on a larger late UI owner. Its object layout and flag meaning remain unresolved, so both the offset and mask stay explicit.
 
 `UiSingleSpriteOwner` exposes the sprite pointer at offset `0x30`. Its paired callbacks hide and show that sprite, while the adjacent false-returning entry remains named as a visibility callback until its callback table is recovered.
+
+`TextContext` replaces the former catch-all `struc_15` name for the text parser shared by the options and related screens. `text_context_set_cursor` installs the source cursor and its column and row, clears the restart and completion flag bits `0x01` and `0x20`, and returns the previous cursor. The options label builder now advances `cursor` explicitly when it encounters the observed `FF 0B 01` control sequence.

@@ -554,11 +554,13 @@ void options_screen_build_option_labels(struct OptionsScreen* optionsScreen, int
         } else {
             sub_8199D78(optionsScreen->textContext, optionsScreen->optionLabelTiles, 32, 4, 0, 0, 1, 2, 5, 0);
         }
-        sub_8199D5C(optionsScreen->textContext, 0, 16 * i + 2, *off_83A2920[i] + 2);
+        text_context_set_cursor(
+            optionsScreen->textContext, 0, 16 * i + 2,
+            (const u8*)(*off_83A2920[i] + 2));
         do {
-            u8* command = optionsScreen->textContext->field_8;
+            const u8* command = optionsScreen->textContext->cursor;
             if (command[0] == 255 && command[1] == 11 && command[2] == 1) {
-                optionsScreen->textContext->field_8 += 3;
+                optionsScreen->textContext->cursor += 3;
             }
         } while (sub_8199624(optionsScreen->textContext) != 0);
     }
