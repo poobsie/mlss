@@ -11,11 +11,14 @@ The current C boundary is organized under `src/battle/` by responsibility:
 - `control_flags.c` groups seven bit and value updates on the battle control layout from offsets `0xF8` through `0x12D`.
 - `resource_control.c` conditionally forwards the resource at offset `0x304`, then sets control bits `0x780` in the word at offset `0xFC`.
 - `sprite_owner.c` provides sprite access, visibility, coordinate forwarding, and release operations.
+- `sprite_motion.c` configures two structural motion modes on sprite-owning derived objects.
 - `destructors.c` installs the common terminal vtable and optionally frees the owner.
 
 The destructor file also groups seven entry points that install vtable `0x08CDCA30`, including the base entry referenced by that vtable itself. Their shared `BattleVtableObject` layout proves a value pointer at offset `0` and vtable at offset `4`; subclass identities remain unknown.
 
 `BattleDefinitionObject`, `BattleEffectObject`, `BattleRuntimeValues`, and `BattleSpriteOwner` represent separate observed layouts. They are not merged into a speculative inheritance tree.
+
+`BattleSpriteMotionOwner` extends the proven sprite-owner prefix with values at `0x18`, `0x20`, `0x24`, and `0x38`. Its two recovered configuration methods select mode `4` with `0xC8` or mode `3` with `0x64`, negate the supplied value into `0x20`, clear `0x38`, and clear the attached sprite's halfword at `0x0C`. Those values remain structural until the assembly update routines establish their physical units.
 
 `include/battle/functions.h` supplies semantic C names while retaining the original linker symbols for assembly callers. Definition initializers use numbered identities because their descriptor contents and gameplay roles have not been recovered. The runtime-value names retain offsets for the same reason. These names should become gameplay names only when callers or descriptor data prove them.
 

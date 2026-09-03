@@ -11,7 +11,9 @@ struct BattleDefinitionObject {
 };
 
 struct BattleSprite {
-    u8 unknown00[0x12];
+    u8 unknown00[0x0C];
+    u16 value0C;
+    u8 unknown0E[4];
     u8 flags;
 };
 
@@ -25,6 +27,19 @@ struct BattleEffectObject {
 struct BattleSpriteOwner {
     struct BattleSprite* sprite;
     const void* vtable;
+};
+
+struct BattleSpriteMotionOwner {
+    struct BattleSprite* sprite;
+    const void* vtable;
+    u8 unknown08[0x10];
+    u16 value18;
+    u8 unknown1A[6];
+    u16 value20;
+    u8 unknown22[2];
+    u8 mode24;
+    u8 unknown25[0x13];
+    u16 value38;
 };
 
 struct BattleVtableObject {

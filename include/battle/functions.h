@@ -1,7 +1,12 @@
 #ifndef GUARD_BATTLE_FUNCTIONS_H
 #define GUARD_BATTLE_FUNCTIONS_H
 
+#include "global.h"
+
 struct BattleValueObject;
+struct BattleSprite;
+struct BattleSpriteOwner;
+struct BattleSpriteMotionOwner;
 
 /* Semantic C names mapped to original symbols still referenced by assembly. */
 #define battle_initialize_definition_00 sub_8158450
@@ -62,7 +67,14 @@ struct BattleValueObject;
 #define battle_sprite_owner_hide_sprite sub_815FA40
 #define battle_sprite_owner_show_sprite sub_815FA50
 #define battle_sprite_owner_release_sprite sub_815FAFC
+#define battle_sprite_motion_configure_mode_4 sub_8158A98
+#define battle_sprite_motion_configure_mode_3 sub_815F2C4
 
 void battle_clear_value_14(struct BattleValueObject* object);
+struct BattleSprite* battle_sprite_owner_get_sprite(struct BattleSpriteOwner* object);
+void battle_sprite_motion_configure_mode_4(
+    struct BattleSpriteMotionOwner* object, s32 value);
+void battle_sprite_motion_configure_mode_3(
+    struct BattleSpriteMotionOwner* object, s32 value);
 
 #endif
