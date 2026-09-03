@@ -1,14 +1,14 @@
 #include "global.h"
+#include "object/runtime_object.h"
 
-#define FIELD(object, type, offset) (*(type *)((u8 *)(object) + (offset)))
 #define SEC(name) __attribute__((section(".text.object_variant_dispatch." #name)))
 
 #define DEFINE_OBJECT_VARIANT(name, first, second)                       \
-    extern void first(void *);                                           \
-    extern void second(void *);                                          \
-    SEC(name) void name(void *object)                                    \
+    extern void first(struct RuntimeObject*);                            \
+    extern void second(struct RuntimeObject*);                           \
+    SEC(name) void name(struct RuntimeObject* object)                    \
     {                                                                    \
-        if (FIELD(FIELD(object, void *, 0x28), s16, 0xEC) == -1)        \
+        if (object->state->variant == RUNTIME_OBJECT_VARIANT_FIRST)      \
             first(object);                                               \
         else                                                             \
             second(object);                                              \
