@@ -40,14 +40,6 @@ void sub_8116680(s32, u8);
 void sub_8139AA0(void*);
 void sub_80514C4(void);
 
-void sub_801B748(u8* arg0, s32 arg1, s16 arg2, s16 arg3) SECTION(sub_801B748);
-void sub_801B748(u8* arg0, s32 arg1, s16 arg2, s16 arg3) {
-    *(s32*)(arg0 + 0) = arg1;
-    *(s16*)(arg0 + 4) = arg2;
-    *(s32*)(arg0 + 8) = arg3;
-    *(s32*)(arg0 + 0xC) = 0xFFFF0000;
-}
-
 void sub_803C424(u8* arg0) SECTION(sub_803C424);
 void sub_803C424(u8* arg0) {
     u8* second = *(u8**)(arg0 + 0x204);

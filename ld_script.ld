@@ -65,9 +65,9 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_system_helpers_801AE1C);
         src/early_code_helpers.o(.text.early_code_helpers.sub_801AF50);
         asm/text0801A548.o(.text.after_early_code_helpers_801AF50);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_801B748);
+        src/math/interpolation.o(.text.early_code_helpers.sub_801B748);
         asm/text0801A548.o(.text.after_early_code_helpers_801B748);
-        src/early_code_helpers_2.o(.text.sub_801B75C);
+        src/math/interpolation.o(.text.sub_801B75C);
         asm/text0801A548.o(.text.after_801B75C);
         src/process/timed.o(.text.early_code_helpers_3.sub_801B820);
         asm/text0801A548.o(.text.early15a_after_sub_801B820);

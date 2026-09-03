@@ -109,6 +109,13 @@
       "next_action": "Expand when score-display callers identify the summary values at offsets 0 and 4."
     },
     {
+      "id": "math_runtime",
+      "state": "detangled",
+      "patterns": ["src/math/*.c"],
+      "documentation": "docs/subsystems/math-runtime.md",
+      "next_action": "Expand when the interpolation step routine is decompiled and proves units for its values."
+    },
+    {
       "id": "unclassified",
       "state": "active",
       "patterns": ["src/*.c", "src/*/*.c", "src/*/*/*.c"],
