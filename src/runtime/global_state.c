@@ -9,6 +9,33 @@ void heap_free_block(void* pointer);
 #define STRINGIFY(value) STRINGIFY_INNER(value)
 #define MISC_SEC(name) \
     __attribute__((section(".text.misc_helpers_01." STRINGIFY(name))))
+#define MISC2_SEC(name) \
+    __attribute__((section(".text.misc_helpers_02." STRINGIFY(name))))
+
+MISC2_SEC(runtime_release_global_state_fbc)
+void runtime_release_global_state_fbc(void)
+{
+    void** state = (void**)0x03000FBC;
+
+    if (*state != 0) {
+        heap_free_block(*state);
+        *state = 0;
+    }
+}
+
+MISC2_SEC(runtime_release_global_state_fb4_fb8_fbc)
+void runtime_release_global_state_fb4_fb8_fbc(void)
+{
+    void** state;
+
+    runtime_release_global_state_fb4();
+    state = (void**)0x03000FB8;
+    if (*state != 0) {
+        heap_free_block(*state);
+        *state = 0;
+    }
+    runtime_release_global_state_fbc();
+}
 
 SEC(runtime_release_global_state_ff4)
 void runtime_release_global_state_ff4(void)

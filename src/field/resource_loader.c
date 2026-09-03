@@ -1,12 +1,15 @@
 #include "field/resource_loader.h"
+#include "memory/heap.h"
 
-void heap_free_block(void* allocation);
 void sub_80E5968(void* resource, s32 flags);
-void sub_80E8EFC(void* resource, s32 flags);
 void sub_80F94A8(void);
 void sub_80FADD4(struct FieldResourceLoaderProcess* loader);
 
 #define SEC(group, symbol) __attribute__((section(".text." group "." #symbol)))
+#define STRINGIFY_INNER(value) #value
+#define STRINGIFY(value) STRINGIFY_INNER(value)
+#define MISC2_SEC(symbol) \
+    __attribute__((section(".text.misc_helpers_02." STRINGIFY(symbol))))
 
 #define FIELD_RESOURCE_RUNTIME (*(struct FieldResourceRuntime**)0x03000FC0)
 
@@ -15,6 +18,26 @@ void sub_80FADD4(struct FieldResourceLoaderProcess* loader);
 #define FIELD_RESOURCE_DEFAULT_564 (*(void**)0x083B9D00)
 #define FIELD_RESOURCE_DEFAULT_568 (*(void**)0x083BA13C)
 #define FIELD_RESOURCE_DEFAULT_56C (*(void**)0x083BA4A8)
+
+MISC2_SEC(field_owned_resource_destroy)
+void field_owned_resource_destroy(struct FieldOwnedResource* resource, u32 flags)
+{
+    heap_free_block(resource->allocation);
+    if (flags & 1)
+        free_heap_8018DA8(resource);
+}
+
+MISC2_SEC(field_resource_block_list_destroy)
+void field_resource_block_list_destroy(struct FieldResourceBlockList* list,
+                                       u32 flags)
+{
+    if (list->blocks != 0) {
+        heap_free_block(list->blocks);
+        list->blocks = 0;
+    }
+    if (flags & 1)
+        free_heap_8018DA8(list);
+}
 
 SEC("misc_helpers_03", sub_80FAEFC)
 void field_resource_loader_shutdown(struct FieldResourceLoaderProcess* loader)
@@ -31,7 +54,7 @@ void field_resource_loader_destroy(struct FieldResourceLoaderProcess* loader,
     loader->process.definition = (struct ProcessDefinition*)0x08CDC328;
     field_resource_loader_shutdown(loader);
     if (loader->firstResource != 0) {
-        sub_80E8EFC(loader->firstResource, 3);
+        field_owned_resource_destroy(loader->firstResource, 3);
         loader->firstResource = 0;
     }
     if (loader->secondResource != 0) {

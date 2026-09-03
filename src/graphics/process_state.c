@@ -6,10 +6,26 @@
 #define STRINGIFY(value) STRINGIFY_INNER(value)
 #define MISC_SEC(name) \
     __attribute__((section(".text.misc_helpers_01." STRINGIFY(name))))
+#define MISC2_SEC(name) \
+    __attribute__((section(".text.misc_helpers_02." STRINGIFY(name))))
 
 void free_heap_8018D9C();
 void sub_8029888(s32 channel, s32 value);
 void sub_80184F4(void* address);
+void sub_8058278(struct GraphicsStagingSource* source);
+void sub_80582DC(struct GraphicsStagingSource* source);
+void sub_80584F8(struct GraphicsStagingSource* source);
+void sub_80587BC(struct GraphicsStagingSource* source, s32 mode);
+
+MISC2_SEC(graphics_apply_staging_source)
+void graphics_apply_staging_source(struct GraphicsStagingSource* source)
+{
+    graphics_copy_staging_values(source);
+    sub_80582DC(source);
+    sub_80587BC(source, 0);
+    sub_8058278(source);
+    sub_80584F8(source);
+}
 
 SEC(sub_8059F24) void sub_8059F24(struct GraphicsStagingSource* source)
 {

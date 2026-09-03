@@ -39,3 +39,5 @@ Nineteen additional callbacks now form linked-object and cleanup families. Nine 
 Seventeen further object callbacks now have typed homes. Three perform owner-based setup, five start direct animation/sound transitions, and nine cover position motion, `value80` gates, field-readiness gates, and a state-owned subobject update. Their names state the proven mechanics and preserve numeric animation and sound identifiers.
 
 Four saved-update and callback-dispatch transitions have also left miscellaneous bucket 02. They preserve and restore the primary object update around a shared setup operation, release an object when its state-owned visual clears byte `0x21`, or invoke the callback at offset 4 of the object's descriptor after the field readiness gate clears. The extraction leaves seventeen callable routines in bucket 02.
+
+Miscellaneous bucket 02 is now retired. Its final routines resolved into field process and resource ownership, script branching and wait handlers, shared runtime-global teardown, and graphics staging or linked-visual operations. The only active unclassified C is now `text_misc_helpers_03.c`.

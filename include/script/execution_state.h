@@ -17,7 +17,8 @@ struct ScriptExecutionState {
     u32 secondaryValue0;
     u32 secondaryValue1;
     u32 returnCursor;
-    u8 unknown14[0x44];
+    u32 resumeCursor;
+    u8 unknown18[0x40];
     u32 valueStack[SCRIPT_VALUE_STACK_CAPACITY];
     u32 storedValue;
     u32 waitTimer;
@@ -29,11 +30,22 @@ struct ScriptExecutionState {
     u8 unknownA7;
 };
 
+struct ScriptConditionBranchArguments {
+    u8 condition;
+    u8 padding01[3];
+    u32 operand;
+    u32 targetCursor;
+};
+
 #define script_state_set_secondary_channel sub_80EA514
 #define script_state_set_primary_channel sub_80EA530
 #define script_command_pop_value sub_80EA904
 #define script_command_store_value sub_80EA91C
 #define script_command_push_value sub_80EA928
+#define script_command_branch_if_condition sub_80EA8DC
+#define script_wait_for_primary_actor_height sub_80F0704
+#define script_wait_for_field_flag_291 sub_80F0724
+#define script_wait_for_context_operation sub_80FA6BC
 #define script_command_call script_cmd_call
 #define script_command_end script_cmd_end
 #define script_command_set_current_object_configuration sub_80F14C4

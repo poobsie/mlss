@@ -14,6 +14,8 @@ typedef void (*InterruptCallback)(void);
 #define runtime_release_global_state_ff4 sub_8123340
 #define runtime_release_global_state_fb4 sub_80E57FC
 #define runtime_release_global_state_fc4 sub_80E9AF8
+#define runtime_release_global_state_fbc sub_80E8D74
+#define runtime_release_global_state_fb4_fb8_fbc sub_80E8DC0
 #define runtime_release_and_clear_global_state_fc0 sub_80E9D04
 
 void game_state_set_play_time(u32 playTime);
@@ -24,6 +26,8 @@ void runtime_release_global_resource_callback(void* unused);
 void runtime_release_global_state_ff4(void);
 void runtime_release_global_state_fb4(void);
 void runtime_release_global_state_fc4(void);
+void runtime_release_global_state_fbc(void);
+void runtime_release_global_state_fb4_fb8_fbc(void);
 void runtime_release_and_clear_global_state_fc0(void);
 
 #endif

@@ -43,4 +43,6 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,
 
 The same runtime module now owns the heap releases for global slots `0x03000FB4`, `0x03000FC4`, and `0x03000FC0`. The last operation clears its slot after release; the first two preserve the original value. Address suffixes remain because allocation sites have not established narrower resource identities.
 
+The module now also releases and clears global slot `0x03000FBC`. Its grouped teardown first invokes the existing `0x03000FB4` release, then releases and clears `0x03000FB8` and `0x03000FBC`. The allocation code proves that these slots participate in one resource setup, but not enough payload structure is recovered to replace their address suffixes safely.
+
 `RuntimeIntrusiveList` and `RuntimeIntrusiveNode` recover the generic head, tail, count, previous, and next fields used near `0x08163CD4`. `runtime_intrusive_list_append_unique` first rejects a node already present in the list, then appends it and increments the count. The node payload at offset `0` is intentionally unnamed because this routine never reads it.

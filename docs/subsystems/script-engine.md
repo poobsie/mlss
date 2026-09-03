@@ -52,6 +52,8 @@ The extracted command handlers now expose stack push/pop, stored-value assignmen
 | `sub_80F7E80` | `script_command_noop` | Returns the interpreter's successful-completion value without changing state. |
 | `sub_80F80B4` | `script_command_forward_pair` | Forwards two consecutive command words to the same callee. The callee's semantics remain unknown. |
 
+The execution state now exposes the saved cursor at offset `0x14`. Three wait handlers restore that cursor and yield when their respective condition becomes true: the primary actor height test, field flag `0x291` bit 0, or a context-owned asynchronous operation. `script_command_branch_if_condition` decodes its aligned condition, operand, and target-cursor record and updates the current cursor only when the shared condition evaluator succeeds.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.

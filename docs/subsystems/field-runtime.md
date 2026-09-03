@@ -98,6 +98,10 @@ Three former miscellaneous helpers now use established field-runtime ownership. 
 
 The final field helpers from bucket 01 now set the view's pan deltas, wait for an object's state flag to clear, wait for a nested visual to complete, and create display node kind `0x86` with its value at `0x14` cleared. The pan deltas are computed by the adjacent assembly routine from changes in the view's origin and pan coordinates.
 
+Bucket 02 adds three typed field-process transitions: one finishes an action when its branch query clears, one runs two global setup operations after field readiness, and one drives a selected runtime object until its update becomes null before returning to the field scan callback. Two companion transitions start animation `0x2F` on the first object owner at runtime offset `0x58`, then install their distinct continuations. The display-node module also exposes the paired index 0 and 1 initializer.
+
+The resource-loader boundary now includes two owned allocations. `FieldOwnedResource` releases its allocation at offset zero, while `FieldResourceBlockList` releases its block array at offset `0x0C`; both conditionally release their owner when destructor flag 1 is present. The latter is constructed and destroyed by the adjacent field resource system, which supports the subsystem assignment without guessing the payload format.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.

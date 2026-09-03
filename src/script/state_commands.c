@@ -1,11 +1,52 @@
 #include "global.h"
+#include "script/command_context.h"
 #include "script/execution_state.h"
 
 #define SEC(symbol) __attribute__((section(".text.middle." #symbol)))
+#define STRINGIFY_INNER(value) #value
+#define STRINGIFY(value) STRINGIFY_INNER(value)
+#define MISC2_SEC(symbol) \
+    __attribute__((section(".text.misc_helpers_02." STRINGIFY(symbol))))
 #define U32AT(pointer, offset) (*(u32*)((u8*)(pointer) + (offset)))
 
 extern void sub_8047E50(void*, int);
 extern void sub_807C1C8(int, int);
+extern s32 script_test_condition(void* context, u8 condition, u32 operand,
+                                 u32 storedValue);
+extern s32 sub_803C508(void* registry);
+extern s32 sub_803E9F0(void* registry);
+extern s32 sub_81219C4(void* registry);
+
+#define DEFINE_SCRIPT_WAIT_HANDLER(name, predicate)                         \
+    MISC2_SEC(name) s32 name(struct ScriptCommandContext* context,          \
+                             struct ScriptExecutionState* state)            \
+    {                                                                       \
+        if ((predicate(context->objectRegistry) << 24) != 0) {              \
+            state->cursor = state->resumeCursor;                            \
+            return 0;                                                       \
+        }                                                                   \
+        return 1;                                                           \
+    }
+
+DEFINE_SCRIPT_WAIT_HANDLER(script_wait_for_primary_actor_height, sub_803C508)
+DEFINE_SCRIPT_WAIT_HANDLER(script_wait_for_field_flag_291, sub_803E9F0)
+DEFINE_SCRIPT_WAIT_HANDLER(script_wait_for_context_operation, sub_81219C4)
+
+MISC2_SEC(script_command_branch_if_condition)
+s32 script_command_branch_if_condition(
+    void* context, struct ScriptExecutionState* state,
+    const struct ScriptConditionBranchArguments* arguments)
+{
+    if ((script_test_condition(context, arguments->condition,
+                               arguments->operand, state->storedValue)
+         << 24)
+        != 0) {
+        state->cursor = arguments->targetCursor;
+    }
+    return 1;
+}
+MISC2_SEC(script_command_branch_if_condition)
+const u16 script_command_branch_if_condition_padding = 0;
 
 SEC(sub_80EA514) void script_state_set_secondary_channel(
     void* context, struct ScriptExecutionState* state,

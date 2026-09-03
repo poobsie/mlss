@@ -27,10 +27,12 @@ struct GraphicsPackedValueOwner;
 #define graphics_advance_by_nibble_width sub_810D260
 #define graphics_extract_mode_relative_index sub_8127E38
 #define graphics_extract_owner_mode_relative_index sub_80E8F1C
+#define graphics_update_global_resource_fcc_layer_4_mask_16 sub_80F032C
 
 u32 graphics_extract_mode_relative_index(u32 value);
 u32 graphics_extract_owner_mode_relative_index(
     struct GraphicsPackedValueOwner* owner,
     s32 value);
+void graphics_update_global_resource_fcc_layer_4_mask_16(void);
 
 #endif
