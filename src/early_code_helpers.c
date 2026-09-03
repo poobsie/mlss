@@ -3,17 +3,8 @@
 #define FIELD_AT(ptr, type, offset) (*(type)((u8*)(ptr) + (offset)))
 #define SECTION(name)               __attribute__((section(".text.early_code_helpers." #name)))
 
-struct LowThreeBits {
-    u8 value : 3;
-};
-
 struct LowTwoBits {
     u8 value : 2;
-};
-
-struct BitSix {
-    u8 low : 6;
-    u8 value : 1;
 };
 
 struct CallbackAt1A0 {
@@ -24,7 +15,6 @@ struct CallbackAt1A0 {
 void sub_80FC1F8(void);
 void sub_802FAE4(void*, void*, s32);
 void sub_8029A0C(void*, void*, s32);
-void sub_8020D40(s32);
 void sub_8139AA0(void*);
 void sub_80514C4(void);
 
@@ -68,21 +58,6 @@ s32 sub_803E9F0(void* arg0) {
     return 1 & FIELD_AT(arg0, u8*, 0x291);
 }
 
-void sub_804FB14(void* arg0) SECTION(sub_804FB14);
-void sub_804FB14(void* arg0) {
-    FIELD_AT(arg0, s32*, 0x18) = (s32)FIELD_AT(arg0, s32*, 8);
-    FIELD_AT(arg0, s32*, 0x1C) = (s32)FIELD_AT(arg0, s32*, 0xC);
-    FIELD_AT(arg0, s32*, 0x20) = (s32)FIELD_AT(arg0, s32*, 0x10);
-    FIELD_AT(arg0, s32*, 0x24) = (s32)FIELD_AT(arg0, s32*, 0x14);
-}
-SECTION(sub_804FB14) const u16 sub_804FB14_padding = 0;
-
-void sub_804FB28(struct LowThreeBits* object, u32 value) SECTION(sub_804FB28);
-void sub_804FB28(struct LowThreeBits* object, u32 value) {
-    object->value = value;
-}
-SECTION(sub_804FB28) const u16 sub_804FB28_padding = 0;
-
 void sub_801AF50(void) SECTION(sub_801AF50);
 void sub_801AF50(void) {
     sub_80FC1F8();
@@ -112,13 +87,6 @@ void sub_803C898(void* arg0, void* arg1) SECTION(sub_803C898);
 void sub_803C898(void* arg0, void* arg1) {
     sub_8029A0C(arg0, arg1, 1);
 }
-
-void sub_804FAF8(u8* arg0) SECTION(sub_804FAF8);
-void sub_804FAF8(u8* arg0) {
-    sub_8020D40(*(s32*)(arg0 + 0x44));
-    ((struct BitSix*)arg0)->value = 0;
-}
-SECTION(sub_804FAF8) const u16 sub_804FAF8_padding = 0;
 
 void sub_8051614(void* arg0, u8* arg1) SECTION(sub_8051614);
 void sub_8051614(void* arg0, u8* arg1) {

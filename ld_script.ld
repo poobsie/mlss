@@ -146,11 +146,11 @@ SECTIONS
         asm/text0801A548.o(.text.after_field_configuration_8047E50);
         src/text_early_helpers_04.o(.text.text_early_helpers_04.sub_8048040);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_8048040);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_804FAF8);
+        src/field/collision_record.o(.text.early_code_helpers.sub_804FAF8);
         asm/text0801A548.o(.text.after_early_code_helpers_804FAF8);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_804FB14);
+        src/field/collision_record.o(.text.early_code_helpers.sub_804FB14);
         asm/text0801A548.o(.text.after_early_code_helpers_804FB14);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_804FB28);
+        src/field/collision_record.o(.text.early_code_helpers.sub_804FB28);
         asm/text0801A548.o(.text.after_early_code_helpers_804FB28);
         src/text_early_helpers_04.o(.text.text_early_helpers_04.sub_804FBDC);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_804FBDC);

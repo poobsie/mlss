@@ -36,6 +36,8 @@ The recovered layout now begins at offset `0x20C` and includes nine property ope
 
 The object also selects one 28-byte entry through an index at `0x26E` and a table pointer at `0x334`. Two wrappers perform guarded low-bit state changes on that entry, `2` to `1` and `1` to `2`. Their names state those proven transitions directly; the table's gameplay identity remains unresolved.
 
+`FieldCollisionRecord` is the `0x4C`-byte record allocated in an eight-element set. Its initializer stores the record index in the low three flag bits and returns the record pointer used by the caller. The recovered maintenance helpers preserve four current bounds into their previous-value slots and release the resource at `0x44` while clearing the active flag. The geometric axis meanings are inferred from their grouped use and retain rectangle-oriented names pending full collision update recovery.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
