@@ -1,0 +1,47 @@
+#ifndef GUARD_BATTLE_FUNCTIONS_H
+#define GUARD_BATTLE_FUNCTIONS_H
+
+/* Semantic C names mapped to original symbols still referenced by assembly. */
+#define battle_initialize_definition_00 sub_8158450
+#define battle_initialize_definition_01 sub_8158518
+#define battle_initialize_definition_02 sub_815859C
+#define battle_initialize_definition_03 sub_81585D8
+#define battle_initialize_definition_04 sub_8158654
+#define battle_initialize_definition_05 sub_81586FC
+#define battle_initialize_definition_06 sub_8158808
+#define battle_initialize_definition_07 sub_81588C8
+#define battle_initialize_definition_08 sub_8158920
+#define battle_initialize_definition_09 sub_8158994
+#define battle_initialize_definition_10 sub_81589DC
+#define battle_initialize_definition_11 sub_8158A50
+#define battle_initialize_definition_12 sub_8158AEC
+#define battle_initialize_definition_13 sub_815ED70
+#define battle_initialize_definition_14 sub_815EDF4
+#define battle_initialize_definition_15 sub_815EE30
+#define battle_initialize_definition_16 sub_815EE74
+#define battle_initialize_definition_17 sub_815EF44
+#define battle_initialize_definition_18 sub_815F050
+#define battle_initialize_definition_19 sub_815F110
+#define battle_initialize_definition_20 sub_815F168
+#define battle_initialize_definition_21 sub_815F1DC
+#define battle_initialize_definition_22 sub_815F224
+#define battle_initialize_definition_23 sub_815F27C
+#define battle_initialize_definition_24 sub_815F340
+
+#define battle_set_runtime_value_52c sub_8159904
+#define battle_enable_runtime_value_514 sub_8159984
+#define battle_effect_hide_sprite_and_reset sub_815EC3C
+#define battle_forward_sprite_y sub_815F56C
+
+#define battle_destroy_sprite_owner_a sub_815F7FC
+#define battle_destroy_sprite_owner_b sub_815F838
+#define battle_destroy_sprite_owner_c sub_815F85C
+#define battle_destroy_sprite_owner_d sub_815F898
+#define battle_destroy_sprite_owner_e sub_815F8BC
+
+#define battle_sprite_owner_get_sprite sub_815FA3C
+#define battle_sprite_owner_hide_sprite sub_815FA40
+#define battle_sprite_owner_show_sprite sub_815FA50
+#define battle_sprite_owner_release_sprite sub_815FAFC
+
+#endif

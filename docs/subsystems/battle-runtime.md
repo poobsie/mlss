@@ -1,14 +1,26 @@
 # Battle runtime
 
-## Definition wrappers
+## Recovered boundary
 
-The first recovered family consists of thin initializers for `BattleDefinitionObject`. Each stores one immutable definition pointer at offset `0x30`, then calls the common initializer with the object, caller argument, and same definition. The descriptor contents and gameplay identities remain outside the current C boundary.
+The current C boundary is organized under `src/battle/` by responsibility:
 
-The later file now uses the same definition type and separates three other observed layouts: an effect object with a sprite and state byte, a large runtime-value object, and a sprite owner with a vtable. Sprite access, visibility, cleanup, runtime values, and destructor vtable replacement no longer use raw byte offsets.
+- `definition_initializers.c` stores one immutable definition at offset `0x30`, then calls the common initializer.
+- `effect_state.c` hides an attached sprite and clears the effect state byte.
+- `runtime_values.c` updates the independently observed fields at offsets `0x514`, `0x518`, and `0x52C`.
+- `sprite_owner.c` provides sprite access, visibility, coordinate forwarding, and release operations.
+- `destructors.c` installs the common terminal vtable and optionally frees the owner.
 
-## Next boundary
+`BattleDefinitionObject`, `BattleEffectObject`, `BattleRuntimeValues`, and `BattleSpriteOwner` represent separate observed layouts. They are not merged into a speculative inheritance tree.
 
-Split definition initialization, sprite ownership, effect state, runtime values, and destructor families into focused source files.
+`include/battle/functions.h` supplies semantic C names while retaining the original linker symbols for assembly callers. Definition initializers use numbered identities because their descriptor contents and gameplay roles have not been recovered. The runtime-value names retain offsets for the same reason. These names should become gameplay names only when callers or descriptor data prove them.
+
+## Matching constraint
+
+The byte update in `battle_effect_hide_sprite_and_reset` is intentionally expressed through a byte pointer. A direct nested structure-field expression makes this compiler save an additional register, growing the function by eight bytes. The receiver and stored sprite pointer remain typed; the local expression preserves the original instruction selection.
+
+## Remaining evidence
+
+Gameplay-specific definition names require recovered descriptor contents or identifiable construction call sites. The five identical destructor entry points require class ownership evidence before their `a` through `e` suffixes can be replaced honestly.
 
 ## Verification
 
