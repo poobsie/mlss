@@ -1,39 +1,16 @@
 #include "global.h"
+#include "process/types.h"
 
 // Structs
-struct ProcessDefinition {
-    u32 field_0;
-    void (*field_4)(void*);
-    s16 offset;
-    u16 field_A;
-    void (*update)(void*);
-};
-
-struct Process {
-    u8 state;
-    u8 priority;
-    s16 flag : 1;
-    s16 wait : 1;
-    s16 executeMax : 4;
-    u16 executeCounter : 4;
-    u16 processCount : 6;
-    u32 frames;
-    char label[4];
-    struct Process* previousProcess;
-    struct Process* nextProcess;
-    struct Process* parentProcess;
-    struct ProcessDefinition* definition;
-};
-
 struct GameState {
     u16 field_0;
     u16 field_2;
     u32 field_4;
     u8 gap8[4];
-    struct Process* startProcessLink;
-    struct Process* nextProcess;
+    struct Process* processListHead;
+    struct Process* nextProcessToExecute;
     struct Process* currentProcess;
-    u8 processCount;
+    u8 activeProcessCount;
     u32 field_1C;
     u32 gap20;
     u32 playTime;
@@ -292,7 +269,6 @@ extern s16 word_83A7574[];
 extern s16 word_83A75B8[];
 extern s16 word_83A75C8[];
 extern u8* off_839EC80;
-extern struct ProcessDefinition stru_8CDBD68;
 extern struct ProcessDefinition stru_8CDBD78;
 extern struct ProcessDefinition stru_8CDC1F8;
 extern struct ProcessDefinition stru_8CDC238;

@@ -1,6 +1,6 @@
 #include "global.h"
 #include "common.h"
-#include "process.h"
+#include "process/process.h"
 #include "game_boy_player_logo.h"
 
 struct GameBoyPlayerLogo* gbpl_init(struct GameBoyPlayerLogo* gbpl, u8 priority, char* label,

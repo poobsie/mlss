@@ -1,5 +1,7 @@
-#ifndef PROCESS_H
-#define PROCESS_H
+#ifndef GUARD_PROCESS_PROCESS_H
+#define GUARD_PROCESS_PROCESS_H
+
+#include "process/types.h"
 
 #define PROCESS_REMOVE_FLAGS_NOTHING 0
 #define PROCESS_REMOVE_FLAGS_FREE    1

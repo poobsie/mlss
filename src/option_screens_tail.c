@@ -1,6 +1,6 @@
 #include "global.h"
 #include "common.h"
-#include "process.h"
+#include "process/process.h"
 
 void generate_window_bg_8051B98(struct WindowAttr*, int*, u8, u8, u8, u8, int);
 

@@ -45,10 +45,10 @@ SECTIONS
         src/audio/music.o(.text.audio_music);
         src/audio/driver.o(.text.audio_driver);
         asm/text08018E24.o(.text.after_audio_driver);
-        src/runtime_helpers.o(.text.runtime_helpers_tail);
-        asm/text08018E24.o(.text.after_runtime_helpers_tail);
-        src/runtime_tail.o(.text);
-        src/process.o(.text);
+        src/runtime/bootstrap.o(.text.runtime_bootstrap);
+        asm/text08018E24.o(.text.after_runtime_memory);
+        src/runtime/relocated_code.o(.text);
+        src/process/process.o(.text);
         asm/text08019CA4.o(.text);
         src/text08019CA4_tail.o(.text);
         src/game_boy_player_logo.o(.text);
@@ -1540,7 +1540,7 @@ SECTIONS
         asm/text08057568.o(.text.child_actions_after_sub_8135F20);
         src/text_middle_helpers.o(.text.middle.sub_8136688);
         asm/text08057568.o(.text.after_middle_sub_8136688);
-        src/process_destructors.o(.text.process_destructors.sub_81367AC);
+        src/process/destructors.o(.text.process_destructors.sub_81367AC);
         asm/text08057568.o(.text.process_destructors_after_sub_81367AC);
         src/text_upper_functions/sub_81367C0.o(.text.upper.sub_81367C0);
         asm/text08057568.o(.text.after_upper_sub_81367C0);
@@ -1884,7 +1884,7 @@ SECTIONS
         asm/text08057568.o(.text.object_destructors_after_sub_8167F40);
         src/object_destructors.o(.text.object_destructors.sub_8167FF8);
         asm/text08057568.o(.text.object_destructors_after_sub_8167FF8);
-        src/process_destructors.o(.text.process_destructors.sub_8168294);
+        src/process/destructors.o(.text.process_destructors.sub_8168294);
         asm/text08057568.o(.text.process_destructors_after_sub_8168294);
         src/text_high_helpers.o(.text.high.sub_816AFDC);
         asm/text08057568.o(.text.high_after_sub_816AFDC);
@@ -1910,7 +1910,7 @@ SECTIONS
         asm/text08057568.o(.text.object_destructors_after_sub_816D710);
         src/object_destructors.o(.text.object_destructors.sub_816D7B8);
         asm/text08057568.o(.text.object_destructors_after_sub_816D7B8);
-        src/process_destructors.o(.text.process_destructors.sub_816D96C);
+        src/process/destructors.o(.text.process_destructors.sub_816D96C);
         asm/text08057568.o(.text.process_destructors_after_sub_816D96C);
         src/object_destructors.o(.text.object_destructors.sub_8171C20);
         asm/text08057568.o(.text.object_destructors_after_sub_8171C20);
@@ -1922,7 +1922,7 @@ SECTIONS
         asm/text08057568.o(.text.high_after_sub_8171DD4);
         src/object_destructors.o(.text.object_destructors.sub_8171F84);
         asm/text08057568.o(.text.object_destructors_after_sub_8171F84);
-        src/process_destructors.o(.text.process_destructors.sub_8171FC0);
+        src/process/destructors.o(.text.process_destructors.sub_8171FC0);
         asm/text08057568.o(.text.process_destructors_after_sub_8171FC0);
         src/text_upper_helpers.o(.text.text_upper_helpers.sub_8176768);
         asm/text08057568.o(.text.after_text_upper_helpers_sub_8176768);

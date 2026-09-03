@@ -1187,7 +1187,7 @@ _080197FC: .4byte 0x03000C6C
 _08019800: .4byte 0x080000F4
 _08019804: .4byte 0x03000C78
 	.endif
-	.section .text.after_runtime_helpers_tail
+	.section .text.after_runtime_memory
 	thumb_func_start sub_8019808
 sub_8019808:
 	push {r4, r5, lr}

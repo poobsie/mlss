@@ -369722,7 +369722,7 @@ sub_8121B5C:
 	lsrs r2, r2, #0x10
 	str r2, [sp, #0x014]
 	mov r0, r10
-	bl sub_80197C4
+	bl decimal_digit_count
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov r9, r0

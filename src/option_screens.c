@@ -2,7 +2,7 @@
 #include "audio/music.h"
 #include "audio/sound_effects.h"
 #include "common.h"
-#include "process.h"
+#include "process/process.h"
 #include "title_screen.h"
 #include "option_screens.h"
 

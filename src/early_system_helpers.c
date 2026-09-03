@@ -1,7 +1,7 @@
 #include "global.h"
 #include "common.h"
 #include "gba/syscall.h"
-#include "process.h"
+#include "process/process.h"
 
 #define SECTION(name) __attribute__((section(".text.early_system_helpers." #name)))
 

@@ -6356,8 +6356,8 @@ _08017C1E:
 	strb r1, [r4, #0x06]
 _08017C70:
 	bl sub_8018E24
-	bl sub_80197E0
-	bl sub_8019940
+	bl runtime_memory_state_init
+	bl runtime_relocated_code_init
 	ldr r3, _08017D54 @ =0x04000208
 	movs r0, #0x00
 	strh r0, [r3, #0x00]

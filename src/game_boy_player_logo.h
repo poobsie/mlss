@@ -1,7 +1,7 @@
 #ifndef GAME_BOY_PLAYER_LOGO_H
 #define GAME_BOY_PLAYER_LOGO_H
 
-#include "process.h"
+#include "process/process.h"
 
 struct GameBoyPlayerLogo {
     struct Process process;

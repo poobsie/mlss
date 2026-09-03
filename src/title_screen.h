@@ -1,7 +1,7 @@
 #ifndef TITLE_SCREEN_H
 #define TITLE_SCREEN_H
 
-#include "process.h"
+#include "process/process.h"
 
 enum TitleScreenStates {
     // Fade in from white.

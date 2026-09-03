@@ -1,12 +1,13 @@
 #include "global.h"
 #include "common.h"
+#include "runtime/memory.h"
 
 extern u8 runtimeCopyStart[] __asm__("sub_8000534");
 extern u8 runtimeCopyEnd[] __asm__("sub_800063C");
 extern u8 byte_3000C80;
 extern u8 byte_3000D08;
 
-void sub_8019940(void) {
+void runtime_relocated_code_init(void) {
     int size;
     u8* copyStart;
     void* destination;
