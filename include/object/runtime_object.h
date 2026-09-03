@@ -47,7 +47,9 @@ struct RuntimeObject {
     s8 boundaryOffset45;
     u8 unknown46[6];
     RuntimeObjectCallback update;
-    u8 unknown50[0x18];
+    u8 unknown50[0x0C];
+    RuntimeObjectCallback secondaryUpdate;
+    u8 unknown60[8];
     RuntimeObjectCallback cleanup;
     const void* descriptor;
     u8 unknown70[6];
@@ -57,7 +59,7 @@ struct RuntimeObject {
     u8 flags79;
     u8 unknown7A[0x1A];
     s32 verticalAcceleration;
-    u8 unknown98[4];
+    u32 flags98;
     s32 behaviorState;
     u8 unknownA0[0x0C];
     s16 timer;

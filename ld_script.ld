@@ -282,7 +282,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8062E70);
         src/text_small_functions_02.o(.text.small_functions_02.sub_8062F00);
         asm/text08057568.o(.text.small_functions_02_after_sub_8062F00);
-        src/text_small_functions_06.o(.text.small_functions_06.sub_8062F40);
+        src/object/visual_completion_variants.o(.text.object_visual_completion_variants.sub_8062F40);
         asm/text08057568.o(.text.small_functions_06_after_sub_8062F40);
         src/text_small_functions_12.o(.text.small_functions_12.sub_8063248);
         asm/text08057568.o(.text.small_functions_12_after_sub_8063248);
@@ -326,7 +326,7 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_03_after_sub_80651CC);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_80652B0);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80652B0);
-        src/text_small_functions_06.o(.text.small_functions_06.sub_806533C);
+        src/object/visual_completion_variants.o(.text.object_visual_completion_variants.sub_806533C);
         asm/text08057568.o(.text.small_functions_06_after_sub_806533C);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_80653CC);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80653CC);
@@ -1035,7 +1035,7 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_809A7EC);
         src/text_small_functions_05.o(.text.small_functions_05.sub_809A808);
         asm/text08057568.o(.text.small_functions_05_after_sub_809A808);
-        src/text_small_functions_06.o(.text.small_functions_06.sub_809A858);
+        src/object/visual_completion_variants.o(.text.object_visual_completion_variants.sub_809A858);
         asm/text08057568.o(.text.small_functions_06_after_sub_809A858);
         src/object/behavior_transitions.o(.text.sub_809AEB0);
         asm/text08057568.o(.text.after_sub_809AEB0);
@@ -1115,7 +1115,7 @@ SECTIONS
         asm/text08057568.o(.text.actor_interaction_transitions_after_sub_80A4A10);
         src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_80A6F78);
         asm/text08057568.o(.text.actor_state_transitions_after_sub_80A6F78);
-        src/text_small_functions_06.o(.text.small_functions_06.sub_80AC4AC);
+        src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_80AC4AC);
         asm/text08057568.o(.text.small_functions_06_after_sub_80AC4AC);
         src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_80AC950);
         asm/text08057568.o(.text.actor_state_transitions_after_sub_80AC950);

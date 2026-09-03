@@ -13,6 +13,7 @@
 #define field_test_flag_291_01 sub_803E9F0
 #define field_apply_operation_a_enabled sub_803C538
 #define field_apply_operation_b_enabled sub_803C898
+#define field_finish_actor_b_and_resume_actor_a sub_80AC4AC
 
 /* Semantic C names mapped to original symbols still referenced by assembly. */
 #define field_object_forward_slot70 sub_8050518

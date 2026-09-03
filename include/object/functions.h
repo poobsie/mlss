@@ -10,5 +10,8 @@
 #define object_on_visual_complete_command_0_and_stop sub_8132D78
 #define object_on_visual_complete_command_13_and_continue sub_81332BC
 #define object_when_value80_clear_command_10 sub_8133CF0
+#define object_on_visual_complete_select_animation_5_or_8 sub_8062F40
+#define object_on_visual_complete_spawn_effect_151d sub_806533C
+#define object_on_visual_complete_select_animation_5_or_7 sub_809A858
 
 #endif

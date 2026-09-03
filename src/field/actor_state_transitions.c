@@ -42,3 +42,24 @@ DEFINE_ACTOR_STATE(field_wait_actor_b_then_prepare_actor_a_a, actorA, actorB, su
 DEFINE_ACTOR_STATE(field_wait_actor_b_then_prepare_actor_a_b, actorA, actorB, sub_80AC9C4)
 DEFINE_ACTOR_STATE(field_wait_actor_b_then_prepare_actor_a_c, actorA, actorB, sub_80C0BE4)
 DEFINE_ACTOR_STATE(field_wait_actor_b_then_prepare_actor_a_d, actorA, actorB, sub_80CD200)
+
+extern void sub_80884AC(struct FieldAction* action);
+extern void sub_80A99A8(void);
+
+SEC(sub_80AC4AC) void sub_80AC4AC(void)
+{
+    s32 state;
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct FieldActor* actorA = runtime->actorA;
+    struct FieldAction* actionA = &actorA->action;
+    struct FieldActor* actorB = runtime->actorB;
+    struct FieldAction* actionB = &actorB->action;
+
+    sub_80884AC(actionB);
+    if (actorB->flags81 & 0x20) {
+        state = actorA->stateFlags & 6;
+        if (state == 2 || state == 4)
+            actionA->update = sub_80A99A8;
+        actionB->update = 0;
+    }
+}

@@ -72,6 +72,8 @@ Three boundary callbacks now share `RuntimeObject` and `RuntimeObjectVisual`. Ea
 
 Four late command transitions now use the same `RuntimeObject` visual and update fields. Three wait for visual completion before issuing command `0` or `13`; the fourth tests the still-structural word at `0x80` before issuing command `10`. Their names expose those exact gates and effects without claiming a gameplay owner.
 
+Three additional visual-completion variants now use the shared object layout. They select animations from state at `0x9C` or flags at `0x98`; one also starts effect `0x151D`, installs a secondary update at `0x5C`, and advances the primary update at `0x4C`.
+
 `object_traverse_child_tree_noop` recursively visits both child links of an independently observed tree-node layout. It performs no action at each node. The explicit `noop` suffix is intentional: assigning cleanup or rendering semantics to a side-effect-free traversal would be fiction.
 
 ## Verification
