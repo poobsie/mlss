@@ -20,39 +20,6 @@ struct EasyCopy3FA8 {
     u32 field_08;
 };
 
-struct EasyInit817C {
-    u32 field_00;
-    void* callback;
-    u32 field_08;
-    u32 field_0C;
-    u32 field_10;
-    u32 field_14;
-};
-
-#define DEFINE_EASY_INIT(name, callback_value) \
-    void name(struct EasyInit817C* object) FUNCTION_SECTION(".text." #name); \
-    void name(struct EasyInit817C* object) { \
-        object->field_00 = 0; \
-        object->callback = (void*)(callback_value); \
-        object->field_08 = 0; \
-        object->field_0C = 0; \
-        object->field_10 = 0x7E00; \
-        object->field_14 = 0; \
-    }
-
-DEFINE_EASY_INIT(sub_815817C, 0x08CDC570);
-DEFINE_EASY_INIT(sub_815E9EC, 0x08CDCAD0);
-
-#define DEFINE_EASY_CALLBACK(name, callback_value) \
-    void name(struct EasyInit817C* object) FUNCTION_SECTION(".text." #name); \
-    void name(struct EasyInit817C* object) { \
-        object->callback = (void*)(callback_value); \
-        object->field_00 = 0; \
-    }
-
-DEFINE_EASY_CALLBACK(sub_8158198, 0x08CDCA30);
-DEFINE_EASY_CALLBACK(sub_815EA08, 0x08CDCF50);
-
 void sub_81582C4(void* object) FUNCTION_SECTION(".text.sub_81582C4");
 void sub_81582C4(void* object) {
     *(u32*)((u8*)object + 0x20) = 0;
