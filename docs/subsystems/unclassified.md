@@ -29,3 +29,5 @@ Eighteen more object callbacks have left the staging bucket. Four install a cont
 Six non-object helpers have been assigned from their shared global owners. Three operate on the field runtime's active value-transfer state or primary actor object. Three release heap pointers in the general runtime global block, with the `0x03000FC0` variant also clearing its slot.
 
 The remaining fourteen object callbacks from `text_misc_helpers_01.c` now use the shared setup and state-helper modules. They expose linked position synchronization, update preservation, state-byte gates, visual gates, and terminal callbacks. The final five mixed helpers belong to field view/process/display code and graphics process state. With those assignments, `text_misc_helpers_01.c` is retired; only buckets 02 and 03 remain unclassified.
+
+The first extraction from `text_misc_helpers_02.c` moves twenty-eight object callbacks into two explicit families. Fourteen stop a known sound and forward their arguments into one of three shared setup routines. Fourteen wait for the field readiness gate, start animation 2 or 3, and install a sequence-specific continuation.

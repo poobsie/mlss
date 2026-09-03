@@ -90,6 +90,10 @@ Fourteen small value transitions now use the shared object and visual layouts. T
 
 The final fourteen object callbacks from miscellaneous bucket 01 now use `RuntimeObject` and `RuntimeObjectState` throughout. They synchronize a linked object's position, preserve and replace update callbacks, expose state values at `0xA4` and `0x113`, read a signed byte from the state-owned source at `0xE4`, and express several terminal gates. The callback literal `0x0808A201` remains address-named because no symbol or recovered entry point currently identifies it.
 
+Fourteen setup forwarders from miscellaneous bucket 02 now form a parameterized family. They stop sound `0x6C`, `0x81`, `0x11A`, or `0x11C`, then preserve all arguments and return the result from one of three established object setup routines. A separate zero-argument variant preserves the opposite call order used by its original sequence.
+
+Fourteen readiness-gated animation transitions now share one typed implementation. Each waits for the field readiness query to clear, starts animation 2 or 3 with zero command arguments, and installs its own continuation. Variant suffixes preserve callback-table entry points whose gameplay owners remain in assembly.
+
 Three additional visual-completion variants now use the shared object layout. They select animations from state at `0x9C` or flags at `0x98`; one also starts effect `0x151D`, installs a secondary update at `0x5C`, and advances the primary update at `0x4C`.
 
 Four late visual transitions now expose linked-object completion, linked-chain flag propagation at `0xA8`, animation and sound setup, and terminal cleanup. Their semantic aliases describe the proven gate and effect; unresolved sound and animation values remain numeric.

@@ -218,66 +218,6 @@ void sub_80E8DC0(void);
 void sub_8113E20(s32 arg0);
 void sub_8059FE4(s32 arg0);
 
-SEC(sub_80899C4) s32 sub_80899C4(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x6C);
-    return sub_8087124(arg0, arg1, arg2);
-}
-SEC(sub_80899C4) const u16 sub_80899C4_padding = 0;
-
-SEC(sub_80899E4) s32 sub_80899E4(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x6C);
-    return sub_8086C64(arg0, arg1, arg2);
-}
-SEC(sub_80899E4) const u16 sub_80899E4_padding = 0;
-
-SEC(sub_808A174) s32 sub_808A174(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x81);
-    return sub_8087124(arg0, arg1, arg2);
-}
-SEC(sub_808A174) const u16 sub_808A174_padding = 0;
-
-SEC(sub_808A194) s32 sub_808A194(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x81);
-    return sub_8086C64(arg0, arg1, arg2);
-}
-SEC(sub_808A194) const u16 sub_808A194_padding = 0;
-
-SEC(sub_808A1B4) s32 sub_808A1B4(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x81);
-    return sub_810DD7C(arg0, arg1, arg2);
-}
-SEC(sub_808A1B4) const u16 sub_808A1B4_padding = 0;
-
-SEC(sub_80D909C) s32 sub_80D909C(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x81);
-    return sub_8087124(arg0, arg1, arg2);
-}
-SEC(sub_80D909C) const u16 sub_80D909C_padding = 0;
-
-SEC(sub_80D90BC) s32 sub_80D90BC(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x81);
-    return sub_810DD7C(arg0, arg1, arg2);
-}
-SEC(sub_80D90BC) const u16 sub_80D90BC_padding = 0;
-
-SEC(sub_80DB184) s32 sub_80DB184(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x81);
-    return sub_8087124(arg0, arg1, arg2);
-}
-SEC(sub_80DB184) const u16 sub_80DB184_padding = 0;
-
-SEC(sub_80DB1A4) s32 sub_80DB1A4(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x81);
-    return sub_8086C64(arg0, arg1, arg2);
-}
-SEC(sub_80DB1A4) const u16 sub_80DB1A4_padding = 0;
-
-SEC(sub_80DB1C4) s32 sub_80DB1C4(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x81);
-    return sub_810DD7C(arg0, arg1, arg2);
-}
-SEC(sub_80DB1C4) const u16 sub_80DB1C4_padding = 0;
-
 SEC(sub_80E8D74) void sub_80E8D74(void) {
     if (*(s32*)0x03000FBC != 0) {
         heap_free_block();
@@ -508,21 +448,6 @@ SEC(sub_810CBC8) void sub_810CBC8(void) {
 }
 SEC(sub_810CBC8) const u16 sub_810CBC8_padding = 0;
 
-SEC(sub_80DE960) s32 sub_80DE960(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x11A);
-    return sub_8086C64(arg0, arg1, arg2);
-}
-
-SEC(sub_80DE980) s32 sub_80DE980(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x11A);
-    return sub_810DD7C(arg0, arg1, arg2);
-}
-
-SEC(sub_80DEB58) s32 sub_80DEB58(s32 arg0, s32 arg1, s32 arg2) {
-    sound_effect_stop(0x11C);
-    return sub_8087124(arg0, arg1, arg2);
-}
-
 SEC(sub_805DE90) void sub_805DE90(void* arg0) {
     if (FIELD_AT(arg0, s32*, 0x80) == 0) {
         FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_805DEB4;
@@ -564,104 +489,6 @@ SEC(sub_809E49C) void sub_809E49C(void* arg0) {
     }
 }
 
-SEC(sub_805DEB4) void sub_805DEB4(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 3, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_805DEDC;
-    }
-}
-
-SEC(sub_805FF58) void sub_805FF58(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 2, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_805F6BC;
-    }
-}
-
-SEC(sub_80604B8) void sub_80604B8(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 2, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_805FF80;
-    }
-}
-
-SEC(sub_8061458) void sub_8061458(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 2, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8061480;
-    }
-}
-
-SEC(sub_80623F8) void sub_80623F8(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 2, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8062420;
-    }
-}
-
-SEC(sub_8062E70) void sub_8062E70(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 2, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8062E98;
-    }
-}
-
-SEC(sub_8063B58) void sub_8063B58(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 3, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8063568;
-    }
-}
-
-SEC(sub_8064E08) void sub_8064E08(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 2, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8064558;
-    }
-}
-
-SEC(sub_80653CC) void sub_80653CC(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 2, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8065428;
-    }
-}
-
-SEC(sub_8065C34) void sub_8065C34(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 2, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_80659E0;
-    }
-}
-
-SEC(sub_8066D50) void sub_8066D50(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 2, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8066DA4;
-    }
-}
-
-SEC(sub_8067A24) void sub_8067A24(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 2, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8066EE0;
-    }
-}
-
-SEC(sub_8068274) void sub_8068274(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 2, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_806829C;
-    }
-}
-
-SEC(sub_806A8E0) void sub_806A8E0(void* arg0) {
-    if (sub_8082B00() == 0) {
-        sub_8082E1C(arg0, 2, 0, 0);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_806A3F8;
-    }
-}
-
 SEC(sub_80A1A90) void sub_80A1A90(void* arg0) {
     sub_8087CE4();
     if (0x20 & FIELD_AT(arg0, u8*, 0x79)) {
@@ -679,15 +506,6 @@ SEC(sub_80A2C58) void sub_80A2C58(void* arg0) {
     }
 }
 SEC(sub_80A2C58) const u16 sub_80A2C58_padding = 0;
-
-SEC(sub_80DC3B8) s32 sub_80DC3B8(void) {
-    s32 temp_r4;
-
-    temp_r4 = sub_810DD7C();
-    sound_effect_stop(0x81);
-    return temp_r4;
-}
-SEC(sub_80DC3B8) const u16 sub_80DC3B8_padding = 0;
 
 SEC(sub_8087C4C) void sub_8087C4C(void* arg0) {
     UnknownWord (*temp_r1)(void*);
