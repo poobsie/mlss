@@ -40,12 +40,11 @@
       "id": "screens",
       "state": "active",
       "patterns": [
-        "src/option_screens.c",
         "src/option_screens_tail.c",
         "src/screens/*.c"
       ],
       "documentation": "docs/subsystems/screens.md",
-      "next_action": "Recover the shared option-window and menu types, then split option-screen lifecycles into bounded files."
+      "next_action": "Identify the separate option-tail process from its bclr lifecycle and title-screen transition, then give it a bounded screen module."
     },
     {
       "id": "script_engine",

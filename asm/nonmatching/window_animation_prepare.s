@@ -3,8 +3,8 @@
 	.syntax unified
 	.text
 
-	thumb_func_start generate_window_bg_8051B98
-generate_window_bg_8051B98:
+	thumb_func_start window_animation_prepare
+window_animation_prepare:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r10
 	mov r6, r9

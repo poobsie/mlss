@@ -3,6 +3,7 @@
 #include "audio/sound_effects.h"
 #include "common.h"
 #include "link/multiplayer.h"
+#include "screens/options.h"
 #include "screens/title_screen.h"
 
 struct CompanyIntro* company_intro_create(struct CompanyIntro* intro, u8 priority, char* label) {
@@ -1064,7 +1065,7 @@ void title_screen_update(struct TitleScreen* titleScreen) {
                 case 2:
                     multiplayer_serial_disable();
                     //! Change this when other function is matching too.
-                    optn_init(alloc_Zero(84, 0, (char*)0x081E278C /*"OPTN"*/, 0), 8,
+                    options_screen_create(alloc_Zero(84, 0, (char*)0x081E278C /*"OPTN"*/, 0), 8,
                               (char*)0x081E278C /*"OPTN"*/, 0);
                     return;
 

@@ -64,9 +64,33 @@ The former `OPDR` process is `TitleScreenScoreDisplay`. It converts the stored t
 
 The three functions still compiled from assembly now use semantic entry-point and file names. Their guarded C reconstructions remain available for continued matching work without exposing address-based names to callers.
 
+## Options screen
+
+The main options process now lives in `src/screens/options.c`; its small dialog-layout helpers are in `src/screens/options_dialogs.c`. Its layout, states, setting bits, and public operations are in `include/screens/options.h`. It owns the three settings shown on the menu, the selection cursor, confirmation-dialog graphics, the animated window mask, and a child render process.
+
+`pendingSettings` is assembled from the current Easy Sleep, rumble, and Auto Sleep values. Left and right input changes those bits locally. `options_screen_save_settings` copies them back to the runtime and persistent option fields, then invokes the save routine. A failed save builds and opens the error dialog before the process eventually returns to the title screen.
+
+`WindowAnimation` describes a centered rectangular window and its opening or closing progress. `window_animation_prepare` writes the window tilemap and initializes that record. `window_animation_update` expands the hardware window from progress 1 through 8, or contracts it from 7 to 0 when `isClosing` is set.
+
+| Previous name | Recovered name | Evidence |
+| --- | --- | --- |
+| `OPTNProcess` | `OptionsScreen` | Owns the complete options menu lifecycle and is allocated by the title-screen Options selection. |
+| `optn_init` | `options_screen_create` | Adds the options process, loads its resources, initializes settings and dialog buffers, and creates its render child. |
+| `optn_update` | `options_screen_update` | Implements the eight-state input, confirmation, save-error, and exit state machine. |
+| `try_save_options` | `options_screen_save_settings` | Copies the pending setting bits to runtime and persistent storage, then calls the save operation and returns its result. |
+| `sub_8052B54` | `options_screen_build_option_labels` | Renders the three option labels into the label tile buffer and optionally copies them to VRAM. |
+| `sub_8052EFC` | `options_screen_build_save_error_dialog` | Clears the dialog buffers, renders the save-error message, and constructs its tilemap. |
+| `sub_805420C` | `options_screen_prepare_save_error_dialog` | Reads the save-error dimensions and initializes the centered window animation. |
+| `option_screen_set_ok_button` | `options_screen_prepare_confirmation_dialog` | Initializes a confirmation window and records the cursor position for its OK button. |
+| `WindowAttr` | `WindowAnimation` | Its dimensions and center drive the hardware window bounds; its progress and closing flag drive the open/close sequence. |
+| `stru_8CDC1F8` | `gOptionsScreenProcessDefinition` | Descriptor installed on the options process. |
+| `stru_8CDC208` | `gOptionsScreenRenderProcessDefinition` | Descriptor installed on the options screen's render child. |
+
+The one-bit `entryArgument` and three-bit `unknownFlags` fields retain deliberately narrow names. The only recovered caller passes zero, and the current C never reads either field, so a stronger semantic name would be fiction. The text context type also remains structurally incomplete even though its ownership by the options screen is established.
+
 ## Remaining screen work
 
-The option screens still combine several process lifecycles, graphics-resource loading, widget state, and transitions in large root-level files. The next slice should recover their shared window and menu types before assigning names to individual handlers.
+The remaining option-screen tail and adjacent assembly contain at least one separate process whose resources and descriptor are shared with the `bclr` routines. Its lifecycle should be identified from the title/menu transition before moving or naming it. The main options menu no longer depends on that unknown process type, apart from shared window helpers.
 
 ## Verification
 

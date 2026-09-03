@@ -2,8 +2,8 @@
 	.syntax unified
 	.text
 
-	thumb_func_start optn_init
-optn_init:
+	thumb_func_start options_screen_create
+options_screen_create:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r10
 	mov r6, r9
@@ -408,7 +408,7 @@ _080522F0:
 	bl CpuFastSet
 	adds r0, r7, #0x0
 	movs r1, #0x00
-	bl sub_8052B54
+	bl options_screen_build_option_labels
 	ldr r0, _08052464 @ =0x03001034
 	ldr r1, [r7, #0x2C]
 	movs r2, #0xE1

@@ -123,16 +123,6 @@ struct struc_203FFB8 {
     u32 field_3C;
 };
 
-struct WindowAttr {
-    // Made this a bitfield to match optn_update.
-    u8 field_0_0 : 1;
-    s8 field_1;
-    u8 xStart;
-    u8 yStart;
-    u8 xSize;
-    u8 ySize;
-};
-
 struct struc_15 {
     u32 field_0;
     u32 field_4;
@@ -144,28 +134,6 @@ struct struc_15 {
     u32 field_18;
     u32 field_1C;
     u32 field_20;
-};
-
-struct OPTNProcess {
-    struct Process process;
-    s8 brightness;
-    s8 field_1D;
-    struct Process* odtr;
-    u8* bwcw;
-    u8* field_28;
-    u8* field_2C;
-    u16* bwsw;
-    int* bbwf;
-    struct struc_15* bbwi;
-    s8 options_0 : 1;
-    s8 options_1 : 3;
-    u8 options_4 : 3;
-    s8 selection;
-    int* winw;
-    u8 okButtonPosX;
-    u8 okButtonPosY;
-    struct WindowAttr field_48;
-    struct Sprite* sprite;
 };
 
 // ORST (options/open-screen runtime data) — 340 bytes, tagged "ORST"
@@ -199,12 +167,6 @@ void sub_80213A0(int, int, int, int);
 void sprite_hide_8021F20(struct Sprite*);
 void sub_8021F7C(void);
 void sub_8021FD4(void);
-void sub_8051EE0(struct WindowAttr*);
-struct OPTNProcess* optn_init(struct OPTNProcess*, u8, char*, int);
-int try_save_options(struct OPTNProcess*);
-void sub_8052EFC(struct OPTNProcess*);
-void sub_805420C(struct OPTNProcess*);
-void option_screen_set_ok_button(struct OPTNProcess*, int, int);
 void open_8056224();
 int sub_812454C(void);
 struct struc_203FFF8* sub_81251DC();
@@ -260,4 +222,3 @@ extern s16 word_83A7574[];
 extern s16 word_83A75B8[];
 extern s16 word_83A75C8[];
 extern u8* off_839EC80;
-extern struct ProcessDefinition stru_8CDC1F8;

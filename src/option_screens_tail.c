@@ -1,9 +1,10 @@
 #include "global.h"
 #include "common.h"
 #include "process/process.h"
+#include "screens/options.h"
 #include "screens/title_screen.h"
 
-void generate_window_bg_8051B98(struct WindowAttr*, int*, u8, u8, u8, u8, int);
+void window_animation_prepare(struct WindowAnimation*, int*, u8, u8, u8, u8, int);
 
 struct OptionTailProcess {
     struct Process process;
@@ -15,26 +16,26 @@ struct OptionTailProcess {
     void* field_2C;
     void* field_30;
     void* field_34;
-    struct WindowAttr window;
+    struct WindowAnimation window;
 };
 
 void sub_8053FC4(struct OptionTailProcess* optn) {
 
     switch (optn->process.state) {
     case 0:
-        if (optn->window.field_1 > 0) {
-            sub_8051EE0(&optn->window);
+        if (optn->window.progress > 0) {
+            window_animation_update(&optn->window);
         } else if (--optn->brightness == 0 || (gGameState.field_2A & 0xB)) {
             *(u8*)(*(u32*)0x0839EC80 + 1) |= 0x20;
-            optn->window.field_0_0 = 1;
-            optn->window.field_1 = 7;
+            optn->window.isClosing = 1;
+            optn->window.progress = 7;
             optn->process.state = 1;
         }
         break;
     case 1:
-        sub_8051EE0(&optn->window);
+        window_animation_update(&optn->window);
         {
-        s8 value = optn->window.field_1;
+        s8 value = optn->window.progress;
         if (value == 0) {
             if (optn != 0) {
                 optn->process.definition = (void*)0x08CDC1C8;
@@ -66,7 +67,7 @@ void sub_80540B0(void* optn) {
     u8 x = 15 - width / 2;
     u8 y = 10 - height / 2;
 
-    generate_window_bg_8051B98(optn + 0x38, *(int**)(optn + 0x34), x, y, width, height, 0xE000);
+    window_animation_prepare(optn + 0x38, *(int**)(optn + 0x34), x, y, width, height, 0xE000);
     *(u8*)(*(u32*)0x0839EC80 + 0x4A) |= 0x10;
 }
 
@@ -98,28 +99,9 @@ void sub_8054164(void) {
 void sub_80541B0(void* optn, int width, int height) {
     int x = 15 - width / 2;
     int y = 10 - height / 2;
-    struct WindowAttr* window = optn + 0x40;
+    struct WindowAnimation* window = optn + 0x40;
     int* winw = *(int**)(optn + 0x38);
 
-    generate_window_bg_8051B98(window, winw, x, y, width, height, 0xE000);
+    window_animation_prepare(window, winw, x, y, width, height, 0xE000);
     *(u8*)(*(u32*)0x0839EC80 + 0x4A) |= 0x10;
-}
-
-void sub_805420C(struct OPTNProcess* optn) {
-    u8* dimensions = (u8*)0x083A2918;
-    u8 width = (u32)(dimensions[0] << 24) >> 24;
-    u8 height = (u32)(dimensions[2] << 24) >> 24;
-    u8 x = 15 - width / 2;
-    u8 y = 10 - height / 2;
-
-    generate_window_bg_8051B98(&optn->field_48, optn->winw, x, y, width, height, 0xC800);
-}
-
-void option_screen_set_ok_button(struct OPTNProcess* optn, int width, int height) {
-    u8 x = 15 - width / 2;
-    u8 y = 10 - height / 2;
-
-    generate_window_bg_8051B98(&optn->field_48, optn->winw, x, y, width, height, 0xC800);
-    optn->okButtonPosX = x * 8 + width * 4 - 16;
-    optn->okButtonPosY = (y + height) * 8 - 22;
 }

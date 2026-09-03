@@ -353,8 +353,8 @@ _08052EEA:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8052EFC
-sub_8052EFC:
+	thumb_func_start options_screen_build_save_error_dialog
+options_screen_build_save_error_dialog:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r10
 	mov r6, r9
