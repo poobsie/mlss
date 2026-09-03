@@ -1,7 +1,18 @@
 #include "global.h"
+#include "field/selection_sequence.h"
+#include "script/command_handlers.h"
 #include "script/command_context.h"
 
 #define SEC(name) __attribute__((section(".text.script_command_handlers." #name)))
+#define STRINGIFY_INNER(value) #value
+#define STRINGIFY(value) STRINGIFY_INNER(value)
+#define MISC3_SEC(name) \
+    __attribute__((section(".text.misc_helpers_03." STRINGIFY(name))))
+#define FIELD_RUNTIME (*(struct FieldSelectionRuntime**)0x03000FD8)
+
+struct ScriptBattleReturnContext {
+    u8 unknown00[0x1C];
+};
 
 extern void sub_801B0AC(u16);
 extern void sub_803C898(void *, s32);
@@ -11,6 +22,26 @@ extern void sub_805B618(void *, u16);
 extern void sub_8047E50(void *, u16);
 extern void sub_8047364(void *, u8);
 extern void sub_80473DC(void *);
+extern u8 script_cmd_return(void* returnContext, s32 state);
+
+MISC3_SEC(script_command_return_from_battle)
+u8 script_command_return_from_battle(
+    struct ScriptBattleReturnContext* context,
+    s32 state,
+    s32* shouldMarkReturn)
+{
+    struct FieldSelectionRuntime* runtime;
+    u8 flags;
+    s32 battleReturnMask;
+
+    if (*shouldMarkReturn != 0) {
+        runtime = FIELD_RUNTIME;
+        flags = runtime->flags2BF;
+        battleReturnMask = 2;
+        runtime->flags2BF = (u8)(flags | battleReturnMask);
+    }
+    return script_cmd_return((u8*)context + sizeof(*context), state);
+}
 
 SEC(script_command_set_input_mask) s32 script_command_set_input_mask(
     struct ScriptCommandContext* context, void* state, u16* arguments)

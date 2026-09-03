@@ -3,8 +3,6 @@
 #include "object/runtime_object.h"
 
 #define SEC(name) __attribute__((section(".text.object_early_visual_transitions." #name)))
-#define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
-typedef u32 UnknownWord;
 
 void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
 s32 sub_8086858(struct RuntimeObject*, s32);
@@ -113,45 +111,45 @@ SEC(sub_806C94C) void sub_806C94C(struct RuntimeObject* object)
     }
 }
 
-SEC(sub_8066780) void sub_8066780(void* arg0) {
-    if (8 & FIELD_AT(FIELD_AT(arg0, void**, 8), u8*, 0x12)) {
-        if (FIELD_AT(arg0, s32*, 0x9C) == 0) {
-            sub_8082E1C(arg0, 6, 0, 0);
+SEC(sub_8066780) void sub_8066780(struct RuntimeObject* object) {
+    if (8 & object->visual->flags) {
+        if (object->behaviorState == 0) {
+            sub_8082E1C(object, 6, 0, 0);
         } else {
-            sub_8082E1C(arg0, 0xA, 0, 0);
+            sub_8082E1C(object, 0xA, 0, 0);
         }
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8065FBC;
+        object->update = sub_8065FBC;
     }
 }
 
-SEC(sub_806BFD4) void sub_806BFD4(void* arg0) {
-    if (8 & FIELD_AT(FIELD_AT(arg0, void**, 8), u8*, 0x12)) {
-        if (FIELD_AT(arg0, s32*, 0xA8) == 0) {
-            sub_8082E1C(arg0, 8, 0, 0);
+SEC(sub_806BFD4) void sub_806BFD4(struct RuntimeObject* object) {
+    if (8 & object->visual->flags) {
+        if (object->valueA8 == 0) {
+            sub_8082E1C(object, 8, 0, 0);
         } else {
-            sub_8082E1C(arg0, 0x10, 0, 0);
+            sub_8082E1C(object, 0x10, 0, 0);
         }
-        FIELD_AT(arg0, s16*, 0xAC) = 8;
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_806BC40;
+        object->timer = 8;
+        object->update = sub_806BC40;
     }
 }
 
-SEC(sub_806E98C) void sub_806E98C(void* arg0) {
-    if (8 & FIELD_AT(FIELD_AT(arg0, void**, 8), u8*, 0x12)) {
-        sub_8082E1C(arg0, 6, 0, 0);
-        sub_8082E1C(FIELD_AT(arg0, void**, 0x30), 6, 0, 0);
-        FIELD_AT(arg0, s16*, 0xAC) = 4;
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_806D6A8;
+SEC(sub_806E98C) void sub_806E98C(struct RuntimeObject* object) {
+    if (8 & object->visual->flags) {
+        sub_8082E1C(object, 6, 0, 0);
+        sub_8082E1C(object->linkedObject, 6, 0, 0);
+        object->timer = 4;
+        object->update = sub_806D6A8;
     }
 }
 
-SEC(sub_80705B4) void sub_80705B4(void* arg0) {
-    if (8 & FIELD_AT(FIELD_AT(arg0, void**, 8), u8*, 0x12)) {
-        sub_8082E1C(arg0, 0x1B, 0, 0);
-        FIELD_AT(arg0, s32*, 0xA8) = (s32)(1 & sub_8199F30());
+SEC(sub_80705B4) void sub_80705B4(struct RuntimeObject* object) {
+    if (8 & object->visual->flags) {
+        sub_8082E1C(object, 0x1B, 0, 0);
+        object->valueA8 = (s32)(1 & sub_8199F30());
         *(s32*)0x03000E3C = 0;
-        sub_807F4FC(arg0);
-        FIELD_AT(arg0, UnknownWord**, 0x60) = (UnknownWord*)&sub_8070424;
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8070534;
+        sub_807F4FC(object);
+        object->tertiaryUpdate = sub_8070424;
+        object->update = sub_8070534;
     }
 }

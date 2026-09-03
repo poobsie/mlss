@@ -14,6 +14,10 @@
 #define process_remove_global_owned_buffer sub_801BD30
 #define process_initialize_tld tld_init_8127A94
 #define process_initialize_definition_c4a0 sub_81367C0
+#define process_destroy_definition_c4a0 sub_81367AC
+#define process_destroy_definition_d140 sub_8168294
+#define process_destroy_definition_d220 sub_816D96C
+#define process_destroy_definition_d290 sub_8171FC0
 
 struct Process* process_add(struct Process* process, u8 priority, char* label);
 void process_execute_all(void);

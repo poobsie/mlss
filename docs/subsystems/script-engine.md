@@ -54,6 +54,8 @@ The extracted command handlers now expose stack push/pop, stored-value assignmen
 
 The execution state now exposes the saved cursor at offset `0x14`. Three wait handlers restore that cursor and yield when their respective condition becomes true: the primary actor height test, field flag `0x291` bit 0, or a context-owned asynchronous operation. `script_command_branch_if_condition` decodes its aligned condition, operand, and target-cursor record and updates the current cursor only when the shared condition evaluator succeeds.
 
+`script_command_return_from_battle` now exposes the final miscellaneous script handler. A nonzero command argument marks field-runtime return flag `0x02`, then the handler delegates to the ordinary script return operation using the context embedded at offset `0x1C`. The original `script_cmd_btl_return` symbol remains available to assembly through the semantic alias.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.

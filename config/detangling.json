@@ -117,10 +117,10 @@
     },
     {
       "id": "unclassified",
-      "state": "active",
+      "state": "detangled",
       "patterns": ["src/*.c", "src/*/*.c", "src/*/*/*.c"],
       "documentation": "docs/subsystems/unclassified.md",
-      "next_action": "Extract the smallest caller-connected cluster into a real subsystem; do not clean these files wholesale."
+      "next_action": "Reopen when newly accepted C lacks a defensible subsystem boundary."
     }
   ]
 }

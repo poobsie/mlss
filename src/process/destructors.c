@@ -1,14 +1,13 @@
 #include "global.h"
 #include "process/process.h"
 
-#define FIELD(object, type, offset) (*(type *)((u8 *)(object) + (offset)))
 #define SEC(name) __attribute__((section(".text.process_destructors." #name)))
 
 #define DEFINE_PROCESS_DESTRUCTOR(name, descriptor)                    \
-    SEC(name) void name(void *object, s32 flags)                        \
+    SEC(name) void name(struct Process *process, u32 flags)             \
     {                                                                    \
-        FIELD(object, void *, 0x18) = (void *)(descriptor);             \
-        process_remove(object, flags);                                  \
+        process->definition = (struct ProcessDefinition *)(descriptor); \
+        process_remove(process, flags);                                 \
     }
 
 DEFINE_PROCESS_DESTRUCTOR(sub_81367AC, 0x08CDC4A0)

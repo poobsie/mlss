@@ -48,4 +48,6 @@ Five non-object callbacks have now left bucket 03. Four operate on the field dis
 
 Eight more object transitions now use the shared runtime layout. They cover two fixed command selections, timer increment and relative-animation setup after visual completion, signed state countdown, fixed X motion, a combined flags-or-visual finish gate, and a visual/link terminal gate. Twenty-five callable routines remain in the staging file.
 
-Two field-view wrappers and eight object callbacks have now left the final staging bucket. The object group covers linked motion, paired owner/update changes, flag-`0x20` cleanup, and a fixed-point vertical step. Fifteen callable routines remain unclassified.
+Two field-view wrappers and eight object callbacks then left the final staging bucket. The object group covers linked motion, paired owner/update changes, flag-`0x20` cleanup, and a fixed-point vertical step. Fourteen callable routines remained unclassified; the earlier running count of fifteen included a padding symbol.
+
+The final fourteen routines have defensible homes. Eight are typed object transitions, five manipulate field-runtime flags, active-object state, or saved process callbacks, and one returns the script engine from a battle command. `src/text_misc_helpers_03.c` is retired, and the unclassified queue now contains no source files. New C added outside an established subsystem should reopen this queue.

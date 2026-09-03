@@ -154,6 +154,8 @@ The same bucket's remaining straightforward visual transitions now expose comman
 
 Eight further bucket-03 callbacks now expose linked-object motion, owner suspension, flag-`0x20` cleanup, and vertical integration. Five coordinate an object's animation and update with its linked object or position owner, two poll the shared object status operation before stopping, resuming, or deactivating a visual, and one integrates `verticalPosition` through `value8C` until reaching fixed-point height `0x2800`. The owner and linked-object relationships are proven by their shared layouts; their gameplay identities remain unresolved.
 
+The final eight object callbacks from the staging file now use `RuntimeObject`, `RuntimeObjectState`, `FieldActor`, and the established field-object owner layout. They cover a nested visual repeat counter, follow-up kind 3 setup, nested-chain completion, visual value `0x0C` accumulation, an animation-1 transition, paired field-object reset, second-actor position synchronization, and attachment to the first field object. The literal callback `0x081141F5` remains explicit because it enters the middle of an assembly routine and has no independent symbol.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.

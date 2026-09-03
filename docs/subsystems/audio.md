@@ -45,4 +45,4 @@ The six low-level command encoders behind these APIs now live in `src/audio/comm
 
 The rebuilt 112-byte range from `0x08019588` through `0x080195F7`, including the preceding helper and required alignment, matches the reference ROM byte for byte. Its SHA-1 is `aaa68c7b1729cdc6b6dbe1a8c23e237afcaf8d8d`.
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.

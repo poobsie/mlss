@@ -9,6 +9,8 @@ make detangle-status
 python3 scripts/detangling_status.py next
 ```
 
+The latest repository-wide completion check is recorded in `docs/detangling-audit.md`.
+
 The queue state is authoritative; the scanner's uncertainty count is only a triage signal. A low count does not prove that names or types are correct.
 
 ## Continuous work loop

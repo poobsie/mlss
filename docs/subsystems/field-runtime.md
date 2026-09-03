@@ -106,6 +106,8 @@ The display runtime now exposes its object and process slots at `0x278`, `0x27C`
 
 Two view wrappers now obtain the active `FieldViewState` from the established field runtime and forward complete coordinate or record arguments to the underlying view transforms. The lower-level transforms remain address-named because their arithmetic is still assembly-only; the wrappers no longer disguise field-view ownership behind raw global-pointer casts.
 
+The final five field-runtime helpers expose the nested flag container at runtime offset `0x244`, its paired flag words at `0x1788` and `0x1798`, the pending flag at `0x2BF`, and the active-object owner at `0x7C`. Three set, filter, or submit nested flag requests. Two select the active-object preparation path from runtime flag `0x80` or restore a saved process callback after active-object flag `0x20` clears. The flag numbers remain in the names because current assembly proves their mechanics but not their game-facing meanings.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.
