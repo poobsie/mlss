@@ -47,10 +47,10 @@
     },
     {
       "id": "script_engine",
-      "state": "active",
+      "state": "detangled",
       "patterns": ["src/script_*.c", "src/script/*.c"],
       "documentation": "docs/subsystems/script-engine.md",
-      "next_action": "Recover the shared object and nested status layouts used by the dispatch wrappers around 0x0808ECDC."
+      "next_action": "Expand when adjacent script assembly or command data tables are recovered."
     },
     {
       "id": "mario_bros",
@@ -68,7 +68,7 @@
     },
     {
       "id": "object_runtime",
-      "state": "queued",
+      "state": "active",
       "patterns": [
         "src/object_*.c",
         "src/render_object_*.c",
@@ -78,7 +78,7 @@
         "src/*landing*.c"
       ],
       "documentation": "docs/subsystems/object-runtime.md",
-      "next_action": "Cluster wrappers by shared descriptor and object layout before assigning class names."
+      "next_action": "Apply the shared runtime-object prefix across adjacent variant, setup, jump, landing, and cleanup sequences."
     },
     {
       "id": "unclassified",

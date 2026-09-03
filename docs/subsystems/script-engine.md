@@ -30,9 +30,7 @@ Three commands use registry slot 183, the pointer at offset `0x304`. Its role is
 | `script_cmd_80F17C4` | `script_command_set_object_mode` | Selects an object by command-supplied index and applies the supplied three-bit mode through `sub_8047364`. |
 | `sub_80F17DC` | `script_command_advance_object_mode` | Selects an object by command-supplied index and invokes the paired no-argument mode transition routine `sub_80473DC`. |
 
-## Remaining script work
-
-The dispatch wrappers around `0x0808ECDC` still expose an object field at offset `0x28`, a signed status at nested offset `0xEC`, and a continuation callback at offset `0x68`. Those relationships need a shared type before the wrappers can be named safely.
+The former `script_dispatch_helpers.c` cluster was found to be object lifecycle code and moved to the object-runtime queue. The currently recovered script C now has subsystem placement and shared state types; further script work depends on converting adjacent assembly or recovering command data tables.
 
 ## Verification
 
