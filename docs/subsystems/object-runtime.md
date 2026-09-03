@@ -84,6 +84,10 @@ Nine setup callbacks now use `RuntimeObject` directly. Six forward the stored `p
 
 Six timed follow-up setups now expose the shared `timer` and `followup` fields. They configure kinds 2, 6, or 7 for durations of 3, 5, or 12 ticks, then install distinct assembly continuations. The numeric kind remains explicit until the underlying setup routine and its resource table are recovered.
 
+Four continuation installers now extend the callback-result family. Three install the next `update` and return 1; one installs its update without a result. Their distinct entry points remain lettered because the callbacks' owners are still assembly-only.
+
+Fourteen small value transitions now use the shared object and visual layouts. They cover `valueA0` and `value84` countdowns, four delayed `value80` gates, a direct `value80` continuation, three visual-completion continuations, two state resets, and two identical vertical-position updates. Offset `0x84` is proven to be a signed countdown word but keeps the structural name `value84` until its producer identifies the unit.
+
 Three additional visual-completion variants now use the shared object layout. They select animations from state at `0x9C` or flags at `0x98`; one also starts effect `0x151D`, installs a secondary update at `0x5C`, and advances the primary update at `0x4C`.
 
 Four late visual transitions now expose linked-object completion, linked-chain flag propagation at `0xA8`, animation and sound setup, and terminal cleanup. Their semantic aliases describe the proven gate and effect; unresolved sound and animation values remain numeric.

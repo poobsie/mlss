@@ -23,3 +23,5 @@ The next extraction moved eleven terminal gates into object runtime. Five wait f
 Nine owner-driven setup callbacks have also moved into object runtime. Six pass the object's existing `positionOwner` to the shared setup routine, while three accept an owner from their caller. Their only proven differences are the continuation callback and one `behaviorState` initialization, so their semantic names preserve that evidence without guessing at the owning encounter.
 
 Six adjacent timed follow-up setups now live in object runtime. Each stores its duration, configures a numbered follow-up kind with that same duration, and installs the corresponding callback in the typed `followup` slot.
+
+Eighteen more object callbacks have left the staging bucket. Four install a continuation, with three returning the callback protocol's true result. The remaining fourteen expose countdowns, `value80` gates, visual-completion gates, timer setup, reset transitions, and two identical vertical-position updates. The word at object offset `0x84` is now a typed `value84`; its meaning remains explicitly unresolved.

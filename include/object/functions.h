@@ -128,6 +128,11 @@
 #define object_setup_followup_kind_2_for_5_ticks_b sub_808C408
 #define object_setup_followup_kind_7_for_3_ticks sub_808C4C8
 
+#define object_install_update_and_return_true_a sub_808C064
+#define object_install_update_and_return_true_b sub_808C190
+#define object_install_update_and_return_true_c sub_809D268
+#define object_install_update_a sub_809C954
+
 /* Middle-address behavior families whose owning callback tables remain in assembly. */
 #define object_invoke_shared_terminal_action_a sub_80D2D28
 #define object_invoke_shared_terminal_action_b sub_80DEC60

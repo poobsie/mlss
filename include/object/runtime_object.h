@@ -75,7 +75,8 @@ struct RuntimeObject {
     u8 flags79;
     u8 unknown7A[6];
     s32 value80;
-    u8 unknown84[8];
+    s32 value84;
+    u8 unknown88[4];
     s32 value8C;
     u8 unknown90[4];
     s32 verticalAcceleration;
