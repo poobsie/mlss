@@ -43,7 +43,8 @@ struct RuntimeObjectVisual {
     s16 value06;
     u8 unknown08[4];
     s16 value0C;
-    u8 unknown0E[4];
+    u8 unknown0E[3];
+    u8 flags11;
     u8 flags;
     u8 unknown13[0x0D];
     u8 parameter20;
@@ -77,7 +78,9 @@ struct RuntimeObject {
     u8 unknown64[4];
     RuntimeObjectCallback cleanup;
     const void* descriptor;
-    u8 unknown70[6];
+    u8 unknown70[4];
+    s8 value74;
+    u8 unknown75;
     u8 flags76;
     u8 flags77;
     u8 unknown78;

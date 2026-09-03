@@ -33,3 +33,5 @@ The remaining fourteen object callbacks from `text_misc_helpers_01.c` now use th
 The first extraction from `text_misc_helpers_02.c` moves twenty-eight object callbacks into two explicit families. Fourteen stop a known sound and forward their arguments into one of three shared setup routines. Fourteen wait for the field readiness gate, start animation 2 or 3, and install a sequence-specific continuation.
 
 Sixteen more bucket-02 callbacks now extend typed object transition modules. Seven wait for `value80` to clear before selecting a proven animation and continuation. Four disable the visual and stop after visual completion. Five select animation 0 or 6 and invoke the common cleanup transition after completion.
+
+Nineteen additional callbacks now form linked-object and cleanup families. Nine react to linked-object presence, completion, or a nested owner's active entry. Ten invoke cleanup callbacks, terminate on readiness or flag `0x20`, or release after `value80` or visual completion gates. Object byte `0x74` and visual byte `0x11` are now explicit structural fields.

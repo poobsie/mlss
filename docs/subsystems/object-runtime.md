@@ -96,6 +96,10 @@ Fourteen readiness-gated animation transitions now share one typed implementatio
 
 Seven `value80`-gated callbacks now select animations 0, 4, 7, 9, `0x16`, or `0x18` and install their established continuations. Nine visual-completion callbacks form two terminal families: four disable the visual with `-1` parameters and stop, while five select animation 0 or 6 and invoke the shared cleanup transition.
 
+Nine linked-object transitions now use `linkedObject` directly. They release or wait for a linked object, select follow-up animations, preserve terminal callbacks, and handle two nested-owner entry gates through a narrowly scoped structural overlay. No gameplay entity identity is assigned to that nested overlay.
+
+Ten cleanup and readiness gates now expose the object's `cleanup`, `descriptor`, `flags79`, and structural byte `value74`, plus visual flag byte `flags11`. They stop or release the object after proven gates and preserve explicit sound identifiers. The `flags11` update uses an explicit local to retain the original compiler's register allocation.
+
 Three additional visual-completion variants now use the shared object layout. They select animations from state at `0x9C` or flags at `0x98`; one also starts effect `0x151D`, installs a secondary update at `0x5C`, and advances the primary update at `0x4C`.
 
 Four late visual transitions now expose linked-object completion, linked-chain flag propagation at `0xA8`, animation and sound setup, and terminal cleanup. Their semantic aliases describe the proven gate and effect; unresolved sound and animation values remain numeric.
