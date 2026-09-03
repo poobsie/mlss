@@ -16,4 +16,42 @@
 #define field_object_forward_slot18 sub_8050774
 #define field_object_forward_slot10 sub_80507A4
 
+#define field_apply_configuration_source sub_8047928
+#define field_set_configuration_value sub_8047E50
+#define field_state_apply_mode_transition sub_804FCD4
+#define field_state_preserve_flags_and_finish_a sub_804FD80
+#define field_state_preserve_flags_and_finish_b sub_804FDF4
+
+#define field_activate_actor_a_kind_2 sub_80A0AF4
+#define field_activate_actor_b_kind_2 sub_80A1CC4
+#define field_activate_actor_a_kind_8 sub_80A2E7C
+#define field_activate_actor_b_kind_11 sub_80A3D70
+
+#define field_start_animation_2_a sub_80DABD0
+#define field_start_animation_13_a sub_80DD740
+#define field_start_animation_13_b sub_80DD76C
+#define field_start_animation_9_a sub_80DD798
+#define field_start_animation_9_b sub_80DD7C4
+#define field_start_animation_10 sub_80DED84
+#define field_start_animation_2_b sub_810FF4C
+
+#define field_actor_a_command_2024_kind_4 sub_80C0B1C
+#define field_actor_b_command_2063_kind_3_a sub_80C8684
+#define field_actor_b_command_2063_kind_3_b sub_80C8744
+#define field_actor_a_command_2034_kind_8_a sub_80C87A4
+#define field_actor_a_command_2034_kind_8_b sub_80CCDEC
+
+#define field_activate_actor_a_command_2024_kind_5 sub_80A3ABC
+#define field_activate_actor_b_command_2053_kind_5 sub_80A49A8
+#define field_activate_actor_b_command_2053_kind_0 sub_80A4A10
+#define field_activate_actor_b_command_205E_kind_0 sub_80B9504
+
+#define field_wait_actor_b_then_prepare_actor_a_a sub_80A6F78
+#define field_wait_actor_b_then_prepare_actor_a_b sub_80AC950
+#define field_wait_actor_b_then_prepare_actor_a_c sub_80B992C
+#define field_wait_actor_b_then_prepare_actor_a_d sub_80CD18C
+#define field_wait_actor_a_then_prepare_actor_b_a sub_80B35C8
+#define field_wait_actor_a_then_prepare_actor_b_b sub_80C0F30
+#define field_wait_actor_a_then_prepare_actor_b_c sub_80C8A7C
+
 #endif

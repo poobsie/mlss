@@ -1,5 +1,6 @@
 #include "global.h"
 #include "field/actor.h"
+#include "field/functions.h"
 
 #define SEC(name) __attribute__((section(".text.actor_interaction_transitions." #name)))
 
@@ -32,7 +33,7 @@ extern void sub_8082E1C(void *, s32, s32, s32);
         }                                                                \
     }
 
-DEFINE_ACTOR_INTERACTION_TRANSITION(sub_80A3ABC, actorA, 5, 0x2024, sub_80A3810)
-DEFINE_ACTOR_INTERACTION_TRANSITION(sub_80A49A8, actorB, 5, 0x2053, sub_80A46FC)
-DEFINE_ACTOR_INTERACTION_TRANSITION(sub_80A4A10, actorB, 0, 0x2053, sub_80A3DF0)
-DEFINE_ACTOR_INTERACTION_TRANSITION(sub_80B9504, actorB, 0, 0x205E, sub_80B363C)
+DEFINE_ACTOR_INTERACTION_TRANSITION(field_activate_actor_a_command_2024_kind_5, actorA, 5, 0x2024, sub_80A3810)
+DEFINE_ACTOR_INTERACTION_TRANSITION(field_activate_actor_b_command_2053_kind_5, actorB, 5, 0x2053, sub_80A46FC)
+DEFINE_ACTOR_INTERACTION_TRANSITION(field_activate_actor_b_command_2053_kind_0, actorB, 0, 0x2053, sub_80A3DF0)
+DEFINE_ACTOR_INTERACTION_TRANSITION(field_activate_actor_b_command_205E_kind_0, actorB, 0, 0x205E, sub_80B363C)

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "field/actor.h"
+#include "field/functions.h"
 
 #define SEC(name) __attribute__((section(".text.actor_activation_transitions." #name)))
 
@@ -44,7 +45,7 @@ extern void sub_8087CE4(void *);
         }                                                                 \
     }
 
-DEFINE_ACTOR_ACTIVATION_TRANSITION(sub_80A0AF4, actorA, 2, sub_80A0B74)
-DEFINE_ACTOR_ACTIVATION_TRANSITION(sub_80A1CC4, actorB, 2, sub_80A1D44)
-DEFINE_ACTOR_ACTIVATION_TRANSITION(sub_80A2E7C, actorA, 8, sub_80A3B24)
-DEFINE_ACTOR_ACTIVATION_TRANSITION(sub_80A3D70, actorB, 11, sub_80A4A10)
+DEFINE_ACTOR_ACTIVATION_TRANSITION(field_activate_actor_a_kind_2, actorA, 2, sub_80A0B74)
+DEFINE_ACTOR_ACTIVATION_TRANSITION(field_activate_actor_b_kind_2, actorB, 2, sub_80A1D44)
+DEFINE_ACTOR_ACTIVATION_TRANSITION(field_activate_actor_a_kind_8, actorA, 8, sub_80A3B24)
+DEFINE_ACTOR_ACTIVATION_TRANSITION(field_activate_actor_b_kind_11, actorB, 11, sub_80A4A10)

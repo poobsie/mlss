@@ -1,5 +1,6 @@
 #include "global.h"
 #include "field/actor.h"
+#include "field/functions.h"
 
 #define SEC(name) __attribute__((section(".text.actor_state_transitions_reversed." #name)))
 
@@ -38,6 +39,6 @@ extern int loc_819832C();
         }                                                                 \
     }
 
-DEFINE_REVERSED_ACTOR_STATE(sub_80B35C8, sub_80B9504)
-DEFINE_REVERSED_ACTOR_STATE(sub_80C0F30, sub_80C0FA4)
-DEFINE_REVERSED_ACTOR_STATE(sub_80C8A7C, sub_80C8AF0)
+DEFINE_REVERSED_ACTOR_STATE(field_wait_actor_a_then_prepare_actor_b_a, sub_80B9504)
+DEFINE_REVERSED_ACTOR_STATE(field_wait_actor_a_then_prepare_actor_b_b, sub_80C0FA4)
+DEFINE_REVERSED_ACTOR_STATE(field_wait_actor_a_then_prepare_actor_b_c, sub_80C8AF0)

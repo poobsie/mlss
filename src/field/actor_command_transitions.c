@@ -1,5 +1,6 @@
 #include "global.h"
 #include "field/actor.h"
+#include "field/functions.h"
 
 #define SEC(name) __attribute__((section(".text.actor_command_transitions." #name)))
 
@@ -30,8 +31,8 @@ extern void sub_8082E1C(void *, s32, s32, s32);
         }                                                                \
     }
 
-DEFINE_ACTOR_COMMAND(sub_80C0B1C, actorA, 4, 0x2024, sub_80BA6F8)
-DEFINE_ACTOR_COMMAND(sub_80C8684, actorB, 3, 0x2063, sub_80C33B0)
-DEFINE_ACTOR_COMMAND(sub_80C8744, actorB, 3, 0x2063, sub_80C26E4)
-DEFINE_ACTOR_COMMAND(sub_80C87A4, actorA, 8, 0x2034, sub_80C1CE4)
-DEFINE_ACTOR_COMMAND(sub_80CCDEC, actorA, 8, 0x2034, sub_80C9854)
+DEFINE_ACTOR_COMMAND(field_actor_a_command_2024_kind_4, actorA, 4, 0x2024, sub_80BA6F8)
+DEFINE_ACTOR_COMMAND(field_actor_b_command_2063_kind_3_a, actorB, 3, 0x2063, sub_80C33B0)
+DEFINE_ACTOR_COMMAND(field_actor_b_command_2063_kind_3_b, actorB, 3, 0x2063, sub_80C26E4)
+DEFINE_ACTOR_COMMAND(field_actor_a_command_2034_kind_8_a, actorA, 8, 0x2034, sub_80C1CE4)
+DEFINE_ACTOR_COMMAND(field_actor_a_command_2034_kind_8_b, actorA, 8, 0x2034, sub_80C9854)

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "field/actor.h"
+#include "field/functions.h"
 
 #define SEC(name) __attribute__((section(".text.actor_state_transitions." #name)))
 
@@ -37,7 +38,7 @@ extern int loc_819832C();
         }                                                                 \
     }
 
-DEFINE_ACTOR_STATE(sub_80A6F78, actorA, actorB, sub_80A6FEC)
-DEFINE_ACTOR_STATE(sub_80AC950, actorA, actorB, sub_80AC9C4)
-DEFINE_ACTOR_STATE(sub_80B992C, actorA, actorB, sub_80C0BE4)
-DEFINE_ACTOR_STATE(sub_80CD18C, actorA, actorB, sub_80CD200)
+DEFINE_ACTOR_STATE(field_wait_actor_b_then_prepare_actor_a_a, actorA, actorB, sub_80A6FEC)
+DEFINE_ACTOR_STATE(field_wait_actor_b_then_prepare_actor_a_b, actorA, actorB, sub_80AC9C4)
+DEFINE_ACTOR_STATE(field_wait_actor_b_then_prepare_actor_a_c, actorA, actorB, sub_80C0BE4)
+DEFINE_ACTOR_STATE(field_wait_actor_b_then_prepare_actor_a_d, actorA, actorB, sub_80CD200)

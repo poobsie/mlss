@@ -22,6 +22,10 @@ The preservation wrappers now snapshot and restore the low three bits of `flags0
 
 The wrapper entry points have semantic compatibility names in `include/field/functions.h`. They distinguish forwarding from result-returning queries and identify the callback slot used. Slot `0x20` also records its proven enable-bit gate. More specific operation names require the underlying `sub_804...` functions to be decompiled.
 
+The same compatibility header names the configuration and field-state entry points: applying a configuration source, setting a configuration value, applying the mode-dependent transition, and the two flag-preserving finish variants. Original symbols remain available to assembly.
+
+Actor transition entry points are also named by observable contract. The names record actor A or B, animation or command value, sound kind where applicable, and a suffix for otherwise indistinguishable continuations. They intentionally do not assign scene or character identities that are visible only in assembly callers.
+
 ## Next boundary
 
 Name callback-forwarding entry points from their base operations, then audit and organize the remaining field-runtime source files.
