@@ -20,6 +20,8 @@ The preservation wrappers now snapshot and restore the low three bits of `flags0
 
 `FieldObjectWrapper` now owns a typed sparse callback table. Every entry records a signed receiver adjustment and an unprototyped callback, and forwarding consistently invokes that callback on the adjusted child. Slot names remain offset-based because the base operations are still address-named; the layout no longer relies on byte-pointer arithmetic.
 
+The wrapper entry points have semantic compatibility names in `include/field/functions.h`. They distinguish forwarding from result-returning queries and identify the callback slot used. Slot `0x20` also records its proven enable-bit gate. More specific operation names require the underlying `sub_804...` functions to be decompiled.
+
 ## Next boundary
 
 Name callback-forwarding entry points from their base operations, then audit and organize the remaining field-runtime source files.

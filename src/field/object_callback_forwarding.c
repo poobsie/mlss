@@ -1,4 +1,5 @@
 #include "global.h"
+#include "field/functions.h"
 #include "field/object_wrapper.h"
 
 int sub_8041FFC(struct FieldObjectWrapper *);
@@ -15,7 +16,7 @@ void sub_8040AE0(struct FieldObjectWrapper *, int);
 void sub_80409F4(struct FieldObjectWrapper *);
 void sub_80403C4(struct FieldObjectWrapper *, int, int, int);
 
-void sub_8050518(struct FieldObjectWrapper *object, int arg1, u8 arg2)
+void field_object_forward_slot70(struct FieldObjectWrapper *object, int arg1, u8 arg2)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
@@ -28,7 +29,7 @@ void sub_8050518(struct FieldObjectWrapper *object, int arg1, u8 arg2)
     }
 }
 
-int sub_8050554(struct FieldObjectWrapper *object)
+int field_object_query_slot68(struct FieldObjectWrapper *object)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
@@ -43,7 +44,7 @@ int sub_8050554(struct FieldObjectWrapper *object)
     return result;
 }
 
-void sub_8050584(struct FieldObjectWrapper *object, int arg1, int arg2, u8 arg3)
+void field_object_forward_slot60(struct FieldObjectWrapper *object, int arg1, int arg2, u8 arg3)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
@@ -56,7 +57,7 @@ void sub_8050584(struct FieldObjectWrapper *object, int arg1, int arg2, u8 arg3)
     }
 }
 
-void sub_80505C4(struct FieldObjectWrapper *object)
+void field_object_forward_slot58(struct FieldObjectWrapper *object)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
@@ -69,7 +70,7 @@ void sub_80505C4(struct FieldObjectWrapper *object)
     }
 }
 
-int sub_80505F4(struct FieldObjectWrapper *object, int arg1, int arg2)
+int field_object_query_slot50(struct FieldObjectWrapper *object, int arg1, int arg2)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
@@ -84,7 +85,7 @@ int sub_80505F4(struct FieldObjectWrapper *object, int arg1, int arg2)
     return result;
 }
 
-void sub_805062C(struct FieldObjectWrapper *object)
+void field_object_forward_slot88(struct FieldObjectWrapper *object)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
@@ -97,7 +98,7 @@ void sub_805062C(struct FieldObjectWrapper *object)
     }
 }
 
-void sub_805065C(struct FieldObjectWrapper *object)
+void field_object_forward_slot48(struct FieldObjectWrapper *object)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
@@ -110,7 +111,7 @@ void sub_805065C(struct FieldObjectWrapper *object)
     }
 }
 
-void sub_805068C(struct FieldObjectWrapper *object, s16 arg1, s16 arg2, int arg3)
+void field_object_forward_slot40(struct FieldObjectWrapper *object, s16 arg1, s16 arg2, int arg3)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
@@ -123,7 +124,7 @@ void sub_805068C(struct FieldObjectWrapper *object, s16 arg1, s16 arg2, int arg3
     }
 }
 
-void sub_80506D0(struct FieldObjectWrapper *object)
+void field_object_forward_enabled_slot20(struct FieldObjectWrapper *object)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
@@ -136,7 +137,7 @@ void sub_80506D0(struct FieldObjectWrapper *object)
     }
 }
 
-void sub_8050710(struct FieldObjectWrapper *object)
+void field_object_forward_slot28(struct FieldObjectWrapper *object)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
@@ -149,7 +150,7 @@ void sub_8050710(struct FieldObjectWrapper *object)
     }
 }
 
-void sub_8050740(struct FieldObjectWrapper *object, int arg1)
+void field_object_forward_slot30(struct FieldObjectWrapper *object, int arg1)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
@@ -162,7 +163,7 @@ void sub_8050740(struct FieldObjectWrapper *object, int arg1)
     }
 }
 
-void sub_8050774(struct FieldObjectWrapper *object)
+void field_object_forward_slot18(struct FieldObjectWrapper *object)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
@@ -175,7 +176,7 @@ void sub_8050774(struct FieldObjectWrapper *object)
     }
 }
 
-void sub_80507A4(struct FieldObjectWrapper *object, int arg1, int arg2, int arg3)
+void field_object_forward_slot10(struct FieldObjectWrapper *object, int arg1, int arg2, int arg3)
 {
     struct FieldObjectWrapper *child;
     struct FieldObjectCallbackEntry *entry;
