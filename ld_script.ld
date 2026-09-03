@@ -168,6 +168,7 @@ SECTIONS
         src/option_screens_tail.o(.text);
         asm/text080542C4.o(.text);
         src/title_screen.o(.text);
+        src/link/multiplayer.o(.text);
         asm/text08057568.o(.text);
         src/text_small_functions_12.o(.text.small_functions_12.sub_8057B58);
         asm/text08057568.o(.text.small_functions_12_after_sub_8057B58);

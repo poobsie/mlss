@@ -30,6 +30,13 @@
       "next_action": "Determine why the ROM exposes duplicate allocation and free entry points."
     },
     {
+      "id": "link",
+      "state": "detangled",
+      "patterns": ["src/link/*.c"],
+      "documentation": "docs/subsystems/link.md",
+      "next_action": "Expand when the adjacent multiplayer protocol and connection state are recovered."
+    },
+    {
       "id": "screens",
       "state": "active",
       "patterns": [

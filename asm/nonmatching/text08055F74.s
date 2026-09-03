@@ -314,7 +314,7 @@ sub_8055F74:
 	str r2, [r7, #0x30]
 	str r1, [r7, #0x34]
 	str r1, [r7, #0x38]
-	bl sub_80574FC
+	bl multiplayer_serial_enable
 	add sp, #0x008
 	pop {r3, r4, r5}
 	mov r8, r3

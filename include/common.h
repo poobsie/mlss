@@ -213,8 +213,6 @@ void sub_805420C(struct OPTNProcess*);
 void option_screen_set_ok_button(struct OPTNProcess*, int, int);
 void open_init_8055A00(void*, int, char*, int);
 void open_8056224();
-void sub_80574B4(void);
-void sub_80574FC(void);
 int sub_812454C(void);
 struct struc_203FFF8* sub_81251DC();
 struct Process* load_init_812538C(struct Process*, u8, char*, int);

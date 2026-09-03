@@ -2,6 +2,7 @@
 #include "audio/music.h"
 #include "audio/sound_effects.h"
 #include "common.h"
+#include "link/multiplayer.h"
 #include "screens/title_screen.h"
 
 struct CompanyIntro* company_intro_create(struct CompanyIntro* intro, u8 priority, char* label) {
@@ -506,7 +507,7 @@ void open_8055F74(struct TitleScreen* ts, int selection) {
     ts->mlTextScaleX = 256;
     ts->mlTextScaleY = 256;
 
-    sub_80574FC();
+    multiplayer_serial_enable();
 }
 #endif
 
@@ -559,7 +560,6 @@ void sub_8056224(void)
     dma[2] = 0xA2400001;
   }
 }
-
 void open_update(struct TitleScreen* ts) {
     int i, j;
 
@@ -974,7 +974,7 @@ void open_update(struct TitleScreen* ts) {
                                     off_839EC80[REG_OFFSET_WINOUT] |= WINOUT_WIN01_OBJ;
                                     off_839EC80[REG_OFFSET_WINOUT] |= WINOUT_WIN01_CLR;
 
-                                    sub_80574FC();
+                                    multiplayer_serial_enable();
                                     ts->process.state = TS_STATE_GAME_SELECT;
                                 }
                                 break;
@@ -1049,7 +1049,7 @@ void open_update(struct TitleScreen* ts) {
 
             switch (ts->selection) {
                 case 0:
-                    sub_80574B4();
+                    multiplayer_serial_disable();
                     sub_801AFE4(0);
                     BUFFER_REG_BLDCNT = 0;
                     //! Change this when other function is matching too.
@@ -1064,7 +1064,7 @@ void open_update(struct TitleScreen* ts) {
                     return;
 
                 case 2:
-                    sub_80574B4();
+                    multiplayer_serial_disable();
                     //! Change this when other function is matching too.
                     optn_init(alloc_Zero(84, 0, (char*)0x081E278C /*"OPTN"*/, 0), 8,
                               (char*)0x081E278C /*"OPTN"*/, 0);
@@ -1240,35 +1240,4 @@ struct Process* screen_render_process_create(struct Process* process, u8 priorit
     process_add(process, priority, label);
     process->definition = &gScreenRenderProcessDefinition;
     return process;
-}
-
-void sub_80574A0(void) {
-    REG_SIOMLT_SEND = 0xFEFE;
-}
-
-void sub_80574B4(void) {
-    REG_IME = 0;
-    REG_IE &= ~INTR_FLAG_SERIAL;
-    REG_IF |= INTR_FLAG_SERIAL;
-    REG_IME = 1;
-
-    REG_IME = 0;
-    REG_SIOCNT = SIO_MULTI_MODE | SIO_115200_BPS;
-    REG_IME = 1;
-}
-
-void sub_80574FC(void) {
-    sub_8018B78(1, sub_80574A0);
-
-    REG_IME = 0;
-    REG_RCNT = 0;
-    REG_SIOCNT = SIO_MULTI_MODE;
-    REG_SIOCNT |= SIO_INTR_ENABLE | SIO_115200_BPS;
-    REG_SIOMLT_SEND = 0xFEFE;
-    REG_IME = 1;
-
-    REG_IME = 0;
-    REG_IE |= INTR_FLAG_SERIAL;
-    REG_IF |= INTR_FLAG_SERIAL;
-    REG_IME = 1;
 }
