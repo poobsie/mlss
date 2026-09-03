@@ -18,3 +18,5 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,
 The same construction layer now exposes an empty-pointer query, a shared-halfword reset at `0x0300102C`, and structural setters for a layout object's origin at `0x24/0x28` and data word at `0x64`. The data word remains offset-named until its consumers establish whether it holds text, graphics, or another descriptor.
 
 `ui_set_flag_490_08` names the sole recovered operation on a larger late UI owner. Its object layout and flag meaning remain unresolved, so both the offset and mask stay explicit.
+
+`UiSingleSpriteOwner` exposes the sprite pointer at offset `0x30`. Its paired callbacks hide and show that sprite, while the adjacent false-returning entry remains named as a visibility callback until its callback table is recovered.

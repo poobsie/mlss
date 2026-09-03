@@ -4,6 +4,8 @@
 
 The exact interpolation step formula remains in assembly. The field names are therefore mechanical and stop short of assigning units such as pixels or fixed-point scale.
 
+`vector3_copy` copies the three signed 32-bit components used by the adjacent matrix-transform code. Current assembly callers establish the vector width and copy direction; coordinate units remain unknown.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

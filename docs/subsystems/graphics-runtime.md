@@ -24,6 +24,12 @@ The early graphics staging path now has explicit source and destination layouts.
 
 Thirteen high-address graphics helpers now have mechanical names for their proven operations: initializing and querying a replicated X/Y position state, resetting and ticking a two-halfword counter, initializing a binding record, packing RGB555 values, clearing an owned 8192-byte buffer, releasing an owned resource, clearing a value pair, and conditionally freeing the associated owners. Class identities remain unspecified where only destruction mechanics are visible.
 
+`graphics_advance_by_nibble_width` advances a base value by four units for each significant hexadecimal digit, with zero occupying one digit. Adjacent numeric-glyph formatting loops use the result as their next layout position.
+
+`GraphicsBlendTransition` exposes the mode, current value, and target used by the neighboring blend-register update routines. Its default initializer selects mode zero, clears the current value, and sets a sixteen-step target.
+
+`graphics_extract_mode_relative_index` subtracts a base selected by bits 2 and 3 of the halfword at `0x02000008`, then extracts the normalized packed index. The global's owner and the index's concrete resource type remain unknown, so the name records only the proven transformation.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

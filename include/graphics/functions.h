@@ -1,6 +1,8 @@
 #ifndef GUARD_GRAPHICS_FUNCTIONS_H
 #define GUARD_GRAPHICS_FUNCTIONS_H
 
+#include "global.h"
+
 #define graphics_transfer_copy_2048_bytes sub_8160E4C
 #define graphics_destroy_resource_owner_a sub_816154C
 #define graphics_destroy_resource_owner_b sub_8161580
@@ -20,5 +22,9 @@
 #define graphics_clear_owned_8192_byte_buffer sub_8165404
 #define graphics_destroy_value_pair_owner sub_8167E9C
 #define graphics_clear_value_pair sub_8167F30
+#define graphics_advance_by_nibble_width sub_810D260
+#define graphics_extract_mode_relative_index sub_8127E38
+
+u32 graphics_extract_mode_relative_index(u32 value);
 
 #endif

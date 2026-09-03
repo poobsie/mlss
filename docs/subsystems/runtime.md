@@ -36,3 +36,5 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,
 `DefinitionSlot` is the one-word payload embedded in late-runtime list nodes. Its initializer installs definition `0x08CDD0B8`; the paired assembly destructor now has the semantic alias `definition_slot_destroy`.
 
 `RuntimeCallbackPacket` records two signed arguments and a callback at offset `0x14`. Its recovered trampoline invokes that callback with the stored argument pair, replacing the former raw byte offsets and cast-through-`void` expression.
+
+`runtime_dereference_pointer` is the narrow indirect-pointer adapter used by two assembly construction paths. Those callers do not expose a common owned type, so the helper states the exact pointer operation without inventing object semantics.

@@ -74,6 +74,12 @@ The field runtime also exposes actors C and D at offsets `0x80` and `0x84`. A re
 
 `FieldDisplayRuntime` consolidates the display manager at `0x250` and four owned display-process slots from `0x284` through `0x290`. The recovered lifecycle helpers release or finish those processes while disabling the associated layer pairs 0/1, 2/3, and 4/5; a separate entry configures layer 0 with the caller's value.
 
+`FieldObjectSetDirectory` describes the eight-byte directory embedded in each field-object definition blob. Its packed bytes expose the object count and resource count, while backward offsets locate the blob's variable-length lists. `field_get_object_resource_list` now returns the resource-ID list used by the early field-object loader instead of presenting the calculation as an unrelated numbered helper. Two parallel indexed pointer tables remain `table_a` and `table_b`: their contents are proven to be metadata streams, but no decompiled caller distinguishes their roles yet.
+
+The scene-state accessor at `0x080FAEEC` is now `field_get_scene_state_value_9a1`. The field ownership chain is established, but the byte's behavior is not; retaining `9a1` is more accurate than manufacturing a flag name from one conditional caller.
+
+`field_clear_flags_11e_high_nibble` preserves the low twelve bits of a field object's halfword at `0x11E`. Its callers prove the mask but do not yet identify the four cleared flags individually, so the member remains offset-named.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.
