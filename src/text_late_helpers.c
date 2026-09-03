@@ -8,7 +8,6 @@
 
 extern void* sub_815FA3C(void* object);
 extern void sub_8021FD4(void* object);
-extern void sub_815FAA4(void* position, void* origin);
 extern void sub_8082E1C(void* object, int mode, int arg2, int arg3);
 extern void sub_808750C(void* object);
 extern void sub_8133C7C(void* object);
@@ -21,17 +20,6 @@ SEC(sub_8150A38) void sub_8150A38(void* object) {
     sub_8021FD4(object);
 }
 SEC(sub_8150A38) const u16 sub_8150A38_padding = 0;
-
-#define DEFINE_POSITION_WRAPPER(name)                                                                  \
-    SEC(name) void name(void* position, void* origin) {                                                \
-        sub_815FAA4(position, origin);                                                                 \
-    }                                                                                                  \
-    SEC(name) const u16 name##_padding = 0;
-
-DEFINE_POSITION_WRAPPER(sub_8158988)
-DEFINE_POSITION_WRAPPER(sub_81589D0)
-DEFINE_POSITION_WRAPPER(sub_815F1D0)
-DEFINE_POSITION_WRAPPER(sub_815F218)
 
 SEC(sub_8132D4C) void sub_8132D4C(void* object) {
     if (U8AT(PTRAT(object, 8), 0x12) & 8) {
