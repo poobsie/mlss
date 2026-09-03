@@ -1,32 +1,29 @@
 #include "global.h"
+#include "object/runtime_object.h"
 
 #define SECTION(name) __attribute__((section(".text.object_child_mode_transitions." #name)))
-#define U8_AT(ptr, offset) (*(u8 *)((u8 *)(ptr) + (offset)))
-#define U32_AT(ptr, offset) (*(u32 *)((u8 *)(ptr) + (offset)))
 
 extern u32 sub_8087CE4(void);
 extern u32 sub_80883F0(void);
-extern void sub_8082E1C(void *, u32, u32, u32);
-extern void sub_810FE1C(void);
-extern void sub_810F9FC(void);
-extern void sub_810F6D4(void);
+extern void sub_8082E1C(struct RuntimeObject*, u32, u32, u32);
+extern void sub_810FE1C(struct RuntimeObject*);
+extern void sub_810F9FC(struct RuntimeObject*);
+extern void sub_810F6D4(struct RuntimeObject*);
 
 #define DEFINE_TRANSITION(name, gate, kind, callback) \
-SECTION(name) void name(void *object) \
+SECTION(name) void name(struct RuntimeObject* object) \
 { \
-    void *child; \
     if ((u8)gate() == 0) { \
         sub_8082E1C(object, kind, 0, 0); \
-        child = (void *)U32_AT(object, 8); \
         { \
-            s32 value = U8_AT(child, 0x12); \
+            s32 value = object->visual->flags; \
             s32 mask = 7; \
             mask = -mask; \
             mask &= value; \
             mask |= 2; \
-            U8_AT(child, 0x12) = mask; \
+            object->visual->flags = mask; \
         } \
-        U32_AT(object, 0x4C) = (u32)callback; \
+        object->update = callback; \
     } \
 }
 

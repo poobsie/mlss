@@ -1419,7 +1419,7 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_810D260);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_810D5F4);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_810D5F4);
-        src/object_child_mode_transitions.o(.text.object_child_mode_transitions.sub_810FBFC);
+        src/object/conditional_mode_transitions.o(.text.object_child_mode_transitions.sub_810FBFC);
         asm/text08057568.o(.text.object_child_mode_transitions_after_sub_810FBFC);
         src/text_small_functions_08.o(.text.small_functions_08.sub_810FD10);
         asm/text08057568.o(.text.small_functions_08_after_sub_810FD10);
@@ -1433,9 +1433,9 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_01_after_sub_810FF18);
         src/actor_animation_transitions.o(.text.actor_animation_transitions.sub_810FF4C);
         asm/text08057568.o(.text.actor_animation_transitions_after_sub_810FF4C);
-        src/object_child_mode_transitions.o(.text.object_child_mode_transitions.sub_810FF78);
+        src/object/conditional_mode_transitions.o(.text.object_child_mode_transitions.sub_810FF78);
         asm/text08057568.o(.text.object_child_mode_transitions_after_sub_810FF78);
-        src/object_child_mode_transitions.o(.text.object_child_mode_transitions.sub_8110078);
+        src/object/conditional_mode_transitions.o(.text.object_child_mode_transitions.sub_8110078);
         asm/text08057568.o(.text.object_child_mode_transitions_after_sub_8110078);
         src/text_small_functions_08.o(.text.small_functions_08.sub_811090C);
         asm/text08057568.o(.text.small_functions_08_after_sub_811090C);

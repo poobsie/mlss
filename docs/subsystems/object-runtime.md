@@ -30,6 +30,8 @@ The snapshot is copied from offset `0x2A` of one of two records reached through 
 
 The common exit at `0x0808DD2C` is now `runtime_object_finish_action`. It is not a destructor: when the object's mode bits indicate an active action, it clears the linked-state reservation flag, releases an auxiliary handle, resets visual control bits and parameter state, selects animation 0, and clears the active update callback. Its semantic name is shared by the recovered lifecycle files and the remaining callers in mixed source files.
 
+Three later conditional mode transitions now use the same visual and update fields. Each tests an external readiness gate, selects animation kind 7 or 8 only when the gate is clear, sets visual mode 2, and installs its next update callback. Their gameplay owners remain unidentified, so the individual entry points retain address names.
+
 ## Next boundary
 
 Trace the entry dispatcher around `0x0808CC08` and group complete setup-to-completion behavior sequences. Keep the two descriptor families separate until the global source records are understood.
