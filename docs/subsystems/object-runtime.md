@@ -14,9 +14,11 @@ The eleven randomized jump setups and nine landing transitions now share the rec
 
 Each setup chooses an initial upward velocity, stores a constant downward acceleration, selects animation 5, and switches to its airborne update. Each landing transition integrates velocity from the same base height, clamps to the linked floor height, selects animation 8, and advances to its completion callback. The two source families differ in their animation parameter (`0x204D` or `0x2000`), so they remain separate pending identification of that parameter.
 
+The ten fixed-jump transitions share the same visual flag and update fields. Unlike the randomized setups, they retain the existing velocity and only install a fixed acceleration of `-0x48` or `-0x58` before selecting animation 5. This confirms that the field at `0x94` is acceleration, rather than an initial velocity or generic timer.
+
 ## Next boundary
 
-Apply the shared object prefix to the fixed-jump, initialization, completion, and cleanup files. Recover stable names at the level of complete behavior sequences, rather than assigning names independently to dozens of nearly identical state callbacks.
+Apply the shared object prefix to the initialization, completion, and cleanup files. Recover stable names at the level of complete behavior sequences, rather than assigning names independently to dozens of nearly identical state callbacks.
 
 ## Verification
 

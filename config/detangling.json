@@ -79,7 +79,7 @@
         "src/*landing*.c"
       ],
       "documentation": "docs/subsystems/object-runtime.md",
-      "next_action": "Apply the shared runtime-object prefix across fixed-jump, initialization, completion, and cleanup sequences."
+      "next_action": "Apply the shared runtime-object prefix across initialization, completion, and cleanup sequences."
     },
     {
       "id": "unclassified",
