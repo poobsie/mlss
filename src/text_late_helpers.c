@@ -11,10 +11,6 @@ extern void sub_8021FD4(void* object);
 extern void sub_8082E1C(void* object, int mode, int arg2, int arg3);
 extern void sub_808750C(void* object);
 extern void sub_8133C7C(void* object);
-extern void sub_813C6E4(void* arg0, void* state);
-extern void sub_813D6FC(void* arg0, void* state);
-extern void sub_813D850(void* arg0, void* state);
-extern void sub_8143374(void* arg0, void* state);
 
 SEC(sub_8150A38) void sub_8150A38(void* object) {
     sub_8021FD4(object);
@@ -49,18 +45,6 @@ SEC(sub_8133CF0) void sub_8133CF0(void* object) {
         PTRAT(object, 0x4C) = sub_8133C7C;
     }
 }
-
-#define DEFINE_FLAG_WRAPPER(name, callee)                                                              \
-    SEC(name) void name(void* arg0, void* state) {                                                     \
-        U8AT(state, 0x33E) |= 0x10;                                                                    \
-        U8AT(state, 0x2B6) |= 0x40;                                                                    \
-        callee(arg0, state);                                                                           \
-    }
-
-DEFINE_FLAG_WRAPPER(sub_813C72C, sub_813C6E4)
-DEFINE_FLAG_WRAPPER(sub_813D74C, sub_813D6FC)
-DEFINE_FLAG_WRAPPER(sub_813D8A0, sub_813D850)
-DEFINE_FLAG_WRAPPER(sub_81433D0, sub_8143374)
 
 SEC(sub_81507EC) void sub_81507EC(void* unused, void* object) {
     U32AT(object, 0xC) += *(s16*)((u8*)object + 0x242);

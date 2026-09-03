@@ -37,6 +37,11 @@
 #define field_selected_entry_change_state_2_to_1 sub_8047D44
 #define field_selected_entry_change_state_1_to_2 sub_8047D64
 
+#define field_set_dispatch_flags_variant_a sub_813C72C
+#define field_set_dispatch_flags_variant_b sub_813D74C
+#define field_set_dispatch_flags_variant_c sub_813D8A0
+#define field_set_dispatch_flags_variant_d sub_81433D0
+
 #define field_activate_actor_a_kind_2 sub_80A0AF4
 #define field_activate_actor_b_kind_2 sub_80A1CC4
 #define field_activate_actor_a_kind_8 sub_80A2E7C
