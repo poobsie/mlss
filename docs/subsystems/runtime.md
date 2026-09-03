@@ -20,6 +20,8 @@ Eight additional side-effect-free callback entries live in `src/runtime/noop_cal
 
 Five high-address helpers now have narrow runtime overlays. They capture the low byte of `VCOUNT`, select an indexed pointer from the table at `0x03001070`, set the pointer slot at `0x03001074`, and latch bytes `0x16` or `0x1A` while clearing their associated flag fields. These structural names deliberately stop short of assigning audio or graphics ownership without callers that prove it.
 
+Five adjacent definition and adapter helpers now live in `runtime/high_definitions.c`. They expose a forced-mode wrapper, a definition target getter, a descriptor-installing destructor, a default-initializer adapter, and a four-word definition initializer. Their names record proven mechanics and definition addresses because the concrete classes are not visible in current C.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

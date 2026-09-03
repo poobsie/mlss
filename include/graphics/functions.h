@@ -7,5 +7,18 @@
 #define graphics_destroy_resource_owner_c sub_81615B4
 #define graphics_copy_runtime_transfer_pair sub_81615E4
 #define graphics_upload_fixed_tile_regions sub_8029460
+#define graphics_noop_result sub_816132C
+#define graphics_release_owned_resource sub_81612E4
+#define graphics_position_state_is_idle sub_81631DC
+#define graphics_initialize_position_state sub_8163264
+#define graphics_destroy_position_state sub_8163280
+#define graphics_counter_tick sub_81632C8
+#define graphics_counter_reset sub_81632EC
+#define graphics_destroy_counter sub_8163308
+#define graphics_initialize_binding_record sub_816391C
+#define graphics_write_rgb555 sub_8165250
+#define graphics_clear_owned_8192_byte_buffer sub_8165404
+#define graphics_destroy_value_pair_owner sub_8167E9C
+#define graphics_clear_value_pair sub_8167F30
 
 #endif

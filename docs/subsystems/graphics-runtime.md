@@ -22,6 +22,8 @@ Two additional mask accessors clear the word at `0x20` and return the signed hal
 
 The early graphics staging path now has explicit source and destination layouts. It copies three 9-bit-masked values and three byte-sized components into the six interleaved halfwords at `0x02000014`. Two related process destructors install their terminal descriptors, stop DMA or clear VRAM as appropriate, release only the buffers that are present, and remove the process. Buffer names remain offset-based because their allocation sites are still assembly-only.
 
+Thirteen high-address graphics helpers now have mechanical names for their proven operations: initializing and querying a replicated X/Y position state, resetting and ticking a two-halfword counter, initializing a binding record, packing RGB555 values, clearing an owned 8192-byte buffer, releasing an owned resource, clearing a value pair, and conditionally freeing the associated owners. Class identities remain unspecified where only destruction mechanics are visible.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,328 linked C functions checked, 1,328 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.

@@ -8,5 +8,9 @@
 #define ui_object_set_values_18_20 sub_8163A64
 #define ui_sprite_pair_destroy_base sub_8163B60
 #define ui_sprite_pair_destroy_variant sub_8163D4C
+#define ui_clear_flag_8_at_490 sub_816AFDC
+#define ui_stop_sound_97_if_active sub_816D6D4
+#define ui_start_sound_97_if_inactive sub_816D6F0
+#define ui_clear_value_ea_and_stop_sound_97 sub_8171DD4
 
 #endif
