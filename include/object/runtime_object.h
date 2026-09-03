@@ -33,11 +33,13 @@ struct RuntimeObjectVisual {
 struct RuntimeObject {
     u8 unknown00[8];
     struct RuntimeObjectVisual* visual;
-    u8 unknown0C[0x0C];
+    u8 unknown0C[4];
+    s32 currentPositionX;
+    s32 currentPositionY;
     s32 verticalPosition;
     u8 unknown1C[0x0C];
     struct RuntimeObjectState* state;
-    u8 unknown2C[4];
+    void* positionOwner;
     struct RuntimeObject* linkedObject;
     u8 unknown34[4];
     s32 positionX;
@@ -47,7 +49,8 @@ struct RuntimeObject {
     s8 boundaryOffset45;
     u8 unknown46[6];
     RuntimeObjectCallback update;
-    u8 unknown50[0x0C];
+    RuntimeObjectCallback followup;
+    u8 unknown54[8];
     RuntimeObjectCallback secondaryUpdate;
     u8 unknown60[8];
     RuntimeObjectCallback cleanup;

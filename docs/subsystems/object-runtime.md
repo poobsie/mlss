@@ -76,6 +76,8 @@ Three additional visual-completion variants now use the shared object layout. Th
 
 Four late visual transitions now expose linked-object completion, linked-chain flag propagation at `0xA8`, animation and sound setup, and terminal cleanup. Their semantic aliases describe the proven gate and effect; unresolved sound and animation values remain numeric.
 
+Two neighboring callbacks now complete this late-transition group. One waits for visual completion, snaps both live and base coordinates to a position supplied by its owner, clears the visual, stops sound `0x119`, and advances. The other starts animation 4 on a nested linked object, installs a 32-tick timer and follow-up callback, then plays sound `0x120`. The owner and source layouts are named only as far as their observed position relationship proves.
+
 `object_traverse_child_tree_noop` recursively visits both child links of an independently observed tree-node layout. It performs no action at each node. The explicit `noop` suffix is intentional: assigning cleanup or rendering semantics to a side-effect-free traversal would be fiction.
 
 ## Verification

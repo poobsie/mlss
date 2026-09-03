@@ -17,5 +17,7 @@
 #define object_finish_linked_chain_when_poll_clear sub_811090C
 #define object_start_animation_0a_with_sound_11b sub_81124D0
 #define object_when_poll_clear_disable_and_finish sub_811448C
+#define object_on_visual_complete_snap_to_owner_position sub_8110A30
+#define object_start_nested_animation_4_sequence sub_811458C
 
 #endif
