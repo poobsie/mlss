@@ -1547,7 +1547,7 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8134928);
         src/text_middle_helpers.o(.text.middle.sub_8134B64);
         asm/text08057568.o(.text.after_middle_sub_8134B64);
-        src/child_actions.o(.text.child_actions.sub_8135F20);
+        src/object/tree_traversal.o(.text.child_actions.sub_8135F20);
         asm/text08057568.o(.text.child_actions_after_sub_8135F20);
         src/text_middle_helpers.o(.text.middle.sub_8136688);
         asm/text08057568.o(.text.after_middle_sub_8136688);
@@ -1856,14 +1856,14 @@ SECTIONS
         asm/text08057568.o(.text.after_81638B0);
         src/text_high_helpers.o(.text.high.sub_816391C);
         asm/text08057568.o(.text.high_after_sub_816391C);
-        src/ui_object_helpers.o(.text.sub_81639E0);
-        src/ui_object_helpers.o(.text.sub_81639F8);
+        src/ui/object_state.o(.text.sub_81639E0);
+        src/ui/object_state.o(.text.sub_81639F8);
         asm/text08057568.o(.text.after_ui_object_helpers_39e0);
-        src/child_actions.o(.text.child_actions.sub_8163A24);
+        src/ui/sprite_pair.o(.text.child_actions.sub_8163A24);
         asm/text08057568.o(.text.child_actions_after_sub_8163A24);
-        src/child_actions.o(.text.child_actions.sub_8163A44);
+        src/ui/sprite_pair.o(.text.child_actions.sub_8163A44);
         asm/text08057568.o(.text.child_actions_after_sub_8163A44);
-        src/ui_object_helpers.o(.text.sub_8163A64);
+        src/ui/object_state.o(.text.sub_8163A64);
         asm/text08057568.o(.text.after_ui_object_helpers_3a64);
         src/text08057568_easy.o(.text.sub_8163B5C);
         asm/text08057568.o(.text.after_8163B5C);

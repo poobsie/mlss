@@ -88,6 +88,13 @@
       "next_action": "Expand when descriptor contents or construction callers identify the numbered definitions and destructor variants."
     },
     {
+      "id": "ui_runtime",
+      "state": "detangled",
+      "patterns": ["src/ui/*.c"],
+      "documentation": "docs/subsystems/ui-runtime.md",
+      "next_action": "Expand when callers identify the values at offsets 0x18 through 0x20 or the update routine at sub_8161E38."
+    },
+    {
       "id": "unclassified",
       "state": "active",
       "patterns": ["src/*.c", "src/*/*.c", "src/*/*/*.c"],
