@@ -4,15 +4,27 @@
 #include "common.h"
 
 struct FieldSceneObject {
-    u8 unknown000[0x20F];
+    u8 unknown000[0x20D];
+    u8 flags20D;
+    u8 unknown20E;
     u8 flags20F;
-    u8 unknown210[0x2B];
+    u8 unknown210[7];
+    u8 flags217;
+    u8 unknown218[0x21];
+    u8 value239;
+    u8 unknown23A;
     u8 state23B;
     u8 unknown23C;
     u8 state23D;
-    u8 unknown23E[0x56];
+    u16 value23E;
+    u8 unknown240[0x26];
+    u16 value266;
+    u16 previousValue268;
+    u8 unknown26A[0x2A];
     struct Sprite* sprite;
-    u8 unknown298[0xA6];
+    u8 unknown298[0x1D];
+    u8 flags2B5;
+    u8 unknown2B6[0x88];
     u16 flags33E;
     s16 value340;
 };
