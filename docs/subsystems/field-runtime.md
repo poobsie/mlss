@@ -34,6 +34,8 @@ The currently decompiled field-runtime slice is detangled. Further names depend 
 
 The recovered layout now begins at offset `0x20C` and includes nine property operations: three flag setters or clears, two value setters, one flag query, two narrow two-bit clears, and a current-to-previous halfword update at offsets `0x266` and `0x268`. Offset-bearing names are retained where the gameplay meaning is not yet proven.
 
+The object also selects one 28-byte entry through an index at `0x26E` and a table pointer at `0x334`. Two wrappers perform guarded low-bit state changes on that entry, `2` to `1` and `1` to `2`. Their names state those proven transitions directly; the table's gameplay identity remains unresolved.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

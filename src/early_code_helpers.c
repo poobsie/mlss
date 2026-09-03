@@ -25,8 +25,6 @@ void sub_80FC1F8(void);
 void sub_802FAE4(void*, void*, s32);
 void sub_8029A0C(void*, void*, s32);
 void sub_8020D40(s32);
-void sub_8116654(s32, u8);
-void sub_8116680(s32, u8);
 void sub_8139AA0(void*);
 void sub_80514C4(void);
 
@@ -113,16 +111,6 @@ void sub_803C538(void* arg0, void* arg1) {
 void sub_803C898(void* arg0, void* arg1) SECTION(sub_803C898);
 void sub_803C898(void* arg0, void* arg1) {
     sub_8029A0C(arg0, arg1, 1);
-}
-
-void sub_8047D44(u8* arg0) SECTION(sub_8047D44);
-void sub_8047D44(u8* arg0) {
-    sub_8116654(*(s32*)(arg0 + 0x334), arg0[0x26E]);
-}
-
-void sub_8047D64(u8* arg0) SECTION(sub_8047D64);
-void sub_8047D64(u8* arg0) {
-    sub_8116680(*(s32*)(arg0 + 0x334), arg0[0x26E]);
 }
 
 void sub_804FAF8(u8* arg0) SECTION(sub_804FAF8);

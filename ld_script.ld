@@ -138,9 +138,9 @@ SECTIONS
         asm/text0801A548.o(.text.after_8047AF4);
         src/field/scene_object_properties.o(.text.early_bitfield_updates.sub_8047B5C);
         asm/text0801A548.o(.text.after_early_bitfield_8047B5C);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_8047D44);
+        src/field/scene_object_properties.o(.text.early_code_helpers.sub_8047D44);
         asm/text0801A548.o(.text.after_early_code_helpers_8047D44);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_8047D64);
+        src/field/scene_object_properties.o(.text.early_code_helpers.sub_8047D64);
         asm/text0801A548.o(.text.after_early_code_helpers_8047D64);
         src/field/configuration.o(.text.field_configuration.sub_8047E50);
         asm/text0801A548.o(.text.after_field_configuration_8047E50);

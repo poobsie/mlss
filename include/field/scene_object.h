@@ -21,12 +21,16 @@ struct FieldSceneObject {
     u8 unknown240[0x26];
     u16 value266;
     u16 previousValue268;
-    u8 unknown26A[0x2A];
+    u8 unknown26A[4];
+    u8 selectedEntryIndex;
+    u8 unknown26F[0x25];
     struct Sprite* sprite;
     u8 unknown298[0x1D];
     u8 flags2B5;
     u8 flags2B6;
-    u8 unknown2B7[0x87];
+    u8 unknown2B7[0x7D];
+    void* entryStateTable;
+    u8 unknown338[6];
     u16 flags33E;
     s16 value340;
 };

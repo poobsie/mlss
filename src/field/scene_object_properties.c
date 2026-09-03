@@ -3,6 +3,9 @@
 
 #define FIELD_SECTION(name) __attribute__((section(name)))
 
+void sub_8116654(void* table, u8 index);
+void sub_8116680(void* table, u8 index);
+
 struct __attribute__((packed)) LowBit {
     u8 value : 1;
 };
@@ -71,4 +74,16 @@ void field_shift_value_266_to_previous(struct FieldSceneObject* object, u16 valu
     offset = 0x268;
     *(u16*)((u8*)object + offset) = previous;
     *source = value;
+}
+
+void field_selected_entry_change_state_2_to_1(struct FieldSceneObject* object)
+    FIELD_SECTION(".text.early_code_helpers.sub_8047D44");
+void field_selected_entry_change_state_2_to_1(struct FieldSceneObject* object) {
+    sub_8116654(object->entryStateTable, object->selectedEntryIndex);
+}
+
+void field_selected_entry_change_state_1_to_2(struct FieldSceneObject* object)
+    FIELD_SECTION(".text.early_code_helpers.sub_8047D64");
+void field_selected_entry_change_state_1_to_2(struct FieldSceneObject* object) {
+    sub_8116680(object->entryStateTable, object->selectedEntryIndex);
 }

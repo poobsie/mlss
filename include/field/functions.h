@@ -34,6 +34,8 @@
 #define field_clear_flags_2b5_30 sub_80479A8
 #define field_test_flag_2b5_08 sub_8047AF4
 #define field_shift_value_266_to_previous sub_8047B5C
+#define field_selected_entry_change_state_2_to_1 sub_8047D44
+#define field_selected_entry_change_state_1_to_2 sub_8047D64
 
 #define field_activate_actor_a_kind_2 sub_80A0AF4
 #define field_activate_actor_b_kind_2 sub_80A1CC4
