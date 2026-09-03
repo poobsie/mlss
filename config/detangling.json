@@ -62,7 +62,7 @@
     {
       "id": "field_runtime",
       "state": "active",
-      "patterns": ["src/field_*.c", "src/actor_*.c", "src/activation_*.c"],
+      "patterns": ["src/field_*.c", "src/actor_*.c", "src/activation_*.c", "src/field/*.c"],
       "documentation": "docs/subsystems/field-runtime.md",
       "next_action": "Unify the actor overlay and identify state and command fields from callers."
     },
