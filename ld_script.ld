@@ -1877,7 +1877,7 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8163CD4);
         src/ui/destructors.o(.text.freeing_destructors.sub_8163D4C);
         asm/text08057568.o(.text.freeing_destructors_after_sub_8163D4C);
-        src/text08057568_easy.o(.text.sub_8163FA8);
+        src/runtime/word_triplet.o(.text.sub_8163FA8);
         asm/text08057568.o(.text.after_8163FA8);
         src/text_high_helpers.o(.text.high.sub_8165250);
         asm/text08057568.o(.text.high_after_sub_8165250);

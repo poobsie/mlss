@@ -14,12 +14,6 @@ struct EasyPair3320 {
     u16 field_02;
 };
 
-struct EasyCopy3FA8 {
-    u32 field_00;
-    u32 field_04;
-    u32 field_08;
-};
-
 void sub_81582C4(void* object) FUNCTION_SECTION(".text.sub_81582C4");
 void sub_81582C4(void* object) {
     *(u32*)((u8*)object + 0x20) = 0;
@@ -70,17 +64,6 @@ void sub_8163BB8(void) FUNCTION_SECTION(".text.sub_8163BB8");
 void sub_8163BB8(void) {
     *(u16*)0x0300102C = 0;
 }
-
-void sub_8163FA8(struct EasyCopy3FA8* destination,
-                  struct EasyCopy3FA8* source)
-    FUNCTION_SECTION(".text.sub_8163FA8");
-void sub_8163FA8(struct EasyCopy3FA8* destination,
-                  struct EasyCopy3FA8* source) {
-    destination->field_00 = source->field_00;
-    destination->field_04 = source->field_04;
-    destination->field_08 = source->field_08;
-}
-FUNCTION_SECTION(".text.sub_8163FA8") const u16 sub_8163FA8_padding = 0;
 
 void sub_816544C(void* object, u32 value24, u32 value28)
     FUNCTION_SECTION(".text.sub_816544C");
