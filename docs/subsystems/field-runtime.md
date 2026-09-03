@@ -58,6 +58,8 @@ Two adjacent wrappers call their respective field-object operations with enabled
 
 The selected-entry sequence is now one three-stage unit instead of three numbered catch-all files. Its stages wait for the shared blocker at `0x310`, prepare the selected entry at `0x349`, commit it through the active object at `0x7C`, clear the selection to `0xFF`, and install the next process callback at each boundary. Scene-specific names require the resource tables used by the assembly helpers.
 
+The paired-object slide sequence moves the objects at runtime offsets `0x37C` and `0x278` left by one 24.8 fixed-point pixel per tick. Once view conversion places them at screen X 208, it snaps both positions to that boundary, starts animation 4 on the second object, clears the flag at `0x342`, and installs the next process callback.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
