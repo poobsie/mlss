@@ -1267,12 +1267,12 @@ SECTIONS
         asm/text08057568.o(.text.actor_animation_transitions_after_sub_80DED84);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_80DEE80);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DEE80);
-        src/script_transitions.o(.text.script_transitions.sub_80E1908);
-        asm/text08057568.o(.text.script_transitions_after_sub_80E1908);
-        src/script_transitions.o(.text.script_transitions.sub_80E1924);
-        asm/text08057568.o(.text.script_transitions_after_sub_80E1924);
-        src/script_transitions.o(.text.script_transitions.sub_80E1940);
-        asm/text08057568.o(.text.script_transitions_after_sub_80E1940);
+        src/script/animation_transitions.o(.text.script_transitions.animation_script_enter_10_byte_stream);
+        asm/text08057568.o(.text.script_transitions_after_animation_script_enter_10_byte_stream);
+        src/script/animation_transitions.o(.text.script_transitions.animation_script_enter_4_byte_stream);
+        asm/text08057568.o(.text.script_transitions_after_animation_script_enter_4_byte_stream);
+        src/script/animation_transitions.o(.text.script_transitions.animation_script_enter_command_stream);
+        asm/text08057568.o(.text.script_transitions_after_animation_script_enter_command_stream);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_80E57FC);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80E57FC);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_80E8D74);

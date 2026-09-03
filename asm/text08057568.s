@@ -261518,8 +261518,8 @@ _080DF2A4:
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_80DF2B0
-sub_80DF2B0:
+	thumb_func_start animation_script_update_command_stream
+animation_script_update_command_stream:
 	push {r4, r5, r6, r7, lr}
 	add sp, #-0x004
 	adds r5, r0, #0x0
@@ -261685,8 +261685,8 @@ _080DF5E4:
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-	thumb_func_start sub_80DF5EC
-sub_80DF5EC:
+	thumb_func_start animation_script_update_10_byte_stream
+animation_script_update_10_byte_stream:
 	push {r4, r5, r6, r7, lr}
 	add sp, #-0x004
 	adds r6, r0, #0x0
@@ -265494,9 +265494,9 @@ sub_80E18D8:
 	pop {r0}
 	bx r0
 _080E1904: .4byte sub_80E1AB0
-	.section .text.script_transitions_after_sub_80E1908, "ax", %progbits
-	.section .text.script_transitions_after_sub_80E1924, "ax", %progbits
-	.section .text.script_transitions_after_sub_80E1940, "ax", %progbits
+	.section .text.script_transitions_after_animation_script_enter_10_byte_stream, "ax", %progbits
+	.section .text.script_transitions_after_animation_script_enter_4_byte_stream, "ax", %progbits
+	.section .text.script_transitions_after_animation_script_enter_command_stream, "ax", %progbits
 	thumb_func_start sub_80E195C
 sub_80E195C:
 	push {r4, r5, r6, lr}
@@ -265702,8 +265702,8 @@ _080E1AE6:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_80E1AF0
-sub_80E1AF0:
+	thumb_func_start animation_script_update_4_byte_stream
+animation_script_update_4_byte_stream:
 	push {r4, r5, r6, lr}
 	add sp, #-0x004
 	adds r6, r0, #0x0

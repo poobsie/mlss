@@ -48,9 +48,9 @@
     {
       "id": "script_engine",
       "state": "active",
-      "patterns": ["src/script_*.c"],
+      "patterns": ["src/script_*.c", "src/script/*.c"],
       "documentation": "docs/subsystems/script-engine.md",
-      "next_action": "Recover the command context and dispatch-table types before renaming handlers."
+      "next_action": "Recover the command-handler context at offset 0x14 and its indexed object collection before naming handler operations."
     },
     {
       "id": "mario_bros",
