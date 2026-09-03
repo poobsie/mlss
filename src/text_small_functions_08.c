@@ -39,38 +39,6 @@ SEC(sub_8106D9C) void sub_8106D9C(void* arg0) {
     }
 }
 
-SEC(sub_810FD10) void sub_810FD10(void* arg0) {
-    void* temp_r2;
-
-    temp_r2 = FIELD_AT(arg0, void**, 0x30);
-    if (8 & FIELD_AT(FIELD_AT(temp_r2, void**, 8), u8*, 0x12)) {
-        sub_8082E1C(temp_r2, 0, 0, 0);
-        sub_80883A0(arg0, 0xC);
-        sound_effect_play(0x10F, SOUND_VOLUME_UNCHANGED);
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_810F824;
-    }
-}
-
-SEC(sub_811090C) s32 sub_811090C(void* arg0) {
-    s32 var_r0;
-    void* var_r1;
-
-    var_r0 = sub_8086C64();
-    if (var_r0 == 0) {
-        var_r1 = FIELD_AT(arg0, void**, 0x30);
-        if (var_r1 != NULL) {
-            do {
-                FIELD_AT(var_r1, s32*, 0xA8) = 1;
-                var_r1 = FIELD_AT(var_r1, void**, 0x30);
-            } while (var_r1 != NULL);
-        }
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_81109D0;
-        sound_effect_stop(0x10F);
-        var_r0 = 0;
-    }
-    return var_r0;
-}
-
 SEC(sub_8110A30) void sub_8110A30(void* arg0) {
     s32 temp_r0;
     s32 temp_r0_2;
@@ -92,28 +60,6 @@ SEC(sub_8110A30) void sub_8110A30(void* arg0) {
         sub_807FB64(FIELD_AT(arg0, void**, 8));
         sound_effect_stop(0x119);
         FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_8110A94;
-    }
-}
-
-SEC(sub_81124D0) void sub_81124D0(void* arg0) {
-    sub_808843C(arg0, 0x8A, 0x6C, 0, 0x100);
-    sub_80880C4(arg0, 0x380);
-    sub_8082E1C(arg0, 0xA, 0, 0);
-    FIELD_AT(arg0, UnknownWord**, 0x4C) = &sub_81127B8;
-    sound_effect_play(0x11B, SOUND_VOLUME_UNCHANGED);
-}
-
-SEC(sub_811448C) void sub_811448C(void* arg0) {
-    u8 temp_r5;
-    void* temp_r2;
-
-    temp_r5 = sub_8087CE4();
-    if (temp_r5 == 0) {
-        temp_r2 = *(void**)0x03000FD8;
-        FIELD_AT(temp_r2, u8*, 0xC) = (u8)(FIELD_AT(temp_r2, u8*, 0xC) | 0x80);
-        sub_8082E1C(arg0, -1, -1, 0);
-        FIELD_AT(FIELD_AT(arg0, void**, 8), s8*, 0x20) = 0x10;
-        FIELD_AT(arg0, s32*, 0x4C) = (s32)temp_r5;
     }
 }
 

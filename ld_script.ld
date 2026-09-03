@@ -1429,7 +1429,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_810D5F4);
         src/object/conditional_mode_transitions.o(.text.object_child_mode_transitions.sub_810FBFC);
         asm/text08057568.o(.text.object_child_mode_transitions_after_sub_810FBFC);
-        src/text_small_functions_08.o(.text.small_functions_08.sub_810FD10);
+        src/object/late_visual_transitions.o(.text.object_late_visual_transitions.sub_810FD10);
         asm/text08057568.o(.text.small_functions_08_after_sub_810FD10);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_810FE1C);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_810FE1C);
@@ -1445,7 +1445,7 @@ SECTIONS
         asm/text08057568.o(.text.object_child_mode_transitions_after_sub_810FF78);
         src/object/conditional_mode_transitions.o(.text.object_child_mode_transitions.sub_8110078);
         asm/text08057568.o(.text.object_child_mode_transitions_after_sub_8110078);
-        src/text_small_functions_08.o(.text.small_functions_08.sub_811090C);
+        src/object/late_visual_transitions.o(.text.object_late_visual_transitions.sub_811090C);
         asm/text08057568.o(.text.small_functions_08_after_sub_811090C);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_81109D0);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_81109D0);
@@ -1461,7 +1461,7 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_08_after_sub_8112350);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_8112498);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8112498);
-        src/text_small_functions_08.o(.text.small_functions_08.sub_81124D0);
+        src/object/late_visual_transitions.o(.text.object_late_visual_transitions.sub_81124D0);
         asm/text08057568.o(.text.small_functions_08_after_sub_81124D0);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_811254C);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_811254C);
@@ -1475,7 +1475,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8113E20);
         src/text_misc_helpers_02.o(.text.misc_helpers_02.sub_8113E78);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8113E78);
-        src/text_small_functions_08.o(.text.small_functions_08.sub_811448C);
+        src/object/late_visual_transitions.o(.text.object_late_visual_transitions.sub_811448C);
         asm/text08057568.o(.text.small_functions_08_after_sub_811448C);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_8114528);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8114528);
