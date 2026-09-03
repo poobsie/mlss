@@ -1848,11 +1848,11 @@ SECTIONS
         asm/text08057568.o(.text.high_after_sub_81632EC);
         src/text_high_helpers.o(.text.high.sub_8163308);
         asm/text08057568.o(.text.high_after_sub_8163308);
-        src/text08057568_easy.o(.text.sub_8163320);
+        src/ui/layout_state.o(.text.sub_8163320);
         asm/text08057568.o(.text.after_8163320);
-        src/text08057568_easy.o(.text.sub_8163748);
+        src/ui/layout_state.o(.text.sub_8163748);
         asm/text08057568.o(.text.after_8163748);
-        src/text08057568_easy.o(.text.sub_81638B0);
+        src/ui/layout_state.o(.text.sub_81638B0);
         asm/text08057568.o(.text.after_81638B0);
         src/text_high_helpers.o(.text.high.sub_816391C);
         asm/text08057568.o(.text.high_after_sub_816391C);
@@ -1865,11 +1865,11 @@ SECTIONS
         asm/text08057568.o(.text.child_actions_after_sub_8163A44);
         src/ui/object_state.o(.text.sub_8163A64);
         asm/text08057568.o(.text.after_ui_object_helpers_3a64);
-        src/text08057568_easy.o(.text.sub_8163B5C);
+        src/ui/layout_state.o(.text.sub_8163B5C);
         asm/text08057568.o(.text.after_8163B5C);
         src/ui/destructors.o(.text.upper.sub_8163B60);
         asm/text08057568.o(.text.after_upper_sub_8163B60);
-        src/text08057568_easy.o(.text.sub_8163BB8);
+        src/ui/layout_state.o(.text.sub_8163BB8);
         asm/text08057568.o(.text.after_8163BB8);
         src/runtime/pointer_list.o(.text.sub_8163BC4);
         asm/text08057568.o(.text.after_8163BC4);
@@ -1883,7 +1883,7 @@ SECTIONS
         asm/text08057568.o(.text.high_after_sub_8165250);
         src/text_high_helpers.o(.text.high.sub_8165404);
         asm/text08057568.o(.text.high_after_sub_8165404);
-        src/text08057568_easy.o(.text.sub_816544C);
+        src/ui/layout_state.o(.text.sub_816544C);
         asm/text08057568.o(.text.after_816544C);
         src/text_high_helpers.o(.text.high.sub_8167E9C);
         asm/text08057568.o(.text.high_after_sub_8167E9C);
