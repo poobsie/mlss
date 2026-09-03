@@ -3,7 +3,7 @@
 #include "audio/sound_effects.h"
 #include "common.h"
 #include "process/process.h"
-#include "title_screen.h"
+#include "screens/title_screen.h"
 #include "option_screens.h"
 
 #ifndef NONMATCHING

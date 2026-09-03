@@ -2,54 +2,54 @@
 #include "audio/music.h"
 #include "audio/sound_effects.h"
 #include "common.h"
-#include "title_screen.h"
+#include "screens/title_screen.h"
 
-struct COMPProcess* comp_init(struct COMPProcess* comp, u8 priority, char* label) {
-    struct Process* opdr;
+struct CompanyIntro* company_intro_create(struct CompanyIntro* intro, u8 priority, char* label) {
+    struct Process* renderProcess;
     void* cgdw;
     struct struc_203FFF8* v11;
     vu32 zero;
 
-    process_add(&comp->process, priority, label);
-    comp->process.definition = &stru_8CDC258;
+    process_add(&intro->process, priority, label);
+    intro->process.definition = &gCompanyIntroProcessDefinition;
 
     BUFFER_REG_SOUNDCNT_L = 0x7FFF;
     gGameState.field_2 = 1;
     BUFFER_REG_DISPCNT = 0;
     sub_8017E34();
 
-    opdr = (struct Process*)alloc_Zero(sizeof(struct Process), 0, "OPDR", 0);
-    process_add(opdr, 8, "OPDR");
-    opdr->definition = &stru_8CDC268;
-    comp->opdr = opdr;
-    opdr->parentProcess = &comp->process;
+    renderProcess = (struct Process*)alloc_Zero(sizeof(struct Process), 0, "OPDR", 0);
+    process_add(renderProcess, 8, "OPDR");
+    renderProcess->definition = &gScreenRenderProcessDefinition;
+    intro->renderProcess = renderProcess;
+    renderProcess->parentProcess = &intro->process;
 
     dword_3000C78 = 0;
     sub_8020994(0, 0, 0, 0x80);
     stru_203FFB8.field_0_2 = 1;
 
-    comp->mario = sub_8020DD0(2, 4097, 1, -1, -1, -1, -1);
-    sub_801E150(comp->mario, 12, -1, 0, 0);
-    comp->mario->xPosition = 80;
-    comp->mario->yPosition = -35;
-    comp->mario->field_11_6 = 1;
+    intro->mario = sub_8020DD0(2, 4097, 1, -1, -1, -1, -1);
+    sub_801E150(intro->mario, 12, -1, 0, 0);
+    intro->mario->xPosition = 80;
+    intro->mario->yPosition = -35;
+    intro->mario->field_11_6 = 1;
 
-    comp->luigi = sub_8020DD0(2, 4098, 1, -1, -1, -1, -1);
-    sub_801E150(comp->luigi, 12, -1, 0, 0);
-    comp->luigi->xPosition = 160;
-    comp->luigi->yPosition = -35;
+    intro->luigi = sub_8020DD0(2, 4098, 1, -1, -1, -1, -1);
+    sub_801E150(intro->luigi, 12, -1, 0, 0);
+    intro->luigi->xPosition = 160;
+    intro->luigi->yPosition = -35;
 
-    comp->alphaDreamLogo = sub_8020DD0(7, 33103, 1, -1, -1, -1, -1);
-    sub_801E150(comp->alphaDreamLogo, 0, -1, 0, 0);
-    comp->alphaDreamLogo->xPosition = 120;
-    comp->alphaDreamLogo->yPosition = 74;
+    intro->alphaDreamLogo = sub_8020DD0(7, 33103, 1, -1, -1, -1, -1);
+    sub_801E150(intro->alphaDreamLogo, 0, -1, 0, 0);
+    intro->alphaDreamLogo->xPosition = 120;
+    intro->alphaDreamLogo->yPosition = 74;
 
     sub_80213A0(0, 4109, -1, 1);
     sub_80213A0(0, 4110, -1, 1);
-    comp->xPosMario = 20480;
-    comp->yPosMario = -8960;
-    comp->xPosLuigi = 40960;
-    comp->yPosLuigi = -8960;
+    intro->marioX = 20480;
+    intro->marioY = -8960;
+    intro->luigiX = 40960;
+    intro->luigiY = -8960;
 
     cgdw = alloc_zero_8018DB4(0x8000, 1, "CGDW", 0);
     dword_3000C84(dword_83A2B48, cgdw);
@@ -76,119 +76,119 @@ struct COMPProcess* comp_init(struct COMPProcess* comp, u8 priority, char* label
     BUFFER_REG_BG0HOFS = 0;
     BUFFER_REG_BG0VOFS = 99;
 
-    comp->verticalOffset = 25344;
+    intro->backgroundOffsetY = 25344;
     CpuFastSet(&dword_83A3498, (void*)0x2000000 + 0x80, 8);
     BUFFER_REG_SOUNDCNT_L = 0x7FFF;
     gGameState.field_2 = -1;
 
-    sprite_show_8020CBC(comp->mario);
-    sprite_show_8020CBC(comp->luigi);
+    sprite_show_8020CBC(intro->mario);
+    sprite_show_8020CBC(intro->luigi);
 
-    comp->velocity = 0;
-    comp->acceleration = 117;
-    comp->flags = 1;
-    comp->process.state = 0;
+    intro->verticalVelocity = 0;
+    intro->gravity = 117;
+    intro->brothersInMotion = 1;
+    intro->process.state = COMPANY_INTRO_BROTHERS_FALL;
 
     BUFFER_REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON | DISPCNT_OBJ_ON;
 
-    return comp;
+    return intro;
 }
 
-void comp_update(struct COMPProcess* comp) {
-    switch (comp->process.state) {
-        case 0:
-            comp->yPosMario += comp->velocity;
-            comp->yPosLuigi += comp->velocity;
-            comp->verticalOffset -= comp->velocity;
-            comp->velocity = comp->velocity + comp->acceleration;
-            if (comp->verticalOffset <= 0) {
-                comp->brightness = 16;
-                comp->verticalOffset = 0;
-                comp->velocity = -1324;
+void company_intro_update(struct CompanyIntro* intro) {
+    switch (intro->process.state) {
+        case COMPANY_INTRO_BROTHERS_FALL:
+            intro->marioY += intro->verticalVelocity;
+            intro->luigiY += intro->verticalVelocity;
+            intro->backgroundOffsetY -= intro->verticalVelocity;
+            intro->verticalVelocity = intro->verticalVelocity + intro->gravity;
+            if (intro->backgroundOffsetY <= 0) {
+                intro->phaseTimer = 16;
+                intro->backgroundOffsetY = 0;
+                intro->verticalVelocity = -1324;
                 sound_effect_play(134, SOUND_VOLUME_UNCHANGED);
-                comp->process.state = 1;
+                intro->process.state = COMPANY_INTRO_IMPACT_SHAKE;
             }
             break;
 
-        case 1:
-            if (comp->brightness > 10) {
-                comp->verticalOffset ^= 512;
+        case COMPANY_INTRO_IMPACT_SHAKE:
+            if (intro->phaseTimer > 10) {
+                intro->backgroundOffsetY ^= 512;
             } else {
-                comp->verticalOffset ^= 256;
+                intro->backgroundOffsetY ^= 256;
             }
-            comp->brightness--;
-            if (comp->brightness == 0) {
-                comp->brightness = 100;
+            intro->phaseTimer--;
+            if (intro->phaseTimer == 0) {
+                intro->phaseTimer = 100;
                 BUFFER_REG_BG0VOFS = 0;
-                comp->process.state = 2;
+                intro->process.state = COMPANY_INTRO_BROTHERS_HOLD;
             }
             break;
 
-        case 2:
-            if (comp->brightness == 80) {
+        case COMPANY_INTRO_BROTHERS_HOLD:
+            if (intro->phaseTimer == 80) {
                 sound_effect_play(221, SOUND_VOLUME_UNCHANGED);
             }
-            comp->brightness--;
-            if (comp->brightness == 0) {
-                comp->brightness = 16;
+            intro->phaseTimer--;
+            if (intro->phaseTimer == 0) {
+                intro->phaseTimer = 16;
                 BUFFER_REG_BLDCNT = 191;
                 BUFFER_REG_BLDY = 0;
-                comp->process.state = 3;
+                intro->process.state = COMPANY_INTRO_BROTHERS_FADE_OUT;
             }
             break;
 
-        case 3:
-            comp->brightness--;
-            BUFFER_REG_BLDY = 16 - comp->brightness;
-            if (comp->brightness == 0) {
-                sprite_hide_8021F20(comp->mario);
-                sprite_hide_8021F20(comp->luigi);
+        case COMPANY_INTRO_BROTHERS_FADE_OUT:
+            intro->phaseTimer--;
+            BUFFER_REG_BLDY = 16 - intro->phaseTimer;
+            if (intro->phaseTimer == 0) {
+                sprite_hide_8021F20(intro->mario);
+                sprite_hide_8021F20(intro->luigi);
                 CpuFastSet(dword_83A3D60, (void*)0x2000000 + 0x80, 8);
                 gGameState.field_2 = -1;
                 BUFFER_REG_BG0CNT = BGCNT_CHARBASE(3) | BGCNT_SCREENBASE(29);
-                sprite_show_8020CBC(comp->alphaDreamLogo);
-                comp->alphaDreamLogo->field_12_4 = 1;
-                comp->brightness = 16;
-                comp->process.state = 4;
+                sprite_show_8020CBC(intro->alphaDreamLogo);
+                intro->alphaDreamLogo->field_12_4 = 1;
+                intro->phaseTimer = 16;
+                intro->process.state = COMPANY_INTRO_LOGO_FADE_IN;
             }
             break;
 
-        case 4:
-            comp->brightness--;
-            BUFFER_REG_BLDY = comp->brightness;
+        case COMPANY_INTRO_LOGO_FADE_IN:
+            intro->phaseTimer--;
+            BUFFER_REG_BLDY = intro->phaseTimer;
             if (gGameState.field_2A & (A_BUTTON | B_BUTTON | START_BUTTON)) {
-                comp->brightness = 16 - comp->brightness;
-                comp->process.state = 6;
-            } else if (comp->brightness == 0) {
-                comp->brightness = 120;
-                comp->alphaDreamLogo->field_12_4 = 0;
-                comp->alphaDreamLogo->field_12_1 = 1;
-                comp->process.state = 5;
+                intro->phaseTimer = 16 - intro->phaseTimer;
+                intro->process.state = COMPANY_INTRO_LOGO_FADE_OUT;
+            } else if (intro->phaseTimer == 0) {
+                intro->phaseTimer = 120;
+                intro->alphaDreamLogo->field_12_4 = 0;
+                intro->alphaDreamLogo->field_12_1 = 1;
+                intro->process.state = COMPANY_INTRO_LOGO_HOLD;
             }
             break;
 
-        case 5:
+        case COMPANY_INTRO_LOGO_HOLD:
             if ((gGameState.field_2A & (A_BUTTON | B_BUTTON | START_BUTTON)) == 0) {
-                comp->brightness--;
-                if (comp->brightness != 0) {
+                intro->phaseTimer--;
+                if (intro->phaseTimer != 0) {
                     break;
                 }
             }
-            comp->brightness = 16;
-            comp->process.state = 6;
+            intro->phaseTimer = 16;
+            intro->process.state = COMPANY_INTRO_LOGO_FADE_OUT;
             break;
 
-        case 6:
-            comp->brightness--;
-            BUFFER_REG_BLDY = 16 - comp->brightness;
-            if (comp->brightness == 0) {
-                if (comp) {
-                    comp->process.definition = &stru_8CDC258;
+        case COMPANY_INTRO_LOGO_FADE_OUT:
+            intro->phaseTimer--;
+            BUFFER_REG_BLDY = 16 - intro->phaseTimer;
+            if (intro->phaseTimer == 0) {
+                if (intro) {
+                    intro->process.definition = &gCompanyIntroProcessDefinition;
                     sub_8021FD4();
-                    if (comp->opdr) {
-                        process_remove(comp->opdr, 3);
+                    if (intro->renderProcess) {
+                        process_remove(intro->renderProcess, 3);
                     }
-                    process_remove(&comp->process, 3);
+                    process_remove(&intro->process, 3);
                 }
                 open_init_8055A00(alloc_Zero(sizeof(struct TitleScreen), 0, "OPEN", 0), 8, "OPEN", 0);
                 return;
@@ -196,37 +196,37 @@ void comp_update(struct COMPProcess* comp) {
             break;
     }
 
-    if (comp->process.state < 3) {
-        if (comp->process.state != 0 && comp->flags) {
-            comp->xPosMario -= 384;
-            comp->xPosLuigi += 384;
-            comp->yPosMario += comp->velocity;
-            comp->yPosLuigi += comp->velocity;
-            comp->velocity += comp->acceleration;
-            if (comp->yPosMario >= 24064) {
+    if (intro->process.state < COMPANY_INTRO_BROTHERS_FADE_OUT) {
+        if (intro->process.state != COMPANY_INTRO_BROTHERS_FALL && intro->brothersInMotion) {
+            intro->marioX -= 384;
+            intro->luigiX += 384;
+            intro->marioY += intro->verticalVelocity;
+            intro->luigiY += intro->verticalVelocity;
+            intro->verticalVelocity += intro->gravity;
+            if (intro->marioY >= 24064) {
                 bool32 temp;
-                comp->yPosMario = 24064;
-                comp->yPosLuigi = 24064;
-                sub_80210A8(comp->mario, 2, 4109, 1, -1, -1, -1, -1);
-                sub_801E150(comp->mario, 0, -1, 0, 0);
-                sprite_show_8020CBC(comp->mario);
-                temp = comp->mario->field_11_6;
+                intro->marioY = 24064;
+                intro->luigiY = 24064;
+                sub_80210A8(intro->mario, 2, 4109, 1, -1, -1, -1, -1);
+                sub_801E150(intro->mario, 0, -1, 0, 0);
+                sprite_show_8020CBC(intro->mario);
+                temp = intro->mario->field_11_6;
                 temp ^= 1;
-                comp->mario->field_11_6 = temp;
-                comp->mario->field_12_1 = 1;
+                intro->mario->field_11_6 = temp;
+                intro->mario->field_12_1 = 1;
 
-                sub_80210A8(comp->luigi, 2, 4110, 1, -1, -1, -1, -1);
-                sub_801E150(comp->luigi, 0, -1, 0, 0);
-                sprite_show_8020CBC(comp->luigi);
-                comp->luigi->field_12_1 = 1;
-                comp->flags = 0;
+                sub_80210A8(intro->luigi, 2, 4110, 1, -1, -1, -1, -1);
+                sub_801E150(intro->luigi, 0, -1, 0, 0);
+                sprite_show_8020CBC(intro->luigi);
+                intro->luigi->field_12_1 = 1;
+                intro->brothersInMotion = 0;
             }
         }
-        BUFFER_REG_BG0VOFS = comp->verticalOffset / 256;
-        comp->mario->xPosition = comp->xPosMario / 256;
-        comp->mario->yPosition = comp->yPosMario / 256;
-        comp->luigi->xPosition = comp->xPosLuigi / 256;
-        comp->luigi->yPosition = comp->yPosLuigi / 256;
+        BUFFER_REG_BG0VOFS = intro->backgroundOffsetY / 256;
+        intro->mario->xPosition = intro->marioX / 256;
+        intro->mario->yPosition = intro->marioY / 256;
+        intro->luigi->xPosition = intro->luigiX / 256;
+        intro->luigi->yPosition = intro->luigiY / 256;
     }
 
     sub_8021F7C();
@@ -1218,7 +1218,7 @@ void sub_805737C(struct TitleScreen* ts, int flags) {
 }
 
 //! The contents of this function is also found in opdr_update2.
-void opdr_update(void) {
+void screen_render_process_update(void) {
     int var1 = gGameState.field_880;
     sub_8020A78();
     dword_3000D48(stru_203FFB8.field_3C, stru_203FFB8.field_3C + 2580);
@@ -1226,20 +1226,20 @@ void opdr_update(void) {
     gGameState.field_880 = var1;
 }
 
-//! The contents of this function is also found in comp_update.
-void sub_8057458(struct COMPProcess* comp, int flags) {
-    comp->process.definition = &stru_8CDC258;
+//! The contents of this function is also found in company_intro_update.
+void company_intro_destroy(struct CompanyIntro* intro, int flags) {
+    intro->process.definition = &gCompanyIntroProcessDefinition;
     sub_8021FD4();
-    if (comp->opdr) {
-        process_remove(comp->opdr, 3);
+    if (intro->renderProcess) {
+        process_remove(intro->renderProcess, 3);
     }
-    process_remove(&comp->process, flags);
+    process_remove(&intro->process, flags);
 }
 
-struct Process* sub_8057484(struct Process* opdr, u8 priority, char* label) {
-    process_add(opdr, priority, label);
-    opdr->definition = &stru_8CDC268;
-    return opdr;
+struct Process* screen_render_process_create(struct Process* process, u8 priority, char* label) {
+    process_add(process, priority, label);
+    process->definition = &gScreenRenderProcessDefinition;
+    return process;
 }
 
 void sub_80574A0(void) {

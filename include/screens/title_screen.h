@@ -1,5 +1,5 @@
-#ifndef TITLE_SCREEN_H
-#define TITLE_SCREEN_H
+#ifndef GUARD_SCREENS_TITLE_SCREEN_H
+#define GUARD_SCREENS_TITLE_SCREEN_H
 
 #include "process/process.h"
 
@@ -65,22 +65,41 @@ enum TitleScreenSuitcaseVisualStates {
     TS_SV_STATE_DISAPPEAR,
 };
 
-struct COMPProcess {
+enum CompanyIntroState {
+    COMPANY_INTRO_BROTHERS_FALL,
+    COMPANY_INTRO_IMPACT_SHAKE,
+    COMPANY_INTRO_BROTHERS_HOLD,
+    COMPANY_INTRO_BROTHERS_FADE_OUT,
+    COMPANY_INTRO_LOGO_FADE_IN,
+    COMPANY_INTRO_LOGO_HOLD,
+    COMPANY_INTRO_LOGO_FADE_OUT,
+};
+
+struct CompanyIntro {
     struct Process process;
-    s8 brightness;
-    u8 flags : 1;
-    s32 verticalOffset;
-    s32 xPosMario;
-    s32 xPosLuigi;
-    s32 yPosMario;
-    s32 yPosLuigi;
-    s32 acceleration;
-    s32 velocity;
-    struct Process* opdr;
+    s8 phaseTimer;
+    u8 brothersInMotion : 1;
+    s32 backgroundOffsetY;
+    s32 marioX;
+    s32 luigiX;
+    s32 marioY;
+    s32 luigiY;
+    s32 gravity;
+    s32 verticalVelocity;
+    struct Process* renderProcess;
     struct Sprite* mario;
     struct Sprite* luigi;
     struct Sprite* alphaDreamLogo;
 };
+
+extern struct ProcessDefinition gCompanyIntroProcessDefinition __asm__("stru_8CDC258");
+extern struct ProcessDefinition gScreenRenderProcessDefinition __asm__("stru_8CDC268");
+
+struct CompanyIntro* company_intro_create(struct CompanyIntro* intro, u8 priority, char* label);
+void company_intro_update(struct CompanyIntro* intro);
+void company_intro_destroy(struct CompanyIntro* intro, int flags);
+struct Process* screen_render_process_create(struct Process* process, u8 priority, char* label);
+void screen_render_process_update(void);
 
 struct TitleScreen {
     struct Process process;

@@ -19,6 +19,25 @@ The process also records simultaneous new presses of all four D-pad directions. 
 
 The field cleared in `stru_3000D18` after successful detection remains unnamed. Its broader owner and effect are not established by this process.
 
+## Company intro
+
+The process previously abbreviated as `COMP` is the company intro shown before the title screen. `company_intro_create` loads the two background layers, creates Mario, Luigi, and AlphaDream logo sprites, and attaches a child render process. `company_intro_update` runs the complete sequence: the brothers fall, the impact shakes the background, the brothers settle and fade out, the AlphaDream logo fades in and holds, then the screen fades into the title process. A, B, or Start skips the logo hold.
+
+The motion fields are signed 8.8 fixed-point values. `backgroundOffsetY`, `marioX`, `marioY`, `luigiX`, and `luigiY` are divided by 256 when written to hardware or sprite coordinates. `verticalVelocity` and `gravity` use the same scale.
+
+The shared child process installed from the `OPDR` label is now exposed mechanically as `screen_render_process_create` and `screen_render_process_update`. Its update services the sprite system and submits the prepared render range. The original abbreviation is retained only as the allocation label because allocation labels are ROM data, not source-level API names.
+
+| Previous name | Recovered name | Evidence |
+| --- | --- | --- |
+| `COMPProcess` | `CompanyIntro` | Owns the complete Mario, Luigi, and AlphaDream pre-title sequence. |
+| `comp_init` | `company_intro_create` | Initializes that process, its resources, sprites, motion, and render child. |
+| `comp_update` | `company_intro_update` | Its seven states advance the company intro and create the title screen on completion. |
+| `sub_8057458` | `company_intro_destroy` | Restores the company-intro definition, removes its render child, and removes the intro process. |
+| `brightness` | `phaseTimer` | Used as blend intensity during fades and as the hold and shake countdown. |
+| `flags` | `brothersInMotion` | Gates the brothers' post-impact horizontal and vertical motion until they land. |
+| `verticalOffset` | `backgroundOffsetY` | Written to `BG0VOFS` after conversion from 8.8 fixed point. |
+| `acceleration` | `gravity` | Added to vertical velocity during both falling phases. |
+
 ## Remaining screen work
 
 The title and option screens still combine process lifecycle, graphics-resource loading, widget state, and transitions in large root-level files. They remain active work and should be split in bounded slices rather than moved wholesale.

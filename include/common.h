@@ -272,5 +272,3 @@ extern u8* off_839EC80;
 extern struct ProcessDefinition stru_8CDC1F8;
 extern struct ProcessDefinition stru_8CDC238;
 extern struct ProcessDefinition stru_8CDC248;
-extern struct ProcessDefinition stru_8CDC258;
-extern struct ProcessDefinition stru_8CDC268;

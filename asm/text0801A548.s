@@ -980,7 +980,7 @@ _0801B064:
 	bl alloc_Zero
 	movs r1, #0x08
 	adds r2, r4, #0x0
-	bl comp_init
+	bl company_intro_create
 _0801B07A:
 	pop {r4}
 	pop {r0}
