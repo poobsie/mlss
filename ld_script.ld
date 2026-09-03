@@ -58,7 +58,7 @@ SECTIONS
         src/runtime/relocated_code.o(.text);
         src/process/process.o(.text);
         asm/text08019CA4.o(.text);
-        src/text08019CA4_tail.o(.text);
+        src/link/frame_update.o(.text);
         src/screens/game_boy_player_logo.o(.text);
         asm/text0801A548.o(.text);
         src/runtime/state_clear.o(.text.early_system_helpers.sub_801AE1C);
