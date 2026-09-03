@@ -39,6 +39,8 @@ SECTIONS
         src/text08019CA4_tail.o(.text);
         src/game_boy_player_logo.o(.text);
         asm/text0801A548.o(.text);
+        src/early_system_helpers.o(.text.early_system_helpers.sub_801AE1C);
+        asm/text0801A548.o(.text.after_early_system_helpers_801AE1C);
         src/early_code_helpers.o(.text.early_code_helpers.sub_801AF50);
         asm/text0801A548.o(.text.after_early_code_helpers_801AF50);
         src/early_code_helpers.o(.text.early_code_helpers.sub_801B748);
@@ -47,6 +49,8 @@ SECTIONS
         asm/text0801A548.o(.text.after_801B75C);
         src/early_code_helpers_3.o(.text.early_code_helpers_3.sub_801B820);
         asm/text0801A548.o(.text.early15a_after_sub_801B820);
+        src/early_system_helpers.o(.text.early_system_helpers.sub_801B85C);
+        asm/text0801A548.o(.text.after_early_system_helpers_801B85C);
         src/early_code_helpers_3.o(.text.early_code_helpers_3.sub_801BC98);
         asm/text0801A548.o(.text.early15a_after_sub_801BC98);
         src/early_code_helpers_3.o(.text.early_code_helpers_3.sub_801BD30);

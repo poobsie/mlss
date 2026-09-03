@@ -714,8 +714,9 @@ _0801AE0C: .4byte 0x00000888
 _0801AE10: .4byte 0x0000088B
 _0801AE14: .4byte 0x03000D18
 _0801AE18: .4byte 0x03000D28
-	thumb_func_start sub_801AE1C
-sub_801AE1C:
+	.section .discard.early_system_helpers_sub_801AE1C, "ax", %progbits
+	thumb_func_start asm_sub_801AE1C
+asm_sub_801AE1C:
 	push {lr}
 	add sp, #-0x004
 	movs r0, #0x00
@@ -729,6 +730,7 @@ sub_801AE1C:
 	bx r0
 _0801AE34: .4byte 0x03000D28
 _0801AE38: .4byte 0x05000002
+	.section .text.after_early_system_helpers_801AE1C, "ax", %progbits
 	thumb_func_start sub_801AE3C
 sub_801AE3C:
 	push {r4, r5, lr}
@@ -1607,8 +1609,9 @@ _0801B812:
 _0801B818: .4byte 0x02000050
 _0801B81C: .4byte 0x02000054
 	.section .text.early15a_after_sub_801B820, "ax", %progbits
-	thumb_func_start sub_801B85C
-sub_801B85C:
+	.section .discard.early_system_helpers_sub_801B85C, "ax", %progbits
+	thumb_func_start asm_sub_801B85C
+asm_sub_801B85C:
 	push {lr}
 	ldr r2, _0801B86C @ =0x08CDBD98
 	str r2, [r0, #0x18]
@@ -1617,6 +1620,7 @@ sub_801B85C:
 	bx r0
 	.byte 0x00, 0x00
 _0801B86C: .4byte 0x08CDBD98
+	.section .text.after_early_system_helpers_801B85C, "ax", %progbits
 	thumb_func_start sub_801B870
 sub_801B870:
 	push {r4, r5, r6, lr}
