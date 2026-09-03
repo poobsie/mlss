@@ -24,7 +24,7 @@ Five adjacent definition and adapter helpers now live in `runtime/high_definitio
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.
 `pointer_list_count_value` walks a singly linked list and returns the number of nodes whose payload pointer equals the requested value. The second word in each node remains unknown; traversal proves only the payload at `0x00` and next pointer at `0x08`.
 
 `DefinitionState` is a six-word base overlay used by several differently sized late-runtime allocations. Two initializer families clear the same fields and install distinct definitions while setting value `0x10` to `0x7E00`; paired reset functions replace the definition and clear state. The initializer return types now match callers that retain `r0` as the initialized object pointer.
@@ -40,5 +40,7 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,
 `runtime_dereference_pointer` is the narrow indirect-pointer adapter used by two assembly construction paths. Those callers do not expose a common owned type, so the helper states the exact pointer operation without inventing object semantics.
 
 `runtime_release_global_state_ff4` releases and clears the shared pointer at `0x03000FF4`. Many object and screen paths consume that state, but its allocation and copying logic do not yet prove a narrower class name, so the global suffix remains explicit.
+
+The same runtime module now owns the heap releases for global slots `0x03000FB4`, `0x03000FC4`, and `0x03000FC0`. The last operation clears its slot after release; the first two preserve the original value. Address suffixes remain because allocation sites have not established narrower resource identities.
 
 `RuntimeIntrusiveList` and `RuntimeIntrusiveNode` recover the generic head, tail, count, previous, and next fields used near `0x08163CD4`. `runtime_intrusive_list_append_unique` first rejects a node already present in the list, then appends it and increments the count. The node payload at offset `0` is intentionally unnamed because this routine never reads it.

@@ -25,3 +25,5 @@ Nine owner-driven setup callbacks have also moved into object runtime. Six pass 
 Six adjacent timed follow-up setups now live in object runtime. Each stores its duration, configures a numbered follow-up kind with that same duration, and installs the corresponding callback in the typed `followup` slot.
 
 Eighteen more object callbacks have left the staging bucket. Four install a continuation, with three returning the callback protocol's true result. The remaining fourteen expose countdowns, `value80` gates, visual-completion gates, timer setup, reset transitions, and two identical vertical-position updates. The word at object offset `0x84` is now a typed `value84`; its meaning remains explicitly unresolved.
+
+Six non-object helpers have been assigned from their shared global owners. Three operate on the field runtime's active value-transfer state or primary actor object. Three release heap pointers in the general runtime global block, with the `0x03000FC0` variant also clearing its slot.

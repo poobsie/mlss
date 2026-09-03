@@ -13,9 +13,11 @@ struct FieldEffectEntry {
     struct FieldEffectEntryMetadata* metadata;
 };
 
+struct FieldValueTransfer;
+
 struct FieldEffectRuntime {
     u8 unknown000[0x248];
-    void* dispatchGate;
+    struct FieldValueTransfer* valueTransfer;
 };
 
 struct FieldEffectProcess {

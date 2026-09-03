@@ -228,14 +228,6 @@ SEC(sub_8079320) void sub_8079320(void* arg0) {
     }
 }
 
-SEC(sub_807F6D0) void sub_807F6D0(void) {
-    sub_8116610(FIELD_AT(*(void**)0x03000FD8, s32*, 0x248));
-}
-
-SEC(sub_807F6EC) void sub_807F6EC(s32 arg0) {
-    sub_81165CC(FIELD_AT(*(void**)0x03000FD8, s32*, 0x248), arg0);
-}
-
 SEC(sub_8081C54) void sub_8081C54(void* arg0) {
     if (!(1 & FIELD_AT(FIELD_AT(FIELD_AT(arg0, void**, 8), void**, 0x28), u8*, 0x111))) {
         FIELD_AT(arg0, UnknownWord**, 4) = (UnknownWord*)&sub_8081F84;
@@ -265,23 +257,6 @@ SEC(sub_808863C) void sub_808863C(void* arg0) {
 SEC(sub_808A098) void sub_808A098(void* arg0) {
     sub_807F4FC();
     FIELD_AT(arg0, s32*, 0x4C) = 0x0808A201;
-}
-
-SEC(sub_80D2D34) void sub_80D2D34(void) {
-    sub_807C298(FIELD_AT(FIELD_AT(*(void**)0x03000FD8, void**, 0x70), s32*, 0x38));
-}
-
-SEC(sub_80E57FC) void sub_80E57FC(void) {
-    heap_free_block(*(s32*)0x03000FB4);
-}
-
-SEC(sub_80E9AF8) void sub_80E9AF8(void) {
-    heap_free_block(*(s32*)0x03000FC4);
-}
-
-SEC(sub_80E9D04) void sub_80E9D04(void) {
-    heap_free_block(*(s32*)0x03000FC0);
-    *(s32*)0x03000FC0 = 0;
 }
 
 SEC(sub_8106A10) void sub_8106A10(void* arg0) {

@@ -12,6 +12,9 @@ typedef void (*InterruptCallback)(void);
 #define runtime_clear_state_3000d28 sub_801AE1C
 #define runtime_release_global_resource_callback sub_8150A38
 #define runtime_release_global_state_ff4 sub_8123340
+#define runtime_release_global_state_fb4 sub_80E57FC
+#define runtime_release_global_state_fc4 sub_80E9AF8
+#define runtime_release_and_clear_global_state_fc0 sub_80E9D04
 
 void game_state_set_play_time(u32 playTime);
 void runtime_noop_interrupt_callback(void);
@@ -19,5 +22,8 @@ void runtime_install_interrupt_callback(int interrupt, InterruptCallback callbac
 void runtime_clear_state_3000d28(void);
 void runtime_release_global_resource_callback(void* unused);
 void runtime_release_global_state_ff4(void);
+void runtime_release_global_state_fb4(void);
+void runtime_release_global_state_fc4(void);
+void runtime_release_and_clear_global_state_fc0(void);
 
 #endif

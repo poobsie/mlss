@@ -8,10 +8,14 @@ struct FieldVisual {
     u8 flags;
 };
 
+struct RuntimeObject;
+
 struct FieldAction {
     u8 unknown00[8];
     struct FieldVisual* visual;
-    u8 unknown0C[0x40];
+    u8 unknown0C[0x24];
+    struct RuntimeObject* activeObject;
+    u8 unknown34[0x18];
     void (*update)(void);
 };
 
