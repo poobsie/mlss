@@ -109,13 +109,13 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_code_helpers_803C440);
         src/field/linked_object_state.o(.text.field_linked_object_state.sub_803C4D8);
         asm/text0801A548.o(.text.after_early_code_helpers_803C4D8);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_803C538);
+        src/field/linked_object_state.o(.text.field_linked_object_state.sub_803C538);
         asm/text0801A548.o(.text.after_early_code_helpers_803C538);
         src/audio/scene_cues.o(.text.text_early_helpers_04.sub_803C610);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_803C610);
         src/field/linked_object_state.o(.text.field_linked_object_state.sub_803C638);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_803C638);
-        src/early_code_helpers.o(.text.early_code_helpers.sub_803C898);
+        src/field/linked_object_state.o(.text.field_linked_object_state.sub_803C898);
         asm/text0801A548.o(.text.after_early_code_helpers_803C898);
         src/field/scene_object_properties.o(.text.early_code_helpers.sub_803E9F0);
         asm/text0801A548.o(.text.after_early_code_helpers_803E9F0);

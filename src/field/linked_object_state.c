@@ -5,6 +5,8 @@
 
 void sub_80494D4(struct FieldLinkedObject* object);
 void sub_804FCD4(struct FieldLinkedObject* object);
+void sub_802FAE4(void* object, void* argument, s32 enabled);
+void sub_8029A0C(void* object, void* argument, s32 enabled);
 
 SEC(sub_803C424) void sub_803C424(struct FieldLinkedObjectOwner* owner)
 {
@@ -48,4 +50,14 @@ SEC(sub_803C638) void sub_803C638(struct FieldLinkedObjectOwner* owner)
     }
     if ((u32)(u16)(state - 0xA) <= 2U)
         sub_80494D4(object);
+}
+
+SEC(sub_803C538) void sub_803C538(void* object, void* argument)
+{
+    sub_802FAE4(object, argument, 1);
+}
+
+SEC(sub_803C898) void sub_803C898(void* object, void* argument)
+{
+    sub_8029A0C(object, argument, 1);
 }

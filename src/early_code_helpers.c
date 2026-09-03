@@ -8,20 +8,8 @@ struct CallbackAt1A0 {
     void (*function)(void*, u8*, void*);
 };
 
-void sub_802FAE4(void*, void*, s32);
-void sub_8029A0C(void*, void*, s32);
 void sub_8139AA0(void*);
 void sub_80514C4(void);
-
-void sub_803C538(void* arg0, void* arg1) SECTION(sub_803C538);
-void sub_803C538(void* arg0, void* arg1) {
-    sub_802FAE4(arg0, arg1, 1);
-}
-
-void sub_803C898(void* arg0, void* arg1) SECTION(sub_803C898);
-void sub_803C898(void* arg0, void* arg1) {
-    sub_8029A0C(arg0, arg1, 1);
-}
 
 void sub_8051614(void* arg0, u8* arg1) SECTION(sub_8051614);
 void sub_8051614(void* arg0, u8* arg1) {

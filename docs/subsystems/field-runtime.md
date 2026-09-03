@@ -50,6 +50,8 @@ The guarded movement entry point now records `positionX` and `positionY` as the 
 
 `FieldLinkedObjectOwner` exposes the primary and secondary object pointers at `0x200` and `0x204`. The recovered helpers set both linked states to `0xB2`, test the primary marker against `0x15` and `0x1C`, recognize two proven state ranges, and dispatch states `5` through `12` between two assembly-only handlers.
 
+Two adjacent wrappers call their respective field-object operations with enabled mode `1`. They remain variant `a` and `b` until the assembly-only operations at `0x802FAE4` and `0x8029A0C` are recovered.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

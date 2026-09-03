@@ -11,6 +11,8 @@
 #define field_primary_state_is_10_to_18_or_1d_to_21 sub_803C4D8
 #define field_dispatch_primary_state_05_to_0c sub_803C638
 #define field_test_flag_291_01 sub_803E9F0
+#define field_apply_operation_a_enabled sub_803C538
+#define field_apply_operation_b_enabled sub_803C898
 
 /* Semantic C names mapped to original symbols still referenced by assembly. */
 #define field_object_forward_slot70 sub_8050518
