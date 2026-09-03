@@ -190,6 +190,23 @@ def candidate_by_name(name: str, map_path: Path) -> tuple[Candidate, str]:
     raise SystemExit(f"Assembly function not found: {name}")
 
 
+def assembly_context(name: str) -> tuple[list[str], list[str]]:
+    """Return active assembly callers and adjacent functions for a symbol."""
+    callers: set[str] = set()
+    neighbors: list[str] = []
+    for path in git_tracked_assembly():
+        blocks = function_blocks(path)
+        for index, (block_name, _, _, _, block) in enumerate(blocks):
+            if name in CALL.findall(block):
+                callers.add(block_name)
+            if block_name == name:
+                if index:
+                    neighbors.append(blocks[index - 1][0])
+                if index + 1 < len(blocks):
+                    neighbors.append(blocks[index + 1][0])
+    return sorted(callers), neighbors
+
+
 def m2c_draft(candidate: Candidate, block: str) -> str:
     executable = ROOT / ".decomp-tools" / "venv" / "bin" / "m2c"
     if not executable.exists():
@@ -256,6 +273,7 @@ def render_packet(name: str, map_name: str, rom_name: str, include_m2c: bool) ->
         raise SystemExit(f"{candidate.address_hex} is outside {rom_path.name}")
     target = rom[offset : offset + candidate.size].hex(" ")
     calls = sorted(set(CALL.findall(block)))
+    callers, neighbors = assembly_context(name)
     draft = m2c_draft(candidate, block) if include_m2c else "(omitted)"
     return f"""# Matching-decompilation packet
 
@@ -263,7 +281,9 @@ Function: `{candidate.name}`
 Address: `{candidate.address_hex}`
 Size: `{candidate.size}` bytes
 Source: `{candidate.source}:{candidate.start_line}`
-Calls: `{', '.join(calls) if calls else 'none'}`
+Assembly callers: `{', '.join(callers) if callers else 'none found'}`
+Callees: `{', '.join(calls) if calls else 'none'}`
+Adjacent functions: `{', '.join(neighbors) if neighbors else 'none'}`
 Target bytes: `{target}`
 
 ## Assembly
@@ -280,10 +300,22 @@ Target bytes: `{target}`
 
 ## Contract
 
-Write clean C for this function only. Compile with the repository's pinned agbcc,
-compare the linked bytes against the target bytes above, and reject any mismatch.
-Do not edit unrelated files. Report only: function, exact_match, byte_count,
-changed_files, and a one-sentence semantic description.
+Matching and detangling are one acceptance unit. Inspect the listed callers,
+callees, adjacent functions, shared data, and existing C interfaces before editing.
+Classify the function into a defensible subsystem and use its canonical source file
+and header. Do not create a root-level holding file. Keep an address-based name or
+raw field offset when the available evidence does not support a semantic name, and
+record that uncertainty explicitly.
+
+The assigned address range is the write boundary. If a caller-connected family is
+needed to recover a sound interface, report the proposed expansion instead of
+editing outside that boundary. Compile with the repository's pinned agbcc, compare
+the linked bytes against the target bytes above, and reject any mismatch. A raw m2c
+translation, an exact function in an unclassified file, or a semantic rename without
+evidence is incomplete.
+
+Report: functions, subsystem, evidence, semantic_names, retained_unknowns,
+shared_interfaces, exact_match, byte_count, changed_files, and follow_up.
 """
 
 

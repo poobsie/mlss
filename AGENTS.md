@@ -22,7 +22,9 @@ Every source change must preserve the reference ROM unless a task explicitly say
 
 ## Subsystem recovery workflow
 
-Work on one subsystem at a time. Do not treat raw C coverage as completion.
+Work on one subsystem at a time. Matching and detangling are one acceptance unit.
+Do not count raw C coverage as completed decompilation until the slice has a defensible
+owner, interface, and uncertainty record.
 
 For ongoing detangling work, use `config/detangling.json` as the persistent queue and follow `docs/detangling-workflow.md`. Resume an `active` subsystem first, otherwise take the first actionable `queued` subsystem. After an exact verified commit, update the queue and immediately continue to the next slice without waiting for another user prompt. Stop only when the current decompiled C is classified as `detangled` or `deferred`, an exact build cannot be restored, required evidence is unavailable for every remaining slice, or the user interrupts the work.
 
@@ -34,11 +36,41 @@ For ongoing detangling work, use `config/detangling.json` as the persistent queu
 6. Preserve code and data order in the linker script, including deliberate alignment bytes required for an exact match.
 7. Require an exact ROM comparison before proceeding to the next subsystem. If unrelated work makes a full link unavailable, verify the affected byte range against the most recent exact build and clearly record the limitation.
 
+Newly decompiled code must enter its subsystem directly. Do not accumulate exact m2c
+translations in root-level holding files for later cleanup. When the boundary genuinely
+cannot be established, retain honest address names, assign the code to a neutral
+address-range module in the `unclassified` queue, and record the concrete evidence
+needed to move it. This is an exception state, not a normal pipeline stage.
+
+## Multi-agent decompilation
+
+The coordinator assigns bounded, caller-connected slices instead of unrelated symbol
+lists. A slice should normally contain 5 to 25 related functions, or a smaller leaf plus
+enough caller, callee, and data context to recover its interface.
+
+- The coordinator owns slice boundaries, shared headers, linker order, queue state,
+  subsystem documentation, final verification, and integration.
+- Evidence workers trace callers, callees, globals, tables, likely ownership, signatures,
+  and naming confidence. Their output includes sources of evidence and unresolved facts.
+- Implementation workers receive disjoint address ranges and source ownership. They may
+  edit in parallel only in isolated worktrees. When agents share a checkout, one
+  integrator writes while the other agents perform read-only analysis.
+- Workers do not independently edit common headers, linker scripts, symbols, or queue
+  metadata unless the coordinator explicitly assigns ownership of those files.
+- The coordinator rejects a result that lacks subsystem classification, evidence-backed
+  interfaces, an explicit retained-unknown list, and an exact byte comparison. A proposed
+  slice expansion returns to coordination before anyone edits outside the assigned range.
+
+Run `make decomp-acceptance` before accepting a completed slice. This verifies the ROM
+and every linked C function, then rejects active or queued cleanup work and any source
+still assigned to the unclassified bucket. A deferred subsystem is acceptable only when
+its `next_action` names the missing evidence.
+
 ## Verification
 
 1. Build the ROM with `make` in a compatible Unix-like environment.
 2. Require the SHA-1 comparison to report `mlss.gba: OK`.
-3. Run `make verify` when functions or linker placement change.
+3. Run `make decomp-acceptance` before accepting a completed decompilation slice.
 4. Use `make progress` only for reporting; function count is not a substitute for readable, evidence-based source.
 
 Windows users may invoke the same workflow through WSL with the PowerShell wrappers in `scripts/`.

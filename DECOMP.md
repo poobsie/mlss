@@ -49,15 +49,20 @@ To rebuild, verify the ROM, and print the current decompilation percentage in on
 The portable equivalent is `make progress`. Progress is calculated from symbols in the linked C and assembly
 objects. It deliberately refuses to estimate a percentage when the linked ELF or build objects are missing.
 
-## Function workflow
+## Slice workflow
 
-1. Choose one reasonably small function from an assembly file.
-2. Study its callers, callees, globals, and runtime behavior in Ghidra and mGBA.
+1. Choose a bounded caller-connected slice, normally 5 to 25 related functions. A
+   single leaf is reasonable when its ownership and interface are already clear.
+2. Study its callers, callees, globals, adjacent functions, data tables, and runtime behavior.
 3. Give the function and related data meaningful provisional names in `symbols.txt` and headers only when
    the evidence supports them. Otherwise retain address-based placeholders.
 4. Generate a rough translation with `m2c`, then correct its types and control flow by hand.
-5. Add the C function to the appropriate source module and remove only its original assembly range.
-6. Run `asm-differ` until the function matches.
-7. Run `make` and require `mlss.gba: OK` before committing.
+5. Put the code directly in its subsystem module, recover shared declarations in one
+   canonical header, and record retained unknowns. Do not use a root-level holding file.
+6. Remove only the assigned assembly range and run `asm-differ` until every function matches.
+7. Run `make decomp-acceptance` before committing.
+
+For coordinated agent work, use the ownership and handoff rules in
+`docs/decomp-workflow.md`. Exact bytes alone do not complete a slice.
 
 Do not commit the ROM, BIOS, Ghidra databases, generated build products, or `.decomp-tools`.

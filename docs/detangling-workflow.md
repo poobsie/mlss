@@ -1,8 +1,10 @@
 # Detangling workflow
 
-Detangling is a continuous companion to matching decompilation. The unit of work is a bounded subsystem slice, not an arbitrary number of functions and not an entire unfinished subsystem.
+Detangling is part of matching decompilation, not a cleanup phase after it. The unit of work is a bounded subsystem slice, not an arbitrary number of functions and not an entire unfinished subsystem.
 
-The persistent queue is stored in `config/detangling.json`. Inspect it with:
+The persistent queue is stored in `config/detangling.json`. It tracks legacy cleanup
+and genuine evidence blockers; newly matched code should normally arrive already
+classified and integrated. Inspect it with:
 
 ```sh
 make detangle-status
@@ -24,7 +26,7 @@ The queue state is authoritative; the scanner's uncertainty count is only a tria
 7. Recover function signatures, field names, constants, and semantic names together. Keep address names where evidence is insufficient.
 8. Update all known callers and remove superseded local declarations.
 9. Record evidence, unresolved questions, and matching constraints in the subsystem document.
-10. Run `make verify`. Do not accept a mismatching slice.
+10. Run `make decomp-acceptance`. Do not accept a mismatching or unclassified slice.
 11. Commit the verified slice, update its queue state, then immediately select the next slice.
 
 No user prompt is required between successful slices. Continue until all currently decompiled C has either been detangled or assigned a concrete deferred evidence requirement.
@@ -56,7 +58,7 @@ A slice is complete when:
 - function and field names are supported by callers, data, or runtime behavior;
 - remaining uncertainty is listed explicitly;
 - the linker preserves original order and padding;
-- `make verify` reports an exact ROM and zero mismatched C functions;
+- `make decomp-acceptance` reports an exact ROM, zero mismatched C functions, and no unclassified source;
 - the queue and subsystem document describe the new state.
 
 ## Failure handling

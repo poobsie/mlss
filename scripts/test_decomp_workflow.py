@@ -32,6 +32,14 @@ class DecompWorkflowTest(unittest.TestCase):
         expected = rom[offset : offset + candidate.size].hex(" ")
         self.assertIn(f"Target bytes: `{expected}`", packet)
 
+    def test_packet_requires_decomp_time_detangling(self):
+        packet = render_packet(self.candidate.name, "mlss.map", "mlss.gba", False)
+        self.assertIn("Matching and detangling are one acceptance unit", packet)
+        self.assertIn("Assembly callers:", packet)
+        self.assertIn("Adjacent functions:", packet)
+        self.assertIn("subsystem, evidence, semantic_names, retained_unknowns", packet)
+        self.assertNotIn("Write clean C for this function only", packet)
+
     def test_packet_is_smaller_than_local_context(self):
         candidate, _ = candidate_by_name(self.candidate.name, ROOT / "mlss.map")
         packet = render_packet(candidate.name, "mlss.map", "mlss.gba", False)

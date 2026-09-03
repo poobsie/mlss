@@ -11,11 +11,14 @@ The project requires an exact match. `make verify` rebuilds the ROM and checks e
 ## Reading the source
 
 Files named for game systems, such as `process.c`, `option_screens.c`, and `title_screen.c`, contain code
-whose role is understood. Files named `text_*_helpers.c` are neutral holding areas for exact C matches
-whose subsystem is not yet established. Functions retain address names such as `sub_8057568` until call
-sites, data, or runtime evidence justify a semantic name.
+whose role is understood. Newly decompiled code goes directly into its subsystem; an unresolved boundary
+uses a neutral address-range module tracked explicitly as unclassified, never a generic permanent holding
+file. Functions retain address names such as `sub_8057568` until call sites, data, or runtime evidence
+justify a semantic name.
 
 See [docs/reading-the-source.md](docs/reading-the-source.md) for the conventions used in partially
 understood code, [INSTALL.md](INSTALL.md) for setup, and [DECOMP.md](DECOMP.md) for the matching workflow.
 The continuous cleanup queue and slice acceptance rules are described in
 [docs/detangling-workflow.md](docs/detangling-workflow.md).
+The multi-agent evidence, ownership, and acceptance contract is in
+[docs/decomp-workflow.md](docs/decomp-workflow.md).

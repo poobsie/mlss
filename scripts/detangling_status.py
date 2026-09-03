@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -82,6 +83,22 @@ def next_subsystem(subsystems: list[dict]) -> dict | None:
     return queued[0] if queued else None
 
 
+def acceptance_errors(subsystems: list[dict], assignments: dict[str, list[Path]]) -> list[str]:
+    """Return queue conditions that prevent accepting a decompilation slice."""
+    errors: list[str] = []
+    for item in subsystems:
+        state = item["state"]
+        files = assignments[item["id"]]
+        if state in {"active", "queued"}:
+            errors.append(f"{item['id']} is still {state}")
+        if item["id"] == "unclassified" and files:
+            relative = ", ".join(str(path.relative_to(ROOT)) for path in files)
+            errors.append(f"unclassified source remains: {relative}")
+        if state == "deferred" and not item.get("next_action", "").strip():
+            errors.append(f"{item['id']} is deferred without a concrete next action")
+    return errors
+
+
 def print_summary(subsystems: list[dict], assignments: dict[str, list[Path]]) -> None:
     header = f"{'state':10} {'subsystem':18} {'files':>5} {'lines':>7} {'unknown':>8}  next action"
     print(header)
@@ -109,14 +126,27 @@ def print_next(subsystems: list[dict], assignments: dict[str, list[Path]]) -> No
     print(f"  documentation: {item['documentation']}")
 
 
+def check_acceptance(subsystems: list[dict], assignments: dict[str, list[Path]]) -> None:
+    errors = acceptance_errors(subsystems, assignments)
+    if errors:
+        for error in errors:
+            print(f"error: {error}", file=sys.stderr)
+        raise SystemExit(1)
+    print("Detangling acceptance: OK")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", nargs="?", choices=("summary", "next"), default="summary")
+    parser.add_argument(
+        "command", nargs="?", choices=("summary", "next", "check"), default="summary"
+    )
     args = parser.parse_args()
     subsystems = load_config()["subsystems"]
     assignments = partition_files(subsystems)
     if args.command == "next":
         print_next(subsystems, assignments)
+    elif args.command == "check":
+        check_acceptance(subsystems, assignments)
     else:
         print_summary(subsystems, assignments)
 
