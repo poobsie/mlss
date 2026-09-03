@@ -18,41 +18,6 @@ void sub_8029A0C(void*, void*, s32);
 void sub_8139AA0(void*);
 void sub_80514C4(void);
 
-void sub_803C424(u8* arg0) SECTION(sub_803C424);
-void sub_803C424(u8* arg0) {
-    u8* second = *(u8**)(arg0 + 0x204);
-    u8* first = *(u8**)(arg0 + 0x200);
-
-    *(u16*)(first + 4) = 0xB2;
-    *(u16*)(second + 4) = 0xB2;
-}
-SECTION(sub_803C424) const u16 sub_803C424_padding = 0;
-
-s32 sub_803C440(void* arg0) SECTION(sub_803C440);
-s32 sub_803C440(void* arg0) {
-    s32 var_r1;
-    s8 temp_r0;
-
-    var_r1 = 0;
-    temp_r0 = (s8)FIELD_AT(FIELD_AT(arg0, void**, 0x200), u8*, 0x344);
-    if (temp_r0 == 0x1C || temp_r0 == 0x15) {
-        var_r1 = 1;
-    }
-    return var_r1;
-}
-
-s32 sub_803C4D8(void* arg0) SECTION(sub_803C4D8);
-s32 sub_803C4D8(void* arg0) {
-    u16 temp_r1;
-
-    temp_r1 = FIELD_AT(FIELD_AT(arg0, void**, 0x200), u16*, 4);
-    if ((u32)(u16)(temp_r1 - 0x10) <= 8U || (u32)(u16)(temp_r1 - 0x1D) <= 4U) {
-        return 1;
-    }
-    return 0;
-}
-SECTION(sub_803C4D8) const u16 sub_803C4D8_padding = 0;
-
 s32 sub_803E9F0(void* arg0) SECTION(sub_803E9F0);
 s32 sub_803E9F0(void* arg0) {
     return 1 & FIELD_AT(arg0, u8*, 0x291);

@@ -48,6 +48,8 @@ The base field-scene destructor and three variant destructors all restore descri
 
 The guarded movement entry point now records `positionX` and `positionY` as the movement-start coordinates before invoking the collision-aware movement routine. Its two observed gates remain named by offset: packed flags `0x0801` at `0x20C` and inhibit bit `0x02` at `0x35A`.
 
+`FieldLinkedObjectOwner` exposes the primary and secondary object pointers at `0x200` and `0x204`. The recovered helpers set both linked states to `0xB2`, test the primary marker against `0x15` and `0x1C`, recognize two proven state ranges, and dispatch states `5` through `12` between two assembly-only handlers.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

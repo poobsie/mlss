@@ -6,6 +6,10 @@
 #define field_destroy_scene_object_variant_b sub_81DD5D4
 #define field_destroy_scene_object_variant_c sub_81DD5F8
 #define field_try_process_movement sub_804FBDC
+#define field_set_linked_object_states_b2 sub_803C424
+#define field_primary_marker_is_15_or_1c sub_803C440
+#define field_primary_state_is_10_to_18_or_1d_to_21 sub_803C4D8
+#define field_dispatch_primary_state_05_to_0c sub_803C638
 
 /* Semantic C names mapped to original symbols still referenced by assembly. */
 #define field_object_forward_slot70 sub_8050518
