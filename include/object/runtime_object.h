@@ -9,7 +9,11 @@ enum RuntimeObjectVariant {
 };
 
 struct RuntimeObjectState {
-    u8 unknown00[0xE0];
+    u8 unknown00[0x38];
+    s32 value38;
+    u8 unknown3C[0x78];
+    s16 valueB4;
+    u8 unknownB6[0x2A];
     s32 floorHeight;
     u8 unknownE4[8];
     s16 variant;

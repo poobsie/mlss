@@ -88,6 +88,10 @@ Five early state transitions now use the same object layout. Each waits for `val
 
 Two adjacent callbacks complete this early group. One polls a shared asynchronous handle, copies its output into the object's current X and Y positions on every tick, and releases the handle when polling completes. The other waits for the common readiness check and selects animation 2 or 6 from the low bit of `behaviorState` before advancing.
 
+Seven early visual transitions now share a second explicit family. They wait on visual completion or linked-chain exhaustion, choose animations from `valueA0`, `valueA4`, `valueA8`, or `behaviorState`, install primary and secondary callbacks, and start effects `0x1485` or `0x1509` where required. Numeric animation and effect identifiers remain explicit pending recovery of their resource tables.
+
+Three remaining early callbacks now expose their actual control flow. One updates an owner until a signed timer expires, then clears a state halfword when its controlling word is zero. One moves left by `0x133` fixed-point units per tick while lowering toward height `0x800`, finishing after crossing screen X `-32`. The third waits for `value80` to clear and chooses `valueA8` uniformly from the half-open range defined by `valueA0` and `valueA4`.
+
 `object_traverse_child_tree_noop` recursively visits both child links of an independently observed tree-node layout. It performs no action at each node. The explicit `noop` suffix is intentional: assigning cleanup or rendering semantics to a side-effect-free traversal would be fiction.
 
 ## Verification

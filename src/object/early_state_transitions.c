@@ -14,10 +14,13 @@ void sub_8062F40(struct RuntimeObject* object);
 void sub_8063524(struct RuntimeObject* object);
 void sub_8060CB8(struct RuntimeObject* object);
 void sub_80618A4(struct RuntimeObject* object);
+void sub_806A348(struct RuntimeObject* object);
 u8 sub_801B1C8(void* handle, s32* positionX, s32* positionY);
 void free_heap_8018DA8(void* handle);
-void sub_807C298(void);
+void sub_807C298();
 s32 sub_8082B00(void);
+void sub_810DD7C(struct RuntimeObject* object, struct RuntimeObject* owner, s32 value);
+u32 sub_8199F30(void);
 
 struct ObjectConditionOwner {
     u8 unknown00[0x40];
@@ -127,5 +130,64 @@ SEC(sub_8062188) void sub_8062188(struct RuntimeObject* object)
             break;
         }
         object->update = sub_80618A4;
+    }
+}
+
+SEC(sub_8062C48) void sub_8062C48(struct RuntimeObject* object)
+{
+    s32 stateValue;
+    u16 timer;
+    struct RuntimeObject* owner;
+    struct RuntimeObjectState* state;
+
+    owner = object->positionOwner;
+    if (!(owner->flags76 & 0x80) && (owner->verticalPosition == 0)) {
+        sub_810DD7C(object, owner, 0xFF);
+    }
+    timer = (u16)object->timer;
+    object->timer = timer - 1;
+    if ((s32)(timer << 0x10) <= 0) {
+        state = object->state;
+        stateValue = state->value38;
+        if (stateValue == 0) {
+            state->valueB4 = stateValue;
+        }
+        sub_807C298(object);
+    }
+}
+
+SEC(sub_8068798) void sub_8068798(struct RuntimeObject* object)
+{
+    s32 height;
+    s32 loweredHeight;
+    s32 roundedPosition;
+
+    object->currentPositionX += -0x133;
+    height = object->verticalPosition;
+    if (height > 0x800) {
+        loweredHeight = height - 0x100;
+        object->verticalPosition = loweredHeight;
+        if (loweredHeight <= 0x800) {
+            object->verticalPosition = 0x800;
+            sub_8082E1C(object, 1, 0, 0);
+        }
+    }
+    roundedPosition = object->currentPositionX;
+    if (roundedPosition < 0)
+        roundedPosition += 0xFF;
+    if ((roundedPosition >> 8) <= -0x20) {
+        sub_807C298(object);
+    }
+}
+
+SEC(sub_806A24C) void sub_806A24C(struct RuntimeObject* object)
+{
+    u32 range;
+
+    if (object->value80 == 0) {
+        sound_effect_stop(0x81);
+        range = object->valueA4 - object->valueA0;
+        object->valueA8 = object->valueA0 + (sub_8199F30() % range);
+        object->update = sub_806A348;
     }
 }
