@@ -20,6 +20,8 @@ Two additional mask accessors clear the word at `0x20` and return the signed hal
 
 `PositionBinding` connects 24.8 fixed-point world coordinates to an optional signed screen-coordinate pair. `position_binding_update_relative` subtracts a fixed-point origin and writes the integer X/Y results. Four identical callback entry points share that operation; their suffixes remain until the owning callback tables are recovered.
 
+The early graphics staging path now has explicit source and destination layouts. It copies three 9-bit-masked values and three byte-sized components into the six interleaved halfwords at `0x02000014`. Two related process destructors install their terminal descriptors, stop DMA or clear VRAM as appropriate, release only the buffers that are present, and remove the process. Buffer names remain offset-based because their allocation sites are still assembly-only.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,328 linked C functions checked, 1,328 exact, and zero mismatches.

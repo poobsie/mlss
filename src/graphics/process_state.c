@@ -1,0 +1,59 @@
+#include "graphics/process_state.h"
+
+#define SEC(name) __attribute__((section(".text.graphics_process_state." #name)))
+
+void free_heap_8018D9C();
+void process_remove(void* process, s32 flags);
+void sub_8029888(s32 channel, s32 value);
+void sub_80184F4(void* address);
+
+SEC(sub_8059F24) void sub_8059F24(struct GraphicsStagingSource* source)
+{
+    *(s16*)0x02000014 = source->maskedValue0 & 0x1FF;
+    *(s16*)0x02000018 = source->maskedValue1 & 0x1FF;
+    *(s16*)0x0200001C = source->maskedValue2 & 0x1FF;
+    *(s16*)0x02000016 = source->component0;
+    *(s16*)0x0200001A = source->component1;
+    *(s16*)0x0200001E = source->component2;
+}
+
+SEC(sub_805C73C) void sub_805C73C(struct GraphicsProcessState* process, s32 flags)
+{
+    process->descriptor = (void*)0x08CDC2B8;
+    *(s16*)0x040000BA = 0;
+    sub_8029888(0, 0);
+    process->active = 0;
+    if (*(s32*)0x03000E04 != 0) {
+        free_heap_8018D9C();
+    }
+    if (*(s32*)0x03000E00 != 0) {
+        free_heap_8018D9C();
+    }
+    process_remove(process, flags);
+}
+
+SEC(sub_805DA1C) void sub_805DA1C(struct GraphicsProcessState* process, s32 flags)
+{
+    process->descriptor = (void*)0x08CDC2C8;
+    sub_80184F4((void*)0x06000000);
+    if (process->bufferA4 != 0) {
+        free_heap_8018D9C();
+    }
+    if (process->bufferA8 != 0) {
+        free_heap_8018D9C();
+    }
+    if (process->buffer98 != 0) {
+        free_heap_8018D9C();
+    }
+    if (process->buffer94 != 0) {
+        free_heap_8018D9C();
+    }
+    process_remove(process, flags);
+}
+
+void graphics_copy_staging_values(struct GraphicsStagingSource* source)
+    __attribute__((alias("sub_8059F24")));
+void graphics_destroy_transfer_process(struct GraphicsProcessState* process, s32 flags)
+    __attribute__((alias("sub_805C73C")));
+void graphics_destroy_vram_process(struct GraphicsProcessState* process, s32 flags)
+    __attribute__((alias("sub_805DA1C")));

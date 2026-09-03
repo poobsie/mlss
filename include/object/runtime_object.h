@@ -53,7 +53,8 @@ struct RuntimeObject {
     s32 auxiliaryState;
     u8 unknown58[4];
     RuntimeObjectCallback secondaryUpdate;
-    u8 unknown60[8];
+    RuntimeObjectCallback tertiaryUpdate;
+    u8 unknown64[4];
     RuntimeObjectCallback cleanup;
     const void* descriptor;
     u8 unknown70[6];

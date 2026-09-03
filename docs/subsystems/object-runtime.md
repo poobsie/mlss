@@ -84,8 +84,12 @@ Two more late callbacks now expose `value80` and `auxiliaryState` instead of raw
 
 The widely reused state-action entry gate now has a typed home. It rejects incompatible object mode bits, requires an attached state whose reservation bit is clear, installs the action callback, clears `value80`, registers a state callback, marks the state reserved, and activates it. The gameplay action itself remains unnamed because both installed callbacks are still assembly-only.
 
+Five early state transitions now use the same object layout. Each waits for `value80` to clear before selecting its next animation and callback; variants also stop a sound, arm a short timer, or track whether an owner condition became positive during the first `0x4000` ticks. Offset `0x60` is now exposed as a third callback slot because one transition installs an independent update there before advancing the primary callback.
+
+Two adjacent callbacks complete this early group. One polls a shared asynchronous handle, copies its output into the object's current X and Y positions on every tick, and releases the handle when polling completes. The other waits for the common readiness check and selects animation 2 or 6 from the low bit of `behaviorState` before advancing.
+
 `object_traverse_child_tree_noop` recursively visits both child links of an independently observed tree-node layout. It performs no action at each node. The explicit `noop` suffix is intentional: assigning cleanup or rendering semantics to a side-effect-free traversal would be fiction.
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,325 linked C functions checked, 1,325 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,328 linked C functions checked, 1,328 exact, and zero mismatches.
