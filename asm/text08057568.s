@@ -287385,14 +287385,7 @@ _080F04D2:
 _080F04E0: .4byte 0x08CDBD68
 _080F04E4: .4byte 0x08CDC308
 _080F04E8: .4byte 0x03000FD4
-	thumb_func_start script_enable_flag_2
-script_enable_flag_2: @ 080F04EC
-	adds r2, #0xA0
-	ldrh r1, [r2, #0x00]
-	movs r0, #0x02
-	orrs r0, r1
-	strh r0, [r2, #0x00]
-	bx lr
+	.section .text.script_state_after_enable_primary_flag_2, "ax", %progbits
 	thumb_func_start sub_80F04F8
 sub_80F04F8:
 	push {r4, r5, r6, lr}

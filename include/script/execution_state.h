@@ -52,5 +52,10 @@ struct ScriptConditionBranchArguments {
 #define script_command_copy_word sub_80F1AE4
 #define script_command_noop sub_80F7E80
 #define script_command_forward_pair sub_80F80B4
+#define script_state_enable_primary_flag_2 script_enable_flag_2
+
+void script_state_enable_primary_flag_2(
+    void* context, void* object, struct ScriptExecutionState* state,
+    const void* arguments);
 
 #endif

@@ -9,6 +9,9 @@
     __attribute__((section(".text.misc_helpers_02." STRINGIFY(symbol))))
 #define U32AT(pointer, offset) (*(u32*)((u8*)(pointer) + (offset)))
 
+#define SCRIPT_STATE_SEC(symbol) \
+    __attribute__((section(".text.script.state_commands." #symbol)))
+
 extern void sub_8047E50(void*, int);
 extern void sub_807C1C8(int, int);
 extern s32 script_test_condition(void* context, u8 condition, u32 operand,
@@ -16,6 +19,14 @@ extern s32 script_test_condition(void* context, u8 condition, u32 operand,
 extern s32 sub_803C508(void* registry);
 extern s32 sub_803E9F0(void* registry);
 extern s32 sub_81219C4(void* registry);
+
+SCRIPT_STATE_SEC(script_enable_flag_2)
+void script_state_enable_primary_flag_2(
+    void* context, void* object, struct ScriptExecutionState* state,
+    const void* arguments)
+{
+    state->primaryFlags |= 2;
+}
 
 #define DEFINE_SCRIPT_WAIT_HANDLER(name, predicate)                         \
     MISC2_SEC(name) s32 name(struct ScriptCommandContext* context,          \
