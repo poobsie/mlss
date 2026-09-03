@@ -20,16 +20,6 @@ struct EasyCopy3FA8 {
     u32 field_08;
 };
 
-struct EasyListNode {
-    void* value;
-    u32 field_04;
-    struct EasyListNode* next;
-};
-
-struct EasyList {
-    struct EasyListNode* head;
-};
-
 struct EasyInit817C {
     u32 field_00;
     void* callback;
@@ -123,22 +113,6 @@ void sub_8163BB8(void) FUNCTION_SECTION(".text.sub_8163BB8");
 void sub_8163BB8(void) {
     *(u16*)0x0300102C = 0;
 }
-
-u32 sub_8163BC4(struct EasyList* list, void* value)
-    FUNCTION_SECTION(".text.sub_8163BC4");
-u32 sub_8163BC4(struct EasyList* list, void* value) {
-    struct EasyListNode* node = list->head;
-    u32 count = 0;
-
-    while (node != 0) {
-        if (node->value == value) {
-            count++;
-        }
-        node = node->next;
-    }
-    return count;
-}
-FUNCTION_SECTION(".text.sub_8163BC4") const u16 sub_8163BC4_padding = 0;
 
 void sub_8163FA8(struct EasyCopy3FA8* destination,
                   struct EasyCopy3FA8* source)

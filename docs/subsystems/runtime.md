@@ -21,3 +21,4 @@ Eight additional side-effect-free callback entries live in `src/runtime/noop_cal
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
+`pointer_list_count_value` walks a singly linked list and returns the number of nodes whose payload pointer equals the requested value. The second word in each node remains unknown; traversal proves only the payload at `0x00` and next pointer at `0x08`.

@@ -1871,7 +1871,7 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8163B60);
         src/text08057568_easy.o(.text.sub_8163BB8);
         asm/text08057568.o(.text.after_8163BB8);
-        src/text08057568_easy.o(.text.sub_8163BC4);
+        src/runtime/pointer_list.o(.text.sub_8163BC4);
         asm/text08057568.o(.text.after_8163BC4);
         src/text_upper_functions/sub_8163CD4.o(.text.upper.sub_8163CD4);
         asm/text08057568.o(.text.after_upper_sub_8163CD4);
