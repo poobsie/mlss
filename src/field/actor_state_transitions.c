@@ -63,3 +63,16 @@ SEC(sub_80AC4AC) void sub_80AC4AC(void)
         actionB->update = 0;
     }
 }
+
+SEC(sub_8112350) void sub_8112350(void (*update)(void))
+{
+    struct FieldActor* actor;
+    struct FieldActor* optionalActor;
+
+    actor = gFieldRuntime->actorC;
+    if ((actor->stateFlags & 6) == 2)
+        actor->action.update = update;
+    optionalActor = gFieldRuntime->actorD;
+    if (optionalActor != 0 && (optionalActor->stateFlags & 6) == 2)
+        optionalActor->action.update = update;
+}

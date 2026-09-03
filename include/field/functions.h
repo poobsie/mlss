@@ -14,6 +14,7 @@
 #define field_apply_operation_a_enabled sub_803C538
 #define field_apply_operation_b_enabled sub_803C898
 #define field_finish_actor_b_and_resume_actor_a sub_80AC4AC
+#define field_set_ready_aux_actor_updates sub_8112350
 
 /* Semantic C names mapped to original symbols still referenced by assembly. */
 #define field_object_forward_slot70 sub_8050518

@@ -1457,7 +1457,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8111214);
         src/text_misc_helpers_01.o(.text.misc_helpers_01.sub_8112064);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8112064);
-        src/text_small_functions_08.o(.text.small_functions_08.sub_8112350);
+        src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_8112350);
         asm/text08057568.o(.text.small_functions_08_after_sub_8112350);
         src/text_misc_helpers_03.o(.text.misc_helpers_03.sub_8112498);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8112498);

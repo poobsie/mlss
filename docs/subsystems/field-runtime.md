@@ -62,6 +62,8 @@ The paired-object slide sequence moves the objects at runtime offsets `0x37C` an
 
 The recovered actor-pair completion helper updates actor B's action, waits for its `0x20` flag, resumes actor A only for state bits `2` or `4`, and clears actor B's action update. It shares the same `FieldRuntime`, `FieldActor`, and embedded `FieldAction` layout as the other actor transitions.
 
+The field runtime also exposes actors C and D at offsets `0x80` and `0x84`. A recovered dispatcher installs the supplied action update on each actor whose state bits equal `2`; actor D is optional, while current callers guarantee actor C is present.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

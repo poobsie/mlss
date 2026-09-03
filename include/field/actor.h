@@ -31,6 +31,9 @@ struct FieldRuntime {
     u8 unknown00[0x70];
     struct FieldActor* actorA;
     struct FieldActor* actorB;
+    u8 unknown78[8];
+    struct FieldActor* actorC;
+    struct FieldActor* actorD;
 };
 
 extern struct FieldRuntime* gFieldRuntime;
