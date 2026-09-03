@@ -7,3 +7,4 @@
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
+`save_local_flag_read` and `save_local_flag_write` expose a local flag namespace beginning at global save ID `0x1B90`. Both apply the same base translation before delegating to the shared byte-valued save store. The local IDs remain numeric because the individual flags have not yet been tied to named events or settings.

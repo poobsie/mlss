@@ -7,8 +7,6 @@
 #define PTRAT(p, o) (*(void**)((u8*)(p) + (o)))
 
 extern void* sub_815FA3C(void* object);
-extern u8 sub_80E99E0(u16 id);
-extern void sub_80E9A6C(u16 id, u8 value);
 extern void sub_8021FD4(void* object);
 extern void sub_815FAA4(void* position, void* origin);
 extern void sub_8082E1C(void* object, int mode, int arg2, int arg3);
@@ -18,14 +16,6 @@ extern void sub_813C6E4(void* arg0, void* state);
 extern void sub_813D6FC(void* arg0, void* state);
 extern void sub_813D850(void* arg0, void* state);
 extern void sub_8143374(void* arg0, void* state);
-
-SEC(sub_8150A00) u8 sub_8150A00(u32 id) {
-    return sub_80E99E0(id + 0x1B90);
-}
-
-SEC(sub_8150A1C) void sub_8150A1C(u32 id, u8 value) {
-    sub_80E9A6C(id + 0x1B90, value);
-}
 
 SEC(sub_8150A38) void sub_8150A38(void* object) {
     sub_8021FD4(object);
