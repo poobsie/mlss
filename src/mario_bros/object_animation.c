@@ -1,9 +1,8 @@
 #include "global.h"
+#include "mario_bros/callback.h"
 #include "mario_bros/object.h"
 
 #define MB_SECTION(name) __attribute__((section(".text.mariobros_helpers_" #name)))
-
-void sub_8F6F360(void*, void*);
 
 extern void *gMarioData_08F9FE98[];
 extern void *gMarioData_08FA02CC[];
@@ -18,7 +17,7 @@ extern u32 gMarioData_0201E78C[];
     MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
         void** entries = (void**)(table);                                                              \
         u8 index = *((u8*)obj + (offset));                                                             \
-        sub_8F6F360(obj, entries[index]);                                                              \
+        mario_bros_call_callback_with_object(obj, entries[index]);                                    \
     }
 
 DEFINE_TABLE_CALL(sub_8F5FC2C, 4, gMarioData_08F9FE98)

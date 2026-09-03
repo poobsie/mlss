@@ -22,9 +22,11 @@ All currently decompiled Mario Bros code now lives under `src/mario_bros`. Legac
 
 The former mixed platform file is split into hardware setup, object movement, global callback forwarding, and tilemap clearing. The movement helper at `0x08F63DB8` now uses the shared object layout: it tests `state` and writes `value1C`, whose more specific meaning remains class-dependent.
 
+`include/mario_bros/callback.h` names the recovered callback ABI. The assembly routines are register trampolines that jump through argument 0, 1, or 2; C now describes those operations as callback calls. Five global callback slots are named by signature and family. Their gameplay purpose is still unknown because the currently decompiled code only reads them.
+
 ## Next boundary
 
-Trace the forwarded globals and callback APIs before assigning narrower names, then decide whether the Mario Bros slice has enough remaining evidence to keep active.
+Audit the remaining address-named Mario Bros functions for defensible public names, then defer any identities that require assembly callers or initialization paths not yet decompiled.
 
 ## Verification
 

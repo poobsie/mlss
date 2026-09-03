@@ -57,7 +57,7 @@
       "state": "active",
       "patterns": ["src/mariobros_*.c", "src/mario_bros/*.c"],
       "documentation": "docs/subsystems/mario-bros.md",
-      "next_action": "Trace forwarded globals and callback APIs, then evaluate remaining evidence."
+      "next_action": "Audit address-named functions for defensible public names; defer identities lacking evidence."
     },
     {
       "id": "field_runtime",
