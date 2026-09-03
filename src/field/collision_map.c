@@ -3,6 +3,17 @@
 #define COLLISION_MAP_SEC(symbol) \
     __attribute__((section(".text.field.collision_map." #symbol)))
 
+COLLISION_MAP_SEC(sub_805A0EC)
+void field_collision_map_copy_indexed_values_36_3c(
+    struct FieldCollisionMap* map, u16 index, u16* value36, u16* value3C)
+{
+    *value36 = map->values36[index];
+    *value3C = map->values3C[index];
+}
+
+COLLISION_MAP_SEC(sub_805A0EC)
+const u16 field_collision_map_copy_values_padding = 0;
+
 COLLISION_MAP_SEC(get_coldef_ptr_by_idx)
 struct FieldCollisionDefinition* field_collision_map_get_definition(
     struct FieldCollisionMap* map, u8 index)
