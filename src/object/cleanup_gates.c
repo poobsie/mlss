@@ -168,3 +168,12 @@ void object_when_value80_clear_mark_visual_flag40_and_cleanup(
         sub_8087540(object);
     }
 }
+
+MISC_SEC(object_on_visual_complete_disable_command)
+void object_on_visual_complete_disable_command(struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 0, -1, 0);
+        object->update = 0;
+    }
+}

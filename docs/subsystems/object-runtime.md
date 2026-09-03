@@ -100,6 +100,10 @@ Nine linked-object transitions now use `linkedObject` directly. They release or 
 
 Ten cleanup and readiness gates now expose the object's `cleanup`, `descriptor`, `flags79`, and structural byte `value74`, plus visual flag byte `flags11`. They stop or release the object after proven gates and preserve explicit sound identifiers. The `flags11` update uses an explicit local to retain the original compiler's register allocation.
 
+Three more owner-based setups now stop sound `0x81` or `0x11C`, forward either the stored or supplied owner, and install the proven continuation. Five direct animation transitions select animations 2, 5, 9, or 10, set their sound or visual parameter where present, and advance immediately.
+
+Nine remaining small transitions now expose signed X motion, comparison against `value84`, setup-result gates, `value80` waits, field readiness, and the state-owned subobject at offset 8. Two motion helpers retain explicit arithmetic temporaries because their signed rounding and exact register allocation are observable parts of the matching build.
+
 Three additional visual-completion variants now use the shared object layout. They select animations from state at `0x9C` or flags at `0x98`; one also starts effect `0x151D`, installs a secondary update at `0x5C`, and advances the primary update at `0x4C`.
 
 Four late visual transitions now expose linked-object completion, linked-chain flag propagation at `0xA8`, animation and sound setup, and terminal cleanup. Their semantic aliases describe the proven gate and effect; unresolved sound and animation values remain numeric.

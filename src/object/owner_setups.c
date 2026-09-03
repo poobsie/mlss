@@ -1,3 +1,4 @@
+#include "audio/sound_effects.h"
 #include "object/functions.h"
 #include "object/runtime_object.h"
 
@@ -5,6 +6,8 @@
 #define STRINGIFY(value) STRINGIFY_INNER(value)
 #define SEC(name) \
     __attribute__((section(".text.misc_helpers_01." STRINGIFY(name))))
+#define SEC2(name) \
+    __attribute__((section(".text.misc_helpers_02." STRINGIFY(name))))
 
 void sub_80681EC(struct RuntimeObject* object);
 void sub_8068B68(struct RuntimeObject* object);
@@ -14,6 +17,8 @@ void sub_806B3D0(struct RuntimeObject* object);
 void sub_806CD70(struct RuntimeObject* object);
 void sub_8075C8C(struct RuntimeObject* object);
 void sub_806123C(struct RuntimeObject* object);
+void sub_80633D0(struct RuntimeObject* object);
+void sub_808750C(struct RuntimeObject* object);
 void sub_810DD7C();
 
 #define DEFINE_POSITION_OWNER_SETUP(name, next)                       \
@@ -68,3 +73,25 @@ s32 object_setup_then_clear_value80(struct RuntimeObject* object)
     object->update = sub_806123C;
     return 0;
 }
+
+SEC2(object_setup_from_position_owner_and_stop_sound_11c)
+s32 object_setup_from_position_owner_and_stop_sound_11c(
+    struct RuntimeObject* object)
+{
+    sub_810DD7C(object, object->positionOwner, 0xFF);
+    object->update = sub_80633D0;
+    sound_effect_stop(0x11C);
+    return 0;
+}
+
+#define DEFINE_STOP_AND_OWNER_SETUP(name)                              \
+    SEC2(name) s32 name(struct RuntimeObject* object, void* owner)      \
+    {                                                                  \
+        sound_effect_stop(0x81);                                       \
+        sub_810DD7C(object, owner, 0xFF);                              \
+        object->update = sub_808750C;                                  \
+        return 0;                                                      \
+    }
+
+DEFINE_STOP_AND_OWNER_SETUP(object_setup_from_owner_stop_sound_81_and_idle_a)
+DEFINE_STOP_AND_OWNER_SETUP(object_setup_from_owner_stop_sound_81_and_idle_b)

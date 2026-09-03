@@ -35,3 +35,5 @@ The first extraction from `text_misc_helpers_02.c` moves twenty-eight object cal
 Sixteen more bucket-02 callbacks now extend typed object transition modules. Seven wait for `value80` to clear before selecting a proven animation and continuation. Four disable the visual and stop after visual completion. Five select animation 0 or 6 and invoke the common cleanup transition after completion.
 
 Nineteen additional callbacks now form linked-object and cleanup families. Nine react to linked-object presence, completion, or a nested owner's active entry. Ten invoke cleanup callbacks, terminate on readiness or flag `0x20`, or release after `value80` or visual completion gates. Object byte `0x74` and visual byte `0x11` are now explicit structural fields.
+
+Seventeen further object callbacks now have typed homes. Three perform owner-based setup, five start direct animation/sound transitions, and nine cover position motion, `value80` gates, field-readiness gates, and a state-owned subobject update. Their names state the proven mechanics and preserve numeric animation and sound identifiers.

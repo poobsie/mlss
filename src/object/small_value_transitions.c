@@ -24,6 +24,16 @@ void sub_80605A4(struct RuntimeObject* object);
 void sub_80613FC(struct RuntimeObject* object);
 void sub_8070C5C(struct RuntimeObject* object);
 void sub_807197C(struct RuntimeObject* object);
+void sub_805DEB4(struct RuntimeObject* object);
+void sub_8063C24(struct RuntimeObject* object);
+void sub_806A8B0(struct RuntimeObject* object);
+void sub_8072BE8(struct RuntimeObject* object);
+void sub_80DB014(struct RuntimeObject* object);
+s32 sub_8086C64();
+s32 sub_8082B00(void);
+s32 sub_8087124(void* state);
+void sub_80D9F34(void* state);
+void sub_807C298(struct RuntimeObject* object);
 
 #define SEC(symbol) __attribute__((section(".text.small_functions_01." #symbol)))
 #define STRINGIFY_INNER(value) #value
@@ -212,3 +222,98 @@ void object_when_value80_clear_start_animation_0_and_stop(
         object->update = (RuntimeObjectCallback)value;
     }
 }
+
+MISC2_SEC(object_when_value80_clear_stop_sound_11b)
+void object_when_value80_clear_stop_sound_11b(struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        object->update = sub_805DEB4;
+        sound_effect_stop(0x11B);
+    }
+}
+
+MISC2_SEC(object_move_x_by_behavior_until_value84)
+void object_move_x_by_behavior_until_value84(struct RuntimeObject* object)
+{
+    s32 position;
+
+    position = object->currentPositionX - object->behaviorState;
+    object->currentPositionX = position;
+    if (position <= object->value84)
+        sub_807C298(object);
+}
+MISC2_SEC(object_move_x_by_behavior_until_value84)
+const u16 object_move_x_by_behavior_until_value84_padding = 0;
+
+MISC2_SEC(object_when_value80_clear_delay_255)
+void object_when_value80_clear_delay_255(struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        sound_effect_stop(0x81);
+        object->timer = 0xFF;
+        object->update = sub_806A8B0;
+    }
+}
+
+MISC2_SEC(object_when_setup_ready_delay_value84_16)
+s32 object_when_setup_ready_delay_value84_16(struct RuntimeObject* object)
+{
+    s32 result;
+
+    result = sub_8086C64();
+    if (result == 0) {
+        object->update = sub_8063C24;
+        object->value84 = 0x10;
+    }
+    return result;
+}
+
+MISC2_SEC(object_when_value80_clear_play_sound_10e)
+void object_when_value80_clear_play_sound_10e(struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        sound_effect_play(0x10E, SOUND_VOLUME_UNCHANGED);
+        object->update = sub_8072BE8;
+    }
+}
+
+MISC2_SEC(object_move_right_until_past_screen)
+void object_move_right_until_past_screen(struct RuntimeObject* object)
+{
+    s32 previous;
+    s32 position;
+
+    previous = object->currentPositionX;
+    position = previous + 0x200;
+    object->currentPositionX = position;
+    if (position < 0)
+        position = previous + 0x2FF;
+    if ((position >> 8) > 0xFF)
+        sub_807C298(object);
+}
+MISC2_SEC(object_move_right_until_past_screen)
+const u16 object_move_right_until_past_screen_padding = 0;
+
+MISC2_SEC(object_when_field_ready_play_sound_8d)
+void object_when_field_ready_play_sound_8d(struct RuntimeObject* object)
+{
+    if (sub_8082B00() == 0) {
+        sound_effect_play(0x8D, SOUND_VOLUME_UNCHANGED);
+        object->update = sub_80DB014;
+    }
+}
+
+MISC2_SEC(object_update_state_subobject)
+s32 object_update_state_subobject(struct RuntimeObject* object)
+{
+    s32 result;
+    void* stateSubobject;
+
+    stateSubobject = (u8*)object->state + 8;
+    result = sub_8087124(stateSubobject);
+    if (result == 0)
+        sub_80D9F34(stateSubobject);
+    return result;
+}
+MISC2_SEC(object_update_state_subobject)
+const u16 object_update_state_subobject_padding = 0;
