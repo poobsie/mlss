@@ -5104,14 +5104,7 @@ sub_805A0EC:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start get_coldef_ptr_by_idx
-get_coldef_ptr_by_idx: @ 0805A10C
-	lsls r1, r1, #0x18
-	adds r0, #0xA0
-	lsrs r1, r1, #0x16
-	ldr r0, [r0, #0x00]
-	adds r0, r0, r1
-	bx lr
+	.section .text.field_collision_map_after_get_definition, "ax", %progbits
 	thumb_func_start get_coldef_ptr_by_xz
 get_coldef_ptr_by_xz: @ 0805A118
 	push {lr}
