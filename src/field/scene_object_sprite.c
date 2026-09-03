@@ -1,14 +1,9 @@
-#include "global.h"
-#include "common.h"
+#include "field/functions.h"
+#include "field/scene_object.h"
 
-struct FieldObjectTail {
-    u8 pad00[0x294];
-    struct Sprite *sprite;
-};
+void sub_80403C4(struct FieldSceneObject* object);
 
-void sub_80403C4(struct FieldObjectTail *);
-
-void sub_8051484(struct FieldObjectTail *object)
+void field_reset_sprite_modes(struct FieldSceneObject* object)
 {
     sub_80403C4(object);
     object->sprite->field_1F_0 = object->sprite->field_1F_2 = 0;

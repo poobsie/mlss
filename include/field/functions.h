@@ -22,6 +22,10 @@
 #define field_state_preserve_flags_and_finish_a sub_804FD80
 #define field_state_preserve_flags_and_finish_b sub_804FDF4
 
+#define field_clear_state_if_value_present sub_8051330
+#define field_mark_sprite_and_set_state_7 sub_8051368
+#define field_reset_sprite_modes sub_8051484
+
 #define field_activate_actor_a_kind_2 sub_80A0AF4
 #define field_activate_actor_b_kind_2 sub_80A1CC4
 #define field_activate_actor_a_kind_8 sub_80A2E7C

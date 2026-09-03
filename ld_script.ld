@@ -160,9 +160,9 @@ SECTIONS
         asm/text0801A548.o(.text.after_field_state_preservation_804FDF4);
         src/field/object_callback_forwarding.o(.text);
         asm/text0801A548.o(.text.after_8050518);
-        src/text0801A548_early.o(.text);
+        src/field/scene_object_state.o(.text);
         asm/text0801A548.o(.text.after_8051330);
-        src/text0801A548_mid.o(.text);
+        src/field/scene_object_sprite.o(.text);
         asm/text0801A548.o(.text.after_8051484);
         src/early_code_helpers.o(.text.early_code_helpers.sub_80515DC);
         asm/text0801A548.o(.text.after_early_code_helpers_80515DC);

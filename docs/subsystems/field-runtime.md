@@ -30,6 +30,8 @@ Actor transition entry points are also named by observable contract. The names r
 
 The currently decompiled field-runtime slice is detangled. Further names depend on base operations and scene-specific callers that remain in assembly. Resume when those dependencies can replace callback-slot and variant suffixes with evidence-backed identities.
 
+`FieldSceneObject` covers the independently observed scene-object tail from offset `0x20F` through `0x340`. Its current helpers clear state under a value guard, mark an attached sprite while selecting state 7, and reset two sprite mode fields after common setup. The no-op entry points adjacent to the sprite reset remain address-named because their callback-table roles are not yet known.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
