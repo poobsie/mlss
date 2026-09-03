@@ -2289,9 +2289,9 @@ SECTIONS
         asm/text08057568.o(.text.high_after_sub_819A718);
         src/runtime/noop_callbacks.o(.text.nullsub_7);
         asm/text08057568.o(.text.after_nullsub_7);
-        src/state_field_helpers.o(.text.state_field_helpers.sub_819B0F8);
+        src/audio/driver_state.o(.text.audio_driver_state.sub_819B0F8);
         asm/text08057568.o(.text.state_field_helpers_after_sub_819B0F8);
-        src/text_upper_structural.o(.text.text_upper_structural.sub_819B19C);
+        src/audio/driver_state.o(.text.audio_driver_state.sub_819B19C);
         asm/text08057568.o(.text.after_text_upper_structural_sub_819B19C);
         src/text_high_helpers.o(.text.high.sub_819B970);
         asm/text08057568.o(.text.high_after_sub_819B970);

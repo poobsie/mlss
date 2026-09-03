@@ -35,6 +35,8 @@ The three controls still implemented in assembly now have stable public names be
 
 The two recovered driver callbacks now live in `src/audio/driver.c`. `audio_update` services the enabled driver from the main loop. `audio_timer0_interrupt` is installed in interrupt slot 3, the GBA Timer 0 interrupt, and services the stream mixer only while audio is enabled.
 
+`AudioDriverState` exposes the per-player flags at `0x494` and tempo words at `0x4A4`. The recovered setter is called with `0x4B` while a player is initialized, matching the music layer's default tempo of 75; the paired flag helper marks a selected player active with bit `0x01`.
+
 Two scene-facing wrappers have also been separated from early address buckets. `audio_play_sound_50` starts sound ID `0x50` at the existing volume. `audio_stop_scene_sound_set` issues the original fixed stop sequence for IDs `0x157`, `0x87`, `0xDB`, and `0xDA`; the duplicate stop for `0xDA` is retained because exact reconstruction does not justify deleting it. The sound IDs remain numeric until call-site or asset-table evidence establishes their actual cues.
 
 ## Verification

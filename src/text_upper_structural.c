@@ -80,16 +80,6 @@ UPPER_SECTION(sub_815FAE4) void sub_815FAE4(struct UpperMotion* object, s32 y_of
     object->y = y;
 }
 
-UPPER_SECTION(sub_819B19C) void sub_819B19C(u32 index) {
-    u8* base = *(u8**)0x03007FF0;
-    u32 offset = 0x494;
-    u8* entry = base + offset + index;
-    u32 value = *entry;
-    u32 bits = 1;
-    bits |= value;
-    *entry = bits;
-}
-
 struct UpperCoordinates {
     u8 pad_00[0x0C];
     s16* output;
