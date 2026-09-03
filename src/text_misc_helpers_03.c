@@ -1,5 +1,6 @@
 #include "global.h"
 #include "audio/sound_effects.h"
+#include "object/runtime_object.h"
 
 #define SEC(name)         __attribute__((section(".text.misc_helpers_03." #name)))
 #define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
@@ -79,7 +80,6 @@ extern int sub_808A660();
 extern int sub_808A7B0();
 extern int sub_808A8F8();
 extern int sub_808AA60();
-extern int sub_808DD2C();
 extern int sub_80904C4();
 extern int sub_8090830();
 extern int sub_80970B8();
@@ -974,11 +974,11 @@ SEC(sub_809B3DC) void sub_809B3DC(void* arg0) {
 
 SEC(sub_808EC58) void sub_808EC58(void* arg0) {
     if (0x38 & FIELD_AT(arg0, u8*, 0x76)) {
-        sub_808DD2C(arg0);
+        runtime_object_finish_action(arg0);
         return;
     }
     if (8 & FIELD_AT(FIELD_AT(arg0, void**, 8), u8*, 0x12)) {
-        sub_808DD2C(arg0);
+        runtime_object_finish_action(arg0);
     }
 }
 SEC(sub_808EC58) const u16 sub_808EC58_padding = 0;

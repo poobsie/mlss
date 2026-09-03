@@ -79,7 +79,7 @@
         "src/*landing*.c"
       ],
       "documentation": "docs/subsystems/object-runtime.md",
-      "next_action": "Group complete setup-to-completion behavior sequences and trace callers for stable gameplay names."
+      "next_action": "Trace the entry dispatcher around 0x0808CC08 and group complete setup-to-completion behavior sequences."
     },
     {
       "id": "unclassified",

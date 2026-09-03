@@ -26,9 +26,13 @@ Eight initialization and visual-setup callbacks now share the behavior descripto
 
 The snapshot is copied from offset `0x2A` of one of two records reached through the global pointer at `0x03000FF4`; one family uses the base record and the other uses the record at `+0x3C`. Neither the record type nor the snapshot's gameplay meaning is established, so `snapshot114` and the raw global address remain explicit.
 
+## Action completion
+
+The common exit at `0x0808DD2C` is now `runtime_object_finish_action`. It is not a destructor: when the object's mode bits indicate an active action, it clears the linked-state reservation flag, releases an auxiliary handle, resets visual control bits and parameter state, selects animation 0, and clears the active update callback. Its semantic name is shared by the recovered lifecycle files and the remaining callers in mixed source files.
+
 ## Next boundary
 
-Group complete setup-to-completion behavior sequences and trace their callers to identify stable gameplay names. Keep the two descriptor families separate until the global source records are understood.
+Trace the entry dispatcher around `0x0808CC08` and group complete setup-to-completion behavior sequences. Keep the two descriptor families separate until the global source records are understood.
 
 ## Verification
 

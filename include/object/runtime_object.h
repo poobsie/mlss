@@ -57,5 +57,6 @@ struct RuntimeObject {
 };
 
 void sub_8087540(struct RuntimeObject* object);
+void runtime_object_finish_action(struct RuntimeObject* object);
 
 #endif

@@ -96405,7 +96405,7 @@ _0808CC72:
 	b _0808CCCE
 _0808CCBC: .4byte 0x03000FF4
 _0808CCC0: .4byte sub_808DD04
-_0808CCC4: .4byte sub_808DD2C
+_0808CCC4: .4byte runtime_object_finish_action
 _0808CCC8:
 	adds r0, r4, #0x0
 	bl sub_808FC84
@@ -98290,8 +98290,8 @@ _0808DCAC: .4byte sub_808DCB0
 	.section .text.object_flag_actions_after_sub_808DCB0, "ax", %progbits
 	.section .text.misc_helpers_01_after_sub_808DCDC, "ax", %progbits
 	.section .text.object_variant_dispatch_after_sub_808DD04, "ax", %progbits
-	thumb_func_start sub_808DD2C
-sub_808DD2C:
+	thumb_func_start runtime_object_finish_action
+runtime_object_finish_action:
 	push {r4, r5, lr}
 	adds r5, r0, #0x0
 	adds r0, #0x76
@@ -98769,7 +98769,7 @@ sub_808E1C8:
 	cmp r6, #0x00
 	beq _0808E1EC
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808E296
 	.byte 0x00, 0x00
 _0808E1E8: .4byte sub_808E1C8
@@ -98876,7 +98876,7 @@ sub_808E2A0:
 	cmp r0, #0x00
 	beq _0808E2C4
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808E386
 	.byte 0x00, 0x00
 _0808E2C0: .4byte sub_808E2A0
@@ -98987,7 +98987,7 @@ sub_808E390:
 	cmp r0, #0x00
 	beq _0808E3A8
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808E4B2
 _0808E3A8:
 	ldr r0, _0808E3F4 @ =0x0300034C
@@ -99132,7 +99132,7 @@ sub_808E4B8:
 	cmp r0, #0x00
 	beq _0808E4D0
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808E648
 _0808E4D0:
 	ldr r6, [r4, #0x30]
@@ -99444,7 +99444,7 @@ sub_808E728:
 	cmp r6, #0x00
 	beq _0808E74C
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808E7FA
 	.byte 0x00, 0x00
 _0808E748: .4byte sub_808E728
@@ -99553,7 +99553,7 @@ sub_808E804:
 	cmp r0, #0x00
 	beq _0808E828
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808E8EA
 	.byte 0x00, 0x00
 _0808E824: .4byte sub_808E804
@@ -99664,7 +99664,7 @@ sub_808E8F4:
 	cmp r0, #0x00
 	beq _0808E90C
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808EA16
 _0808E90C:
 	ldr r0, _0808E95C @ =0x0300034C
@@ -99810,7 +99810,7 @@ sub_808EA1C:
 	cmp r0, #0x00
 	beq _0808EA34
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808EBB0
 _0808EA34:
 	ldr r6, [r4, #0x30]
@@ -100025,7 +100025,7 @@ _0808EC20:
 	cmp r0, #0x00
 	beq _0808EC3C
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808EC54
 	.byte 0x00, 0x00
 _0808EC38: .4byte 0x00000111
@@ -100040,7 +100040,7 @@ _0808EC3C:
 	cmp r1, #0x13
 	ble _0808EC54
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 _0808EC54:
 	pop {r0}
 	bx r0
@@ -100085,7 +100085,7 @@ sub_808EC88:
 	.byte 0x00, 0x00
 _0808ECD0: .4byte 0x03000FF4
 _0808ECD4: .4byte sub_808ED18
-_0808ECD8: .4byte sub_808DD2C
+_0808ECD8: .4byte runtime_object_finish_action
 	.section .text.script_dispatch_after_sub_808ECDC, "ax", %progbits
 	.section .text.object_variant_dispatch_after_sub_808ED18, "ax", %progbits
 	.section .text.object_visual_setups_after_sub_808ED40, "ax", %progbits
@@ -100331,7 +100331,7 @@ sub_808F1D8:
 	cmp r6, #0x00
 	beq _0808F1FC
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808F29E
 	.byte 0x00, 0x00
 _0808F1F8: .4byte sub_808F1D8
@@ -100434,7 +100434,7 @@ sub_808F2A8:
 	cmp r0, #0x00
 	beq _0808F2CC
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808F38E
 	.byte 0x00, 0x00
 _0808F2C8: .4byte sub_808F2A8
@@ -100545,7 +100545,7 @@ sub_808F398:
 	cmp r0, #0x00
 	beq _0808F3B0
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808F4BA
 _0808F3B0:
 	ldr r0, _0808F3FC @ =0x0300034C
@@ -100690,7 +100690,7 @@ sub_808F4C0:
 	cmp r0, #0x00
 	beq _0808F4D8
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808F650
 _0808F4D8:
 	ldr r6, [r4, #0x30]
@@ -101002,7 +101002,7 @@ sub_808F730:
 	cmp r6, #0x00
 	beq _0808F754
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808F7F6
 	.byte 0x00, 0x00
 _0808F750: .4byte sub_808F730
@@ -101105,7 +101105,7 @@ sub_808F800:
 	cmp r0, #0x00
 	beq _0808F824
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808F8E6
 	.byte 0x00, 0x00
 _0808F820: .4byte sub_808F800
@@ -101216,7 +101216,7 @@ sub_808F8F0:
 	cmp r0, #0x00
 	beq _0808F908
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808FA12
 _0808F908:
 	ldr r0, _0808F958 @ =0x0300034C
@@ -101362,7 +101362,7 @@ sub_808FA18:
 	cmp r0, #0x00
 	beq _0808FA30
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0808FBAC
 _0808FA30:
 	ldr r6, [r4, #0x30]
@@ -101596,7 +101596,7 @@ sub_808FC84:
 	.byte 0x00, 0x00
 _0808FCCC: .4byte 0x03000FF4
 _0808FCD0: .4byte sub_808FD14
-_0808FCD4: .4byte sub_808DD2C
+_0808FCD4: .4byte runtime_object_finish_action
 	.section .text.script_dispatch_after_sub_808FCD8, "ax", %progbits
 	.section .text.object_variant_dispatch_after_sub_808FD14, "ax", %progbits
 	.section .text.object_visual_setups_after_sub_808FD3C, "ax", %progbits
@@ -102587,7 +102587,7 @@ sub_8091090:
 	cmp r6, #0x00
 	beq _080910B4
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0809116A
 	.byte 0x00, 0x00
 _080910B0: .4byte sub_8091090
@@ -102700,7 +102700,7 @@ sub_8091174:
 	cmp r0, #0x00
 	beq _08091198
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0809126A
 	.byte 0x00, 0x00
 _08091194: .4byte sub_8091174
@@ -102819,7 +102819,7 @@ sub_8091274:
 	cmp r0, #0x00
 	beq _0809128C
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0809139E
 _0809128C:
 	ldr r0, _080912D4 @ =0x0300034C
@@ -102967,7 +102967,7 @@ sub_80913A4:
 	cmp r0, #0x00
 	beq _080913BC
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08091540
 _080913BC:
 	ldr r6, [r4, #0x30]
@@ -103285,7 +103285,7 @@ sub_8091620:
 	cmp r6, #0x00
 	beq _08091644
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _080916FE
 	.byte 0x00, 0x00
 _08091640: .4byte sub_8091620
@@ -103400,7 +103400,7 @@ sub_8091708:
 	cmp r0, #0x00
 	beq _0809172C
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _080917FE
 	.byte 0x00, 0x00
 _08091728: .4byte sub_8091708
@@ -103519,7 +103519,7 @@ sub_8091808:
 	cmp r0, #0x00
 	beq _08091820
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08091932
 _08091820:
 	ldr r0, _08091868 @ =0x0300034C
@@ -103667,7 +103667,7 @@ sub_8091938:
 	cmp r0, #0x00
 	beq _08091950
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08091AD8
 _08091950:
 	ldr r6, [r4, #0x30]
@@ -103887,7 +103887,7 @@ _08091AF8:
 	cmp r0, #0x00
 	beq _08091B14
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08091B2C
 	.byte 0x00, 0x00
 _08091B10: .4byte 0x00000111
@@ -103902,7 +103902,7 @@ _08091B14:
 	cmp r1, #0x17
 	ble _08091B2C
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 _08091B2C:
 	pop {r0}
 	bx r0
@@ -103930,7 +103930,7 @@ _08091BA8:
 	cmp r0, #0x00
 	beq _08091BC4
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08091BDC
 	.byte 0x00, 0x00
 _08091BC0: .4byte 0x00000111
@@ -103945,7 +103945,7 @@ _08091BC4:
 	cmp r1, #0x13
 	ble _08091BDC
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 _08091BDC:
 	pop {r0}
 	bx r0
@@ -103991,7 +103991,7 @@ sub_8091C74:
 	.byte 0x00, 0x00
 _08091CBC: .4byte 0x03000FF4
 _08091CC0: .4byte sub_8091DD8
-_08091CC4: .4byte sub_808DD2C
+_08091CC4: .4byte runtime_object_finish_action
 	.section .text.fixed_jump_transitions_after_sub_8091CC8, "ax", %progbits
 	.section .text.after_sub_8091D10, "ax", %progbits
 	.section .text.fixed_jump_transitions_alternate_after_sub_8091D34, "ax", %progbits
@@ -104487,7 +104487,7 @@ sub_8092220:
 	cmp r6, #0x00
 	beq _08092244
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _080922FA
 	.byte 0x00, 0x00
 _08092240: .4byte sub_8092220
@@ -104600,7 +104600,7 @@ sub_8092304:
 	cmp r0, #0x00
 	beq _08092328
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _080923FA
 	.byte 0x00, 0x00
 _08092324: .4byte sub_8092304
@@ -104719,7 +104719,7 @@ sub_8092404:
 	cmp r0, #0x00
 	beq _0809241C
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0809252E
 _0809241C:
 	ldr r0, _08092464 @ =0x0300034C
@@ -104867,7 +104867,7 @@ sub_8092534:
 	cmp r0, #0x00
 	beq _0809254C
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _080926D0
 _0809254C:
 	ldr r6, [r4, #0x30]
@@ -105185,7 +105185,7 @@ sub_80927B0:
 	cmp r6, #0x00
 	beq _080927D4
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0809288E
 	.byte 0x00, 0x00
 _080927D0: .4byte sub_80927B0
@@ -105300,7 +105300,7 @@ sub_8092898:
 	cmp r0, #0x00
 	beq _080928BC
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0809298E
 	.byte 0x00, 0x00
 _080928B8: .4byte sub_8092898
@@ -105419,7 +105419,7 @@ sub_8092998:
 	cmp r0, #0x00
 	beq _080929B0
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08092AC2
 _080929B0:
 	ldr r0, _080929F8 @ =0x0300034C
@@ -105567,7 +105567,7 @@ sub_8092AC8:
 	cmp r0, #0x00
 	beq _08092AE0
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08092C68
 _08092AE0:
 	ldr r6, [r4, #0x30]
@@ -105787,7 +105787,7 @@ _08092C88:
 	cmp r0, #0x00
 	beq _08092CA4
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08092CBC
 	.byte 0x00, 0x00
 _08092CA0: .4byte 0x00000111
@@ -105802,7 +105802,7 @@ _08092CA4:
 	cmp r1, #0x17
 	ble _08092CBC
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 _08092CBC:
 	pop {r0}
 	bx r0
@@ -105830,7 +105830,7 @@ _08092D38:
 	cmp r0, #0x00
 	beq _08092D54
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08092D6C
 	.byte 0x00, 0x00
 _08092D50: .4byte 0x00000111
@@ -105845,7 +105845,7 @@ _08092D54:
 	cmp r1, #0x13
 	ble _08092D6C
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 _08092D6C:
 	pop {r0}
 	bx r0
@@ -105891,7 +105891,7 @@ sub_8092E04:
 	.byte 0x00, 0x00
 _08092E4C: .4byte 0x03000FF4
 _08092E50: .4byte sub_8092F68
-_08092E54: .4byte sub_808DD2C
+_08092E54: .4byte runtime_object_finish_action
 	.section .text.fixed_jump_transitions_after_sub_8092E58, "ax", %progbits
 	.section .text.after_sub_8092EA0, "ax", %progbits
 	.section .text.fixed_jump_transitions_alternate_after_sub_8092EC4, "ax", %progbits
@@ -106238,7 +106238,7 @@ sub_809326C:
 	cmp r6, #0x00
 	beq _08093290
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08093346
 	.byte 0x00, 0x00
 _0809328C: .4byte sub_809326C
@@ -106351,7 +106351,7 @@ sub_8093350:
 	cmp r0, #0x00
 	beq _08093374
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08093446
 	.byte 0x00, 0x00
 _08093370: .4byte sub_8093350
@@ -106470,7 +106470,7 @@ sub_8093450:
 	cmp r0, #0x00
 	beq _08093468
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0809357A
 _08093468:
 	ldr r0, _080934B0 @ =0x0300034C
@@ -106618,7 +106618,7 @@ sub_8093580:
 	cmp r0, #0x00
 	beq _08093598
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _0809371C
 _08093598:
 	ldr r6, [r4, #0x30]
@@ -106936,7 +106936,7 @@ sub_80937FC:
 	cmp r6, #0x00
 	beq _08093820
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _080938DA
 	.byte 0x00, 0x00
 _0809381C: .4byte sub_80937FC
@@ -107051,7 +107051,7 @@ sub_80938E4:
 	cmp r0, #0x00
 	beq _08093908
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _080939DA
 	.byte 0x00, 0x00
 _08093904: .4byte sub_80938E4
@@ -107170,7 +107170,7 @@ sub_80939E4:
 	cmp r0, #0x00
 	beq _080939FC
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08093B0E
 _080939FC:
 	ldr r0, _08093A44 @ =0x0300034C
@@ -107318,7 +107318,7 @@ sub_8093B14:
 	cmp r0, #0x00
 	beq _08093B2C
 	adds r0, r4, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08093CB4
 _08093B2C:
 	ldr r6, [r4, #0x30]
@@ -107538,7 +107538,7 @@ _08093CD4:
 	cmp r0, #0x00
 	beq _08093CF0
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08093D08
 	.byte 0x00, 0x00
 _08093CEC: .4byte 0x00000111
@@ -107553,7 +107553,7 @@ _08093CF0:
 	cmp r1, #0x17
 	ble _08093D08
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 _08093D08:
 	pop {r0}
 	bx r0
@@ -107581,7 +107581,7 @@ _08093D84:
 	cmp r0, #0x00
 	beq _08093DA0
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 	b _08093DB8
 	.byte 0x00, 0x00
 _08093D9C: .4byte 0x00000111
@@ -107596,7 +107596,7 @@ _08093DA0:
 	cmp r1, #0x13
 	ble _08093DB8
 	adds r0, r3, #0x0
-	bl sub_808DD2C
+	bl runtime_object_finish_action
 _08093DB8:
 	pop {r0}
 	bx r0
@@ -107642,7 +107642,7 @@ sub_8093E50:
 	.byte 0x00, 0x00
 _08093E98: .4byte 0x03000FF4
 _08093E9C: .4byte sub_8093EE0
-_08093EA0: .4byte sub_808DD2C
+_08093EA0: .4byte runtime_object_finish_action
 	.section .text.script_dispatch_after_sub_8093EA4, "ax", %progbits
 	.section .text.object_variant_dispatch_after_sub_8093EE0, "ax", %progbits
 	thumb_func_start sub_8093F08

@@ -3,17 +3,15 @@
 
 #define SEC(name) __attribute__((section(".text.object_completion_gates." #name)))
 
-extern void sub_808DD2C(struct RuntimeObject*);
-
 #define DEFINE_OBJECT_COMPLETION_GATE(name)                              \
     SEC(name) void name(struct RuntimeObject* object)                    \
     {                                                                    \
         if (object->flags76 & 0x38) {                                   \
-            sub_808DD2C(object);                                         \
+            runtime_object_finish_action(object);                        \
             return;                                                      \
         }                                                                \
         if (object->visual->flags & 8) {                                \
-            sub_808DD2C(object);                                         \
+            runtime_object_finish_action(object);                        \
         }                                                                \
     }                                                                    \
     SEC(name) const u16 name##_padding = 0;

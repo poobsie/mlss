@@ -1,5 +1,6 @@
 #include "global.h"
 #include "audio/sound_effects.h"
+#include "object/runtime_object.h"
 #define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
 typedef u32 UnknownWord;
 #define SEC(name) __attribute__((section(".text.small_functions_05." #name)))
@@ -20,7 +21,6 @@ UnknownWord sub_807C298();
 UnknownWord heap_free_block();
 UnknownWord process_remove();
 UnknownWord sub_80E4FC8();
-UnknownWord sub_808DD2C();
 
 SEC(sub_8070670) s32 sub_8070670(void* arg0, UnknownWord arg1) {
     sub_810DD7C(arg0, arg1, 0xFF);
@@ -119,7 +119,7 @@ SEC(sub_8091B30) void sub_8091B30(void* arg0) {
     void* temp_r2;
 
     if (0x38 & FIELD_AT(arg0, u8*, 0x76)) {
-        sub_808DD2C(arg0);
+        runtime_object_finish_action(arg0);
         return;
     }
     temp_r0 = FIELD_AT(arg0, s32*, 0x9C);
@@ -142,7 +142,7 @@ SEC(sub_8092CC0) void sub_8092CC0(void* arg0) {
     void* temp_r2;
 
     if (0x38 & FIELD_AT(arg0, u8*, 0x76)) {
-        sub_808DD2C(arg0);
+        runtime_object_finish_action(arg0);
         return;
     }
     temp_r0 = FIELD_AT(arg0, s32*, 0x9C);
@@ -165,7 +165,7 @@ SEC(sub_8093D0C) void sub_8093D0C(void* arg0) {
     void* temp_r2;
 
     if (0x38 & FIELD_AT(arg0, u8*, 0x76)) {
-        sub_808DD2C(arg0);
+        runtime_object_finish_action(arg0);
         return;
     }
     temp_r0 = FIELD_AT(arg0, s32*, 0x9C);
