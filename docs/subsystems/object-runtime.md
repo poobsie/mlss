@@ -148,6 +148,8 @@ The individual factory symbols remain address-named ABI entry points because the
 
 Four miscellaneous-bucket callbacks now form the saved-update transition group. One stores the active update in `auxiliaryState`, runs the established setup routine, and installs a polling continuation when setup remains pending. That continuation starts animation 2 and restores the saved update after visual byte `0x21` clears. A related callback observes the visual pointer at state offset `0x10` before releasing the object, while the fourth invokes the callback at descriptor offset 4 after the shared field-readiness gate clears. `auxiliaryState` and the descriptor remain structural outside these proven uses.
 
+The first forty-two callbacks recovered from miscellaneous bucket 03 are now grouped by their actual transition contracts. The visual-completion family selects fixed animations and continuations, with `idle` used only for the established common idle callback. A second family decrements the 16-bit timer first but tests the signed pre-decrement value, preserving the original edge behavior. Timed visual transitions set explicit delays from 1 through 60 ticks. The setup group exposes direct `value84` and `value8C` initialization, `value80` gates, readiness, and sound-stop ordering. Lettered variants remain where the assembly-only sequence owners do not justify gameplay names.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.

@@ -28,6 +28,18 @@ DEFINE_FLAG_ACTION(sub_8094FD4)
 #define STRINGIFY(value) STRINGIFY_INNER(value)
 #define MISC_SEC(name) \
     __attribute__((section(".text.misc_helpers_01." STRINGIFY(name))))
+#define MISC3_SEC(name) \
+    __attribute__((section(".text.misc_helpers_03." STRINGIFY(name))))
+
+MISC3_SEC(object_on_visual_complete_stop_command_204d_n)
+void object_on_visual_complete_stop_command_204d_n(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 0, 0x204D, 0);
+        object->update = 0;
+    }
+}
 
 #define DEFINE_STOP_ON_VISUAL_COMPLETE(name, command)                   \
     MISC_SEC(name) void name(struct RuntimeObject* object)              \
