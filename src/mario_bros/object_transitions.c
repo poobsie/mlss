@@ -1,4 +1,5 @@
 #include "global.h"
+#include "mario_bros/functions.h"
 #include "mario_bros/object.h"
 
 #define SECTION(name) __attribute__((section(".text.mariobros_transitions." #name)))
@@ -18,6 +19,6 @@ extern void sub_8F6DEA4(u32);
         } \
     }
 
-DEFINE_TRANSITION(sub_8F6009C, 0x17)
-DEFINE_TRANSITION(sub_8F60BA0, 0x16)
-DEFINE_TRANSITION(sub_8F629AC, 0x15)
+DEFINE_TRANSITION(mario_bros_transition_object_with_code_23, 0x17)
+DEFINE_TRANSITION(mario_bros_transition_object_with_code_22, 0x16)
+DEFINE_TRANSITION(mario_bros_transition_object_with_code_21, 0x15)

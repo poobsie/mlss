@@ -1,5 +1,6 @@
 #include "global.h"
 #include "mario_bros/callback.h"
+#include "mario_bros/functions.h"
 #include "mario_bros/object.h"
 
 #define MB_SECTION(name) __attribute__((section(".text.mariobros_helpers_" #name)))
@@ -20,12 +21,12 @@ extern u32 gMarioData_0201E78C[];
         mario_bros_call_callback_with_object(obj, entries[index]);                                    \
     }
 
-DEFINE_TABLE_CALL(sub_8F5FC2C, 4, gMarioData_08F9FE98)
-DEFINE_TABLE_CALL(sub_8F63B14, 4, gMarioData_08FA02CC)
-DEFINE_TABLE_CALL(sub_8F6B860, 2, gMarioData_08FA1528)
-DEFINE_TABLE_CALL(sub_8F6C0C8, 4, gMarioData_08FA153C)
-DEFINE_TABLE_CALL(sub_8F6C8CC, 2, gMarioData_08FA16CC)
-DEFINE_TABLE_CALL(sub_8F6D148, 2, gMarioData_08FA186C)
+DEFINE_TABLE_CALL(mario_bros_dispatch_state_callback_a, 4, gMarioData_08F9FE98)
+DEFINE_TABLE_CALL(mario_bros_dispatch_state_callback_b, 4, gMarioData_08FA02CC)
+DEFINE_TABLE_CALL(mario_bros_dispatch_selector02_callback_a, 2, gMarioData_08FA1528)
+DEFINE_TABLE_CALL(mario_bros_dispatch_state_callback_c, 4, gMarioData_08FA153C)
+DEFINE_TABLE_CALL(mario_bros_dispatch_selector02_callback_c, 2, gMarioData_08FA16CC)
+DEFINE_TABLE_CALL(mario_bros_dispatch_selector02_callback_d, 2, gMarioData_08FA186C)
 
 #define DEFINE_DIRECT_HANDLER(name, table)                                                             \
     MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
@@ -36,8 +37,8 @@ DEFINE_TABLE_CALL(sub_8F6D148, 2, gMarioData_08FA186C)
         obj->value18 = *(u32*)((u8*)entries + offset);                                                 \
     }
 
-DEFINE_DIRECT_HANDLER(sub_8F65118, gMarioData_08FA0444)
-DEFINE_DIRECT_HANDLER(sub_8F8BA6C, gMarioData_0201E78C)
+DEFINE_DIRECT_HANDLER(mario_bros_select_value18_from_flag_bit2_a, gMarioData_08FA0444)
+DEFINE_DIRECT_HANDLER(mario_bros_select_value18_from_flag_bit2_b, gMarioData_0201E78C)
 
 #define DEFINE_FRAME_BITS(name, table)                                                                 \
     MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
@@ -46,10 +47,10 @@ DEFINE_DIRECT_HANDLER(sub_8F8BA6C, gMarioData_0201E78C)
         ((struct MarioBrosFlags0A*)&obj->flags0A)->tableValue = ((u8*)(table))[frame] & 0xF;            \
     }
 
-DEFINE_FRAME_BITS(sub_8F61E58, 0x08FA0134)
-DEFINE_FRAME_BITS(sub_8F624CC, 0x08FA01A4)
-DEFINE_FRAME_BITS(sub_8F887AC, 0x0201E47C)
-DEFINE_FRAME_BITS(sub_8F88E20, 0x0201E4EC)
+DEFINE_FRAME_BITS(mario_bros_set_table_bits_from_frame_a, 0x08FA0134)
+DEFINE_FRAME_BITS(mario_bros_set_table_bits_from_frame_b, 0x08FA01A4)
+DEFINE_FRAME_BITS(mario_bros_set_table_bits_from_frame_c, 0x0201E47C)
+DEFINE_FRAME_BITS(mario_bros_set_table_bits_from_frame_d, 0x0201E4EC)
 
 #define DEFINE_CLAMP_BITS(name, table)                                                                 \
     MB_SECTION(name) void name(struct MarioBrosObject* obj) {                                         \
@@ -59,10 +60,10 @@ DEFINE_FRAME_BITS(sub_8F88E20, 0x0201E4EC)
         ((struct MarioBrosFlags0A*)&obj->flags0A)->tableValue = ((u8*)(table))[frame] & 0xF;            \
     }
 
-DEFINE_CLAMP_BITS(sub_8F5FCAC, 0x08F9FEE0)
-DEFINE_CLAMP_BITS(sub_8F86600, 0x0201E228)
+DEFINE_CLAMP_BITS(mario_bros_set_table_bits_from_clamped_frame_a, 0x08F9FEE0)
+DEFINE_CLAMP_BITS(mario_bros_set_table_bits_from_clamped_frame_b, 0x0201E228)
 
-MB_SECTION(sub_8F648AC) void sub_8F648AC(struct MarioBrosObject* obj) {
+MB_SECTION(sub_8F648AC) void mario_bros_advance_animation_pair(struct MarioBrosObject* obj) {
     u8 variant = obj->animationVariant;
     u8 frame = obj->animationFrame;
     if (variant <= 5) {

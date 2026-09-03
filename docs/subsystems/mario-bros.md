@@ -26,6 +26,8 @@ The former mixed platform file is split into hardware setup, object movement, gl
 
 `include/mario_bros/functions.h` provides semantic C names while retaining the original `sub_` symbols required by assembly callers. Confirmed names cover interrupt shutdown, platform-state reset, fixed-size buffer and tilemap clearing, object position integration, readiness-gated state advance, and the state-7-guarded fall initializer. The two position routines use `a` and `b` suffixes because their X-coordinate helpers differ but their gameplay classes are not yet identified.
 
+Replicated helpers now follow the same rule. Their names state the observable contract, including selector-based callback dispatch, frame-table bit updates, state-controller reset, command 12 forwarding, and event emission followed by sequence advancement. Letter suffixes distinguish parallel implementations whose owning gameplay classes are still in assembly.
+
 ## Next boundary
 
 Name the remaining replicated transition and table-selection families by observable contract, then defer gameplay identities that require assembly callers or initialization paths not yet decompiled.

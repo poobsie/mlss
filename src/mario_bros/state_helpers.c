@@ -1,4 +1,5 @@
 #include "global.h"
+#include "mario_bros/functions.h"
 #include "mario_bros/runtime.h"
 
 #define MB_SECTION(name) __attribute__((section(".text.mariobros_helpers_" #name)))
@@ -17,7 +18,7 @@ void sub_8F8CCB4(void*, u32);
 void sub_8F568DC(u32, u32, void*);
 void sub_8F57F2C(void);
 
-MB_SECTION(sub_8F66A40) u32 sub_8F66A40(u8 value) {
+MB_SECTION(sub_8F66A40) u32 mario_bros_normalize_variant_a(u8 value) {
     switch (value) {
     case 2:
         return 2;
@@ -25,7 +26,7 @@ MB_SECTION(sub_8F66A40) u32 sub_8F66A40(u8 value) {
         return 1;
     }
 }
-MB_SECTION(sub_8F8D394) u32 sub_8F8D394(u8 value) {
+MB_SECTION(sub_8F8D394) u32 mario_bros_normalize_variant_b(u8 value) {
     switch (value) {
     case 2:
         return 2;
@@ -44,8 +45,8 @@ MB_SECTION(sub_8F8D394) u32 sub_8F8D394(u8 value) {
         }                                                                                             \
     }
 
-DEFINE_STATE_RESET(sub_8F663B4, sub_8F66360)
-DEFINE_STATE_RESET(sub_8F8CD08, sub_8F8CCB4)
+DEFINE_STATE_RESET(mario_bros_reset_state_controller_a, sub_8F66360)
+DEFINE_STATE_RESET(mario_bros_reset_state_controller_b, sub_8F8CCB4)
 
 #define DEFINE_GLOBAL_INCREMENT(name)                                                                 \
     MB_SECTION(name) void name(void) {                                                                \
@@ -55,5 +56,5 @@ DEFINE_STATE_RESET(sub_8F8CD08, sub_8F8CCB4)
         gMarioGlobal_03000F50.sequenceIndex++;                                                        \
     }
 
-DEFINE_GLOBAL_INCREMENT(sub_8F58360)
-DEFINE_GLOBAL_INCREMENT(sub_8F58398)
+DEFINE_GLOBAL_INCREMENT(mario_bros_emit_event_and_advance_sequence_a)
+DEFINE_GLOBAL_INCREMENT(mario_bros_emit_event_and_advance_sequence_b)
