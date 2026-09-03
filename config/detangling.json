@@ -57,7 +57,7 @@
       "state": "active",
       "patterns": ["src/mariobros_*.c", "src/mario_bros/*.c"],
       "documentation": "docs/subsystems/mario-bros.md",
-      "next_action": "Audit address-named functions for defensible public names; defer identities lacking evidence."
+      "next_action": "Name replicated transitions and table-selection families by observable contract; defer gameplay identities lacking evidence."
     },
     {
       "id": "field_runtime",

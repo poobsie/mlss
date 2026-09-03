@@ -24,9 +24,11 @@ The former mixed platform file is split into hardware setup, object movement, gl
 
 `include/mario_bros/callback.h` names the recovered callback ABI. The assembly routines are register trampolines that jump through argument 0, 1, or 2; C now describes those operations as callback calls. Five global callback slots are named by signature and family. Their gameplay purpose is still unknown because the currently decompiled code only reads them.
 
+`include/mario_bros/functions.h` provides semantic C names while retaining the original `sub_` symbols required by assembly callers. Confirmed names cover interrupt shutdown, platform-state reset, fixed-size buffer and tilemap clearing, object position integration, readiness-gated state advance, and the state-7-guarded fall initializer. The two position routines use `a` and `b` suffixes because their X-coordinate helpers differ but their gameplay classes are not yet identified.
+
 ## Next boundary
 
-Audit the remaining address-named Mario Bros functions for defensible public names, then defer any identities that require assembly callers or initialization paths not yet decompiled.
+Name the remaining replicated transition and table-selection families by observable contract, then defer gameplay identities that require assembly callers or initialization paths not yet decompiled.
 
 ## Verification
 

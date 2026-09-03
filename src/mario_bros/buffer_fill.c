@@ -1,8 +1,9 @@
 #include "global.h"
+#include "mario_bros/functions.h"
 
 #define MB_SECTION(name) __attribute__((section(".text.mariobros_helpers_" #name)))
 
-MB_SECTION(sub_8F585B0) void sub_8F585B0(u16 value, u16* dst) {
+MB_SECTION(sub_8F585B0) void mario_bros_fill_1024_halfwords(u16 value, u16* dst) {
     u16 i = 0;
     do {
         *dst++ = value;

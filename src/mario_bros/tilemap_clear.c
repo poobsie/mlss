@@ -1,8 +1,9 @@
 #include "global.h"
+#include "mario_bros/functions.h"
 
 #define SEC(name) __attribute__((section(".text.mariobros_helpers_late." #name)))
 
-SEC(sub_8F591F8) void sub_8F591F8(void) {
+SEC(sub_8F591F8) void mario_bros_clear_tilemap_region(void) {
     u8 row;
 
     for (row = 0; row <= 3; row++) {
