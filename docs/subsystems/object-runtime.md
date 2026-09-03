@@ -78,6 +78,8 @@ The last isolated upper object callback now joins the late visual transitions. I
 
 Twenty-nine callbacks extracted from the first large miscellaneous bucket now complete the visual-command family. Sixteen wait for visual completion, issue command `0` with no secondary value, and stop their update. Thirteen perform the same terminal transition with secondary command value `0x2000`; they directly pair with the thirteen previously recovered `0x204D` variants. One parameterized typed implementation now expresses all three families. Variant suffixes preserve distinct callback-table entry points whose sequence owners remain in assembly.
 
+Eleven neighboring terminal gates now form two more typed families. Five wait for visual completion and either stop the active update or return to the shared idle callback. Six wait for `value80` to clear and then invoke an established trigger or cleanup transition. Lettered variants preserve callback-table identity where the owning sequences remain in assembly.
+
 Three additional visual-completion variants now use the shared object layout. They select animations from state at `0x9C` or flags at `0x98`; one also starts effect `0x151D`, installs a secondary update at `0x5C`, and advances the primary update at `0x4C`.
 
 Four late visual transitions now expose linked-object completion, linked-chain flag propagation at `0xA8`, animation and sound setup, and terminal cleanup. Their semantic aliases describe the proven gate and effect; unresolved sound and animation values remain numeric.
@@ -122,4 +124,4 @@ The individual factory symbols remain address-named ABI entry points because the
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.

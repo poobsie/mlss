@@ -193,12 +193,6 @@ SEC(sub_80612B4) s32 sub_80612B4(void* arg0) {
     return 0;
 }
 
-SEC(sub_8064540) void sub_8064540(void* arg0) {
-    if (8 & FIELD_AT(FIELD_AT(arg0, void**, 8), u8*, 0x12)) {
-        FIELD_AT(arg0, s32*, 0x4C) = 0;
-    }
-}
-
 SEC(sub_8065E2C) void sub_8065E2C(void* arg0) {
     if (FIELD_AT(arg0, s32*, 0x80) == 0) {
         FIELD_AT(arg0, s16*, 0xAC) = 0x14;
@@ -227,12 +221,6 @@ SEC(sub_8068058) s32 sub_8068058(void* arg0) {
     sub_810DD7C(arg0, FIELD_AT(arg0, s32*, 0x2C), 0xFF);
     FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_80681EC;
     return 0;
-}
-
-SEC(sub_806814C) void sub_806814C(void* arg0) {
-    if (8 & FIELD_AT(FIELD_AT(arg0, void**, 8), u8*, 0x12)) {
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_808750C;
-    }
 }
 
 SEC(sub_8068E60) s32 sub_8068E60(void* arg0) {
@@ -287,26 +275,6 @@ SEC(sub_806B390) s32 sub_806B390(void* arg0) {
     return 0;
 }
 
-SEC(sub_806B528) void sub_806B528(void* arg0) {
-    if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        sub_807C298(arg0);
-    }
-}
-SEC(sub_806B528) const u16 sub_806B528_padding = 0;
-
-SEC(sub_806B56C) void sub_806B56C(void* arg0) {
-    if (8 & FIELD_AT(FIELD_AT(arg0, void**, 8), u8*, 0x12)) {
-        FIELD_AT(arg0, s32*, 0x4C) = 0;
-    }
-}
-
-SEC(sub_806C190) void sub_806C190(void* arg0) {
-    if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        sub_807C298(arg0);
-    }
-}
-SEC(sub_806C190) const u16 sub_806C190_padding = 0;
-
 SEC(sub_806C1A8) void sub_806C1A8(void* arg0) {
     if (FIELD_AT(arg0, s32*, 0x80) == 0) {
         FIELD_AT(arg0, s16*, 0xAC) = 8;
@@ -360,13 +328,6 @@ SEC(sub_8072370) void sub_8072370(void* arg0) {
         FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_8071B14;
     }
 }
-
-SEC(sub_80743AC) void sub_80743AC(void* arg0) {
-    if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        sub_807C298(arg0);
-    }
-}
-SEC(sub_80743AC) const u16 sub_80743AC_padding = 0;
 
 SEC(sub_8075C48) s32 sub_8075C48(void* arg0, UnknownWord arg1) {
     sub_810DD7C(arg0, arg1, 0xFF);
@@ -431,12 +392,6 @@ SEC(sub_8089AB0) void sub_8089AB0(void* arg0) {
     FIELD_AT(arg0, s32*, 0x80) = 0;
     FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_808942C;
     FIELD_AT(arg0, s16*, 0xAC) = 0;
-}
-
-SEC(sub_8089AC8) void sub_8089AC8(void* arg0) {
-    if (8 & FIELD_AT(FIELD_AT(arg0, void**, 8), u8*, 0x12)) {
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_808750C;
-    }
 }
 
 SEC(sub_808A098) void sub_808A098(void* arg0) {
@@ -505,12 +460,6 @@ SEC(sub_809EB58) void sub_809EB58(void* arg0) {
     FIELD_AT(arg0, s16*, 0xAC) = 0;
 }
 
-SEC(sub_809EB70) void sub_809EB70(void* arg0) {
-    if (8 & FIELD_AT(FIELD_AT(arg0, void**, 8), u8*, 0x12)) {
-        FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_808750C;
-    }
-}
-
 SEC(sub_80D2D34) void sub_80D2D34(void) {
     sub_807C298(FIELD_AT(FIELD_AT(*(void**)0x03000FD8, void**, 0x70), s32*, 0x38));
 }
@@ -521,27 +470,6 @@ SEC(sub_80DA45C) void sub_80DA45C(void* arg0) {
         FIELD_AT(arg0, UnknownWord**, 0x4C) = (UnknownWord*)&sub_80DA480;
     }
 }
-
-SEC(sub_80DAF30) void sub_80DAF30(void* arg0) {
-    if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        sub_8087540(arg0);
-    }
-}
-SEC(sub_80DAF30) const u16 sub_80DAF30_padding = 0;
-
-SEC(sub_80DAF6C) void sub_80DAF6C(void* arg0) {
-    if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        sub_8087540(arg0);
-    }
-}
-SEC(sub_80DAF6C) const u16 sub_80DAF6C_padding = 0;
-
-SEC(sub_80DC4C0) void sub_80DC4C0(void* arg0) {
-    if (FIELD_AT(arg0, s32*, 0x80) == 0) {
-        sub_8087540(arg0);
-    }
-}
-SEC(sub_80DC4C0) const u16 sub_80DC4C0_padding = 0;
 
 SEC(sub_80E57FC) void sub_80E57FC(void) {
     heap_free_block(*(s32*)0x03000FB4);

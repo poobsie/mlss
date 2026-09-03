@@ -99,6 +99,18 @@
 #define object_on_visual_complete_stop_command_2000_l sub_8094BA8
 #define object_on_visual_complete_stop_command_2000_m sub_8095000
 
+#define object_stop_when_visual_complete_a sub_8064540
+#define object_stop_when_visual_complete_b sub_806B56C
+#define object_return_idle_when_visual_complete_a sub_806814C
+#define object_return_idle_when_visual_complete_b sub_8089AC8
+#define object_return_idle_when_visual_complete_c sub_809EB70
+#define object_trigger_when_value80_clear_a sub_806B528
+#define object_trigger_when_value80_clear_b sub_806C190
+#define object_trigger_when_value80_clear_c sub_80743AC
+#define object_cleanup_when_value80_clear_a sub_80DAF30
+#define object_cleanup_when_value80_clear_b sub_80DAF6C
+#define object_cleanup_when_value80_clear_c sub_80DC4C0
+
 /* Middle-address behavior families whose owning callback tables remain in assembly. */
 #define object_invoke_shared_terminal_action_a sub_80D2D28
 #define object_invoke_shared_terminal_action_b sub_80DEC60
