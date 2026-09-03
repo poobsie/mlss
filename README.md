@@ -17,3 +17,5 @@ sites, data, or runtime evidence justify a semantic name.
 
 See [docs/reading-the-source.md](docs/reading-the-source.md) for the conventions used in partially
 understood code, [INSTALL.md](INSTALL.md) for setup, and [DECOMP.md](DECOMP.md) for the matching workflow.
+The continuous cleanup queue and slice acceptance rules are described in
+[docs/detangling-workflow.md](docs/detangling-workflow.md).

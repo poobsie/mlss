@@ -24,6 +24,8 @@ Every source change must preserve the reference ROM unless a task explicitly say
 
 Work on one subsystem at a time. Do not treat raw C coverage as completion.
 
+For ongoing detangling work, use `config/detangling.json` as the persistent queue and follow `docs/detangling-workflow.md`. Resume an `active` subsystem first, otherwise take the first actionable `queued` subsystem. After an exact verified commit, update the queue and immediately continue to the next slice without waiting for another user prompt. Stop only when the current decompiled C is classified as `detangled` or `deferred`, an exact build cannot be restored, required evidence is unavailable for every remaining slice, or the user interrupts the work.
+
 1. Identify a narrow boundary from behavior, callers, shared state, and data tables.
 2. Move accepted code into a subsystem folder under `src/`, with a matching public header under `include/` when callers share an API.
 3. Replace address-derived names only when the evidence supports a stable semantic name. Record uncertain meanings instead of guessing.

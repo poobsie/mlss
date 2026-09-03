@@ -57,7 +57,7 @@ SUBDIRS  := $(sort $(dir $(OBJS)))
 $(shell mkdir -p $(SUBDIRS))
 
 # Rules
-.PHONY: rom compare clean tools verify progress
+.PHONY: rom compare clean tools verify progress detangle-status
 
 rom: tools $(ROM) compare
 
@@ -76,6 +76,9 @@ verify: rom
 
 progress: verify
 	@python3 scripts/progress.py
+
+detangle-status:
+	@python3 scripts/detangling_status.py summary
 
 $(C_BUILDDIR)/%.o : $(C_SUBDIR)/%.c
 	@$(CPP) $(CPPFLAGS) $< -o $(C_BUILDDIR)/$*.i

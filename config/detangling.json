@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "subsystems": [
+    {
+      "id": "audio",
+      "state": "detangled",
+      "patterns": ["src/audio/*.c"],
+      "documentation": "docs/subsystems/audio.md",
+      "next_action": "Expand only when adjacent driver code is recovered."
+    },
+    {
+      "id": "process",
+      "state": "detangled",
+      "patterns": ["src/process/*.c"],
+      "documentation": "docs/subsystems/process.md",
+      "next_action": "Revisit address-named subclass destructors when their owning classes are identified."
+    },
+    {
+      "id": "runtime",
+      "state": "detangled",
+      "patterns": ["src/runtime/*.c"],
+      "documentation": "docs/subsystems/runtime.md",
+      "next_action": "Trace the relocated routine format before assigning it a data-format name."
+    },
+    {
+      "id": "memory",
+      "state": "deferred",
+      "patterns": ["src/memory/*.c"],
+      "documentation": "docs/subsystems/memory.md",
+      "next_action": "Determine why the ROM exposes duplicate allocation and free entry points."
+    },
+    {
+      "id": "screens",
+      "state": "queued",
+      "patterns": [
+        "src/title_screen.c",
+        "src/option_screens.c",
+        "src/option_screens_tail.c",
+        "src/game_boy_player_logo.c"
+      ],
+      "documentation": "docs/subsystems/screens.md",
+      "next_action": "Separate shared screen lifecycle, resource loading, and concrete screen state."
+    },
+    {
+      "id": "script_engine",
+      "state": "queued",
+      "patterns": ["src/script_*.c"],
+      "documentation": "docs/subsystems/script-engine.md",
+      "next_action": "Recover the command context and dispatch-table types before renaming handlers."
+    },
+    {
+      "id": "mario_bros",
+      "state": "queued",
+      "patterns": ["src/mariobros_*.c"],
+      "documentation": "docs/subsystems/mario-bros.md",
+      "next_action": "Partition command decoding, state transitions, and global dispatch."
+    },
+    {
+      "id": "field_runtime",
+      "state": "queued",
+      "patterns": ["src/field_*.c", "src/actor_*.c", "src/activation_*.c"],
+      "documentation": "docs/subsystems/field-runtime.md",
+      "next_action": "Unify the actor overlay and identify state and command fields from callers."
+    },
+    {
+      "id": "object_runtime",
+      "state": "queued",
+      "patterns": [
+        "src/object_*.c",
+        "src/render_object_*.c",
+        "src/callback_*.c",
+        "src/countdown_*.c",
+        "src/*jump*.c",
+        "src/*landing*.c"
+      ],
+      "documentation": "docs/subsystems/object-runtime.md",
+      "next_action": "Cluster wrappers by shared descriptor and object layout before assigning class names."
+    },
+    {
+      "id": "unclassified",
+      "state": "queued",
+      "patterns": ["src/*.c", "src/*/*.c", "src/*/*/*.c"],
+      "documentation": "docs/subsystems/unclassified.md",
+      "next_action": "Extract the smallest caller-connected cluster into a real subsystem; do not clean these files wholesale."
+    }
+  ]
+}
