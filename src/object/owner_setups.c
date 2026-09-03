@@ -13,7 +13,8 @@ void sub_806A638(struct RuntimeObject* object);
 void sub_806B3D0(struct RuntimeObject* object);
 void sub_806CD70(struct RuntimeObject* object);
 void sub_8075C8C(struct RuntimeObject* object);
-void sub_810DD7C(struct RuntimeObject* object, void* owner, s32 value);
+void sub_806123C(struct RuntimeObject* object);
+void sub_810DD7C();
 
 #define DEFINE_POSITION_OWNER_SETUP(name, next)                       \
     SEC(name) s32 name(struct RuntimeObject* object)                   \
@@ -58,3 +59,12 @@ const u16 object_setup_behavior_1_from_owner_padding = 0;
 
 DEFINE_OWNER_SETUP(object_setup_from_owner_a, sub_806CD70)
 DEFINE_OWNER_SETUP(object_setup_from_owner_b, sub_8075C8C)
+
+SEC(object_setup_then_clear_value80)
+s32 object_setup_then_clear_value80(struct RuntimeObject* object)
+{
+    sub_810DD7C();
+    object->value80 = 0;
+    object->update = sub_806123C;
+    return 0;
+}

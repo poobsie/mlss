@@ -1,9 +1,13 @@
 #include "graphics/process_state.h"
+#include "process/process.h"
 
 #define SEC(name) __attribute__((section(".text.graphics_process_state." #name)))
+#define STRINGIFY_INNER(value) #value
+#define STRINGIFY(value) STRINGIFY_INNER(value)
+#define MISC_SEC(name) \
+    __attribute__((section(".text.misc_helpers_01." STRINGIFY(name))))
 
 void free_heap_8018D9C();
-void process_remove(void* process, s32 flags);
 void sub_8029888(s32 channel, s32 value);
 void sub_80184F4(void* address);
 
@@ -29,7 +33,7 @@ SEC(sub_805C73C) void sub_805C73C(struct GraphicsProcessState* process, s32 flag
     if (*(s32*)0x03000E00 != 0) {
         free_heap_8018D9C();
     }
-    process_remove(process, flags);
+    process_remove((struct Process*)process, flags);
 }
 
 SEC(sub_805DA1C) void sub_805DA1C(struct GraphicsProcessState* process, s32 flags)
@@ -48,7 +52,7 @@ SEC(sub_805DA1C) void sub_805DA1C(struct GraphicsProcessState* process, s32 flag
     if (process->buffer94 != 0) {
         free_heap_8018D9C();
     }
-    process_remove(process, flags);
+    process_remove((struct Process*)process, flags);
 }
 
 void graphics_copy_staging_values(struct GraphicsStagingSource* source)
@@ -57,3 +61,11 @@ void graphics_destroy_transfer_process(struct GraphicsProcessState* process, s32
     __attribute__((alias("sub_805C73C")));
 void graphics_destroy_vram_process(struct GraphicsProcessState* process, s32 flags)
     __attribute__((alias("sub_805DA1C")));
+
+MISC_SEC(graphics_terminate_process_label_at_2)
+void graphics_terminate_process_label_at_2(struct Process* process)
+{
+    process->label[2] = 0;
+}
+MISC_SEC(graphics_terminate_process_label_at_2)
+const u16 graphics_terminate_process_label_at_2_padding = 0;

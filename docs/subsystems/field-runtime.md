@@ -96,6 +96,8 @@ The final two upper field helpers now share those types. `field_clear_scene_obje
 
 Three former miscellaneous helpers now use established field-runtime ownership. Two commit or prepare the `FieldValueTransfer` at runtime offset `0x248`; the third triggers the active object attached to the primary actor. `FieldAction::activeObject` is now typed at its proven offset `0x30` within the action.
 
+The final field helpers from bucket 01 now set the view's pan deltas, wait for an object's state flag to clear, wait for a nested visual to complete, and create display node kind `0x86` with its value at `0x14` cleared. The pan deltas are computed by the adjacent assembly routine from changes in the view's origin and pan coordinates.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.

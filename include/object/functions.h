@@ -120,6 +120,7 @@
 #define object_setup_behavior_1_from_owner sub_806C8C0
 #define object_setup_from_owner_a sub_806D340
 #define object_setup_from_owner_b sub_8075C48
+#define object_setup_then_clear_value80 sub_80612B4
 
 #define object_setup_followup_kind_2_for_12_ticks sub_808C324
 #define object_setup_followup_kind_6_for_5_ticks_a sub_808C39C

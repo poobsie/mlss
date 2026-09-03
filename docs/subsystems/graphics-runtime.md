@@ -34,6 +34,8 @@ A second packed-value decoder obtains its mode halfword through an owner and sou
 
 `SpriteVisibilityController` exposes its owned sprite at offset `0x0C` and the comparison value at `0x34` used by the neighboring assembly visibility update. The recovered refresh wrapper runs the shared setup, visibility update, and finalization sequence; the cleanup helper releases and clears that sprite. A narrower gameplay or screen identity is not visible in current callers.
 
+`graphics_terminate_process_label_at_2` writes the terminator in the third byte of the base process label. Its placement beside the constructor and destructor using graphics descriptor `0x08CDC2C8` establishes ownership; the name records the exact base-field operation instead of guessing why that process uses a two-character label.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,330 linked C functions checked, 1,330 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.

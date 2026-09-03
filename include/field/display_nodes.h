@@ -11,7 +11,9 @@ struct FieldDisplayNode {
 };
 
 #define field_create_linked_display_nodes sub_810CCC8
+#define field_create_display_node_86 sub_810CCB0
 
 void field_create_linked_display_nodes(void);
+void field_create_display_node_86(void);
 
 #endif

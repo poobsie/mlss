@@ -1,6 +1,19 @@
 #include "field/view_state.h"
 
 #define SEC(name) __attribute__((section(".text.field_view_state." #name)))
+#define STRINGIFY_INNER(value) #value
+#define STRINGIFY(value) STRINGIFY_INNER(value)
+#define MISC_SEC(name) \
+    __attribute__((section(".text.misc_helpers_01." STRINGIFY(name))))
+
+MISC_SEC(field_view_set_pan_delta)
+void field_view_set_pan_delta(FieldViewState* view, s16 x, s16 y)
+{
+    view->panDeltaX = x;
+    view->panDeltaY = y;
+}
+MISC_SEC(field_view_set_pan_delta)
+const u16 field_view_set_pan_delta_padding = 0;
 
 SEC(sub_8082D00) void sub_8082D00(FieldViewState *view, s32 x, s32 y)
 {

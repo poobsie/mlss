@@ -8,18 +8,27 @@ enum RuntimeObjectVariant {
     RUNTIME_OBJECT_VARIANT_SECOND = -2,
 };
 
+struct RuntimeObjectValueSource {
+    u8 unknown00[6];
+    s8 value6;
+};
+
 struct RuntimeObjectState {
     u8 unknown00[0x38];
     s32 value38;
-    u8 unknown3C[0x78];
+    u8 unknown3C[0x68];
+    s32 valueA4;
+    u8 unknownA8[0x0C];
     s16 valueB4;
     u8 unknownB6[0x2A];
     s32 floorHeight;
-    u8 unknownE4[8];
+    struct RuntimeObjectValueSource* valueSourceE4;
+    u8 unknownE8[4];
     s16 variant;
     u8 unknownEE[0x23];
     s8 flags111;
-    u8 unknown112[2];
+    u8 unknown112;
+    u8 value113;
     u32 snapshot114;
 };
 

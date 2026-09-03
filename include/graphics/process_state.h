@@ -36,8 +36,12 @@ struct GraphicsProcessState {
     void* bufferA8;
 };
 
+struct Process;
+#define graphics_terminate_process_label_at_2 sub_805CCD8
+
 void graphics_copy_staging_values(struct GraphicsStagingSource* source);
 void graphics_destroy_transfer_process(struct GraphicsProcessState* process, s32 flags);
 void graphics_destroy_vram_process(struct GraphicsProcessState* process, s32 flags);
+void graphics_terminate_process_label_at_2(struct Process* process);
 
 #endif
