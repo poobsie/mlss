@@ -1,18 +1,18 @@
 #include "global.h"
+#include "object/runtime_object.h"
 
-#define FIELD(object, type, offset) (*(type *)((u8 *)(object) + (offset)))
 #define SEC(name) __attribute__((section(".text.object_completion_gates." #name)))
 
-extern void sub_808DD2C(void *);
+extern void sub_808DD2C(struct RuntimeObject*);
 
 #define DEFINE_OBJECT_COMPLETION_GATE(name)                              \
-    SEC(name) void name(void *object)                                    \
+    SEC(name) void name(struct RuntimeObject* object)                    \
     {                                                                    \
-        if (FIELD(object, u8, 0x76) & 0x38) {                           \
+        if (object->flags76 & 0x38) {                                   \
             sub_808DD2C(object);                                         \
             return;                                                      \
         }                                                                \
-        if (FIELD(FIELD(object, void *, 8), u8, 0x12) & 8) {            \
+        if (object->visual->flags & 8) {                                \
             sub_808DD2C(object);                                         \
         }                                                                \
     }                                                                    \

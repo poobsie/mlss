@@ -1,12 +1,12 @@
 #include "global.h"
-#define FIELD_AT(p, t, o) (*(t)((u8*)(p) + (o)))
+#include "object/runtime_object.h"
 #define SEC(name)         __attribute__((section(".text.object_flag_actions." #name)))
-extern void sub_8082E1C();
+extern void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
 #define DEFINE_FLAG_ACTION(name)                                                                       \
-    SEC(name) void name(void* arg0) {                                                                  \
-        if (FIELD_AT(FIELD_AT(arg0, void**, 8), u8*, 0x12) & 8) {                                      \
-            sub_8082E1C(arg0, 0, 0x204D, 0);                                                           \
-            FIELD_AT(arg0, s32*, 0x4C) = 0;                                                            \
+    SEC(name) void name(struct RuntimeObject* object) {                                                 \
+        if (object->visual->flags & 8) {                                                               \
+            sub_8082E1C(object, 0, 0x204D, 0);                                                         \
+            object->update = 0;                                                                        \
         }                                                                                              \
     }
 DEFINE_FLAG_ACTION(sub_808DCB0)

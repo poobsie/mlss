@@ -16,9 +16,11 @@ Each setup chooses an initial upward velocity, stores a constant downward accele
 
 The ten fixed-jump transitions share the same visual flag and update fields. Unlike the randomized setups, they retain the existing velocity and only install a fixed acceleration of `-0x48` or `-0x58` before selecting animation 5. This confirms that the field at `0x94` is acceleration, rather than an initial velocity or generic timer.
 
+The seventeen completion gates and actions now use `flags76`, the linked visual flags, and the active `update` callback directly. A completion signal is bit 3 of the visual flags. Some sequences additionally terminate when any of object flag bits 3 through 5 are set; the shared destination `sub_808DD2C` remains unnamed until its complete teardown path is recovered.
+
 ## Next boundary
 
-Apply the shared object prefix to the initialization, completion, and cleanup files. Recover stable names at the level of complete behavior sequences, rather than assigning names independently to dozens of nearly identical state callbacks.
+Apply the shared object prefix to initialization and cleanup files, then group each complete setup-to-completion behavior sequence. Recover stable names at sequence level rather than assigning names independently to nearly identical callbacks.
 
 ## Verification
 
