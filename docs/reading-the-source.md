@@ -24,7 +24,7 @@ option screens, the title screen, and several Mario Bros. helpers.
 Neutral holding modules contain exact matches that still cross several unknown systems:
 
 - `early_code_helpers*.c` covers isolated functions from the early ROM region.
-- `text_low_helpers.c`, `text_middle_helpers.c`, `text_high_helpers.c`, and `text_late_helpers.c` group
+- `text_middle_helpers.c`, `text_high_helpers.c`, and `text_late_helpers.c` group
   provisional helpers by their location in the original monolithic assembly.
 - `text_small_functions_*.c` and `text_misc_helpers_*.c` hold unrelated exact functions pending subsystem
   identification.

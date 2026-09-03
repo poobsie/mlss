@@ -1,31 +1,16 @@
 #include "global.h"
+#include "object/behavior_object.h"
 
 #define FUNCTION_SECTION(name) __attribute__((section(".text." #name)))
-
-struct BehaviorObject {
-    u8 unknown_00[8];
-    struct BehaviorState* nested;
-    u8 unknown_0C[0x40];
-    void (*callback)(void*);
-    u8 unknown_50[0x4C];
-    s32 timer;
-};
-
-struct BehaviorState {
-    u8 unknown_00[0x12];
-    u8 flags;
-    u8 unknown_13[0xD];
-    u8 state;
-};
 
 extern void sub_8082E1C(void*, u32, u32, u32);
 
 #define DEFINE_SETUP(name, kind, next)                                                                 \
-    extern void next(void*);                                                                           \
+    extern void next(struct BehaviorObject*);                                                          \
     void name(struct BehaviorObject*) FUNCTION_SECTION(name);                                          \
     void name(struct BehaviorObject* object) {                                                         \
         sub_8082E1C(object, kind, 0, 0);                                                               \
-        object->callback = next;                                                                       \
+        object->update = next;                                                                         \
     }
 
 DEFINE_SETUP(sub_8062D68, 0xE, sub_808750C)
@@ -45,10 +30,10 @@ DEFINE_SETUP(sub_8099FE0, 6, sub_809A09C)
 DEFINE_SETUP(sub_809A7EC, 2, sub_809A808)
 
 #define DEFINE_FLAG_CALL(name, target)                                                                 \
-    extern void target(void*);                                                                         \
+    extern void target(struct BehaviorObject*);                                                        \
     void name(struct BehaviorObject*) FUNCTION_SECTION(name);                                          \
     void name(struct BehaviorObject* object) {                                                         \
-        if (object->nested->flags & 8)                                                                 \
+        if (object->visual->flags & 8)                                                                 \
             target(object);                                                                            \
     }                                                                                                  \
     const u16 name##_padding FUNCTION_SECTION(name) = 0;
@@ -70,12 +55,12 @@ DEFINE_FLAG_CALL(sub_809BA28, sub_807C298)
 DEFINE_FLAG_CALL(sub_809D24C, sub_8087540)
 
 #define DEFINE_COUNTDOWN(name, target)                                                                 \
-    extern void target(void*);                                                                         \
+    extern void target(struct BehaviorObject*);                                                        \
     void name(struct BehaviorObject*) FUNCTION_SECTION(name);                                          \
     void name(struct BehaviorObject* object) {                                                         \
-        object->timer--;                                                                               \
-        if (object->timer <= 0) {                                                                      \
-            object->nested->state = 0x10;                                                              \
+        object->countdown--;                                                                           \
+        if (object->countdown <= 0) {                                                                  \
+            object->visual->state = 0x10;                                                              \
             target(object);                                                                            \
         }                                                                                              \
     }
@@ -100,7 +85,7 @@ DEFINE_COUNTDOWN(sub_8094D5C, sub_8094D14)
 DEFINE_COUNTDOWN(sub_8094DC4, sub_8094D80)
 
 #define DEFINE_FORWARD(name, target)                                                                   \
-    extern void target(void*);                                                                         \
+    extern void target(struct BehaviorObject*);                                                        \
     void name(void*) FUNCTION_SECTION(name);                                                           \
     void name(void* object) {                                                                          \
         target(object);                                                                                \
