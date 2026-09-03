@@ -85,7 +85,7 @@
       "state": "active",
       "patterns": ["src/battle_object_*.c", "src/battle/*.c"],
       "documentation": "docs/subsystems/battle-runtime.md",
-      "next_action": "Type later definition wrappers, then separate sprite, runtime-value, and destructor families."
+      "next_action": "Split definition initialization, sprite ownership, effect state, runtime values, and destructor families."
     },
     {
       "id": "unclassified",
