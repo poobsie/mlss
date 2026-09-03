@@ -36,8 +36,12 @@ struct RuntimeObject {
     s32 verticalPosition;
     u8 unknown1C[0x0C];
     struct RuntimeObjectState* state;
-    u8 unknown2C[0x14];
-    s32 verticalBase;
+    u8 unknown2C[4];
+    struct RuntimeObject* linkedObject;
+    u8 unknown34[4];
+    s32 positionX;
+    s32 positionY;
+    s32 positionZBase;
     u8 unknown44[8];
     RuntimeObjectCallback update;
     u8 unknown50[0x18];

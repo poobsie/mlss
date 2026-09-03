@@ -38,6 +38,12 @@ Fourteen countdown callbacks from four former top-level files now share the sign
 
 Several routines intentionally load the signed timer as `u16`, subtract one, store it back, then test the shifted signed result. That arithmetic is preserved rather than normalized because it controls zero crossing and wraparound exactly.
 
+## Command and effect transitions
+
+Seven command-related callbacks now use the shared visual, timer, linked-object, coordinate, and update fields. Two start fixed commands and set visual mode 2. Three wait for visual completion, start another command, spawn an effect at the object's `positionX`, `positionY`, and `positionZBase`, play sound `0x10C`, then advance their update. Two timed callbacks issue paired commands to the object and its `linkedObject` after the timer expires.
+
+The former `verticalBase` field is now `positionZBase`: effect spawning reads it alongside the proven X and Y coordinates, while airborne updates add vertical velocity to the same Z base.
+
 ## Next boundary
 
 Trace the entry dispatcher around `0x0808CC08` and group complete setup-to-completion behavior sequences. Keep the two descriptor families separate until the global source records are understood.

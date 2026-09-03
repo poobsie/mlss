@@ -21,7 +21,7 @@ extern void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
         current = *velocity;                                             \
         current += step;                                                 \
         *velocity = current;                                             \
-        position = object->verticalBase + *velocity;                    \
+        position = object->positionZBase + *velocity;                   \
         object->verticalPosition = position;                            \
         floor = object->state->floorHeight;                             \
         if (position <= floor) {                                         \
