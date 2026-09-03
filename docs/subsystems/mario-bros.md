@@ -14,9 +14,11 @@ Offsets `0x18` and `0x1C` deliberately remain `value18` and `value1C`. Movement 
 
 Unused stream, scale, tagged, list-node, and halfword layouts were removed from `mariobros_helpers.c`. They had no generated functions or consumers and therefore supplied no recoverable evidence. Keeping such speculative scaffolding would make later field inference less reliable, not more.
 
+The surviving contents of that catch-all file are now grouped under `src/mario_bros`: object animation and table selection, state helpers, no-op callbacks, and a fixed-size buffer fill. The linker still selects the original per-function sections, so this organization does not imply false source-level ownership.
+
 ## Next boundary
 
-Split the remaining table selection, state reset, global-state, and buffer-fill helpers into focused source files, then classify the global dispatch wrappers.
+Classify the global dispatch wrappers and the remaining late helper file, then move the proven groups under `src/mario_bros`.
 
 ## Verification
 
