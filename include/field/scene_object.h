@@ -36,7 +36,8 @@ struct FieldSceneObject {
     u8 flags2B6;
     u8 unknown2B7[0x7D];
     void* entryStateTable;
-    u8 unknown338[6];
+    const void* descriptor;
+    u16 unknown33C;
     u16 flags33E;
     s16 value340;
 };

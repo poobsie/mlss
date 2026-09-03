@@ -44,6 +44,8 @@ Four dispatch wrappers share another proven precondition: set bit `0x10` in `fla
 
 `FieldViewState` now owns the adjacent view-origin and pan fields at offsets `0x774` through `0x77A`. Callers use the first pair to convert world positions into screen positions, while the second pair is incremented or replaced to request view movement. The broader object remains opaque until its assembly-only update routines are recovered.
 
+The base field-scene destructor and three variant destructors all restore descriptor `0x08CDBDE8` at offset `0x338`, then release the object when requested. Keeping the variants separate preserves their callback-table identities while sharing the proven object layout.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

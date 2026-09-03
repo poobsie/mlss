@@ -5,7 +5,6 @@ typedef u32 UnknownWord;
 UnknownWord sub_805BFF0();
 UnknownWord sub_80494D4();
 UnknownWord sub_804FCD4();
-UnknownWord free_heap_8018DA8();
 u8 sub_8041FFC();
 
 SEC(sub_80297B8) void sub_80297B8(void* arg0) {
@@ -26,13 +25,6 @@ SEC(sub_803C638) void sub_803C638(void* arg0) {
     }
     if ((u32)(u16)(temp_r2 - 0xA) <= 2U) {
         sub_80494D4(temp_r1);
-    }
-}
-
-SEC(sub_8048040) void sub_8048040(void* arg0, s32 arg1) {
-    FIELD_AT(arg0, s32*, 0x338) = 0x08CDBDE8;
-    if (1 & arg1) {
-        free_heap_8018DA8(arg0);
     }
 }
 

@@ -144,7 +144,7 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_code_helpers_8047D64);
         src/field/configuration.o(.text.field_configuration.sub_8047E50);
         asm/text0801A548.o(.text.after_field_configuration_8047E50);
-        src/text_early_helpers_04.o(.text.text_early_helpers_04.sub_8048040);
+        src/field/destructors.o(.text.field_destructors.sub_8048040);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_8048040);
         src/field/collision_record.o(.text.early_code_helpers.sub_804FAF8);
         asm/text0801A548.o(.text.after_early_code_helpers_804FAF8);
@@ -2313,11 +2313,11 @@ SECTIONS
         asm/text08057568.o(.text.after_nullsub_6);
         src/text_high_helpers.o(.text.high.sub_81DD2E0);
         asm/text08057568.o(.text.high_after_sub_81DD2E0);
-        src/text_high_helpers.o(.text.high.sub_81DD5B0);
+        src/field/destructors.o(.text.field_destructors.sub_81DD5B0);
         asm/text08057568.o(.text.high_after_sub_81DD5B0);
-        src/text_high_helpers.o(.text.high.sub_81DD5D4);
+        src/field/destructors.o(.text.field_destructors.sub_81DD5D4);
         asm/text08057568.o(.text.high_after_sub_81DD5D4);
-        src/text_high_helpers.o(.text.high.sub_81DD5F8);
+        src/field/destructors.o(.text.field_destructors.sub_81DD5F8);
         asm/text08057568.o(.text.high_after_sub_81DD5F8);
         src/battle/destructors.o(.text.freeing_destructors.sub_81DD648);
         asm/text08057568.o(.text.freeing_destructors_after_sub_81DD648);

@@ -117,9 +117,6 @@ SEC(sub_8165250) void sub_8165250(void* p, u32 index, u16 a, u16 b, u16 c) {
             free_heap_8018DA8(p);                                                                      \
     }
 DEFINE_DESTROY(sub_8167E9C, 0x10, 0x08CDD158)
-DEFINE_DESTROY(sub_81DD5B0, 0x338, 0x08CDBDE8)
-DEFINE_DESTROY(sub_81DD5D4, 0x338, 0x08CDBDE8)
-DEFINE_DESTROY(sub_81DD5F8, 0x338, 0x08CDBDE8)
 DEFINE_DESTROY(sub_81DD670, 4, 0x08CDCF50)
 
 #define DEFINE_FREE_IF_REQUESTED(name)                                                                 \
