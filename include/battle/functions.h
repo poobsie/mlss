@@ -49,6 +49,7 @@ struct BattleSceneRuntime;
 #define battle_set_flags_12c_mode sub_80290CC
 #define battle_reset_motion_values sub_8028E4C
 #define battle_activate_resource_flags_0780 sub_8029788
+#define battle_prepare_resource_if_inactive sub_80297B8
 #define battle_forward_sprite_y sub_815F56C
 #define battle_sync_process_buffers sub_801AF50
 

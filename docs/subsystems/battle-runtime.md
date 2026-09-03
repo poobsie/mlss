@@ -9,7 +9,7 @@ The current C boundary is organized under `src/battle/` by responsibility:
 - `runtime_values.c` updates the independently observed fields at offsets `0x514`, `0x518`, and `0x52C`.
 - `value_state.c` clears a separate object's halfword at offset `0x14`.
 - `control_flags.c` groups the bit and value updates on the battle control layout, including the reset of its two late motion values and low two-bit mode.
-- `resource_control.c` conditionally forwards the resource at offset `0x304`, then sets control bits `0x780` in the word at offset `0xFC`.
+- `resource_control.c` groups two operations guarded by the same inactive-state test on flags at `0xFC`: one prepares the resource at `0x304`, while the other activates it and sets control bits `0x780`.
 - `buffer_sync.c` exposes the wrapper around the assembly routine that DMA-copies the active battle process buffers.
 - `sprite_owner.c` provides sprite access, visibility, coordinate forwarding, and release operations.
 - `sprite_motion.c` configures two structural motion modes on sprite-owning derived objects.

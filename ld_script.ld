@@ -99,7 +99,7 @@ SECTIONS
         asm/text0801A548.o(.text.early15a_after_sub_8029460);
         src/battle/resource_control.o(.text.early_code_helpers_3.sub_8029788);
         asm/text0801A548.o(.text.early15a_after_sub_8029788);
-        src/text_early_helpers_04.o(.text.text_early_helpers_04.sub_80297B8);
+        src/battle/resource_control.o(.text.text_early_helpers_04.sub_80297B8);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_80297B8);
         src/audio/scene_cues.o(.text.early_code_helpers.sub_8029878);
         asm/text0801A548.o(.text.after_early_code_helpers_8029878);
