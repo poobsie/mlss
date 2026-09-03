@@ -52,3 +52,17 @@ void battle_set_flags_12c_mode(struct BattleControlObject* object, s32 value) {
     bits |= value;
     *flags = bits;
 }
+
+struct LowTwoBits {
+    u8 value : 2;
+};
+
+void battle_reset_motion_values(struct BattleControlObject* object)
+    BATTLE_SECTION(".text.early_code_helpers.sub_8028E4C");
+void battle_reset_motion_values(struct BattleControlObject* object) {
+    object->motionValue2F8 = 0;
+    object->motionValue2FC = 0;
+    ((struct LowTwoBits*)&object->flagsF9)->value = 0;
+}
+BATTLE_SECTION(".text.early_code_helpers.sub_8028E4C")
+const u16 sub_8028E4C_padding = 0;

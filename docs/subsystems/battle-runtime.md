@@ -8,7 +8,7 @@ The current C boundary is organized under `src/battle/` by responsibility:
 - `effect_state.c` hides an attached sprite and clears the effect state byte.
 - `runtime_values.c` updates the independently observed fields at offsets `0x514`, `0x518`, and `0x52C`.
 - `value_state.c` clears a separate object's halfword at offset `0x14`.
-- `control_flags.c` groups seven bit and value updates on the battle control layout from offsets `0xF8` through `0x12D`.
+- `control_flags.c` groups the bit and value updates on the battle control layout, including the reset of its two late motion values and low two-bit mode.
 - `resource_control.c` conditionally forwards the resource at offset `0x304`, then sets control bits `0x780` in the word at offset `0xFC`.
 - `sprite_owner.c` provides sprite access, visibility, coordinate forwarding, and release operations.
 - `sprite_motion.c` configures two structural motion modes on sprite-owning derived objects.
@@ -29,6 +29,8 @@ The destructor file also groups seven entry points that install vtable `0x08CDCA
 The byte update in `battle_effect_hide_sprite_and_reset` is intentionally expressed through a byte pointer. A direct nested structure-field expression makes this compiler save an additional register, growing the function by eight bytes. The receiver and stored sprite pointer remain typed; the local expression preserves the original instruction selection.
 
 The bitwise assignments in `control_flags.c` likewise retain byte-pointer expressions. Direct structure-member compound assignments reverse temporary-register selection in this compiler. `BattleControlObject` still provides the canonical layout and readable field inventory.
+
+The late fields at `0x2F8` and `0x2FC` are named as motion values because their shared reset also clears the low two-bit mode at `0xF9`. Their axis or timing roles remain unresolved.
 
 ## Remaining evidence
 

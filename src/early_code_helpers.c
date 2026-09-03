@@ -3,10 +3,6 @@
 #define FIELD_AT(ptr, type, offset) (*(type)((u8*)(ptr) + (offset)))
 #define SECTION(name)               __attribute__((section(".text.early_code_helpers." #name)))
 
-struct LowTwoBits {
-    u8 value : 2;
-};
-
 struct CallbackAt1A0 {
     u8 padding[0x1A0];
     void (*function)(void*, u8*, void*);
@@ -34,14 +30,6 @@ void sub_801DC38(u8* arg0) {
     ((void (*)(s32, s32)) * (void**)(arg0 + 0x14))(*(s32*)arg0, *(s32*)(arg0 + 4));
 }
 SECTION(sub_801DC38) const u16 sub_801DC38_padding = 0;
-
-void sub_8028E4C(u8* object) SECTION(sub_8028E4C);
-void sub_8028E4C(u8* object) {
-    *(s16*)(object + 0x2F8) = 0;
-    *(s16*)(object + 0x2FC) = 0;
-    ((struct LowTwoBits*)(object + 0xF9))->value = 0;
-}
-SECTION(sub_8028E4C) const u16 sub_8028E4C_padding = 0;
 
 void sub_803C538(void* arg0, void* arg1) SECTION(sub_803C538);
 void sub_803C538(void* arg0, void* arg1) {

@@ -64,10 +64,15 @@ struct BattleValueObject {
 struct BattleControlObject {
     u8 unknown000[0xF8];
     u8 flagsF8;
-    u8 unknown0F9[0x32];
+    u8 flagsF9;
+    u8 unknown0FA[0x31];
     u8 value12B;
     u8 flags12C;
     u8 flags12D;
+    u8 unknown12E[0x1CA];
+    s16 motionValue2F8;
+    u8 unknown2FA[2];
+    s16 motionValue2FC;
 };
 
 struct BattleResourceControlObject {
