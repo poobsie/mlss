@@ -1,4 +1,5 @@
 #include "global.h"
+#include "audio/music.h"
 #include "audio/sound_effects.h"
 #include "common.h"
 #include "process.h"
@@ -267,8 +268,8 @@ struct OPTNProcess* optn_init(struct OPTNProcess* optn, u8 priority, char* label
     (*(vu16*)(0x2000000 + 0x1E)) = 0;
     (*(vu16*)(0x2000000 + 0x00)) = 0x1C40;
 
-    sub_8019308(0, 30, -1);
-    sub_80193B4(0, 0xFFu, 0x10u);
+    music_play(0, 30, MUSIC_VOLUME_UNCHANGED);
+    music_set_volume(0, 0xFFu, 0x10u);
 
     return optn;
 }
@@ -298,7 +299,7 @@ void optn_update(struct OPTNProcess* optn) {
             if (gGameState.field_2A & B_BUTTON) {
                 if ((bool8)try_save_options(optn)) {
                     optn->brightness = 16;
-                    sub_80193B4(0, 0, 16);
+                    music_set_volume(0, 0, 16);
                     optn->process.state = OPTS_STATE_LEAVE;
                 } else {
                     optn->process.state = OPTS_STATE_SAVE_ERROR;
@@ -468,7 +469,7 @@ void optn_update(struct OPTNProcess* optn) {
                 if (optn->brightness == 0
                     || gGameState.field_2A & (A_BUTTON | B_BUTTON | START_BUTTON)) {
                     optn->brightness = 16;
-                    sub_80193B4(0, 0, 16);
+                    music_set_volume(0, 0, 16);
                     optn->process.state = OPTS_STATE_LEAVE;
                 }
             } else {

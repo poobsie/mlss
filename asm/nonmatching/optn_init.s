@@ -486,11 +486,11 @@ _080522F0:
 	negs r2, r2
 	movs r0, #0x00
 	movs r1, #0x1E
-	bl sub_8019308
+	bl music_play
 	movs r0, #0x00
 	movs r1, #0xFF
 	movs r2, #0x10
-	bl sub_80193B4
+	bl music_set_volume
 	adds r0, r7, #0x0
 	add sp, #0x010
 	pop {r3, r4, r5}

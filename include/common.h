@@ -214,7 +214,6 @@ void free_heap_8018D9C(void*);
 void free_heap_8018DA8(void* ptr);
 void* alloc_zero_8018DB4(int, bool32, char*, int);
 void* alloc_Zero(int, bool32, char*, u8);
-void sub_80193B4(int, int, int);
 u32 sub_80198B0(int*);
 void sub_801A6B0(void);
 void sub_801ABE8(u16, u16, int);

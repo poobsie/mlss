@@ -58595,7 +58595,7 @@ _08077870:
 	movs r0, #0x01
 	movs r1, #0x00
 	movs r2, #0x00
-	bl sub_80193B4
+	bl music_set_volume
 	movs r1, #0x01
 	negs r1, r1
 	movs r0, #0x54
@@ -59400,7 +59400,7 @@ _08077EF4:
 	movs r0, #0x01
 	movs r1, #0xFF
 	movs r2, #0x00
-	bl sub_80193B4
+	bl music_set_volume
 	ldr r1, _08077FE0 @ =0x03000FD8
 	ldr r0, [r1, #0x00]
 	movs r2, #0x93
@@ -270342,7 +270342,7 @@ _080E5980:
 	lsls r0, r0, #0x01
 	adds r0, r0, r5
 	ldrh r0, [r0, #0x00]
-	bl sub_8019588
+	bl sound_effect_is_playing
 	lsls r0, r0, #0x18
 	cmp r0, #0x00
 	beq _080E59C8
@@ -270380,7 +270380,7 @@ _080E59D4:
 	lsls r0, r0, #0x01
 	adds r0, r0, r5
 	ldrh r0, [r0, #0x00]
-	bl sub_8019588
+	bl sound_effect_is_playing
 	lsls r0, r0, #0x18
 	cmp r0, #0x00
 	beq _080E5A14
@@ -270412,7 +270412,7 @@ _080E5A14:
 	lsls r0, r0, #0x01
 	adds r0, r0, r5
 	ldrh r0, [r0, #0x00]
-	bl sub_8019588
+	bl sound_effect_is_playing
 	lsls r0, r0, #0x18
 	cmp r0, #0x00
 	beq _080E5A56
@@ -279978,7 +279978,7 @@ sub_80EAEE0:
 	bne _080EAEF0
 	ldrb r0, [r2, #0x04]
 	ldrb r1, [r2, #0x00]
-	bl sub_8019508
+	bl sound_effects_set_volume
 _080EAEF0:
 	movs r0, #0x01
 	pop {r1}
@@ -280017,7 +280017,7 @@ _080EAF2A:
 	b _080EAF44
 _080EAF30:
 	ldr r0, [r2, #0x00]
-	bl sub_8019588
+	bl sound_effect_is_playing
 	lsls r0, r0, #0x18
 	cmp r0, #0x00
 	beq _080EAF44
@@ -280059,7 +280059,7 @@ _080EAF74:
 	ldr r0, [r2, #0x00]
 	ldr r1, [r2, #0x04]
 	ldr r2, [r2, #0x08]
-	bl sub_8019308
+	bl music_play
 	b _080EAFAE
 _080EAF80:
 	ldr r0, [r2, #0x08]
@@ -280072,19 +280072,19 @@ _080EAF8C:
 	ldr r0, [r2, #0x00]
 	ldr r1, [r2, #0x08]
 	ldrb r2, [r2, #0x04]
-	bl sub_8019650
+	bl music_resume
 	b _080EAFAE
 _080EAF98:
 	ldr r0, [r2, #0x00]
 	ldrb r1, [r2, #0x08]
 	ldrb r2, [r2, #0x04]
-	bl sub_80193B4
+	bl music_set_volume
 	b _080EAFAE
 _080EAFA4:
 	ldr r0, [r2, #0x00]
 	ldrb r1, [r2, #0x08]
 	ldrb r2, [r2, #0x04]
-	bl sub_8019460
+	bl music_set_tempo
 _080EAFAE:
 	movs r0, #0x01
 	pop {r1}
@@ -308520,7 +308520,7 @@ sub_80FC91C:
 	movs r2, #0x01
 	negs r2, r2
 	movs r0, #0x01
-	bl sub_8019308
+	bl music_play
 	b _080FC994
 _080FC94C: .4byte 0x03000FD8
 _080FC950:
@@ -308534,14 +308534,14 @@ _080FC950:
 	cmp r0, #0x01
 	bhi _080FC978
 	movs r0, #0x01
-	bl sub_8019610
+	bl music_get_song_id
 	cmp r0, #0x0A
 	beq _080FC978
 _080FC96C:
 	movs r0, #0x01
 	movs r1, #0x0A
 	adds r2, r4, #0x0
-	bl sub_8019308
+	bl music_play
 	b _080FC994
 _080FC978:
 	ldr r0, _080FC9A0 @ =0x03000FD8
@@ -308556,7 +308556,7 @@ _080FC978:
 	cmp r0, #0x00
 	bne _080FC994
 	movs r0, #0x01
-	bl sub_8019628
+	bl music_stop
 _080FC994:
 	movs r0, #0x00
 	str r0, [r5, #0x04]
@@ -325443,7 +325443,7 @@ _081056DC:
 	cmp r0, #0x00
 	bne _0810577C
 	movs r0, #0x01
-	bl sub_8019628
+	bl music_stop
 	ldr r2, [r5, #0x00]
 	adds r0, r2, #0x0
 	adds r0, #0x80
@@ -328207,7 +328207,7 @@ sub_8106D54:
 	negs r2, r2
 	movs r0, #0x01
 	movs r1, #0x0B
-	bl sub_8019308
+	bl music_play
 	ldr r0, _08106D98 @ =0x081015E5
 	str r0, [r4, #0x04]
 	movs r0, #0x80
@@ -373579,9 +373579,9 @@ sub_812418C:
 	adds r2, r1, r3
 	strb r2, [r0, #0x07]
 	movs r0, #0x00
-	bl sub_8019628
+	bl music_stop
 	movs r0, #0x01
-	bl sub_8019628
+	bl music_stop
 	ldr r1, _08124260 @ =0x040000BC
 	ldrh r2, [r1, #0x0A]
 	ldr r3, _08124264 @ =0x0000C5FF
@@ -373999,7 +373999,7 @@ sub_812454C:
 	ldr r5, [r7, #0x00]
 	add r4, sp, #0x004
 	movs r0, #0x00
-	bl sub_80195F8
+	bl music_is_playing
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	ldr r6, _08124650 @ =0x0300034C
@@ -374008,9 +374008,9 @@ sub_812454C:
 	ldrh r0, [r0, #0x00]
 	strb r0, [r4, #0x00]
 	movs r0, #0x00
-	bl sub_8019628
+	bl music_stop
 	movs r0, #0x01
-	bl sub_80195F8
+	bl music_is_playing
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	ldr r2, _08124658 @ =0x0000089A
@@ -374018,7 +374018,7 @@ sub_812454C:
 	ldrh r0, [r0, #0x00]
 	strb r0, [r4, #0x01]
 	movs r0, #0x01
-	bl sub_8019628
+	bl music_stop
 	bl sub_80196E0
 	mov r1, sp
 	ldr r2, _0812465C @ =0x04000200
@@ -374247,7 +374247,7 @@ sub_8124740:
 	add r5, sp, #0x004
 	movs r4, #0x00
 	movs r0, #0x00
-	bl sub_80195F8
+	bl music_is_playing
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	cmp r0, #0x01
@@ -374260,9 +374260,9 @@ _0812476C:
 	ldrh r0, [r0, #0x00]
 	strb r0, [r5, #0x00]
 	movs r0, #0x00
-	bl sub_8019628
+	bl music_stop
 	movs r0, #0x01
-	bl sub_80195F8
+	bl music_is_playing
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	cmp r0, #0x01
@@ -374275,7 +374275,7 @@ _0812478E:
 	ldrh r0, [r0, #0x00]
 	strb r0, [r5, #0x01]
 	movs r0, #0x01
-	bl sub_8019628
+	bl music_stop
 	bl sub_80196E0
 	mov r9, r4
 _081247A2:
@@ -374478,7 +374478,7 @@ _081248F6:
 	movs r0, #0x00
 	movs r1, #0xFF
 	movs r2, #0x1E
-	bl sub_8019650
+	bl music_resume
 _0812493A:
 	movs r0, #0x02
 	mov r2, r9
@@ -374488,7 +374488,7 @@ _0812493A:
 	movs r0, #0x01
 	movs r1, #0xFF
 	movs r2, #0x1E
-	bl sub_8019650
+	bl music_resume
 _0812494E:
 	cmp r6, #0x05
 	beq _08124964
@@ -374701,7 +374701,7 @@ sub_8125220:
 	beq _08125242
 	movs r0, #0x00
 	movs r2, #0x1E
-	bl sub_8019650
+	bl music_resume
 _08125242:
 	movs r0, #0x02
 	ands r4, r0
@@ -374710,7 +374710,7 @@ _08125242:
 	movs r0, #0x01
 	adds r1, r5, #0x0
 	movs r2, #0x1E
-	bl sub_8019650
+	bl music_resume
 _08125254:
 	pop {r4, r5}
 	pop {r0}
@@ -374729,7 +374729,7 @@ sub_81252BC:
 	adds r4, r1, #0x0
 	movs r5, #0x00
 	movs r0, #0x00
-	bl sub_80195F8
+	bl music_is_playing
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	cmp r0, #0x01
@@ -374746,9 +374746,9 @@ _081252D4:
 	movs r0, #0x00
 	movs r1, #0x00
 	adds r2, r4, #0x0
-	bl sub_80193B4
+	bl music_set_volume
 	movs r0, #0x01
-	bl sub_80195F8
+	bl music_is_playing
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
 	cmp r0, #0x01
@@ -374763,7 +374763,7 @@ _081252FE:
 	movs r0, #0x01
 	movs r1, #0x00
 	adds r2, r4, #0x0
-	bl sub_80193B4
+	bl music_set_volume
 	adds r0, r5, #0x0
 	pop {r4, r5, r6, r7}
 	pop {r1}
@@ -378017,11 +378017,11 @@ sub_8127B20:
 	movs r0, #0x00
 	movs r1, #0x1E
 	movs r2, #0x00
-	bl sub_8019308
+	bl music_play
 	movs r0, #0x00
 	movs r1, #0xFF
 	movs r2, #0x10
-	bl sub_80193B4
+	bl music_set_volume
 	movs r1, #0x80
 	lsls r1, r1, #0x12
 	adds r0, r4, #0x0
@@ -389786,7 +389786,7 @@ sub_812F5D8:
 	orrs r0, r1
 	strb r0, [r2, #0x00]
 	movs r0, #0x00
-	bl sub_8019628
+	bl music_stop
 	bl sub_8017E34
 	ldr r7, _0812F9D0 @ =0x03001034
 	movs r1, #0xC3
@@ -449421,7 +449421,7 @@ sub_8151650:
 	ldr r0, _08151724 @ =0x08CDC4B0
 	str r0, [r4, #0x18]
 	movs r0, #0x00
-	bl sub_8019628
+	bl music_stop
 	movs r0, #0x02
 	movs r1, #0x00
 	bl sub_8018B78
@@ -454182,7 +454182,7 @@ sub_8154D38:
 	movs r0, #0x00
 	movs r1, #0x16
 	mov r2, r9
-	bl sub_8019308
+	bl music_play
 	ldr r2, _08154EF0 @ =0x04000208
 	mov r9, r2
 	movs r3, #0x00
@@ -458558,7 +458558,7 @@ sub_815A288:
 	ldr r0, _0815A35C @ =0x08CDCA50
 	str r0, [r4, #0x18]
 	movs r0, #0x00
-	bl sub_8019628
+	bl music_stop
 	movs r0, #0x02
 	movs r1, #0x00
 	bl sub_8018B78
@@ -463887,7 +463887,7 @@ sub_815DC94:
 	movs r0, #0x00
 	movs r1, #0x01
 	mov r2, r9
-	bl sub_8019308
+	bl music_play
 	ldr r2, _0815DE08 @ =0x04000208
 	mov r9, r2
 	movs r0, #0x00
@@ -464624,7 +464624,7 @@ _0815E58C:
 	adds r0, r7, #0x0
 	bl sub_815A5D0
 	movs r0, #0x00
-	bl sub_8019628
+	bl music_stop
 	ldr r0, _0815E5E8 @ =0x00001EA2
 	adds r1, r7, r0
 	ldrb r0, [r1, #0x00]

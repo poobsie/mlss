@@ -194,7 +194,7 @@ _08018FAC: .4byte 0x02000004
 _08018FB0: .4byte 0x0000FFDF
 _08018FB4: .4byte 0x04000200
 _08018FB8: .4byte 0x0000FFFB
-_08018FBC: .4byte sub_80196BC
+_08018FBC: .4byte audio_timer0_interrupt
 _08018FC0: .4byte 0xFFFFFC07
 	thumb_func_start sub_8018FC4
 sub_8018FC4:
@@ -361,7 +361,7 @@ _080190CA:
 	cmp r0, #0x00
 	bne _0801910C
 	movs r0, #0x00
-	bl sub_8019628
+	bl music_stop
 _0801910C:
 	ldr r4, _0801914C @ =0x0300034C
 	ldr r1, _08019150 @ =0x0000088D
@@ -450,7 +450,7 @@ _08019182:
 	cmp r0, #0x00
 	bne _080191C2
 	movs r0, #0x01
-	bl sub_8019628
+	bl music_stop
 _080191C2:
 	ldr r4, _08019204 @ =0x0300034C
 	ldr r1, _08019208 @ =0x0000088D
@@ -610,20 +610,20 @@ _080192FA:
 	bx r0
 _08019300: .4byte 0x0000088D
 _08019304: .4byte 0x000008A6
-	thumb_func_start sub_8019308
-sub_8019308:
+	thumb_func_start music_play
+music_play:
 	push {r4, r5, r6, r7, lr}
 	adds r4, r0, #0x0
 	adds r6, r1, #0x0
 	adds r7, r2, #0x0
 	cmp r6, #0x00
 	bne _0801931C
-	bl sub_8019628
+	bl music_stop
 	lsls r5, r4, #0x01
 	b _08019396
 _0801931C:
 	adds r0, r4, #0x0
-	bl sub_80195F8
+	bl music_is_playing
 	lsls r0, r0, #0x18
 	lsls r5, r4, #0x01
 	cmp r0, #0x00
@@ -654,7 +654,7 @@ _08019338:
 	adds r0, r4, #0x0
 	movs r1, #0xFF
 	movs r2, #0x00
-	bl sub_80193B4
+	bl music_set_volume
 	b _08019388
 _08019364: .4byte 0x0300034C
 _08019368: .4byte 0x00000898
@@ -671,7 +671,7 @@ _0801937C:
 	lsrs r1, r1, #0x18
 	adds r0, r4, #0x0
 	movs r2, #0x00
-	bl sub_80193B4
+	bl music_set_volume
 _08019388:
 	ldr r0, _080193A8 @ =0x0300034C
 	ldr r1, _080193AC @ =0x000008A4
@@ -693,8 +693,8 @@ _08019396:
 _080193A8: .4byte 0x0300034C
 _080193AC: .4byte 0x000008A4
 _080193B0: .4byte 0x00000898
-	thumb_func_start sub_80193B4
-sub_80193B4:
+	thumb_func_start music_set_volume
+music_set_volume:
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0x0
 	lsls r1, r1, #0x18
@@ -775,8 +775,8 @@ _08019454:
 	bx r0
 	.byte 0x00, 0x00
 _0801945C: .4byte 0x0000088D
-	thumb_func_start sub_8019460
-sub_8019460:
+	thumb_func_start music_set_tempo
+music_set_tempo:
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0x0
 	lsls r1, r1, #0x18
@@ -854,8 +854,8 @@ _080194FC:
 	bx r0
 	.byte 0x00, 0x00
 _08019504: .4byte 0x0000088D
-	thumb_func_start sub_8019508
-sub_8019508:
+	thumb_func_start sound_effects_set_volume
+sound_effects_set_volume:
 	push {r4, r5, lr}
 	lsls r0, r0, #0x18
 	lsrs r2, r0, #0x18
@@ -916,8 +916,8 @@ _08019580: .4byte 0x0000088D
 _08019584: .4byte 0x00000896
 	.section .text.runtime_helpers_discard_main
 	.if 0
-	thumb_func_start sub_8019588
-sub_8019588:
+	thumb_func_start sound_effect_is_playing
+sound_effect_is_playing:
 	push {lr}
 	bl sub_819BABC
 	adds r1, r0, #0x0
@@ -970,15 +970,15 @@ _080195E2:
 	lsls r0, r4, #0x18
 	lsrs r0, r0, #0x18
 	movs r1, #0x00
-	bl sub_8019508
+	bl sound_effects_set_volume
 _080195EC:
 	pop {r4}
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
 _080195F4: .4byte 0x0300034C
-	thumb_func_start sub_80195F8
-sub_80195F8:
+	thumb_func_start music_is_playing
+music_is_playing:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	bl sub_819BA2C
@@ -990,8 +990,8 @@ sub_80195F8:
 	pop {r4}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_8019610
-sub_8019610:
+	thumb_func_start music_get_song_id
+music_get_song_id:
 	ldr r1, _08019620 @ =0x0300034C
 	lsls r0, r0, #0x01
 	ldr r2, _08019624 @ =0x00000898
@@ -1002,8 +1002,8 @@ sub_8019610:
 	.byte 0x00, 0x00
 _08019620: .4byte 0x0300034C
 _08019624: .4byte 0x00000898
-	thumb_func_start sub_8019628
-sub_8019628:
+	thumb_func_start music_stop
+music_stop:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r0, r4, #0x1
@@ -1021,8 +1021,8 @@ sub_8019628:
 	.byte 0x00, 0x00
 _08019648: .4byte 0x0300034C
 _0801964C: .4byte 0x0000089C
-	thumb_func_start sub_8019650
-sub_8019650:
+	thumb_func_start music_resume
+music_resume:
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0x0
 	adds r4, r1, #0x0
@@ -1050,13 +1050,13 @@ _0801967E:
 	lsrs r1, r1, #0x18
 	adds r0, r5, #0x0
 	adds r2, r6, #0x0
-	bl sub_80193B4
+	bl music_set_volume
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
 _08019690: .4byte 0x0300034C
-	thumb_func_start sub_8019694
-sub_8019694:
+	thumb_func_start audio_update
+audio_update:
 	push {lr}
 	ldr r0, _080196B4 @ =0x0300034C
 	ldr r1, _080196B8 @ =0x0000088C
@@ -1074,8 +1074,8 @@ _080196AE:
 	.byte 0x00, 0x00
 _080196B4: .4byte 0x0300034C
 _080196B8: .4byte 0x0000088C
-	thumb_func_start sub_80196BC
-sub_80196BC:
+	thumb_func_start audio_timer0_interrupt
+audio_timer0_interrupt:
 	push {lr}
 	ldr r0, _080196D8 @ =0x0300034C
 	ldr r1, _080196DC @ =0x0000088C
@@ -1093,7 +1093,7 @@ _080196D2:
 _080196D8: .4byte 0x0300034C
 _080196DC: .4byte 0x0000088C
 	.endif
-	.section .text.after_runtime_helpers_main
+	.section .text.after_audio_driver
 	thumb_func_start sub_80196E0
 sub_80196E0:
 	push {r4, lr}

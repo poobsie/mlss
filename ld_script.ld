@@ -41,10 +41,10 @@ SECTIONS
         asm/heap.o(.text);
         src/heap.o(.text);
         asm/text08018E24.o(.text);
-        src/runtime_helpers.o(.text.runtime_helpers_before_audio);
         src/audio/sound_effects.o(.text.audio_sound_effects);
-        src/runtime_helpers.o(.text.runtime_helpers_after_audio);
-        asm/text08018E24.o(.text.after_runtime_helpers_main);
+        src/audio/music.o(.text.audio_music);
+        src/audio/driver.o(.text.audio_driver);
+        asm/text08018E24.o(.text.after_audio_driver);
         src/runtime_helpers.o(.text.runtime_helpers_tail);
         asm/text08018E24.o(.text.after_runtime_helpers_tail);
         src/runtime_tail.o(.text);

@@ -9,7 +9,6 @@ extern int free_heap_8018DA8();
 extern int free_heap_memory_8018C68();
 extern int script_cmd_return();
 extern int script_test_condition();
-extern int sub_8019508();
 extern int sub_801ABE8();
 extern int sub_8021308();
 extern int sub_8027378();

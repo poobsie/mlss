@@ -411,7 +411,7 @@ _08055D64:
 	negs r2, r2
 	movs r0, #0x00
 	movs r1, #0x29
-	bl sub_8019308
+	bl music_play
 	ldr r3, [sp, #0x00C]
 	cmp r3, #0x00
 	bne _08055DF4

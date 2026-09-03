@@ -6818,7 +6818,7 @@ sub_8018080:
 	ands r0, r1
 	cmp r0, #0x00
 	bne _0801809A
-	bl sub_80196BC
+	bl audio_timer0_interrupt
 _0801809A:
 	bl sub_80187A8
 	ldr r1, _080180D8 @ =0x00000888
@@ -6880,7 +6880,7 @@ _0801810E:
 	adds r0, r4, r1
 	ldr r0, [r0, #0x00]
 	bl _call_via_r0
-	bl sub_8019694
+	bl audio_update
 	ldr r0, _08018164 @ =0x000008C1
 	adds r1, r4, r0
 	ldrb r0, [r1, #0x00]

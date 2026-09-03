@@ -1,4 +1,5 @@
 #include "global.h"
+#include "audio/music.h"
 #include "audio/sound_effects.h"
 #include "common.h"
 #include "title_screen.h"
@@ -350,7 +351,7 @@ struct TitleScreen* open_init_8055A00(struct TitleScreen* open, u8 priority, cha
     gGameState.field_2 = -1;
     gGameState.field_0 = -1;
     sub_8018B78(2, open_8056224);
-    sub_8019308(0, 41, -1);
+    music_play(0, 41, MUSIC_VOLUME_UNCHANGED);
 
     if (selection == 0) {
         open->entryStateIdx = 0;
@@ -990,7 +991,7 @@ void open_update(struct TitleScreen* ts) {
                 BUFFER_REG_BLDY = 0;
                 ts->brightness = 16;
                 sound_effect_play(96, SOUND_VOLUME_UNCHANGED);
-                sub_80193B4(0, 0, 16);
+                music_set_volume(0, 0, 16);
                 ts->process.state = TS_STATE_FADE_OUT;
             } else {
                 s8 selection = ts->selection;

@@ -1178,7 +1178,7 @@ _08054CB2:
 	subs r2, #0x01
 	movs r0, #0x01
 	movs r1, #0x1E
-	bl sub_8019308
+	bl music_play
 	movs r1, #0x80
 	lsls r1, r1, #0x12
 	movs r2, #0xE2
