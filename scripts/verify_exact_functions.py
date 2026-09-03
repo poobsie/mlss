@@ -27,6 +27,17 @@ def symbols(path: Path) -> dict[str, tuple[int, int]]:
     return found
 
 
+def current_c_objects() -> list[Path]:
+    """Return existing objects for source files present in the current tree."""
+    objects = []
+    for source in (ROOT / "src").rglob("*.c"):
+        relative = source.relative_to(ROOT).with_suffix(".o")
+        obj = ROOT / "build" / relative
+        if obj.exists():
+            objects.append(obj)
+    return sorted(objects)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -41,7 +52,7 @@ def main() -> None:
         raise SystemExit("reference ROM and linked ELF are required")
 
     object_symbols: set[str] = set()
-    for obj in sorted((ROOT / "build" / "src").glob("*.o")):
+    for obj in current_c_objects():
         object_symbols.update(symbols(obj))
 
     linked = symbols(elf_path)

@@ -1,7 +1,11 @@
 # Decompilation workflow
 
-This fork uses WSL2 for deterministic ARM builds and Windows applications for interactive analysis.
-The checked-in configuration assumes the repository is available to WSL, as it is under `D:\mlss`.
+The canonical build uses a Unix-like shell and GNU Make. Linux works directly; Windows users can run the
+same toolchain through WSL. The repository may live at any path. The PowerShell wrappers resolve their
+location from the checkout rather than relying on a particular drive or directory.
+
+Ghidra, mGBA, objdiff, and similar interactive tools are optional. Their local workspaces do not belong in
+the repository, and no checked-in source should depend on a particular disassembler, IDE, or machine.
 
 ## Installed tools
 
@@ -19,7 +23,7 @@ Git. Run `scripts/setup-tools.sh` from WSL to recreate them at their pinned revi
 
 ## Routine commands
 
-From WSL, in the project directory:
+From the project root in a compatible Unix-like environment:
 
 ```sh
 make
@@ -28,7 +32,7 @@ make
 scripts/decompile-function.sh asm/text08057568.s sub_8057568 > scratch.c
 ```
 
-From Windows, `scripts/build-wsl.ps1` performs the same verified WSL build. The `objdiff.json`
+On Windows, `scripts/build-wsl.ps1` performs the same verified build through WSL. The `objdiff.json`
 configuration uses that wrapper automatically. objdiff compares the complete current ELF with the frozen,
 matching reference ELF, so it is the primary diff view when moving new functions out of the large assembly
 files. `asm-differ` is ready for functions in the C translation units represented in its frozen expected-object
@@ -40,14 +44,15 @@ To rebuild, verify the ROM, and print the current decompilation percentage in on
 .\scripts\progress-wsl.ps1
 ```
 
-From WSL, the equivalent command is `make progress`. The report also shows the change from
+The portable equivalent is `make progress`. The report also shows the change from
 `upstream/master`, which is the untouched project baseline.
 
 ## Function workflow
 
 1. Choose one reasonably small function from an assembly file.
 2. Study its callers, callees, globals, and runtime behavior in Ghidra and mGBA.
-3. Give the function and related data meaningful provisional names in `symbols.txt` and headers.
+3. Give the function and related data meaningful provisional names in `symbols.txt` and headers only when
+   the evidence supports them. Otherwise retain address-based placeholders.
 4. Generate a rough translation with `m2c`, then correct its types and control flow by hand.
 5. Add the C function to the appropriate source module and remove only its original assembly range.
 6. Run `asm-differ` until the function matches.

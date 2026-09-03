@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 C_FUNCTION = re.compile(
     r"^(?:[A-Z_][A-Z0-9_]*\([^()\n]*\)[ \t]+)?"
-    r"[A-Za-z_][A-Za-z0-9_ \t*]*[ \t]+(?P<name>[A-Za-z_][A-Za-z0-9_]*)"
+    r"[A-Za-z_][A-Za-z0-9_ \t]*[ \t*]+(?P<name>[A-Za-z_][A-Za-z0-9_]*)"
     r"\([^;{}]*\)\s*\{",
     re.MULTILINE,
 )
@@ -54,6 +54,17 @@ def line_count(paths: list[Path]) -> int:
     return sum(len(path.read_text(encoding="utf-8").splitlines()) for path in paths)
 
 
+def built_objects(c_files: list[Path]) -> list[Path]:
+    """Return build objects corresponding to the current C source files."""
+    objects = []
+    for source in c_files:
+        relative = source.relative_to(ROOT).with_suffix(".o")
+        obj = ROOT / "build" / relative
+        if obj.exists():
+            objects.append(obj)
+    return objects
+
+
 def function_counts_at_ref(ref: str) -> tuple[int, int] | None:
     try:
         names = subprocess.check_output(
@@ -77,9 +88,9 @@ def function_counts_at_ref(ref: str) -> tuple[int, int] | None:
     return c_count, asm_count
 
 
-def c_text_size() -> int | None:
+def c_text_size(c_files: list[Path]) -> int | None:
     size_tool = shutil.which("arm-none-eabi-size")
-    objects = sorted((ROOT / "build" / "src").glob("*.o"))
+    objects = built_objects(c_files)
     if size_tool is None or not objects:
         return None
 
@@ -104,7 +115,7 @@ def linked_function_counts(c_files: list[Path], asm_files: list[Path]) -> tuple[
     for path in c_files:
         source_c_names |= c_function_names(path.read_text(encoding="utf-8"))
     object_c_names: set[str] = set()
-    for obj in sorted((ROOT / "build" / "src").glob("*.o")):
+    for obj in built_objects(c_files):
         output = subprocess.check_output([nm_tool, "-S", "--defined-only", obj], text=True)
         for line in output.splitlines():
             fields = line.split()
@@ -149,7 +160,7 @@ if linked_counts is None:
     c_functions = sum(c_function_count(path.read_text(encoding="utf-8")) for path in c_files)
     asm_functions = sum(len(ASM_FUNCTION.findall(path.read_text(encoding="utf-8"))) for path in asm_files)
     count_mode = "source fallback"
-    text_size = c_text_size()
+    text_size = c_text_size(c_files)
 else:
     c_functions, asm_functions, text_size = linked_counts
     count_mode = "linked symbols"

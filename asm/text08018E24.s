@@ -914,7 +914,7 @@ _08019578: .4byte 0x00000894
 _0801957C: .4byte 0x00000892
 _08019580: .4byte 0x0000088D
 _08019584: .4byte 0x00000896
-	.section .text.aegis_discard_main
+	.section .text.runtime_helpers_discard_main
 	.if 0
 	thumb_func_start sub_8019588
 sub_8019588:
@@ -1093,7 +1093,7 @@ _080196D2:
 _080196D8: .4byte 0x0300034C
 _080196DC: .4byte 0x0000088C
 	.endif
-	.section .text.after_aegis_runtime_compact_main
+	.section .text.after_runtime_helpers_main
 	thumb_func_start sub_80196E0
 sub_80196E0:
 	push {r4, lr}
@@ -1149,7 +1149,7 @@ _08019740: .4byte 0x7FFFFFFF
 	.byte 0x00, 0x12, 0x09, 0x04, 0x09, 0x14, 0xC1, 0xF1, 0x83, 0xF9, 0x00, 0x04, 0x00, 0x14, 0x02, 0xBC
 	.byte 0x08, 0x47, 0x00, 0x00, 0x00, 0xB5, 0x00, 0x04, 0x00, 0x14, 0x09, 0x04, 0x09, 0x14, 0x48, 0x43
 	.byte 0x01, 0x1C, 0x00, 0x28, 0x00, 0xDA, 0xFF, 0x31, 0x08, 0x02, 0x00, 0x14, 0x02, 0xBC, 0x08, 0x47
-	.section .text.aegis_discard_tail
+	.section .text.runtime_helpers_discard_tail
 	.if 0
 	thumb_func_start sub_80197C4
 sub_80197C4:
@@ -1187,7 +1187,7 @@ _080197FC: .4byte 0x03000C6C
 _08019800: .4byte 0x080000F4
 _08019804: .4byte 0x03000C78
 	.endif
-	.section .text.after_aegis_runtime_compact_tail
+	.section .text.after_runtime_helpers_tail
 	thumb_func_start sub_8019808
 sub_8019808:
 	push {r4, r5, lr}

@@ -23,6 +23,9 @@ BRANCH = re.compile(r"^\s*b(?:eq|ne|gt|ge|lt|le|hi|hs|lo|ls|cc|cs|mi|pl|vs|vc)\s
 BYTE = re.compile(r"\.byte\s+(.+)$", re.MULTILINE)
 SWI = re.compile(r"^\s*swi\s+", re.MULTILINE)
 INSTRUCTION = re.compile(r"^\s*([a-z][a-z0-9.]*)\s+", re.MULTILINE)
+DISABLED_IF = re.compile(r"^\s*\.if\s+0(?:\s|$)")
+ASSEMBLER_IF = re.compile(r"^\s*\.if(?:n?def|c|nc|eq|ne|gt|ge|lt|le|b|nb)?(?:\s|$)")
+ASSEMBLER_ENDIF = re.compile(r"^\s*\.endif(?:\s|$)")
 
 
 @dataclass(frozen=True)
@@ -64,8 +67,24 @@ def map_addresses(path: Path) -> dict[str, int]:
 def function_blocks(path: Path) -> list[tuple[str, str, int, int, str]]:
     source = path.read_text(encoding="utf-8", errors="replace")
     lines = source.splitlines(keepends=True)
+    active_lines: list[str] = []
+    disabled_depth = 0
+    for line in lines:
+        if disabled_depth:
+            if ASSEMBLER_IF.match(line):
+                disabled_depth += 1
+            elif ASSEMBLER_ENDIF.match(line):
+                disabled_depth -= 1
+            active_lines.append("\n" if line.endswith("\n") else "")
+            continue
+        if DISABLED_IF.match(line):
+            disabled_depth = 1
+            active_lines.append("\n" if line.endswith("\n") else "")
+        else:
+            active_lines.append(line)
+
     starts: list[tuple[str, str, int]] = []
-    for index, line in enumerate(lines):
+    for index, line in enumerate(active_lines):
         match = FUNCTION_START.match(line)
         if match:
             starts.append((match.group("name"), match.group("mode"), index))
@@ -73,7 +92,7 @@ def function_blocks(path: Path) -> list[tuple[str, str, int, int, str]]:
     blocks = []
     for position, (name, mode, start) in enumerate(starts):
         end = starts[position + 1][2] if position + 1 < len(starts) else len(lines)
-        blocks.append((name, mode, start + 1, end, "".join(lines[start:end])))
+        blocks.append((name, mode, start + 1, end, "".join(active_lines[start:end])))
     return blocks
 
 

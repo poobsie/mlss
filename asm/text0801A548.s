@@ -847,7 +847,7 @@ _0801AF14: .4byte 0x03000D18
 	.byte 0x22, 0x43, 0x1A, 0x70, 0x80, 0x22, 0x92, 0x04, 0x00, 0x23, 0x13, 0x80, 0x50, 0x32, 0x13, 0x80
 	.byte 0xFE, 0xF7, 0x80, 0xFE, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x78, 0xBD, 0xCD, 0x08
 	.byte 0x4C, 0x03, 0x00, 0x03, 0x8A, 0x08, 0x00, 0x00
-.section .discard.aegis_early_exact_801AF50, "ax", %progbits
+.section .discard.early_code_helpers_801AF50, "ax", %progbits
 .if 0
 	thumb_func_start sub_801AF50
 sub_801AF50:
@@ -857,7 +857,7 @@ sub_801AF50:
 	bx r0
 	.byte 0x00, 0x00
 .endif
-.section .text.after_aegis_early_exact_801AF50, "ax", %progbits
+.section .text.after_early_code_helpers_801AF50, "ax", %progbits
 	thumb_func_start make_fldm_801AF5C
 make_fldm_801AF5C: @ 0801AF5C
 	push {r4, r5, lr}
@@ -1485,7 +1485,7 @@ sub_801B5A0:
 	.byte 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x10, 0xB5, 0x02, 0x9C, 0x01, 0x60, 0x42, 0x60, 0x83, 0x60
 	.byte 0xC4, 0x60, 0x10, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0x00, 0x21, 0x01, 0x60, 0x41, 0x60
 	.byte 0x81, 0x60, 0xC1, 0x60, 0x70, 0x47
-.section .discard.aegis_early_exact_801B748, "ax", %progbits
+.section .discard.early_code_helpers_801B748, "ax", %progbits
 .if 0
 	thumb_func_start sub_801B748
 sub_801B748:
@@ -1499,8 +1499,8 @@ sub_801B748:
 	bx lr
 _0801B758: .4byte 0xFFFF0000
 .endif
-.section .text.after_aegis_early_exact_801B748, "ax", %progbits
-	.section .discard.compact_mid2_801B75C, "ax", %progbits
+.section .text.after_early_code_helpers_801B748, "ax", %progbits
+	.section .discard.early_helpers_2_801B75C, "ax", %progbits
 	thumb_func_start asm_sub_801B75C
 asm_sub_801B75C:
 	movs r1, #0x00
@@ -1606,36 +1606,7 @@ _0801B812:
 	bx r0
 _0801B818: .4byte 0x02000050
 _0801B81C: .4byte 0x02000054
-	thumb_func_start sub_801B820
-sub_801B820:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	ldrh r0, [r4, #0x1E]
-	adds r0, #0x01
-	strh r0, [r4, #0x1E]
-	adds r0, r4, #0x0
-	adds r0, #0x20
-	ldrb r1, [r0, #0x00]
-	ldrh r2, [r4, #0x1E]
-	ldrh r3, [r4, #0x1C]
-	adds r0, r4, #0x0
-	bl sub_801B7B0
-	ldrh r0, [r4, #0x1E]
-	ldrh r1, [r4, #0x1C]
-	cmp r0, r1
-	bcc _0801B852
-	cmp r4, #0x00
-	beq _0801B852
-	ldr r0, _0801B858 @ =0x08CDBD98
-	str r0, [r4, #0x18]
-	adds r0, r4, #0x0
-	movs r1, #0x03
-	bl process_remove
-_0801B852:
-	pop {r4}
-	pop {r0}
-	bx r0
-_0801B858: .4byte 0x08CDBD98
+	.section .text.early15a_after_sub_801B820, "ax", %progbits
 	thumb_func_start sub_801B85C
 sub_801B85C:
 	push {lr}
@@ -2169,26 +2140,7 @@ _0801BC6E:
 _0801BC8C: .4byte 0x0000FFFF
 _0801BC90: .4byte 0x081E23CD
 _0801BC94: .4byte 0x06010000
-	thumb_func_start sub_801BC98
-sub_801BC98:
-	push {r4, r5, lr}
-	adds r4, r0, #0x0
-	adds r5, r1, #0x0
-	ldr r0, _0801BCBC @ =0x08CDBDA8
-	str r0, [r4, #0x18]
-	ldr r0, [r4, #0x1C]
-	cmp r0, #0x00
-	beq _0801BCAC
-	bl free_heap_8018D9C
-_0801BCAC:
-	adds r0, r4, #0x0
-	adds r1, r5, #0x0
-	bl process_remove
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0801BCBC: .4byte 0x08CDBDA8
+	.section .text.early15a_after_sub_801BC98, "ax", %progbits
 	thumb_func_start time_init
 time_init:
 	push {r4, r5, lr}
@@ -2239,23 +2191,7 @@ _0801BD20: .4byte 0x08CDBDA8
 _0801BD24: .4byte 0x081E23CD
 _0801BD28: .4byte 0x081E23C8
 _0801BD2C: .4byte 0x03000C84
-	thumb_func_start sub_801BD30
-sub_801BD30:
-	push {r4, lr}
-	ldr r4, _0801BD4C @ =0x03000D44
-	ldr r0, [r4, #0x00]
-	cmp r0, #0x00
-	beq _0801BD44
-	movs r1, #0x03
-	bl sub_801BC98
-	movs r0, #0x00
-	str r0, [r4, #0x00]
-_0801BD44:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0801BD4C: .4byte 0x03000D44
+	.section .text.early15a_after_sub_801BD30, "ax", %progbits
 	thumb_func_start sub_801BD50
 sub_801BD50:
 	push {r4, r5, r6, lr}
@@ -3851,7 +3787,7 @@ sub_801DC00:
 	pop {r0}
 	bx r0
 _0801DC34: .4byte 0x01001400
-.section .discard.aegis_early_exact_801DC38, "ax", %progbits
+.section .discard.early_code_helpers_801DC38, "ax", %progbits
 .if 0
 	thumb_func_start sub_801DC38
 sub_801DC38:
@@ -3865,7 +3801,7 @@ sub_801DC38:
 	bx r0
 	.byte 0x00, 0x00
 .endif
-.section .text.after_aegis_early_exact_801DC38, "ax", %progbits
+.section .text.after_early_code_helpers_801DC38, "ax", %progbits
 	thumb_func_start sub_801DC4C
 sub_801DC4C:
 	push {r4, r5, r6, r7, lr}
@@ -9691,7 +9627,7 @@ _080208D0:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	.section .discard.compact_mid2_80208E0, "ax", %progbits
+	.section .discard.early_helpers_2_80208E0, "ax", %progbits
 	thumb_func_start asm_sub_80208E0
 asm_sub_80208E0:
 	ldr r2, [r0, #0x48]
@@ -22772,6 +22708,8 @@ _08028E2C:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+.section .discard.early_code_helpers_8028E4C, "ax", %progbits
+.if 0
 	thumb_func_start sub_8028E4C
 sub_8028E4C:
 	adds r2, r0, #0x0
@@ -22792,6 +22730,8 @@ sub_8028E4C:
 	strb r0, [r2, #0x00]
 	bx lr
 	.byte 0x00, 0x00
+.endif
+.section .text.after_early_code_helpers_8028E4C, "ax", %progbits
 	thumb_func_start sub_8028E70
 sub_8028E70:
 	push {lr}
@@ -22851,7 +22791,7 @@ _08028EBC:
 	.byte 0x00, 0x00
 _08028ED4: .4byte 0x0000027E
 	.byte 0xF8, 0x30, 0x02, 0x78, 0x41, 0x21, 0x49, 0x42, 0x11, 0x40, 0x01, 0x70, 0x70, 0x47, 0x00, 0x00
-	.section .discard.compact_mid2_8028EE8, "ax", %progbits
+	.section .discard.early_helpers_2_8028EE8, "ax", %progbits
 	thumb_func_start asm_sub_8028EE8
 asm_sub_8028EE8:
 	adds r0, #0xF8
@@ -22887,7 +22827,7 @@ _08028F08:
 	bx r0
 _08028F24: .4byte 0x000004AC
 _08028F28: .4byte 0x081E2694
-	.section .discard.compact_mid2_8028F2C, "ax", %progbits
+	.section .discard.early_helpers_2_8028F2C, "ax", %progbits
 	thumb_func_start asm_sub_8028F2C
 asm_sub_8028F2C:
 	ldr r1, _08028F3C @ =0x0000012D
@@ -23005,7 +22945,7 @@ _08029002:
 _08029018: .4byte 0x03000C78
 _0802901C: .4byte 0x0800063C
 _08029020: .4byte 0x0000012B
-	.section .discard.compact_mid2_8029024, "ax", %progbits
+	.section .discard.early_helpers_2_8029024, "ax", %progbits
 	thumb_func_start asm_sub_8029024
 asm_sub_8029024:
 	ldr r2, _0802902C @ =0x0000012B
@@ -23040,7 +22980,7 @@ sub_8029030:
 	strb r0, [r1, #0x00]
 	bx lr
 _0802905C: .4byte 0x0000012D
-	.section .discard.compact_mid2_8029060, "ax", %progbits
+	.section .discard.early_helpers_2_8029060, "ax", %progbits
 	thumb_func_start asm_sub_8029060
 asm_sub_8029060:
 	movs r1, #0x96
@@ -23570,36 +23510,7 @@ _0802944A:
 	.byte 0x00, 0x00
 _08029458: .4byte 0x03000C78
 _0802945C: .4byte 0x0800063C
-	thumb_func_start sub_8029460
-sub_8029460:
-	push {r4, r5, lr}
-	add sp, #-0x004
-	adds r5, r0, #0x0
-	ldr r0, [r5, #0x1C]
-	ldr r0, [r0, #0x00]
-	ldr r0, [r0, #0x08]
-	ldr r1, _08029498 @ =0x06010400
-	movs r2, #0x98
-	lsls r2, r2, #0x03
-	movs r4, #0x00
-	str r4, [sp, #0x000]
-	movs r3, #0x20
-	bl sub_8018218
-	ldr r0, [r5, #0x1C]
-	ldr r0, [r0, #0x0C]
-	ldr r0, [r0, #0x08]
-	ldr r1, _0802949C @ =0x060108C0
-	movs r2, #0xA0
-	lsls r2, r2, #0x03
-	str r4, [sp, #0x000]
-	movs r3, #0x20
-	bl sub_8018218
-	add sp, #0x004
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-_08029498: .4byte 0x06010400
-_0802949C: .4byte 0x060108C0
+	.section .text.early15a_after_sub_8029460, "ax", %progbits
 	thumb_func_start sub_80294A0
 sub_80294A0:
 	push {r4, r5, r6, r7, lr}
@@ -23919,50 +23830,8 @@ sub_802973C:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8029788
-sub_8029788:
-	push {r4, lr}
-	adds r1, r0, #0x0
-	adds r4, r1, #0x0
-	adds r4, #0xFC
-	ldrh r0, [r4, #0x00]
-	lsls r0, r0, #0x15
-	asrs r0, r0, #0x1C
-	cmp r0, #0x00
-	bne _080297A6
-	movs r2, #0xC1
-	lsls r2, r2, #0x02
-	adds r0, r1, r2
-	ldr r0, [r0, #0x00]
-	bl sub_805C6B8
-_080297A6:
-	ldrh r0, [r4, #0x00]
-	movs r2, #0xF0
-	lsls r2, r2, #0x03
-	adds r1, r2, #0x0
-	orrs r0, r1
-	strh r0, [r4, #0x00]
-	pop {r4}
-	pop {r0}
-	bx r0
-	thumb_func_start sub_80297B8
-sub_80297B8:
-	push {lr}
-	adds r1, r0, #0x0
-	adds r0, #0xFC
-	ldrh r0, [r0, #0x00]
-	lsls r0, r0, #0x15
-	asrs r0, r0, #0x1C
-	cmp r0, #0x00
-	bne _080297D4
-	movs r2, #0xC1
-	lsls r2, r2, #0x02
-	adds r0, r1, r2
-	ldr r0, [r0, #0x00]
-	bl sub_805BFF0
-_080297D4:
-	pop {r0}
-	bx r0
+	.section .text.early15a_after_sub_8029788, "ax", %progbits
+	.section .text.text_early_helpers_04_after_sub_80297B8, "ax", %progbits
 	thumb_func_start sub_80297D8
 sub_80297D8:
 	push {r4, lr}
@@ -24045,7 +23914,7 @@ sub_8029830:
 	.byte 0x00, 0x00
 _08029870: .4byte 0x0000023E
 _08029874: .4byte 0x00000351
-.section .discard.aegis_early_exact_8029878, "ax", %progbits
+.section .discard.early_code_helpers_8029878, "ax", %progbits
 .if 0
 	thumb_func_start sub_8029878
 sub_8029878:
@@ -24057,7 +23926,7 @@ sub_8029878:
 	pop {r0}
 	bx r0
 .endif
-.section .text.after_aegis_early_exact_8029878, "ax", %progbits
+.section .text.after_early_code_helpers_8029878, "ax", %progbits
 	thumb_func_start sub_8029888
 sub_8029888:
 	push {lr}
@@ -45308,7 +45177,7 @@ _0803C3F6:
 	.byte 0x80, 0x20, 0x80, 0x00, 0x40, 0x44, 0x00, 0x68, 0x0A, 0xF0, 0xEB, 0xF8, 0x81, 0x20, 0x80, 0x00
 	.byte 0x40, 0x44, 0x00, 0x68, 0x0A, 0xF0, 0xE5, 0xF8, 0x03, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46
 	.byte 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x3E, 0x02, 0x00, 0x00
-.section .discard.aegis_early_exact_803C424, "ax", %progbits
+.section .discard.early_code_helpers_803C424, "ax", %progbits
 .if 0
 	thumb_func_start sub_803C424
 sub_803C424:
@@ -45327,8 +45196,8 @@ sub_803C424:
 	bx lr
 	.byte 0x00, 0x00
 .endif
-.section .text.after_aegis_early_exact_803C424, "ax", %progbits
-.section .discard.aegis_early_exact_803C440, "ax", %progbits
+.section .text.after_early_code_helpers_803C424, "ax", %progbits
+.section .discard.early_code_helpers_803C440, "ax", %progbits
 .if 0
 	thumb_func_start sub_803C440
 sub_803C440:
@@ -45355,7 +45224,7 @@ _0803C462:
 	pop {r1}
 	bx r1
 .endif
-.section .text.after_aegis_early_exact_803C440, "ax", %progbits
+.section .text.after_early_code_helpers_803C440, "ax", %progbits
 	thumb_func_start sub_803C468
 sub_803C468:
 	push {lr}
@@ -45416,7 +45285,7 @@ _0803C4D2:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-.section .discard.aegis_early_exact_803C4D8, "ax", %progbits
+.section .discard.early_code_helpers_803C4D8, "ax", %progbits
 .if 0
 	thumb_func_start sub_803C4D8
 sub_803C4D8:
@@ -45448,7 +45317,7 @@ _0803C502:
 	bx r1
 	.byte 0x00, 0x00
 .endif
-.section .text.after_aegis_early_exact_803C4D8, "ax", %progbits
+.section .text.after_early_code_helpers_803C4D8, "ax", %progbits
 	thumb_func_start sub_803C508
 sub_803C508:
 	push {lr}
@@ -45477,7 +45346,7 @@ _0803C532:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-.section .discard.aegis_early_exact_803C538, "ax", %progbits
+.section .discard.early_code_helpers_803C538, "ax", %progbits
 .if 0
 	thumb_func_start sub_803C538
 sub_803C538:
@@ -45487,7 +45356,7 @@ sub_803C538:
 	pop {r0}
 	bx r0
 .endif
-.section .text.after_aegis_early_exact_803C538, "ax", %progbits
+.section .text.after_early_code_helpers_803C538, "ax", %progbits
 	thumb_func_start sub_803C544
 sub_803C544:
 	push {r4, r5, lr}
@@ -45574,50 +45443,8 @@ _0803C5EE:
 	bx r0
 	.byte 0x82, 0x22, 0x92, 0x00, 0x80, 0x18, 0x01, 0x22, 0x11, 0x40, 0xC9, 0x00, 0x03, 0x78, 0x09, 0x22
 	.byte 0x52, 0x42, 0x1A, 0x40, 0x0A, 0x43, 0x02, 0x70, 0x70, 0x47, 0x00, 0x00
-	thumb_func_start sub_803C610
-sub_803C610:
-	push {lr}
-	ldr r0, _0803C634 @ =0x00000157
-	bl stop_sfx_80195A8
-	movs r0, #0x87
-	bl stop_sfx_80195A8
-	movs r0, #0xDB
-	bl stop_sfx_80195A8
-	movs r0, #0xDA
-	bl stop_sfx_80195A8
-	movs r0, #0xDA
-	bl stop_sfx_80195A8
-	pop {r0}
-	bx r0
-_0803C634: .4byte 0x00000157
-	thumb_func_start sub_803C638
-sub_803C638:
-	push {lr}
-	movs r1, #0x80
-	lsls r1, r1, #0x02
-	adds r0, r0, r1
-	ldr r1, [r0, #0x00]
-	ldrh r2, [r1, #0x04]
-	subs r0, r2, #0x5
-	lsls r0, r0, #0x10
-	lsrs r0, r0, #0x10
-	cmp r0, #0x04
-	bhi _0803C656
-	adds r0, r1, #0x0
-	bl sub_804FCD4
-	b _0803C668
-_0803C656:
-	adds r0, r2, #0x0
-	subs r0, #0x0A
-	lsls r0, r0, #0x10
-	lsrs r0, r0, #0x10
-	cmp r0, #0x02
-	bhi _0803C668
-	adds r0, r1, #0x0
-	bl sub_80494D4
-_0803C668:
-	pop {r0}
-	bx r0
+	.section .text.text_early_helpers_04_after_sub_803C610, "ax", %progbits
+	.section .text.text_early_helpers_04_after_sub_803C638, "ax", %progbits
 	thumb_func_start sub_803C66C
 sub_803C66C:
 	push {r4, lr}
@@ -45859,7 +45686,7 @@ _0803C888:
 	.byte 0x00, 0x00
 _0803C890: .4byte 0x0000035B
 _0803C894: .4byte 0x0000010B
-.section .discard.aegis_early_exact_803C898, "ax", %progbits
+.section .discard.early_code_helpers_803C898, "ax", %progbits
 .if 0
 	thumb_func_start sub_803C898
 sub_803C898:
@@ -45869,7 +45696,7 @@ sub_803C898:
 	pop {r0}
 	bx r0
 .endif
-.section .text.after_aegis_early_exact_803C898, "ax", %progbits
+.section .text.after_early_code_helpers_803C898, "ax", %progbits
 	thumb_func_start sub_803C8A4
 sub_803C8A4:
 	push {r4, r5, r6, r7, lr}
@@ -47515,7 +47342,7 @@ _0803E9BC:
 	.byte 0x94, 0x0D, 0x00, 0x03, 0x90, 0x0D, 0x00, 0x03, 0x8C, 0x0D, 0x00, 0x03, 0x88, 0x0D, 0x00, 0x03
 	.byte 0x91, 0x02, 0x00, 0x00, 0x4C, 0x03, 0x00, 0x03, 0x88, 0x08, 0x00, 0x00, 0xB6, 0x02, 0x00, 0x00
 	.byte 0xDE, 0x03, 0x00, 0x00
-.section .discard.aegis_early_exact_803E9F0, "ax", %progbits
+.section .discard.early_code_helpers_803E9F0, "ax", %progbits
 .if 0
 	thumb_func_start sub_803E9F0
 sub_803E9F0:
@@ -47527,7 +47354,7 @@ sub_803E9F0:
 	bx lr
 _0803E9FC: .4byte 0x00000291
 .endif
-.section .text.after_aegis_early_exact_803E9F0, "ax", %progbits
+.section .text.after_early_code_helpers_803E9F0, "ax", %progbits
 	thumb_func_start sub_803EA00
 sub_803EA00:
 	push {r4, r5, r6, r7, lr}
@@ -60615,6 +60442,8 @@ _08047758:
 	bx r0
 _08047764: .4byte 0x0000026E
 _08047768: .4byte 0x0000023D
+.section .discard.early_code_helpers_804776C, "ax", %progbits
+.if 0
 	thumb_func_start sub_804776C
 sub_804776C:
 	movs r2, #0x83
@@ -60629,7 +60458,9 @@ sub_804776C:
 	orrs r2, r1
 	strb r2, [r0, #0x00]
 	bx lr
-	.section .discard.compact_mid2_8047784, "ax", %progbits
+.endif
+.section .text.after_early_code_helpers_804776C, "ax", %progbits
+	.section .discard.early_helpers_2_8047784, "ax", %progbits
 	thumb_func_start asm_sub_8047784
 asm_sub_8047784:
 	ldr r1, _080477A0 @ =0x0000020D
@@ -60831,7 +60662,7 @@ sub_80478AC:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	.section .discard.compact_mid2_804790C, "ax", %progbits
+	.section .discard.early_helpers_2_804790C, "ax", %progbits
 	thumb_func_start asm_sub_804790C
 asm_sub_804790C:
 	lsls r1, r1, #0x18
@@ -60868,7 +60699,7 @@ sub_8047928:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	.section .discard.compact_mid2_804794C, "ax", %progbits
+	.section .discard.early_helpers_2_804794C, "ax", %progbits
 	thumb_func_start asm_sub_804794C
 asm_sub_804794C:
 	ldr r2, _08047954 @ =0x0000023E
@@ -60878,6 +60709,8 @@ asm_sub_804794C:
 _08047954: .4byte 0x0000023E
 	.section .text.after_804794C, "ax", %progbits
 	.align 2, 0
+.section .discard.early_code_helpers_8047958, "ax", %progbits
+.if 0
 	thumb_func_start sub_8047958
 sub_8047958:
 	ldr r1, _08047968 @ =0x000002B6
@@ -60889,10 +60722,12 @@ sub_8047958:
 	strb r1, [r0, #0x00]
 	bx lr
 _08047968: .4byte 0x000002B6
+.endif
+.section .text.after_early_code_helpers_8047958, "ax", %progbits
 	.byte 0x03, 0x49, 0x40, 0x18, 0x02, 0x78, 0x0D, 0x21, 0x49, 0x42, 0x11, 0x40, 0x01, 0x70, 0x70, 0x47
 	.byte 0xB6, 0x02, 0x00, 0x00, 0x03, 0x49, 0x40, 0x18, 0x02, 0x78, 0x04, 0x21, 0x49, 0x42, 0x11, 0x40
 	.byte 0x01, 0x70, 0x70, 0x47, 0xB6, 0x02, 0x00, 0x00
-	.section .discard.compact_mid2_8047994, "ax", %progbits
+	.section .discard.early_helpers_2_8047994, "ax", %progbits
 	thumb_func_start asm_sub_8047994
 asm_sub_8047994:
 	ldr r1, _080479A4 @ =0x000002B5
@@ -60905,6 +60740,8 @@ asm_sub_8047994:
 	.byte 0x00, 0x00
 _080479A4: .4byte 0x000002B5
 	.section .text.restore_80479A8, "ax", %progbits
+.section .discard.early_code_helpers_80479A8, "ax", %progbits
+.if 0
 	thumb_func_start sub_80479A8
 sub_80479A8:
 	ldr r1, _080479B8 @ =0x000002B5
@@ -60916,6 +60753,8 @@ sub_80479A8:
 	strb r1, [r0, #0x00]
 	bx lr
 _080479B8: .4byte 0x000002B5
+.endif
+.section .text.after_early_code_helpers_80479A8, "ax", %progbits
 	.section .text.after_80479A8, "ax", %progbits
 	.align 2, 0
 	thumb_func_start sub_80479BC
@@ -61057,7 +60896,7 @@ _08047AE6:
 	bx r1
 _08047AEC: .4byte 0x00000332
 _08047AF0: .4byte 0x000002B6
-	.section .discard.compact_mid2_8047AF4, "ax", %progbits
+	.section .discard.early_helpers_2_8047AF4, "ax", %progbits
 	thumb_func_start asm_sub_8047AF4
 asm_sub_8047AF4:
 	ldr r1, _08047B04 @ =0x000002B5
@@ -61366,7 +61205,7 @@ sub_8047CE8:
 	bx lr
 _08047D3C: .4byte 0xFFFFFE7F
 _08047D40: .4byte 0xFFFE7FFF
-.section .discard.aegis_early_exact_8047D44, "ax", %progbits
+.section .discard.early_code_helpers_8047D44, "ax", %progbits
 .if 0
 	thumb_func_start sub_8047D44
 sub_8047D44:
@@ -61385,8 +61224,8 @@ sub_8047D44:
 	.byte 0x00, 0x00
 _08047D60: .4byte 0x0000026E
 .endif
-.section .text.after_aegis_early_exact_8047D44, "ax", %progbits
-.section .discard.aegis_early_exact_8047D64, "ax", %progbits
+.section .text.after_early_code_helpers_8047D44, "ax", %progbits
+.section .discard.early_code_helpers_8047D64, "ax", %progbits
 .if 0
 	thumb_func_start sub_8047D64
 sub_8047D64:
@@ -61405,7 +61244,7 @@ sub_8047D64:
 	.byte 0x00, 0x00
 _08047D80: .4byte 0x0000026E
 .endif
-.section .text.after_aegis_early_exact_8047D64, "ax", %progbits
+.section .text.after_early_code_helpers_8047D64, "ax", %progbits
 	thumb_func_start sub_8047D84
 sub_8047D84:
 	push {r4, r5, lr}
@@ -61728,25 +61567,7 @@ _0804802E:
 _08048034: .4byte 0x00000222
 _08048038: .4byte 0x0000020F
 _0804803C: .4byte 0x0000020E
-	thumb_func_start sub_8048040
-sub_8048040:
-	push {lr}
-	adds r3, r0, #0x0
-	movs r0, #0xCE
-	lsls r0, r0, #0x02
-	adds r2, r3, r0
-	ldr r0, _08048060 @ =0x08CDBDE8
-	str r0, [r2, #0x00]
-	movs r0, #0x01
-	ands r0, r1
-	cmp r0, #0x00
-	beq _0804805C
-	adds r0, r3, #0x0
-	bl free_heap_8018DA8
-_0804805C:
-	pop {r0}
-	bx r0
-_08048060: .4byte 0x08CDBDE8
+	.section .text.text_early_helpers_04_after_sub_8048040, "ax", %progbits
 	thumb_func_start sub_8048064
 sub_8048064:
 	push {r4, r5, r6, lr}
@@ -75290,7 +75111,7 @@ _0804FAE2:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-.section .discard.aegis_early_exact_804FAF8, "ax", %progbits
+.section .discard.early_code_helpers_804FAF8, "ax", %progbits
 .if 0
 	thumb_func_start sub_804FAF8
 sub_804FAF8:
@@ -75308,8 +75129,8 @@ sub_804FAF8:
 	bx r0
 	.byte 0x00, 0x00
 .endif
-.section .text.after_aegis_early_exact_804FAF8, "ax", %progbits
-.section .discard.aegis_early_exact_804FB14, "ax", %progbits
+.section .text.after_early_code_helpers_804FAF8, "ax", %progbits
+.section .discard.early_code_helpers_804FB14, "ax", %progbits
 .if 0
 	thumb_func_start sub_804FB14
 sub_804FB14:
@@ -75324,8 +75145,8 @@ sub_804FB14:
 	bx lr
 	.byte 0x00, 0x00
 .endif
-.section .text.after_aegis_early_exact_804FB14, "ax", %progbits
-.section .discard.aegis_early_exact_804FB28, "ax", %progbits
+.section .text.after_early_code_helpers_804FB14, "ax", %progbits
+.section .discard.early_code_helpers_804FB28, "ax", %progbits
 .if 0
 	thumb_func_start sub_804FB28
 sub_804FB28:
@@ -75340,7 +75161,7 @@ sub_804FB28:
 	bx lr
 	.byte 0x00, 0x00
 .endif
-.section .text.after_aegis_early_exact_804FB28, "ax", %progbits
+.section .text.after_early_code_helpers_804FB28, "ax", %progbits
 	thumb_func_start sub_804FB3C
 sub_804FB3C:
 	push {lr}
@@ -75429,48 +75250,7 @@ _0804FBD2:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_804FBDC
-sub_804FBDC:
-	push {r4, lr}
-	adds r3, r0, #0x0
-	movs r4, #0x00
-	movs r1, #0x83
-	lsls r1, r1, #0x02
-	adds r0, r3, r1
-	ldrh r2, [r0, #0x00]
-	ldr r1, _0804FC28 @ =0x00000801
-	adds r0, r1, #0x0
-	ands r0, r2
-	cmp r0, r1
-	bne _0804FC20
-	ldr r1, _0804FC2C @ =0x0000035A
-	adds r0, r3, r1
-	ldrb r1, [r0, #0x00]
-	movs r0, #0x02
-	ands r0, r1
-	cmp r0, #0x00
-	bne _0804FC20
-	movs r0, #0xD2
-	lsls r0, r0, #0x02
-	adds r1, r3, r0
-	ldr r0, [r3, #0x0C]
-	str r0, [r1, #0x00]
-	movs r0, #0xD3
-	lsls r0, r0, #0x02
-	adds r1, r3, r0
-	ldr r0, [r3, #0x10]
-	str r0, [r1, #0x00]
-	adds r0, r3, #0x0
-	bl sub_8041FFC
-	lsls r0, r0, #0x18
-	lsrs r4, r0, #0x18
-_0804FC20:
-	adds r0, r4, #0x0
-	pop {r4}
-	pop {r1}
-	bx r1
-_0804FC28: .4byte 0x00000801
-_0804FC2C: .4byte 0x0000035A
+	.section .text.text_early_helpers_04_after_sub_804FBDC, "ax", %progbits
 	thumb_func_start sub_804FC30
 sub_804FC30:
 	push {lr}
@@ -78732,7 +78512,7 @@ _080515CC:
 	.byte 0x00, 0x00
 _080515D4: .4byte sub_813B1E8
 _080515D8: .4byte sub_80514C4
-.section .discard.aegis_early_exact_80515DC, "ax", %progbits
+.section .discard.early_code_helpers_80515DC, "ax", %progbits
 .if 0
 	thumb_func_start sub_80515DC
 sub_80515DC:
@@ -78756,8 +78536,8 @@ sub_80515DC:
 _08051600: .4byte sub_8051614
 _08051604: .4byte sub_80514C4
 .endif
-.section .text.after_aegis_early_exact_80515DC, "ax", %progbits
-.section .discard.aegis_early_exact_8051608, "ax", %progbits
+.section .text.after_early_code_helpers_80515DC, "ax", %progbits
+.section .discard.early_code_helpers_8051608, "ax", %progbits
 .if 0
 	thumb_func_start sub_8051608
 sub_8051608:
@@ -78767,8 +78547,8 @@ sub_8051608:
 	bx r0
 	.byte 0x00, 0x00
 .endif
-.section .text.after_aegis_early_exact_8051608, "ax", %progbits
-.section .discard.aegis_early_exact_8051614, "ax", %progbits
+.section .text.after_early_code_helpers_8051608, "ax", %progbits
+.section .discard.early_code_helpers_8051614, "ax", %progbits
 .if 0
 	thumb_func_start sub_8051614
 sub_8051614:
@@ -78782,7 +78562,7 @@ sub_8051614:
 	bx r0
 	.byte 0x00, 0x00
 .endif
-.section .text.after_aegis_early_exact_8051614, "ax", %progbits
+.section .text.after_early_code_helpers_8051614, "ax", %progbits
 	thumb_func_start sub_8051628
 sub_8051628:
 	push {r4, r5, r6, lr}
