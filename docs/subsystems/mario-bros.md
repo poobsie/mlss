@@ -20,9 +20,11 @@ The byte at global runtime offset `0xC5A` is now `sequenceIndex`: two helpers ad
 
 All currently decompiled Mario Bros code now lives under `src/mario_bros`. Legacy no-op callbacks, object transitions and command wrappers, movement/platform helpers, and the small tilemap helper are named by their observed roles rather than by extraction order.
 
+The former mixed platform file is split into hardware setup, object movement, global callback forwarding, and tilemap clearing. The movement helper at `0x08F63DB8` now uses the shared object layout: it tests `state` and writes `value1C`, whose more specific meaning remains class-dependent.
+
 ## Next boundary
 
-Split the mixed platform and movement file into register setup, object movement, and callback-forwarder families. Trace the forwarded globals before assigning narrower names.
+Trace the forwarded globals and callback APIs before assigning narrower names, then decide whether the Mario Bros slice has enough remaining evidence to keep active.
 
 ## Verification
 
