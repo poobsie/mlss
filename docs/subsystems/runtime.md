@@ -8,6 +8,8 @@ The recovered bootstrap code now lives under `src/runtime` instead of the generi
 
 `decimal_digit_count` has one known caller and computes the number of decimal positions needed for a nonnegative limit. It remains in the same object as the bootstrap initializer because the original functions are contiguous; splitting them introduces executable-section padding and breaks the exact ROM match.
 
+Three generic callback forwarders now live in `src/runtime/callback_forwarders.c`. `RuntimeCallbackTable` records the proven callback slot at offset `0x1A0`; each trampoline loads that callback and invokes it with the original argument, table, and address of the callback slot. The entry points remain address-named because their owning table types are not yet distinguishable.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.

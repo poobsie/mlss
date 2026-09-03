@@ -20,7 +20,7 @@
       "state": "detangled",
       "patterns": ["src/runtime/*.c"],
       "documentation": "docs/subsystems/runtime.md",
-      "next_action": "Trace the relocated routine format before assigning it a data-format name."
+      "next_action": "Trace the relocated routine format and callback-table owners before assigning narrower names."
     },
     {
       "id": "memory",
@@ -54,7 +54,7 @@
     },
     {
       "id": "mario_bros",
-      "state": "queued",
+      "state": "active",
       "patterns": ["src/mariobros_*.c"],
       "documentation": "docs/subsystems/mario-bros.md",
       "next_action": "Partition command decoding, state transitions, and global dispatch."
@@ -68,18 +68,17 @@
     },
     {
       "id": "object_runtime",
-      "state": "active",
+      "state": "detangled",
       "patterns": [
         "src/object/*.c",
         "src/object_*.c",
         "src/render_object_*.c",
-        "src/callback_*.c",
         "src/countdown_*.c",
         "src/*jump*.c",
         "src/*landing*.c"
       ],
       "documentation": "docs/subsystems/object-runtime.md",
-      "next_action": "Move generic callback-table forwarders out of this queue, then mark current object-runtime C detangled."
+      "next_action": "Expand when entry dispatchers or neighboring assembly provide stable gameplay sequence identities."
     },
     {
       "id": "unclassified",

@@ -1565,11 +1565,11 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8139A38);
         src/text_upper_functions/sub_8139A6C.o(.text.upper.sub_8139A6C);
         asm/text08057568.o(.text.after_upper_sub_8139A6C);
-        src/callback_forwarders.o(.text.callback_forwarders.sub_813B380);
+        src/runtime/callback_forwarders.o(.text.callback_forwarders.sub_813B380);
         asm/text08057568.o(.text.callback_forwarders_after_sub_813B380);
-        src/callback_forwarders.o(.text.callback_forwarders.sub_813C484);
+        src/runtime/callback_forwarders.o(.text.callback_forwarders.sub_813C484);
         asm/text08057568.o(.text.callback_forwarders_after_sub_813C484);
-        src/callback_forwarders.o(.text.callback_forwarders.sub_813C498);
+        src/runtime/callback_forwarders.o(.text.callback_forwarders.sub_813C498);
         asm/text08057568.o(.text.callback_forwarders_after_sub_813C498);
         src/text_upper_functions/sub_813C69C.o(.text.upper.sub_813C69C);
         asm/text08057568.o(.text.after_upper_sub_813C69C);

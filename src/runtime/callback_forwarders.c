@@ -1,15 +1,14 @@
 #include "global.h"
+#include "runtime/callback_table.h"
 
 #define SEC(name) __attribute__((section(".text.callback_forwarders." #name)))
 
-typedef void (*Callback)(void *, void *, void *);
-
 #define DEFINE_CALLBACK_FORWARDER(name)                                 \
-    SEC(name) void name(void *argument, void *callbacks)                \
+    SEC(name) void name(void* argument, struct RuntimeCallbackTable* table) \
     {                                                                    \
-        void *slot = (u8 *)callbacks + 0x1A0;                           \
-        Callback callback = *(Callback *)slot;                          \
-        callback(argument, callbacks, slot);                            \
+        RuntimeForwardedCallback* slot = &table->callback;               \
+        RuntimeForwardedCallback callback = *slot;                       \
+        callback(argument, table, slot);                                 \
     }                                                                    \
     SEC(name) const u16 name##_padding = 0;
 
