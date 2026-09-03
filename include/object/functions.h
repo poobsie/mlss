@@ -111,6 +111,16 @@
 #define object_cleanup_when_value80_clear_b sub_80DAF6C
 #define object_cleanup_when_value80_clear_c sub_80DC4C0
 
+#define object_setup_from_position_owner_a sub_8068058
+#define object_setup_from_position_owner_b sub_8068E60
+#define object_setup_from_position_owner_c sub_806A1E8
+#define object_setup_from_position_owner_d sub_806A760
+#define object_setup_from_position_owner_only sub_806B288
+#define object_setup_from_position_owner_e sub_806B390
+#define object_setup_behavior_1_from_owner sub_806C8C0
+#define object_setup_from_owner_a sub_806D340
+#define object_setup_from_owner_b sub_8075C48
+
 /* Middle-address behavior families whose owning callback tables remain in assembly. */
 #define object_invoke_shared_terminal_action_a sub_80D2D28
 #define object_invoke_shared_terminal_action_b sub_80DEC60

@@ -19,3 +19,5 @@ The `src/text_upper_functions/` staging directory is now retired. Its final fift
 The first extraction from `text_misc_helpers_01.c` moved twenty-nine visual-completion callbacks into object runtime. Their identical gates, shared `RuntimeObject` layout, and three explicit command-value families make the boundary mechanical rather than address-based.
 
 The next extraction moved eleven terminal gates into object runtime. Five wait for visual completion before either stopping or returning to the common idle callback. Six wait for `value80` to clear before invoking one of two established transition routines. These remain distinct ABI entry points, but their repeated control flow is now expressed as typed families instead of raw offset casts.
+
+Nine owner-driven setup callbacks have also moved into object runtime. Six pass the object's existing `positionOwner` to the shared setup routine, while three accept an owner from their caller. Their only proven differences are the continuation callback and one `behaviorState` initialization, so their semantic names preserve that evidence without guessing at the owning encounter.

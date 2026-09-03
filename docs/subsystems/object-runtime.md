@@ -80,6 +80,8 @@ Twenty-nine callbacks extracted from the first large miscellaneous bucket now co
 
 Eleven neighboring terminal gates now form two more typed families. Five wait for visual completion and either stop the active update or return to the shared idle callback. Six wait for `value80` to clear and then invoke an established trigger or cleanup transition. Lettered variants preserve callback-table identity where the owning sequences remain in assembly.
 
+Nine setup callbacks now use `RuntimeObject` directly. Six forward the stored `positionOwner` into the shared setup routine and optionally install a continuation. Three take the owner as an explicit argument; one also initializes `behaviorState` to 1. Variant names remain structural because the assembly callers do not yet identify the gameplay sequences.
+
 Three additional visual-completion variants now use the shared object layout. They select animations from state at `0x9C` or flags at `0x98`; one also starts effect `0x151D`, installs a secondary update at `0x5C`, and advances the primary update at `0x4C`.
 
 Four late visual transitions now expose linked-object completion, linked-chain flag propagation at `0xA8`, animation and sound setup, and terminal cleanup. Their semantic aliases describe the proven gate and effect; unresolved sound and animation values remain numeric.
