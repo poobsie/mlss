@@ -56,6 +56,8 @@ Two adjacent wrappers call their respective field-object operations with enabled
 
 `FieldValueTransfer` exposes one half of a reversible state transfer: the recovered routine moves the halfword at `0x34` to `0x44` and clears the source. The adjacent assembly routine performs the inverse move, with additional mode bookkeeping that is not yet decompiled.
 
+The selected-entry sequence is now one three-stage unit instead of three numbered catch-all files. Its stages wait for the shared blocker at `0x310`, prepare the selected entry at `0x349`, commit it through the active object at `0x7C`, clear the selection to `0xFF`, and install the next process callback at each boundary. Scene-specific names require the resource tables used by the assembly helpers.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,301 linked C functions checked, 1,301 exact, and zero mismatches.
