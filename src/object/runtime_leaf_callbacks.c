@@ -18,14 +18,138 @@ void sub_8064C00(struct RuntimeObject* object);
 void sub_80651B0(struct RuntimeObject* object);
 void sub_8065758(struct RuntimeObject* object);
 void sub_8065DD4(struct RuntimeObject* object);
+void sub_80635FC(struct RuntimeObject* object);
+void sub_8063B80(struct RuntimeObject* object);
+void sub_8063BA8(struct RuntimeObject* object);
+void sub_8063C60(struct RuntimeObject* object);
+void sub_8063CC8(struct RuntimeObject* object);
+void sub_8064540(struct RuntimeObject* object);
+void sub_8064E30(struct RuntimeObject* object);
 void sub_808750C(struct RuntimeObject* object);
 void nullsub_15(void);
 s32 sub_8082B00(struct RuntimeObject* object);
 s32 sub_80871A8(struct RuntimeObject* object);
+s32 sub_8086858(struct RuntimeObject* object, s32 effect);
 void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
                  struct RuntimeObject* object);
 
 #define SHARED_MOTION_HANDLE (*(void**)0x03000E18)
+
+/* Effect IDs and unnamed continuations stay numeric until their owners are known. */
+
+SEC(sub_8063A24)
+void object_start_animation_5_when_value80_clears(
+    struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        sub_8082E1C(object, 5, 0, 0);
+        object->update = sub_80635FC;
+    }
+}
+
+SEC(sub_8063AD4)
+void object_advance_countdown_visual_sequence(struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        object->timer--;
+        if (object->timer <= 0) {
+            sub_8082E1C(object, 0xB, 0, 0);
+            sub_8086858(object, 0x1471);
+            object->secondaryUpdate = sub_8063B80;
+            sound_effect_play(0x83, SOUND_VOLUME_UNCHANGED);
+            object->update = sub_8063BA8;
+        }
+    }
+}
+
+SEC(sub_8063B2C)
+void object_start_animation_7_on_visual_complete(struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 7, 0, 0);
+        object->update = sub_8063BF0;
+    }
+}
+
+SEC(sub_8063C24)
+void object_finish_countdown_with_animation_1(struct RuntimeObject* object)
+{
+    s8* flags;
+
+    object->value84--;
+    if (object->value84 <= 0) {
+        sub_8082E1C(object, 1, 0, 0);
+        flags = (s8*)&object->visual->flags;
+        *flags = (*flags & -7) | 2;
+        object->update = sub_8063C60;
+    }
+}
+
+SEC(sub_8064424)
+void object_emit_effect_1081_and_finish(struct RuntimeObject* object)
+{
+    sub_80DF024(0x1081, object->positionX / 0x100,
+                object->positionY / 0x100, object->positionZBase / 0x100,
+                object);
+    sub_807C298(object);
+}
+
+SEC(sub_8064488)
+void object_start_animation_2_variant_on_ready(struct RuntimeObject* object)
+{
+    s8* flags;
+
+    if (sub_8082B00(object) == 0) {
+        sub_8082E1C(object, 2, 0, 0);
+        flags = (s8*)&object->visual->flags;
+        *flags = (*flags & -7) | 2;
+        if (object->behaviorState == 0) {
+            object->update = sub_8064540;
+        } else {
+            sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
+            object->update = sub_8064514;
+        }
+    }
+}
+
+SEC(sub_8064514)
+void object_start_animation_3_then_complex_sequence(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 3, 0, 0);
+        object->update = sub_8063CC8;
+    }
+}
+
+SEC(sub_80652D4)
+void object_idle_when_link_clears(struct RuntimeObject* object)
+{
+    if (object->linkedObject == NULL) {
+        sub_8082E1C(object, 0, 0, 0);
+        object->update = sub_808750C;
+    }
+}
+
+SEC(sub_8065384)
+void object_emit_effect_eff_and_finish(struct RuntimeObject* object)
+{
+    sound_effect_play(0xAD, SOUND_VOLUME_UNCHANGED);
+    sub_80DF024(0xEFF, object->positionX / 0x100,
+                object->positionY / 0x100, object->positionZBase / 0x100,
+                object);
+    sub_807C298(object);
+}
+
+SEC(sub_80653F4)
+void object_start_animation_2_then_effect_sequence(
+    struct RuntimeObject* object)
+{
+    if (sub_8082B00(object) == 0) {
+        sub_8082E1C(object, 2, 0, 0);
+        object->update = sub_8064E30;
+    }
+}
 
 SEC(sub_8063384)
 void object_emit_effect_12cd_release_shared_motion_and_finish(
