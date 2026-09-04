@@ -17,6 +17,7 @@ void sub_807F4FC(void*);
 void sub_8021308(void*);
 int sub_8086D80(void*);
 void sub_80DD0CC(void*);
+void sub_808738C(void*);
 
 #define DECL_NEXT(name) extern void name(void*)
 DECL_NEXT(sub_80D9B9C);
@@ -61,6 +62,8 @@ DECL_NEXT(sub_80DCF7C);
 DECL_NEXT(sub_80DDA78);
 DECL_NEXT(sub_80DDABC);
 DECL_NEXT(sub_80DE4A4);
+DECL_NEXT(sub_808750C);
+DECL_NEXT(sub_80DDC8C);
 void sub_807F47C(void*);
 
 #define OWNER_VARIANT(object) \
@@ -355,4 +358,32 @@ SEC(sub_80DDA78) void sub_80DDA78(void* object)
     sub_8082E1C(object, 0xC, 0, 0);
     SET_VISUAL_MODE_2(object);
     PTRAT(object, 0x4C) = sub_80DDABC;
+}
+
+SEC(sub_80D8F68) void sub_80D8F68(void* object)
+{
+    if (U32AT(object, 0x80) != 0)
+        return;
+    sound_effect_stop(0x81);
+    sub_8082E1C(object, 2, 0, 0);
+    PTRAT(object, 0x4C) = sub_808750C;
+}
+
+SEC(sub_80DC0B4) void sub_80DC0B4(void* object)
+{
+    if (U32AT(object, 0x80) != 0)
+        return;
+    sub_808738C(PTRAT(object, 0x28));
+    sub_8087540(object);
+}
+SEC(sub_80DC0B4) const u16 sub_80DC0B4_padding = 0;
+
+SEC(sub_80DEB1C) void sub_80DEB1C(void* object)
+{
+    if (U32AT(object, 0x80) != 0)
+        return;
+    sub_8082E1C(object, 8, 0, 0);
+    sound_effect_play(0x126, SOUND_VOLUME_UNCHANGED);
+    U16AT(object, 0xAC) = 0x30;
+    PTRAT(object, 0x4C) = sub_80DDC8C;
 }

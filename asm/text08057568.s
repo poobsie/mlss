@@ -247929,6 +247929,7 @@ _080D8F5C:
 	bx r0
 	.byte 0x00, 0x00
 _080D8F64: .4byte sub_80D8F68
+	.if 0
 	thumb_func_start sub_80D8F68
 sub_80D8F68:
 	push {r4, lr}
@@ -247951,6 +247952,8 @@ _080D8F8A:
 	pop {r0}
 	bx r0
 _080D8F90: .4byte sub_808750C
+	.endif
+	.section .text.after_middle_sub_80D8F68, "ax", %progbits
 	.byte 0x01, 0x49, 0xC1, 0x64, 0x01, 0x20, 0x70, 0x47, 0xA1, 0x8F, 0x0D, 0x08
 	thumb_func_start sub_80D8FA0
 sub_80D8FA0:
@@ -253793,6 +253796,7 @@ _080DC070:
 	bx r0
 _080DC078: .4byte sub_80DC0B4
 	.section .text.small_functions_07_after_sub_80DC07C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80DC0B4
 sub_80DC0B4:
 	push {r4, lr}
@@ -253809,7 +253813,10 @@ _080DC0CC:
 	pop {r4}
 	pop {r0}
 	bx r0
-	.byte 0x00, 0x00, 0x01, 0x49, 0xC1, 0x64, 0x01, 0x20, 0x70, 0x47, 0x19, 0xBE, 0x0D, 0x08
+	.byte 0x00, 0x00
+	.endif
+	.section .text.after_middle_sub_80DC0B4, "ax", %progbits
+	.byte 0x01, 0x49, 0xC1, 0x64, 0x01, 0x20, 0x70, 0x47, 0x19, 0xBE, 0x0D, 0x08
 	thumb_func_start sub_80DC0E0
 sub_80DC0E0:
 	push {r4, r5, r6, lr}
@@ -258624,6 +258631,7 @@ _080DEB14:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.if 0
 	thumb_func_start sub_80DEB1C
 sub_80DEB1C:
 	push {r4, lr}
@@ -258654,6 +258662,8 @@ _080DEB4C:
 	bx r0
 	.byte 0x00, 0x00
 _080DEB54: .4byte sub_80DDC8C
+	.endif
+	.section .text.after_middle_sub_80DEB1C, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_80DEB58, "ax", %progbits
 	thumb_func_start sub_80DEB78
 sub_80DEB78:

@@ -320,5 +320,8 @@
 #define object_on_visual_complete_start_animation_11_a sub_80DDA3C
 #define object_on_visual_complete_cleanup_then_animation_12 sub_80DDA78
 #define object_on_visual_complete_start_animation_11_b sub_80DEDB0
+#define object_when_value80_clear_stop_sound_81_animation_2 sub_80D8F68
+#define object_when_value80_clear_release_position_owner sub_80DC0B4
+#define object_when_value80_clear_animation_8_sound_126_delay_48 sub_80DEB1C
 
 #endif
