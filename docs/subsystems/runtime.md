@@ -24,9 +24,11 @@ Five adjacent definition and adapter helpers now live in `runtime/high_definitio
 
 `definition_slot_destroy` now replaces the slot definition with `0x08CDD0B8` and conditionally frees the containing allocation. Two callers with the same intrusive-list-owner layout now have typed destructors; both install descriptor `0x08CDD108`, clear the owned list through the existing runtime routine, and honor the low-bit free flag. The two owner classes remain distinct because their surrounding construction paths have not established a shared semantic identity.
 
+The high-runtime state now exposes two mirrored byte-magnitude channels. Each channel has a period/countdown pair and two flag bits controlling activation and sign; its tick helper toggles the sign bit and invokes the corresponding callback when the countdown expires. The callback owner's wider identity remains unknown. The same group now includes the signed-coordinate byte adapter, a default display-entry initializer, and the two proven display refresh sequences.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,648 linked C functions checked, 1,648 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,685 linked C functions checked, 1,685 exact, and zero mismatches.
 `pointer_list_count_value` walks a singly linked list and returns the number of nodes whose payload pointer equals the requested value. The second word in each node remains unknown; traversal proves only the payload at `0x00` and next pointer at `0x08`.
 
 `DefinitionState` is a six-word base overlay used by several differently sized late-runtime allocations. Two initializer families clear the same fields and install distinct definitions while setting value `0x10` to `0x7E00`; paired reset functions replace the definition and clear state. The initializer return types now match callers that retain `r0` as the initialized object pointer.
