@@ -253,6 +253,8 @@ Seven compact callbacks in the `0x080742FC` through `0x080746A8` object chain no
 
 Eight callbacks in the `0x08075BB8` through `0x08075F4C` chain now expose an owner-forwarded transition, a readiness cleanup, two visual-completion gates, paired periodic effect `0x23CC` loops, and terminal effects `0x23DE` and `0x2423`. The owner argument and numeric effect identities remain structural. Two adjacent routines stayed in assembly after their natural C forms produced compiler-specific four-byte differences, while the larger global-object and construction routines surveyed after them were deferred as a separate ownership slice.
 
+Fifteen callbacks from the following `0x08077140` through `0x08077924` sequence now cover linked-chain cleanup, visual-completion handoffs, paired countdowns, random animation selection, and effects `0x24BA`, `0x24E0`, `0x24E9`, `0x24FB`, `0x2515`, `0x2563`, `0x25AB`, `0x25B9`, `0x25F5`, and `0x2983`. The owner forwarded through `sub_810DD7C`, the linked objects, and the numeric resource identities remain structural. Larger construction and global-state callbacks in the surveyed `0x08076034` through `0x08077924` range remain in assembly for a later typed slice.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,685 linked C functions checked, 1,685 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,700 linked C functions checked, 1,700 exact, and zero mismatches.
