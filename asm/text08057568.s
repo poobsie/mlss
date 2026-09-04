@@ -279548,30 +279548,7 @@ sub_80EAD7C:
 	bx lr
 	.byte 0x00, 0x00
 _080EAD94: .4byte 0x03000D44
-	thumb_func_start sub_80EAD98
-sub_80EAD98:
-	push {lr}
-	ldr r0, [r2, #0x00]
-	cmp r0, #0x00
-	bne _080EADB0
-	ldr r0, _080EADAC @ =0x03000D44
-	ldr r0, [r0, #0x00]
-	adds r0, #0x29
-	movs r1, #0x01
-	b _080EADB8
-	.byte 0x00, 0x00
-_080EADAC: .4byte 0x03000D44
-_080EADB0:
-	ldr r0, _080EADC0 @ =0x03000D44
-	ldr r0, [r0, #0x00]
-	adds r0, #0x29
-	movs r1, #0xFF
-_080EADB8:
-	strb r1, [r0, #0x00]
-	movs r0, #0x01
-	pop {r1}
-	bx r1
-_080EADC0: .4byte 0x03000D44
+	.section .text.script_command_helpers_after_sub_80EAD98, "ax", %progbits
 	thumb_func_start sub_80EADC4
 sub_80EADC4:
 	push {r4, lr}
@@ -279687,24 +279664,7 @@ sub_80EAE70:
 	pop {r1}
 	bx r1
 _080EAE98: .4byte 0x03000FB8
-	thumb_func_start sub_80EAE9C
-sub_80EAE9C:
-	push {lr}
-	adds r3, r1, #0x0
-	ldr r0, _080EAEB8 @ =0x03000FB8
-	ldr r0, [r0, #0x00]
-	adds r0, #0x30
-	ldrb r1, [r0, #0x00]
-	ldr r0, [r2, #0x00]
-	cmp r1, r0
-	bne _080EAEB2
-	ldr r0, [r2, #0x04]
-	str r0, [r3, #0x00]
-_080EAEB2:
-	movs r0, #0x01
-	pop {r1}
-	bx r1
-_080EAEB8: .4byte 0x03000FB8
+	.section .text.script_command_helpers_after_sub_80EAE9C, "ax", %progbits
 	thumb_func_start sub_80EAEBC
 sub_80EAEBC:
 	push {lr}
@@ -279872,17 +279832,7 @@ _080EB03E:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_80EB048
-sub_80EB048:
-	ldr r0, _080EB058 @ =0x03000FB8
-	ldr r0, [r0, #0x00]
-	ldr r1, [r2, #0x00]
-	adds r0, #0x32
-	strb r1, [r0, #0x00]
-	movs r0, #0x01
-	bx lr
-	.byte 0x00, 0x00
-_080EB058: .4byte 0x03000FB8
+	.section .text.script_command_helpers_after_sub_80EB048, "ax", %progbits
 	thumb_func_start sub_80EB05C
 sub_80EB05C:
 	push {r4, lr}

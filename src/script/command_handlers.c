@@ -12,6 +12,9 @@
 #define MISC3_SEC(name) \
     __attribute__((section(".text.misc_helpers_03." STRINGIFY(name))))
 #define FIELD_RUNTIME (*(struct FieldSelectionRuntime**)0x03000FD8)
+#define SCRIPT_GLOBAL_D44 (*(void**)0x03000D44)
+#define SCRIPT_GLOBAL_FB8 (*(void**)0x03000FB8)
+#define U8AT(pointer, offset) (*(u8*)((u8*)(pointer) + (offset)))
 
 struct ScriptBattleReturnContext {
     u8 unknown00[0x1C];
@@ -33,6 +36,38 @@ struct ScriptObjectBytePairArguments {
     u8 padding01[3];
     u8 value1;
 };
+
+SEC(sub_80EAD98)
+s32 script_command_set_runtime_direction_sign(
+    void* context, void* state, const u32* argument)
+{
+    if (*argument == 0)
+        U8AT(SCRIPT_GLOBAL_D44, 0x29) = 1;
+    else
+        U8AT(SCRIPT_GLOBAL_D44, 0x29) = 0xFF;
+    return 1;
+}
+
+SEC(sub_80EAE9C)
+s32 script_command_branch_if_runtime_byte_30_equals(
+    void* context, struct ScriptExecutionState* state,
+    const u32* arguments)
+{
+    if (U8AT(SCRIPT_GLOBAL_FB8, 0x30) == arguments[0])
+        state->cursor = arguments[1];
+    return 1;
+}
+
+SEC(sub_80EB048)
+s32 script_command_set_runtime_byte_32(
+    void* context, void* state, const u32* argument)
+{
+    u8* runtime = SCRIPT_GLOBAL_FB8;
+    u32 value = *argument;
+
+    U8AT(runtime, 0x32) = value;
+    return 1;
+}
 MISC3_SEC(script_command_return_from_battle)
 u8 script_command_return_from_battle(
     struct ScriptBattleReturnContext* context,
