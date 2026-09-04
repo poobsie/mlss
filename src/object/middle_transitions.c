@@ -64,6 +64,8 @@ DECL_NEXT(sub_80DDABC);
 DECL_NEXT(sub_80DE4A4);
 DECL_NEXT(sub_808750C);
 DECL_NEXT(sub_80DDC8C);
+DECL_NEXT(sub_80D9A98);
+DECL_NEXT(sub_80DAFA8);
 void sub_807F47C(void*);
 
 #define OWNER_VARIANT(object) \
@@ -386,4 +388,32 @@ SEC(sub_80DEB1C) void sub_80DEB1C(void* object)
     sound_effect_play(0x126, SOUND_VOLUME_UNCHANGED);
     U16AT(object, 0xAC) = 0x30;
     PTRAT(object, 0x4C) = sub_80DDC8C;
+}
+
+SEC(sub_80D99A0) void sub_80D99A0(void* object)
+{
+    sub_807F4FC(object);
+    sub_8082E1C(object, 6, 0, 0);
+    SET_VISUAL_MODE_2(object);
+    PTRAT(object, 0x4C) = sub_80D9A98;
+}
+
+SEC(sub_80DA39C) void sub_80DA39C(void* object)
+{
+    s16* timer = (s16*)((u8*)object + 0xAC);
+    (*timer)--;
+    if (*timer < 0) {
+        sub_8082E1C(object, 7, 0, 0);
+        SET_VISUAL_MODE_2(object);
+        *timer = 0;
+        PTRAT(object, 0x4C) = sub_80DA3E0;
+    }
+}
+
+SEC(sub_80DAF48) void sub_80DAF48(void* object)
+{
+    if (sub_8082B00(object) == 0) {
+        sound_effect_play(0x8D, SOUND_VOLUME_UNCHANGED);
+        PTRAT(object, 0x4C) = sub_80DAFA8;
+    }
 }

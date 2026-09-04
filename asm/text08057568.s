@@ -249234,6 +249234,7 @@ _080D999A:
 	.byte 0x00, 0x00
 	.endif
 	.section .text.after_middle_sub_80D9984
+	.if 0
 	thumb_func_start sub_80D99A0
 sub_80D99A0:
 	push {r4, lr}
@@ -249259,6 +249260,8 @@ sub_80D99A0:
 	bx r0
 	.byte 0x00, 0x00
 _080D99D0: .4byte sub_80D9A98
+	.endif
+	.section .text.after_middle_sub_80D99A0, "ax", %progbits
 	.if 0
 	thumb_func_start sub_80D99D4
 sub_80D99D4:
@@ -250425,6 +250428,7 @@ _080DA390:
 	.byte 0x00, 0x00
 _080DA398: .4byte sub_80DA39C
 	.section .text.after_object_mid7_sub_80DA368, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80DA39C
 sub_80DA39C:
 	push {r4, r5, lr}
@@ -250460,6 +250464,8 @@ _080DA3D4:
 	bx r0
 	.byte 0x00, 0x00
 _080DA3DC: .4byte sub_80DA3E0
+	.endif
+	.section .text.after_middle_sub_80DA39C, "ax", %progbits
 	.if 0
 	thumb_func_start sub_80DA3E0
 sub_80DA3E0:
@@ -251828,6 +251834,7 @@ _080DAEE8: .4byte sub_80DAF6C
 	.byte 0x85, 0xAF, 0x0D, 0x08, 0x02, 0x48, 0xE0, 0x64, 0x01, 0x20, 0x10, 0xBC, 0x02, 0xBC, 0x08, 0x47
 	.byte 0x49, 0xAF, 0x0D, 0x08
 	.section .text.misc_helpers_01_after_sub_80DAF30, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80DAF48
 sub_80DAF48:
 	push {r4, lr}
@@ -251846,6 +251853,8 @@ _080DAF62:
 	pop {r0}
 	bx r0
 _080DAF68: .4byte sub_80DAFA8
+	.endif
+	.section .text.after_middle_sub_80DAF48, "ax", %progbits
 	.section .text.misc_helpers_01_after_sub_80DAF6C, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_80DAF84, "ax", %progbits
 	thumb_func_start sub_80DAFA8

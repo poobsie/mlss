@@ -323,5 +323,8 @@
 #define object_when_value80_clear_stop_sound_81_animation_2 sub_80D8F68
 #define object_when_value80_clear_release_position_owner sub_80DC0B4
 #define object_when_value80_clear_animation_8_sound_126_delay_48 sub_80DEB1C
+#define object_start_animation_6_and_finalize_position sub_80D99A0
+#define object_countdown_then_start_animation_7 sub_80DA39C
+#define object_when_ready_play_sound_8d_and_continue sub_80DAF48
 
 #endif
