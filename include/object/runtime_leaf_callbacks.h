@@ -42,6 +42,17 @@
 #define object_initialize_behavior_and_resume_motion sub_8068168
 #define object_emit_effect_10be_and_finish sub_80681EC
 #define object_finish_secondary_countdown_with_animation_7 sub_806822C
+#define object_lower_x_until_motion_target sub_8068818
+#define object_prepare_linked_motion_when_chain_clears sub_8068844
+#define object_finish_variant_countdown_on_visual_complete sub_80688B8
+#define object_finish_variant_timer_on_visual_complete sub_8068A50
+#define object_move_left_with_periodic_effect_until_screen_exit sub_8068B68
+#define object_move_left_with_effect_until_owner_target sub_8068BF0
+#define object_start_variant_return_when_value80_clears sub_8068C98
+#define object_finish_variant_return_timer sub_8068D74
+#define object_resume_after_auxiliary_motion sub_8068E7C
+#define object_move_left_until_owner_target_and_emit_effect sub_8068E98
+#define object_resume_sequence_when_runtime_ready sub_8069354
 #define object_move_left_until_screen_exit sub_8068074
 #define object_start_animation_6_when_value80_clears sub_80680A0
 #define object_move_left_and_down_until_screen_exit sub_806819C
@@ -110,6 +121,24 @@ s32 object_initialize_behavior_and_resume_motion(struct RuntimeObject* object);
 void object_emit_effect_10be_and_finish(struct RuntimeObject* object);
 void object_finish_secondary_countdown_with_animation_7(
     struct RuntimeObject* object);
+void object_lower_x_until_motion_target(struct RuntimeObject* object);
+void object_prepare_linked_motion_when_chain_clears(
+    struct RuntimeObject* object);
+void object_finish_variant_countdown_on_visual_complete(
+    struct RuntimeObject* object);
+void object_finish_variant_timer_on_visual_complete(
+    struct RuntimeObject* object);
+void object_move_left_with_periodic_effect_until_screen_exit(
+    struct RuntimeObject* object);
+void object_move_left_with_effect_until_owner_target(
+    struct RuntimeObject* object);
+void object_start_variant_return_when_value80_clears(
+    struct RuntimeObject* object);
+void object_finish_variant_return_timer(struct RuntimeObject* object);
+s32 object_resume_after_auxiliary_motion(struct RuntimeObject* object);
+void object_move_left_until_owner_target_and_emit_effect(
+    struct RuntimeObject* object);
+s32 object_resume_sequence_when_runtime_ready(struct RuntimeObject* object);
 void object_move_left_until_screen_exit(struct RuntimeObject* object);
 void object_start_animation_6_when_value80_clears(struct RuntimeObject* object);
 void object_move_left_and_down_until_screen_exit(struct RuntimeObject* object);
