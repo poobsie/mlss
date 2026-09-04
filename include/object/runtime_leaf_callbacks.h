@@ -74,6 +74,20 @@
 #define object_emit_periodic_effect_until_value80_clears sub_806AF80
 #define object_emit_periodic_effect_then_continue_when_value80_clears sub_806B084
 #define object_emit_periodic_effect_until_stop sub_806B208
+#define object_remove_when_runtime_ready sub_806B26C
+#define object_prepare_saved_position_when_value80_clears sub_806B298
+#define object_emit_effect_d82_and_remove_when_runtime_ready sub_806B340
+#define object_move_left_by_behavior_velocity_until_exit sub_806B3D0
+#define object_emit_effect_db2_until_value80_clears sub_806B424
+#define object_start_valueA4_animation_and_sound_88 sub_806B540
+#define object_emit_effect_1c52_until_value80_clears sub_806BAB8
+#define object_emit_effect_1c5b_until_stop sub_806BF0C
+#define object_continue_owner_motion_when_runtime_ready sub_806C020
+#define object_stop_on_visual_complete sub_806C1C8
+#define object_emit_effect_1bfe_on_visual_complete sub_806C2B0
+#define object_emit_effect_1df8_and_remove_when_runtime_ready sub_806C76C
+#define object_start_animation_21_after_countdown sub_806CAC0
+#define object_start_variant_animation_7_or_13 sub_806CB6C
 
 void object_emit_effect_12cd_release_shared_motion_and_finish(
     struct RuntimeObject* object);
@@ -175,5 +189,19 @@ void object_start_long_motion_countdown_when_value80_clears(struct RuntimeObject
 void object_emit_periodic_effect_until_value80_clears(struct RuntimeObject* object);
 void object_emit_periodic_effect_then_continue_when_value80_clears(struct RuntimeObject* object);
 void object_emit_periodic_effect_until_stop(struct RuntimeObject* object);
+s32 object_remove_when_runtime_ready(struct RuntimeObject* object);
+void object_prepare_saved_position_when_value80_clears(struct RuntimeObject* object);
+s32 object_emit_effect_d82_and_remove_when_runtime_ready(struct RuntimeObject* object);
+void object_move_left_by_behavior_velocity_until_exit(struct RuntimeObject* object);
+void object_emit_effect_db2_until_value80_clears(struct RuntimeObject* object);
+void object_start_valueA4_animation_and_sound_88(struct RuntimeObject* object);
+void object_emit_effect_1c52_until_value80_clears(struct RuntimeObject* object);
+void object_emit_effect_1c5b_until_stop(struct RuntimeObject* object);
+s32 object_continue_owner_motion_when_runtime_ready(struct RuntimeObject* object);
+void object_stop_on_visual_complete(struct RuntimeObject* object);
+void object_emit_effect_1bfe_on_visual_complete(struct RuntimeObject* object);
+s32 object_emit_effect_1df8_and_remove_when_runtime_ready(struct RuntimeObject* object);
+void object_start_animation_21_after_countdown(struct RuntimeObject* object);
+void object_start_variant_animation_7_or_13(struct RuntimeObject* object);
 
 #endif
