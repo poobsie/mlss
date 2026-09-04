@@ -48,6 +48,8 @@ Two position-state initializers now preserve the current value pair and install 
 
 `graphics_resource_owner_initialize` installs descriptor `0x08CDD060` and clears its transfer pointer. `graphics_fill_background_palettes` replicates one 16-bit value across both 512-byte background palette banks using the BIOS fill operation.
 
+`graphics_destroy_linked_visual` now exposes the complete linked-visual teardown path. It detaches a non-null visual, clears flag bits `0x04` and `0x08` at offset `0x13`, runs the graphics cleanup, and releases the visual. The remaining flag bits stay unnamed until their writers and rendering effects are recovered.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,648 linked C functions checked, 1,648 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,745 linked C functions checked, 1,745 exact, and zero mismatches.

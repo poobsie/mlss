@@ -71404,6 +71404,7 @@ _0807FB2C: .4byte 0x03000FD8
 _0807FB30: .4byte 0x03001034
 	.endif
 	.section .text.field_runtime_link_nodes_after_sub_807FB04, "ax", %progbits
+	.if 0
 	thumb_func_start sub_807FB34
 sub_807FB34:
 	push {r4, lr}
@@ -71428,6 +71429,8 @@ _0807FB5C:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+	.section .text.misc_helpers_02_after_sub_807FB34, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_807FB64, "ax", %progbits
 	thumb_func_start sub_807FB78
 sub_807FB78:
