@@ -116,6 +116,14 @@
 #define object_start_animation_2_and_effect_22c0 sub_80745E4
 #define object_stop_after_timer_countdown sub_807462C
 #define object_begin_timer_16_when_value80_clears sub_8074688
+#define object_stop_sound_and_forward_owner_transition sub_8075BB8
+#define object_finish_runtime_motion_and_resume sub_8075C10
+#define object_emit_effect_2479_on_visual_complete sub_8075C8C
+#define object_emit_effect_23de_when_link_clears sub_8075D98
+#define object_emit_periodic_effect_23cc_until_value80_clears sub_8075E3C
+#define object_emit_periodic_effect_23cc_until_alternate_resume sub_8075E9C
+#define object_emit_effect_2423_and_finish_when_runtime_ready sub_8075EFC
+#define object_clear_animation_and_stop_on_visual_complete sub_8075F4C
 
 void object_emit_effect_12cd_release_shared_motion_and_finish(
     struct RuntimeObject* object);
@@ -259,5 +267,13 @@ void object_wait_for_child_or_periodic_transition(struct RuntimeObject* object);
 void object_start_animation_2_and_effect_22c0(struct RuntimeObject* object);
 void object_stop_after_timer_countdown(struct RuntimeObject* object);
 void object_begin_timer_16_when_value80_clears(struct RuntimeObject* object);
+s32 object_stop_sound_and_forward_owner_transition(struct RuntimeObject* object, void* owner);
+s32 object_finish_runtime_motion_and_resume(struct RuntimeObject* object);
+void object_emit_effect_2479_on_visual_complete(struct RuntimeObject* object);
+void object_emit_effect_23de_when_link_clears(struct RuntimeObject* object);
+void object_emit_periodic_effect_23cc_until_value80_clears(struct RuntimeObject* object);
+void object_emit_periodic_effect_23cc_until_alternate_resume(struct RuntimeObject* object);
+s32 object_emit_effect_2423_and_finish_when_runtime_ready(struct RuntimeObject* object);
+void object_clear_animation_and_stop_on_visual_complete(struct RuntimeObject* object);
 
 #endif

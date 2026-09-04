@@ -251,6 +251,8 @@ Twenty-one remaining scripted-action factories now use the established thirteen-
 
 Seven compact callbacks in the `0x080742FC` through `0x080746A8` object chain now expose readiness resumption, two signed countdowns, animation and effect setup, a linked-child wait, and a `value80`-gated timer handoff. Effects `0x22E2` and `0x22C0`, sound `0xAD`, and the linked child's gameplay identity remain numeric or structural. Three neighboring owner-coordinate routines and one owner-variant selector stayed in assembly after exhausting their shaping budget.
 
+Eight callbacks in the `0x08075BB8` through `0x08075F4C` chain now expose an owner-forwarded transition, a readiness cleanup, two visual-completion gates, paired periodic effect `0x23CC` loops, and terminal effects `0x23DE` and `0x2423`. The owner argument and numeric effect identities remain structural. Two adjacent routines stayed in assembly after their natural C forms produced compiler-specific four-byte differences, while the larger global-object and construction routines surveyed after them were deferred as a separate ownership slice.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,677 linked C functions checked, 1,677 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,685 linked C functions checked, 1,685 exact, and zero mismatches.

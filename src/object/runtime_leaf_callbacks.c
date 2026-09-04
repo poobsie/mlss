@@ -126,6 +126,13 @@ void sub_80744B4(struct RuntimeObject* object);
 void sub_80746EC(struct RuntimeObject* object);
 void sub_80728D0(struct RuntimeObject* object);
 void sub_8074688(struct RuntimeObject* object);
+void sub_80759E8(struct RuntimeObject* object);
+void sub_80757C0(struct RuntimeObject* object);
+void sub_80756A4(struct RuntimeObject* object);
+void sub_807536C(struct RuntimeObject* object);
+void sub_8074EEC(struct RuntimeObject* object);
+void sub_8074D1C(struct RuntimeObject* object);
+void sub_810DD7C(struct RuntimeObject* object, void* owner, s32 command);
 void sub_80746C4(struct RuntimeObject* object);
 void sub_810CA8C(s32 value);
 
@@ -1752,3 +1759,112 @@ void object_begin_timer_16_when_value80_clears(struct RuntimeObject* object)
         object->update = sub_80728D0;
     }
 }
+
+SEC(sub_8075BB8)
+s32 object_stop_sound_and_forward_owner_transition(
+    struct RuntimeObject* object, void* owner)
+{
+    sound_effect_stop(0x8C);
+    sub_810DD7C(object, owner, 0xFF);
+    object->timer = 0;
+    object->update = sub_80759E8;
+    return 0;
+}
+
+SEC(sub_8075C10)
+s32 object_finish_runtime_motion_and_resume(struct RuntimeObject* object)
+{
+    s32 result = sub_8087124(object);
+    if (result == 0) {
+        sub_807F47C(object);
+        sub_8082E1C(object, 1, 0, 0);
+        object->timer = 30;
+        object->update = sub_80757C0;
+        return 0;
+    }
+    return result;
+}
+
+SEC(sub_8075C8C)
+void object_emit_effect_2479_on_visual_complete(struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 7, 0, 0);
+        sound_effect_play(0x12B, SOUND_VOLUME_UNCHANGED);
+        sub_80DF024(0x2479, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        object->update = sub_80756A4;
+    }
+}
+
+SEC(sub_8075D98)
+void object_emit_effect_23de_when_link_clears(struct RuntimeObject* object)
+{
+    if (object->linkedObject == NULL) {
+        sub_8082E1C(object, 0x10, 0, 0);
+        object->update = sub_807536C;
+        sub_80DF024(0x23DE, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        sound_effect_play(0x46, SOUND_VOLUME_UNCHANGED);
+    }
+}
+
+SEC(sub_8075E3C)
+void object_emit_periodic_effect_23cc_until_value80_clears(
+    struct RuntimeObject* object)
+{
+    object->timer--;
+    if (object->timer <= 0) {
+        sub_80DF024(0x23CC, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        object->timer = 10;
+    }
+    if (object->value80 == 0)
+        object->update = sub_8074EEC;
+}
+
+SEC(sub_8075E9C)
+void object_emit_periodic_effect_23cc_until_alternate_resume(
+    struct RuntimeObject* object)
+{
+    object->timer--;
+    if (object->timer <= 0) {
+        sub_80DF024(0x23CC, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        object->timer = 10;
+    }
+    if (object->value80 == 0)
+        object->update = sub_8074D1C;
+}
+
+SEC(sub_8075EFC)
+s32 object_emit_effect_2423_and_finish_when_runtime_ready(
+    struct RuntimeObject* object)
+{
+    s32 result = sub_8086D80(object);
+    if (result == 0) {
+        sub_80DF024(0x2423, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        sub_807C298(object);
+        sound_effect_stop(0x8C);
+        return 0;
+    }
+    return result;
+}
+
+SEC(sub_8075F4C)
+void object_clear_animation_and_stop_on_visual_complete(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 0, 0, 0);
+        object->update = NULL;
+    }
+}
+SEC(sub_8075F4C)
+const u16 sub_8075F4C_padding = 0;
