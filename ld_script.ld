@@ -1463,6 +1463,8 @@ SECTIONS
         asm/text08057568.o(.text.script_command_helpers_after_sub_80F10E0);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80F110C);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80F110C);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80F112C);
+        asm/text08057568.o(.text.script_command_helpers_after_sub_80F112C);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80F143C);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80F143C);
         src/script/command_handlers.o(.text.script_command_handlers.script_command_set_object_configuration);

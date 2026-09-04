@@ -66,6 +66,9 @@ extern void sub_8047D44(void*);
 extern void sub_805113C(void*);
 extern void sub_8050FD0(void*);
 extern void sub_80E9C4C(void*, void*, void*, s32, s32, s32);
+extern void sub_8047B08(void*, s32, s32);
+extern void sub_8047B5C(void*, s16);
+extern void sub_8046A10(void*);
 
 struct ScriptObjectBytePairArguments {
     u8 value0;
@@ -744,5 +747,24 @@ s32 script_command_branch_on_selected_runtime_flag(
     }
     if (*(u16*)(runtime + 0xA0) & 1)
         state->cursor = *arguments;
+    return 1;
+}
+
+SEC(sub_80F112C)
+s32 script_command_control_object_motion(
+    void* context, void* object, struct ScriptExecutionState* state,
+    s32* arguments)
+{
+    /* Operation bits are proven; the gameplay names of the three modes are not. */
+    s32 operation = *arguments++;
+
+    if (!(operation & 2)) {
+        sub_8047B08(object, operation, *arguments);
+        state->primaryFlags |= 0x42;
+    } else if (operation == 2) {
+        sub_8047B5C(object, *(s16*)arguments);
+    } else {
+        sub_8046A10(object);
+    }
     return 1;
 }

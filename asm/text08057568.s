@@ -286857,6 +286857,8 @@ _080F1070:
 	.section .text.script_command_helpers_after_sub_80F1088, "ax", %progbits
 	.section .text.script_command_helpers_after_sub_80F10E0, "ax", %progbits
 	.section .text.script_command_helpers_after_sub_80F110C, "ax", %progbits
+	.section .text.script_command_helpers_after_sub_80F112C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80F112C
 sub_80F112C:
 	push {r4, r5, lr}
@@ -286893,6 +286895,7 @@ _080F1168:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
+	.endif
 	thumb_func_start sub_80F1170
 sub_80F1170:
 	push {r4, r5, r6, r7, lr}

@@ -34,6 +34,7 @@ struct ScriptSelectedRuntimeArguments;
 #define script_command_apply_flagged_effects sub_80F1088
 #define script_command_branch_on_indexed_object_state sub_80F10E0
 #define script_command_branch_on_object_state sub_80F110C
+#define script_command_control_object_motion sub_80F112C
 #define script_command_control_indexed_object_runtime sub_80F143C
 #define script_command_control_object_runtime sub_80F1490
 #define script_command_control_object_pair sub_80F1A1C
@@ -102,6 +103,9 @@ s32 script_command_branch_on_indexed_object_state(
 s32 script_command_branch_on_object_state(
     void* context, void* object, struct ScriptExecutionState* state,
     const u32* arguments);
+s32 script_command_control_object_motion(
+    void* context, void* object, struct ScriptExecutionState* state,
+    s32* arguments);
 s32 script_command_control_indexed_object_runtime(
     struct ScriptCommandContext* context, void* state,
     const s32* arguments);
