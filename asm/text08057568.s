@@ -26329,103 +26329,9 @@ _08066C8C: .4byte 0x00000D0C
 	.section .text.runtime_leaf_callbacks_after_sub_8066CEC, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_8066D50, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_8066D78, "ax", %progbits
-	thumb_func_start sub_8066DA4
-sub_8066DA4:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	ldr r0, [r4, #0x08]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _08066E00
-	adds r1, r4, #0x0
-	adds r1, #0x84
-	movs r0, #0xF0
-	lsls r0, r0, #0x07
-	str r0, [r1, #0x00]
-	adds r1, #0x04
-	movs r0, #0xD0
-	lsls r0, r0, #0x07
-	str r0, [r1, #0x00]
-	adds r1, #0x04
-	ldr r0, [r4, #0x40]
-	str r0, [r1, #0x00]
-	adds r2, r4, #0x0
-	adds r2, #0x79
-	ldrb r0, [r2, #0x00]
-	movs r1, #0x20
-	orrs r0, r1
-	strb r0, [r2, #0x00]
-	adds r1, r4, #0x0
-	adds r1, #0x7C
-	movs r2, #0x00
-	movs r0, #0xC0
-	lsls r0, r0, #0x01
-	strh r0, [r1, #0x00]
-	adds r0, r4, #0x0
-	adds r0, #0x7A
-	strh r2, [r0, #0x00]
-	adds r0, r4, #0x0
-	bl sub_8085B38
-	adds r0, r4, #0x0
-	movs r1, #0x03
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r0, _08066E08 @ =0x08066E0D
-	str r0, [r4, #0x4C]
-_08066E00:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08066E08: .4byte sub_8066E0C
+	.section .text.runtime_leaf_callbacks_after_sub_8066DA4, "ax", %progbits
 	.section .text.small_functions_03_after_sub_8066E0C, "ax", %progbits
-	thumb_func_start sub_8066E5C
-sub_8066E5C:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	ldr r0, [r4, #0x08]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _08066EA8
-	adds r1, r4, #0x0
-	adds r1, #0xAC
-	ldrh r0, [r1, #0x00]
-	subs r0, #0x01
-	strh r0, [r1, #0x00]
-	lsls r0, r0, #0x10
-	cmp r0, #0x00
-	bgt _08066EA8
-	adds r0, r4, #0x0
-	movs r1, #0x06
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	adds r1, r4, #0x0
-	adds r1, #0xA0
-	adds r0, r4, #0x0
-	adds r0, #0x9C
-	ldr r0, [r0, #0x00]
-	str r0, [r1, #0x00]
-	bl sub_8199F30
-	adds r2, r4, #0x0
-	adds r2, #0xA4
-	movs r1, #0x01
-	ands r1, r0
-	adds r1, #0x03
-	str r1, [r2, #0x00]
-	ldr r0, _08066EB0 @ =0x08066EB5
-	str r0, [r4, #0x4C]
-_08066EA8:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08066EB0: .4byte sub_8066EB4
+	.section .text.runtime_leaf_callbacks_after_sub_8066E5C, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_8066EB4, "ax", %progbits
 	thumb_func_start sub_8066EE0
 sub_8066EE0:
@@ -27658,37 +27564,7 @@ _08067824:
 	.byte 0x00, 0x00
 _0806782C: .4byte sub_808750C
 	.byte 0x01, 0x20, 0x40, 0x42, 0x70, 0x47, 0x00, 0x00
-	thumb_func_start sub_8067838
-sub_8067838:
-	push {r4, r5, lr}
-	adds r5, r0, #0x0
-	bl sub_8087124
-	adds r4, r0, #0x0
-	cmp r4, #0x00
-	bne _0806786C
-	adds r0, r5, #0x0
-	movs r1, #0x01
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	adds r0, r5, #0x0
-	adds r0, #0x80
-	str r4, [r0, #0x00]
-	adds r1, r5, #0x0
-	adds r1, #0x84
-	movs r0, #0x14
-	str r0, [r1, #0x00]
-	ldr r0, _08067868 @ =0x080679FD
-	str r0, [r5, #0x4C]
-	movs r0, #0x00
-	b _0806786E
-_08067868: .4byte sub_80679FC
-_0806786C:
-	adds r0, r4, #0x0
-_0806786E:
-	pop {r4, r5}
-	pop {r1}
-	bx r1
+	.section .text.runtime_leaf_callbacks_after_sub_8067838, "ax", %progbits
 	.section .text.countdown_callbacks_after_sub_8067874, "ax", %progbits
 	thumb_func_start sub_8067894
 sub_8067894:
@@ -28441,107 +28317,8 @@ _08067F84: .4byte sub_8068058
 _08067F88: .4byte sub_806800C
 _08067F8C: .4byte sub_8068074
 _08067F90: .4byte sub_8067F94
-	thumb_func_start sub_8067F94
-sub_8067F94:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	ldr r0, [r4, #0x08]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _08067FBC
-	adds r0, r4, #0x0
-	adds r0, #0xAC
-	movs r1, #0x00
-	ldsh r0, [r0, r1]
-	cmp r0, #0x00
-	beq _08067FF0
-	adds r0, r4, #0x0
-	movs r1, #0x06
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-_08067FBC:
-	adds r1, r4, #0x0
-	adds r1, #0xAE
-	ldrh r0, [r1, #0x00]
-	subs r0, #0x01
-	strh r0, [r1, #0x00]
-	lsls r0, r0, #0x10
-	cmp r0, #0x00
-	bgt _08068000
-	subs r1, #0x02
-	ldrh r0, [r1, #0x00]
-	subs r0, #0x01
-	strh r0, [r1, #0x00]
-	lsls r0, r0, #0x10
-	cmp r0, #0x00
-	ble _08067FF0
-	adds r0, r4, #0x0
-	movs r1, #0x07
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r0, _08067FEC @ =0x08067E4D
-	b _08067FFE
-	.byte 0x00, 0x00
-_08067FEC: .4byte sub_8067E4C
-_08067FF0:
-	adds r0, r4, #0x0
-	movs r1, #0x09
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r0, _08068008 @ =0x0808750D
-_08067FFE:
-	str r0, [r4, #0x4C]
-_08068000:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08068008: .4byte sub_808750C
-	thumb_func_start sub_806800C
-sub_806800C:
-	push {r4, lr}
-	add sp, #-0x004
-	adds r4, r0, #0x0
-	bl sub_80871A8
-	cmp r0, #0x00
-	bne _08068046
-	ldr r0, _08068050 @ =0x0806819D
-	str r0, [r4, #0x4C]
-	ldr r1, [r4, #0x38]
-	cmp r1, #0x00
-	bge _08068026
-	adds r1, #0xFF
-_08068026:
-	asrs r1, r1, #0x08
-	ldr r2, [r4, #0x3C]
-	cmp r2, #0x00
-	bge _08068030
-	adds r2, #0xFF
-_08068030:
-	asrs r2, r2, #0x08
-	ldr r3, [r4, #0x40]
-	cmp r3, #0x00
-	bge _0806803A
-	adds r3, #0xFF
-_0806803A:
-	asrs r3, r3, #0x08
-	str r4, [sp, #0x000]
-	ldr r0, _08068054 @ =0x000010C6
-	bl sub_80DF024
-	movs r0, #0x00
-_08068046:
-	add sp, #0x004
-	pop {r4}
-	pop {r1}
-	bx r1
-	.byte 0x00, 0x00
-_08068050: .4byte sub_806819C
-_08068054: .4byte 0x000010C6
+	.section .text.runtime_leaf_callbacks_after_sub_8067F94, "ax", %progbits
+	.section .text.runtime_leaf_callbacks_after_sub_806800C, "ax", %progbits
 	.section .text.misc_helpers_01_after_sub_8068058, "ax", %progbits
 	.section .text.runtime_leaf_callbacks_after_sub_8068074, "ax", %progbits
 	.section .text.runtime_leaf_callbacks_after_sub_80680A0, "ax", %progbits
@@ -28589,119 +28366,13 @@ _08068112:
 	.byte 0x00, 0x00
 _0806811C: .4byte 0x000010AD
 _08068120: .4byte sub_8068268
-	thumb_func_start sub_8068124
-sub_8068124:
-	push {lr}
-	adds r2, r0, #0x0
-	adds r0, #0x84
-	ldr r1, [r2, #0x10]
-	ldr r0, [r0, #0x00]
-	subs r1, r1, r0
-	str r1, [r2, #0x10]
-	cmp r1, #0x00
-	bge _08068138
-	adds r1, #0xFF
-_08068138:
-	asrs r1, r1, #0x08
-	movs r0, #0x20
-	negs r0, r0
-	cmp r1, r0
-	bge _08068148
-	adds r0, r2, #0x0
-	bl sub_807C298
-_08068148:
-	pop {r0}
-	bx r0
+	.section .text.runtime_leaf_callbacks_after_sub_8068124, "ax", %progbits
 	.section .text.misc_helpers_01_after_sub_806814C, "ax", %progbits
-	thumb_func_start sub_8068168
-sub_8068168:
-	push {lr}
-	adds r2, r0, #0x0
-	adds r1, r2, #0x0
-	adds r1, #0x9C
-	ldr r0, [r1, #0x00]
-	cmp r0, #0x00
-	bne _08068180
-	movs r0, #0x02
-	str r0, [r1, #0x00]
-	adds r1, #0x04
-	movs r0, #0x01
-	str r0, [r1, #0x00]
-_08068180:
-	ldr r0, _0806818C @ =0x08067DC9
-	str r0, [r2, #0x4C]
-	movs r0, #0x01
-	pop {r1}
-	bx r1
-	.byte 0x00, 0x00
-_0806818C: .4byte sub_8067DC8
+	.section .text.runtime_leaf_callbacks_after_sub_8068168, "ax", %progbits
 	.byte 0x01, 0x49, 0xC1, 0x64, 0x01, 0x20, 0x70, 0x47, 0x75, 0x82, 0x06, 0x08
 	.section .text.runtime_leaf_callbacks_after_sub_806819C, "ax", %progbits
-	thumb_func_start sub_80681EC
-sub_80681EC:
-	push {r4, lr}
-	add sp, #-0x004
-	adds r4, r0, #0x0
-	ldr r1, [r4, #0x38]
-	cmp r1, #0x00
-	bge _080681FA
-	adds r1, #0xFF
-_080681FA:
-	asrs r1, r1, #0x08
-	ldr r2, [r4, #0x3C]
-	cmp r2, #0x00
-	bge _08068204
-	adds r2, #0xFF
-_08068204:
-	asrs r2, r2, #0x08
-	ldr r3, [r4, #0x40]
-	cmp r3, #0x00
-	bge _0806820E
-	adds r3, #0xFF
-_0806820E:
-	asrs r3, r3, #0x08
-	str r4, [sp, #0x000]
-	ldr r0, _08068228 @ =0x000010BE
-	bl sub_80DF024
-	adds r0, r4, #0x0
-	bl sub_807C298
-	add sp, #0x004
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08068228: .4byte 0x000010BE
-	thumb_func_start sub_806822C
-sub_806822C:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	ldr r0, [r4, #0x08]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _0806825C
-	adds r1, r4, #0x0
-	adds r1, #0xAE
-	ldrh r0, [r1, #0x00]
-	subs r0, #0x01
-	strh r0, [r1, #0x00]
-	lsls r0, r0, #0x10
-	cmp r0, #0x00
-	bgt _0806825C
-	adds r0, r4, #0x0
-	movs r1, #0x07
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r0, _08068264 @ =0x08067E4D
-	str r0, [r4, #0x4C]
-_0806825C:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08068264: .4byte sub_8067E4C
+	.section .text.runtime_leaf_callbacks_after_sub_80681EC, "ax", %progbits
+	.section .text.runtime_leaf_callbacks_after_sub_806822C, "ax", %progbits
 	.section .text.after_sub_8068268, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_8068274, "ax", %progbits
 	.section .text.small_functions_01_after_sub_806829C, "ax", %progbits

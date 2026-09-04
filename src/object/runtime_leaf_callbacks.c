@@ -34,11 +34,19 @@ void sub_8066780(struct RuntimeObject* object);
 void sub_8066864(struct RuntimeObject* object);
 void sub_806688C(struct RuntimeObject* object);
 void sub_8066D78(struct RuntimeObject* object);
+void sub_8066E0C(struct RuntimeObject* object);
+void sub_8066EB4(struct RuntimeObject* object);
+void sub_80679FC(struct RuntimeObject* object);
+void sub_8067DC8(struct RuntimeObject* object);
+void sub_8067E4C(struct RuntimeObject* object);
+void sub_806819C(struct RuntimeObject* object);
 void sub_808750C(struct RuntimeObject* object);
 void nullsub_15(void);
 s32 sub_8082B00(struct RuntimeObject* object);
 s32 sub_80871A8(struct RuntimeObject* object);
+s32 sub_8087124(struct RuntimeObject* object);
 s32 sub_8086858(struct RuntimeObject* object, s32 effect);
+s32 sub_8199F30(void);
 void sub_807F47C(struct RuntimeObject* object);
 void sub_807F4FC(struct RuntimeObject* object);
 void sub_8085B38(struct RuntimeObject* object);
@@ -198,6 +206,135 @@ void object_advance_repeating_animation_count(struct RuntimeObject* object)
                 sub_8082E1C(object, 0xA, 0, 0);
                 object->update = sub_8066D78;
             }
+        }
+    }
+}
+
+SEC(sub_8066DA4)
+void object_prepare_fixed_motion_on_visual_complete(
+    struct RuntimeObject* object)
+{
+    u8* flags;
+
+    if (object->visual->flags & 8) {
+        object->value84 = 0x7800;
+        *(s32*)object->unknown88 = 0x6800;
+        object->value8C = object->positionZBase;
+        flags = &object->flags79;
+        *flags |= 0x20;
+        object->unknown7C = 0x180;
+        object->unknown7A = 0;
+        sub_8085B38(object);
+        sub_8082E1C(object, 3, 0, 0);
+        object->update = sub_8066E0C;
+    }
+}
+
+SEC(sub_8066E5C)
+void object_start_animation_6_and_random_repeat_count(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        object->timer--;
+        if (object->timer <= 0) {
+            sub_8082E1C(object, 6, 0, 0);
+            object->valueA0 = object->behaviorState;
+            object->valueA4 = (sub_8199F30() & 1) + 3;
+            object->update = sub_8066EB4;
+        }
+    }
+}
+
+SEC(sub_8067838)
+s32 object_begin_countdown_motion_when_ready(struct RuntimeObject* object)
+{
+    s32 result;
+
+    result = sub_8087124(object);
+    if (result != 0)
+        return result;
+    sub_8082E1C(object, 1, 0, 0);
+    object->value80 = 0;
+    object->value84 = 0x14;
+    object->update = sub_80679FC;
+    return 0;
+}
+
+SEC(sub_8067F94)
+void object_advance_alternating_visual_countdown(struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        if (object->timer == 0)
+            goto finish;
+        sub_8082E1C(object, 6, 0, 0);
+    }
+    object->secondaryTimer--;
+    if (object->secondaryTimer <= 0) {
+        object->timer--;
+        if (object->timer > 0) {
+            sub_8082E1C(object, 7, 0, 0);
+            object->update = sub_8067E4C;
+        } else {
+finish:
+            sub_8082E1C(object, 9, 0, 0);
+            object->update = sub_808750C;
+        }
+    }
+}
+
+SEC(sub_806800C)
+s32 object_emit_effect_10c6_when_ready(struct RuntimeObject* object)
+{
+    s32 result;
+
+    result = sub_80871A8(object);
+    if (result == 0) {
+        object->update = sub_806819C;
+        sub_80DF024(0x10C6, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        return 0;
+    }
+    return result;
+}
+
+SEC(sub_8068124)
+void object_move_left_by_value84_until_screen_exit(struct RuntimeObject* object)
+{
+    object->currentPositionX -= object->value84;
+    if (object->currentPositionX / 0x100 < -0x20)
+        sub_807C298(object);
+}
+
+SEC(sub_8068168)
+s32 object_initialize_behavior_and_resume_motion(struct RuntimeObject* object)
+{
+    if (object->behaviorState == 0) {
+        object->behaviorState = 2;
+        object->valueA0 = 1;
+    }
+    object->update = sub_8067DC8;
+    return 1;
+}
+
+SEC(sub_80681EC)
+void object_emit_effect_10be_and_finish(struct RuntimeObject* object)
+{
+    sub_80DF024(0x10BE, object->positionX / 0x100,
+                object->positionY / 0x100, object->positionZBase / 0x100,
+                object);
+    sub_807C298(object);
+}
+
+SEC(sub_806822C)
+void object_finish_secondary_countdown_with_animation_7(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        object->secondaryTimer--;
+        if (object->secondaryTimer <= 0) {
+            sub_8082E1C(object, 7, 0, 0);
+            object->update = sub_8067E4C;
         }
     }
 }
