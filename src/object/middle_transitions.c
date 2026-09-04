@@ -1,4 +1,5 @@
 #include "global.h"
+#include "audio/sound_effects.h"
 #include "object/functions.h"
 
 #define SEC(name)   __attribute__((section(".text.middle." #name)))
@@ -11,6 +12,7 @@ void sub_807C298(void);
 void sub_8087540(void*);
 int sub_8082B00(void*);
 void sub_80873B8(void*, int, int);
+void sub_8082E1C(void*, s32, s32, s32);
 
 #define DECL_NEXT(name) extern void name(void*)
 DECL_NEXT(sub_80D9B9C);
@@ -33,6 +35,166 @@ DECL_NEXT(sub_80DD798);
 DECL_NEXT(sub_80DD7C4);
 DECL_NEXT(sub_80DE670);
 DECL_NEXT(sub_80DDAE4);
+DECL_NEXT(sub_80D9C24);
+DECL_NEXT(sub_80D9C6C);
+DECL_NEXT(sub_80D9CB4);
+DECL_NEXT(sub_80D9D08);
+DECL_NEXT(sub_80D95A4);
+DECL_NEXT(sub_80D90DC);
+DECL_NEXT(sub_80D9F50);
+DECL_NEXT(sub_80D9FB0);
+DECL_NEXT(sub_80DA024);
+DECL_NEXT(sub_80DA0E0);
+DECL_NEXT(sub_80DA1EC);
+DECL_NEXT(sub_80DA208);
+DECL_NEXT(sub_80DA2C4);
+DECL_NEXT(sub_80DA39C);
+DECL_NEXT(sub_80DA098);
+void sub_807F47C(void*);
+
+#define OWNER_VARIANT(object) \
+    (*(s16*)((u8*)PTRAT(PTRAT((object), 0x2C), 0x28) + 0xEC))
+#define SET_VISUAL_MODE_2(object) do {                                  \
+    u8* visual = PTRAT((object), 8);                                    \
+    u8 flags = U8AT(visual, 0x12);                                      \
+    s32 mask = 7;                                                       \
+    mask = -mask;                                                       \
+    mask &= flags;                                                      \
+    mask |= 2;                                                          \
+    U8AT(visual, 0x12) = mask;                                          \
+} while (0)
+
+#define DEFINE_VARIANT_SETUP(symbol, next)                               \
+    SEC(symbol) void symbol(void* object)                                \
+    {                                                                    \
+        s32 variant = OWNER_VARIANT(object);                             \
+        s32 animation;                                                    \
+        if (variant == -1)                                               \
+            animation = 2;                                                \
+        else                                                              \
+            animation = 6;                                                \
+        sub_8082E1C(object, animation, 0, 0);                             \
+        SET_VISUAL_MODE_2(object);                                        \
+        PTRAT(object, 0x4C) = next;                                       \
+    }
+
+DEFINE_VARIANT_SETUP(sub_80D9B9C, sub_80D9C24)
+DEFINE_VARIANT_SETUP(sub_80D9BE0, sub_80D9C6C)
+
+#define DEFINE_VISUAL_ADVANCE(symbol, next)                              \
+    SEC(symbol) void symbol(void* object)                                \
+    {                                                                    \
+        s32 variant;                                                     \
+        s32 animation;                                                    \
+        if (!(U8AT(PTRAT(object, 8), 0x12) & 8))                         \
+            return;                                                      \
+        variant = OWNER_VARIANT(object);                                 \
+        if (variant == -1)                                               \
+            animation = 3;                                                \
+        else                                                              \
+            animation = 7;                                                \
+        sub_8082E1C(object, animation, 0, 0);                             \
+        U16AT(object, 0xAC) = 0x18;                                       \
+        PTRAT(object, 0x4C) = next;                                       \
+    }
+
+DEFINE_VISUAL_ADVANCE(sub_80D9C24, sub_80D9CB4)
+DEFINE_VISUAL_ADVANCE(sub_80D9C6C, sub_80D9D08)
+
+#define DEFINE_DELAYED_VARIANT_RETURN(symbol, next)                      \
+    SEC(symbol) void symbol(void* object)                                \
+    {                                                                    \
+        s32 variant;                                                     \
+        s32 animation;                                                    \
+        (*(s16*)((u8*)object + 0xAC))--;                                  \
+        if (*(s16*)((u8*)object + 0xAC) >= 0)                            \
+            return;                                                      \
+        variant = OWNER_VARIANT(object);                                 \
+        if (variant == -1)                                               \
+            animation = 4;                                                \
+        else                                                              \
+            animation = 8;                                                \
+        sub_8082E1C(object, animation, 0, 0);                             \
+        SET_VISUAL_MODE_2(object);                                        \
+        PTRAT(object, 0x4C) = next;                                       \
+    }
+
+DEFINE_DELAYED_VARIANT_RETURN(sub_80D9CB4, sub_80D95A4)
+DEFINE_DELAYED_VARIANT_RETURN(sub_80D9D08, sub_80D90DC)
+
+SEC(sub_80D9E9C) void sub_80D9E9C(void* object)
+{
+    (*(s16*)((u8*)object + 0xAC))--;
+    if (*(s16*)((u8*)object + 0xAC) < 0)
+        PTRAT(object, 0x4C) = sub_80D9F50;
+}
+
+#define DEFINE_SOUND_38_TRANSITION(symbol, clearTimer, next)             \
+    SEC(symbol) void symbol(void* object)                                \
+    {                                                                    \
+        if (clearTimer)                                                   \
+            U16AT(object, 0xAC) = 0;                                      \
+        sub_8082E1C(object, 2, 0, 0);                                    \
+        sound_effect_play(0x38, SOUND_VOLUME_UNCHANGED);                  \
+        SET_VISUAL_MODE_2(object);                                        \
+        PTRAT(object, 0x4C) = next;                                       \
+    }
+
+DEFINE_SOUND_38_TRANSITION(sub_80D9EBC, 0, sub_80D9FB0)
+DEFINE_SOUND_38_TRANSITION(sub_80D9EF4, 1, sub_80DA024)
+
+SEC(sub_80D9F34) void sub_80D9F34(void* object)
+{
+    if (*(s16*)((u8*)PTRAT(object, 0x28) + 0xF6) != 0)
+        PTRAT(object, 0x4C) = sub_80DA0E0;
+}
+
+#define DEFINE_VALUE80_CLEAR_ADVANCE(symbol, delay, next)               \
+    SEC(symbol) void symbol(void* object)                                \
+    {                                                                    \
+        if (U32AT(object, 0x80) != 0)                                    \
+            return;                                                      \
+        sub_8082E1C(object, 3, 0, 0);                                    \
+        SET_VISUAL_MODE_2(object);                                        \
+        U16AT(object, 0xAC) = delay;                                      \
+        PTRAT(object, 0x4C) = next;                                       \
+    }
+
+DEFINE_VALUE80_CLEAR_ADVANCE(sub_80DA100, 8, sub_80DA1EC)
+DEFINE_VALUE80_CLEAR_ADVANCE(sub_80DA140, 0x20, sub_80DA208)
+
+SEC(sub_80DA224) void sub_80DA224(void* object)
+{
+    if (U32AT(object, 0x80) != 0)
+        return;
+    sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
+    sub_8082E1C(object, 3, 0, 0);
+    SET_VISUAL_MODE_2(object);
+    PTRAT(object, 0x4C) = sub_80DA2C4;
+}
+
+SEC(sub_80DA368) void sub_80DA368(void* object)
+{
+    s16* timer = (s16*)((u8*)object + 0xAC);
+    (*timer)--;
+    if (*timer < 0) {
+        sub_8082E1C(object, 6, 0, 0);
+        *timer = 0;
+        PTRAT(object, 0x4C) = sub_80DA39C;
+    }
+}
+
+SEC(sub_80DA480) void sub_80DA480(void* object)
+{
+    s16* timer = (s16*)((u8*)object + 0xAC);
+    (*timer)--;
+    if (*timer < 0) {
+        sub_807F47C(object);
+        sub_8082E1C(object, 6, 0, 0);
+        *timer = 8;
+        PTRAT(object, 0x4C) = sub_80DA098;
+    }
+}
 
 #define DEFINE_CALL_VOID(symbol, name, callee)                          \
     SEC(symbol) void name(void) { callee(); }                           \

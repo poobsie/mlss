@@ -172,6 +172,13 @@ Ten neighboring callbacks extend the same early object sequences with paired ani
 
 Twenty-seven middle-address callbacks now form five explicit object-transition families: terminal action wrappers, visual-completion finishers, readiness-poll continuations, visual-flag continuations, and two follow-up initializers. Their C-facing names describe those families, with letter suffixes where the assembly-only owning behavior tables do not yet support gameplay-specific identities. The repeated control flow is represented once per family instead of as unrelated address-named functions.
 
+Fifteen caller-connected callbacks from one middle scene chain now cover variant-selected
+animation setup, visual-completion advancement, signed timer gates, and `value80` gates.
+The two variant paths read a signed selector through the object's position owner and
+choose animations 2 through 8, while later stages arm explicit delays and sounds before
+installing their continuations. The owner member at offset `0x28` and its selector at
+`0xEC` remain structural because their gameplay identity is still confined to assembly.
+
 The next object sequence recovers an owner-supplied starting X position, command `0x4029` setup, and a linked position-history list. Each motion tick shifts the object left by `0x280` fixed-point units and propagates the previous X position through the list until the object crosses screen X `-40`.
 
 `object_traverse_child_tree_noop` recursively visits both child links of an independently observed tree-node layout. It performs no action at each node. The explicit `noop` suffix is intentional: assigning cleanup or rendering semantics to a side-effect-free traversal would be fiction.
@@ -200,4 +207,4 @@ The final eight object callbacks from the staging file now use `RuntimeObject`, 
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,518 linked C functions checked, 1,518 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,533 linked C functions checked, 1,533 exact, and zero mismatches.

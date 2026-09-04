@@ -249387,8 +249387,9 @@ _080D9B94:
 	pop {r4}
 	pop {r0}
 	bx r0
-	thumb_func_start sub_80D9B9C
-sub_80D9B9C:
+	.section .discard.object_mid7_sub_80D9B9C, "ax", %progbits
+	thumb_func_start asm_sub_80D9B9C
+asm_sub_80D9B9C:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	ldr r0, [r4, #0x2C]
@@ -249422,8 +249423,10 @@ _080D9BB6:
 	pop {r0}
 	bx r0
 _080D9BDC: .4byte sub_80D9C24
-	thumb_func_start sub_80D9BE0
-sub_80D9BE0:
+	.section .text.after_object_mid7_sub_80D9B9C, "ax", %progbits
+	.section .discard.object_mid7_sub_80D9BE0, "ax", %progbits
+	thumb_func_start asm_sub_80D9BE0
+asm_sub_80D9BE0:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	ldr r0, [r4, #0x2C]
@@ -249457,8 +249460,10 @@ _080D9BFA:
 	pop {r0}
 	bx r0
 _080D9C20: .4byte sub_80D9C6C
-	thumb_func_start sub_80D9C24
-sub_80D9C24:
+	.section .text.after_object_mid7_sub_80D9BE0, "ax", %progbits
+	.section .discard.object_mid7_sub_80D9C24, "ax", %progbits
+	thumb_func_start asm_sub_80D9C24
+asm_sub_80D9C24:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	ldr r0, [r4, #0x08]
@@ -249495,8 +249500,10 @@ _080D9C62:
 	pop {r0}
 	bx r0
 _080D9C68: .4byte sub_80D9CB4
-	thumb_func_start sub_80D9C6C
-sub_80D9C6C:
+	.section .text.after_object_mid7_sub_80D9C24, "ax", %progbits
+	.section .discard.object_mid7_sub_80D9C6C, "ax", %progbits
+	thumb_func_start asm_sub_80D9C6C
+asm_sub_80D9C6C:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	ldr r0, [r4, #0x08]
@@ -249533,8 +249540,10 @@ _080D9CAA:
 	pop {r0}
 	bx r0
 _080D9CB0: .4byte sub_80D9D08
-	thumb_func_start sub_80D9CB4
-sub_80D9CB4:
+	.section .text.after_object_mid7_sub_80D9C6C, "ax", %progbits
+	.section .discard.object_mid7_sub_80D9CB4, "ax", %progbits
+	thumb_func_start asm_sub_80D9CB4
+asm_sub_80D9CB4:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r1, r4, #0x0
@@ -249577,8 +249586,10 @@ _080D9CFE:
 	pop {r0}
 	bx r0
 _080D9D04: .4byte sub_80D95A4
-	thumb_func_start sub_80D9D08
-sub_80D9D08:
+	.section .text.after_object_mid7_sub_80D9CB4, "ax", %progbits
+	.section .discard.object_mid7_sub_80D9D08, "ax", %progbits
+	thumb_func_start asm_sub_80D9D08
+asm_sub_80D9D08:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r1, r4, #0x0
@@ -249621,6 +249632,7 @@ _080D9D52:
 	pop {r0}
 	bx r0
 _080D9D58: .4byte sub_80D90DC
+	.section .text.after_object_mid7_sub_80D9D08, "ax", %progbits
 	thumb_func_start sub_80D9D5C
 sub_80D9D5C:
 	push {r4, r5, lr}
@@ -249749,8 +249761,9 @@ _080D9E4E:
 	.byte 0xE0, 0x64, 0xC0, 0xF0, 0x5A, 0xF8, 0x01, 0x1C, 0x02, 0x20, 0x03, 0xF1, 0x7C, 0xFC, 0x00, 0x28
 	.byte 0x01, 0xD0, 0x03, 0x48, 0xE0, 0x64, 0x01, 0x20, 0x10, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0xF5, 0x9E
 	.byte 0x0D, 0x08, 0xBD, 0x9E, 0x0D, 0x08
-	thumb_func_start sub_80D9E9C
-sub_80D9E9C:
+	.section .discard.object_mid7_sub_80D9E9C, "ax", %progbits
+	thumb_func_start asm_sub_80D9E9C
+asm_sub_80D9E9C:
 	push {lr}
 	adds r2, r0, #0x0
 	adds r1, r2, #0x0
@@ -249767,8 +249780,10 @@ _080D9EB4:
 	pop {r0}
 	bx r0
 _080D9EB8: .4byte sub_80D9F50
-	thumb_func_start sub_80D9EBC
-sub_80D9EBC:
+	.section .text.after_object_mid7_sub_80D9E9C, "ax", %progbits
+	.section .discard.object_mid7_sub_80D9EBC, "ax", %progbits
+	thumb_func_start asm_sub_80D9EBC
+asm_sub_80D9EBC:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	movs r1, #0x02
@@ -249794,8 +249809,10 @@ sub_80D9EBC:
 	bx r0
 	.byte 0x00, 0x00
 _080D9EF0: .4byte sub_80D9FB0
-	thumb_func_start sub_80D9EF4
-sub_80D9EF4:
+	.section .text.after_object_mid7_sub_80D9EBC, "ax", %progbits
+	.section .discard.object_mid7_sub_80D9EF4, "ax", %progbits
+	thumb_func_start asm_sub_80D9EF4
+asm_sub_80D9EF4:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r1, r4, #0x0
@@ -249825,8 +249842,10 @@ sub_80D9EF4:
 	pop {r0}
 	bx r0
 _080D9F30: .4byte sub_80DA024
-	thumb_func_start sub_80D9F34
-sub_80D9F34:
+	.section .text.after_object_mid7_sub_80D9EF4, "ax", %progbits
+	.section .discard.object_mid7_sub_80D9F34, "ax", %progbits
+	thumb_func_start asm_sub_80D9F34
+asm_sub_80D9F34:
 	push {lr}
 	adds r1, r0, #0x0
 	ldr r0, [r1, #0x28]
@@ -249841,6 +249860,7 @@ _080D9F48:
 	pop {r0}
 	bx r0
 _080D9F4C: .4byte sub_80DA0E0
+	.section .text.after_object_mid7_sub_80D9F34, "ax", %progbits
 	.section .text.small_functions_07_after_sub_80D9F50, "ax", %progbits
 	thumb_func_start sub_80D9FB0
 sub_80D9FB0:
@@ -249995,8 +250015,9 @@ _080DA0D6:
 	bx r0
 _080DA0DC: .4byte sub_80DA180
 	.section .text.small_functions_01_after_sub_80DA0E0, "ax", %progbits
-	thumb_func_start sub_80DA100
-sub_80DA100:
+	.section .discard.object_mid7_sub_80DA100, "ax", %progbits
+	thumb_func_start asm_sub_80DA100
+asm_sub_80DA100:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r0, #0x80
@@ -250028,8 +250049,10 @@ _080DA134:
 	bx r0
 	.byte 0x00, 0x00
 _080DA13C: .4byte sub_80DA1EC
-	thumb_func_start sub_80DA140
-sub_80DA140:
+	.section .text.after_object_mid7_sub_80DA100, "ax", %progbits
+	.section .discard.object_mid7_sub_80DA140, "ax", %progbits
+	thumb_func_start asm_sub_80DA140
+asm_sub_80DA140:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r0, #0x80
@@ -250061,6 +250084,7 @@ _080DA174:
 	bx r0
 	.byte 0x00, 0x00
 _080DA17C: .4byte sub_80DA208
+	.section .text.after_object_mid7_sub_80DA140, "ax", %progbits
 	thumb_func_start sub_80DA180
 sub_80DA180:
 	push {r4, lr}
@@ -250153,8 +250177,9 @@ _080DA21C:
 _080DA220: .4byte sub_80DA264
 	.endif
 	.section .text.after_middle_sub_80DA208
-	thumb_func_start sub_80DA224
-sub_80DA224:
+	.section .discard.object_mid7_sub_80DA224, "ax", %progbits
+	thumb_func_start asm_sub_80DA224
+asm_sub_80DA224:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r0, #0x80
@@ -250185,6 +250210,7 @@ _080DA25A:
 	pop {r0}
 	bx r0
 _080DA260: .4byte sub_80DA2C4
+	.section .text.after_object_mid7_sub_80DA224, "ax", %progbits
 	thumb_func_start sub_80DA264
 sub_80DA264:
 	push {r4, lr}
@@ -250282,8 +250308,9 @@ _080DA33C: .4byte sub_80DA368
 	.endif
 	.section .text.after_middle_sub_80DA324
 	.section .text.misc_helpers_02_after_sub_80DA340, "ax", %progbits
-	thumb_func_start sub_80DA368
-sub_80DA368:
+	.section .discard.object_mid7_sub_80DA368, "ax", %progbits
+	thumb_func_start asm_sub_80DA368
+asm_sub_80DA368:
 	push {r4, r5, lr}
 	adds r5, r0, #0x0
 	adds r4, r5, #0x0
@@ -250309,6 +250336,7 @@ _080DA390:
 	bx r0
 	.byte 0x00, 0x00
 _080DA398: .4byte sub_80DA39C
+	.section .text.after_object_mid7_sub_80DA368, "ax", %progbits
 	thumb_func_start sub_80DA39C
 sub_80DA39C:
 	push {r4, r5, lr}
@@ -250409,8 +250437,9 @@ _080DA450: .4byte 0x00001349
 _080DA454: .4byte sub_80DA300
 _080DA458: .4byte sub_80DA45C
 	.section .text.misc_helpers_01_after_sub_80DA45C, "ax", %progbits
-	thumb_func_start sub_80DA480
-sub_80DA480:
+	.section .discard.object_mid7_sub_80DA480, "ax", %progbits
+	thumb_func_start asm_sub_80DA480
+asm_sub_80DA480:
 	push {r4, r5, lr}
 	adds r4, r0, #0x0
 	adds r5, r4, #0x0
@@ -250437,6 +250466,7 @@ _080DA4AE:
 	pop {r0}
 	bx r0
 _080DA4B4: .4byte sub_80DA098
+	.section .text.after_object_mid7_sub_80DA480, "ax", %progbits
 	thumb_func_start sub_80DA4B8
 sub_80DA4B8:
 	push {r4, r5, r6, r7, lr}
