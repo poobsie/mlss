@@ -75,6 +75,11 @@ remaining callback releases the `RuntimeObject`-shaped owner stored in
 the broader meaning of `positionOwner` remain structural because these paths do
 not identify their gameplay owner.
 
+Two mirrored animation-entry callbacks start animation 2, clear the timer, save
+the object's current X and Y positions, and install different continuations. The
+saved X field is still `value84`, and the adjacent saved-Y storage remains
+structural, because other callback families use those offsets differently.
+
 Three boundary callbacks now share `RuntimeObject` and `RuntimeObjectVisual`. Each performs the same base update, adds the visual's coordinate at offset `0` to the object's signed adjustment at offset `0x45`, and invokes the still-unidentified operation at `sub_807C298` when the result is nonpositive. Their variant suffixes remain until the callback-table owners are identified.
 
 `BehaviorObject` is a narrower alternate overlay used by 49 callbacks that previously occupied `text_low_helpers.c`. It exposes a visual pointer, active update callback, and signed countdown at `0x9C`. The callbacks form three repeated families: starting an action before installing another update, conditionally forwarding when visual flag `0x08` is set, and counting down before setting visual state `0x10`. The entry points retain address names because their owning dispatch tables are still assembly; the shared control flow and object fields no longer do.
@@ -167,4 +172,4 @@ The final eight object callbacks from the staging file now use `RuntimeObject`, 
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,422 linked C functions checked, 1,422 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,438 linked C functions checked, 1,438 exact, and zero mismatches.

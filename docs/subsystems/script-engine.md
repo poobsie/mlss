@@ -77,6 +77,12 @@ documents the relationship while the source preserves the exact ROM bytes.
 | `sub_80F0794` | `script_command_dispatch_field_object_operation` | Dispatches operation values 5 through 11 to established object-registry helpers and forwards other values through the registry's generic operation path. |
 | `sub_80F0814` | `script_command_dispatch_field_object_control` | Decodes a packed group and action bit, invoking one of two object-registry control pairs and yielding while either paired query remains active. |
 | `sub_80F08C0` | `script_command_branch_on_field_queries` | Runs the established field query sequence and branches according to whether all three queries report inactive. |
+| `sub_80EA88C` | `script_command_call_system_service` | Operation zero forwards three command words to the established system service. Its service-specific meaning remains unresolved. |
+| `sub_80EA8A4` | `script_command_control_system` | Dispatches four system-control operations, including the established game reset path and three still-address-named controls. |
+| `sub_80EAB20` | `script_command_update_key_masks` | Sets bits in either script input mask or clears bits in the second mask according to the command operation. |
+| `script_cmd_conditional_jump` | `script_command_conditional_jump` | Evaluates the command's typed condition record and replaces the cursor when the result matches the expected byte. |
+| `sub_80EAEE0` | `script_command_set_sound_effect_volume` | Applies the command's volume byte to the selected sound effect. |
+| `script_cmd_wait_for_user_input` | `script_command_wait_for_user_input` | Yields until the current key state intersects the script input masks, then records which configured input fired. |
 
 The execution state now exposes the saved cursor at offset `0x14`. Three wait handlers restore that cursor and yield when their respective condition becomes true: the primary actor height test, field flag `0x291` bit 0, or a context-owned asynchronous operation. `script_command_branch_if_condition` decodes its aligned condition, operand, and target-cursor record and updates the current cursor only when the shared condition evaluator succeeds.
 
@@ -86,4 +92,4 @@ The execution state now exposes the saved cursor at offset `0x14`. Three wait ha
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,422 linked C functions checked, 1,422 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,438 linked C functions checked, 1,438 exact, and zero mismatches.

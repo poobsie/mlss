@@ -10,7 +10,7 @@ void sub_80997E4(struct RuntimeObject* object);
 void sub_8099448(struct RuntimeObject* object);
 
 SEC(sub_8099FFC)
-void sub_8099FFC(struct RuntimeObject* object)
+void object_start_animation_2_save_position_a(struct RuntimeObject* object)
 {
     sub_8082E1C(object, 2, 0, 0);
     object->timer = 0;
@@ -21,7 +21,7 @@ void sub_8099FFC(struct RuntimeObject* object)
 }
 
 SEC(sub_809A06C)
-void sub_809A06C(struct RuntimeObject* object)
+void object_start_animation_2_save_position_b(struct RuntimeObject* object)
 {
     sub_8082E1C(object, 2, 0, 0);
     object->timer = 0;

@@ -3,11 +3,11 @@
 
 #include "object/runtime_object.h"
 
-void sub_8099FFC(struct RuntimeObject* object);
-void sub_809A06C(struct RuntimeObject* object);
-
 /* The mirrored callbacks differ only in the continuation they install. */
 #define object_start_animation_2_save_position_a sub_8099FFC
 #define object_start_animation_2_save_position_b sub_809A06C
+
+void object_start_animation_2_save_position_a(struct RuntimeObject* object);
+void object_start_animation_2_save_position_b(struct RuntimeObject* object);
 
 #endif
