@@ -224,6 +224,13 @@ follow-up callbacks, starts animation 7, and arms a 16-tick continuation. Those
 callback slots are kept structural because their assembly-owned effects do not yet
 support gameplay-specific names.
 
+Four direct leaves extend the same callback graph. Two identical owner-release
+callbacks poll the object, stop sound `0x2E`, clear the state reservation bit, and
+either reactivate or stop the position owner according to its signed state value at
+`0xF6`. Two visual continuations start animations 5 and 10 after their respective
+completion and readiness gates. The signed state value remains offset-named because
+its wider owner behavior is still in assembly.
+
 Eight late-middle callbacks now cover three `value80` gates, paired visual-completion
 transitions, and a timer-driven handoff. Four neighboring routines remain in assembly
 after exact-sized but register-sensitive C failed the capped pass. The accepted names
@@ -237,4 +244,4 @@ Three middle-runtime leaves add one value-gated transition and two compact conti
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,637 linked C functions checked, 1,637 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,641 linked C functions checked, 1,641 exact, and zero mismatches.

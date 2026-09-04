@@ -10,7 +10,7 @@
 #define PTRAT(p, o) (*(void**)((u8*)(p) + (o)))
 #define CALLBACK58(p) (*(RuntimeObjectCallback*)((u8*)(p) + 0x58))
 
-void sub_807C298(void);
+void sub_807C298();
 int sub_8082B00(void*);
 void sub_80873B8(void*, int, int);
 void sub_8082E1C(void*, s32, s32, s32);
@@ -20,6 +20,8 @@ int sub_8086D80(void*);
 void sub_80DD0CC(void*);
 void sub_808738C(void*);
 s32 sub_8086858(void*, s32);
+u8 sub_8087CE4(struct RuntimeObject*);
+s32 sub_8086700(struct RuntimeObject*);
 
 #define DECL_NEXT(name) extern void name(void*)
 DECL_NEXT(sub_80D9B9C);
@@ -54,7 +56,7 @@ DECL_NEXT(sub_80DA024);
 DECL_NEXT(sub_80DA0E0);
 DECL_NEXT(sub_80DA1EC);
 DECL_NEXT(sub_80DA208);
-DECL_NEXT(sub_80DA2C4);
+extern void sub_80DA2C4(struct RuntimeObject*);
 DECL_NEXT(sub_80DA39C);
 DECL_NEXT(sub_80DA098);
 DECL_NEXT(sub_80DC27C);
@@ -73,6 +75,7 @@ DECL_NEXT(sub_80DB184);
 DECL_NEXT(sub_80DB1A4);
 DECL_NEXT(sub_80DB1C4);
 DECL_NEXT(sub_80DAD00);
+DECL_NEXT(sub_80DA340);
 void sub_807F47C(void*);
 
 #define OWNER_VARIANT(object) \
@@ -460,4 +463,44 @@ SEC(sub_80DB12C) void sub_80DB12C(struct RuntimeObject* object)
     sub_8082E1C(object, 7, 0, 0);
     object->timer = 0x10;
     object->update = (RuntimeObjectCallback)sub_80DAD00;
+}
+
+#define DEFINE_OWNER_STATE_RELEASE(symbol)                             \
+    SEC(symbol) void symbol(struct RuntimeObject* object)              \
+    {                                                                  \
+        struct RuntimeObject* owner = object->positionOwner;           \
+        sub_8087CE4(object);                                            \
+        if (object->flags79 & 0x20) {                                  \
+            sound_effect_play(0x2E, SOUND_VOLUME_UNCHANGED);           \
+            {                                                          \
+                s32 cleared = 0;                                       \
+                object->update = 0;                                    \
+                owner->state->flags111 &= ~2;                          \
+                if (*(s16*)&owner->state->unknownEE[8] == 0)           \
+                    sub_8086700(owner);                                 \
+                else                                                   \
+                    owner->update = (RuntimeObjectCallback)cleared;     \
+            }                                                          \
+        }                                                              \
+    }
+
+DEFINE_OWNER_STATE_RELEASE(sub_80D8C68)
+DEFINE_OWNER_STATE_RELEASE(sub_80D8CC0)
+
+SEC(sub_80DA2C4) void sub_80DA2C4(struct RuntimeObject* object)
+{
+    if (!(object->visual->flags & 8))
+        return;
+    sub_8082E1C(object, 5, 0, 0);
+    SET_VISUAL_MODE_2(object);
+    object->update = (RuntimeObjectCallback)sub_80DA340;
+}
+
+SEC(sub_80DED4C) void sub_80DED4C(struct RuntimeObject* object)
+{
+    if (sub_8082B00(object) != 0)
+        return;
+    sub_8082E1C(object, 0xA, 0, 0);
+    SET_VISUAL_MODE_2(object);
+    object->update = (RuntimeObjectCallback)sub_80DEDB0;
 }

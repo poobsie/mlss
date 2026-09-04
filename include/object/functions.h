@@ -328,5 +328,9 @@
 #define object_when_ready_play_sound_8d_and_continue sub_80DAF48
 #define object_when_value80_clear_countdown_then_start_effect_138a sub_80D9DD4
 #define object_when_value80_clear_install_three_followups sub_80DB12C
+#define object_poll_then_release_position_owner_a sub_80D8C68
+#define object_poll_then_release_position_owner_b sub_80D8CC0
+#define object_on_visual_complete_restart_animation_5 sub_80DA2C4
+#define object_when_ready_start_animation_10 sub_80DED4C
 
 #endif
