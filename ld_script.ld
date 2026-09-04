@@ -935,8 +935,16 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_807F6D0);
         src/field/value_transfer.o(.text.misc_helpers_01.sub_807F6EC);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_807F6EC);
+        src/field/runtime_link_nodes.o(.text.field_runtime_link_nodes.sub_807FA14);
+        asm/text08057568.o(.text.field_runtime_link_nodes_after_sub_807FA14);
+        src/field/runtime_link_nodes.o(.text.field_runtime_link_nodes.sub_807FA50);
+        asm/text08057568.o(.text.field_runtime_link_nodes_after_sub_807FA50);
         src/field/runtime_nodes.o(.text.field_runtime_nodes.sub_807FA94);
         asm/text08057568.o(.text.field_runtime_nodes_after_sub_807FA94);
+        src/field/runtime_link_nodes.o(.text.field_runtime_link_nodes.sub_807FABC);
+        asm/text08057568.o(.text.field_runtime_link_nodes_after_sub_807FABC);
+        src/field/runtime_link_nodes.o(.text.field_runtime_link_nodes.sub_807FB04);
+        asm/text08057568.o(.text.field_runtime_link_nodes_after_sub_807FB04);
         src/graphics/linked_visual.o(.text.misc_helpers_02.sub_807FB64);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_807FB64);
         src/field/view_state.o(.text.misc_helpers_03.sub_807FBD8);

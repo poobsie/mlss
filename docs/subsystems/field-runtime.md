@@ -136,6 +136,8 @@ The final five field-runtime helpers expose the nested flag container at runtime
 
 The runtime node boundary now exposes the free list at offset `0x3C`, five active list heads from `0x40` through `0x50`, and the separate recycling pool at `0x240`. Six insertion helpers pop one node, initialize its owner or callback and counter, then push it onto an internal or caller-owned list. The adjacent object wrapper marks flag `0x10` at object offset `0x79` and schedules the known callback on list `0x4C`. List names retain their offsets because the remaining callback consumers have not yet established distinct behavioral roles.
 
+The neighboring link-node pool uses runtime offsets `0x238` and `0x23C` as its free and active heads. Its allocator clears the low five flag bits before returning a node, while the owner-attaching form also links the owner's values and inline payload. Two payload-node allocators pop from the separate `0x240` pool, clear all `0x1C` bytes through the runtime memory routine, and optionally install three caller values. Those value roles remain offset-named pending recovery of their consumers.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,716 linked C functions checked, 1,716 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,739 linked C functions checked, 1,739 exact, and zero mismatches.
