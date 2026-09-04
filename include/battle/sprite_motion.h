@@ -41,6 +41,8 @@ struct BattleFixedOrigin;
 #define battle_initialize_grounded_sprite_motion sub_8158F28
 #define battle_destroy_sprite_motion_resources sub_815F474
 #define battle_sync_sprite_motion_to_camera sub_815861C
+#define battle_initialize_scaled_sprite_motion sub_815F238
+#define battle_initialize_grounded_sprite_motion_b sub_815F5C8
 
 struct BattleSpriteMotion {
     struct BattleSprite* sprite;
@@ -136,5 +138,9 @@ void* battle_initialize_grounded_sprite_motion(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
 void battle_destroy_sprite_motion_resources(
     struct BattleSpriteMotion*, void* argument);
+void* battle_initialize_scaled_sprite_motion(
+    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
+void* battle_initialize_grounded_sprite_motion_b(
+    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
 
 #endif

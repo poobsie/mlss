@@ -4,6 +4,7 @@
 #include "global.h"
 
 struct BattleValueObject;
+struct BattleEffectObject;
 struct BattleSprite;
 struct BattleSpriteOwner;
 struct BattleSpriteMotionOwner;
@@ -40,6 +41,7 @@ struct BattleControlObject;
 #define battle_set_runtime_value_52c sub_8159904
 #define battle_enable_runtime_value_514 sub_8159984
 #define battle_effect_hide_sprite_and_reset sub_815EC3C
+#define battle_effect_get_value sub_815EC8C
 #define battle_clear_value_14 sub_8158E10
 #define battle_set_flag_f8_40 sub_8028EE8
 #define battle_set_flag_12d_20 sub_8028F2C
@@ -77,6 +79,7 @@ struct BattleControlObject;
 #define battle_tick_countdown_1f2a sub_8158F60
 
 void battle_clear_value_14(struct BattleValueObject* object);
+s32 battle_effect_get_value(struct BattleEffectObject* object);
 struct BattleSprite* battle_sprite_owner_get_sprite(struct BattleSpriteOwner* object);
 void battle_sprite_motion_configure_mode_4(
     struct BattleSpriteMotionOwner* object, s32 value);

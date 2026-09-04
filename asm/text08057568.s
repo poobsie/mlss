@@ -452612,6 +452612,7 @@ _081582FE:
 	pop {r0}
 	bx r0
 	.section .text.after_8158308, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8158310
 sub_8158310:
 	push {lr}
@@ -452630,7 +452631,8 @@ _08158324:
 	bl sub_8158258
 	pop {r0}
 	bx r0
-	.byte 0x00, 0x00
+	.endif
+	.section .text.after_8158310, "ax", %progbits
 	.section .text.after_upper_sub_8158330, "ax", %progbits
 	thumb_func_start sub_8158368
 sub_8158368:
@@ -461729,12 +461731,15 @@ _0815EC86:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.if 0
 	thumb_func_start sub_815EC8C
 sub_815EC8C:
 	movs r1, #0x18
 	ldsh r0, [r0, r1]
 	bx lr
-	.byte 0x00, 0x00, 0x00, 0xB5, 0x02, 0x1C, 0x09, 0x04, 0x08, 0x0C, 0x00, 0x29, 0x00, 0xDA, 0x00, 0x20
+	.endif
+	.section .text.after_815EC8C, "ax", %progbits
+	.byte 0x00, 0xB5, 0x02, 0x1C, 0x09, 0x04, 0x08, 0x0C, 0x00, 0x29, 0x00, 0xDA, 0x00, 0x20
 	.byte 0x10, 0x83, 0x01, 0xBC, 0x00, 0x47
 	thumb_func_start sub_815ECA8
 sub_815ECA8:
@@ -462312,6 +462317,7 @@ asm_discard_sub_815F218:
 	bx r0
 	.byte 0x00, 0x00
 	.section .text.after_815F224, "ax", %progbits
+	.if 0
 	thumb_func_start sub_815F238
 sub_815F238:
 	push {r4, r5, lr}
@@ -462346,6 +462352,8 @@ _0815F270:
 	pop {r1}
 	bx r1
 _0815F278: .4byte 0x08CDCD10
+	.endif
+	.section .text.after_815F238, "ax", %progbits
 	.section .text.after_815F27C, "ax", %progbits
 	.if 0
 	thumb_func_start sub_815F290
@@ -462677,6 +462685,7 @@ _0815F5B6:
 _0815F5C4: .4byte 0x08CDCF10
 	.section .text.after_text_upper_structural_sub_815F58C, "ax", %progbits
 	.align 2, 0
+	.if 0
 	thumb_func_start sub_815F5C8
 sub_815F5C8:
 	push {r4, r5, lr}
@@ -462704,6 +462713,8 @@ sub_815F5C8:
 	bx r1
 	.byte 0x00, 0x00
 _0815F5FC: .4byte 0x08CDCF10
+	.endif
+	.section .text.after_815F5C8, "ax", %progbits
 	.byte 0x10, 0xB5, 0x04, 0x1C, 0x09, 0x4A, 0x1C, 0x20, 0x01, 0x21, 0x00, 0x23, 0xB9, 0xF6, 0xEE, 0xFB
 	.byte 0x21, 0x1C, 0xFE, 0xF7, 0xC5, 0xFD, 0x06, 0x4A, 0xA1, 0x18, 0x08, 0x60, 0x05, 0x48, 0x24, 0x18
 	.byte 0x20, 0x68, 0xFF, 0xF7, 0x1F, 0xFA, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0xA8, 0x27, 0x21, 0x08

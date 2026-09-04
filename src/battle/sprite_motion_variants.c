@@ -239,6 +239,40 @@ void battle_sync_sprite_motion_to_camera(
     }
 }
 
+CALLBACK_SEC(battle_initialize_scaled_sprite_motion)
+void* battle_initialize_scaled_sprite_motion(
+    struct BattleSpriteMotion* object,
+    const struct BattleSpriteMotionConfig* config, u16 value)
+{
+    sub_815F8F4(object, config);
+    object->descriptor = (void*)0x08CDCD10;
+    object->slot34.values.value = value;
+    object->state = 0;
+    sub_815F97C(object, 0);
+    if (object->variant26 == 0) {
+        object->sprite->size04 = 0x120;
+        object->sprite->size06 = 0x120;
+    }
+    return object;
+}
+
+CALLBACK_SEC(battle_initialize_grounded_sprite_motion_b)
+void* battle_initialize_grounded_sprite_motion_b(
+    struct BattleSpriteMotion* object,
+    const struct BattleSpriteMotionConfig* config, u16 value)
+{
+    sub_815F8F4(object, config);
+    object->descriptor = (void*)0x08CDCF10;
+    object->state = 0;
+    object->slot34.values.value = 0;
+    object->slot34.values.auxiliary = value;
+    *(u16*)&object->ownedResource40 = 0;
+    object->slot3C.child = 0;
+    object->ownedResource44 = 0;
+    sub_815F97C(object, 0);
+    return object;
+}
+
 #define DEFINE_INITIALIZER(name, descriptor_value)                       \
 SEC(name) void* name(                                                    \
     struct BattleSpriteMotion* object,                                   \

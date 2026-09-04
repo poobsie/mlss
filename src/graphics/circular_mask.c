@@ -24,7 +24,7 @@ const u16 circular_mask_clear_value_20_padding = 0;
 s32 circular_mask_get_value_1c(struct CircularMask* mask)
     __attribute__((section(".text.sub_8158308")));
 s32 circular_mask_get_value_1c(struct CircularMask* mask) {
-    return mask->value1C;
+    return (s16)mask->value1C;
 }
 
 __attribute__((section(".text.sub_8158308")))
@@ -47,6 +47,23 @@ void circular_mask_enable(struct CircularMask* mask) {
     enabled |= value;
     mask->flags = enabled;
 }
+
+void sub_8158258(struct CircularMask* mask);
+
+void circular_mask_set_value(struct CircularMask* mask, s16 value)
+    __attribute__((section(".text.sub_8158310")));
+void circular_mask_set_value(struct CircularMask* mask, s16 value) {
+    struct CircularMask* target = mask;
+    s32 signedValue = (s16)value;
+    if (signedValue < 0)
+        target->value1C = 0;
+    else
+        target->value1C = signedValue;
+    sub_8158258(target);
+}
+
+__attribute__((section(".text.sub_8158310")))
+const u16 circular_mask_set_value_padding = 0;
 
 __attribute__((section(".text.state_field_helpers.sub_8150E38")))
 const u16 circular_mask_enable_padding = 0;

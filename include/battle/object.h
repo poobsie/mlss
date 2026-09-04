@@ -23,7 +23,8 @@ struct BattleSprite {
 struct BattleEffectObject {
     u8 unknown00[0x0C];
     struct BattleSprite* sprite;
-    u8 unknown10[0x0A];
+    u8 unknown10[8];
+    s16 value18;
     u8 state1A;
 };
 

@@ -14,8 +14,7 @@ struct CircularMask {
     s32 centerOffsetX;
     s32 centerOffsetY;
     u8 unknown14[8];
-    s16 value1C;
-    u8 unknown1E[2];
+    s32 value1C;
     u32 value20;
     u8 unknown24[8];
     u16 flags;
@@ -30,6 +29,7 @@ struct CircularMask {
 #define circular_mask_get_value_1c sub_8158308
 #define circular_mask_disable sub_8150E2C
 #define circular_mask_enable sub_8150E38
+#define circular_mask_set_value sub_8158310
 
 void circular_mask_set_radius(struct CircularMask* mask, u32 radius);
 u32 circular_mask_get_scale(struct CircularMask* mask);
@@ -37,5 +37,6 @@ void circular_mask_clear_value_20(struct CircularMask* mask);
 s32 circular_mask_get_value_1c(struct CircularMask* mask);
 void circular_mask_disable(struct CircularMask* mask);
 void circular_mask_enable(struct CircularMask* mask);
+void circular_mask_set_value(struct CircularMask* mask, s16 value);
 
 #endif

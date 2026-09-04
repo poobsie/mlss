@@ -1933,6 +1933,8 @@ SECTIONS
         asm/text08057568.o(.text.after_81582C4);
         src/graphics/circular_mask.o(.text.sub_8158308);
         asm/text08057568.o(.text.after_8158308);
+        src/graphics/circular_mask.o(.text.sub_8158310);
+        asm/text08057568.o(.text.after_8158310);
         src/battle/single_sprite_destructors.o(.text.upper.sub_8158330);
         asm/text08057568.o(.text.after_upper_sub_8158330);
         src/battle/definition_initializers.o(.text.sub_8158450);
@@ -2049,6 +2051,8 @@ SECTIONS
         asm/text08057568.o(.text.after_815EA08);
         src/battle/effect_state.o(.text.sub_815EC3C);
         asm/text08057568.o(.text.after_815EC3C);
+        src/battle/effect_state.o(.text.battle_effect_leaf.sub_815EC8C);
+        asm/text08057568.o(.text.after_815EC8C);
         src/battle/definition_initializers.o(.text.sub_815ED70);
         asm/text08057568.o(.text.after_815ED70);
         src/battle/sprite_motion_variants.o(.text.text_upper_structural.sub_815ED84);
@@ -2095,6 +2099,8 @@ SECTIONS
         src/graphics/position_binding.o(.text.text_late_helpers.sub_815F218);
         src/battle/definition_initializers.o(.text.sub_815F224);
         asm/text08057568.o(.text.after_815F224);
+        src/battle/sprite_motion_variants.o(.text.battle_sprite_callbacks.sub_815F238);
+        asm/text08057568.o(.text.after_815F238);
         src/battle/definition_initializers.o(.text.sub_815F27C);
         asm/text08057568.o(.text.after_815F27C);
         src/battle/sprite_motion_variants.o(.text.battle_sprite_callbacks.sub_815F290);
@@ -2117,6 +2123,8 @@ SECTIONS
         asm/text08057568.o(.text.after_815F56C);
         src/battle/sprite_motion_variants.o(.text.text_upper_structural.sub_815F58C);
         asm/text08057568.o(.text.after_text_upper_structural_sub_815F58C);
+        src/battle/sprite_motion_variants.o(.text.battle_sprite_callbacks.sub_815F5C8);
+        asm/text08057568.o(.text.after_815F5C8);
         src/battle/destructors.o(.text.sub_815F7FC);
         asm/text08057568.o(.text.after_815F7FC);
         src/battle/destructors.o(.text.sub_815F838);
