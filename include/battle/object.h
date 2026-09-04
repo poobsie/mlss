@@ -11,7 +11,10 @@ struct BattleDefinitionObject {
 };
 
 struct BattleSprite {
-    u8 unknown00[0x0C];
+    u8 unknown00[4];
+    u16 size04;
+    u16 size06;
+    u8 unknown08[4];
     u16 value0C;
     u8 unknown0E[4];
     u8 flags;

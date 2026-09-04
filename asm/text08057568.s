@@ -453429,6 +453429,7 @@ _081583F4:
 	.byte 0x20, 0x70, 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x18, 0x10, 0x00, 0x03
 	.byte 0x1C, 0x1F, 0x00, 0x00
 	.section .text.after_8158450, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8158464
 sub_8158464:
 	push {r4, r5, lr}
@@ -453450,6 +453451,8 @@ sub_8158464:
 	pop {r1}
 	bx r1
 _0815848C: .4byte 0x08CDC5B0
+	.endif
+	.section .text.after_8158464, "ax", %progbits
 	thumb_func_start sub_8158490
 sub_8158490:
 	push {r4, r5, lr}
@@ -453722,6 +453725,7 @@ _081586F4:
 	bx r1
 	.section .text.after_81586FC, "ax", %progbits
 	.section .text.render_object_initializers_after_sub_8158710, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8158738
 sub_8158738:
 	push {r4, r5, lr}
@@ -453746,6 +453750,8 @@ _0815875E:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
+	.endif
+	.section .text.after_8158738, "ax", %progbits
 	.section .text.after_upper_sub_8158764, "ax", %progbits
 	thumb_func_start sub_8158790
 sub_8158790:
@@ -453954,6 +453960,7 @@ asm_discard_sub_8158988:
 	bx r0
 	.byte 0x00, 0x00
 	.section .text.after_8158994, "ax", %progbits
+	.if 0
 	thumb_func_start sub_81589A8
 sub_81589A8:
 	push {r4, r5, lr}
@@ -453974,6 +453981,8 @@ sub_81589A8:
 	bx r1
 	.byte 0x00, 0x00
 _081589CC: .4byte 0x08CDC7B0
+	.endif
+	.section .text.after_81589A8, "ax", %progbits
 	.section .discard.text_late_helpers_sub_81589D0, "ax", %progbits
 	.align 2, 0
 	thumb_func_start asm_discard_sub_81589D0
@@ -453984,6 +453993,7 @@ asm_discard_sub_81589D0:
 	bx r0
 	.byte 0x00, 0x00
 	.section .text.after_81589DC, "ax", %progbits
+	.if 0
 	thumb_func_start sub_81589F0
 sub_81589F0:
 	push {r4, r5, lr}
@@ -454007,6 +454017,8 @@ sub_81589F0:
 	bx r1
 	.byte 0x00, 0x00
 _08158A1C: .4byte 0x08CDC7F0
+	.endif
+	.section .text.after_81589F0, "ax", %progbits
 	thumb_func_start sub_8158A20
 	.section .discard.text_upper_structural_sub_8158A20, "ax", %progbits
 	.align 2, 0
@@ -454036,6 +454048,7 @@ _08158A3E:
 	.section .text.after_text_upper_structural_sub_8158A20, "ax", %progbits
 	.align 2, 0
 	.section .text.after_8158A50, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8158A64
 sub_8158A64:
 	push {r4, r5, lr}
@@ -454061,6 +454074,8 @@ sub_8158A64:
 	pop {r1}
 	bx r1
 _08158A94: .4byte 0x08CDC830
+	.endif
+	.section .text.after_8158A64, "ax", %progbits
 	.section .discard.text_late_helpers_sub_8158A98, "ax", %progbits
 	.align 2, 0
 	thumb_func_start asm_discard_sub_8158A98
@@ -454150,6 +454165,7 @@ _08158B44: .4byte 0x08CDC870
 	.byte 0x4A, 0x68, 0x09, 0x68, 0x41, 0x60, 0x82, 0x60, 0xC1, 0x60, 0x02, 0x61, 0x00, 0x22, 0x00, 0x21
 	.byte 0x81, 0x82, 0x01, 0x83, 0x24, 0x30, 0x02, 0x70, 0x70, 0x47, 0x00, 0x00
 	.section .text.after_upper_sub_8158B64, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8158B90
 sub_8158B90:
 	push {r4, r5, lr}
@@ -454167,6 +454183,8 @@ sub_8158B90:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+	.section .text.after_8158B90, "ax", %progbits
 	.section .text.after_upper_sub_8158BB4, "ax", %progbits
 	thumb_func_start sub_8158BE0
 sub_8158BE0:
@@ -462691,6 +462709,7 @@ _0815EF3C:
 	bx r1
 	.section .text.after_815EF44, "ax", %progbits
 	.section .text.render_object_initializers_after_sub_815EF58, "ax", %progbits
+	.if 0
 	thumb_func_start sub_815EF80
 sub_815EF80:
 	push {r4, r5, lr}
@@ -462715,6 +462734,8 @@ _0815EFA6:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
+	.endif
+	.section .text.after_815EF80, "ax", %progbits
 	thumb_func_start sub_815EFAC
 	.section .discard.text_upper_structural_sub_815EFAC, "ax", %progbits
 	.align 2, 0
@@ -462808,6 +462829,7 @@ _0815F04A:
 	bx r1
 	.section .text.after_815F050, "ax", %progbits
 	.section .text.render_object_initializers_after_sub_815F064, "ax", %progbits
+	.if 0
 	thumb_func_start sub_815F08C
 sub_815F08C:
 	push {r4, lr}
@@ -462840,6 +462862,8 @@ _0815F0BA:
 	.byte 0x00, 0x00
 _0815F0C4: .4byte 0xFFFFE000
 _0815F0C8: .4byte 0x000001FF
+	.endif
+	.section .text.after_815F08C, "ax", %progbits
 	thumb_func_start sub_815F0CC
 sub_815F0CC:
 	push {r4, r5, lr}
@@ -462948,6 +462972,7 @@ asm_discard_sub_815F1D0:
 	bx r0
 	.byte 0x00, 0x00
 	.section .text.after_815F1DC, "ax", %progbits
+	.if 0
 	thumb_func_start sub_815F1F0
 sub_815F1F0:
 	push {r4, r5, lr}
@@ -462968,6 +462993,8 @@ sub_815F1F0:
 	bx r1
 	.byte 0x00, 0x00
 _0815F214: .4byte 0x08CDCCD0
+	.endif
+	.section .text.after_815F1F0, "ax", %progbits
 	.section .discard.text_late_helpers_sub_815F218, "ax", %progbits
 	.align 2, 0
 	thumb_func_start asm_discard_sub_815F218
@@ -463013,6 +463040,7 @@ _0815F270:
 	bx r1
 _0815F278: .4byte 0x08CDCD10
 	.section .text.after_815F27C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_815F290
 sub_815F290:
 	push {r4, r5, lr}
@@ -463038,6 +463066,8 @@ sub_815F290:
 	pop {r1}
 	bx r1
 _0815F2C0: .4byte 0x08CDCD50
+	.endif
+	.section .text.after_815F290, "ax", %progbits
 	.section .discard.text_late_helpers_sub_815F2C4, "ax", %progbits
 	.align 2, 0
 	thumb_func_start asm_discard_sub_815F2C4
@@ -463106,6 +463136,7 @@ _0815F32C:
 	pop {r0}
 	bx r0
 	.section .text.after_815F340, "ax", %progbits
+	.if 0
 	thumb_func_start sub_815F354
 sub_815F354:
 	push {r4, r5, lr}
@@ -463127,6 +463158,8 @@ sub_815F354:
 	pop {r1}
 	bx r1
 _0815F37C: .4byte 0x08CDCD90
+	.endif
+	.section .text.after_815F354, "ax", %progbits
 	thumb_func_start sub_815F380
 sub_815F380:
 	push {r4, r5, lr}
@@ -463166,6 +463199,7 @@ _0815F3C6:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
+	.if 0
 	thumb_func_start sub_815F3CC
 sub_815F3CC:
 	push {r4, r5, lr}
@@ -463183,6 +463217,8 @@ sub_815F3CC:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+	.section .text.after_815F3CC, "ax", %progbits
 	.section .text.after_upper_sub_815F3F0, "ax", %progbits
 	thumb_func_start sub_815F428
 sub_815F428:

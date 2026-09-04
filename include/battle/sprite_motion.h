@@ -17,6 +17,21 @@ struct BattleSpriteMotionConfig {
     u8 priority;
 };
 
+struct BattleFixedOrigin;
+
+#define battle_initialize_sprite_motion_zeroed_a sub_8158464
+#define battle_sync_sprite_motion_to_origin_a sub_8158738
+#define battle_initialize_sprite_motion_idle_a sub_81589A8
+#define battle_initialize_sprite_motion_idle_with_sprite sub_81589F0
+#define battle_initialize_sprite_motion_state_2_a sub_8158A64
+#define battle_setup_sprite_motion_size_a sub_8158B90
+#define battle_sync_sprite_motion_to_origin_b sub_815EF80
+#define battle_wrap_sprite_motion_x sub_815F08C
+#define battle_initialize_sprite_motion_idle_b sub_815F1F0
+#define battle_initialize_sprite_motion_state_2_b sub_815F290
+#define battle_initialize_sprite_motion_zeroed_b sub_815F354
+#define battle_setup_sprite_motion_size_b sub_815F3CC
+
 struct BattleSpriteMotion {
     struct BattleSprite* sprite;
     s32 positionX;
@@ -28,7 +43,9 @@ struct BattleSpriteMotion {
     s16 velocityY;
     u8 unknown1A[0x0A];
     u8 state;
-    u8 unknown25[0x0B];
+    u8 unknown25;
+    u8 variant26;
+    u8 unknown27[9];
     const void* descriptor;
     union BattleSpriteMotionSlot34 {
         struct {
@@ -69,5 +86,27 @@ void battle_sync_attached_sprite_position_variant_a(
     struct BattleSpriteMotion*, void*);
 void battle_sync_attached_sprite_position_variant_b(
     struct BattleSpriteMotion*, void*);
+void* battle_initialize_sprite_motion_zeroed_a(
+    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
+void* battle_initialize_sprite_motion_zeroed_b(
+    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
+void* battle_initialize_sprite_motion_state_2_a(
+    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
+void* battle_initialize_sprite_motion_state_2_b(
+    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
+void* battle_initialize_sprite_motion_idle_a(
+    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
+void* battle_initialize_sprite_motion_idle_b(
+    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
+void* battle_initialize_sprite_motion_idle_with_sprite(
+    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
+void battle_sync_sprite_motion_to_origin_a(
+    struct BattleSpriteMotion*, const struct BattleFixedOrigin*);
+void battle_sync_sprite_motion_to_origin_b(
+    struct BattleSpriteMotion*, const struct BattleFixedOrigin*);
+void battle_setup_sprite_motion_size_a(struct BattleSpriteMotion*);
+void battle_setup_sprite_motion_size_b(struct BattleSpriteMotion*);
+s32 battle_wrap_sprite_motion_x(
+    struct BattleSpriteMotion*, void*, void*, const s32* originX);
 
 #endif
