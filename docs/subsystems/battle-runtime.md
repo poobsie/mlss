@@ -60,4 +60,10 @@ values remain explicit because their owning effect tables are not yet recovered.
 Semantic C aliases map to the original symbols without introducing duplicate
 function entries.
 
+Ten additional sprite-motion leaves cover activation, ground clamping,
+position/resource synchronization, motion forwarding, and cleanup. Six neighboring
+event-state routines remain in assembly because natural C produced different
+instruction scheduling. The accepted aliases continue to preserve the original
+symbol table, so coverage accounting remains at the canonical 7,017 functions.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C symbol exact, with zero mismatches.
