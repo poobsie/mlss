@@ -101,6 +101,13 @@ motion transitions. The shared `RuntimeObject` layout now exposes the halfwords
 at `0x7A` and `0x7C` structurally; their gameplay meaning is still unproven, so
 they remain offset-bearing fields instead of receiving decorative names.
 
+Nine more caller-connected callbacks extend the same visual and owner-motion
+sequences. They cover owner-relative position setup, visual completion, readiness
+gates, effect cleanup, and continuation installation. Six more arithmetic-heavy
+neighbors remain in assembly after exact-sized C still differed in register
+allocation; their recovered behavior is insufficient reason to weaken the shared
+types.
+
 Three boundary callbacks now share `RuntimeObject` and `RuntimeObjectVisual`. Each performs the same base update, adds the visual's coordinate at offset `0` to the object's signed adjustment at offset `0x45`, and invokes the still-unidentified operation at `sub_807C298` when the result is nonpositive. Their variant suffixes remain until the callback-table owners are identified.
 
 `BehaviorObject` is a narrower alternate overlay used by 49 callbacks that previously occupied `text_low_helpers.c`. It exposes a visual pointer, active update callback, and signed countdown at `0x9C`. The callbacks form three repeated families: starting an action before installing another update, conditionally forwarding when visual flag `0x08` is set, and counting down before setting visual state `0x10`. The entry points retain address names because their owning dispatch tables are still assembly; the shared control flow and object fields no longer do.
@@ -193,4 +200,4 @@ The final eight object callbacks from the staging file now use `RuntimeObject`, 
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,497 linked C functions checked, 1,497 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,518 linked C functions checked, 1,518 exact, and zero mismatches.

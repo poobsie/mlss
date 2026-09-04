@@ -53,4 +53,11 @@ Gameplay-specific definition names require recovered descriptor contents or iden
 
 ## Verification
 
+Twelve mirrored sprite-motion callbacks now expose constructors, origin-position
+synchronization, sprite-size setup, and horizontal wrap motion through the shared
+`BattleSpriteMotion` layout. Descriptor addresses and numeric state and variant
+values remain explicit because their owning effect tables are not yet recovered.
+Semantic C aliases map to the original symbols without introducing duplicate
+function entries.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C symbol exact, with zero mismatches.
