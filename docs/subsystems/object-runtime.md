@@ -257,4 +257,4 @@ Fifteen callbacks from the following `0x08077140` through `0x08077924` sequence 
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,700 linked C functions checked, 1,700 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,711 linked C functions checked, 1,711 exact, and zero mismatches.
