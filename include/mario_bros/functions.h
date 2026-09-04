@@ -47,6 +47,20 @@
 #define mario_bros_advance_animation_cycle_three_frame sub_8F64880
 #define mario_bros_advance_animation_toggle_slow sub_8F65690
 
+#define mario_bros_offset_and_clamp_coordinate_a sub_8F68504
+#define mario_bros_offset_and_clamp_coordinate_b sub_8F8EE58
+#define mario_bros_measure_horizontal_edge_distance_a sub_8F673B8
+#define mario_bros_measure_horizontal_edge_distance_b sub_8F8DD0C
+
+#define mario_bros_release_pool_object_a sub_8F5F060
+#define mario_bros_release_pool_object_b sub_8F859B4
+#define mario_bros_attach_pool_object_a sub_8F5D7F8
+#define mario_bros_attach_pool_object_b sub_8F8414C
+#define mario_bros_propagate_high_flag_a sub_8F61374
+#define mario_bros_propagate_high_flag_b sub_8F87CC8
+#define mario_bros_spawn_linked_object_a sub_8F64B3C
+#define mario_bros_spawn_linked_object_b sub_8F8B490
+
 #define mario_bros_normalize_variant_a sub_8F66A40
 #define mario_bros_normalize_variant_b sub_8F8D394
 #define mario_bros_reset_state_controller_a sub_8F663B4

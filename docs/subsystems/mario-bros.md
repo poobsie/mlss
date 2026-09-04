@@ -34,10 +34,25 @@ the variant at their proven limits. The `a` through `d` suffixes remain because 
 parallel ROM and work-RAM tables do not yet identify the gameplay classes that own
 them; the frame limits and zero-based or one-based wrap behavior are now explicit.
 
+Two mirrored geometry helpers add a flag-selected horizontal offset and clamp only
+positive overflow. Two more return the remaining horizontal distance when both axes
+fall inside the supplied limits; the vertical test uses absolute magnitude. Their
+callers have not yet established a gameplay-specific coordinate space, so the names
+state only the measured behavior.
+
+The primary runtime at `0x03000F50` and its mirror at `0x03000F40` expose matching
+object-pointer and activity arrays. Mirrored lifecycle helpers release an optional
+allocation, clear the object's activity slot, and restore its 60-byte template.
+Link helpers attach a selected pool object and set the two-bit link mode to 2. A
+second pair copies source flag bit 7 into destination flag bit 0. Spawn helpers
+allocate kind 5, initialize the selected object, set state 3, and establish the
+back-pointer through the allocation at offset `0x38`. Array ownership, the meaning
+of kind 5, and the remaining flag bits are deliberately retained as unknowns.
+
 ## Next boundary
 
 The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,387 linked C functions checked, 1,387 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,411 linked C functions checked, 1,411 exact, and zero mismatches.
