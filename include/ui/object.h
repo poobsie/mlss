@@ -14,6 +14,14 @@ struct UiObject {
     u16 counter48;
 };
 
+struct UiObjectPairValues {
+    u8 unknown00[0x52];
+    u16 value52;
+    u16 copiedValue54;
+    u16 value56;
+    u16 copiedValue58;
+};
+
 struct UiSpritePair {
     u8 unknown00[0x0C];
     const void* vtable;

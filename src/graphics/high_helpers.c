@@ -1,4 +1,6 @@
 #include "global.h"
+#include "graphics/functions.h"
+#include "graphics/resource.h"
 
 #define SEC(name)   __attribute__((section(".text.high." #name)))
 #define U16AT(p, o) (*(u16*)((u8*)(p) + (o)))
@@ -8,6 +10,27 @@
 
 void free_heap_8018DA8(void*);
 void sub_8021308(void*);
+void sprite_hide_8021F20(void*);
+void sub_80184F4(void*);
+void sub_8018218(void*, void*, u32, u32, u32);
+
+SEC(sub_816507C) void graphics_clear_tile_buffer(struct GraphicsTileBufferOwner* object) {
+    u32 zero = 0;
+    CpuFastSet(&zero, object->tileBuffer20, 0x01000C00);
+    sprite_hide_8021F20(object->firstSprite);
+    sprite_hide_8021F20(object->secondSprite);
+}
+
+SEC(sub_81650DC) void graphics_upload_tile_buffer(struct GraphicsTileBufferOwner* object) {
+    sub_80184F4(object->transfer38);
+    sub_8018218(object->tileBuffer20, object->transfer38, 0x3000, 0x20, 0);
+}
+
+SEC(sub_8165420) void graphics_upload_palette_state(struct GraphicsPaletteOwner* object) {
+    sub_8018218(object->source04, object->destination10, 0x2000, 0x20, 0);
+    *object->output2C = object->value24;
+    *object->output30 = object->value28;
+}
 
 SEC(sub_816132C) u32 sub_816132C(void) {
     return 0;
@@ -97,3 +120,4 @@ PAD(sub_81632C8);
 PAD(sub_8165250);
 PAD(sub_8163280);
 PAD(sub_8163308);
+PAD(sub_81650DC);

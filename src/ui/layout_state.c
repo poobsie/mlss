@@ -20,3 +20,10 @@ void ui_set_flag_490_08(void* object)
 void ui_set_flag_490_08(void* object) {
     *(u32*)((u8*)object + 0x490) |= 8;
 }
+
+u32 ui_shared_mask_contains(u16 mask)
+    __attribute__((section(".text.sub_8163BA0")));
+u32 ui_shared_mask_contains(u16 mask) {
+    s32 result = *(s16*)0x0300102C & mask;
+    return (u32)(-result | result) >> 31;
+}

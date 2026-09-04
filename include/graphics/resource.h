@@ -35,4 +35,28 @@ struct GraphicsUploadOwner {
     struct GraphicsSourceSet* sources;
 };
 
+struct GraphicsTileBufferOwner {
+    void* firstSprite;
+    void* secondSprite;
+    u8 unknown08[0x18];
+    void* tileBuffer20;
+    u8 unknown24[0x14];
+    void* transfer38;
+};
+
+struct GraphicsPaletteOwner {
+    void* resource00;
+    void* source04;
+    void* optionalResource08;
+    u8 unknown0C[4];
+    void* destination10;
+    u8 unknown14[8];
+    void* resource1C;
+    u8 unknown20[4];
+    u32 value24;
+    u32 value28;
+    u16* output2C;
+    u16* output30;
+};
+
 #endif

@@ -4,6 +4,8 @@
 #include "global.h"
 
 struct GraphicsPackedValueOwner;
+struct GraphicsTileBufferOwner;
+struct GraphicsPaletteOwner;
 
 #define graphics_transfer_copy_2048_bytes sub_8160E4C
 #define graphics_destroy_resource_owner_a sub_816154C
@@ -24,6 +26,10 @@ struct GraphicsPackedValueOwner;
 #define graphics_clear_owned_8192_byte_buffer sub_8165404
 #define graphics_destroy_value_pair_owner sub_8167E9C
 #define graphics_clear_value_pair sub_8167F30
+#define graphics_clear_tile_buffer sub_816507C
+#define graphics_upload_tile_buffer sub_81650DC
+#define graphics_upload_palette_state sub_8165420
+#define graphics_destroy_palette_owner sub_8165454
 #define graphics_advance_by_nibble_width sub_810D260
 #define graphics_extract_mode_relative_index sub_8127E38
 #define graphics_extract_owner_mode_relative_index sub_80E8F1C
@@ -34,5 +40,10 @@ u32 graphics_extract_owner_mode_relative_index(
     struct GraphicsPackedValueOwner* owner,
     s32 value);
 void graphics_update_global_resource_fcc_layer_4_mask_16(void);
+void graphics_clear_tile_buffer(struct GraphicsTileBufferOwner* object);
+void graphics_upload_tile_buffer(struct GraphicsTileBufferOwner* object);
+void graphics_upload_palette_state(struct GraphicsPaletteOwner* object);
+void graphics_destroy_palette_owner(struct GraphicsPaletteOwner* object,
+                                    u32 flags);
 
 #endif
