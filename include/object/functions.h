@@ -332,5 +332,6 @@
 #define object_poll_then_release_position_owner_b sub_80D8CC0
 #define object_on_visual_complete_restart_animation_5 sub_80DA2C4
 #define object_when_ready_start_animation_10 sub_80DED4C
+#define object_countdown_install_animation_5_followups_sound_38 sub_80DA264
 
 #endif

@@ -231,6 +231,11 @@ either reactivate or stop the position owner according to its signed state value
 completion and readiness gates. The signed state value remains offset-named because
 its wider owner behavior is still in assembly.
 
+One adjacent timer continuation now installs its three observed follow-up callbacks,
+starts animation 5, plays sound `0x38`, restores visual mode 2, and advances. The
+callbacks remain address-named because their assembly bodies do not yet establish
+more specific roles.
+
 Eight late-middle callbacks now cover three `value80` gates, paired visual-completion
 transitions, and a timer-driven handoff. Four neighboring routines remain in assembly
 after exact-sized but register-sensitive C failed the capped pass. The accepted names
@@ -246,4 +251,4 @@ Seven compact callbacks in the `0x080742FC` through `0x080746A8` object chain no
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,655 linked C functions checked, 1,655 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,656 linked C functions checked, 1,656 exact, and zero mismatches.

@@ -1444,6 +1444,8 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80DA208);
         src/object/middle_transitions.o(.text.middle.sub_80DA224);
         asm/text08057568.o(.text.after_object_mid7_sub_80DA224);
+        src/object/middle_transitions.o(.text.middle.sub_80DA264);
+        asm/text08057568.o(.text.after_middle_sub_80DA264);
         src/object/middle_transitions.o(.text.middle.sub_80DA2C4);
         asm/text08057568.o(.text.after_middle_sub_80DA2C4);
         src/object/small_value_transitions.o(.text.misc_helpers_02.sub_80DA300);

@@ -27,7 +27,7 @@ s32 sub_8086700(struct RuntimeObject*);
 DECL_NEXT(sub_80D9B9C);
 DECL_NEXT(sub_80D9BE0);
 DECL_NEXT(sub_80D9D5C);
-DECL_NEXT(sub_80DA264);
+extern void sub_80DA264(struct RuntimeObject*);
 DECL_NEXT(sub_80DA368);
 DECL_NEXT(sub_80DA3FC);
 DECL_NEXT(sub_80DAB64);
@@ -76,6 +76,7 @@ DECL_NEXT(sub_80DB1A4);
 DECL_NEXT(sub_80DB1C4);
 DECL_NEXT(sub_80DAD00);
 DECL_NEXT(sub_80DA340);
+DECL_NEXT(sub_80DA300);
 void sub_807F47C(void*);
 
 #define OWNER_VARIANT(object) \
@@ -503,4 +504,20 @@ SEC(sub_80DED4C) void sub_80DED4C(struct RuntimeObject* object)
     sub_8082E1C(object, 0xA, 0, 0);
     SET_VISUAL_MODE_2(object);
     object->update = (RuntimeObjectCallback)sub_80DEDB0;
+}
+
+SEC(sub_80DA264) void sub_80DA264(struct RuntimeObject* object)
+{
+    object->timer--;
+    if (object->timer >= 0)
+        return;
+    sub_807F4FC(object);
+    object->secondaryUpdate = (RuntimeObjectCallback)sub_80D9E34;
+    object->tertiaryUpdate = (RuntimeObjectCallback)sub_80DA300;
+    *(RuntimeObjectCallback*)&object->unknown64[0] =
+        (RuntimeObjectCallback)sub_80DA300;
+    sub_8082E1C(object, 5, 0, 0);
+    sound_effect_play(0x38, SOUND_VOLUME_UNCHANGED);
+    SET_VISUAL_MODE_2(object);
+    object->update = (RuntimeObjectCallback)sub_80DA324;
 }

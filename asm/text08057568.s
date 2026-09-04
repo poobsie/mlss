@@ -250394,6 +250394,7 @@ _080DA25A:
 	bx r0
 _080DA260: .4byte sub_80DA2C4
 	.section .text.after_object_mid7_sub_80DA224, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80DA264
 sub_80DA264:
 	push {r4, lr}
@@ -250439,6 +250440,8 @@ _080DA2B2:
 _080DA2B8: .4byte sub_80D9E34
 _080DA2BC: .4byte sub_80DA300
 _080DA2C0: .4byte sub_80DA324
+	.endif
+	.section .text.after_middle_sub_80DA264, "ax", %progbits
 	.if 0
 	thumb_func_start sub_80DA2C4
 sub_80DA2C4:
