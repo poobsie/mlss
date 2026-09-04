@@ -40,8 +40,6 @@ struct MarioBrosPoolRuntime {
 extern struct MarioBrosPoolRuntime gMarioGlobal_03000F50;
 extern struct MarioBrosPoolRuntime gMarioGlobal_03000F40;
 
-extern void sub_8F51010(void* pool, void* allocation);
-extern void sub_8F93C24(void* pool, void* allocation);
 extern void sub_8F6F568(void* destination, const void* source, u32 size);
 extern void sub_8F960C8(void* destination, const void* source, u32 size);
 extern u16 sub_8F63968(struct MarioBrosLinkContext* context);
@@ -56,6 +54,69 @@ extern u8 sub_8F5F5C0(s16 x, s16 y);
 extern u8 sub_8F85F14(s16 x, s16 y);
 extern void sub_8F6F360(struct MarioBrosPoolObject* object, void (*callback)(void));
 extern void sub_8F95EC0(struct MarioBrosPoolObject* object, void (*callback)(void));
+extern void sub_8F66F2C(void*);
+extern void sub_8F67078(void*);
+extern void sub_8F66C50(void*);
+extern void sub_8F67228(void*);
+extern void sub_8F8D880(void*);
+extern void sub_8F8D9CC(void*);
+extern void sub_8F8D5A4(void*);
+extern void sub_8F8DB7C(void*);
+
+struct MarioBrosHeapBlock {
+    /* Only the low allocation bit is established by these release helpers. */
+    u16 flags;
+};
+
+#define DEFINE_HEAP_RELEASE(name)                                              \
+    MB_SECTION(name) void name(struct MarioBrosHeapBlock** firstFree, void* allocation) { \
+        struct MarioBrosHeapBlock** list = firstFree;                           \
+        struct MarioBrosHeapBlock* block;                                      \
+        u16 cleared;                                                           \
+        s32 mask;                                                              \
+        if (allocation == NULL)                                                \
+            return;                                                            \
+        block = (struct MarioBrosHeapBlock*)((u8*)allocation - 2);              \
+        if (!(block->flags & 1))                                               \
+            return;                                                            \
+        cleared = block->flags;                                                \
+        mask = -2;                                                             \
+        cleared &= mask;                                                       \
+        block->flags = cleared;                                                \
+        if (list != NULL && (*list > block || *list == NULL))                  \
+            *list = block;                                                     \
+    }
+
+DEFINE_HEAP_RELEASE(mario_bros_release_heap_block_a)
+DEFINE_HEAP_RELEASE(mario_bros_release_heap_block_b)
+/* Both original functions have a zero halfword between the return and next block. */
+MB_SECTION(sub_8F51010) const u16 sub_8F51010_padding = 0;
+MB_SECTION(sub_8F93C24) const u16 sub_8F93C24_padding = 0;
+
+struct MarioBrosExtendedLinkContext {
+    u8 unknown00[8];
+    u16 completion08;
+    u8 unknown0A[0x44];
+    /* Bit 3 selects the alternate update path; the other bits remain unknown. */
+    u8 flags4E;
+};
+
+#define DEFINE_LINK_UPDATE(name, flagged, normal, common, complete)            \
+    MB_SECTION(name) void name(struct MarioBrosExtendedLinkContext* object) {   \
+        if (object->flags4E & 8)                                               \
+            flagged(object);                                                   \
+        else                                                                    \
+            normal(object);                                                    \
+        common(object);                                                        \
+        if (object->completion08 == 0 && !(object->flags4E & 8))               \
+            complete(object);                                                  \
+    }
+
+DEFINE_LINK_UPDATE(mario_bros_update_link_context_a, sub_8F67078, sub_8F66F2C,
+                   sub_8F66C50, sub_8F67228)
+DEFINE_LINK_UPDATE(mario_bros_update_link_context_b, sub_8F8D9CC, sub_8F8D880,
+                   sub_8F8D5A4, sub_8F8DB7C)
+
 
 struct MarioBrosSpawnSource {
     u8 unknown00[0xC];

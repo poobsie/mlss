@@ -2481,6 +2481,8 @@ SECTIONS
         asm/mariobros.o(.text);
         src/mario_bros/legacy_noop_callbacks.o(.text.mb_f50bb4);
         asm/mariobros.o(.text.mariobros_after_f50bc0);
+        src/mario_bros/object_pool.o(.text.mariobros_pool_sub_8F51010);
+        asm/mariobros.o(.text.after_mariobros_round5_sub_8F51010);
         src/mario_bros/hardware_setup.o(.text.mariobros_late.sub_8F510CC);
         asm/mariobros.o(.text.mariobros_late_after_sub_8F510CC);
         src/mario_bros/sequence_dispatch.o(.text.mariobros_global_dispatch.sub_8F55174);
@@ -2591,6 +2593,8 @@ SECTIONS
         asm/mariobros.o(.text.after_mariobros_state_reset_sub_8F663B4);
         src/mario_bros/state_helpers.o(.text.mariobros_helpers_sub_8F66A40);
         asm/mariobros.o(.text.after_mariobros_variant_result_sub_8F66A40);
+        src/mario_bros/object_pool.o(.text.mariobros_pool_sub_8F672D0);
+        asm/mariobros.o(.text.after_mariobros_round5_sub_8F672D0);
         src/mario_bros/object_geometry.o(.text.mariobros_geometry_sub_8F6738C);
         asm/mariobros.o(.text.after_mariobros_geometry_sub_8F6738C);
         src/mario_bros/object_geometry.o(.text.mariobros_geometry_sub_8F673B8);
@@ -2665,6 +2669,8 @@ SECTIONS
         asm/mariobros.o(.text.after_mariobros_state_reset_sub_8F8CD08);
         src/mario_bros/state_helpers.o(.text.mariobros_helpers_sub_8F8D394);
         asm/mariobros.o(.text.after_mariobros_variant_result_sub_8F8D394);
+        src/mario_bros/object_pool.o(.text.mariobros_pool_sub_8F8DC24);
+        asm/mariobros.o(.text.after_mariobros_round5_sub_8F8DC24);
         src/mario_bros/object_geometry.o(.text.mariobros_geometry_sub_8F8DCE0);
         asm/mariobros.o(.text.after_mariobros_geometry_sub_8F8DCE0);
         src/mario_bros/object_geometry.o(.text.mariobros_geometry_sub_8F8DD0C);
@@ -2675,6 +2681,8 @@ SECTIONS
         asm/mariobros.o(.text.mariobros_after_f910a8);
         src/mario_bros/object_animation.o(.text.mariobros_helpers_sub_8F933E4);
         asm/mariobros.o(.text.after_mariobros_animation_sub_8F933E4);
+        src/mario_bros/object_pool.o(.text.mariobros_pool_sub_8F93C24);
+        asm/mariobros.o(.text.after_mariobros_round5_sub_8F93C24);
         src/mario_bros/global_forwarders.o(.text.mariobros_late.sub_8F94D78);
         asm/mariobros.o(.text.mariobros_late_after_sub_8F94D78);
         src/mario_bros/global_forwarders.o(.text.mariobros_late.sub_8F94D8C);

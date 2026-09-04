@@ -76,6 +76,10 @@
 #define mario_bros_set_direction_from_position_b sub_8F933E4
 #define mario_bros_measure_upper_edge_distance_a sub_8F6738C
 #define mario_bros_measure_upper_edge_distance_b sub_8F8DCE0
+#define mario_bros_release_heap_block_a sub_8F51010
+#define mario_bros_release_heap_block_b sub_8F93C24
+#define mario_bros_update_link_context_a sub_8F672D0
+#define mario_bros_update_link_context_b sub_8F8DC24
 #define mario_bros_advance_falling_object_a sub_8F60D44
 #define mario_bros_advance_falling_object_b sub_8F62B50
 #define mario_bros_prepare_linked_object_a sub_8F62FCC

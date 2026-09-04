@@ -1091,8 +1091,9 @@ _08F50FFC:
 	pop {r1}
 	bx r1
 _08F5100C: .4byte 0x0000FFFF
-	thumb_func_start sub_8F51010
-sub_8F51010:
+	.section .discard.mariobros_round5_sub_8F51010, "ax", %progbits
+	thumb_func_start asm_sub_8F51010
+asm_sub_8F51010:
 	push {lr}
 	adds r3, r0, #0x0
 	cmp r1, #0x00
@@ -1121,6 +1122,7 @@ _08F5103E:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.after_mariobros_round5_sub_8F51010, "ax", %progbits
 	thumb_func_start sub_8F51044
 sub_8F51044:
 	push {r4, r5, r6, r7, lr}
@@ -44278,8 +44280,9 @@ _08F672C4:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8F672D0
-sub_8F672D0:
+	.section .discard.mariobros_round5_sub_8F672D0, "ax", %progbits
+	thumb_func_start asm_sub_8F672D0
+asm_sub_8F672D0:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r0, #0x4E
@@ -44313,6 +44316,7 @@ _08F6730E:
 	pop {r4}
 	pop {r0}
 	bx r0
+	.section .text.after_mariobros_round5_sub_8F672D0, "ax", %progbits
 	thumb_func_start sub_8F67314
 sub_8F67314:
 	push {r4, r5, r6, lr}
@@ -82332,8 +82336,9 @@ _08F8DC18:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8F8DC24
-sub_8F8DC24:
+	.section .discard.mariobros_round5_sub_8F8DC24, "ax", %progbits
+	thumb_func_start asm_sub_8F8DC24
+asm_sub_8F8DC24:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r0, #0x4E
@@ -82367,6 +82372,7 @@ _08F8DC62:
 	pop {r4}
 	pop {r0}
 	bx r0
+	.section .text.after_mariobros_round5_sub_8F8DC24, "ax", %progbits
 	thumb_func_start sub_8F8DC68
 sub_8F8DC68:
 	push {r4, r5, r6, lr}
@@ -89192,8 +89198,9 @@ _08F93C10:
 	pop {r1}
 	bx r1
 _08F93C20: .4byte 0x0000FFFF
-	thumb_func_start sub_8F93C24
-sub_8F93C24:
+	.section .discard.mariobros_round5_sub_8F93C24, "ax", %progbits
+	thumb_func_start asm_sub_8F93C24
+asm_sub_8F93C24:
 	push {lr}
 	adds r3, r0, #0x0
 	cmp r1, #0x00
@@ -89221,7 +89228,8 @@ _08F93C50:
 _08F93C52:
 	pop {r0}
 	bx r0
-	.byte 0x00, 0x00, 0xF0, 0xB5, 0x4F, 0x46, 0x46, 0x46, 0xC0, 0xB4, 0x07, 0x1C, 0x00, 0x20, 0x80, 0x46
+	.section .text.after_mariobros_round5_sub_8F93C24, "ax", %progbits
+	.byte 0xF0, 0xB5, 0x4F, 0x46, 0x46, 0x46, 0xC0, 0xB4, 0x07, 0x1C, 0x00, 0x20, 0x80, 0x46
 	.byte 0x3C, 0x1C, 0x08, 0x34, 0x38, 0x89, 0x1A, 0x49, 0x88, 0x42, 0x29, 0xD0, 0x01, 0x22, 0x94, 0x46
 	.byte 0x89, 0x46, 0x21, 0x88, 0x02, 0x25, 0x6D, 0x42, 0x08, 0x1C, 0x28, 0x40, 0x82, 0x1C, 0xA3, 0x18
 	.byte 0x60, 0x46, 0x01, 0x40, 0x00, 0x29, 0x17, 0xD1, 0x19, 0x88, 0x08, 0x40, 0x00, 0x28, 0x0F, 0xD1
