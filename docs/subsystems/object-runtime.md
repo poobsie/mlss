@@ -231,8 +231,10 @@ describe their observed gates and continuations without assigning scene identiti
 
 Nine later callbacks extend the linked-object sequence through periodic effect `0x212B`, paired animation-4 gates, shared-effect position synchronization, readiness sound switching, owner-variant selection, linked animation completion with effect `0x1FA6`, and effect `0x1E8A`. Owner selectors and numeric effect identities remain structural; no encounter-specific names are inferred from them.
 
+Twelve callbacks from the following `0x080703B0` through `0x0807127C` sequence now cover value gates, visual countdowns, fixed-motion initialization, effect `0x201C`, command `0x40E7`, linked-owner cleanup, and final animation handoffs. The word at offset `0x88`, numeric animation and effect identifiers, and the gameplay identity of the position owner remain deliberately structural. Three address spans containing unnamed raw-code tails and two register-sensitive indexed or readiness routines were rejected instead of assigning false function boundaries.
+
 Three middle-runtime leaves add one value-gated transition and two compact continuation updates. The aliases state only the proven gate or callback change, retaining the original symbols where the surrounding assembly does not establish a scene-specific role.
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,623 linked C functions checked, 1,623 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,637 linked C functions checked, 1,637 exact, and zero mismatches.

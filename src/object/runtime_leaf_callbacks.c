@@ -104,6 +104,22 @@ void sub_806E1B8(struct RuntimeObject* object);
 void sub_806E91C(struct RuntimeObject* object);
 void sub_806EA54(struct RuntimeObject* object);
 void sub_806EAA8(struct RuntimeObject* object);
+void sub_806F84C(struct RuntimeObject* object);
+void sub_806FC68(struct RuntimeObject* object);
+void sub_8070534(struct RuntimeObject* object);
+void sub_80706E8(struct RuntimeObject* object);
+void sub_8070B70(struct RuntimeObject* object);
+void sub_8070C2C(struct RuntimeObject* object);
+void sub_8070CF0(struct RuntimeObject* object);
+void sub_8070EDC(struct RuntimeObject* object);
+void sub_8070F04(struct RuntimeObject* object);
+void sub_8070F64(struct RuntimeObject* object);
+void sub_8070F98(struct RuntimeObject* object);
+void sub_807116C(struct RuntimeObject* object);
+void sub_807127C(struct RuntimeObject* object);
+void sub_807F47C(struct RuntimeObject* object);
+void sub_807B7A8(void* object);
+void sub_807FE40(void* object);
 
 /* Effect IDs and unnamed continuations stay numeric until their owners are known.
  * RuntimeObject fields at 0x7A and 0x7C are confirmed halfword storage, but their
@@ -1479,3 +1495,175 @@ void object_start_animation_9_and_effect_1e8a_when_value80_clears(
         object->update = sub_806EAA8;
     }
 }
+
+SEC(sub_80703B0)
+void object_start_animation_41_or_42_when_value80_clears(
+    struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        if (object->valueA8 != 0)
+            sub_8082E1C(object, 0x29, 0, 0);
+        else
+            sub_8082E1C(object, 0x2A, 0, 0);
+        object->update = sub_8070B70;
+    }
+}
+
+SEC(sub_80704F0)
+void object_clear_animation_and_stop_when_value80_clears(
+    struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        sub_8082E1C(object, 0, 0, 0);
+        object->update = NULL;
+    }
+}
+
+SEC(sub_80706B0)
+void object_finish_animation_21_after_visual_countdown(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        object->timer--;
+        if (object->timer <= 0) {
+            sub_8082E1C(object, 0x15, 0, 0);
+            object->update = NULL;
+        }
+    }
+}
+SEC(sub_80706B0)
+const u16 sub_80706B0_padding = 0;
+
+SEC(sub_8070B70)
+void object_emit_effect_201c_on_visual_complete(struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 0x2B, 0, 0);
+        sub_80DF024(0x201C, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        object->update = sub_8070EDC;
+    }
+}
+
+SEC(sub_8070BC8)
+void object_begin_animation_35_fixed_motion(struct RuntimeObject* object)
+{
+    u8 flags;
+    sub_8082E1C(object, 0x23, 0, 0);
+    object->value84 = 0x11800;
+    *(s32*)((u8*)object + 0x88) = object->positionY;
+    object->value8C = object->positionZBase;
+    object->unknown7C = 0x199;
+    flags = object->flags79;
+    flags |= 0x20;
+    object->flags79 = flags;
+    object->unknown7A = 0;
+    sub_8085B38(object);
+    object->update = sub_8070F04;
+    sound_effect_play(0x11C, SOUND_VOLUME_UNCHANGED);
+}
+
+SEC(sub_8070C2C)
+void object_start_animation_28_when_value80_clears(
+    struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        sound_effect_stop(0x11C);
+        sub_8082E1C(object, 0x1C, 0, 0);
+        object->update = sub_8070F64;
+    }
+}
+
+SEC(sub_8070C8C)
+void object_begin_animation_21_fixed_motion(struct RuntimeObject* object)
+{
+    u8 flags;
+    sub_8082E1C(object, 0x15, 0, 0);
+    object->value84 = 0x7800;
+    *(s32*)((u8*)object + 0x88) = 0x6800;
+    object->value8C = object->positionZBase;
+    object->unknown7C = 0x100;
+    flags = object->flags79;
+    flags |= 0x20;
+    object->flags79 = flags;
+    object->unknown7A = 0;
+    sub_8085B38(object);
+    object->update = sub_8070F98;
+    sound_effect_play(0x11C, SOUND_VOLUME_UNCHANGED);
+}
+
+SEC(sub_8070F04)
+void object_begin_animation_36_when_value80_clears(
+    struct RuntimeObject* object)
+{
+    u8 flags;
+    if (object->value80 == 0) {
+        sub_8082E1C(object, 0x24, 0, 0);
+        object->value84 = 0xA800;
+        *(s32*)((u8*)object + 0x88) = 0x6800;
+        object->value8C = object->positionZBase;
+        object->unknown7C = 0x199;
+        flags = object->flags79;
+        flags |= 0x20;
+        object->flags79 = flags;
+        object->unknown7A = 0;
+        sub_8085B38(object);
+        object->update = sub_807116C;
+    }
+}
+
+SEC(sub_8071054)
+void object_finish_linked_owner_sequence_when_value80_clears(
+    struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        sound_effect_stop(0xA7);
+        sub_807F47C(object);
+        sub_807B7A8(object->state);
+        sub_807FE40(object->state);
+    }
+}
+SEC(sub_8071054)
+const u16 sub_8071054_padding = 0;
+
+SEC(sub_8071080)
+void object_emit_effect_209e_and_begin_command_40e7(
+    struct RuntimeObject* object)
+{
+    sub_80DF024(0x209E, object->positionX / 0x100,
+                object->positionY / 0x100,
+                object->positionZBase / 0x100, object);
+    sub_8082E1C(object, 2, 0x40E7, 0);
+    object->behaviorState = 0x300;
+    object->valueA0 = 0x33;
+    object->update = sub_806F84C;
+}
+
+SEC(sub_8071204)
+s32 object_finish_sound_d2_and_begin_animation_1_when_ready(
+    struct RuntimeObject* object)
+{
+    s32 result = sub_8087124(object);
+    if (result == 0) {
+        sound_effect_stop(0xD2);
+        sub_8082E1C(object, 1, 0, 0);
+        object->value84 = 60;
+        object->update = sub_807127C;
+        ((struct RuntimeObject*)object->positionOwner)->update = sub_808750C;
+        return 0;
+    }
+    return result;
+}
+
+SEC(sub_807127C)
+void object_finish_animation_7_after_countdown(struct RuntimeObject* object)
+{
+    object->timer--;
+    if (object->timer <= 0) {
+        sub_8082E1C(object, 7, 0, 0);
+        object->update = sub_808750C;
+    }
+}
+SEC(sub_807127C)
+const u32 sub_807127C_padding = 0x4770;

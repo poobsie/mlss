@@ -97,6 +97,18 @@
 #define object_select_owner_variant_and_continue sub_806E804
 #define object_finish_linked_animation_with_effect_when_value80_clears sub_806E91C
 #define object_start_animation_9_and_effect_1e8a_when_value80_clears sub_806EA54
+#define object_start_animation_41_or_42_when_value80_clears sub_80703B0
+#define object_clear_animation_and_stop_when_value80_clears sub_80704F0
+#define object_finish_animation_21_after_visual_countdown sub_80706B0
+#define object_emit_effect_201c_on_visual_complete sub_8070B70
+#define object_begin_animation_35_fixed_motion sub_8070BC8
+#define object_start_animation_28_when_value80_clears sub_8070C2C
+#define object_begin_animation_21_fixed_motion sub_8070C8C
+#define object_begin_animation_36_when_value80_clears sub_8070F04
+#define object_finish_linked_owner_sequence_when_value80_clears sub_8071054
+#define object_emit_effect_209e_and_begin_command_40e7 sub_8071080
+#define object_finish_sound_d2_and_begin_animation_1_when_ready sub_8071204
+#define object_finish_animation_7_after_countdown sub_807127C
 
 void object_emit_effect_12cd_release_shared_motion_and_finish(
     struct RuntimeObject* object);
@@ -221,5 +233,17 @@ void object_start_linked_motion_countdown_when_value80_clears(struct RuntimeObje
 s32 object_select_owner_variant_and_continue(struct RuntimeObject* object);
 void object_finish_linked_animation_with_effect_when_value80_clears(struct RuntimeObject* object);
 void object_start_animation_9_and_effect_1e8a_when_value80_clears(struct RuntimeObject* object);
+void object_start_animation_41_or_42_when_value80_clears(struct RuntimeObject* object);
+void object_clear_animation_and_stop_when_value80_clears(struct RuntimeObject* object);
+void object_finish_animation_21_after_visual_countdown(struct RuntimeObject* object);
+void object_emit_effect_201c_on_visual_complete(struct RuntimeObject* object);
+void object_begin_animation_35_fixed_motion(struct RuntimeObject* object);
+void object_start_animation_28_when_value80_clears(struct RuntimeObject* object);
+void object_begin_animation_21_fixed_motion(struct RuntimeObject* object);
+void object_begin_animation_36_when_value80_clears(struct RuntimeObject* object);
+void object_finish_linked_owner_sequence_when_value80_clears(struct RuntimeObject* object);
+void object_emit_effect_209e_and_begin_command_40e7(struct RuntimeObject* object);
+s32 object_finish_sound_d2_and_begin_animation_1_when_ready(struct RuntimeObject* object);
+void object_finish_animation_7_after_countdown(struct RuntimeObject* object);
 
 #endif
