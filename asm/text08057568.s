@@ -278698,52 +278698,8 @@ _080EA868:
 	bx r1
 	.byte 0x00, 0x00
 _080EA888: .4byte 0x0300034C
-	thumb_func_start sub_80EA88C
-sub_80EA88C:
-	push {lr}
-	ldm r2!, {r0}
-	cmp r0, #0x00
-	bne _080EA89E
-	ldrh r0, [r2, #0x00]
-	ldrh r1, [r2, #0x04]
-	ldr r2, [r2, #0x08]
-	bl sub_801ABE8
-_080EA89E:
-	movs r0, #0x01
-	pop {r1}
-	bx r1
-	thumb_func_start sub_80EA8A4
-sub_80EA8A4:
-	push {lr}
-	ldr r2, [r2, #0x00]
-	cmp r2, #0x01
-	beq _080EA8C6
-	cmp r2, #0x01
-	bgt _080EA8B6
-	cmp r2, #0x00
-	beq _080EA8C0
-	b _080EA8D6
-_080EA8B6:
-	cmp r2, #0x02
-	beq _080EA8CC
-	cmp r2, #0x03
-	beq _080EA8D2
-	b _080EA8D6
-_080EA8C0:
-	bl reset_game_80189C4
-	b _080EA8D6
-_080EA8C6:
-	bl sub_801ADC0
-	b _080EA8D6
-_080EA8CC:
-	bl sub_801AD80
-	b _080EA8D6
-_080EA8D2:
-	bl sub_801AD3C
-_080EA8D6:
-	movs r0, #0x01
-	pop {r1}
-	bx r1
+	.section .text.after_middle_sub_80EA88C
+	.section .text.after_middle_sub_80EA8A4
 	.section .text.misc_helpers_02_after_sub_80EA8DC, "ax", %progbits
 	.if 0
 	thumb_func_start sub_80EA904
@@ -279039,73 +278995,8 @@ sub_80EAB00:
 	movs r0, #0x01
 	bx lr
 _080EAB1C: .4byte 0x0300034C
-	thumb_func_start sub_80EAB20
-sub_80EAB20:
-	push {lr}
-	ldm r2!, {r0}
-	cmp r0, #0x01
-	beq _080EAB48
-	cmp r0, #0x01
-	bgt _080EAB32
-	cmp r0, #0x00
-	beq _080EAB38
-	b _080EAB64
-_080EAB32:
-	cmp r0, #0x02
-	beq _080EAB58
-	b _080EAB64
-_080EAB38:
-	ldr r0, _080EAB44 @ =0x0300034C
-	adds r0, #0x7C
-	ldr r1, [r2, #0x00]
-	ldrh r2, [r0, #0x00]
-	orrs r1, r2
-	b _080EAB62
-_080EAB44: .4byte 0x0300034C
-_080EAB48:
-	ldr r0, _080EAB54 @ =0x0300034C
-	adds r0, #0x7A
-	ldr r1, [r2, #0x00]
-	ldrh r2, [r0, #0x00]
-	orrs r1, r2
-	b _080EAB62
-_080EAB54: .4byte 0x0300034C
-_080EAB58:
-	ldr r0, _080EAB6C @ =0x0300034C
-	adds r0, #0x7A
-	ldr r2, [r2, #0x00]
-	ldrh r1, [r0, #0x00]
-	bics r1, r2
-_080EAB62:
-	strh r1, [r0, #0x00]
-_080EAB64:
-	movs r0, #0x01
-	pop {r1}
-	bx r1
-	.byte 0x00, 0x00
-_080EAB6C: .4byte 0x0300034C
-	thumb_func_start script_cmd_conditional_jump
-script_cmd_conditional_jump: @ 080EAB70
-	push {r4, r5, lr}
-	adds r5, r1, #0x0
-	adds r4, r2, #0x0
-	ldrb r1, [r4, #0x00]
-	ldr r2, [r4, #0x04]
-	ldr r3, [r4, #0x08]
-	bl script_test_condition
-	lsls r0, r0, #0x18
-	lsrs r0, r0, #0x18
-	ldr r1, [r4, #0x0C]
-	cmp r0, r1
-	bne _080EAB8E
-	ldr r0, [r4, #0x10]
-	str r0, [r5, #0x00]
-_080EAB8E:
-	movs r0, #0x01
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.byte 0x00, 0x00
+	.section .text.after_middle_sub_80EAB20
+	.section .text.after_middle_script_cmd_conditional_jump
 	thumb_func_start sub_80EAB98
 sub_80EAB98:
 	push {r4, r5, r6, lr}
@@ -279443,20 +279334,7 @@ _080EAED8:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_80EAEE0
-sub_80EAEE0:
-	push {lr}
-	ldm r2!, {r0}
-	cmp r0, #0x00
-	bne _080EAEF0
-	ldrb r0, [r2, #0x04]
-	ldrb r1, [r2, #0x00]
-	bl sound_effects_set_volume
-_080EAEF0:
-	movs r0, #0x01
-	pop {r1}
-	bx r1
-	.byte 0x00, 0x00
+	.section .text.script_command_helpers_after_sub_80EAEE0, "ax", %progbits
 	.section .text.script_command_helpers_after_sub_80EAEF8, "ax", %progbits
 	.section .text.script_command_helpers_after_sub_80EAF4C, "ax", %progbits
 	thumb_func_start sub_80EAFB4
@@ -279489,30 +279367,7 @@ _080EB03E:
 	.section .text.script_command_helpers_after_sub_80EB048, "ax", %progbits
 	.section .text.script_command_helpers_after_sub_80EB05C, "ax", %progbits
 	.section .text.script_command_helpers_after_sub_80EB09C, "ax", %progbits
-	thumb_func_start script_cmd_wait_for_user_input
-script_cmd_wait_for_user_input: @ 080EB0F4
-	push {lr}
-	ldr r0, [r1, #0x04]
-	movs r1, #0xDA
-	lsls r1, r1, #0x01
-	adds r0, r0, r1
-	ldrb r0, [r0, #0x00]
-	ldr r1, [r3, #0x00]
-	asrs r0, r1
-	movs r1, #0x01
-	ands r0, r1
-	cmp r0, #0x00
-	bne _080EB110
-	movs r0, #0x01
-	b _080EB116
-_080EB110:
-	ldr r0, [r2, #0x14]
-	str r0, [r2, #0x00]
-	movs r0, #0x00
-_080EB116:
-	pop {r1}
-	bx r1
-	.byte 0x00, 0x00
+	.section .text.script_command_helpers_after_script_cmd_wait_for_user_input, "ax", %progbits
 	thumb_func_start sub_80EB11C
 sub_80EB11C:
 	push {r4, r5, r6, r7, lr}

@@ -69,6 +69,17 @@ struct ScriptResourceOwner {
     struct ScriptResourceEntry* resources04;
 };
 
+struct ScriptInputOwner {
+    u8 unknown00[4];
+    u8* inputState04;
+};
+
+struct ScriptSoundVolumeArguments {
+    u8 duration;
+    u8 padding01[3];
+    u8 volume;
+};
+
 SEC(sub_80EAD98)
 s32 script_command_set_runtime_direction_sign(
     void* context, void* state, const u32* argument)
@@ -106,6 +117,21 @@ s32 script_command_control_sound_effect(
     }
     return 1;
 }
+
+SEC(sub_80EAEE0)
+s32 script_command_set_sound_effect_volume(
+    void* context, void* state, const u32* arguments)
+{
+    u32 operation = *arguments++;
+
+    if (operation == 0) {
+        const struct ScriptSoundVolumeArguments* parameters =
+            (const struct ScriptSoundVolumeArguments*)arguments;
+        sound_effects_set_volume(parameters->volume, parameters->duration);
+    }
+    return 1;
+}
+SEC(sub_80EAEE0) const u16 sub_80EAEE0_padding = 0;
 
 SEC(sub_80EAF4C)
 s32 script_command_control_music(
@@ -201,6 +227,20 @@ s32 script_command_configure_graphics_resource(
     U8AT(SCRIPT_GLOBAL_FB8, 0x31) = 0;
     return 1;
 }
+
+SEC(script_cmd_wait_for_user_input)
+s32 script_command_wait_for_user_input(
+    void* context, struct ScriptInputOwner* owner,
+    struct ScriptExecutionState* state, const u32* bit)
+{
+    if ((owner->inputState04[0x1B4] >> *bit) & 1) {
+        state->cursor = state->resumeCursor;
+        return 0;
+    }
+    return 1;
+}
+SEC(script_cmd_wait_for_user_input)
+const u16 script_cmd_wait_for_user_input_padding = 0;
 MISC3_SEC(script_command_return_from_battle)
 u8 script_command_return_from_battle(
     struct ScriptBattleReturnContext* context,

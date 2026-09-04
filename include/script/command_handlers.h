@@ -6,15 +6,18 @@
 struct ScriptBattleReturnContext;
 struct ScriptExecutionState;
 struct ScriptCommandContext;
+struct ScriptInputOwner;
 
 #define script_command_return_from_battle script_cmd_btl_return
 #define script_command_set_runtime_direction_sign sub_80EAD98
 #define script_command_branch_if_runtime_byte_30_equals sub_80EAE9C
 #define script_command_set_runtime_byte_32 sub_80EB048
 #define script_command_control_sound_effect sub_80EAEF8
+#define script_command_set_sound_effect_volume sub_80EAEE0
 #define script_command_control_music sub_80EAF4C
 #define script_command_control_resource_wait sub_80EB05C
 #define script_command_configure_graphics_resource sub_80EB09C
+#define script_command_wait_for_user_input script_cmd_wait_for_user_input
 #define script_command_clear_field_runtime_flag sub_80F0540
 #define script_command_dispatch_field_object_operation sub_80F0794
 #define script_command_dispatch_field_object_control sub_80F0814
@@ -37,6 +40,12 @@ s32 script_command_branch_if_runtime_byte_30_equals(
     const u32* arguments);
 s32 script_command_set_runtime_byte_32(
     void* context, void* state, const u32* argument);
+s32 script_command_set_sound_effect_volume(
+    void* context, void* state, const u32* arguments);
+s32 script_command_wait_for_user_input(
+    void* context, struct ScriptInputOwner* owner,
+    struct ScriptExecutionState* state,
+    const u32* bit);
 s32 script_command_clear_field_runtime_flag(
     void* context, void* owner, void* state, const u32* arguments);
 s32 script_command_dispatch_field_object_operation(

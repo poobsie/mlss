@@ -19,6 +19,7 @@ gMarioBrosObjectCallbackA = 0x03006AE8;
 gMarioBrosObjectCallbackB = 0x03006AEC;
 gMarioData_08F9F054 = 0x08F9F054;
 gMarioData_08F9F11C = 0x08F9F11C;
+gScriptInputRuntime = 0x0300034C;
 gMarioData_08F9FA64 = 0x08F9FA64;
 
 SECTIONS
@@ -1338,6 +1339,10 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80EA5C8);
         src/script/state_commands.o(.text.middle.sub_80EA778);
         asm/text08057568.o(.text.after_middle_sub_80EA778);
+        src/script/state_commands.o(.text.middle.sub_80EA88C);
+        asm/text08057568.o(.text.after_middle_sub_80EA88C);
+        src/script/state_commands.o(.text.middle.sub_80EA8A4);
+        asm/text08057568.o(.text.after_middle_sub_80EA8A4);
         src/script/state_commands.o(.text.misc_helpers_02.sub_80EA8DC);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80EA8DC);
         src/script/state_commands.o(.text.middle.sub_80EA904);
@@ -1348,10 +1353,16 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80EA928);
         src/script/command_handlers.o(.text.script_command_handlers.script_command_set_input_mask);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EA9A8);
+        src/script/state_commands.o(.text.middle.sub_80EAB20);
+        asm/text08057568.o(.text.after_middle_sub_80EAB20);
+        src/script/state_commands.o(.text.middle.script_cmd_conditional_jump);
+        asm/text08057568.o(.text.after_middle_script_cmd_conditional_jump);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EAD98);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EAD98);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EAE9C);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EAE9C);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80EAEE0);
+        asm/text08057568.o(.text.script_command_helpers_after_sub_80EAEE0);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EAEF8);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EAEF8);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EAF4C);
@@ -1362,6 +1373,8 @@ SECTIONS
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EB05C);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EB09C);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EB09C);
+        src/script/command_handlers.o(.text.script_command_handlers.script_cmd_wait_for_user_input);
+        asm/text08057568.o(.text.script_command_helpers_after_script_cmd_wait_for_user_input);
         src/script/state_commands.o(.text.middle.script_cmd_wait_frames);
         asm/text08057568.o(.text.after_middle_script_cmd_wait_frames);
         src/script/state_commands.o(.text.middle.script_cmd_call);

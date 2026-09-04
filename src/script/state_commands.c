@@ -19,6 +19,37 @@ extern s32 script_test_condition(void* context, u8 condition, u32 operand,
 extern s32 sub_803C508(void* registry);
 extern s32 sub_803E9F0(void* registry);
 extern s32 sub_81219C4(void* registry);
+extern void reset_game_80189C4(void);
+extern void sub_801ADC0(void);
+extern void sub_801AD80(void);
+extern void sub_801AD3C(void);
+extern void sub_801ABE8(u16, u16, s32);
+
+struct ScriptSystemServiceParameters {
+    u16 value00;
+    u16 padding02;
+    u16 value04;
+    u16 padding06;
+    s32 value08;
+};
+
+struct ScriptConditionalJumpArguments {
+    u8 condition;
+    u8 padding01[3];
+    u32 operand;
+    u32 storedValue;
+    u32 expected;
+    u32 targetCursor;
+};
+
+struct ScriptInputRuntime {
+    u8 unknown00[0x78];
+    u16 keyControl;
+    u16 keyMaskB;
+    u16 keyMaskA;
+};
+
+extern struct ScriptInputRuntime gScriptInputRuntime;
 
 SCRIPT_STATE_SEC(script_enable_flag_2)
 void script_state_enable_primary_flag_2(
@@ -118,6 +149,75 @@ SEC(sub_80EA778) void script_state_tick_wait_timer(
     if (state->waitTimer == 0)
         state->primaryFlags &= ~0x10;
 }
+
+SEC(sub_80EA88C)
+s32 script_command_call_system_service(
+    void* context, void* state, const u32* arguments)
+{
+    u32 operation = *arguments++;
+
+    if (operation == 0) {
+        const struct ScriptSystemServiceParameters* parameters =
+            (const struct ScriptSystemServiceParameters*)arguments;
+        sub_801ABE8(
+            parameters->value00, parameters->value04, parameters->value08);
+    }
+    return 1;
+}
+
+SEC(sub_80EA8A4)
+s32 script_command_control_system(void* context, void* state, const s32* operation)
+{
+    switch (*operation) {
+    case 0:
+        reset_game_80189C4();
+        break;
+    case 1:
+        sub_801ADC0();
+        break;
+    case 2:
+        sub_801AD80();
+        break;
+    case 3:
+        sub_801AD3C();
+        break;
+    }
+    return 1;
+}
+
+SEC(sub_80EAB20)
+s32 script_command_update_key_masks(
+    void* context, void* state, const s32* arguments)
+{
+    s32 operation = *arguments++;
+
+    switch (operation) {
+    case 0:
+        gScriptInputRuntime.keyMaskA |= *arguments;
+        break;
+    case 1:
+        gScriptInputRuntime.keyMaskB |= *arguments;
+        break;
+    case 2:
+        gScriptInputRuntime.keyMaskB &= ~*arguments;
+        break;
+    }
+    return 1;
+}
+
+SEC(script_cmd_conditional_jump)
+s32 script_command_conditional_jump(
+    void* context, struct ScriptExecutionState* state,
+    const struct ScriptConditionalJumpArguments* arguments)
+{
+    u8 result = script_test_condition(
+        context, arguments->condition, arguments->operand, arguments->storedValue);
+
+    if (result == arguments->expected)
+        state->cursor = arguments->targetCursor;
+    return 1;
+}
+SEC(script_cmd_conditional_jump) const u16 script_cmd_conditional_jump_padding = 0;
 
 SEC(sub_80EA904) int script_command_pop_value(
     void* context, struct ScriptExecutionState* state)

@@ -7,6 +7,8 @@ enum {
     SCRIPT_VALUE_STACK_CAPACITY = 16,
 };
 
+struct ScriptConditionalJumpArguments;
+
 /*
  * State shared by the command handlers around 0x080EA514-0x080EB248.
  * The two value channels are structurally proven, but their gameplay units are not.
@@ -43,6 +45,9 @@ struct ScriptConditionBranchArguments {
 #define script_state_replace_secondary_channel sub_80EA584
 #define script_state_replace_primary_channel sub_80EA5C8
 #define script_state_tick_wait_timer sub_80EA778
+#define script_command_call_system_service sub_80EA88C
+#define script_command_control_system sub_80EA8A4
+#define script_command_update_key_masks sub_80EAB20
 #define script_command_pop_value sub_80EA904
 #define script_command_store_value sub_80EA91C
 #define script_command_push_value sub_80EA928
@@ -74,6 +79,15 @@ void script_state_replace_primary_channel(
     u32 value0, u32 value1, u16 flags, u8 mode);
 void script_state_tick_wait_timer(
     void* context, struct ScriptExecutionState* state);
+s32 script_command_call_system_service(
+    void* context, void* state, const u32* arguments);
+s32 script_command_control_system(
+    void* context, void* state, const s32* operation);
+s32 script_command_update_key_masks(
+    void* context, void* state, const s32* arguments);
+s32 script_command_conditional_jump(
+    void* context, struct ScriptExecutionState* state,
+    const struct ScriptConditionalJumpArguments* arguments);
 int script_command_wait_frames(
     void* context, struct ScriptExecutionState* state, const u32* argument);
 u8 script_command_return(
