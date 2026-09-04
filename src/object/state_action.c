@@ -1,9 +1,9 @@
 #include "global.h"
+#include "field/runtime_nodes.h"
 #include "object/runtime_object.h"
 
 #define SEC(name) __attribute__((section(".text.object_state_action." #name)))
 
-void sub_807FF48(void* callback, struct RuntimeObjectState* state);
 void sub_807B7A8(struct RuntimeObjectState* state);
 
 SEC(sub_8086700) s32 sub_8086700(struct RuntimeObject* object)

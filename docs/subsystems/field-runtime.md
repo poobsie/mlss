@@ -134,6 +134,8 @@ Two view wrappers now obtain the active `FieldViewState` from the established fi
 
 The final five field-runtime helpers expose the nested flag container at runtime offset `0x244`, its paired flag words at `0x1788` and `0x1798`, the pending flag at `0x2BF`, and the active-object owner at `0x7C`. Three set, filter, or submit nested flag requests. Two select the active-object preparation path from runtime flag `0x80` or restore a saved process callback after active-object flag `0x20` clears. The flag numbers remain in the names because current assembly proves their mechanics but not their game-facing meanings.
 
+The runtime node boundary now exposes the free list at offset `0x3C`, five active list heads from `0x40` through `0x50`, and the separate recycling pool at `0x240`. Six insertion helpers pop one node, initialize its owner or callback and counter, then push it onto an internal or caller-owned list. The adjacent object wrapper marks flag `0x10` at object offset `0x79` and schedules the known callback on list `0x4C`. List names retain their offsets because the remaining callback consumers have not yet established distinct behavioral roles.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,374 linked C functions checked, 1,374 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,716 linked C functions checked, 1,716 exact, and zero mismatches.

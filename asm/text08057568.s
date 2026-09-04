@@ -71308,6 +71308,7 @@ sub_807FA50:
 _0807FA78: .4byte 0x03000FD8
 	.byte 0x04, 0x4A, 0xD0, 0x21, 0x41, 0x43, 0x98, 0x20, 0x00, 0x01, 0x09, 0x18, 0x10, 0x68, 0x40, 0x18
 	.byte 0x70, 0x47, 0x00, 0x00, 0xDC, 0x0F, 0x00, 0x03
+	.if 0
 	thumb_func_start sub_807FA94
 sub_807FA94:
 	push {lr}
@@ -71331,6 +71332,8 @@ _0807FAB6:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.endif
+	.section .text.field_runtime_nodes_after_sub_807FA94, "ax", %progbits
 	thumb_func_start sub_807FABC
 sub_807FABC:
 	push {r4, r5, r6, lr}
@@ -71691,6 +71694,7 @@ _0807FE76:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
+	.if 0
 	thumb_func_start sub_807FE7C
 sub_807FE7C:
 	push {r4, lr}
@@ -71719,6 +71723,8 @@ sub_807FE7C:
 	.byte 0x00, 0x00
 _0807FEAC: .4byte 0x03000FD8
 _0807FEB0: .4byte sub_807FEB4
+	.endif
+	.section .text.field_runtime_nodes_after_sub_807FE7C, "ax", %progbits
 	thumb_func_start sub_807FEB4
 sub_807FEB4:
 	push {r4, r5, r6, lr}
@@ -71776,6 +71782,7 @@ _0807FF18:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.if 0
 	thumb_func_start sub_807FF20
 sub_807FF20:
 	push {r4, lr}
@@ -71797,6 +71804,9 @@ sub_807FF20:
 	bx r1
 	.byte 0x00, 0x00
 _0807FF44: .4byte 0x03000FD8
+	.endif
+	.section .text.field_runtime_nodes_after_sub_807FF20, "ax", %progbits
+	.if 0
 	thumb_func_start sub_807FF48
 sub_807FF48:
 	push {r4, lr}
@@ -71818,6 +71828,9 @@ sub_807FF48:
 	bx r1
 	.byte 0x00, 0x00
 _0807FF6C: .4byte 0x03000FD8
+	.endif
+	.section .text.field_runtime_nodes_after_sub_807FF48, "ax", %progbits
+	.if 0
 	thumb_func_start sub_807FF70
 sub_807FF70:
 	push {r4, lr}
@@ -71839,6 +71852,9 @@ sub_807FF70:
 	bx r1
 	.byte 0x00, 0x00
 _0807FF94: .4byte 0x03000FD8
+	.endif
+	.section .text.field_runtime_nodes_after_sub_807FF70, "ax", %progbits
+	.if 0
 	thumb_func_start sub_807FF98
 sub_807FF98:
 	adds r3, r0, #0x0
@@ -71856,6 +71872,9 @@ sub_807FF98:
 	bx lr
 	.byte 0x00, 0x00
 _0807FFB4: .4byte 0x03000FD8
+	.endif
+	.section .text.field_runtime_nodes_after_sub_807FF98, "ax", %progbits
+	.if 0
 	thumb_func_start sub_807FFB8
 sub_807FFB8:
 	adds r3, r0, #0x0
@@ -71873,6 +71892,9 @@ sub_807FFB8:
 	bx lr
 	.byte 0x00, 0x00
 _0807FFD4: .4byte 0x03000FD8
+	.endif
+	.section .text.field_runtime_nodes_after_sub_807FFB8, "ax", %progbits
+	.if 0
 	thumb_func_start sub_807FFD8
 sub_807FFD8:
 	push {r4, lr}
@@ -71892,6 +71914,8 @@ sub_807FFD8:
 	pop {r1}
 	bx r1
 _0807FFF8: .4byte 0x03000FD8
+	.endif
+	.section .text.field_runtime_nodes_after_sub_807FFD8, "ax", %progbits
 	thumb_func_start sub_807FFFC
 sub_807FFFC:
 	push {r4, r5, r6, r7, lr}
