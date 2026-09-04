@@ -80250,6 +80250,7 @@ _08084E74:
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
+	.if 0
 	thumb_func_start sub_8084E84
 sub_8084E84:
 	lsls r1, r1, #0x18
@@ -80262,6 +80263,8 @@ sub_8084E84:
 	ldr r0, [r0, #0x00]
 	bx lr
 	.byte 0x00, 0x00
+	.endif
+	.section .text.graphics_display_manager_after_sub_8084E84, "ax", %progbits
 	thumb_func_start sub_8084E98
 sub_8084E98:
 	push {r4, r5, r6, r7, lr}

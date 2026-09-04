@@ -50,6 +50,8 @@ Two position-state initializers now preserve the current value pair and install 
 
 `graphics_destroy_linked_visual` now exposes the complete linked-visual teardown path. It detaches a non-null visual, clears flag bits `0x04` and `0x08` at offset `0x13`, runs the graphics cleanup, and releases the visual. The remaining flag bits stay unnamed until their writers and rendering effects are recovered.
 
+`graphics_display_manager_get_layer_buffer` indexes the display manager's twenty-byte layer records beginning at offset `0x0C` and returns the selected buffer. Existing field-display callers establish the manager and layer ownership; the buffer's narrower rendering format remains unknown.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,745 linked C functions checked, 1,745 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,747 linked C functions checked, 1,747 exact, and zero mismatches.

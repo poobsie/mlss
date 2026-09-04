@@ -991,6 +991,8 @@ SECTIONS
         asm/text08057568.o(.text.offset_reads_after_sub_8082D50);
         src/object/small_state_helpers.o(.text.misc_helpers_01.sub_8083E78);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8083E78);
+        src/graphics/display_manager.o(.text.graphics_display_manager.sub_8084E84);
+        asm/text08057568.o(.text.graphics_display_manager_after_sub_8084E84);
         src/graphics/workspace_owner.o(.text.small_functions_01.sub_80854F8);
         asm/text08057568.o(.text.small_functions_01_after_sub_80854F8);
         src/object/state_action.o(.text.object_state_action.sub_8086700);
