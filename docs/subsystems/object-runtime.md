@@ -255,6 +255,8 @@ Eight callbacks in the `0x08075BB8` through `0x08075F4C` chain now expose an own
 
 Fifteen callbacks from the following `0x08077140` through `0x08077924` sequence now cover linked-chain cleanup, visual-completion handoffs, paired countdowns, random animation selection, and effects `0x24BA`, `0x24E0`, `0x24E9`, `0x24FB`, `0x2515`, `0x2563`, `0x25AB`, `0x25B9`, `0x25F5`, and `0x2983`. The owner forwarded through `sub_810DD7C`, the linked objects, and the numeric resource identities remain structural. Larger construction and global-state callbacks in the surveyed `0x08076034` through `0x08077924` range remain in assembly for a later typed slice.
 
+Sixteen callbacks selected from the next forty-function survey now cover visual and `value80` gates, linked-object completion, fixed leftward motion, command `0x4029`, random animation selection, owner signaling, and effects `0x29D2`, `0x2A58`, `0x2A8B`, and `0x2AA6`. The global sequence counter at `0x03000ED0` and variant word at `0x03000F6C` are address-bound pending recovery of their owning process. Raw-tail boundaries and the larger constructors in the surveyed `0x08077ECC` through `0x08079C3C` range remain in assembly.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,711 linked C functions checked, 1,711 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,727 linked C functions checked, 1,727 exact, and zero mismatches.
