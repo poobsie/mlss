@@ -10,6 +10,11 @@ struct BattleSpriteOwner;
 struct BattleSpriteMotionOwner;
 struct BattleSceneRuntime;
 struct BattleControlObject;
+struct BattleRuntimeFlags;
+struct BattleLargeResourceOwner;
+struct BattleResourceQuadOwner;
+struct BattleSpriteArrayOwner5;
+struct BattleSpriteArrayOwner9;
 
 /* Semantic C names mapped to original symbols still referenced by assembly. */
 #define battle_initialize_definition_00 sub_8158450
@@ -40,6 +45,11 @@ struct BattleControlObject;
 
 #define battle_set_runtime_value_52c sub_8159904
 #define battle_enable_runtime_value_514 sub_8159984
+#define battle_set_runtime_flag_528 sub_8159974
+#define battle_destroy_large_resource_pair sub_8160EA4
+#define battle_destroy_resource_quad sub_815ECA8
+#define battle_destroy_sprite_array5 sub_815EB70
+#define battle_destroy_sprite_array9 sub_815EACC
 #define battle_effect_hide_sprite_and_reset sub_815EC3C
 #define battle_effect_get_value sub_815EC8C
 #define battle_clear_value_14 sub_8158E10
@@ -86,6 +96,11 @@ void battle_sprite_motion_configure_mode_4(
 void battle_sprite_motion_configure_mode_3(
     struct BattleSpriteMotionOwner* object, s32 value);
 void battle_tick_countdown_1f2a(struct BattleSceneRuntime* runtime);
+void battle_set_runtime_flag_528(struct BattleRuntimeFlags* object);
+void battle_destroy_large_resource_pair(struct BattleLargeResourceOwner* object, s32 flags);
+void battle_destroy_resource_quad(struct BattleResourceQuadOwner* object, s32 flags);
+void battle_destroy_sprite_array5(struct BattleSpriteArrayOwner5* object, s32 flags);
+void battle_destroy_sprite_array9(struct BattleSpriteArrayOwner9* object, s32 flags);
 void battle_set_flag_12d_10(struct BattleControlObject* object);
 void battle_set_flag_12d_20(struct BattleControlObject* object);
 void battle_set_flag_12c_01(struct BattleControlObject* object);

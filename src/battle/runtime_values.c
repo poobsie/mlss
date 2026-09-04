@@ -14,3 +14,9 @@ void battle_enable_runtime_value_514(struct BattleRuntimeValues* object, u16 val
     object->enabled518 = 1;
     object->value514 = value;
 }
+
+void battle_set_runtime_flag_528(struct BattleRuntimeFlags* object)
+    __attribute__((section(".text.sub_8159974")));
+void battle_set_runtime_flag_528(struct BattleRuntimeFlags* object) {
+    object->flags528 |= 1;
+}

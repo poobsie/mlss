@@ -73,6 +73,32 @@ struct BattleRuntimeValues {
     u32 value52C;
 };
 
+struct BattleRuntimeFlags {
+    u8 unknown000[0x528];
+    u16 flags528;
+};
+
+struct BattleLargeResourceOwner {
+    u8 unknown000[0x804];
+    void* resource804;
+    u8 unknown808[4];
+    void* resource80C;
+};
+
+struct BattleResourceQuadOwner {
+    void* resources[4];
+};
+
+struct BattleSpriteArrayOwner5 {
+    void* unknown00;
+    struct BattleSprite* sprites[5];
+};
+
+struct BattleSpriteArrayOwner9 {
+    void* unknown00;
+    struct BattleSprite* sprites[9];
+};
+
 struct BattleValueObject {
     u8 unknown00[0x14];
     u16 value14;

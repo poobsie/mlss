@@ -2075,6 +2075,8 @@ SECTIONS
         asm/text08057568.o(.text.freeing_destructors_after_sub_8159464);
         src/battle/runtime_values.o(.text.sub_8159904);
         asm/text08057568.o(.text.after_8159904);
+        src/battle/runtime_values.o(.text.sub_8159974);
+        asm/text08057568.o(.text.after_8159974);
         src/battle/runtime_values.o(.text.sub_8159984);
         asm/text08057568.o(.text.after_8159984);
         src/battle/large_resource_cleanup.o(.text.upper.sub_8159A64);
@@ -2083,10 +2085,16 @@ SECTIONS
         asm/text08057568.o(.text.after_815E9EC);
         src/runtime/definition_state.o(.text.sub_815EA08);
         asm/text08057568.o(.text.after_815EA08);
+        src/battle/large_resource_cleanup.o(.text.upper.sub_815EACC);
+        asm/text08057568.o(.text.after_815EACC);
+        src/battle/large_resource_cleanup.o(.text.upper.sub_815EB70);
+        asm/text08057568.o(.text.after_815EB70);
         src/battle/effect_state.o(.text.sub_815EC3C);
         asm/text08057568.o(.text.after_815EC3C);
         src/battle/effect_state.o(.text.battle_effect_leaf.sub_815EC8C);
         asm/text08057568.o(.text.after_815EC8C);
+        src/battle/effect_state.o(.text.sub_815ECA8);
+        asm/text08057568.o(.text.after_815ECA8);
         src/battle/definition_initializers.o(.text.sub_815ED70);
         asm/text08057568.o(.text.after_815ED70);
         src/battle/sprite_motion_variants.o(.text.text_upper_structural.sub_815ED84);
@@ -2181,6 +2189,8 @@ SECTIONS
         asm/text08057568.o(.text.high_after_sub_8160E4C);
         src/battle/large_resource_cleanup.o(.text.upper.sub_8160E6C);
         asm/text08057568.o(.text.after_upper_sub_8160E6C);
+        src/battle/large_resource_cleanup.o(.text.upper.sub_8160EA4);
+        asm/text08057568.o(.text.after_8160EA4);
         src/graphics/high_helpers.o(.text.high.sub_81612E4);
         asm/text08057568.o(.text.high_after_sub_81612E4);
         src/graphics/high_helpers.o(.text.high.sub_816132C);
