@@ -8,7 +8,7 @@ These routines previously lived at the end of `title_screen.c` because their kno
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
 `multiplayer_frame_update` is called from the frame interrupt path. While multiplayer is active and ready, it records a pending result, swaps the active transfer buffers, reads the serial status bit, writes the multiplayer idle word `0xFEFE`, starts serial I/O, and arms Timer 3. `multiplayer_mark_transfer_ready` sets the readiness byte only for an active link state.
 
 The state overlay names only fields proven by those operations. The four buffer words are still distinguished by offsets because their payload directions are not yet established.

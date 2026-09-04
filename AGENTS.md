@@ -80,6 +80,10 @@ previous candidates wait for a single coordinator to transcribe them.
   The coordinator reviews and integrates worker commits sequentially, resolves shared
   interface and linker conflicts, reruns acceptance, pushes, and immediately starts the
   next worktree round.
+- Keep volatile project-wide counts out of subsystem documents. Subsystem documentation
+  records behavior, evidence, and retained unknowns; `make progress`, acceptance output,
+  and explicit milestone audits own the changing global totals. This avoids needless
+  documentation conflicts when independent worktrees integrate concurrently.
 
 Run `make decomp-acceptance` before accepting a completed slice. This verifies the ROM
 and every linked C function, then rejects active or queued cleanup work and any source

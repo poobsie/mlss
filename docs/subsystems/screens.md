@@ -131,7 +131,7 @@ Six late screen helpers now live in `src/screens/runtime_helpers.c`. Two launch 
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
 ## Scrollable view process
 
 `ScrollableViewProcess` owns a content area, a `240 x 160` viewport position, hardware scroll output, and four edge-arrow sprites. Its update routine writes the scroll registers and hides each arrow when movement in that direction has reached the corresponding content boundary. Its clamp routine constrains the viewport and forwards the position to the content object.

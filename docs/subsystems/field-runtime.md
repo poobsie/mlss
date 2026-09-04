@@ -140,4 +140,4 @@ The neighboring link-node pool uses runtime offsets `0x238` and `0x23C` as its f
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,739 linked C functions checked, 1,739 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

@@ -8,4 +8,4 @@ The exact interpolation step formula remains in assembly. The field names are th
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

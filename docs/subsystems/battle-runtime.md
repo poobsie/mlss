@@ -77,4 +77,4 @@ and a compact effect-state update. Their structural layouts name only proven
 ownership and value relationships; unresolved battle entity identities remain
 attached to the original linker symbols.
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,602 linked C functions checked, 1,602 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

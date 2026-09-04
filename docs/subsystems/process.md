@@ -33,4 +33,4 @@ Two upper-region constructors now use the canonical `Process` prefix and the ful
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

@@ -54,4 +54,4 @@ Two position-state initializers now preserve the current value pair and install 
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,747 linked C functions checked, 1,747 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

@@ -261,4 +261,4 @@ Sixteen callbacks selected from the next forty-function survey now cover visual 
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,746 linked C functions checked, 1,746 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

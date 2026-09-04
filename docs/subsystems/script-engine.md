@@ -105,4 +105,4 @@ The execution state now exposes the saved cursor at offset `0x14`. Three wait ha
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,497 linked C functions checked, 1,497 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

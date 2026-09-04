@@ -71,6 +71,11 @@ For sustained parallel work:
 4. Integrate worker commits one at a time. Resolve shared header and linker order centrally,
    rerun `make decomp-acceptance`, push the verified checkpoint, then refill the workers.
 
+Subsystem documents describe recovered behavior and retained uncertainty. Do not copy the
+current project-wide function count into every subsystem page; use `make progress` for live
+totals and record durable milestone numbers in `docs/detangling-audit.md`. Global counters
+in worker-owned documentation create avoidable merge conflicts and become stale immediately.
+
 Report accepted exact functions and bytes per round. Do not report candidate counts as
 decompilation progress.
 
