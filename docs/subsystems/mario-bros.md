@@ -81,10 +81,16 @@ The nearby relative-coordinate pair remains in assembly. Its behavior was recove
 but two natural C shapes changed register allocation and literal reuse; preserving
 the observed ABI and exact code is preferable to compiler-specific coercion.
 
+Two mirrored falling-object updates now apply the established per-frame motion and
+advance their objects when the terminal condition is reached. The adjacent prepare
+pair initializes each family-specific linked object through the same narrow runtime
+overlay. Family suffixes remain because the owning gameplay tables are still in
+assembly.
+
 ## Next boundary
 
 The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,464 linked C functions checked, 1,464 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,482 linked C functions checked, 1,482 exact, and zero mismatches.

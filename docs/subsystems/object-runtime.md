@@ -89,6 +89,12 @@ tables still live in assembly. `behaviorState` is velocity-shaped in the arc
 callback, but remains structural globally because other callbacks use it as a
 counter or selector.
 
+The adjacent early sequence contributes ten more typed leaves: readiness and
+`value80` gates, visual-completion handoffs, countdown transitions, effect cleanup,
+and linked-object clearing. Numeric effect identifiers and assembly-only
+continuations remain explicit; the recovered names describe only the observed
+gate and state change.
+
 Three boundary callbacks now share `RuntimeObject` and `RuntimeObjectVisual`. Each performs the same base update, adds the visual's coordinate at offset `0` to the object's signed adjustment at offset `0x45`, and invokes the still-unidentified operation at `sub_807C298` when the result is nonpositive. Their variant suffixes remain until the callback-table owners are identified.
 
 `BehaviorObject` is a narrower alternate overlay used by 49 callbacks that previously occupied `text_low_helpers.c`. It exposes a visual pointer, active update callback, and signed countdown at `0x9C`. The callbacks form three repeated families: starting an action before installing another update, conditionally forwarding when visual flag `0x08` is set, and counting down before setting visual state `0x10`. The entry points retain address names because their owning dispatch tables are still assembly; the shared control flow and object fields no longer do.
@@ -181,4 +187,4 @@ The final eight object callbacks from the staging file now use `RuntimeObject`, 
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,464 linked C functions checked, 1,464 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,482 linked C functions checked, 1,482 exact, and zero mismatches.

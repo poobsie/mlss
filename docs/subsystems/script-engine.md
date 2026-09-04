@@ -91,6 +91,10 @@ documents the relationship while the source preserves the exact ROM bytes.
 | `sub_80F110C` | `script_command_branch_on_object_state` | Performs the same state branch against the active object supplied by the dispatcher. |
 | `sub_80F143C` | `script_command_control_indexed_object_runtime` | Selects an object by index and applies the requested runtime control operation. |
 | `sub_80F1490` | `script_command_control_object_runtime` | Applies the parallel runtime control operation to the active object. |
+| `sub_80F1A1C` | `script_command_control_object_pair` | Applies the selected control operation to the command's paired objects. |
+| `sub_80F1AEC` | `script_command_branch_on_field_value_54c` | Branches according to the command's comparison against the structural field runtime value at offset `0x54C`. |
+| `sub_80F1B14` | `script_command_dispatch_selected_runtime` | Selects a runtime record and dispatches the command operation through its established control path. |
+| `sub_80F1BA4` | `script_command_branch_on_selected_runtime_flag` | Branches according to the selected runtime record's tested flag. |
 
 The execution state now exposes the saved cursor at offset `0x14`. Three wait handlers restore that cursor and yield when their respective condition becomes true: the primary actor height test, field flag `0x291` bit 0, or a context-owned asynchronous operation. `script_command_branch_if_condition` decodes its aligned condition, operand, and target-cursor record and updates the current cursor only when the shared condition evaluator succeeds.
 
@@ -100,4 +104,4 @@ The execution state now exposes the saved cursor at offset `0x14`. Three wait ha
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,464 linked C functions checked, 1,464 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,482 linked C functions checked, 1,482 exact, and zero mismatches.
