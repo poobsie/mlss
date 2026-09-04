@@ -40,6 +40,8 @@ Three final bucket-02 wrappers now have graphics ownership. `graphics_apply_stag
 
 `GraphicsCompactStagingSource` captures a second four-halfword staging layout at offsets `0x30` through `0x36`. Its copy helper masks the first pair to nine bits and the second pair to eight bits before writing the interleaved staging region at `0x02000010`. The values stay structurally named until the assembly routines that consume this compact format are recovered.
 
+The high-address runtime group now includes compact resource cleanup and state helpers shared with UI code. Their typed owners expose only the fields touched by these leaves; resource and screen identities remain unresolved where callers are still assembly-only.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,623 linked C functions checked, 1,623 exact, and zero mismatches.

@@ -224,6 +224,8 @@ describe their observed gates and continuations without assigning scene identiti
 
 Nine later callbacks extend the linked-object sequence through periodic effect `0x212B`, paired animation-4 gates, shared-effect position synchronization, readiness sound switching, owner-variant selection, linked animation completion with effect `0x1FA6`, and effect `0x1E8A`. Owner selectors and numeric effect identities remain structural; no encounter-specific names are inferred from them.
 
+Three middle-runtime leaves add one value-gated transition and two compact continuation updates. The aliases state only the proven gate or callback change, retaining the original symbols where the surrounding assembly does not establish a scene-specific role.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,611 linked C functions checked, 1,611 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,623 linked C functions checked, 1,623 exact, and zero mismatches.

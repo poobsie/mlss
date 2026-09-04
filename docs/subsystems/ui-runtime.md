@@ -12,7 +12,7 @@ Four late UI state helpers now expose their exact sound and flag effects. One cl
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,623 linked C functions checked, 1,623 exact, and zero mismatches.
 `UiStyleState` initializes a two-halfword style block to flags `0x10` and value zero. `UiDefinitionNode` initializes a four-word node with definition `0x08CDD0E8`; its recovered return type matches callers that retain the initialized pointer.
 
 The same construction layer now exposes an empty-pointer query, a shared-halfword reset at `0x0300102C`, and structural setters for a layout object's origin at `0x24/0x28` and data word at `0x64`. The data word remains offset-named until its consumers establish whether it holds text, graphics, or another descriptor.
@@ -22,3 +22,5 @@ The same construction layer now exposes an empty-pointer query, a shared-halfwor
 `UiSingleSpriteOwner` exposes the sprite pointer at offset `0x30`. Its paired callbacks hide and show that sprite, while the adjacent false-returning entry remains named as a visibility callback until its callback table is recovered.
 
 `TextContext` replaces the former catch-all `struc_15` name for the text parser shared by the options and related screens. `text_context_set_cursor` installs the source cursor and its column and row, clears the restart and completion flag bits `0x01` and `0x20`, and returns the previous cursor. The options label builder now advances `cursor` explicitly when it encounters the observed `FF 0B 01` control sequence.
+
+Four more high-address UI leaves expose narrow layout and object-state operations through the existing typed owners. Their aliases describe the observed reset, value transfer, or resource relationship without assigning a menu or screen identity that current callers do not prove.
