@@ -217,6 +217,13 @@ Fourteen following callbacks continue the same runtime chain through readiness c
 
 Three middle-runtime callbacks now expose their proven value gates and continuation changes. Their names describe the observed test and state transition while leaving the assembly-owned scene identity unresolved.
 
+Two continuation installers extend that middle-runtime chain. One waits for `value80`
+and a signed timer, starts animation 9 and effect `0x138A`, clears the auxiliary
+callback, and advances. The other waits for `value80`, installs three independent
+follow-up callbacks, starts animation 7, and arms a 16-tick continuation. Those
+callback slots are kept structural because their assembly-owned effects do not yet
+support gameplay-specific names.
+
 Eight late-middle callbacks now cover three `value80` gates, paired visual-completion
 transitions, and a timer-driven handoff. Four neighboring routines remain in assembly
 after exact-sized but register-sensitive C failed the capped pass. The accepted names

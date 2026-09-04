@@ -1,15 +1,16 @@
 #include "global.h"
 #include "audio/sound_effects.h"
 #include "object/functions.h"
+#include "object/runtime_object.h"
 
 #define SEC(name)   __attribute__((section(".text.middle." #name)))
 #define U8AT(p, o)  (*(u8*)((u8*)(p) + (o)))
 #define U16AT(p, o) (*(u16*)((u8*)(p) + (o)))
 #define U32AT(p, o) (*(u32*)((u8*)(p) + (o)))
 #define PTRAT(p, o) (*(void**)((u8*)(p) + (o)))
+#define CALLBACK58(p) (*(RuntimeObjectCallback*)((u8*)(p) + 0x58))
 
 void sub_807C298(void);
-void sub_8087540(void*);
 int sub_8082B00(void*);
 void sub_80873B8(void*, int, int);
 void sub_8082E1C(void*, s32, s32, s32);
@@ -18,6 +19,7 @@ void sub_8021308(void*);
 int sub_8086D80(void*);
 void sub_80DD0CC(void*);
 void sub_808738C(void*);
+s32 sub_8086858(void*, s32);
 
 #define DECL_NEXT(name) extern void name(void*)
 DECL_NEXT(sub_80D9B9C);
@@ -66,6 +68,11 @@ DECL_NEXT(sub_808750C);
 DECL_NEXT(sub_80DDC8C);
 DECL_NEXT(sub_80D9A98);
 DECL_NEXT(sub_80DAFA8);
+DECL_NEXT(sub_80D9E34);
+DECL_NEXT(sub_80DB184);
+DECL_NEXT(sub_80DB1A4);
+DECL_NEXT(sub_80DB1C4);
+DECL_NEXT(sub_80DAD00);
 void sub_807F47C(void*);
 
 #define OWNER_VARIANT(object) \
@@ -416,4 +423,41 @@ SEC(sub_80DAF48) void sub_80DAF48(void* object)
         sound_effect_play(0x8D, SOUND_VOLUME_UNCHANGED);
         PTRAT(object, 0x4C) = sub_80DAFA8;
     }
+}
+
+/* Continuation installers recovered from the same owner/state callback graph.
+ * The owner and state layouts remain opaque, so only observed offsets are named. */
+SEC(sub_80D9DD4) void sub_80D9DD4(struct RuntimeObject* object)
+{
+    s32 cleared = object->value80;
+    s16* timer;
+
+    if (cleared != 0)
+        return;
+    timer = &object->timer;
+    (*timer)--;
+    if (*timer >= 0)
+        return;
+    object->valueA8 = cleared;
+    sub_8082E1C(object, 9, 0, 0);
+    sub_8086858(object, 0x138A);
+    sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
+    object->secondaryUpdate = (RuntimeObjectCallback)sub_80D9E34;
+    object->auxiliaryState = cleared;
+    *timer = 0;
+    object->update = (RuntimeObjectCallback)sub_80D9E9C;
+}
+
+SEC(sub_80DB12C) void sub_80DB12C(struct RuntimeObject* object)
+{
+    if (object->value80 != 0)
+        return;
+    sound_effect_play(0x2E, SOUND_VOLUME_UNCHANGED);
+    sub_807F4FC(object);
+    CALLBACK58(object) = (RuntimeObjectCallback)sub_80DB1C4;
+    object->secondaryUpdate = (RuntimeObjectCallback)sub_80DB1A4;
+    object->tertiaryUpdate = (RuntimeObjectCallback)sub_80DB184;
+    sub_8082E1C(object, 7, 0, 0);
+    object->timer = 0x10;
+    object->update = (RuntimeObjectCallback)sub_80DAD00;
 }

@@ -249811,6 +249811,7 @@ _080D9DCA:
 	pop {r0}
 	bx r0
 _080D9DD0: .4byte sub_80D9DD4
+	.if 0
 	thumb_func_start sub_80D9DD4
 sub_80D9DD4:
 	push {r4, r5, r6, lr}
@@ -249856,6 +249857,8 @@ _080D9E20:
 _080D9E28: .4byte 0x0000138A
 _080D9E2C: .4byte sub_80D9E34
 _080D9E30: .4byte sub_80D9E9C
+	.endif
+	.section .text.after_middle_sub_80D9DD4, "ax", %progbits
 	thumb_func_start sub_80D9E34
 sub_80D9E34:
 	push {r4, r5, lr}
@@ -252052,6 +252055,7 @@ _080DB0F2:
 	bx r0
 _080DB0F8: .4byte sub_80DB12C
 	.section .text.misc_helpers_03_after_sub_80DB0FC, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80DB12C
 sub_80DB12C:
 	push {r4, lr}
@@ -252092,6 +252096,8 @@ _080DB174: .4byte sub_80DB1C4
 _080DB178: .4byte sub_80DB1A4
 _080DB17C: .4byte sub_80DB184
 _080DB180: .4byte sub_80DAD00
+	.endif
+	.section .text.after_middle_sub_80DB12C, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_80DB184, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_80DB1A4, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_80DB1C4, "ax", %progbits

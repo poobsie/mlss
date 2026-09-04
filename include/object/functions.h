@@ -326,5 +326,7 @@
 #define object_start_animation_6_and_finalize_position sub_80D99A0
 #define object_countdown_then_start_animation_7 sub_80DA39C
 #define object_when_ready_play_sound_8d_and_continue sub_80DAF48
+#define object_when_value80_clear_countdown_then_start_effect_138a sub_80D9DD4
+#define object_when_value80_clear_install_three_followups sub_80DB12C
 
 #endif
