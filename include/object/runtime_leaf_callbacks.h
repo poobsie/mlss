@@ -3,12 +3,21 @@
 
 #include "object/runtime_object.h"
 
-void sub_8068074(struct RuntimeObject* object);
-void sub_80680A0(struct RuntimeObject* object);
-void sub_806819C(struct RuntimeObject* object);
-void sub_80687EC(struct RuntimeObject* object);
-void sub_806C800(struct RuntimeObject* object);
-void sub_806CB3C(struct RuntimeObject* object);
-s32 sub_806E690(struct RuntimeObject* object);
+#define object_move_left_until_screen_exit sub_8068074
+#define object_start_animation_6_when_value80_clears sub_80680A0
+#define object_move_left_and_down_until_screen_exit sub_806819C
+#define object_move_left_fast_until_screen_exit sub_80687EC
+#define object_repeat_animation_until_behavior_count_expires sub_806C800
+#define object_finish_visual_and_stop_update sub_806CB3C
+#define object_release_position_owner_and_continue sub_806E690
+
+void object_move_left_until_screen_exit(struct RuntimeObject* object);
+void object_start_animation_6_when_value80_clears(struct RuntimeObject* object);
+void object_move_left_and_down_until_screen_exit(struct RuntimeObject* object);
+void object_move_left_fast_until_screen_exit(struct RuntimeObject* object);
+void object_repeat_animation_until_behavior_count_expires(
+    struct RuntimeObject* object);
+void object_finish_visual_and_stop_update(struct RuntimeObject* object);
+s32 object_release_position_owner_and_continue(struct RuntimeObject* object);
 
 #endif

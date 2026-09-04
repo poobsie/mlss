@@ -66,6 +66,15 @@ The two callback-result helpers use `RuntimeObject` because they only replace it
 
 Future semantic sequence names depend on the entry dispatcher and neighboring assembly. Newly decompiled helpers should join this subsystem only when they use the established object layouts or call graph.
 
+Seven additional leaf callbacks now use `RuntimeObject` directly. Three move an
+object left, or left and down, until it crosses the established screen boundary.
+One starts animation 6 when `value80` clears, one repeats an animation according
+to `behaviorState`, and one finishes a visual before stopping its update. The
+remaining callback releases the `RuntimeObject`-shaped owner stored in
+`positionOwner` and installs the next update. `value80`, `behaviorState`, and
+the broader meaning of `positionOwner` remain structural because these paths do
+not identify their gameplay owner.
+
 Three boundary callbacks now share `RuntimeObject` and `RuntimeObjectVisual`. Each performs the same base update, adds the visual's coordinate at offset `0` to the object's signed adjustment at offset `0x45`, and invokes the still-unidentified operation at `sub_807C298` when the result is nonpositive. Their variant suffixes remain until the callback-table owners are identified.
 
 `BehaviorObject` is a narrower alternate overlay used by 49 callbacks that previously occupied `text_low_helpers.c`. It exposes a visual pointer, active update callback, and signed countdown at `0x9C`. The callbacks form three repeated families: starting an action before installing another update, conditionally forwarding when visual flag `0x08` is set, and counting down before setting visual state `0x10`. The entry points retain address names because their owning dispatch tables are still assembly; the shared control flow and object fields no longer do.
@@ -158,4 +167,4 @@ The final eight object callbacks from the staging file now use `RuntimeObject`, 
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,368 linked C functions checked, 1,368 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,406 linked C functions checked, 1,406 exact, and zero mismatches.

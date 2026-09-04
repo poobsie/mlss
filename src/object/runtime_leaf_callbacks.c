@@ -14,7 +14,7 @@ void nullsub_15(void);
 
 
 SEC(sub_8068074)
-void sub_8068074(struct RuntimeObject* object)
+void object_move_left_until_screen_exit(struct RuntimeObject* object)
 {
     s32 oldPosition;
     s32 roundedPosition;
@@ -29,7 +29,7 @@ void sub_8068074(struct RuntimeObject* object)
 }
 
 SEC(sub_80680A0)
-void sub_80680A0(struct RuntimeObject* object)
+void object_start_animation_6_when_value80_clears(struct RuntimeObject* object)
 {
     if (object->value80 == 0) {
         sub_8082E1C(object, 6, 0, 0);
@@ -39,7 +39,7 @@ void sub_80680A0(struct RuntimeObject* object)
 }
 
 SEC(sub_806819C)
-void sub_806819C(struct RuntimeObject* object)
+void object_move_left_and_down_until_screen_exit(struct RuntimeObject* object)
 {
     s32 oldX;
     s32 newX;
@@ -67,7 +67,7 @@ void sub_806819C(struct RuntimeObject* object)
 
 
 SEC(sub_80687EC)
-void sub_80687EC(struct RuntimeObject* object)
+void object_move_left_fast_until_screen_exit(struct RuntimeObject* object)
 {
     s32 oldPosition;
     s32 roundedPosition;
@@ -84,7 +84,8 @@ void sub_80687EC(struct RuntimeObject* object)
 
 
 SEC(sub_806C800)
-void sub_806C800(struct RuntimeObject* object)
+void object_repeat_animation_until_behavior_count_expires(
+    struct RuntimeObject* object)
 {
     RuntimeObjectCallback next;
 
@@ -103,7 +104,7 @@ void sub_806C800(struct RuntimeObject* object)
 
 
 SEC(sub_806CB3C)
-void sub_806CB3C(struct RuntimeObject* object)
+void object_finish_visual_and_stop_update(struct RuntimeObject* object)
 {
     if (object->visual->flags & 8) {
         sub_8082E1C(object, 0, 0, 0);
@@ -117,7 +118,7 @@ SEC(sub_806CB3C)
 const u16 sub_806CB3C_padding = 0;
 
 SEC(sub_806E690)
-s32 sub_806E690(struct RuntimeObject* object)
+s32 object_release_position_owner_and_continue(struct RuntimeObject* object)
 {
     RuntimeObjectCallback callback;
 
