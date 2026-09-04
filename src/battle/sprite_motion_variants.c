@@ -4,6 +4,7 @@
 #define CALLBACK_SEC_INNER(name) \
     __attribute__((section(".text.battle_sprite_callbacks." #name)))
 #define CALLBACK_SEC(name) CALLBACK_SEC_INNER(name)
+#define BATTLE_CAMERA (*(s16**)0x03001014)
 
 extern void* sub_815F8F4(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*);
@@ -13,8 +14,10 @@ extern void sub_815FA70(struct BattleSpriteMotion*, s32);
 extern void sub_815FAFC(struct BattleSpriteMotion*);
 extern void sub_815FB14(struct BattleSpriteMotion*, void*);
 extern void sub_815FAA4(struct BattleSpriteMotion*, void*);
+extern void sub_815FACC(struct BattleSpriteMotion*);
 extern void sub_8021308(void*);
 extern s32 sub_8199F30(void);
+extern s16 sub_8160854(void*, s32);
 
 struct BattleSpritePosition {
     u16 x;
@@ -24,6 +27,16 @@ struct BattleSpritePosition {
 struct BattleFixedOrigin {
     s32 x;
     s32 y;
+};
+
+struct BattleMotionDescriptor {
+    u8 unknown00[0x30];
+    s16 offset30;
+    u16 padding32;
+    void (*callback34)(void*);
+    s16 offset38;
+    u16 padding3A;
+    void (*callback3C)(void*);
 };
 
 /*
@@ -104,17 +117,127 @@ CALLBACK_SEC(sub_8158B90) const u16 sub_8158B90_padding = 0;
 DEFINE_SPRITE_SIZE_SETUP(battle_setup_sprite_motion_size_b)
 CALLBACK_SEC(sub_815F3CC) const u16 sub_815F3CC_padding = 0;
 
-CALLBACK_SEC(sub_815F08C)
-s32 battle_wrap_sprite_motion_x(
-    struct BattleSpriteMotion* object, void* unused1, void* unused2,
-    const s32* originX)
-{
-    object->positionX -= (s16)object->slot34.values.value;
-    if (object->positionX - *originX < -0x2000)
-        object->positionX += ((sub_8199F30() & 0x1FF) + 0x200) << 8;
-    return 0;
+#define DEFINE_WRAP_X(name)                                             \
+CALLBACK_SEC(name) s32 name(                                            \
+    struct BattleSpriteMotion* object, void* unused1, void* unused2,    \
+    const s32* originX)                                                 \
+{                                                                       \
+    object->positionX -= (s16)object->slot34.values.value;              \
+    if (object->positionX - *originX < -0x2000)                         \
+        object->positionX += ((sub_8199F30() & 0x1FF) + 0x200) << 8;    \
+    return 0;                                                           \
 }
 
+DEFINE_WRAP_X(battle_wrap_sprite_motion_x_a)
+DEFINE_WRAP_X(battle_wrap_sprite_motion_x)
+
+#define DEFINE_SPRITE_ACTIVATION(name)                                  \
+CALLBACK_SEC(name) void name(struct BattleSpriteMotion* object)         \
+{                                                                       \
+    const struct BattleMotionDescriptor* descriptor;                    \
+    sub_815F97C(object, 0);                                             \
+    if (object->variant26 == 1) {                                       \
+        sub_815FA3C(object)->size04 = 0x140;                            \
+        sub_815FA3C(object)->size06 = 0x140;                            \
+    }                                                                   \
+    object->positionY = 0xA000;                                        \
+    descriptor = object->descriptor;                                   \
+    descriptor->callback34((u8*)object + descriptor->offset30);        \
+}
+
+DEFINE_SPRITE_ACTIVATION(battle_activate_sprite_motion_a)
+CALLBACK_SEC(sub_8158884) const u16 sub_8158884_padding = 0;
+DEFINE_SPRITE_ACTIVATION(battle_activate_sprite_motion_b)
+CALLBACK_SEC(sub_815F0CC) const u16 sub_815F0CC_padding = 0;
+
+#define DEFINE_GROUND_CLAMP(name)                                       \
+CALLBACK_SEC(name) void name(                                           \
+    struct BattleSpriteMotion* object, void* heightContext)             \
+{                                                                       \
+    s32 ground = (s16)sub_8160854(heightContext, object->positionX) << 8; \
+    object->ownedResource44 = (void*)ground;                            \
+    if (object->positionY > ground) {                                   \
+        object->positionY = ground;                                    \
+        object->velocityX = object->positionX - object->previousX;      \
+        object->velocityY = ground - object->previousY;                 \
+        object->previousX = object->positionX;                          \
+        object->previousY = ground;                                    \
+    } else {                                                            \
+        sub_815FACC(object);                                            \
+    }                                                                   \
+}
+
+DEFINE_GROUND_CLAMP(battle_clamp_sprite_motion_to_ground_a)
+CALLBACK_SEC(sub_8158E90) const u16 sub_8158E90_padding = 0;
+DEFINE_GROUND_CLAMP(battle_clamp_sprite_motion_to_ground_b)
+CALLBACK_SEC(sub_815F530) const u16 sub_815F530_padding = 0;
+
+CALLBACK_SEC(battle_update_sprite_motion_unless_flagged)
+void battle_update_sprite_motion_unless_flagged(
+    struct BattleSpriteMotion* object, void* origin)
+{
+    if (!(object->slot34.values.auxiliary & 0x800))
+        sub_815FAA4(object, origin);
+}
+CALLBACK_SEC(sub_8158D80) const u16 sub_8158D80_padding = 0;
+
+CALLBACK_SEC(battle_apply_sprite_motion_y)
+void battle_apply_sprite_motion_y(
+    struct BattleSpriteMotion* object, void* unused, s32 yOffset)
+{
+    battle_sprite_motion_apply_velocity(object, yOffset);
+}
+
+CALLBACK_SEC(battle_initialize_grounded_sprite_motion)
+void* battle_initialize_grounded_sprite_motion(
+    struct BattleSpriteMotion* object,
+    const struct BattleSpriteMotionConfig* config, u16 value)
+{
+    sub_815F8F4(object, config);
+    object->descriptor = (void*)0x08CDC9F0;
+    object->state = 0;
+    object->slot34.values.value = 0;
+    object->slot34.values.auxiliary = value;
+    *(u16*)&object->ownedResource40 = 0;
+    object->slot3C.child = 0;
+    object->ownedResource44 = 0;
+    sub_815F97C(object, 0);
+    return object;
+}
+
+CALLBACK_SEC(battle_destroy_sprite_motion_resources)
+void battle_destroy_sprite_motion_resources(
+    struct BattleSpriteMotion* object, void* argument)
+{
+    object->descriptor = (void*)0x08CDCE10;
+    if (object->ownedResource40 != 0) {
+        sub_8021308(object->ownedResource40);
+        object->ownedResource40 = 0;
+    }
+    if (object->slot3C.child != 0) {
+        sub_8021308(object->slot3C.child);
+        object->slot3C.child = 0;
+    }
+    sub_815FB14(object, argument);
+}
+
+CALLBACK_SEC(battle_sync_sprite_motion_to_camera)
+void battle_sync_sprite_motion_to_camera(
+    struct BattleSpriteMotion* object, const struct BattleFixedOrigin* origin)
+{
+    struct BattleSpritePosition* position;
+    s32 originX;
+    s32 originY;
+    sub_815FAA4(object, (void*)origin);
+    position = object->slot34.ownedResource;
+    if (position != 0) {
+        originX = origin->x;
+        position->x = (object->positionX - originX) >> 8;
+        position = object->slot34.ownedResource;
+        originY = origin->y;
+        position->y = (((s32)*BATTLE_CAMERA << 8) - originY) >> 8;
+    }
+}
 
 #define DEFINE_INITIALIZER(name, descriptor_value)                       \
 SEC(name) void* name(                                                    \

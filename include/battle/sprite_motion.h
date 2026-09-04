@@ -27,10 +27,20 @@ struct BattleFixedOrigin;
 #define battle_setup_sprite_motion_size_a sub_8158B90
 #define battle_sync_sprite_motion_to_origin_b sub_815EF80
 #define battle_wrap_sprite_motion_x sub_815F08C
+#define battle_wrap_sprite_motion_x_a sub_8158844
 #define battle_initialize_sprite_motion_idle_b sub_815F1F0
 #define battle_initialize_sprite_motion_state_2_b sub_815F290
 #define battle_initialize_sprite_motion_zeroed_b sub_815F354
 #define battle_setup_sprite_motion_size_b sub_815F3CC
+#define battle_activate_sprite_motion_a sub_8158884
+#define battle_activate_sprite_motion_b sub_815F0CC
+#define battle_clamp_sprite_motion_to_ground_a sub_8158E90
+#define battle_clamp_sprite_motion_to_ground_b sub_815F530
+#define battle_update_sprite_motion_unless_flagged sub_8158D80
+#define battle_apply_sprite_motion_y sub_8158ECC
+#define battle_initialize_grounded_sprite_motion sub_8158F28
+#define battle_destroy_sprite_motion_resources sub_815F474
+#define battle_sync_sprite_motion_to_camera sub_815861C
 
 struct BattleSpriteMotion {
     struct BattleSprite* sprite;
@@ -108,5 +118,23 @@ void battle_setup_sprite_motion_size_a(struct BattleSpriteMotion*);
 void battle_setup_sprite_motion_size_b(struct BattleSpriteMotion*);
 s32 battle_wrap_sprite_motion_x(
     struct BattleSpriteMotion*, void*, void*, const s32* originX);
+s32 battle_wrap_sprite_motion_x_a(
+    struct BattleSpriteMotion*, void*, void*, const s32* originX);
+void battle_sync_sprite_motion_to_camera(
+    struct BattleSpriteMotion*, const struct BattleFixedOrigin*);
+void battle_activate_sprite_motion_a(struct BattleSpriteMotion*);
+void battle_activate_sprite_motion_b(struct BattleSpriteMotion*);
+void battle_update_sprite_motion_unless_flagged(
+    struct BattleSpriteMotion*, void* origin);
+void battle_clamp_sprite_motion_to_ground_a(
+    struct BattleSpriteMotion*, void* heightContext);
+void battle_clamp_sprite_motion_to_ground_b(
+    struct BattleSpriteMotion*, void* heightContext);
+void battle_apply_sprite_motion_y(
+    struct BattleSpriteMotion*, void*, s32 yOffset);
+void* battle_initialize_grounded_sprite_motion(
+    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
+void battle_destroy_sprite_motion_resources(
+    struct BattleSpriteMotion*, void* argument);
 
 #endif
