@@ -12,7 +12,9 @@ struct MarioBrosPoolObject {
         u8 highFlag : 1;
         u8 unknown : 7;
     } flags07;
-    u8 unknown08[0x30];
+    u8 unknown08[0x18];
+    void* allocation20;
+    u8 unknown24[0x14];
     void* allocation38;
 };
 
@@ -48,6 +50,10 @@ extern u16 sub_8F5EFD8(u16 kind, u32 coordinateA, u32 coordinateB);
 extern u16 sub_8F8592C(u16 kind, u32 coordinateA, u32 coordinateB);
 extern void sub_8F64AC0(struct MarioBrosPoolObject* object);
 extern void sub_8F8B414(struct MarioBrosPoolObject* object);
+extern u8 sub_8F5F5C0(s16 x, s16 y);
+extern u8 sub_8F85F14(s16 x, s16 y);
+extern void sub_8F6F360(struct MarioBrosPoolObject* object, void (*callback)(void));
+extern void sub_8F95EC0(struct MarioBrosPoolObject* object, void (*callback)(void));
 
 struct MarioBrosSpawnSource {
     u8 unknown00[0xC];
@@ -60,6 +66,88 @@ struct MarioBrosSpawnLink {
     u8 unknown01[3];
     struct MarioBrosSpawnSource* owner;
 };
+
+struct MarioBrosPoolRecord {
+    u8 unknown00[0x20];
+    void* allocation20;
+};
+
+typedef void (*MarioBrosPoolCallback)(void);
+
+#define DEFINE_RESET_RECORD(name, pool, release, template)                       \
+    MB_SECTION(name) void name(struct MarioBrosPoolRecord* record) {             \
+        if (record->allocation20 != 0) {                                          \
+            release((void*)(pool), record->allocation20);                         \
+            record->allocation20 = 0;                                             \
+        }                                                                         \
+        *record = *(const struct MarioBrosPoolRecord*)(template);                  \
+    }
+
+DEFINE_RESET_RECORD(mario_bros_reset_pool_record_a, 0x03001BC8, sub_8F51010,
+                    0x08F9FE38)
+DEFINE_RESET_RECORD(mario_bros_reset_pool_record_b, 0x03001BB8, sub_8F93C24,
+                    0x0201E180)
+
+#define DEFINE_FIND_RUNTIME_ID(name, runtime)                                    \
+    MB_SECTION(name) u16 name(u16 runtimeId) {                                    \
+        s32 index = 0;                                                            \
+        u8* base = (u8*)&(runtime);                                               \
+        u16* current;                                                             \
+        base += 0x4544;                                                           \
+        current = (u16*)base;                                                     \
+        while (index <= 27) {                                                     \
+            if (*current == runtimeId)                                            \
+                return (u16)index;                                                \
+            current++;                                                            \
+            index++;                                                              \
+        }                                                                         \
+        return 0xFFFF;                                                            \
+    }
+
+DEFINE_FIND_RUNTIME_ID(mario_bros_find_runtime_id_a, gMarioGlobal_03000F50)
+DEFINE_FIND_RUNTIME_ID(mario_bros_find_runtime_id_b, gMarioGlobal_03000F40)
+
+#define DEFINE_FIND_SPATIAL_ID(name, find, runtime)                               \
+    MB_SECTION(name) u8 name(s16 x, s16 y) {                                      \
+        u8 index = find(x, y);                                                    \
+        u8 result;                                                               \
+        if (index == 0xFF)                                                        \
+            goto unavailable;                                                     \
+        result = (u8)((struct MarioBrosObject*)(runtime).objects4494[index])->value24;\
+        goto done;                                                               \
+    unavailable:                                                                 \
+        result = 0xFF;                                                           \
+    done:                                                                        \
+        return result;                                                           \
+    }
+
+DEFINE_FIND_SPATIAL_ID(mario_bros_find_spatial_object_id_a, sub_8F5F5C0,
+                       gMarioGlobal_03000F50)
+DEFINE_FIND_SPATIAL_ID(mario_bros_find_spatial_object_id_b, sub_8F85F14,
+                       gMarioGlobal_03000F40)
+MB_SECTION(sub_8F5F73C) const u16 sub_8F5F73C_padding = 0;
+MB_SECTION(sub_8F86090) const u16 sub_8F86090_padding = 0;
+
+#define DEFINE_DISPATCH_POOL(name, runtime, tableAddress, call)                  \
+    MB_SECTION(name) void name(void) {                                            \
+        u8 index = 0;                                                             \
+        struct MarioBrosPoolObject** objects = (runtime).objects4504;             \
+        MarioBrosPoolCallback* callbacks = (MarioBrosPoolCallback*)(tableAddress);\
+        do {                                                                      \
+            struct MarioBrosPoolObject* object = objects[index];                  \
+            u16 dispatchId = *(u16*)object;                                       \
+            if (dispatchId != 0) {                                                \
+                u16 callbackIndex = dispatchId - 1;                               \
+                call(object, callbacks[callbackIndex]);                           \
+            }                                                                     \
+            index++;                                                              \
+        } while (index <= 15);                                                    \
+    }
+
+DEFINE_DISPATCH_POOL(mario_bros_dispatch_pool_objects_a, gMarioGlobal_03000F50,
+                     0x08F9FE5C, sub_8F6F360)
+DEFINE_DISPATCH_POOL(mario_bros_dispatch_pool_objects_b, gMarioGlobal_03000F40,
+                     0x0201E1A4, sub_8F95EC0)
 
 #define DEFINE_RELEASE(name, runtime, pool, release, template, copy)              \
     MB_SECTION(name) void name(struct MarioBrosPoolObject* object) {              \

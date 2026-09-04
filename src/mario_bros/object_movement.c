@@ -5,8 +5,8 @@
 #define MB_LATE_SECTION(name) __attribute__((section(".text.mariobros_late." #name)))
 #define MB_HELPER_SECTION(name) __attribute__((section(".text.mariobros_helpers_late." #name)))
 
-extern u32 sub_8F6124C(u32, u32);
-extern u32 sub_8F87BA0(u32, u32);
+extern s32 sub_8F6124C(s32, s32);
+extern s32 sub_8F87BA0(s32, s32);
 extern u8 sub_8F65EA0(void*);
 extern void sub_8F63D28(void* object);
 

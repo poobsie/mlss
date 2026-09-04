@@ -49,10 +49,25 @@ allocate kind 5, initialize the selected object, set state 3, and establish the
 back-pointer through the allocation at offset `0x38`. Array ownership, the meaning
 of kind 5, and the remaining flag bits are deliberately retained as unknowns.
 
+The pool record at offset `0x4504` has a second allocation at record offset `0x20`.
+Its mirrored reset helpers release that allocation when present, then restore the
+complete 36-byte record from the corresponding primary or secondary template. Two
+lookup pairs now expose separate contracts: one scans the 28 runtime identifiers at
+offset `0x4544`, while the spatial pair delegates coordinate selection and returns
+the low byte of the selected object's `value24`. The meaning of that identifier is
+not yet established.
+
+The 16 records at runtime offset `0x4504` also carry a one-based dispatch selector
+in their first halfword. Mirrored dispatch loops use that selector to call the
+parallel primary and secondary callback tables. Callback purpose and record class
+remain unknown. The nearby wrapped-coordinate pair remains in assembly because the
+compiler consistently chose a different scratch register despite matching behavior;
+forcing an invented ABI would weaken the recovered interface.
+
 ## Next boundary
 
 The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,422 linked C functions checked, 1,422 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,430 linked C functions checked, 1,430 exact, and zero mismatches.

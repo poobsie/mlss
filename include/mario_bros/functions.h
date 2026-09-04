@@ -60,6 +60,14 @@
 #define mario_bros_propagate_high_flag_b sub_8F87CC8
 #define mario_bros_spawn_linked_object_a sub_8F64B3C
 #define mario_bros_spawn_linked_object_b sub_8F8B490
+#define mario_bros_reset_pool_record_a sub_8F5F1C8
+#define mario_bros_reset_pool_record_b sub_8F85B1C
+#define mario_bros_find_runtime_id_a sub_8F5F23C
+#define mario_bros_find_runtime_id_b sub_8F85B90
+#define mario_bros_find_spatial_object_id_a sub_8F5F73C
+#define mario_bros_find_spatial_object_id_b sub_8F86090
+#define mario_bros_dispatch_pool_objects_a sub_8F5F7C4
+#define mario_bros_dispatch_pool_objects_b sub_08F86118
 
 #define mario_bros_normalize_variant_a sub_8F66A40
 #define mario_bros_normalize_variant_b sub_8F8D394
