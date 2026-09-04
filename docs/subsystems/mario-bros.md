@@ -87,10 +87,15 @@ pair initializes each family-specific linked object through the same narrow runt
 overlay. Family suffixes remain because the owning gameplay tables are still in
 assembly.
 
+The pool layer now includes mirrored heap-block release operations that unlink a
+block and update the free-list head, plus mirrored link-context dispatchers. Their
+names state those allocator and dispatch mechanics; the gameplay owners of the
+two runtime families remain unresolved.
+
 ## Next boundary
 
 The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,482 linked C functions checked, 1,482 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,497 linked C functions checked, 1,497 exact, and zero mismatches.
