@@ -1048,6 +1048,10 @@ SECTIONS
         src/object/behavior_transitions.o(.text.sub_8099FC4);
         src/object/behavior_transitions.o(.text.sub_8099FE0);
         asm/text08057568.o(.text.after_sub_8099FC4);
+        src/object/animation_effect_callbacks.o(.text.animation_effect_callbacks.sub_8099FFC);
+        asm/text08057568.o(.text.animation_effect_callbacks_after_sub_8099FFC);
+        src/object/animation_effect_callbacks.o(.text.animation_effect_callbacks.sub_809A06C);
+        asm/text08057568.o(.text.animation_effect_callbacks_after_sub_809A06C);
         src/object/fixed_visual_transitions.o(.text.misc_helpers_03.sub_809A0F4);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_809A0F4);
         src/object/fixed_visual_transitions.o(.text.misc_helpers_03.sub_809A120);

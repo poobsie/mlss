@@ -118214,30 +118214,7 @@ _08099F9C: .4byte sub_809A02C
 	.byte 0x01, 0x20, 0x70, 0x47, 0xFD, 0x9F, 0x09, 0x08, 0x01, 0x49, 0xC1, 0x64, 0x01, 0x20, 0x70, 0x47
 	.byte 0x6D, 0xA0, 0x09, 0x08
 	.section .text.after_sub_8099FC4, "ax", %progbits
-	thumb_func_start sub_8099FFC
-sub_8099FFC:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	movs r1, #0x02
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	adds r1, r4, #0x0
-	adds r1, #0xAC
-	movs r0, #0x00
-	strh r0, [r1, #0x00]
-	subs r1, #0x28
-	ldr r0, [r4, #0x38]
-	str r0, [r1, #0x00]
-	adds r1, #0x04
-	ldr r0, [r4, #0x3C]
-	str r0, [r1, #0x00]
-	ldr r0, _0809A028 @ =0x080997E5
-	str r0, [r4, #0x4C]
-	pop {r4}
-	pop {r0}
-	bx r0
-_0809A028: .4byte sub_80997E4
+	.section .text.animation_effect_callbacks_after_sub_8099FFC, "ax", %progbits
 	thumb_func_start sub_809A02C
 sub_809A02C:
 	push {r4, r5, lr}
@@ -118272,30 +118249,7 @@ _0809A062:
 	pop {r0}
 	bx r0
 _0809A068: .4byte sub_809A02C
-	thumb_func_start sub_809A06C
-sub_809A06C:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	movs r1, #0x02
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	adds r1, r4, #0x0
-	adds r1, #0xAC
-	movs r0, #0x00
-	strh r0, [r1, #0x00]
-	subs r1, #0x28
-	ldr r0, [r4, #0x38]
-	str r0, [r1, #0x00]
-	adds r1, #0x04
-	ldr r0, [r4, #0x3C]
-	str r0, [r1, #0x00]
-	ldr r0, _0809A098 @ =0x08099449
-	str r0, [r4, #0x4C]
-	pop {r4}
-	pop {r0}
-	bx r0
-_0809A098: .4byte sub_8099448
+	.section .text.animation_effect_callbacks_after_sub_809A06C, "ax", %progbits
 	thumb_func_start sub_809A09C
 sub_809A09C:
 	push {r4, lr}
