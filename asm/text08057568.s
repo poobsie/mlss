@@ -21058,127 +21058,7 @@ _08063338: .4byte sub_808750C
 	.byte 0x9C, 0x31, 0x01, 0x20, 0x08, 0x60, 0x36, 0xF1, 0xE5, 0xFD, 0x2C, 0x1C, 0xA8, 0x34, 0x03, 0x21
 	.byte 0x77, 0xF1, 0x8E, 0xFC, 0x20, 0x60, 0x03, 0x48, 0xE8, 0x64, 0x01, 0x20, 0x30, 0xBC, 0x02, 0xBC
 	.byte 0x08, 0x47, 0x00, 0x00, 0x21, 0x34, 0x06, 0x08
-	thumb_func_start sub_8063384
-sub_8063384:
-	push {r4, lr}
-	add sp, #-0x004
-	adds r4, r0, #0x0
-	ldr r1, [r4, #0x38]
-	cmp r1, #0x00
-	bge _08063392
-	adds r1, #0xFF
-_08063392:
-	asrs r1, r1, #0x08
-	ldr r2, [r4, #0x3C]
-	cmp r2, #0x00
-	bge _0806339C
-	adds r2, #0xFF
-_0806339C:
-	asrs r2, r2, #0x08
-	ldr r3, [r4, #0x40]
-	cmp r3, #0x00
-	bge _080633A6
-	adds r3, #0xFF
-_080633A6:
-	asrs r3, r3, #0x08
-	str r4, [sp, #0x000]
-	ldr r0, _080633C8 @ =0x000012CD
-	bl sub_80DF024
-	ldr r0, _080633CC @ =0x03000E18
-	ldr r0, [r0, #0x00]
-	bl free_heap_8018DA8
-	adds r0, r4, #0x0
-	bl sub_807C298
-	add sp, #0x004
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_080633C8: .4byte 0x000012CD
-_080633CC: .4byte 0x03000E18
-	thumb_func_start sub_80633D0
-sub_80633D0:
-	push {r4, lr}
-	add sp, #-0x004
-	adds r4, r0, #0x0
-	ldr r1, [r4, #0x38]
-	cmp r1, #0x00
-	bge _080633DE
-	adds r1, #0xFF
-_080633DE:
-	asrs r1, r1, #0x08
-	ldr r2, [r4, #0x3C]
-	cmp r2, #0x00
-	bge _080633E8
-	adds r2, #0xFF
-_080633E8:
-	asrs r2, r2, #0x08
-	ldr r3, [r4, #0x40]
-	cmp r3, #0x00
-	bge _080633F2
-	adds r3, #0xFF
-_080633F2:
-	asrs r3, r3, #0x08
-	str r4, [sp, #0x000]
-	ldr r0, _08063418 @ =0x000012CD
-	bl sub_80DF024
-	movs r0, #0x00
-	str r0, [r4, #0x4C]
-	ldr r0, _0806341C @ =0x03000E18
-	ldr r0, [r0, #0x00]
-	bl free_heap_8018DA8
-	adds r0, r4, #0x0
-	bl sub_807C298
-	add sp, #0x004
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08063418: .4byte 0x000012CD
-_0806341C: .4byte 0x03000E18
-	thumb_func_start sub_8063420
-sub_8063420:
-	push {r4, lr}
-	add sp, #-0x004
-	adds r4, r0, #0x0
-	bl sub_8082B00
-	cmp r0, #0x00
-	bne _08063464
-	adds r0, r4, #0x0
-	movs r1, #0x02
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r1, [r4, #0x38]
-	cmp r1, #0x00
-	bge _08063442
-	adds r1, #0xFF
-_08063442:
-	asrs r1, r1, #0x08
-	ldr r2, [r4, #0x3C]
-	cmp r2, #0x00
-	bge _0806344C
-	adds r2, #0xFF
-_0806344C:
-	asrs r2, r2, #0x08
-	ldr r3, [r4, #0x40]
-	cmp r3, #0x00
-	bge _08063456
-	adds r3, #0xFF
-_08063456:
-	asrs r3, r3, #0x08
-	str r4, [sp, #0x000]
-	ldr r0, _0806346C @ =0x000012A3
-	bl sub_80DF024
-	ldr r0, _08063470 @ =0x08063475
-	str r0, [r4, #0x4C]
-_08063464:
-	add sp, #0x004
-	pop {r4}
-	pop {r0}
-	bx r0
-_0806346C: .4byte 0x000012A3
-_08063470: .4byte sub_8063474
+	.section .text.runtime_leaf_callbacks_after_sub_8063420, "ax", %progbits
 	thumb_func_start sub_8063474
 sub_8063474:
 	push {r4, lr}
@@ -21795,58 +21675,7 @@ _0806397E:
 	.byte 0x00, 0x00
 _08063988: .4byte sub_8063A74
 	.section .text.misc_helpers_03_after_sub_806398C, "ax", %progbits
-	thumb_func_start sub_80639C0
-sub_80639C0:
-	push {r4, lr}
-	add sp, #-0x004
-	adds r4, r0, #0x0
-	ldr r0, [r4, #0x30]
-	cmp r0, #0x00
-	bne _08063A12
-	adds r0, r4, #0x0
-	adds r0, #0x84
-	ldr r1, [r0, #0x00]
-	str r1, [r4, #0x10]
-	str r1, [r4, #0x38]
-	adds r0, #0x04
-	ldr r0, [r0, #0x00]
-	str r0, [r4, #0x14]
-	str r0, [r4, #0x3C]
-	cmp r1, #0x00
-	bge _080639E4
-	adds r1, #0xFF
-_080639E4:
-	asrs r1, r1, #0x08
-	cmp r0, #0x00
-	bge _080639EC
-	adds r0, #0xFF
-_080639EC:
-	asrs r0, r0, #0x08
-	adds r2, r0, #0x2
-	ldr r3, [r4, #0x40]
-	cmp r3, #0x00
-	bge _080639F8
-	adds r3, #0xFF
-_080639F8:
-	asrs r3, r3, #0x08
-	str r4, [sp, #0x000]
-	ldr r0, _08063A1C @ =0x00001296
-	bl sub_80DF024
-	adds r0, r4, #0x0
-	movs r1, #0x06
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r0, _08063A20 @ =0x08063B2D
-	str r0, [r4, #0x4C]
-_08063A12:
-	add sp, #0x004
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08063A1C: .4byte 0x00001296
-_08063A20: .4byte sub_8063B2C
+	.section .text.runtime_leaf_callbacks_after_sub_80639C0, "ax", %progbits
 	thumb_func_start sub_8063A24
 sub_8063A24:
 	push {r4, lr}
@@ -21985,34 +21814,7 @@ _08063B54: .4byte sub_8063BF0
 	.section .text.misc_helpers_02_after_sub_8063B58, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_8063B80, "ax", %progbits
 	.section .text.small_functions_03_after_sub_8063BA8, "ax", %progbits
-	thumb_func_start sub_8063BF0
-sub_8063BF0:
-	push {lr}
-	adds r2, r0, #0x0
-	ldr r1, [r2, #0x10]
-	ldr r3, _08063C1C @ =0xFFFFFE00
-	adds r0, r1, r3
-	str r0, [r2, #0x10]
-	cmp r0, #0x00
-	bge _08063C04
-	adds r3, #0xFF
-	adds r0, r1, r3
-_08063C04:
-	asrs r1, r0, #0x08
-	movs r0, #0x20
-	negs r0, r0
-	cmp r1, r0
-	bge _08063C18
-	movs r0, #0x80
-	lsls r0, r0, #0x09
-	str r0, [r2, #0x10]
-	ldr r0, _08063C20 @ =0x0808750D
-	str r0, [r2, #0x4C]
-_08063C18:
-	pop {r0}
-	bx r0
-_08063C1C: .4byte 0xFFFFFE00
-_08063C20: .4byte sub_808750C
+	.section .text.runtime_leaf_callbacks_after_sub_8063BF0, "ax", %progbits
 	thumb_func_start sub_8063C24
 sub_8063C24:
 	push {r4, lr}
@@ -22887,45 +22689,7 @@ _080643CC:
 	bx r0
 _080643D4: .4byte 0x00001089
 _080643D8: .4byte sub_80644DC
-	thumb_func_start sub_80643DC
-sub_80643DC:
-	push {r4, r5, lr}
-	adds r2, r0, #0x0
-	ldr r1, [r2, #0x10]
-	ldr r3, _0806441C @ =0xFFFFFDE7
-	adds r0, r1, r3
-	str r0, [r2, #0x10]
-	ldr r4, [r2, #0x18]
-	ldr r5, _08064420 @ =0xFFFFFF00
-	adds r3, r4, r5
-	str r3, [r2, #0x18]
-	cmp r0, #0x00
-	bge _080643F8
-	subs r5, #0x1A
-	adds r0, r1, r5
-_080643F8:
-	asrs r1, r0, #0x08
-	movs r0, #0x20
-	negs r0, r0
-	cmp r1, r0
-	ble _08064410
-	adds r0, r3, #0x0
-	cmp r0, #0x00
-	bge _0806440A
-	subs r0, r4, #0x1
-_0806440A:
-	asrs r0, r0, #0x08
-	cmp r0, #0x00
-	bgt _08064416
-_08064410:
-	adds r0, r2, #0x0
-	bl sub_807C298
-_08064416:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-_0806441C: .4byte 0xFFFFFDE7
-_08064420: .4byte 0xFFFFFF00
+	.section .text.runtime_leaf_callbacks_after_sub_80643DC, "ax", %progbits
 	thumb_func_start sub_8064424
 sub_8064424:
 	push {r4, lr}
@@ -23004,37 +22768,7 @@ _080644D2:
 	pop {r0}
 	bx r0
 _080644D8: .4byte sub_8064514
-	thumb_func_start sub_80644DC
-sub_80644DC:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r1, r4, #0x0
-	adds r1, #0xAC
-	ldrh r0, [r1, #0x00]
-	adds r0, #0x01
-	strh r0, [r1, #0x00]
-	lsls r0, r0, #0x10
-	asrs r0, r0, #0x10
-	cmp r0, #0x0F
-	bne _080644FC
-	movs r1, #0x01
-	negs r1, r1
-	movs r0, #0xB5
-	bl sound_effect_play
-_080644FC:
-	ldr r0, [r4, #0x08]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _0806450C
-	movs r0, #0x00
-	str r0, [r4, #0x4C]
-_0806450C:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
+	.section .text.runtime_leaf_callbacks_after_sub_80644DC, "ax", %progbits
 	thumb_func_start sub_8064514
 sub_8064514:
 	push {r4, lr}
@@ -23676,70 +23410,7 @@ _08064B7C:
 	bx r0
 	.byte 0x00, 0x00
 _08064B84: .4byte sub_8064B88
-	thumb_func_start sub_8064B88
-sub_8064B88:
-	push {lr}
-	adds r3, r0, #0x0
-	ldr r1, [r3, #0x08]
-	movs r2, #0x80
-	lsls r2, r2, #0x05
-	adds r0, r2, #0x0
-	ldrh r2, [r1, #0x0C]
-	adds r0, r0, r2
-	strh r0, [r1, #0x0C]
-	adds r2, r3, #0x0
-	adds r2, #0x9C
-	ldr r0, [r3, #0x10]
-	ldr r1, [r2, #0x00]
-	subs r0, r0, r1
-	str r0, [r3, #0x10]
-	ldr r0, [r2, #0x00]
-	subs r0, #0x11
-	str r0, [r2, #0x00]
-	adds r1, r3, #0x0
-	adds r1, #0xA0
-	ldr r0, [r3, #0x14]
-	ldr r1, [r1, #0x00]
-	adds r0, r0, r1
-	str r0, [r3, #0x14]
-	ldr r1, [r3, #0x10]
-	movs r0, #0x80
-	lsls r0, r0, #0x07
-	cmp r1, r0
-	ble _08064BF6
-	adds r0, r3, #0x0
-	adds r0, #0x84
-	ldr r1, [r0, #0x00]
-	ldr r0, [r3, #0x38]
-	subs r0, r1, r0
-	cmp r0, #0x00
-	bge _08064BD2
-	adds r0, #0xFF
-_08064BD2:
-	asrs r0, r0, #0x08
-	adds r2, r3, #0x0
-	adds r2, #0xAE
-	strh r0, [r2, #0x00]
-	adds r0, r3, #0x0
-	adds r0, #0x88
-	ldr r1, [r0, #0x00]
-	ldr r0, [r3, #0x3C]
-	subs r0, r1, r0
-	cmp r0, #0x00
-	bge _08064BEA
-	adds r0, #0xFF
-_08064BEA:
-	asrs r0, r0, #0x08
-	adds r1, r3, #0x0
-	adds r1, #0xB0
-	strh r0, [r1, #0x00]
-	ldr r0, _08064BFC @ =0x08064C01
-	str r0, [r3, #0x4C]
-_08064BF6:
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08064BFC: .4byte sub_8064C00
+	.section .text.runtime_leaf_callbacks_after_sub_8064B88, "ax", %progbits
 	thumb_func_start sub_8064C00
 sub_8064C00:
 	push {r4, r5, r6, lr}
@@ -24453,28 +24124,7 @@ _080652EE:
 _080652F4: .4byte sub_808750C
 	.byte 0x01, 0x49, 0xC1, 0x64, 0x01, 0x20, 0x70, 0x47, 0xCD, 0x53, 0x06, 0x08, 0x01, 0x49, 0xC1, 0x64
 	.byte 0x01, 0x20, 0x70, 0x47, 0xF5, 0x53, 0x06, 0x08
-	thumb_func_start sub_8065310
-sub_8065310:
-	push {r4, r5, lr}
-	adds r4, r0, #0x0
-	bl sub_80871A8
-	adds r5, r0, #0x0
-	cmp r5, #0x00
-	bne _0806532E
-	adds r0, r4, #0x0
-	movs r1, #0x03
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r0, _08065338 @ =0x080651B1
-	str r0, [r4, #0x4C]
-_0806532E:
-	adds r0, r5, #0x0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.byte 0x00, 0x00
-_08065338: .4byte sub_80651B0
+	.section .text.runtime_leaf_callbacks_after_sub_8065310, "ax", %progbits
 	.section .text.small_functions_06_after_sub_806533C, "ax", %progbits
 	thumb_func_start sub_8065384
 sub_8065384:
@@ -25579,58 +25229,7 @@ _08065D06:
 	pop {r0}
 	bx r0
 _08065D0C: .4byte sub_8065D78
-	thumb_func_start sub_8065D10
-sub_8065D10:
-	push {r4, lr}
-	add sp, #-0x004
-	adds r4, r0, #0x0
-	ldr r0, [r4, #0x08]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _08065D68
-	adds r0, r4, #0x0
-	movs r1, #0x09
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r1, [r4, #0x38]
-	cmp r1, #0x00
-	bge _08065D36
-	adds r1, #0xFF
-_08065D36:
-	asrs r1, r1, #0x08
-	ldr r2, [r4, #0x3C]
-	cmp r2, #0x00
-	bge _08065D40
-	adds r2, #0xFF
-_08065D40:
-	asrs r2, r2, #0x08
-	ldr r3, [r4, #0x40]
-	cmp r3, #0x00
-	bge _08065D4A
-	adds r3, #0xFF
-_08065D4A:
-	asrs r3, r3, #0x08
-	str r4, [sp, #0x000]
-	ldr r0, _08065D70 @ =0x0000112B
-	bl sub_80DF024
-	adds r0, r4, #0x0
-	bl sub_8065758
-	movs r1, #0x01
-	negs r1, r1
-	movs r0, #0x9C
-	bl sound_effect_play
-	ldr r0, _08065D74 @ =0x08065DD5
-	str r0, [r4, #0x4C]
-_08065D68:
-	add sp, #0x004
-	pop {r4}
-	pop {r0}
-	bx r0
-_08065D70: .4byte 0x0000112B
-_08065D74: .4byte sub_8065DD4
+	.section .text.runtime_leaf_callbacks_after_sub_8065D10, "ax", %progbits
 	thumb_func_start sub_8065D78
 sub_8065D78:
 	push {r4, lr}

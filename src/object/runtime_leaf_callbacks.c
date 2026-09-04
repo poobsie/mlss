@@ -1,4 +1,6 @@
 #include "global.h"
+#include "audio/sound_effects.h"
+#include "memory/heap.h"
 #include "object/runtime_leaf_callbacks.h"
 
 #define SEC(name) \
@@ -10,7 +12,184 @@ void sub_8082E1C(
 void sub_806822C(struct RuntimeObject* object);
 void sub_806CAC0(struct RuntimeObject* object);
 void sub_806DD48(struct RuntimeObject* object);
+void sub_8063474(struct RuntimeObject* object);
+void sub_8063B2C(struct RuntimeObject* object);
+void sub_8064C00(struct RuntimeObject* object);
+void sub_80651B0(struct RuntimeObject* object);
+void sub_8065758(struct RuntimeObject* object);
+void sub_8065DD4(struct RuntimeObject* object);
+void sub_808750C(struct RuntimeObject* object);
 void nullsub_15(void);
+s32 sub_8082B00(struct RuntimeObject* object);
+s32 sub_80871A8(struct RuntimeObject* object);
+void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
+                 struct RuntimeObject* object);
+
+#define SHARED_MOTION_HANDLE (*(void**)0x03000E18)
+
+SEC(sub_8063384)
+void object_emit_effect_12cd_release_shared_motion_and_finish(
+    struct RuntimeObject* object)
+{
+    sub_80DF024(0x12CD, object->positionX / 0x100,
+                object->positionY / 0x100, object->positionZBase / 0x100,
+                object);
+    free_heap_8018DA8(SHARED_MOTION_HANDLE);
+    sub_807C298(object);
+}
+
+SEC(sub_80633D0)
+void object_emit_effect_12cd_stop_release_and_finish(
+    struct RuntimeObject* object)
+{
+    sub_80DF024(0x12CD, object->positionX / 0x100,
+                object->positionY / 0x100, object->positionZBase / 0x100,
+                object);
+    object->update = NULL;
+    free_heap_8018DA8(SHARED_MOTION_HANDLE);
+    sub_807C298(object);
+}
+
+SEC(sub_8063420)
+void object_start_animation_2_and_effect_12a3_when_ready(
+    struct RuntimeObject* object)
+{
+    if (sub_8082B00(object) == 0) {
+        sub_8082E1C(object, 2, 0, 0);
+        sub_80DF024(0x12A3, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        object->update = sub_8063474;
+    }
+}
+
+SEC(sub_80639C0)
+void object_restore_saved_xy_and_start_animation_6(
+    struct RuntimeObject* object)
+{
+    s32 x;
+    s32 y;
+
+    if (object->linkedObject == NULL) {
+        x = object->value84;
+        object->currentPositionX = x;
+        object->positionX = x;
+        /* unknown88 is the saved Y companion to value84 in this sequence. */
+        y = *(s32*)object->unknown88;
+        object->currentPositionY = y;
+        object->positionY = y;
+        sub_80DF024(0x1296, x / 0x100, y / 0x100 + 2,
+                    object->positionZBase / 0x100, object);
+        sub_8082E1C(object, 6, 0, 0);
+        object->update = sub_8063B2C;
+    }
+}
+
+SEC(sub_8063BF0)
+void object_move_left_2_until_screen_exit(struct RuntimeObject* object)
+{
+    s32 oldPosition;
+    s32 roundedPosition;
+
+    oldPosition = object->currentPositionX;
+    object->currentPositionX = oldPosition - 0x200;
+    roundedPosition = object->currentPositionX;
+    if (roundedPosition < 0)
+        roundedPosition = oldPosition - 0x101;
+    if ((roundedPosition >> 8) < -0x20) {
+        object->currentPositionX = 0x10000;
+        object->update = sub_808750C;
+    }
+}
+
+SEC(sub_80643DC)
+void object_move_left_and_down_slow_until_screen_exit(
+    struct RuntimeObject* object)
+{
+    s32 oldX;
+    s32 newX;
+    s32 oldZ;
+    s32 newZ;
+    s32 roundedZ;
+
+    oldX = object->currentPositionX;
+    object->currentPositionX = oldX - 0x219;
+    newX = object->currentPositionX;
+    oldZ = object->verticalPosition;
+    object->verticalPosition = oldZ - 0x100;
+    newZ = object->verticalPosition;
+    if (newX < 0)
+        newX = oldX - 0x11A;
+    if ((newX >> 8) > -0x20) {
+        roundedZ = newZ;
+        if (roundedZ < 0)
+            roundedZ = oldZ - 1;
+        if ((roundedZ >> 8) > 0)
+            return;
+    }
+    sub_807C298(object);
+}
+
+SEC(sub_80644DC)
+void object_count_to_15_then_stop_on_visual_complete(
+    struct RuntimeObject* object)
+{
+    object->timer++;
+    if (object->timer == 15)
+        sound_effect_play(0xB5, SOUND_VOLUME_UNCHANGED);
+    if (object->visual->flags & 8)
+        object->update = NULL;
+}
+/* The reference uses zero fill, not a Thumb NOP, for this alignment slot. */
+SEC(sub_80644DC)
+const u16 sub_80644DC_padding = 0;
+
+SEC(sub_8064B88)
+void object_update_accelerating_arc_until_x_threshold(
+    struct RuntimeObject* object)
+{
+    object->visual->value0C += 0x1000;
+    /* behaviorState is used as horizontal velocity in this callback. */
+    object->currentPositionX -= object->behaviorState;
+    object->behaviorState -= 0x11;
+    object->currentPositionY += object->valueA0;
+    if (object->currentPositionX > 0x4000) {
+        object->secondaryTimer =
+            (object->value84 - object->positionX) / 0x100;
+        /* unknown88 remains typed conservatively despite its saved-Y use. */
+        object->stateValueB0 =
+            (*(s32*)object->unknown88 - object->positionY) / 0x100;
+        object->update = sub_8064C00;
+    }
+}
+
+SEC(sub_8065310)
+s32 object_start_animation_3_when_state_clears(struct RuntimeObject* object)
+{
+    s32 state;
+
+    state = sub_80871A8(object);
+    if (state == 0) {
+        sub_8082E1C(object, 3, 0, 0);
+        object->update = sub_80651B0;
+    }
+    return state;
+}
+
+SEC(sub_8065D10)
+void object_start_animation_9_effect_112b_on_visual_complete(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 9, 0, 0);
+        sub_80DF024(0x112B, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        sub_8065758(object);
+        sound_effect_play(0x9C, SOUND_VOLUME_UNCHANGED);
+        object->update = sub_8065DD4;
+    }
+}
 
 
 SEC(sub_8068074)
