@@ -468042,6 +468042,7 @@ sub_8163394:
 	.byte 0x00, 0x00
 _081633B8: .4byte 0x083CC29C
 _081633BC: .4byte 0x0300034C
+	.section .text.after_8163394, "ax", %progbits
 	thumb_func_start sub_81633C0
 sub_81633C0:
 	push {r4, r5, r6, lr}
@@ -468367,6 +468368,7 @@ _08163612:
 	pop {r0}
 	bx r0
 _0816364C: .4byte 0x08212934
+	.if 0
 	thumb_func_start sub_8163650
 sub_8163650:
 	subs r2, #0x01
@@ -468386,6 +468388,8 @@ sub_8163650:
 	str r0, [r1, #0x40]
 	bx lr
 _08163670: .4byte 0x08212934
+	.endif
+	.section .text.after_8163650, "ax", %progbits
 	thumb_func_start sub_8163674
 sub_8163674:
 	push {r4, r5, r6, r7, lr}
@@ -468631,6 +468635,7 @@ _0816385C:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.if 0
 	thumb_func_start sub_8163864
 sub_8163864:
 	push {r4, r5, r6, lr}
@@ -468652,6 +468657,8 @@ _08163880:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+	.section .text.after_8163864, "ax", %progbits
 	.if 0
 	thumb_func_start sub_8163888
 sub_8163888:
@@ -468788,6 +468795,7 @@ sub_81639C4:
 	.byte 0x00, 0x00
 	.endif
 	.section .text.after_81639C4, "ax", %progbits
+	.if 0
 	thumb_func_start sub_81639D4
 sub_81639D4:
 	str r1, [r0, #0x44]
@@ -468796,6 +468804,7 @@ sub_81639D4:
 	strh r1, [r0, #0x00]
 	bx lr
 	.byte 0x00, 0x00
+	.endif
 	.section .text.after_ui_object_helpers_39e0, "ax", %progbits
 	thumb_func_start sub_8163A08
 sub_8163A08:

@@ -2355,8 +2355,13 @@ SECTIONS
         asm/text08057568.o(.text.high_after_sub_8163308);
         src/ui/layout_state.o(.text.sub_8163320);
         asm/text08057568.o(.text.after_8163320);
+        asm/text08057568.o(.text.after_8163394);
+        src/ui/object_groups.o(.text.ui_groups.sub_8163650);
+        asm/text08057568.o(.text.after_8163650);
         src/ui/layout_state.o(.text.sub_8163748);
         asm/text08057568.o(.text.after_8163748);
+        src/ui/object_groups.o(.text.ui_groups.sub_8163864);
+        asm/text08057568.o(.text.after_8163864);
         src/runtime/intrusive_list.o(.text.sub_8163888);
         asm/text08057568.o(.text.after_8163888);
         src/ui/layout_state.o(.text.sub_81638B0);
@@ -2365,6 +2370,7 @@ SECTIONS
         asm/text08057568.o(.text.high_after_sub_816391C);
         src/ui/object_state.o(.text.sub_81639C4);
         asm/text08057568.o(.text.after_81639C4);
+        src/ui/object_state.o(.text.sub_81639D4);
         src/ui/object_state.o(.text.sub_81639E0);
         src/ui/object_state.o(.text.sub_81639F8);
         asm/text08057568.o(.text.after_ui_object_helpers_39e0);

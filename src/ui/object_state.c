@@ -12,6 +12,15 @@ void ui_object_configure_mode6(struct UiObject* object, s32 value) {
 __attribute__((section(".text.sub_81639C4")))
 const u16 ui_object_configure_mode6_padding = 0;
 
+void ui_object_set_visual(struct UiObject* object, void* visual)
+    __attribute__((section(".text.sub_81639D4")));
+void ui_object_set_visual(struct UiObject* object, void* visual) {
+    object->value44 = visual;
+    object->counter48 = 0;
+}
+__attribute__((section(".text.sub_81639D4")))
+const u16 ui_object_set_visual_padding = 0;
+
 u32 ui_object_reset_and_update(struct UiObject* object, void* value)
     __attribute__((section(".text.sub_81639E0")));
 u32 ui_object_reset_and_update(struct UiObject* object, void* value) {
