@@ -64,10 +64,27 @@ remain unknown. The nearby wrapped-coordinate pair remains in assembly because t
 compiler consistently chose a different scratch register despite matching behavior;
 forcing an invented ABI would weaken the recovered interface.
 
+Runtime offset `0x4480` is a shared route target. Two mirrored guards call their
+family-specific callback only when target byte `0x29` is clear. A second pair uses
+the linked object's byte at allocation offset zero to choose whether `0xF0` is
+written to target halfword `0x18` or `0x1C`. Those fields remain route-numbered
+because their downstream interpretation is still in assembly.
+
+Runtime byte `0xC5B` is now `directionOffset`. Two mirrored helpers add it to the
+object's signed X tile coordinate, rotate the resulting byte right by two bits,
+store it in `value24`, clear `animationVariant`, and enter state 5. The direction's
+gameplay labels are not yet proven. The upper-edge geometry pair validates the upper
+half of a bounded vertical range, checks the absolute horizontal magnitude, and
+returns remaining vertical distance or `-1`.
+
+The nearby relative-coordinate pair remains in assembly. Its behavior was recovered,
+but two natural C shapes changed register allocation and literal reuse; preserving
+the observed ABI and exact code is preferable to compiler-specific coercion.
+
 ## Next boundary
 
 The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,438 linked C functions checked, 1,438 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,446 linked C functions checked, 1,446 exact, and zero mismatches.

@@ -16,10 +16,12 @@ struct MarioBrosRuntimeRoot {
 struct MarioBrosRuntime {
     u8 unknown0000[0xC5A];
     u8 sequenceIndex;
-    u8 unknown0C5B[0x3821];
+    u8 directionOffset;
+    u8 unknown0C5C[0x3820];
     struct MarioBrosRuntimeRoot* root;
 };
 
 extern struct MarioBrosRuntime gMarioGlobal_03000F50;
+extern struct MarioBrosRuntime gMarioGlobal_03000F40;
 
 #endif

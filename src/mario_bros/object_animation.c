@@ -2,6 +2,7 @@
 #include "mario_bros/callback.h"
 #include "mario_bros/functions.h"
 #include "mario_bros/object.h"
+#include "mario_bros/runtime.h"
 
 #define MB_SECTION(name) __attribute__((section(".text.mariobros_helpers_" #name)))
 
@@ -13,6 +14,22 @@ extern void *gMarioData_08FA16CC[];
 extern void *gMarioData_08FA186C[];
 extern u32 gMarioData_08FA0444[];
 extern u32 gMarioData_0201E78C[];
+
+#define DEFINE_DIRECTION_FROM_POSITION(name, runtime)                         \
+    MB_SECTION(name) void name(struct MarioBrosObject* obj) {                 \
+        u8 offset = (runtime).directionOffset;                                \
+        u8 direction = ((s32)obj->positionX >> 8) + offset;                   \
+        u8 low = direction >> 2;                                              \
+        u8 high = direction << 6;                                             \
+        obj->value24 = low | high;                                            \
+        obj->animationVariant = 0;                                            \
+        obj->state = 5;                                                       \
+    }
+
+DEFINE_DIRECTION_FROM_POSITION(mario_bros_set_direction_from_position_a,
+                               gMarioGlobal_03000F50)
+DEFINE_DIRECTION_FROM_POSITION(mario_bros_set_direction_from_position_b,
+                               gMarioGlobal_03000F40)
 
 struct MarioBrosValuePair {
     u32 first;

@@ -25356,8 +25356,10 @@ _08F5DFB8: .4byte 0x00000C38
 _08F5DFBC: .4byte 0x08F9FCB4
 _08F5DFC0: .4byte 0x0000447C
 	.section .text.after_mariobros_helpers_sub_8F5DFC4, "ax", %progbits
-	thumb_func_start sub_8F5DFE4
-sub_8F5DFE4:
+	.section .discard.mariobros_runtime_sub_8F5DFE4, "ax"
+	.align 2
+	thumb_func_start asm_sub_8F5DFE4
+asm_sub_8F5DFE4:
 	push {lr}
 	ldr r0, _08F5E000 @ =0x03000F50
 	movs r1, #0x89
@@ -25373,6 +25375,8 @@ _08F5DFFC:
 	pop {r0}
 	bx r0
 _08F5E000: .4byte 0x03000F50
+	.section .text.after_mariobros_runtime_sub_8F5DFE4, "ax"
+	.align 2
 	thumb_func_start sub_8F5E004
 sub_8F5E004:
 	push {r4, r5, lr}
@@ -26440,6 +26444,8 @@ _08F5E8A8: .4byte 0x0000458E
 _08F5E8AC: .4byte 0x00004494
 _08F5E8B0: .4byte 0xFFFFFE00
 _08F5E8B4: .4byte 0x00000C78
+	.section .text.mariobros_restored_sub_8F5E8B8, "ax"
+	.align 2
 	thumb_func_start sub_8F5E8B8
 sub_8F5E8B8:
 	push {lr}
@@ -26466,6 +26472,8 @@ _08F5E8D4:
 _08F5E8E0: .4byte 0x03000F50
 _08F5E8E4: .4byte 0x00000C34
 _08F5E8E8: .4byte 0x00000109
+	.section .text.after_mariobros_geometry_sub_8F5E8B8, "ax"
+	.align 2
 	thumb_func_start sub_8F5E8EC
 sub_8F5E8EC:
 	push {r4, r5, r6, r7, lr}
@@ -36057,8 +36065,10 @@ _08F632A8:
 	.byte 0x00, 0x00
 _08F632B0: .4byte 0x03000F50
 _08F632B4: .4byte 0x0000447C
-	thumb_func_start sub_8F632B8
-sub_8F632B8:
+	.section .discard.mariobros_runtime_sub_8F632B8, "ax"
+	.align 2
+	thumb_func_start asm_sub_8F632B8
+asm_sub_8F632B8:
 	push {lr}
 	ldr r1, _08F632D4 @ =0x03000F50
 	movs r2, #0x89
@@ -36080,6 +36090,8 @@ _08F632D8:
 _08F632DC:
 	pop {r0}
 	bx r0
+	.section .text.after_mariobros_runtime_sub_8F632B8, "ax"
+	.align 2
 	thumb_func_start sub_8F632E0
 sub_8F632E0:
 	push {r4, r5, lr}
@@ -44357,8 +44369,10 @@ _08F67382:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8F6738C
-sub_8F6738C:
+	.section .discard.mariobros_geometry_sub_8F6738C, "ax"
+	.align 2
+	thumb_func_start asm_sub_8F6738C
+asm_sub_8F6738C:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	cmp r1, #0x00
@@ -44384,6 +44398,8 @@ _08F673B2:
 	pop {r4}
 	pop {r1}
 	bx r1
+	.section .text.after_mariobros_geometry_sub_8F6738C, "ax"
+	.align 2
 	.section .discard.mariobros_geometry_sub_8F673B8, "ax", %progbits
 	thumb_func_start asm_sub_8F673B8
 asm_sub_8F673B8:
@@ -55443,8 +55459,10 @@ _08F6CA8A:
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
-	thumb_func_start sub_8F6CA90
-sub_8F6CA90:
+	.section .discard.mariobros_animation_sub_8F6CA90, "ax"
+	.align 2
+	thumb_func_start asm_sub_8F6CA90
+asm_sub_8F6CA90:
 	ldr r2, _08F6CAB4 @ =0x03000F50
 	ldr r1, _08F6CAB8 @ =0x00000C5B
 	adds r2, r2, r1
@@ -55465,6 +55483,8 @@ sub_8F6CA90:
 	bx lr
 _08F6CAB4: .4byte 0x03000F50
 _08F6CAB8: .4byte 0x00000C5B
+	.section .text.after_mariobros_animation_sub_8F6CA90, "ax"
+	.align 2
 	thumb_func_start sub_8F6CABC
 sub_8F6CABC:
 	push {r4, r5, lr}
@@ -71814,8 +71834,10 @@ _08F84778: .4byte 0x0201E014
 	.byte 0x00, 0x47, 0x00, 0x00, 0x84, 0xE0, 0x01, 0x02, 0x40, 0x0F, 0x00, 0x03, 0x34, 0x0C, 0x00, 0x00
 	.byte 0x38, 0x0C, 0x00, 0x00, 0xFC, 0xDF, 0x01, 0x02, 0x7C, 0x44, 0x00, 0x00
 	.section .text.after_mariobros_helpers_sub_8F84918, "ax", %progbits
-	thumb_func_start sub_8F84938
-sub_8F84938:
+	.section .discard.mariobros_runtime_sub_8F84938, "ax"
+	.align 2
+	thumb_func_start asm_sub_8F84938
+asm_sub_8F84938:
 	push {lr}
 	ldr r0, _08F84954 @ =0x03000F40
 	movs r1, #0x89
@@ -71831,6 +71853,8 @@ _08F84950:
 	pop {r0}
 	bx r0
 _08F84954: .4byte 0x03000F40
+	.section .text.after_mariobros_runtime_sub_8F84938, "ax"
+	.align 2
 	.byte 0x30, 0xB5, 0x04, 0x1C, 0x23, 0x69, 0x65, 0x69, 0x28, 0x12, 0x05, 0x1C, 0x10, 0x35, 0x21, 0x1C
 	.byte 0x20, 0x31, 0x18, 0x12, 0x09, 0x78, 0x43, 0x18, 0x0A, 0x48, 0x0B, 0x49, 0x40, 0x18, 0x02, 0x68
 	.byte 0x18, 0x04, 0x00, 0x14, 0x29, 0x04, 0x09, 0x14, 0xD2, 0x6D, 0x11, 0xF0, 0x9F, 0xFA, 0x00, 0x06
@@ -72393,6 +72417,8 @@ _08F851FC: .4byte 0x0000458E
 _08F85200: .4byte 0x00004494
 _08F85204: .4byte 0xFFFFFE00
 _08F85208: .4byte 0x00000C78
+	.section .text.mariobros_restored_sub_8F8520C, "ax"
+	.align 2
 	thumb_func_start sub_8F8520C
 sub_8F8520C:
 	push {lr}
@@ -72419,6 +72445,8 @@ _08F85228:
 _08F85234: .4byte 0x03000F40
 _08F85238: .4byte 0x00000C34
 _08F8523C: .4byte 0x00000109
+	.section .text.after_mariobros_geometry_sub_8F8520C, "ax"
+	.align 2
 	thumb_func_start sub_8F85240
 sub_8F85240:
 	push {r4, r5, r6, r7, lr}
@@ -77875,8 +77903,10 @@ _08F89BFC:
 	.byte 0x00, 0x00
 _08F89C04: .4byte 0x03000F40
 _08F89C08: .4byte 0x0000447C
-	thumb_func_start sub_8F89C0C
-sub_8F89C0C:
+	.section .discard.mariobros_runtime_sub_8F89C0C, "ax"
+	.align 2
+	thumb_func_start asm_sub_8F89C0C
+asm_sub_8F89C0C:
 	push {lr}
 	ldr r1, _08F89C28 @ =0x03000F40
 	movs r2, #0x89
@@ -77898,6 +77928,8 @@ _08F89C2C:
 _08F89C30:
 	pop {r0}
 	bx r0
+	.section .text.after_mariobros_runtime_sub_8F89C0C, "ax"
+	.align 2
 	.byte 0x30, 0xB5, 0x04, 0x1C, 0x07, 0x48, 0x00, 0x78, 0x00, 0x28, 0x11, 0xD1, 0x06, 0x48, 0x07, 0x49
 	.byte 0x40, 0x18, 0x00, 0x68, 0x2A, 0x30, 0x00, 0x78, 0x00, 0x28, 0x09, 0xD1, 0x20, 0x1C, 0xFB, 0xF7
 	.byte 0xAF, 0xFE, 0x6F, 0xE0, 0xF4, 0x58, 0x00, 0x03, 0x40, 0x0F, 0x00, 0x03, 0x7C, 0x44, 0x00, 0x00
@@ -82389,8 +82421,10 @@ _08F8DCD6:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8F8DCE0
-sub_8F8DCE0:
+	.section .discard.mariobros_geometry_sub_8F8DCE0, "ax"
+	.align 2
+	thumb_func_start asm_sub_8F8DCE0
+asm_sub_8F8DCE0:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	cmp r1, #0x00
@@ -82416,6 +82450,8 @@ _08F8DD06:
 	pop {r4}
 	pop {r1}
 	bx r1
+	.section .text.after_mariobros_geometry_sub_8F8DCE0, "ax"
+	.align 2
 	.section .discard.mariobros_geometry_sub_8F8DD0C, "ax", %progbits
 	thumb_func_start asm_sub_8F8DD0C
 asm_sub_8F8DD0C:
@@ -88483,8 +88519,10 @@ _08F932D0: .4byte 0x00000C78
 	.byte 0xF1, 0xF7, 0xD6, 0xFF, 0x08, 0xE0, 0x00, 0x26, 0x06, 0xE0, 0x00, 0x2E, 0x01, 0xD1, 0x01, 0x26
 	.byte 0x02, 0xE0, 0x20, 0x1C, 0xF1, 0xF7, 0xCC, 0xFF, 0x2E, 0x72, 0x06, 0xE0, 0x20, 0x1C, 0xF1, 0xF7
 	.byte 0xC7, 0xFF, 0x02, 0xE0, 0x20, 0x1C, 0xF2, 0xF7, 0xEB, 0xFA, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	thumb_func_start sub_8F933E4
-sub_8F933E4:
+	.section .discard.mariobros_animation_sub_8F933E4, "ax"
+	.align 2
+	thumb_func_start asm_sub_8F933E4
+asm_sub_8F933E4:
 	ldr r2, _08F93408 @ =0x03000F40
 	ldr r1, _08F9340C @ =0x00000C5B
 	adds r2, r2, r1
@@ -88505,6 +88543,8 @@ sub_8F933E4:
 	bx lr
 _08F93408: .4byte 0x03000F40
 _08F9340C: .4byte 0x00000C5B
+	.section .text.after_mariobros_animation_sub_8F933E4, "ax"
+	.align 2
 	.byte 0x30, 0xB5, 0x84, 0x46, 0x09, 0x49, 0x89, 0x22, 0xD2, 0x01, 0x88, 0x18, 0x04, 0x68, 0x08, 0x48
 	.byte 0x00, 0x78, 0x00, 0x28, 0x10, 0xD1, 0x07, 0x4D, 0x48, 0x19, 0x00, 0x68, 0x2A, 0x30, 0x00, 0x78
 	.byte 0x00, 0x28, 0x09, 0xD1, 0x60, 0x46, 0xF2, 0xF7, 0xBD, 0xFA, 0x50, 0xE0, 0x40, 0x0F, 0x00, 0x03

@@ -68,6 +68,14 @@
 #define mario_bros_find_spatial_object_id_b sub_8F86090
 #define mario_bros_dispatch_pool_objects_a sub_8F5F7C4
 #define mario_bros_dispatch_pool_objects_b sub_08F86118
+#define mario_bros_run_callback_if_runtime_clear_a sub_8F5DFE4
+#define mario_bros_run_callback_if_runtime_clear_b sub_8F84938
+#define mario_bros_set_route_f0_a sub_8F632B8
+#define mario_bros_set_route_f0_b sub_8F89C0C
+#define mario_bros_set_direction_from_position_a sub_8F6CA90
+#define mario_bros_set_direction_from_position_b sub_8F933E4
+#define mario_bros_measure_upper_edge_distance_a sub_8F6738C
+#define mario_bros_measure_upper_edge_distance_b sub_8F8DCE0
 
 #define mario_bros_normalize_variant_a sub_8F66A40
 #define mario_bros_normalize_variant_b sub_8F8D394

@@ -29,7 +29,9 @@ struct MarioBrosLinkContext {
 };
 
 struct MarioBrosPoolRuntime {
-    u8 unknown0000[0x4494];
+    u8 unknown0000[0x4480];
+    struct MarioBrosRouteTarget* routeTarget4480;
+    u8 unknown4484[0x10];
     struct MarioBrosPoolObject* objects4494[28];
     struct MarioBrosPoolObject* objects4504[16];
     u16 active4544[28];
@@ -73,6 +75,43 @@ struct MarioBrosPoolRecord {
 };
 
 typedef void (*MarioBrosPoolCallback)(void);
+
+struct MarioBrosRouteTarget {
+    u8 unknown00[0x18];
+    u16 route18;
+    u8 unknown1A[2];
+    u16 route1C;
+    u8 unknown1E[0xB];
+    u8 callbackBlocked29;
+};
+
+extern void sub_8F61D74(void);
+extern void sub_8F886C8(void);
+
+#define DEFINE_CONDITIONAL_CALLBACK(name, runtime, callback)             \
+    MB_SECTION(name) void name(void) {                                   \
+        if ((runtime).routeTarget4480->callbackBlocked29 == 0)            \
+            callback();                                                  \
+    }
+
+DEFINE_CONDITIONAL_CALLBACK(mario_bros_run_callback_if_runtime_clear_a,
+                            gMarioGlobal_03000F50, sub_8F61D74)
+DEFINE_CONDITIONAL_CALLBACK(mario_bros_run_callback_if_runtime_clear_b,
+                            gMarioGlobal_03000F40, sub_8F886C8)
+
+#define DEFINE_SET_ROUTE_F0(name, runtime)                                \
+    MB_SECTION(name) void name(struct MarioBrosObject* object) {          \
+        struct MarioBrosRouteTarget* target = (runtime).routeTarget4480;  \
+        struct MarioBrosSpawnLink* link =                                \
+            (struct MarioBrosSpawnLink*)object->value38;                  \
+        if (link->active == 0)                                            \
+            target->route18 = 0xF0;                                      \
+        else                                                              \
+            target->route1C = 0xF0;                                      \
+    }
+
+DEFINE_SET_ROUTE_F0(mario_bros_set_route_f0_a, gMarioGlobal_03000F50)
+DEFINE_SET_ROUTE_F0(mario_bros_set_route_f0_b, gMarioGlobal_03000F40)
 
 #define DEFINE_RESET_RECORD(name, pool, release, template)                       \
     MB_SECTION(name) void name(struct MarioBrosPoolRecord* record) {             \
