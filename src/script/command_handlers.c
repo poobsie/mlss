@@ -17,6 +17,7 @@
 #define SCRIPT_GLOBAL_D44 (*(void**)0x03000D44)
 #define SCRIPT_GLOBAL_FB8 (*(void**)0x03000FB8)
 #define SCRIPT_FIELD_RUNTIME (*(u8**)0x03000FD0)
+#define SCRIPT_GLOBAL_FC0 (*(u8**)0x03000FC0)
 #define U8AT(pointer, offset) (*(u8*)((u8*)(pointer) + (offset)))
 
 struct ScriptBattleReturnContext {
@@ -62,6 +63,9 @@ extern void sub_8046B30(void*, s32, s32, s16, u16);
 extern void sub_8047D84(void*, s32);
 extern void sub_8047D64(void*);
 extern void sub_8047D44(void*);
+extern void sub_805113C(void*);
+extern void sub_8050FD0(void*);
+extern void sub_80E9C4C(void*, void*, void*, s32, s32, s32);
 
 struct ScriptObjectBytePairArguments {
     u8 value0;
@@ -97,6 +101,12 @@ struct ScriptEffectArguments {
     s16 value04;
     u16 padding06;
     u16 value08;
+};
+
+struct ScriptSelectedRuntimeArguments {
+    s16 value00;
+    u16 padding02;
+    s32 runtimeSelector;
 };
 
 SEC(sub_80EAD98)
@@ -653,3 +663,86 @@ s32 script_command_control_object_runtime(
     return 1;
 }
 SEC(sub_80F1490) const u16 sub_80F1490_padding = 0;
+
+SEC(sub_80F1A1C)
+s32 script_command_control_object_pair(
+    void* context, void* object, void* state, const s32* operation)
+{
+    switch (*operation) {
+    case 0:
+        sub_805113C(object);
+        break;
+    case 1:
+        sub_8050FD0(object);
+        break;
+    }
+    return 1;
+}
+
+SEC(sub_80F1AEC)
+s32 script_command_branch_on_field_value_54c(
+    void* context, struct ScriptExecutionState* state,
+    const u32* arguments)
+{
+    u16 fieldValue = *(u16*)(SCRIPT_FIELD_RUNTIME + 0x54C);
+    u32 expected = *arguments++;
+
+    if (fieldValue == expected)
+        state->cursor = *arguments;
+    return 1;
+}
+
+SEC(sub_80F1B14)
+s32 script_command_dispatch_selected_runtime(
+    void* context, u8* object, const struct ScriptSelectedRuntimeArguments* packet,
+    void* commandContext)
+{
+    u8* runtime;
+
+    /* Selector identities are unknown; their field-runtime offsets are proven. */
+    switch (packet->runtimeSelector) {
+    case 0:
+        runtime = SCRIPT_FIELD_RUNTIME;
+        break;
+    case 1:
+        runtime = SCRIPT_FIELD_RUNTIME + 0x1F8;
+        break;
+    case 2:
+        runtime = SCRIPT_FIELD_RUNTIME + 0xA8;
+        break;
+    case 3:
+        runtime = SCRIPT_FIELD_RUNTIME + 0x150;
+        break;
+    }
+    sub_80E9C4C(
+        commandContext, object + 0x18, SCRIPT_GLOBAL_FC0 + 0x38C, 0,
+        packet->value00, *(u16*)(runtime + 0xA0) & 1);
+    return 1;
+}
+
+SEC(sub_80F1BA4)
+s32 script_command_branch_on_selected_runtime_flag(
+    void* context, struct ScriptExecutionState* state, const s32* arguments)
+{
+    s32 runtimeSelector = *arguments++;
+    u8* runtime;
+
+    /* Uses the same four field-runtime regions as sub_80F1B14. */
+    switch (runtimeSelector) {
+    case 0:
+        runtime = SCRIPT_FIELD_RUNTIME;
+        break;
+    case 1:
+        runtime = SCRIPT_FIELD_RUNTIME + 0x1F8;
+        break;
+    case 2:
+        runtime = SCRIPT_FIELD_RUNTIME + 0xA8;
+        break;
+    case 3:
+        runtime = SCRIPT_FIELD_RUNTIME + 0x150;
+        break;
+    }
+    if (*(u16*)(runtime + 0xA0) & 1)
+        state->cursor = *arguments;
+    return 1;
+}

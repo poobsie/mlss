@@ -8,6 +8,7 @@ struct ScriptExecutionState;
 struct ScriptCommandContext;
 struct ScriptInputOwner;
 struct ScriptEffectArguments;
+struct ScriptSelectedRuntimeArguments;
 
 #define script_command_return_from_battle script_cmd_btl_return
 #define script_command_set_runtime_direction_sign sub_80EAD98
@@ -35,6 +36,10 @@ struct ScriptEffectArguments;
 #define script_command_branch_on_object_state sub_80F110C
 #define script_command_control_indexed_object_runtime sub_80F143C
 #define script_command_control_object_runtime sub_80F1490
+#define script_command_control_object_pair sub_80F1A1C
+#define script_command_branch_on_field_value_54c sub_80F1AEC
+#define script_command_dispatch_selected_runtime sub_80F1B14
+#define script_command_branch_on_selected_runtime_flag sub_80F1BA4
 #define script_command_configure_object_slot_183 sub_80F0BA4
 
 u8 script_command_return_from_battle(
@@ -103,5 +108,18 @@ s32 script_command_control_indexed_object_runtime(
 s32 script_command_control_object_runtime(
     void* context, void* runtime, void* state,
     const s32* operation);
+s32 script_command_control_object_pair(
+    void* context, void* object, void* state,
+    const s32* operation);
+s32 script_command_branch_on_field_value_54c(
+    void* context, struct ScriptExecutionState* state,
+    const u32* arguments);
+s32 script_command_dispatch_selected_runtime(
+    void* context, u8* object,
+    const struct ScriptSelectedRuntimeArguments* packet,
+    void* commandContext);
+s32 script_command_branch_on_selected_runtime_flag(
+    void* context, struct ScriptExecutionState* state,
+    const s32* arguments);
 
 #endif
