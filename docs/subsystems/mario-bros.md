@@ -87,4 +87,4 @@ The currently decompiled slice is detangled. Further gameplay-specific names dep
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,446 linked C functions checked, 1,446 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,464 linked C functions checked, 1,464 exact, and zero mismatches.
