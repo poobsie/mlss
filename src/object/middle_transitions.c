@@ -13,6 +13,10 @@ void sub_8087540(void*);
 int sub_8082B00(void*);
 void sub_80873B8(void*, int, int);
 void sub_8082E1C(void*, s32, s32, s32);
+void sub_807F4FC(void*);
+void sub_8021308(void*);
+int sub_8086D80(void*);
+void sub_80DD0CC(void*);
 
 #define DECL_NEXT(name) extern void name(void*)
 DECL_NEXT(sub_80D9B9C);
@@ -50,6 +54,13 @@ DECL_NEXT(sub_80DA208);
 DECL_NEXT(sub_80DA2C4);
 DECL_NEXT(sub_80DA39C);
 DECL_NEXT(sub_80DA098);
+DECL_NEXT(sub_80DC27C);
+DECL_NEXT(sub_80DC668);
+DECL_NEXT(sub_80DC0E0);
+DECL_NEXT(sub_80DCF7C);
+DECL_NEXT(sub_80DDA78);
+DECL_NEXT(sub_80DDABC);
+DECL_NEXT(sub_80DE4A4);
 void sub_807F47C(void*);
 
 #define OWNER_VARIANT(object) \
@@ -264,3 +275,84 @@ DEFINE_INIT_NEXT(sub_80DAAC8, object_initialize_followup_with_argument_2, 2, sub
 
 DEFINE_SET_IDLE_IF_EMPTY(sub_80DC3A0, object_return_to_idle_when_value80_clear_a)
 DEFINE_SET_IDLE_IF_EMPTY(sub_80DE948, object_return_to_idle_when_value80_clear_b)
+
+/* Late-middle action chains.  Offsets not yet represented by RuntimeObject retain
+ * narrow accessors here; the behavior names describe only observed effects. */
+SEC(sub_80DC5FC) void sub_80DC5FC(void* object)
+{
+    if (U32AT(object, 0x80) != 0)
+        return;
+    sub_8082E1C(object, 3, 0, 0);
+    SET_VISUAL_MODE_2(object);
+    sub_807F4FC(object);
+    PTRAT(object, 0x4C) = sub_80DC668;
+}
+
+SEC(sub_80DC638) void sub_80DC638(void* object)
+{
+    s16* timer = (s16*)((u8*)object + 0xAC);
+    (*timer)--;
+    if (*timer < 0) {
+        sub_8082E1C(object, 8, 0, 0);
+        PTRAT(object, 0x4C) = sub_80DC27C;
+    }
+}
+
+SEC(sub_80DC668) void sub_80DC668(void* object)
+{
+    if (!(U8AT(PTRAT(object, 8), 0x12) & 8))
+        return;
+    sub_8082E1C(object, 4, 0, 0);
+    sound_effect_play(0x62, SOUND_VOLUME_UNCHANGED);
+    U16AT(object, 0xAC) = 0x20;
+    PTRAT(object, 0x4C) = sub_80DC0E0;
+}
+
+SEC(sub_80DD40C) void sub_80DD40C(void* object)
+{
+    s16* counter = (s16*)((u8*)object + 0x10);
+    (*counter)++;
+    if (*counter > 9) {
+        sub_8021308(PTRAT(object, 8));
+        PTRAT(object, 4) = 0;
+    }
+}
+SEC(sub_80DD40C) const u16 sub_80DD40C_padding = 0;
+
+SEC(sub_80DD430) int sub_80DD430(void* object)
+{
+    int active = sub_8086D80(object);
+    if (active == 0) {
+        s16* value = (s16*)((u8*)object + 0xAE);
+        *value = (-*value) / 2;
+        U16AT(object, 0xB0) = active;
+        U16AT(object, 0xB2) = active;
+        PTRAT(object, 0x4C) = sub_80DCF7C;
+        sub_8082E1C(object, 0, 0, 0);
+    }
+    return active;
+}
+
+#define DEFINE_VISUAL_ANIMATION_NEXT(symbol, animation, next)           \
+    SEC(symbol) void symbol(void* object)                               \
+    {                                                                   \
+        if (!(U8AT(PTRAT(object, 8), 0x12) & 8))                        \
+            return;                                                     \
+        sub_8082E1C(object, animation, 0, 0);                           \
+        SET_VISUAL_MODE_2(object);                                      \
+        PTRAT(object, 0x4C) = next;                                     \
+    }
+
+DEFINE_VISUAL_ANIMATION_NEXT(sub_80DDA3C, 0xB, sub_80DDA78)
+DEFINE_VISUAL_ANIMATION_NEXT(sub_80DEDB0, 0xB, sub_80DE4A4)
+
+SEC(sub_80DDA78) void sub_80DDA78(void* object)
+{
+    if (!(U8AT(PTRAT(object, 8), 0x12) & 8))
+        return;
+    sub_80DD0CC(object);
+    PTRAT(object, 0x6C) = 0;
+    sub_8082E1C(object, 0xC, 0, 0);
+    SET_VISUAL_MODE_2(object);
+    PTRAT(object, 0x4C) = sub_80DDABC;
+}

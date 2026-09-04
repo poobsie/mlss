@@ -1416,6 +1416,16 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80DC4D8);
         src/object/gated_setup_transitions.o(.text.misc_helpers_03.sub_80DC5CC);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80DC5CC);
+        src/object/middle_transitions.o(.text.middle.sub_80DC5FC);
+        asm/text08057568.o(.text.after_middle_sub_80DC5FC);
+        src/object/middle_transitions.o(.text.middle.sub_80DC638);
+        asm/text08057568.o(.text.after_middle_sub_80DC638);
+        src/object/middle_transitions.o(.text.middle.sub_80DC668);
+        asm/text08057568.o(.text.after_middle_sub_80DC668);
+        src/object/middle_transitions.o(.text.middle.sub_80DD40C);
+        asm/text08057568.o(.text.after_middle_sub_80DD40C);
+        src/object/middle_transitions.o(.text.middle.sub_80DD430);
+        asm/text08057568.o(.text.after_middle_sub_80DD430);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_80DD560);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DD560);
         src/object/middle_transitions.o(.text.middle.sub_80DD6D0);
@@ -1434,6 +1444,10 @@ SECTIONS
         asm/text08057568.o(.text.actor_animation_transitions_after_sub_80DD798);
         src/field/animation_transitions.o(.text.actor_animation_transitions.sub_80DD7C4);
         asm/text08057568.o(.text.actor_animation_transitions_after_sub_80DD7C4);
+        src/object/middle_transitions.o(.text.middle.sub_80DDA3C);
+        asm/text08057568.o(.text.after_middle_sub_80DDA3C);
+        src/object/middle_transitions.o(.text.middle.sub_80DDA78);
+        asm/text08057568.o(.text.after_middle_sub_80DDA78);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_80DDABC);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DDABC);
         src/object/middle_transitions.o(.text.middle.sub_80DE948);
@@ -1454,6 +1468,8 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80DED30);
         src/field/animation_transitions.o(.text.actor_animation_transitions.sub_80DED84);
         asm/text08057568.o(.text.actor_animation_transitions_after_sub_80DED84);
+        src/object/middle_transitions.o(.text.middle.sub_80DEDB0);
+        asm/text08057568.o(.text.after_middle_sub_80DEDB0);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_80DEE80);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DEE80);
         src/script/animation_transitions.o(.text.script_transitions.animation_script_enter_10_byte_stream);
