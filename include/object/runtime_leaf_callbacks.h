@@ -109,6 +109,13 @@
 #define object_emit_effect_209e_and_begin_command_40e7 sub_8071080
 #define object_finish_sound_d2_and_begin_animation_1_when_ready sub_8071204
 #define object_finish_animation_7_after_countdown sub_807127C
+#define object_resume_with_sound_ad_when_ready sub_80742FC
+#define object_remove_after_value84_countdown sub_807438C
+#define object_start_animation_6_effect_22e2 sub_80744B4
+#define object_wait_for_child_or_periodic_transition sub_8074508
+#define object_start_animation_2_and_effect_22c0 sub_80745E4
+#define object_stop_after_timer_countdown sub_807462C
+#define object_begin_timer_16_when_value80_clears sub_8074688
 
 void object_emit_effect_12cd_release_shared_motion_and_finish(
     struct RuntimeObject* object);
@@ -245,5 +252,12 @@ void object_finish_linked_owner_sequence_when_value80_clears(struct RuntimeObjec
 void object_emit_effect_209e_and_begin_command_40e7(struct RuntimeObject* object);
 s32 object_finish_sound_d2_and_begin_animation_1_when_ready(struct RuntimeObject* object);
 void object_finish_animation_7_after_countdown(struct RuntimeObject* object);
+s32 object_resume_with_sound_ad_when_ready(struct RuntimeObject* object);
+void object_remove_after_value84_countdown(struct RuntimeObject* object);
+void object_start_animation_6_effect_22e2(struct RuntimeObject* object);
+void object_wait_for_child_or_periodic_transition(struct RuntimeObject* object);
+void object_start_animation_2_and_effect_22c0(struct RuntimeObject* object);
+void object_stop_after_timer_countdown(struct RuntimeObject* object);
+void object_begin_timer_16_when_value80_clears(struct RuntimeObject* object);
 
 #endif

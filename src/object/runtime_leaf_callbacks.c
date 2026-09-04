@@ -120,6 +120,14 @@ void sub_807127C(struct RuntimeObject* object);
 void sub_807F47C(struct RuntimeObject* object);
 void sub_807B7A8(void* object);
 void sub_807FE40(void* object);
+void sub_8072944(struct RuntimeObject* object);
+void sub_80731B4(struct RuntimeObject* object);
+void sub_80744B4(struct RuntimeObject* object);
+void sub_80746EC(struct RuntimeObject* object);
+void sub_80728D0(struct RuntimeObject* object);
+void sub_8074688(struct RuntimeObject* object);
+void sub_80746C4(struct RuntimeObject* object);
+void sub_810CA8C(s32 value);
 
 /* Effect IDs and unnamed continuations stay numeric until their owners are known.
  * RuntimeObject fields at 0x7A and 0x7C are confirmed halfword storage, but their
@@ -1667,3 +1675,80 @@ void object_finish_animation_7_after_countdown(struct RuntimeObject* object)
 }
 SEC(sub_807127C)
 const u32 sub_807127C_padding = 0x4770;
+
+SEC(sub_80742FC)
+s32 object_resume_with_sound_ad_when_ready(struct RuntimeObject* object)
+{
+    s32 result = sub_8086D80(object);
+    if (result == 0) {
+        object->update = sub_8072944;
+        sound_effect_play(0xAD, SOUND_VOLUME_UNCHANGED);
+        return 0;
+    }
+    return result;
+}
+
+SEC(sub_807438C)
+void object_remove_after_value84_countdown(struct RuntimeObject* object)
+{
+    object->value84--;
+    if (object->value84 <= 0) {
+        object->update = NULL;
+        sub_807C298(object);
+    }
+}
+
+SEC(sub_80744B4)
+void object_start_animation_6_effect_22e2(struct RuntimeObject* object)
+{
+    sub_8082E1C(object, 6, 0, 0);
+    sub_80DF024(0x22E2, object->positionX / 0x100,
+                object->positionY / 0x100,
+                object->positionZBase / 0x100, object);
+    sound_effect_stop(0x116);
+    object->update = sub_80746C4;
+}
+
+SEC(sub_8074508)
+void object_wait_for_child_or_periodic_transition(struct RuntimeObject* object)
+{
+    if (object->linkedObject == NULL) {
+        sound_effect_stop(0xD5);
+        object->update = sub_80744B4;
+    } else {
+        object->timer--;
+        if (object->timer <= 0) {
+            sub_810CA8C(1);
+            object->valueA0 = 1;
+            object->timer = 180;
+            object->update = sub_80746EC;
+        }
+    }
+}
+
+SEC(sub_80745E4)
+void object_start_animation_2_and_effect_22c0(struct RuntimeObject* object)
+{
+    sub_8082E1C(object, 2, 0, 0);
+    sub_80DF024(0x22C0, object->positionX / 0x100,
+                object->positionY / 0x100,
+                object->positionZBase / 0x100, object);
+    object->update = sub_80731B4;
+}
+
+SEC(sub_807462C)
+void object_stop_after_timer_countdown(struct RuntimeObject* object)
+{
+    object->timer--;
+    if (object->timer <= 0)
+        object->update = NULL;
+}
+
+SEC(sub_8074688)
+void object_begin_timer_16_when_value80_clears(struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        object->timer = 16;
+        object->update = sub_80728D0;
+    }
+}
