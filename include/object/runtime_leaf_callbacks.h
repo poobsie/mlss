@@ -23,6 +23,16 @@
 #define object_idle_when_link_clears sub_80652D4
 #define object_emit_effect_eff_and_finish sub_8065384
 #define object_start_animation_2_then_effect_sequence sub_80653F4
+#define object_advance_visual_timer_with_sound_d5 sub_8065CC4
+#define object_branch_animation_on_visual_timer sub_8065DD4
+#define object_finish_animation_15_on_countdown sub_8065EA0
+#define object_store_motion_target sub_8066540
+#define object_copy_position_to_link_and_finish_when_value80_clears sub_8066550
+#define object_start_variant_animation_and_sound_when_value80_clears sub_8066604
+#define object_prepare_saved_motion_on_visual_complete sub_806670C
+#define object_prepare_repeat_variant_on_ready sub_80667C4
+#define object_start_animation_9_with_short_timer sub_8066C90
+#define object_advance_repeating_animation_count sub_8066CEC
 #define object_move_left_until_screen_exit sub_8068074
 #define object_start_animation_6_when_value80_clears sub_80680A0
 #define object_move_left_and_down_until_screen_exit sub_806819C
@@ -63,6 +73,20 @@ void object_idle_when_link_clears(struct RuntimeObject* object);
 void object_emit_effect_eff_and_finish(struct RuntimeObject* object);
 void object_start_animation_2_then_effect_sequence(
     struct RuntimeObject* object);
+void object_advance_visual_timer_with_sound_d5(struct RuntimeObject* object);
+void object_branch_animation_on_visual_timer(struct RuntimeObject* object);
+void object_finish_animation_15_on_countdown(struct RuntimeObject* object);
+void object_store_motion_target(
+    struct RuntimeObject* object, s32 x, s32 y, s32 z);
+void object_copy_position_to_link_and_finish_when_value80_clears(
+    struct RuntimeObject* object);
+void object_start_variant_animation_and_sound_when_value80_clears(
+    struct RuntimeObject* object);
+void object_prepare_saved_motion_on_visual_complete(
+    struct RuntimeObject* object);
+void object_prepare_repeat_variant_on_ready(struct RuntimeObject* object);
+void object_start_animation_9_with_short_timer(struct RuntimeObject* object);
+void object_advance_repeating_animation_count(struct RuntimeObject* object);
 void object_move_left_until_screen_exit(struct RuntimeObject* object);
 void object_start_animation_6_when_value80_clears(struct RuntimeObject* object);
 void object_move_left_and_down_until_screen_exit(struct RuntimeObject* object);
