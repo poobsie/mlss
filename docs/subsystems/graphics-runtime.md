@@ -42,6 +42,10 @@ Three final bucket-02 wrappers now have graphics ownership. `graphics_apply_stag
 
 The high-address runtime group now includes compact resource cleanup and state helpers shared with UI code. Their typed owners expose only the fields touched by these leaves; resource and screen identities remain unresolved where callers are still assembly-only.
 
+`GraphicsPositionState` now records the shared position words, output sprite pointer, selection flags, and height-source pointer used by the adjacent graphics helpers. The recovered reset clears the proven state fields, while the shared-output helper writes the current value pair to each selected slot at `0x02000010`. The individual flag meanings remain unknown.
+
+`graphics_resource_owner_initialize` installs descriptor `0x08CDD060` and clears its transfer pointer. `graphics_fill_background_palettes` replicates one 16-bit value across both 512-byte background palette banks using the BIOS fill operation.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,623 linked C functions checked, 1,623 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,630 linked C functions checked, 1,630 exact, and zero mismatches.

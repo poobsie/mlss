@@ -4,6 +4,8 @@
 #include "global.h"
 
 #define runtime_intrusive_list_append_unique sub_8163CD4
+#define runtime_intrusive_list_owner_destroy_a sub_8163888
+#define runtime_intrusive_list_owner_destroy_b sub_8163D10
 
 struct RuntimeIntrusiveNode {
     void* value00;
@@ -17,8 +19,17 @@ struct RuntimeIntrusiveList {
     s32 count;
 };
 
+struct RuntimeIntrusiveListOwner {
+    struct RuntimeIntrusiveList list;
+    const void* vtable;
+};
+
 void runtime_intrusive_list_append_unique(
     struct RuntimeIntrusiveList* list,
     struct RuntimeIntrusiveNode* node);
+void runtime_intrusive_list_owner_destroy_a(
+    struct RuntimeIntrusiveListOwner* owner, u32 flags);
+void runtime_intrusive_list_owner_destroy_b(
+    struct RuntimeIntrusiveListOwner* owner, u32 flags);
 
 #endif

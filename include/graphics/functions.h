@@ -6,6 +6,8 @@
 struct GraphicsPackedValueOwner;
 struct GraphicsTileBufferOwner;
 struct GraphicsPaletteOwner;
+struct GraphicsResourceOwner;
+struct GraphicsPositionState;
 
 #define graphics_transfer_copy_2048_bytes sub_8160E4C
 #define graphics_destroy_resource_owner_a sub_816154C
@@ -30,6 +32,10 @@ struct GraphicsPaletteOwner;
 #define graphics_upload_tile_buffer sub_81650DC
 #define graphics_upload_palette_state sub_8165420
 #define graphics_destroy_palette_owner sub_8165454
+#define graphics_resource_owner_initialize sub_816156C
+#define graphics_position_state_reset sub_8163298
+#define graphics_position_state_write_shared sub_816316C
+#define graphics_fill_background_palettes sub_8163D80
 #define graphics_advance_by_nibble_width sub_810D260
 #define graphics_extract_mode_relative_index sub_8127E38
 #define graphics_extract_owner_mode_relative_index sub_80E8F1C
@@ -45,5 +51,11 @@ void graphics_upload_tile_buffer(struct GraphicsTileBufferOwner* object);
 void graphics_upload_palette_state(struct GraphicsPaletteOwner* object);
 void graphics_destroy_palette_owner(struct GraphicsPaletteOwner* object,
                                     u32 flags);
+struct GraphicsResourceOwner* graphics_resource_owner_initialize(
+    struct GraphicsResourceOwner* object);
+void graphics_position_state_reset(struct GraphicsPositionState* state,
+                                   u16 flags);
+void graphics_position_state_write_shared(struct GraphicsPositionState* state);
+void graphics_fill_background_palettes(u16 value);
 
 #endif

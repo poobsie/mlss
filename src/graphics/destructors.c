@@ -4,6 +4,16 @@
 void free_heap_8018DA8(void* pointer);
 void heap_free_block(void* pointer);
 
+struct GraphicsResourceOwner* graphics_resource_owner_initialize(
+    struct GraphicsResourceOwner* object)
+    __attribute__((section(".text.sub_816156C")));
+struct GraphicsResourceOwner* graphics_resource_owner_initialize(
+    struct GraphicsResourceOwner* object) {
+    object->transfer = 0;
+    object->vtable = (const void*)0x08CDD060;
+    return object;
+}
+
 void graphics_destroy_palette_owner(struct GraphicsPaletteOwner* object,
                                     u32 flags)
     __attribute__((section(".text.sub_8165454")));

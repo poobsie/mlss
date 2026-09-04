@@ -22,9 +22,11 @@ Five high-address helpers now have narrow runtime overlays. They capture the low
 
 Five adjacent definition and adapter helpers now live in `runtime/high_definitions.c`. They expose a forced-mode wrapper, a definition target getter, a descriptor-installing destructor, a default-initializer adapter, and a four-word definition initializer. Their names record proven mechanics and definition addresses because the concrete classes are not visible in current C.
 
+`definition_slot_destroy` now replaces the slot definition with `0x08CDD0B8` and conditionally frees the containing allocation. Two callers with the same intrusive-list-owner layout now have typed destructors; both install descriptor `0x08CDD108`, clear the owned list through the existing runtime routine, and honor the low-bit free flag. The two owner classes remain distinct because their surrounding construction paths have not established a shared semantic identity.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,623 linked C functions checked, 1,623 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,630 linked C functions checked, 1,630 exact, and zero mismatches.
 `pointer_list_count_value` walks a singly linked list and returns the number of nodes whose payload pointer equals the requested value. The second word in each node remains unknown; traversal proves only the payload at `0x00` and next pointer at `0x08`.
 
 `DefinitionState` is a six-word base overlay used by several differently sized late-runtime allocations. Two initializer families clear the same fields and install distinct definitions while setting value `0x10` to `0x7E00`; paired reset functions replace the definition and clear state. The initializer return types now match callers that retain `r0` as the initialized object pointer.

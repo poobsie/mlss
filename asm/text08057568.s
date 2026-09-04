@@ -465303,6 +465303,7 @@ _0816153E:
 	bx r1
 _08161548: .4byte 0x02000014
 	.section .text.high_after_sub_816154C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_816156C
 sub_816156C:
 	movs r1, #0x00
@@ -465312,6 +465313,8 @@ sub_816156C:
 	bx lr
 	.byte 0x00, 0x00
 _08161578: .4byte 0x08CDD060
+	.endif
+	.section .text.after_816156C, "ax", %progbits
 	.byte 0x70, 0x47, 0x00, 0x00
 	.section .text.freeing_destructors_after_sub_8161580, "ax", %progbits
 	.byte 0x00, 0x21, 0x01, 0x60, 0x01, 0x49, 0x41, 0x60, 0x70, 0x47, 0x00, 0x00, 0x78, 0xD0, 0xCD, 0x08
@@ -465351,6 +465354,7 @@ _08161638: .4byte 0x08CDD0A8
 	.byte 0x10, 0xB5, 0x04, 0x1C, 0x07, 0x48, 0x60, 0x60, 0x07, 0x4A, 0x10, 0x20, 0x01, 0x21, 0x00, 0x23
 	.byte 0xB7, 0xF6, 0xCE, 0xFB, 0x7C, 0xF0, 0x24, 0xF8, 0x20, 0x60, 0x20, 0x1C, 0x10, 0xBC, 0x02, 0xBC
 	.byte 0x08, 0x47, 0x00, 0x00, 0xA8, 0xD0, 0xCD, 0x08, 0xFC, 0x27, 0x21, 0x08, 0x70, 0x47, 0x00, 0x00
+	.if 0
 	thumb_func_start sub_816166C
 sub_816166C:
 	push {lr}
@@ -465368,6 +465372,8 @@ _08161682:
 	bx r0
 	.byte 0x00, 0x00
 _08161688: .4byte 0x08CDD0B8
+	.endif
+	.section .text.after_816166C, "ax", %progbits
 	.section .text.after_816168C, "ax", %progbits
 	thumb_func_start sub_8161698
 sub_8161698:
@@ -467703,6 +467709,7 @@ sub_8163134:
 	pop {r0}
 	bx r0
 _08163168: .4byte 0x03000FC0
+	.if 0
 	thumb_func_start sub_816316C
 sub_816316C:
 	push {lr}
@@ -467761,6 +467768,8 @@ _081631CC: .4byte 0x02000010
 _081631D0: .4byte 0x02000014
 _081631D4: .4byte 0x02000018
 _081631D8: .4byte 0x0200001C
+	.endif
+	.section .text.after_816316C, "ax", %progbits
 	.section .text.high_after_sub_81631DC, "ax", %progbits
 	thumb_func_start sub_81631F0
 sub_81631F0:
@@ -467827,6 +467836,7 @@ _0816325A:
 	.byte 0x00, 0x00
 	.section .text.high_after_sub_8163264, "ax", %progbits
 	.section .text.high_after_sub_8163280, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8163298
 sub_8163298:
 	movs r2, #0x00
@@ -467843,6 +467853,8 @@ sub_8163298:
 	str r2, [r0, #0x2C]
 	str r2, [r0, #0x28]
 	bx lr
+	.endif
+	.section .text.after_8163298, "ax", %progbits
 	.byte 0x00, 0xB5, 0x00, 0x22, 0x41, 0x88, 0x00, 0x88, 0x81, 0x42, 0x00, 0xD3, 0x01, 0x22, 0x10, 0x1C
 	.byte 0x02, 0xBC, 0x08, 0x47
 	.section .text.high_after_sub_81632C8, "ax", %progbits
@@ -468546,6 +468558,7 @@ _08163880:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.if 0
 	thumb_func_start sub_8163888
 sub_8163888:
 	push {r4, r5, lr}
@@ -468566,6 +468579,8 @@ _081638A6:
 	pop {r0}
 	bx r0
 _081638AC: .4byte 0x08CDD108
+	.endif
+	.section .text.after_8163888, "ax", %progbits
 	.section .text.after_81638B0, "ax", %progbits
 	thumb_func_start sub_81638C4
 sub_81638C4:
@@ -468994,6 +469009,7 @@ _08163CC8:
 	bx r0
 	.byte 0x00, 0x00
 	.section .text.after_upper_sub_8163CD4, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8163D10
 sub_8163D10:
 	push {r4, r5, lr}
@@ -469014,11 +469030,14 @@ _08163D2E:
 	pop {r0}
 	bx r0
 _08163D34: .4byte 0x08CDD108
+	.endif
+	.section .text.after_8163D10, "ax", %progbits
 	.byte 0x03, 0x49, 0xC1, 0x60, 0x00, 0x21, 0x41, 0x60, 0x01, 0x60, 0x81, 0x60, 0x70, 0x47, 0x00, 0x00
 	.byte 0x08, 0xD1, 0xCD, 0x08
 	.section .text.freeing_destructors_after_sub_8163D4C, "ax", %progbits
 	.byte 0x03, 0x4A, 0xC2, 0x60, 0x00, 0x22, 0x82, 0x60, 0x42, 0x60, 0x01, 0x60, 0x70, 0x47, 0x00, 0x00
 	.byte 0x18, 0xD1, 0xCD, 0x08
+	.if 0
 	thumb_func_start sub_8163D80
 sub_8163D80:
 	push {r4, r5, lr}
@@ -469045,6 +469064,8 @@ sub_8163D80:
 	.byte 0x00, 0x00
 _08163DB0: .4byte 0x01000080
 _08163DB4: .4byte 0x05000200
+	.endif
+	.section .text.after_8163D80, "ax", %progbits
 	thumb_func_start sub_8163DB8
 sub_8163DB8:
 	push {r4, r5, r6, lr}

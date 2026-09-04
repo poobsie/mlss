@@ -1,6 +1,7 @@
 #include "global.h"
 #include "graphics/functions.h"
 #include "graphics/resource.h"
+#include "gba/syscall.h"
 
 #define SEC(name)   __attribute__((section(".text.high." #name)))
 #define U16AT(p, o) (*(u16*)((u8*)(p) + (o)))
@@ -13,6 +14,49 @@ void sub_8021308(void*);
 void sprite_hide_8021F20(void*);
 void sub_80184F4(void*);
 void sub_8018218(void*, void*, u32, u32, u32);
+SEC(sub_816316C) void graphics_position_state_write_shared(
+    struct GraphicsPositionState* state) {
+    if (state->flags20 & 1) {
+        *(u16*)0x02000010 = state->value18;
+        *(u16*)0x02000012 = state->value1C;
+    }
+    if (state->flags20 & 2) {
+        *(u16*)0x02000014 = state->value18;
+        *(u16*)0x02000016 = state->value1C;
+    }
+    if (state->flags20 & 4) {
+        *(u16*)0x02000018 = state->value18;
+        *(u16*)0x0200001A = state->value1C;
+    }
+    if (state->flags20 & 8) {
+        *(u16*)0x0200001C = state->value18;
+        *(u16*)0x0200001E = state->value1C;
+    }
+}
+
+SEC(sub_8163D80) void graphics_fill_background_palettes(u16 value) {
+    u32 fill = value | (value << 16);
+    CpuFastSet(&fill, (void*)0x05000000, 0x01000080);
+    fill = value | (value << 16);
+    CpuFastSet(&fill, (void*)0x05000200, 0x01000080);
+}
+
+SEC(sub_8163298) void graphics_position_state_reset(
+    struct GraphicsPositionState* state, u16 flags) {
+    u32 zero = 0;
+    state->flags20 = flags;
+    state->state24 = zero;
+    state->value1C = zero;
+    state->value18 = zero;
+    state->value14 = zero;
+    state->value10 = zero;
+    state->sprite0C = 0;
+    state->value08 = zero;
+    state->value04 = zero;
+    state->value00 = zero;
+    state->value2C = zero;
+    state->value28 = zero;
+}
 
 SEC(sub_816507C) void graphics_clear_tile_buffer(struct GraphicsTileBufferOwner* object) {
     u32 zero = 0;

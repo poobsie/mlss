@@ -59,4 +59,21 @@ struct GraphicsPaletteOwner {
     u16* output30;
 };
 
+struct GraphicsPositionState {
+    u32 value00;
+    u32 value04;
+    u32 value08;
+    void* sprite0C;
+    u32 value10;
+    s32 value14;
+    s32 value18;
+    s32 value1C;
+    u16 flags20;
+    u8 unknown22[2];
+    s32 state24;
+    s32 value28;
+    u32 value2C;
+    void* heightSource30;
+};
+
 #endif
