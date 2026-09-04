@@ -45,6 +45,11 @@ the likely subsystem, caller-connected family, shared state, signature, naming e
 and facts that remain unknown. The coordinator then chooses a bounded slice, normally 5
 to 25 related functions, and assigns disjoint address ranges for implementation.
 
+The stages form a continuous pipeline, not separate backlogs. Once the evidence for a
+slice is sufficient, the same worker should implement and exact-match it in an isolated
+worktree. A scouting report is useful only when it changes the next implementation
+decision. Do not accumulate reports faster than accepted slices can be integrated.
+
 The coordinator owns shared headers, linker placement, symbols, queue state, and final
 integration. Workers may edit concurrently only when they have isolated worktrees and
 non-overlapping file ownership. If they share a checkout, keep workers read-only and use
@@ -55,6 +60,19 @@ Every worker result uses the packet contract fields: functions, subsystem, evide
 semantic names, retained unknowns, shared interfaces, exact match, byte count, changed
 files, and follow-up. If sound typing or ownership requires code outside the assignment,
 the worker proposes a larger slice instead of silently expanding scope.
+
+For sustained parallel work:
+
+1. Create one worktree per worker from the latest accepted commit.
+2. Assign one bounded subsystem slice and explicit source ownership to each worker.
+3. Have each worker implement, compare exact bytes, document uncertainty, and commit the
+   accepted subset. Two informed shaping attempts per function are enough for one batch;
+   restore difficult outliers to assembly and keep moving.
+4. Integrate worker commits one at a time. Resolve shared header and linker order centrally,
+   rerun `make decomp-acceptance`, push the verified checkpoint, then refill the workers.
+
+Report accepted exact functions and bytes per round. Do not report candidate counts as
+decompilation progress.
 
 ## Acceptance
 

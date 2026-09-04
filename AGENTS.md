@@ -61,6 +61,26 @@ enough caller, callee, and data context to recover its interface.
   interfaces, an explicit retained-unknown list, and an exact byte comparison. A proposed
   slice expansion returns to coordination before anyone edits outside the assigned range.
 
+Keep the pipeline implementation-bound. Evidence packets are inputs to a slice, not a
+deliverable by themselves. Once a worker has enough evidence to define a safe boundary,
+that worker should take the slice through C implementation, byte matching, documentation,
+and a commit in its isolated worktree. Do not keep generating candidate lists while
+previous candidates wait for a single coordinator to transcribe them.
+
+- Start parallel worktrees from the same accepted commit and give each worker one
+  subsystem, disjoint address range, and explicit file ownership.
+- Measure throughput by exact functions and bytes integrated into the accepted branch.
+  Candidate counts, draft bodies, and size-only matches are diagnostic data, not progress.
+- Keep one active implementation slice per worker. Refill a worker only after its prior
+  slice is committed, rejected with evidence, or returned for a boundary decision.
+- Limit compiler-shaping work on one candidate to two informed attempts during a batch.
+  Retain the diagnosis in ignored scratch space, restore its assembly, and continue with
+  the rest of the slice instead of stalling the pipeline.
+- Commit the exact accepted subset even when another candidate in the slice is rejected.
+  The coordinator reviews and integrates worker commits sequentially, resolves shared
+  interface and linker conflicts, reruns acceptance, pushes, and immediately starts the
+  next worktree round.
+
 Run `make decomp-acceptance` before accepting a completed slice. This verifies the ROM
 and every linked C function, then rejects active or queued cleanup work and any source
 still assigned to the unclassified bucket. A deferred subsystem is acceptable only when
