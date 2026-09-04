@@ -16,6 +16,7 @@
 #define FIELD_RUNTIME (*(struct FieldSelectionRuntime**)0x03000FD8)
 #define SCRIPT_GLOBAL_D44 (*(void**)0x03000D44)
 #define SCRIPT_GLOBAL_FB8 (*(void**)0x03000FB8)
+#define SCRIPT_FIELD_RUNTIME (*(u8**)0x03000FD0)
 #define U8AT(pointer, offset) (*(u8*)((u8*)(pointer) + (offset)))
 
 struct ScriptBattleReturnContext {
@@ -36,6 +37,20 @@ extern void sub_80E9330(void* owner, u16 value);
 extern void sub_80E6FB8(void* resource, s32 layer);
 extern void sub_80E7118(void* resource, u8 mask);
 extern void sub_80E6E68(void* resource);
+extern u8 sub_8116B48(s32, s32, s32);
+extern u8 sub_811795C(s32, s32, s32);
+extern void sub_8029A0C(void*, void*, s32);
+extern void sub_803AC8C(void*);
+extern void sub_803AAE4(void*);
+extern void sub_803AE38(void*);
+extern void sub_803ADA8(void*, s32);
+extern void sub_802F834(void*);
+extern void sub_803C638(void*);
+extern void sub_803C424(void*);
+extern void sub_80326F4(void*);
+extern u8 sub_803C4A0(void*);
+extern void sub_80328B4(void*);
+extern u8 sub_803C468(void*);
 
 struct ScriptObjectBytePairArguments {
     u8 value0;
@@ -213,6 +228,20 @@ SEC(script_command_set_input_mask) s32 script_command_set_input_mask(
 }
 SEC(script_command_set_input_mask) const u16 script_command_set_input_mask_padding = 0;
 
+SEC(sub_80F0540)
+s32 script_command_clear_field_runtime_flag(
+    void* context, void* owner, void* state, const u32* arguments)
+{
+    u32 operation = *arguments++;
+
+    if (operation == 0) {
+        /* The owner and meaning of this 16-bit field flag bank remain unknown. */
+        u16* flags = (u16*)(SCRIPT_FIELD_RUNTIME + 0x54A);
+        *flags &= ~(1 << *arguments);
+    }
+    return 1;
+}
+
 SEC(sub_80F0780) s32 sub_80F0780(struct ScriptCommandContext* context, void* state, s32* arguments)
 {
     s32 index = *arguments;
@@ -220,6 +249,86 @@ SEC(sub_80F0780) s32 sub_80F0780(struct ScriptCommandContext* context, void* sta
         sub_803C898(context->objectRegistry, index);
     return 1;
 }
+
+SEC(sub_80F0794)
+s32 sub_80F0794(
+    struct ScriptCommandContext* context, void* state, const s32* argument)
+{
+    /* Values 5 through 11 select object-registry operations. Their meanings remain unknown. */
+    s32 command = *argument;
+
+    switch (command) {
+    case 5:
+        sub_803AC8C(context->objectRegistry);
+        break;
+    case 6:
+        sub_803AAE4(context->objectRegistry);
+        break;
+    case 7:
+        sub_803AE38(context->objectRegistry);
+        break;
+    case 8:
+        sub_803ADA8(context->objectRegistry, 1);
+        break;
+    case 9:
+        sub_802F834(context->objectRegistry);
+        break;
+    case 10:
+        sub_803C638(context->objectRegistry);
+        break;
+    case 11:
+        sub_803C424(context->objectRegistry);
+        break;
+    default:
+        sub_8029A0C(context->objectRegistry, (void*)command, 0);
+        break;
+    }
+    return 1;
+}
+
+SEC(sub_80F0814)
+s32 sub_80F0814(
+    struct ScriptCommandContext* context, struct ScriptExecutionState* state,
+    const s32* argument)
+{
+    /* The packed low-bit/group command encoding is proven; operation names are not. */
+    s32 command = *argument;
+    s32 group = (command >> 1) & 0xF;
+    s32 result;
+
+    switch (group) {
+    case 0:
+        switch (command & 1) {
+        case 0:
+            sub_80326F4(context->objectRegistry);
+            break;
+        case 1:
+            result = sub_803C4A0(context->objectRegistry);
+            if ((result << 24) != 0) {
+                state->cursor = state->resumeCursor;
+                return 0;
+            }
+            break;
+        }
+        break;
+    case 1:
+        switch (group & command) {
+        case 0:
+            sub_80328B4(context->objectRegistry);
+            break;
+        case 1:
+            result = sub_803C468(context->objectRegistry);
+            if ((result << 24) != 0) {
+                state->cursor = state->resumeCursor;
+                return 0;
+            }
+            break;
+        }
+        break;
+    }
+    return 1;
+}
+SEC(sub_80F0814) const u16 sub_80F0814_padding = 0;
 
 SEC(sub_80F087C)
 s32 script_wait_for_battle_flag_208_10(
@@ -236,6 +345,25 @@ s32 script_wait_for_battle_flag_208_10(
     }
     return result;
 }
+
+SEC(sub_80F08C0)
+s32 script_command_branch_on_field_queries(
+    void* context, struct ScriptExecutionState* state,
+    const u32* arguments)
+{
+    u8 result = sub_8116B48(0, 3, 0);
+
+    if (result == 0) {
+        result = sub_811795C(0, 0, 1);
+        if (result == 0)
+            result = sub_811795C(1, 0, 1);
+    }
+
+    if ((result == 0) == *arguments++)
+        state->cursor = *arguments;
+    return 1;
+}
+SEC(sub_80F08C0) const u16 sub_80F08C0_padding = 0;
 
 SEC(sub_80F0914)
 s32 script_command_set_battle_flag_12d(
