@@ -1005,6 +1005,8 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_05_after_sub_8087AE0);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_8087C4C);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8087C4C);
+        src/object/motion.o(.text.object_motion.sub_808842C);
+        asm/text08057568.o(.text.object_motion_after_sub_808842C);
         src/object/small_state_helpers.o(.text.misc_helpers_01.sub_808862C);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_808862C);
         src/object/small_state_helpers.o(.text.misc_helpers_01.sub_808863C);

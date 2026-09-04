@@ -96,7 +96,8 @@ struct RuntimeObject {
     s32 value84;
     u8 unknown88[4];
     s32 value8C;
-    u8 unknown90[4];
+    u8 unknown90[2];
+    s16 motionDuration92;
     s32 verticalAcceleration;
     u32 flags98;
     s32 behaviorState;
@@ -111,5 +112,8 @@ struct RuntimeObject {
 
 void sub_8087540(struct RuntimeObject* object);
 void runtime_object_finish_action(struct RuntimeObject* object);
+
+#define runtime_object_start_timed_motion sub_808842C
+void runtime_object_start_timed_motion(struct RuntimeObject* object, s32 value, s32 duration);
 
 #endif

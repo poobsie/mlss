@@ -86163,6 +86163,7 @@ _08088426:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.if 0
 	thumb_func_start sub_808842C
 sub_808842C:
 	push {lr}
@@ -86172,6 +86173,8 @@ sub_808842C:
 	bl sub_8088164
 	pop {r0}
 	bx r0
+	.endif
+	.section .text.object_motion_after_sub_808842C, "ax", %progbits
 	thumb_func_start sub_808843C
 sub_808843C:
 	push {r4, r5, r6, lr}
