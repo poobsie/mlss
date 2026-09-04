@@ -215,6 +215,8 @@ Fourteen early-object callbacks now expose a connected timer, readiness, auxilia
 
 Fourteen following callbacks continue the same runtime chain through readiness cleanup, saved-position restoration, fixed-point movement, visual gates, and periodic effects. The saved signed halfwords at offsets `0xAE`, `0xB0`, and `0xB2` remain structural because several sequences overlap them with wider state fields. Effect identifiers `0xD82`, `0xDB2`, `0x1BFE`, `0x1C52`, `0x1C5B`, and `0x1DF8` stay numeric pending recovery of their resource owners.
 
+Three middle-runtime callbacks now expose their proven value gates and continuation changes. Their names describe the observed test and state transition while leaving the assembly-owned scene identity unresolved.
+
 Eight late-middle callbacks now cover three `value80` gates, paired visual-completion
 transitions, and a timer-driven handoff. Four neighboring routines remain in assembly
 after exact-sized but register-sensitive C failed the capped pass. The accepted names
@@ -222,4 +224,4 @@ describe their observed gates and continuations without assigning scene identiti
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,594 linked C functions checked, 1,594 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,602 linked C functions checked, 1,602 exact, and zero mismatches.
