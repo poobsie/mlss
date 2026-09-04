@@ -28,7 +28,7 @@ The high-runtime state now exposes two mirrored byte-magnitude channels. Each ch
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,716 linked C functions checked, 1,716 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,743 linked C functions checked, 1,743 exact, and zero mismatches.
 `pointer_list_count_value` walks a singly linked list and returns the number of nodes whose payload pointer equals the requested value. The second word in each node remains unknown; traversal proves only the payload at `0x00` and next pointer at `0x08`.
 
 `DefinitionState` is a six-word base overlay used by several differently sized late-runtime allocations. Two initializer families clear the same fields and install distinct definitions while setting value `0x10` to `0x7E00`; paired reset functions replace the definition and clear state. The initializer return types now match callers that retain `r0` as the initialized object pointer.
@@ -58,3 +58,5 @@ The runtime bitset at `0x03000FC0` exposes one test and one assignment operation
 Additional high-address leaves now copy and initialize the established three-word runtime value and bridge it into adjacent UI and graphics owners. Field names remain structural because no recovered consumer proves a narrower payload type.
 
 Three adjacent UI-runtime leaves now use the established `UiObject` layout. `ui_object_set_visual` installs a visual pointer and clears its frame counter. `ui_object_grid_reset_visual` selects one member of a two-row, three-column object grid, installs definition `0x08212934`, and clears both the frame counter and state word. `ui_object_list_apply_state` walks the next pointer at offset `0x08` and applies the existing object-state routine to every member. The container and node overlays retain unknown payload bytes because these leaves prove only membership and traversal.
+
+Two compact runtime leaves expose operations that recur in screen and object construction paths. `runtime_embedded_object_at_0c` returns the embedded subobject at offset `0x0C`. `runtime_large_owner_clear_slots` clears the words at offsets `0x804` and `0x80C` and returns the owner pointer, matching callers that may retain `r0`. The unusually large owner overlay and both field names remain structural because current callers do not establish their payload semantics.

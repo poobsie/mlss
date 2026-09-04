@@ -2135,6 +2135,8 @@ SECTIONS
         asm/text08057568.o(.text.state_field_helpers_after_sub_8150E2C);
         src/graphics/circular_mask.o(.text.state_field_helpers.sub_8150E38);
         asm/text08057568.o(.text.state_field_helpers_after_sub_8150E38);
+        src/runtime/compact_leaves.o(.text.runtime_compact.sub_8150EFC);
+        asm/text08057568.o(.text.after_8150EFC);
         src/battle/sprite_variant_container.o(.text.upper.sub_8158000);
         asm/text08057568.o(.text.after_upper_sub_8158000);
         src/battle/sprite_variant_container.o(.text.upper.sub_8158044);
@@ -2373,6 +2375,8 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8160E6C);
         src/battle/large_resource_cleanup.o(.text.upper.sub_8160EA4);
         asm/text08057568.o(.text.after_8160EA4);
+        src/runtime/compact_leaves.o(.text.runtime_compact.sub_8160EC4);
+        asm/text08057568.o(.text.after_8160EC4);
         src/graphics/high_helpers.o(.text.high.sub_81612E4);
         asm/text08057568.o(.text.high_after_sub_81612E4);
         src/graphics/high_helpers.o(.text.high.sub_816132C);
@@ -2424,6 +2428,8 @@ SECTIONS
         src/ui/layout_state.o(.text.sub_8163320);
         asm/text08057568.o(.text.after_8163320);
         asm/text08057568.o(.text.after_8163394);
+        src/ui/object_groups.o(.text.ui_groups.sub_81634DC);
+        asm/text08057568.o(.text.after_81634DC);
         src/ui/object_groups.o(.text.ui_groups.sub_8163650);
         asm/text08057568.o(.text.after_8163650);
         src/ui/layout_state.o(.text.sub_8163748);

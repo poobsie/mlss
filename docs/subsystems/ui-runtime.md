@@ -24,3 +24,5 @@ The same construction layer now exposes an empty-pointer query, a shared-halfwor
 `TextContext` replaces the former catch-all `struc_15` name for the text parser shared by the options and related screens. `text_context_set_cursor` installs the source cursor and its column and row, clears the restart and completion flag bits `0x01` and `0x20`, and returns the previous cursor. The options label builder now advances `cursor` explicitly when it encounters the observed `FF 0B 01` control sequence.
 
 Four more high-address UI leaves expose narrow layout and object-state operations through the existing typed owners. Their aliases describe the observed reset, value transfer, or resource relationship without assigning a menu or screen identity that current callers do not prove.
+
+`ui_object_group4_reset_state` applies the established update and zero-state operations to each of four owned objects. The group overlay proves only the four-pointer extent, so its wider screen identity remains deliberately unknown. The trailing zero halfword is emitted explicitly because ordinary Thumb section alignment would otherwise substitute a `nop` outside the function body.
