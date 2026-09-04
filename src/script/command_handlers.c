@@ -1,4 +1,6 @@
 #include "global.h"
+#include "audio/music.h"
+#include "audio/sound_effects.h"
 #include "battle/functions.h"
 #include "battle/object.h"
 #include "field/selection_sequence.h"
@@ -30,11 +32,26 @@ extern void sub_8047364(void *, u8);
 extern void sub_80473DC(void *);
 extern u8 sub_8027378(void* objectRegistry);
 extern void sub_805C78C(void* object, u8 value0, u8 value1);
+extern void sub_80E9330(void* owner, u16 value);
+extern void sub_80E6FB8(void* resource, s32 layer);
+extern void sub_80E7118(void* resource, u8 mask);
+extern void sub_80E6E68(void* resource);
 
 struct ScriptObjectBytePairArguments {
     u8 value0;
     u8 padding01[3];
     u8 value1;
+};
+
+struct ScriptResourceEntry {
+    u8 unknown00[0x42];
+    u8 flags42;
+    u8 unknown43[9];
+};
+
+struct ScriptResourceOwner {
+    u8 unknown00[4];
+    struct ScriptResourceEntry* resources04;
 };
 
 SEC(sub_80EAD98)
@@ -45,6 +62,61 @@ s32 script_command_set_runtime_direction_sign(
         U8AT(SCRIPT_GLOBAL_D44, 0x29) = 1;
     else
         U8AT(SCRIPT_GLOBAL_D44, 0x29) = 0xFF;
+    return 1;
+}
+
+SEC(sub_80EAEF8)
+s32 script_command_control_sound_effect(
+    void* context, struct ScriptExecutionState* state,
+    const s32* arguments)
+{
+    s32 operation = *arguments++;
+
+    switch (operation) {
+    case 0:
+        sound_effect_play(*arguments, SOUND_VOLUME_UNCHANGED);
+        break;
+    case 1:
+        if (*arguments != 0)
+            sound_effect_stop(*arguments);
+        else
+            sound_effects_stop_all();
+        break;
+    case 2:
+        if ((u8)sound_effect_is_playing(*arguments)) {
+            state->cursor = state->resumeCursor;
+            return 0;
+        }
+        break;
+    }
+    return 1;
+}
+
+SEC(sub_80EAF4C)
+s32 script_command_control_music(
+    void* context, void* state,
+    s32* arguments)
+{
+    s32 operation = *arguments++;
+
+    switch (operation) {
+    case 0:
+        if (arguments[2] == 2)
+            arguments[2] = MUSIC_VOLUME_UNCHANGED;
+        music_play(arguments[0], arguments[1], arguments[2]);
+        break;
+    case 1:
+        if (arguments[2] == 2)
+            arguments[2] = MUSIC_VOLUME_UNCHANGED;
+        music_resume(arguments[0], arguments[2], (u8)arguments[1]);
+        break;
+    case 2:
+        music_set_volume(arguments[0], (u8)arguments[2], (u8)arguments[1]);
+        break;
+    case 3:
+        music_set_tempo(arguments[0], (u8)arguments[2], (u8)arguments[1]);
+        break;
+    }
     return 1;
 }
 
@@ -66,6 +138,52 @@ s32 script_command_set_runtime_byte_32(
     u32 value = *argument;
 
     U8AT(runtime, 0x32) = value;
+    return 1;
+}
+
+SEC(sub_80EB05C)
+s32 script_command_control_resource_wait(
+    void* context, void* owner, struct ScriptExecutionState* state,
+    const u32* arguments)
+{
+    u32 operation = *arguments++;
+
+    switch (operation) {
+    case 0:
+        sub_80E9330(owner, *(const u16*)arguments);
+        break;
+    case 1: {
+        register struct ScriptResourceEntry* resources asm("r0") =
+            ((struct ScriptResourceOwner*)owner)->resources04;
+        register u32 index asm("r2") = *arguments;
+
+        // Preserve the original register allocation around the scaled lookup.
+        asm("" : "+r"(resources), "+r"(index));
+        resources += index;
+        asm("" : "+r"(resources));
+        if ((s32)((u32)resources->flags42 << 29) >= 0) {
+            state->cursor = state->resumeCursor;
+            return 0;
+        }
+        break;
+    }
+    }
+    return 1;
+}
+SEC(sub_80EB05C) const u16 sub_80EB05C_padding = 0;
+
+SEC(sub_80EB09C)
+s32 script_command_configure_graphics_resource(
+    void* context, void* resource, void* state, const s32* mode)
+{
+    if (*mode <= 4) {
+        sub_80E6FB8(resource, (u16)*mode);
+        sub_80E7118(resource, (u8)(1 << *mode));
+    } else {
+        sub_80E6E68(resource);
+        sub_80E7118(resource, U8AT(*(void**)((u8*)resource + 4), 0x1B3));
+    }
+    U8AT(SCRIPT_GLOBAL_FB8, 0x31) = 0;
     return 1;
 }
 MISC3_SEC(script_command_return_from_battle)

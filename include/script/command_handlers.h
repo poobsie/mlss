@@ -11,6 +11,10 @@ struct ScriptCommandContext;
 #define script_command_set_runtime_direction_sign sub_80EAD98
 #define script_command_branch_if_runtime_byte_30_equals sub_80EAE9C
 #define script_command_set_runtime_byte_32 sub_80EB048
+#define script_command_control_sound_effect sub_80EAEF8
+#define script_command_control_music sub_80EAF4C
+#define script_command_control_resource_wait sub_80EB05C
+#define script_command_configure_graphics_resource sub_80EB09C
 #define script_wait_for_battle_flag_208_10 sub_80F087C
 #define script_command_set_battle_flag_12d sub_80F0914
 #define script_command_set_battle_flags_12c sub_80F0938

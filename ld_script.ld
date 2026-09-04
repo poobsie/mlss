@@ -1333,8 +1333,16 @@ SECTIONS
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EAD98);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EAE9C);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EAE9C);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80EAEF8);
+        asm/text08057568.o(.text.script_command_helpers_after_sub_80EAEF8);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80EAF4C);
+        asm/text08057568.o(.text.script_command_helpers_after_sub_80EAF4C);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EB048);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EB048);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80EB05C);
+        asm/text08057568.o(.text.script_command_helpers_after_sub_80EB05C);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80EB09C);
+        asm/text08057568.o(.text.script_command_helpers_after_sub_80EB09C);
         src/script/state_commands.o(.text.middle.script_cmd_wait_frames);
         asm/text08057568.o(.text.after_middle_script_cmd_wait_frames);
         src/script/state_commands.o(.text.middle.script_cmd_call);

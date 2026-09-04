@@ -69,6 +69,10 @@ documents the relationship while the source preserves the exact ROM bytes.
 | `sub_80EAD98` | `script_command_set_runtime_direction_sign` | Stores `1` or `0xFF` in runtime byte `0x29` according to whether the command argument is zero. The owner of the runtime record remains unresolved. |
 | `sub_80EAE9C` | `script_command_branch_if_runtime_byte_30_equals` | Branches when runtime byte `0x30` equals the command's full-width expected value. |
 | `sub_80EB048` | `script_command_set_runtime_byte_32` | Stores the low byte of the command argument in runtime byte `0x32`. |
+| `sub_80EAEF8` | `script_command_control_sound_effect` | Starts, stops, or waits for a sound effect according to the command operation. A zero sound identifier on the stop path stops all sound effects. |
+| `sub_80EAF4C` | `script_command_control_music` | Starts or resumes music, or changes its volume or tempo. The command's player, value, and fade fields retain structural names until the bytecode format is recovered. |
+| `sub_80EB05C` | `script_command_control_resource_wait` | Starts an owner-scoped resource operation or yields until bit `0x04` in the selected 76-byte resource record clears. The record's owner and flag meaning remain unresolved. |
+| `sub_80EB09C` | `script_command_configure_graphics_resource` | Applies one of five graphics-resource modes, or restores the resource's saved mode for larger values, then clears runtime byte `0x31`. |
 
 The execution state now exposes the saved cursor at offset `0x14`. Three wait handlers restore that cursor and yield when their respective condition becomes true: the primary actor height test, field flag `0x291` bit 0, or a context-owned asynchronous operation. `script_command_branch_if_condition` decodes its aligned condition, operand, and target-cursor record and updates the current cursor only when the shared condition evaluator succeeds.
 
@@ -78,4 +82,4 @@ The execution state now exposes the saved cursor at offset `0x14`. Three wait ha
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,395 linked C functions checked, 1,395 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,399 linked C functions checked, 1,399 exact, and zero mismatches.
