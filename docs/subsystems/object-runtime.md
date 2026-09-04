@@ -213,6 +213,11 @@ The final eight object callbacks from the staging file now use `RuntimeObject`, 
 
 Fourteen early-object callbacks now expose a connected timer, readiness, auxiliary-motion, and periodic-effect sequence. They preserve effect identifiers `0x1810`, `0xDB2`, and `0xDBB`, sound identifiers `0x6C`, `0x81`, `0xAF`, and `0x111`, plus the shared effect-object slot at `0x03000E3C`. The nested owner selector at offset `0xEC`, the auxiliary-motion arguments, and the gameplay identity of these numeric effects remain unknown. Their aliases therefore describe only the observed transitions.
 
+Eight late-middle callbacks now cover three `value80` gates, paired visual-completion
+transitions, and a timer-driven handoff. Four neighboring routines remain in assembly
+after exact-sized but register-sensitive C failed the capped pass. The accepted names
+describe their observed gates and continuations without assigning scene identities.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,568 linked C functions checked, 1,568 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,580 linked C functions checked, 1,580 exact, and zero mismatches.

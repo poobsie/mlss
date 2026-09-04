@@ -66,4 +66,10 @@ event-state routines remain in assembly because natural C produced different
 instruction scheduling. The accepted aliases continue to preserve the original
 symbol table, so coverage accounting remains at the canonical 7,017 functions.
 
+The battle layer also gains two typed sprite-motion constructors, a signed effect
+value accessor, and the absolute setter for the circular-mask value. The setter's
+recovered 32-bit field width is shared through the graphics header; the battle
+effect and descriptor identities remain structural where current callers do not
+prove them.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C symbol exact, with zero mismatches.
