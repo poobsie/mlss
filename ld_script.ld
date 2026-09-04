@@ -2539,6 +2539,8 @@ SECTIONS
         asm/mariobros.o(.text.mariobros_after_f60478);
         src/mario_bros/object_transitions.o(.text.mariobros_transitions.sub_8F60BA0);
         asm/mariobros.o(.text.after_mariobros_transitions_sub_8F60BA0);
+        src/mario_bros/object_movement.o(.text.mariobros_late.sub_8F60D44);
+        asm/mariobros.o(.text.after_mariobros_round4_sub_8F60D44);
         src/mario_bros/object_command_wrappers.o(.text.mb_f60f60);
         asm/mariobros.o(.text.mariobros_after_f60f6c);
         src/mario_bros/object_movement.o(.text.mariobros_late.sub_8F611DC);
@@ -2555,8 +2557,12 @@ SECTIONS
         asm/mariobros.o(.text.after_mariobros_frame_bits_sub_8F624CC);
         src/mario_bros/object_transitions.o(.text.mariobros_transitions.sub_8F629AC);
         asm/mariobros.o(.text.after_mariobros_transitions_sub_8F629AC);
+        src/mario_bros/object_movement.o(.text.mariobros_late.sub_8F62B50);
+        asm/mariobros.o(.text.after_mariobros_round4_sub_8F62B50);
         src/mario_bros/object_command_wrappers.o(.text.mb_f62d28);
         asm/mariobros.o(.text.mariobros_after_f62d34);
+        src/mario_bros/object_movement.o(.text.mariobros_late.sub_8F62FCC);
+        asm/mariobros.o(.text.after_mariobros_round4_sub_8F62FCC);
         src/mario_bros/object_pool.o(.text.mariobros_pool_sub_8F632B8);
         asm/mariobros.o(.text.after_mariobros_runtime_sub_8F632B8);
         src/mario_bros/object_animation.o(.text.mariobros_helpers_sub_8F63634);
@@ -2643,6 +2649,8 @@ SECTIONS
         asm/mariobros.o(.text.after_mariobros_frame_bits_sub_8F887AC);
         src/mario_bros/object_animation.o(.text.mariobros_helpers_sub_8F88E20);
         asm/mariobros.o(.text.after_mariobros_frame_bits_sub_8F88E20);
+        src/mario_bros/object_movement.o(.text.mariobros_late.sub_8F89920);
+        asm/mariobros.o(.text.after_mariobros_round4_sub_8F89920);
         src/mario_bros/object_pool.o(.text.mariobros_pool_sub_8F89C0C);
         asm/mariobros.o(.text.after_mariobros_runtime_sub_8F89C0C);
         src/mario_bros/object_animation.o(.text.mariobros_helpers_sub_8F8A65C);

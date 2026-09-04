@@ -31219,8 +31219,9 @@ _08F60D3C:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8F60D44
-sub_8F60D44:
+	.section .discard.mariobros_round4_sub_8F60D44, "ax", %progbits
+	thumb_func_start asm_sub_8F60D44
+asm_sub_8F60D44:
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0x0
 	ldr r0, [r7, #0x10]
@@ -31252,6 +31253,7 @@ _08F60D7C:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.after_mariobros_round4_sub_8F60D44, "ax", %progbits
 	thumb_func_start sub_8F60D84
 sub_8F60D84:
 	push {r4, r5, r6, lr}
@@ -35111,8 +35113,9 @@ _08F62B48:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_8F62B50
-sub_8F62B50:
+	.section .discard.mariobros_round4_sub_8F62B50, "ax", %progbits
+	thumb_func_start asm_sub_8F62B50
+asm_sub_8F62B50:
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0x0
 	ldr r0, [r7, #0x10]
@@ -35144,6 +35147,7 @@ _08F62B88:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.after_mariobros_round4_sub_8F62B50, "ax", %progbits
 	thumb_func_start sub_8F62B90
 sub_8F62B90:
 	push {r4, r5, r6, lr}
@@ -35690,8 +35694,9 @@ _08F62FBC:
 	bx r0
 _08F62FC4: .4byte 0x08FA0254
 _08F62FC8: .4byte 0xFFFFFF00
-	thumb_func_start sub_8F62FCC
-sub_8F62FCC:
+	.section .discard.mariobros_round4_sub_8F62FCC, "ax", %progbits
+	thumb_func_start asm_sub_8F62FCC
+asm_sub_8F62FCC:
 	movs r2, #0x00
 	movs r1, #0x09
 	strb r1, [r0, #0x0C]
@@ -35704,6 +35709,7 @@ sub_8F62FCC:
 	strb r1, [r0, #0x04]
 	bx lr
 	.byte 0x00, 0x00
+	.section .text.after_mariobros_round4_sub_8F62FCC, "ax", %progbits
 	thumb_func_start sub_8F62FE4
 sub_8F62FE4:
 	push {r4, lr}
@@ -77528,8 +77534,9 @@ _08F89910:
 	bx r0
 _08F89918: .4byte 0x0201E59C
 _08F8991C: .4byte 0xFFFFFF00
-	thumb_func_start sub_8F89920
-sub_8F89920:
+	.section .discard.mariobros_round4_sub_8F89920, "ax", %progbits
+	thumb_func_start asm_sub_8F89920
+asm_sub_8F89920:
 	movs r2, #0x00
 	movs r1, #0x09
 	strb r1, [r0, #0x0C]
@@ -77542,6 +77549,7 @@ sub_8F89920:
 	strb r1, [r0, #0x04]
 	bx lr
 	.byte 0x00, 0x00
+	.section .text.after_mariobros_round4_sub_8F89920, "ax", %progbits
 	thumb_func_start sub_8F89938
 sub_8F89938:
 	push {r4, lr}
