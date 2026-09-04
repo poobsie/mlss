@@ -73,6 +73,10 @@ documents the relationship while the source preserves the exact ROM bytes.
 | `sub_80EAF4C` | `script_command_control_music` | Starts or resumes music, or changes its volume or tempo. The command's player, value, and fade fields retain structural names until the bytecode format is recovered. |
 | `sub_80EB05C` | `script_command_control_resource_wait` | Starts an owner-scoped resource operation or yields until bit `0x04` in the selected 76-byte resource record clears. The record's owner and flag meaning remain unresolved. |
 | `sub_80EB09C` | `script_command_configure_graphics_resource` | Applies one of five graphics-resource modes, or restores the resource's saved mode for larger values, then clears runtime byte `0x31`. |
+| `sub_80F0540` | `script_command_clear_field_runtime_flag` | Clears a command-selected bit in the field runtime's 16-bit flag bank at offset `0x54A`. The individual flag meanings remain unknown. |
+| `sub_80F0794` | `script_command_dispatch_field_object_operation` | Dispatches operation values 5 through 11 to established object-registry helpers and forwards other values through the registry's generic operation path. |
+| `sub_80F0814` | `script_command_dispatch_field_object_control` | Decodes a packed group and action bit, invoking one of two object-registry control pairs and yielding while either paired query remains active. |
+| `sub_80F08C0` | `script_command_branch_on_field_queries` | Runs the established field query sequence and branches according to whether all three queries report inactive. |
 
 The execution state now exposes the saved cursor at offset `0x14`. Three wait handlers restore that cursor and yield when their respective condition becomes true: the primary actor height test, field flag `0x291` bit 0, or a context-owned asynchronous operation. `script_command_branch_if_condition` decodes its aligned condition, operand, and target-cursor record and updates the current cursor only when the shared condition evaluator succeeds.
 
@@ -82,4 +86,4 @@ The execution state now exposes the saved cursor at offset `0x14`. Three wait ha
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,399 linked C functions checked, 1,399 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,422 linked C functions checked, 1,422 exact, and zero mismatches.

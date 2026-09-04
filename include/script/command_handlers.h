@@ -16,6 +16,8 @@ struct ScriptCommandContext;
 #define script_command_control_resource_wait sub_80EB05C
 #define script_command_configure_graphics_resource sub_80EB09C
 #define script_command_clear_field_runtime_flag sub_80F0540
+#define script_command_dispatch_field_object_operation sub_80F0794
+#define script_command_dispatch_field_object_control sub_80F0814
 #define script_command_branch_on_field_queries sub_80F08C0
 #define script_wait_for_battle_flag_208_10 sub_80F087C
 #define script_command_set_battle_flag_12d sub_80F0914
@@ -37,10 +39,10 @@ s32 script_command_set_runtime_byte_32(
     void* context, void* state, const u32* argument);
 s32 script_command_clear_field_runtime_flag(
     void* context, void* owner, void* state, const u32* arguments);
-s32 sub_80F0794(
+s32 script_command_dispatch_field_object_operation(
     struct ScriptCommandContext* context, void* state,
     const s32* argument);
-s32 sub_80F0814(
+s32 script_command_dispatch_field_object_control(
     struct ScriptCommandContext* context,
     struct ScriptExecutionState* state, const s32* argument);
 s32 script_command_branch_on_field_queries(

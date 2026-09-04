@@ -251,7 +251,7 @@ SEC(sub_80F0780) s32 sub_80F0780(struct ScriptCommandContext* context, void* sta
 }
 
 SEC(sub_80F0794)
-s32 sub_80F0794(
+s32 script_command_dispatch_field_object_operation(
     struct ScriptCommandContext* context, void* state, const s32* argument)
 {
     /* Values 5 through 11 select object-registry operations. Their meanings remain unknown. */
@@ -287,7 +287,7 @@ s32 sub_80F0794(
 }
 
 SEC(sub_80F0814)
-s32 sub_80F0814(
+s32 script_command_dispatch_field_object_control(
     struct ScriptCommandContext* context, struct ScriptExecutionState* state,
     const s32* argument)
 {
