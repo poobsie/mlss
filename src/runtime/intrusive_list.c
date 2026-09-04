@@ -20,6 +20,35 @@ DEFINE_LIST_OWNER_DESTRUCTOR(runtime_intrusive_list_owner_destroy_b,
 
 #define SEC(name) __attribute__((section(".text.upper.sub_8163CD4")))
 
+void runtime_intrusive_list_detach(struct RuntimeIntrusiveList* list,
+                                   struct RuntimeIntrusiveNode* node)
+    __attribute__((section(".text.sub_8163C94")));
+void runtime_intrusive_list_detach(struct RuntimeIntrusiveList* list,
+                                   struct RuntimeIntrusiveNode* node)
+{
+    if (node->previous != 0) {
+        if (node->next != 0) {
+            node->previous->next = node->next;
+            node->next->previous = node->previous;
+        } else {
+            node->previous->next = 0;
+            list->tail = node->previous;
+        }
+    } else {
+        struct RuntimeIntrusiveNode* next = node->next;
+        if (next != 0) {
+            next->previous = 0;
+            next = node->next;
+        } else {
+            list->tail = next;
+        }
+        list->head = next;
+    }
+    list->count--;
+}
+__attribute__((section(".text.sub_8163C94")))
+const u16 runtime_intrusive_list_detach_padding = 0;
+
 SEC(runtime_intrusive_list_append_unique)
 void runtime_intrusive_list_append_unique(
     struct RuntimeIntrusiveList* list,

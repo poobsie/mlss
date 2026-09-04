@@ -2385,10 +2385,18 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8161A38);
         src/battle/single_sprite_destructors.o(.text.upper.sub_8161C08);
         asm/text08057568.o(.text.after_upper_sub_8161C08);
+        src/runtime/bitset.o(.text.runtime_bitset.sub_8163110);
+        asm/text08057568.o(.text.after_8163110);
+        src/runtime/bitset.o(.text.runtime_bitset.sub_8163134);
+        asm/text08057568.o(.text.after_8163134);
         src/graphics/high_helpers.o(.text.high.sub_816316C);
         asm/text08057568.o(.text.after_816316C);
         src/graphics/high_helpers.o(.text.high.sub_81631DC);
         asm/text08057568.o(.text.high_after_sub_81631DC);
+        src/graphics/high_helpers.o(.text.high.sub_81631F0);
+        asm/text08057568.o(.text.after_81631F0);
+        src/graphics/high_helpers.o(.text.high.sub_8163238);
+        asm/text08057568.o(.text.after_8163238);
         src/graphics/high_helpers.o(.text.high.sub_8163264);
         asm/text08057568.o(.text.high_after_sub_8163264);
         src/graphics/high_helpers.o(.text.high.sub_8163280);
@@ -2440,6 +2448,8 @@ SECTIONS
         asm/text08057568.o(.text.after_8163BB8);
         src/runtime/pointer_list.o(.text.sub_8163BC4);
         asm/text08057568.o(.text.after_8163BC4);
+        src/runtime/intrusive_list.o(.text.sub_8163C94);
+        asm/text08057568.o(.text.after_8163C94);
         src/runtime/intrusive_list.o(.text.upper.sub_8163CD4);
         asm/text08057568.o(.text.after_upper_sub_8163CD4);
         src/runtime/intrusive_list.o(.text.sub_8163D10);

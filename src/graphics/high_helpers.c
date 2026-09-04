@@ -102,6 +102,38 @@ SEC(sub_8163264) void sub_8163264(void* p, s32 x, s32 y) {
     U32AT(p, 0x24) = 0;
 }
 
+SEC(sub_8163238) void graphics_position_state_begin_timed(
+    struct GraphicsPositionState* state, s32 x, s32 y, s32 duration,
+    u32 alternate) {
+    state->value10 = state->value00;
+    state->value14 = state->value04;
+    state->value08 = x;
+    state->sprite0C = (void*)y;
+    state->value28 = duration;
+    state->value2C = 0;
+    state->state24 = alternate == 0 ? 1 : 2;
+}
+
+SEC(sub_81631F0) void graphics_position_state_begin_distance(
+    struct GraphicsPositionState* state, s32 x, s32 y) {
+    s32 dx;
+    s32 dy;
+    s32 distance;
+
+    state->value10 = state->value00;
+    state->value14 = state->value04;
+    state->value08 = x;
+    state->sprite0C = (void*)y;
+    dx = (s32)(state->value00 - x) >> 8;
+    dy = (s32)(state->value04 - y) >> 8;
+    distance = (*(s32 (**)(s32))0x03001038)(dx * dx + dy * dy);
+    state->value28 = distance;
+    if (distance < 0)
+        state->value28 = 1;
+    state->value2C = 0;
+    state->state24 = 2;
+}
+
 SEC(sub_81631DC) u32 sub_81631DC(void* p) {
     return PTRAT(p, 0x24) == 0;
 }
@@ -158,6 +190,7 @@ SEC(sub_8165404) void sub_8165404(void* p) {
 #define PAD(name) const u16 name##_padding SEC(name) = 0
 PAD(sub_8167F30);
 PAD(sub_8163264);
+PAD(sub_8163238);
 PAD(sub_81631DC);
 PAD(sub_81632EC);
 PAD(sub_81632C8);

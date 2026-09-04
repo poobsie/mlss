@@ -44,6 +44,8 @@ The high-address runtime group now includes compact resource cleanup and state h
 
 `GraphicsPositionState` now records the shared position words, output sprite pointer, selection flags, and height-source pointer used by the adjacent graphics helpers. The recovered reset clears the proven state fields, while the shared-output helper writes the current value pair to each selected slot at `0x02000010`. The individual flag meanings remain unknown.
 
+Two position-state initializers now preserve the current value pair and install a new target. The timed form accepts its duration directly and selects state 1 or 2 from the caller's final argument. The distance form computes an 8.8-scaled delta, delegates the square-root operation through the existing runtime callback, clamps a negative result to one, and selects state 2. Their names describe the proven scheduling inputs without guessing the eventual visual effect.
+
 `graphics_resource_owner_initialize` installs descriptor `0x08CDD060` and clears its transfer pointer. `graphics_fill_background_palettes` replicates one 16-bit value across both 512-byte background palette banks using the BIOS fill operation.
 
 ## Verification

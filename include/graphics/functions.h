@@ -19,6 +19,8 @@ struct GraphicsPositionState;
 #define graphics_release_owned_resource sub_81612E4
 #define graphics_position_state_is_idle sub_81631DC
 #define graphics_initialize_position_state sub_8163264
+#define graphics_position_state_begin_timed sub_8163238
+#define graphics_position_state_begin_distance sub_81631F0
 #define graphics_destroy_position_state sub_8163280
 #define graphics_counter_tick sub_81632C8
 #define graphics_counter_reset sub_81632EC
@@ -56,6 +58,11 @@ struct GraphicsResourceOwner* graphics_resource_owner_initialize(
 void graphics_position_state_reset(struct GraphicsPositionState* state,
                                    u16 flags);
 void graphics_position_state_write_shared(struct GraphicsPositionState* state);
+void graphics_position_state_begin_timed(struct GraphicsPositionState* state,
+                                         s32 x, s32 y, s32 duration,
+                                         u32 alternate);
+void graphics_position_state_begin_distance(struct GraphicsPositionState* state,
+                                            s32 x, s32 y);
 void graphics_fill_background_palettes(u16 value);
 
 #endif
