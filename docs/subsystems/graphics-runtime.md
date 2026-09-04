@@ -48,4 +48,4 @@ The high-address runtime group now includes compact resource cleanup and state h
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,630 linked C functions checked, 1,630 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,648 linked C functions checked, 1,648 exact, and zero mismatches.

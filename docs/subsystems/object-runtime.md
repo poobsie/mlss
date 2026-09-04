@@ -244,4 +244,4 @@ Three middle-runtime leaves add one value-gated transition and two compact conti
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,641 linked C functions checked, 1,641 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,648 linked C functions checked, 1,648 exact, and zero mismatches.
