@@ -36927,6 +36927,7 @@ _0806D282:
 	bx r0
 	.byte 0x00, 0x00
 _0806D28C: .4byte sub_806D290
+	.if 0
 	thumb_func_start sub_806D290
 sub_806D290:
 	push {r4, r5, lr}
@@ -36993,6 +36994,9 @@ _0806D300:
 	pop {r0}
 	bx r0
 _0806D308: .4byte sub_806D35C
+	.endif
+	.section .text.runtime_leaf_callbacks_after_sub_806D290, "ax", %progbits
+	.if 0
 	thumb_func_start sub_806D30C
 sub_806D30C:
 	push {r4, lr}
@@ -37019,9 +37023,12 @@ _0806D336:
 	pop {r0}
 	bx r0
 _0806D33C: .4byte sub_806D480
+	.endif
+	.section .text.runtime_leaf_callbacks_after_sub_806D30C, "ax", %progbits
 	.section .text.misc_helpers_01_after_sub_806D340, "ax", %progbits
 	.section .text.countdown_actions_after_sub_806D35C, "ax", %progbits
 	.section .text.countdown_actions_after_sub_806D390, "ax", %progbits
+	.if 0
 	thumb_func_start sub_806D3C4
 sub_806D3C4:
 	push {r4, lr}
@@ -37048,6 +37055,8 @@ _0806D3EE:
 	pop {r0}
 	bx r0
 _0806D3F4: .4byte sub_806CCB8
+	.endif
+	.section .text.runtime_leaf_callbacks_after_sub_806D3C4, "ax", %progbits
 	.byte 0x30, 0xB5, 0x04, 0x1C, 0x25, 0x1C, 0xA0, 0x35, 0x28, 0x68, 0x00, 0x28, 0x0D, 0xD1, 0x2C, 0xF1
 	.byte 0x93, 0xFD, 0x22, 0x1C, 0x9C, 0x32, 0x01, 0x21, 0x01, 0x40, 0x11, 0x60, 0x02, 0x20, 0x28, 0x60
 	.byte 0x21, 0x1C, 0xA4, 0x31, 0xA0, 0x20, 0x80, 0x00, 0x08, 0x60, 0x03, 0x48, 0xE0, 0x64, 0x01, 0x20
@@ -37339,6 +37348,7 @@ _0806D760: .4byte 0x03000E3C
 _0806D764: .4byte 0x0806E739
 _0806D768: .4byte 0x00000199
 _0806D76C: .4byte sub_806D770
+	.if 0
 	thumb_func_start sub_806D770
 sub_806D770:
 	push {lr}
@@ -37388,6 +37398,8 @@ _0806D7C4:
 	bx r0
 _0806D7C8: .4byte 0x03000E3C
 _0806D7CC: .4byte sub_806D7D0
+	.endif
+	.section .text.runtime_leaf_callbacks_after_sub_806D770, "ax", %progbits
 	thumb_func_start sub_806D7D0
 sub_806D7D0:
 	push {r4, r5, lr}
@@ -39138,6 +39150,7 @@ _0806E5D4: .4byte sub_806E5F4
 	.section .text.after_sub_806E5D8, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_806E5F4, "ax", %progbits
 	.section .text.small_functions_04_after_sub_806E624, "ax", %progbits
+	.if 0
 	thumb_func_start sub_806E664
 sub_806E664:
 	push {r4, lr}
@@ -39159,6 +39172,8 @@ _0806E686:
 	pop {r1}
 	bx r1
 _0806E68C: .4byte sub_806E1B8
+	.endif
+	.section .text.runtime_leaf_callbacks_after_sub_806E664, "ax", %progbits
 	.section .text.runtime_leaf_callbacks_after_sub_806E690, "ax", %progbits
 	thumb_func_start sub_806E6BC
 sub_806E6BC:
@@ -39240,6 +39255,7 @@ _0806E78A:
 	.byte 0x00, 0x00
 	.section .text.after_nullsub_15, "ax", %progbits
 	.section .text.small_functions_01_after_sub_806E794, "ax", %progbits
+	.if 0
 	thumb_func_start sub_806E7CC
 sub_806E7CC:
 	push {lr}
@@ -39258,8 +39274,11 @@ _0806E7E4:
 	pop {r0}
 	bx r0
 _0806E7E8: .4byte sub_806D61C
+	.endif
+	.section .text.runtime_leaf_callbacks_after_sub_806E7CC, "ax", %progbits
 	.byte 0x01, 0x49, 0xC1, 0x64, 0x01, 0x20, 0x70, 0x47, 0x85, 0xE8, 0x06, 0x08, 0x01, 0x49, 0xC1, 0x64
 	.byte 0x01, 0x20, 0x70, 0x47, 0x89, 0xE3, 0x06, 0x08
+	.if 0
 	thumb_func_start sub_806E804
 sub_806E804:
 	push {lr}
@@ -39289,6 +39308,8 @@ _0806E828:
 	pop {r1}
 	bx r1
 _0806E834: .4byte sub_806DAF0
+	.endif
+	.section .text.runtime_leaf_callbacks_after_sub_806E804, "ax", %progbits
 	.byte 0x00, 0xB5, 0x02, 0x1C, 0xD0, 0x6A, 0x80, 0x6A, 0xEC, 0x30, 0x00, 0x23, 0xC1, 0x5E, 0x01, 0x20
 	.byte 0x40, 0x42, 0x81, 0x42, 0x03, 0xD1, 0x11, 0x1C, 0xA0, 0x31, 0x00, 0x20, 0x02, 0xE0, 0x11, 0x1C
 	.byte 0xA0, 0x31, 0x01, 0x20, 0x08, 0x60, 0x02, 0x48, 0xD0, 0x64, 0x01, 0x20, 0x02, 0xBC, 0x08, 0x47
@@ -39344,6 +39365,7 @@ sub_806E884:
 	bx r0
 _0806E8E4: .4byte sub_806EA54
 	.section .text.misc_helpers_03_after_sub_806E8E8, "ax", %progbits
+	.if 0
 	thumb_func_start sub_806E91C
 sub_806E91C:
 	push {r4, lr}
@@ -39399,6 +39421,8 @@ _0806E97C:
 	bx r0
 _0806E984: .4byte 0x00001FA6
 _0806E988: .4byte sub_806DBD4
+	.endif
+	.section .text.runtime_leaf_callbacks_after_sub_806E91C, "ax", %progbits
 	.section .text.small_functions_04_after_sub_806E98C, "ax", %progbits
 	thumb_func_start sub_806E9CC
 sub_806E9CC:
@@ -39466,6 +39490,7 @@ sub_806EA10:
 	bx r0
 	.byte 0x00, 0x00
 _0806EA50: .4byte 0x00004113
+	.if 0
 	thumb_func_start sub_806EA54
 sub_806EA54:
 	push {r4, lr}
@@ -39510,6 +39535,8 @@ _0806EA98:
 	bx r0
 _0806EAA0: .4byte 0x00001E8A
 _0806EAA4: .4byte sub_806EAA8
+	.endif
+	.section .text.runtime_leaf_callbacks_after_sub_806EA54, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_806EAA8, "ax", %progbits
 	.section .text.countdown_transitions_after_sub_806EADC, "ax", %progbits
 	thumb_func_start sub_806EB18

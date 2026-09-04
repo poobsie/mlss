@@ -88,6 +88,15 @@
 #define object_emit_effect_1df8_and_remove_when_runtime_ready sub_806C76C
 #define object_start_animation_21_after_countdown sub_806CAC0
 #define object_start_variant_animation_7_or_13 sub_806CB6C
+#define object_emit_effect_212b_until_sequence_advances sub_806D290
+#define object_start_animation_4_after_value80_clears sub_806D30C
+#define object_start_animation_4_then_linked_transition sub_806D3C4
+#define object_sync_shared_effect_and_pair_variants sub_806D770
+#define object_resume_motion_and_switch_sounds_when_ready sub_806E664
+#define object_start_linked_motion_countdown_when_value80_clears sub_806E7CC
+#define object_select_owner_variant_and_continue sub_806E804
+#define object_finish_linked_animation_with_effect_when_value80_clears sub_806E91C
+#define object_start_animation_9_and_effect_1e8a_when_value80_clears sub_806EA54
 
 void object_emit_effect_12cd_release_shared_motion_and_finish(
     struct RuntimeObject* object);
@@ -203,5 +212,14 @@ void object_emit_effect_1bfe_on_visual_complete(struct RuntimeObject* object);
 s32 object_emit_effect_1df8_and_remove_when_runtime_ready(struct RuntimeObject* object);
 void object_start_animation_21_after_countdown(struct RuntimeObject* object);
 void object_start_variant_animation_7_or_13(struct RuntimeObject* object);
+void object_emit_effect_212b_until_sequence_advances(struct RuntimeObject* object);
+void object_start_animation_4_after_value80_clears(struct RuntimeObject* object);
+void object_start_animation_4_then_linked_transition(struct RuntimeObject* object);
+void object_sync_shared_effect_and_pair_variants(struct RuntimeObject* object);
+s32 object_resume_motion_and_switch_sounds_when_ready(struct RuntimeObject* object);
+void object_start_linked_motion_countdown_when_value80_clears(struct RuntimeObject* object);
+s32 object_select_owner_variant_and_continue(struct RuntimeObject* object);
+void object_finish_linked_animation_with_effect_when_value80_clears(struct RuntimeObject* object);
+void object_start_animation_9_and_effect_1e8a_when_value80_clears(struct RuntimeObject* object);
 
 #endif
