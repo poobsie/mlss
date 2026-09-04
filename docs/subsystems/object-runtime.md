@@ -211,6 +211,8 @@ Eight further bucket-03 callbacks now expose linked-object motion, owner suspens
 
 The final eight object callbacks from the staging file now use `RuntimeObject`, `RuntimeObjectState`, `FieldActor`, and the established field-object owner layout. They cover a nested visual repeat counter, follow-up kind 3 setup, nested-chain completion, visual value `0x0C` accumulation, an animation-1 transition, paired field-object reset, second-actor position synchronization, and attachment to the first field object. The literal callback `0x081141F5` remains explicit because it enters the middle of an assembly routine and has no independent symbol.
 
+Fourteen early-object callbacks now expose a connected timer, readiness, auxiliary-motion, and periodic-effect sequence. They preserve effect identifiers `0x1810`, `0xDB2`, and `0xDBB`, sound identifiers `0x6C`, `0x81`, `0xAF`, and `0x111`, plus the shared effect-object slot at `0x03000E3C`. The nested owner selector at offset `0xEC`, the auxiliary-motion arguments, and the gameplay identity of these numeric effects remain unknown. Their aliases therefore describe only the observed transitions.
+
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,554 linked C functions checked, 1,554 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,568 linked C functions checked, 1,568 exact, and zero mismatches.

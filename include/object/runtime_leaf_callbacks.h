@@ -60,6 +60,20 @@
 #define object_repeat_animation_until_behavior_count_expires sub_806C800
 #define object_finish_visual_and_stop_update sub_806CB3C
 #define object_release_position_owner_and_continue sub_806E690
+#define object_set_behavior_one_when_runtime_ready sub_806A180
+#define object_finish_when_runtime_ready sub_806A1CC
+#define object_finish_animation_6_when_value80_clears sub_806A204
+#define object_select_behavior_from_owner_variant sub_806A290
+#define object_finish_timer_with_effect_1810 sub_806A2FC
+#define object_stop_sound_111_and_resume_auxiliary_motion sub_806A730
+#define object_stop_update_when_value80_clears sub_806A7A0
+#define object_stop_sound_81_and_forward_auxiliary_motion sub_806A7CC
+#define object_start_random_countdown_when_value80_clears sub_806A83C
+#define object_finish_animation_6_on_countdown sub_806A8B0
+#define object_start_long_motion_countdown_when_value80_clears sub_806A97C
+#define object_emit_periodic_effect_until_value80_clears sub_806AF80
+#define object_emit_periodic_effect_then_continue_when_value80_clears sub_806B084
+#define object_emit_periodic_effect_until_stop sub_806B208
 
 void object_emit_effect_12cd_release_shared_motion_and_finish(
     struct RuntimeObject* object);
@@ -147,5 +161,19 @@ void object_repeat_animation_until_behavior_count_expires(
     struct RuntimeObject* object);
 void object_finish_visual_and_stop_update(struct RuntimeObject* object);
 s32 object_release_position_owner_and_continue(struct RuntimeObject* object);
+s32 object_set_behavior_one_when_runtime_ready(struct RuntimeObject* object);
+s32 object_finish_when_runtime_ready(struct RuntimeObject* object);
+void object_finish_animation_6_when_value80_clears(struct RuntimeObject* object);
+s32 object_select_behavior_from_owner_variant(struct RuntimeObject* object);
+void object_finish_timer_with_effect_1810(struct RuntimeObject* object);
+s32 object_stop_sound_111_and_resume_auxiliary_motion(struct RuntimeObject*, s32, s32);
+void object_stop_update_when_value80_clears(struct RuntimeObject* object);
+s32 object_stop_sound_81_and_forward_auxiliary_motion(struct RuntimeObject*, s32, s32);
+void object_start_random_countdown_when_value80_clears(struct RuntimeObject* object);
+void object_finish_animation_6_on_countdown(struct RuntimeObject* object);
+void object_start_long_motion_countdown_when_value80_clears(struct RuntimeObject* object);
+void object_emit_periodic_effect_until_value80_clears(struct RuntimeObject* object);
+void object_emit_periodic_effect_then_continue_when_value80_clears(struct RuntimeObject* object);
+void object_emit_periodic_effect_until_stop(struct RuntimeObject* object);
 
 #endif
