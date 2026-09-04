@@ -11,6 +11,27 @@ extern void sub_81743E4(void);
 extern void sub_8174E9C(void);
 extern void sub_817518C(void);
 extern void sub_817547C(void);
+extern void sub_8175768(void);
+extern void sub_81744FC(void);
+extern void sub_817399C(void);
+extern void sub_8173104(void);
+extern void sub_81729C4(void);
+extern void sub_81723C0(void);
+extern void sub_81881E0(void);
+extern void sub_81873FC(void);
+extern void sub_8185B40(void);
+extern void sub_8185054(void);
+extern void sub_8184654(void);
+extern void sub_81829EC(void);
+extern void sub_8180BE4(void);
+extern void sub_817E608(void);
+extern void sub_817C8BC(void);
+extern void sub_817B980(void);
+extern void sub_817A84C(void);
+extern void sub_817A00C(void);
+extern void sub_81798C8(void);
+extern void sub_8178038(void);
+extern void sub_81773F8(void);
 extern void sub_818353C(void);
 extern void sub_8183338(void);
 extern void sub_8183134(void);
@@ -58,6 +79,27 @@ extern void sub_8187E24(void);
 DEFINE_OBJECT_ACTION_FACTORY(sub_81768D0, 0, sub_817547C, 0x0000207D, 7, 0, 5, (void*)0x08504884, 5)
 DEFINE_OBJECT_ACTION_FACTORY(sub_817690C, 0, sub_817518C, 0x0000207D, 7, 0, 5, (void*)0x08504870, 5)
 DEFINE_OBJECT_ACTION_FACTORY(sub_8176948, 0, sub_8174E9C, 0x0000207D, 2, 0, 5, (void*)0x0850485C, 5)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_8175768, 0, sub_8175768, 0x00002080, 1, 0, 5, (void*)0x08504898, 5)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_81744FC, 0, sub_81744FC, 0x00002080, 2, 0, 4, (void*)0x0850482C, 5)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_817399C, 0x1D, sub_817399C, 0x0000207D, 7, 0, 6, (void*)0x085047FC, 5)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_8173104, 0, sub_8173104, 0x0000208E, 1, 0, 1, (void*)0x085047C8, 1)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_81729C4, 0, sub_81729C4, 0x0000207D, 10, 0, 4, (void*)0x085047A8, 3)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_81723C0, 0, sub_81723C0, 0x00002080, 2, 0, 2, (void*)0x08504788, 2)
+DEFINE_OBJECT_ACTION_FACTORY_ORIENTATION(object_create_action_81881E0, 0, sub_81881E0, 0x4159, 0, 0, 2, orientation, 0, (void*)0x08505050, 2)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_81873FC, 0x15, sub_81873FC, 0x40AA, 0x2E, 0, 1, (void*)0x08504FA4, 6)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_8185B40, 0x22, sub_8185B40, 0x4165, 0, 0, 5, (void*)0x08504EAC, 5)
+DEFINE_OBJECT_ACTION_FACTORY_ORIENTATION(object_create_action_8185054, 0, sub_8185054, 0x4159, 1, 0, 8, orientation, 0, (void*)0x08504E6C, 2)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_8184654, 5, sub_8184654, 0x40D3, 0, 0, 1, (void*)0x08504E30, 1)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_81829EC, 0xB5, sub_81829EC, 0x416C, 0, 0, 3, (void*)0x08504D5C, 3)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_8180BE4, 0x29, sub_8180BE4, 0x4165, 0, 0, 8, (void*)0x08504CDC, 5)
+DEFINE_OBJECT_ACTION_FACTORY_ORIENTATION(object_create_action_817E608, 0, sub_817E608, 0x415C, 5, 0, 4, orientation, 0, (void*)0x08504C0C, 3)
+DEFINE_OBJECT_ACTION_FACTORY_ORIENTATION(object_create_action_817C8BC, 0x17, sub_817C8BC, 0x4175, 0, 0, 4, 0, orientation, (void*)0x08504B48, 4)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_817B980, 3, sub_817B980, 0x416A, 0, 0, 1, 0, 0)
+DEFINE_OBJECT_ACTION_FACTORY_ORIENTATION(object_create_action_817A84C, 0, sub_817A84C, 0x4159, 0, 0, 2, orientation, 0, (void*)0x08504A78, 2)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_817A00C, 0x13, sub_817A00C, 0x4172, 3, 0, 5, (void*)0x08504A48, 6)
+DEFINE_OBJECT_ACTION_FACTORY_ORIENTATION(object_create_action_81798C8, 0, sub_81798C8, 0x415B, 5, 0, 1, orientation, 0, 0, 0)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_8178038, 0x10, sub_8178038, 0x4172, 0, 0, 6, (void*)0x08504970, 6)
+DEFINE_OBJECT_ACTION_FACTORY(object_create_action_81773F8, 0x22, sub_81773F8, 0x4165, 0, 0, 5, (void*)0x0850490C, 5)
 DEFINE_OBJECT_ACTION_FACTORY(sub_8176ADC, 0, sub_81743E4, 0x0000207D, 9, 0, 1, (void*)0x08504828, 1)
 DEFINE_OBJECT_ACTION_FACTORY(sub_8176CF8, 0x1f, sub_81736C0, 0x0000207D, 7, 0, 5, (void*)0x085047E8, 5)
 DEFINE_OBJECT_ACTION_FACTORY(sub_8176D34, 0x19, sub_81733E4, 0x0000207D, 7, 0, 5, (void*)0x085047D4, 5)

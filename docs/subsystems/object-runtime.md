@@ -247,8 +247,10 @@ Twelve callbacks from the following `0x080703B0` through `0x0807127C` sequence n
 
 Three middle-runtime leaves add one value-gated transition and two compact continuation updates. The aliases state only the proven gate or callback change, retaining the original symbols where the surrounding assembly does not establish a scene-specific role.
 
+Twenty-one remaining scripted-action factories now use the established thirteen-argument construction interface. Each wrapper preserves its callback, event, visual, orientation, path, and point-table configuration in C. Callback addresses remain in the aliases because the corresponding action bodies are still assembly-only; assigning encounter-specific names before those bodies are recovered would add guesswork without information.
+
 Seven compact callbacks in the `0x080742FC` through `0x080746A8` object chain now expose readiness resumption, two signed countdowns, animation and effect setup, a linked-child wait, and a `value80`-gated timer handoff. Effects `0x22E2` and `0x22C0`, sound `0xAD`, and the linked child's gameplay identity remain numeric or structural. Three neighboring owner-coordinate routines and one owner-variant selector stayed in assembly after exhausting their shaping budget.
 
 ## Verification
 
-The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,656 linked C functions checked, 1,656 exact, and zero mismatches.
+The full ROM passes its SHA-1 comparison. The exact-function verifier reports 1,677 linked C functions checked, 1,677 exact, and zero mismatches.
