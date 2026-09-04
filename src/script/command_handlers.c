@@ -51,6 +51,17 @@ extern void sub_80326F4(void*);
 extern u8 sub_803C4A0(void*);
 extern void sub_80328B4(void*);
 extern u8 sub_803C468(void*);
+extern void sub_8029380(void*);
+extern void sub_803C8A4(void*, s32, s32);
+extern void sub_80297D8(void*, s32);
+extern void sub_8029788(void*);
+extern void sub_8029170(void*, s32);
+extern void sub_80291C8(void*);
+extern void sub_8046A90(void*, s32, s32, s16, u16);
+extern void sub_8046B30(void*, s32, s32, s16, u16);
+extern void sub_8047D84(void*, s32);
+extern void sub_8047D64(void*);
+extern void sub_8047D44(void*);
 
 struct ScriptObjectBytePairArguments {
     u8 value0;
@@ -78,6 +89,14 @@ struct ScriptSoundVolumeArguments {
     u8 duration;
     u8 padding01[3];
     u8 volume;
+};
+
+struct ScriptEffectArguments {
+    /* Bits 0-3 select direction, mode, and the two operations; higher bits are unknown. */
+    s32 flags;
+    s16 value04;
+    u16 padding06;
+    u16 value08;
 };
 
 SEC(sub_80EAD98)
@@ -498,3 +517,139 @@ SEC(script_command_advance_object_mode) s32 script_command_advance_object_mode(
     return 1;
 }
 SEC(script_command_advance_object_mode) const u16 script_command_advance_object_mode_padding = 0;
+
+SEC(sub_80F06EC)
+s32 script_command_initialize_field_registry(
+    struct ScriptCommandContext* context, void* state, const s32* operation)
+{
+    if (*operation == 0)
+        sub_8029380(context->objectRegistry);
+    return 1;
+}
+SEC(sub_80F06EC) const u16 sub_80F06EC_padding = 0;
+
+SEC(sub_80F0744)
+s32 script_command_control_field_registry(
+    struct ScriptCommandContext* context, void* state, const s32* arguments)
+{
+    s32 operation = *arguments++;
+
+    switch (operation) {
+    case 0:
+        sub_803C8A4(context->objectRegistry, *arguments, 0);
+        break;
+    case 1:
+        sub_80297D8(context->objectRegistry, 0);
+        break;
+    case 2:
+        sub_8029788(context->objectRegistry);
+        break;
+    }
+    return 1;
+}
+SEC(sub_80F0744) const u16 sub_80F0744_padding = 0;
+
+SEC(sub_80F095C)
+s32 script_command_control_battle_registry(
+    struct ScriptCommandContext* context, void* state, const s32* operation)
+{
+    switch (*operation) {
+    case 0:
+    case 1:
+        sub_8029170(context->objectRegistry, *operation);
+        break;
+    case 2:
+        sub_80291C8(context->objectRegistry);
+        break;
+    }
+    return 1;
+}
+SEC(sub_80F095C) const u16 sub_80F095C_padding = 0;
+
+SEC(sub_80F1088)
+s32 script_command_apply_flagged_effects(
+    void* context, void* object, void* state,
+    const struct ScriptEffectArguments* arguments)
+{
+    if (arguments->flags & 4)
+        sub_8046A90(
+            object, ((arguments->flags >> 1) & 1) + 1,
+            arguments->flags & 1, arguments->value04, arguments->value08);
+    if (arguments->flags & 8)
+        sub_8046B30(
+            object, ((arguments->flags >> 1) & 1) + 1,
+            arguments->flags & 1, arguments->value04, arguments->value08);
+    return 1;
+}
+SEC(sub_80F1088) const u16 sub_80F1088_padding = 0;
+
+SEC(sub_80F10E0)
+s32 script_command_branch_on_indexed_object_state(
+    struct ScriptCommandContext* context, struct ScriptExecutionState* state,
+    const u32* arguments)
+{
+    u32 index = *arguments++;
+    void* object = SCRIPT_OBJECT_AT(context->objectRegistry, index);
+    u32 result = (u32)~*(s32*)((u8*)object + 0x25C) >> 31;
+    u32 expected = *arguments++;
+
+    if (result == expected)
+        state->cursor = *arguments;
+    return 1;
+}
+SEC(sub_80F10E0) const u16 sub_80F10E0_padding = 0;
+
+SEC(sub_80F110C)
+s32 script_command_branch_on_object_state(
+    void* context, void* object, struct ScriptExecutionState* state,
+    const u32* arguments)
+{
+    u32 result = (u32)~*(s32*)((u8*)object + 0x25C) >> 31;
+    u32 expected = *arguments++;
+
+    if (result == expected)
+        state->cursor = *arguments;
+    return 1;
+}
+SEC(sub_80F110C) const u16 sub_80F110C_padding = 0;
+
+SEC(sub_80F143C)
+s32 script_command_control_indexed_object_runtime(
+    struct ScriptCommandContext* context, void* state, const s32* arguments)
+{
+    s32 index = *arguments++;
+    void* runtime = SCRIPT_OBJECT_AT(context->objectRegistry, index);
+
+    switch (*arguments) {
+    case 0:
+        sub_8047D84(runtime, 1);
+        break;
+    case 1:
+        sub_8047D64(runtime);
+        break;
+    case 2:
+        sub_8047D44(runtime);
+        break;
+    }
+    return 1;
+}
+SEC(sub_80F143C) const u16 sub_80F143C_padding = 0;
+
+SEC(sub_80F1490)
+s32 script_command_control_object_runtime(
+    void* context, void* runtime, void* state, const s32* operation)
+{
+    switch (*operation) {
+    case 0:
+        sub_8047D84(runtime, 1);
+        break;
+    case 1:
+        sub_8047D64(runtime);
+        break;
+    case 2:
+        sub_8047D44(runtime);
+        break;
+    }
+    return 1;
+}
+SEC(sub_80F1490) const u16 sub_80F1490_padding = 0;
