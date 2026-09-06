@@ -132028,65 +132028,7 @@ _080A330E:
 _080A3318: .4byte 0x03000FD8
 _080A331C: .4byte 0x08052002
 _080A3320: .4byte sub_80A3324
-	thumb_func_start sub_80A3324
-sub_80A3324:
-	push {r4, r5, lr}
-	adds r5, r0, #0x0
-	ldr r0, _080A3388 @ =0x03000FD8
-	ldr r0, [r0, #0x00]
-	ldr r4, [r0, #0x70]
-	ldr r0, [r4, #0x10]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _080A3380
-	adds r0, r4, #0x0
-	adds r0, #0x7E
-	ldrb r0, [r0, #0x00]
-	movs r1, #0x06
-	ands r1, r0
-	cmp r1, #0x02
-	beq _080A334C
-	cmp r1, #0x04
-	bne _080A337C
-_080A334C:
-	ldr r2, _080A338C @ =0x03001038
-	ldr r0, _080A3390 @ =0x0819832C
-	ldr r1, _080A3394 @ =0x08198220
-	subs r0, r0, r1
-	ldr r2, [r2, #0x00]
-	adds r2, r2, r0
-	movs r0, #0x80
-	lsls r0, r0, #0x07
-	movs r1, #0x0F
-	bl _call_via_r2
-	adds r2, r4, #0x0
-	adds r2, #0x82
-	movs r1, #0x00
-	strh r0, [r2, #0x00]
-	adds r0, r4, #0x0
-	adds r0, #0x86
-	strh r1, [r0, #0x00]
-	subs r2, #0x01
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x21
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x00]
-_080A337C:
-	ldr r0, _080A3398 @ =0x080A339D
-	str r0, [r5, #0x4C]
-_080A3380:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_080A3388: .4byte 0x03000FD8
-_080A338C: .4byte 0x03001038
-_080A3390: .4byte 0x0819832C
-_080A3394: .4byte 0x08198220
-_080A3398: .4byte sub_80A339C
+	.section .text.paired_action_callbacks_after_sub_80A3324, "ax", %progbits
 	thumb_func_start sub_80A339C
 sub_80A339C:
 	push {r4, r5, r6, lr}
@@ -133249,65 +133191,7 @@ _080A3D58:
 _080A3D68: .4byte 0x0000204F
 _080A3D6C: .4byte sub_80A3D70
 	.section .text.actor_activation_transitions_after_sub_80A3D70, "ax", %progbits
-	thumb_func_start sub_80A3DF0
-sub_80A3DF0:
-	push {r4, r5, lr}
-	adds r5, r0, #0x0
-	ldr r0, _080A3E54 @ =0x03000FD8
-	ldr r0, [r0, #0x00]
-	ldr r4, [r0, #0x74]
-	ldr r0, [r4, #0x10]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _080A3E4C
-	adds r0, r4, #0x0
-	adds r0, #0x7E
-	ldrb r0, [r0, #0x00]
-	movs r1, #0x06
-	ands r1, r0
-	cmp r1, #0x02
-	beq _080A3E18
-	cmp r1, #0x04
-	bne _080A3E48
-_080A3E18:
-	ldr r2, _080A3E58 @ =0x03001038
-	ldr r0, _080A3E5C @ =0x0819832C
-	ldr r1, _080A3E60 @ =0x08198220
-	subs r0, r0, r1
-	ldr r2, [r2, #0x00]
-	adds r2, r2, r0
-	movs r0, #0x80
-	lsls r0, r0, #0x07
-	movs r1, #0x04
-	bl _call_via_r2
-	adds r2, r4, #0x0
-	adds r2, #0x82
-	movs r1, #0x00
-	strh r0, [r2, #0x00]
-	adds r0, r4, #0x0
-	adds r0, #0x86
-	strh r1, [r0, #0x00]
-	subs r2, #0x01
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x21
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x00]
-_080A3E48:
-	ldr r0, _080A3E64 @ =0x080A3E69
-	str r0, [r5, #0x4C]
-_080A3E4C:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_080A3E54: .4byte 0x03000FD8
-_080A3E58: .4byte 0x03001038
-_080A3E5C: .4byte 0x0819832C
-_080A3E60: .4byte 0x08198220
-_080A3E64: .4byte sub_80A3E68
+	.section .text.paired_action_callbacks_after_sub_80A3DF0, "ax", %progbits
 	thumb_func_start sub_80A3E68
 sub_80A3E68:
 	push {r4, r5, r6, lr}
@@ -133773,65 +133657,7 @@ _080A41FA:
 _080A4204: .4byte 0x03000FD8
 _080A4208: .4byte 0x08052003
 _080A420C: .4byte sub_80A4210
-	thumb_func_start sub_80A4210
-sub_80A4210:
-	push {r4, r5, lr}
-	adds r5, r0, #0x0
-	ldr r0, _080A4274 @ =0x03000FD8
-	ldr r0, [r0, #0x00]
-	ldr r4, [r0, #0x74]
-	ldr r0, [r4, #0x10]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _080A426C
-	adds r0, r4, #0x0
-	adds r0, #0x7E
-	ldrb r0, [r0, #0x00]
-	movs r1, #0x06
-	ands r1, r0
-	cmp r1, #0x02
-	beq _080A4238
-	cmp r1, #0x04
-	bne _080A4268
-_080A4238:
-	ldr r2, _080A4278 @ =0x03001038
-	ldr r0, _080A427C @ =0x0819832C
-	ldr r1, _080A4280 @ =0x08198220
-	subs r0, r0, r1
-	ldr r2, [r2, #0x00]
-	adds r2, r2, r0
-	movs r0, #0x80
-	lsls r0, r0, #0x07
-	movs r1, #0x0F
-	bl _call_via_r2
-	adds r2, r4, #0x0
-	adds r2, #0x82
-	movs r1, #0x00
-	strh r0, [r2, #0x00]
-	adds r0, r4, #0x0
-	adds r0, #0x86
-	strh r1, [r0, #0x00]
-	subs r2, #0x01
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x21
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x00]
-_080A4268:
-	ldr r0, _080A4284 @ =0x080A4289
-	str r0, [r5, #0x4C]
-_080A426C:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_080A4274: .4byte 0x03000FD8
-_080A4278: .4byte 0x03001038
-_080A427C: .4byte 0x0819832C
-_080A4280: .4byte 0x08198220
-_080A4284: .4byte sub_80A4288
+	.section .text.paired_action_callbacks_after_sub_80A4210, "ax", %progbits
 	thumb_func_start sub_80A4288
 sub_80A4288:
 	push {r4, r5, r6, lr}
@@ -135901,65 +135727,7 @@ _080A53A0: .4byte 0x03001038
 _080A53A4: .4byte 0x0819832C
 _080A53A8: .4byte 0x08198220
 _080A53AC: .4byte sub_80A5B28
-	thumb_func_start sub_80A53B0
-sub_80A53B0:
-	push {r4, r5, lr}
-	adds r5, r0, #0x0
-	ldr r0, _080A5414 @ =0x03000FD8
-	ldr r0, [r0, #0x00]
-	ldr r4, [r0, #0x70]
-	ldr r0, [r4, #0x10]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _080A540C
-	adds r0, r4, #0x0
-	adds r0, #0x7E
-	ldrb r0, [r0, #0x00]
-	movs r1, #0x06
-	ands r1, r0
-	cmp r1, #0x02
-	beq _080A53D8
-	cmp r1, #0x04
-	bne _080A5408
-_080A53D8:
-	ldr r2, _080A5418 @ =0x03001038
-	ldr r0, _080A541C @ =0x0819832C
-	ldr r1, _080A5420 @ =0x08198220
-	subs r0, r0, r1
-	ldr r2, [r2, #0x00]
-	adds r2, r2, r0
-	movs r0, #0x80
-	lsls r0, r0, #0x07
-	movs r1, #0x0F
-	bl _call_via_r2
-	adds r2, r4, #0x0
-	adds r2, #0x82
-	movs r1, #0x00
-	strh r0, [r2, #0x00]
-	adds r0, r4, #0x0
-	adds r0, #0x86
-	strh r1, [r0, #0x00]
-	subs r2, #0x01
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x21
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x00]
-_080A5408:
-	ldr r0, _080A5424 @ =0x080A5429
-	str r0, [r5, #0x4C]
-_080A540C:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_080A5414: .4byte 0x03000FD8
-_080A5418: .4byte 0x03001038
-_080A541C: .4byte 0x0819832C
-_080A5420: .4byte 0x08198220
-_080A5424: .4byte sub_80A5428
+	.section .text.paired_action_callbacks_after_sub_80A53B0, "ax", %progbits
 	thumb_func_start sub_80A5428
 sub_80A5428:
 	push {r4, r5, r6, lr}
@@ -136402,65 +136170,7 @@ _080A5780: .4byte 0x03001038
 _080A5784: .4byte 0x0819832C
 _080A5788: .4byte 0x08198220
 _080A578C: .4byte sub_80A5ABC
-	thumb_func_start sub_80A5790
-sub_80A5790:
-	push {r4, r5, lr}
-	adds r5, r0, #0x0
-	ldr r0, _080A57F4 @ =0x03000FD8
-	ldr r0, [r0, #0x00]
-	ldr r4, [r0, #0x70]
-	ldr r0, [r4, #0x10]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _080A57EC
-	adds r0, r4, #0x0
-	adds r0, #0x7E
-	ldrb r0, [r0, #0x00]
-	movs r1, #0x06
-	ands r1, r0
-	cmp r1, #0x02
-	beq _080A57B8
-	cmp r1, #0x04
-	bne _080A57E8
-_080A57B8:
-	ldr r2, _080A57F8 @ =0x03001038
-	ldr r0, _080A57FC @ =0x0819832C
-	ldr r1, _080A5800 @ =0x08198220
-	subs r0, r0, r1
-	ldr r2, [r2, #0x00]
-	adds r2, r2, r0
-	movs r0, #0x80
-	lsls r0, r0, #0x07
-	movs r1, #0x12
-	bl _call_via_r2
-	adds r2, r4, #0x0
-	adds r2, #0x82
-	movs r1, #0x00
-	strh r0, [r2, #0x00]
-	adds r0, r4, #0x0
-	adds r0, #0x86
-	strh r1, [r0, #0x00]
-	subs r2, #0x01
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x21
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x00]
-_080A57E8:
-	ldr r0, _080A5804 @ =0x080A5809
-	str r0, [r5, #0x4C]
-_080A57EC:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_080A57F4: .4byte 0x03000FD8
-_080A57F8: .4byte 0x03001038
-_080A57FC: .4byte 0x0819832C
-_080A5800: .4byte 0x08198220
-_080A5804: .4byte sub_80A5808
+	.section .text.paired_action_callbacks_after_sub_80A5790, "ax", %progbits
 	thumb_func_start sub_80A5808
 sub_80A5808:
 	push {r4, r5, r6, lr}

@@ -1,0 +1,12 @@
+#ifndef GUARD_OBJECT_PAIRED_ACTION_CALLBACKS_H
+#define GUARD_OBJECT_PAIRED_ACTION_CALLBACKS_H
+
+#include "object/runtime_object.h"
+
+#define object_poll_primary_action_distance_15_a sub_80A3324
+#define object_poll_secondary_action_distance_4 sub_80A3DF0
+#define object_poll_secondary_action_distance_15_a sub_80A4210
+#define object_poll_primary_action_distance_15_b sub_80A53B0
+#define object_poll_primary_action_distance_18 sub_80A5790
+
+#endif

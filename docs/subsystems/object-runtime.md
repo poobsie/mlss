@@ -308,6 +308,15 @@ their natural typed forms changed instruction scheduling or omitted compiler
 bookkeeping bytes. Numeric commands, effect `0x1202`, and the pair's gameplay
 identity remain deliberately structural.
 
+Five repeated action-object polling callbacks now select the runtime's primary or
+secondary action object through the shared typed layout. Each waits for visual
+readiness, recognizes the established flag modes 2 and 4, derives a fixed-point
+motion value through the relocated scale routine, clears the pending control bit,
+and installs its path-specific continuation. The distance parameters 4, 15, and 18
+and the primary/secondary path distinction are proven; their gameplay identities
+remain unknown. Neighboring descriptor handoffs and three register-sensitive
+polling variants remain in assembly after the bounded shaping pass.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
