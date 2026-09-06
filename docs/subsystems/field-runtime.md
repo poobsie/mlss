@@ -441,6 +441,12 @@ when flag `0x08` was already present, it decrements the channel wait word and,
 on reaching zero, marks visual flag `0x10` and toggles channel flag `0x0020`.
 The presentation meaning of those flags remains unresolved.
 
+`field_script_update_channels` exposes the caller that keeps the channel array
+live. It ticks the root channel when flag `0x0010` is set, then visits the twelve
+indexed channels. Channels masked by `0x0084` are skipped; the remaining flag
+bits dispatch the established entry-match toggle (`0x0002`), indexed visual
+update (`0x0020`), and wait-timer tick (`0x0010`) operations.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or

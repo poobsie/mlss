@@ -1,4 +1,5 @@
 #include "field/script_ui_commands.h"
+#include "field/entry_toggle.h"
 #include "screens/runtime_helpers.h"
 #include "script/execution_state.h"
 #include "ui/visibility.h"
@@ -24,6 +25,50 @@ s32 field_script_configure_screen_layer(
 
 SEC(sub_80FA6DC)
 const u16 field_script_configure_screen_layer_padding = 0;
+
+SEC(sub_80F940C)
+void field_script_update_channels(struct FieldScriptUiRuntime* runtime)
+{
+    s16 index = 1;
+    struct ScriptExecutionState* channel =
+        (struct ScriptExecutionState*)runtime->sharedState24;
+
+    do {
+        if (channel->primaryFlags & 0x10) {
+            script_state_tick_wait_timer((u8*)runtime + 0x1C, channel);
+        }
+        index--;
+        channel++;
+    } while (index > 0);
+
+    {
+        u16* flags;
+
+        index = 0;
+        flags = &channel->primaryFlags;
+
+        do {
+            if (!(*flags & 0x84)) {
+                if (*flags & 2) {
+                    field_toggle_target_flag_a0_02_if_entry_matches(
+                        (struct FieldEntryMatchOwner*)runtime,
+                        (struct FieldEntryToggleTarget*)channel, index);
+                }
+                if (*flags & 0x20) {
+                    field_script_update_indexed_visual_channel(
+                        runtime, channel, index);
+                }
+                if (*flags & 0x10) {
+                    script_state_tick_wait_timer(
+                        (u8*)runtime + 0x1C, channel);
+                }
+            }
+            index++;
+            flags = (u16*)((u8*)flags + 0xA8);
+            channel++;
+        } while (index <= 11);
+    }
+}
 
 SEC(sub_80FA7A0)
 s32 field_script_set_owned_sprite_visibility(

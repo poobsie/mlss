@@ -294346,8 +294346,9 @@ _080F93FC: .4byte 0x00000998
 _080F9400: .4byte 0x082001F0
 _080F9404: .4byte 0x000009A3
 _080F9408: .4byte 0xFFFF0000
-	thumb_func_start sub_80F940C
-sub_80F940C:
+	.section .discard.field_script_update_channels, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F940C
+asm_discard_sub_80F940C:
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0x0
 	movs r7, #0x01
@@ -294427,6 +294428,7 @@ _080F9488:
 	bx r0
 	.byte 0x00, 0x00
 _080F94A4: .4byte 0xFFFF0000
+	.section .text.field_script_blocks_after_sub_80F940C, "ax", %progbits
 	thumb_func_start sub_80F94A8
 sub_80F94A8:
 	push {r4, r5, r6, r7, lr}
