@@ -297183,8 +297183,9 @@ sub_80FAB9C:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_80FAC30
-sub_80FAC30:
+	.section .discard.field_script_ui_sub_80FAC30, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FAC30
+asm_discard_sub_80FAC30:
 	push {lr}
 	add sp, #-0x008
 	adds r0, #0x1C
@@ -297205,6 +297206,7 @@ sub_80FAC30:
 	pop {r1}
 	bx r1
 _080FAC58: .4byte 0x03000FD0
+	.section .text.field_script_ui_after_sub_80FAC30, "ax", %progbits
 	thumb_func_start sub_80FAC5C
 sub_80FAC5C:
 	push {r4, lr}
@@ -297319,8 +297321,9 @@ _080FAD20:
 	bx r1
 	.byte 0x00, 0x00
 _080FAD28: .4byte 0xFFFF0000
-	thumb_func_start sub_80FAD2C
-sub_80FAD2C:
+	.section .discard.field_script_ui_sub_80FAD2C, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FAD2C
+asm_discard_sub_80FAD2C:
 	push {lr}
 	ldr r3, [r2, #0x04]
 	movs r1, #0xA8
@@ -297356,6 +297359,7 @@ _080FAD60:
 	bx r1
 	.byte 0x00, 0x00
 _080FAD68: .4byte 0x0000FFFB
+	.section .text.field_script_ui_after_sub_80FAD2C, "ax", %progbits
 	thumb_func_start sub_80FAD6C
 sub_80FAD6C:
 	push {r4, r5, r6, lr}
@@ -297592,8 +297596,9 @@ _080FAF70: .4byte 0x000009A3
 _080FAF74: .4byte 0xFFFF0000
 	.byte 0x10, 0xB5, 0x04, 0x1C, 0xFF, 0xF7, 0x5A, 0xFF, 0x20, 0x1C, 0xFE, 0xF7, 0x91, 0xFA, 0x10, 0xBC
 	.byte 0x01, 0xBC, 0x00, 0x47
-	thumb_func_start sub_80FAF8C
-sub_80FAF8C:
+	.section .discard.field_script_ui_sub_80FAF8C, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FAF8C
+asm_discard_sub_80FAF8C:
 	push {r4, lr}
 	add sp, #-0x008
 	adds r4, r0, #0x0
@@ -297616,6 +297621,7 @@ sub_80FAF8C:
 	pop {r0}
 	bx r0
 _080FAFB8: .4byte 0x000009A1
+	.section .text.field_script_ui_after_sub_80FAF8C, "ax", %progbits
 	.byte 0x10, 0xB5, 0x04, 0x1C, 0xA0, 0x6A, 0x04, 0x21, 0xEB, 0xF7, 0xF8, 0xFF, 0xA0, 0x6A, 0x10, 0x21
 	.byte 0xEC, 0xF7, 0xA4, 0xF8, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
 	.section .text.small_functions_12_after_sub_80FAFD8, "ax", %progbits

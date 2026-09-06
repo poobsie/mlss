@@ -3,6 +3,8 @@
 #include "script/execution_state.h"
 #include "ui/visibility.h"
 
+#define SCRIPT_FIELD_RUNTIME (*(u8**)0x03000FD0)
+
 #define SEC(symbol) \
     __attribute__((section(".text.small_functions_01." #symbol)))
 
@@ -43,6 +45,46 @@ SEC(sub_80FA7C4)
 u8 field_script_mark_return_pending(
     struct FieldScriptUiRuntime* runtime, struct ScriptExecutionState* state)
 {
-    runtime->sharedState24->returnPending9A1 = 1;
+    runtime->sharedState24->channelState9A1 = 1;
     return script_command_return((u8*)runtime + 0x1C, state);
+}
+
+SEC(sub_80FAC30)
+s32 field_script_start_global_script_channel(
+    struct FieldScriptUiRuntime* runtime, void* state, const u32* arguments)
+{
+    script_state_replace_primary_channel(
+        (u8*)runtime + 0x1C,
+        (struct ScriptExecutionState*)(SCRIPT_FIELD_RUNTIME + 0x1F8),
+        arguments[1], 0, 1, 0xFF);
+    return 1;
+}
+
+SEC(sub_80FAD2C)
+s32 field_script_set_indexed_channel_flag_4(
+    struct FieldScriptUiRuntime* runtime, void* state, const s32* arguments)
+{
+    struct ScriptExecutionState* channel =
+        (struct ScriptExecutionState*)runtime->sharedState24 + arguments[1] + 1;
+
+    switch (arguments[0]) {
+    case 0:
+        channel->primaryFlags |= 4;
+        break;
+    case 1:
+        channel->primaryFlags &= ~4;
+        break;
+    }
+    return 1;
+}
+
+SEC(sub_80FAF8C)
+void field_script_start_root_channel_and_mark_running(
+    struct FieldScriptUiRuntime* runtime, u32 cursor)
+{
+    script_state_replace_primary_channel(
+        (u8*)runtime + 0x1C,
+        (struct ScriptExecutionState*)runtime->sharedState24,
+        cursor, 0, 1, 0xFF);
+    runtime->sharedState24->channelState9A1 = 2;
 }

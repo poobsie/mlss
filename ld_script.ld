@@ -2195,12 +2195,18 @@ SECTIONS
         asm/text08057568.o(.text.field_script_ui_after_sub_80FA7A0);
         src/field/script_ui_commands.o(.text.small_functions_01.sub_80FA7C4);
         asm/text08057568.o(.text.field_script_ui_after_sub_80FA7C4);
+        src/field/script_ui_commands.o(.text.small_functions_01.sub_80FAC30);
+        asm/text08057568.o(.text.field_script_ui_after_sub_80FAC30);
+        src/field/script_ui_commands.o(.text.small_functions_01.sub_80FAD2C);
+        asm/text08057568.o(.text.field_script_ui_after_sub_80FAD2C);
         src/field/entry_toggle.o(.text.small_functions_01.sub_80FAEC4);
         asm/text08057568.o(.text.small_functions_01_after_sub_80FAEC4);
         src/field/metadata.o(.text.middle.sub_80FAEEC);
         asm/text08057568.o(.text.after_middle_sub_80FAEEC);
         src/field/resource_loader.o(.text.misc_helpers_03.sub_80FAEFC);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80FAEFC);
+        src/field/script_ui_commands.o(.text.small_functions_01.sub_80FAF8C);
+        asm/text08057568.o(.text.field_script_ui_after_sub_80FAF8C);
         src/field/resource_loader.o(.text.small_functions_12.sub_80FAFD8);
         asm/text08057568.o(.text.small_functions_12_after_sub_80FAFD8);
         src/field/metadata.o(.text.middle.get_field_object_count);
