@@ -172,6 +172,13 @@ each player, preserving the driver's per-player identity and track cleanup.
 Nearby song-number wrappers remain in assembly because their natural typed
 forms changed literal and working-register allocation.
 
+The canonical sound-mode lifecycle is now typed through `m4aSoundMode` and
+`m4aSoundVSyncOff`. The mode setter applies requested reverb, direct-sound
+channel count, master volume, DAC bias, and sample-rate changes under the
+driver identity lock. VSync shutdown advances that lock, stops repeating sound
+DMA, clears both halves of the PCM buffer through the local CPU-set veneer, and
+leaves sample-frequency setup responsible for restoring the active path.
+
 ## Next boundary
 
 The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.

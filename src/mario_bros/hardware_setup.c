@@ -8,6 +8,9 @@ void _08F6F340(u32);
 u32 umul3232H32(u32, u32);
 void TrackStop(struct MusicPlayerInfo*, struct MusicPlayerTrack*);
 void m4aMPlayStop(struct MusicPlayerInfo*);
+void m4aSoundVSyncOff(void);
+void SampleFreqSet(u32);
+void m4aCpuSet(const void*, void*, u32);
 void mario_bros_call_secondary_object_callback_b(void*);
 
 MB_LATE_SECTION(sub_8F510CC) void mario_bros_disable_interrupts(void) {
@@ -65,6 +68,81 @@ void m4aMPlayAllStop(void)
 
     for (index = 0; index < NUM_MUSIC_PLAYERS; index++)
         m4aMPlayStop(gMPlayTable[index].info);
+}
+
+MB_LATE_SECTION(sub_8F94F3C)
+void m4aSoundMode(u32 mode)
+{
+    struct SoundInfo* soundInfo = SOUND_INFO_PTR;
+    u32 value;
+
+    if (soundInfo->ident != ID_NUMBER)
+        return;
+    soundInfo->ident++;
+
+    value = mode & (SOUND_MODE_REVERB_SET | SOUND_MODE_REVERB_VAL);
+    if (value)
+        soundInfo->reverb = value & SOUND_MODE_REVERB_VAL;
+
+    value = mode & SOUND_MODE_MAXCHN;
+    if (value) {
+        struct SoundChannel* channel;
+
+        soundInfo->maxChans = value >> SOUND_MODE_MAXCHN_SHIFT;
+        value = MAX_DIRECTSOUND_CHANNELS;
+        channel = &soundInfo->chans[0];
+        while (value != 0) {
+            channel->statusFlags = 0;
+            value--;
+            channel++;
+        }
+    }
+
+    value = mode & SOUND_MODE_MASVOL;
+    if (value)
+        soundInfo->masterVolume = value >> SOUND_MODE_MASVOL_SHIFT;
+
+    value = mode & SOUND_MODE_DA_BIT;
+    if (value) {
+        value = (value & 0x300000) >> 14;
+        REG_SOUNDBIAS_H = (REG_SOUNDBIAS_H & 0x3F) | value;
+    }
+
+    value = mode & SOUND_MODE_FREQ;
+    if (value) {
+        m4aSoundVSyncOff();
+        SampleFreqSet(value);
+    }
+
+    soundInfo->ident = ID_NUMBER;
+}
+
+MB_LATE_SECTION(sub_8F95028)
+void m4aSoundVSyncOff(void)
+{
+    struct SoundInfo* soundInfo = SOUND_INFO_PTR;
+
+    if (soundInfo->ident >= ID_NUMBER &&
+        soundInfo->ident <= ID_NUMBER + 1) {
+        soundInfo->ident += 10;
+
+        if (REG_DMA1CNT & (DMA_REPEAT << 16))
+            REG_DMA1CNT =
+                ((DMA_ENABLE | DMA_START_NOW | DMA_32BIT | DMA_SRC_INC |
+                  DMA_DEST_FIXED) << 16) | 4;
+        if (REG_DMA2CNT & (DMA_REPEAT << 16))
+            REG_DMA2CNT =
+                ((DMA_ENABLE | DMA_START_NOW | DMA_32BIT | DMA_SRC_INC |
+                  DMA_DEST_FIXED) << 16) | 4;
+        REG_DMA1CNT_H = DMA_32BIT;
+        REG_DMA2CNT_H = DMA_32BIT;
+        {
+            u32 zero = 0;
+            m4aCpuSet(&zero, soundInfo->pcmBuffer,
+                      CPU_SET_32BIT | CPU_SET_SRC_FIXED |
+                          ((PCM_DMA_BUF_SIZE * 2) / sizeof(u32)));
+        }
+    }
 }
 
 MB_LATE_SECTION(sub_8F950E0)

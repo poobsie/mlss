@@ -107,6 +107,10 @@
 #define umul3232H32 sub_8F93CE0
 #define MidiKeyToFreq sub_8F948FC
 #define m4aMPlayAllStop sub_08F94B58
+#define m4aSoundMode sub_8F94F3C
+#define m4aSoundVSyncOff sub_8F95028
+#define SampleFreqSet sub_8F94E98
+#define m4aCpuSet sub_8F95E98
 #define MPlayOpen sub_8F950E0
 #define m4aMPlayStop sub_8F9523C
 #define m4aMPlayVolumeControl sub_8F959CC
