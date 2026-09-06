@@ -35,6 +35,8 @@ struct MarioBrosPoolRuntime {
     struct MarioBrosPoolObject* objects4494[28];
     struct MarioBrosPoolObject* objects4504[16];
     u16 active4544[28];
+    u8 unknown457C[0x12];
+    u8 activeCount458E;
 };
 
 extern struct MarioBrosPoolRuntime gMarioGlobal_03000F50;
@@ -62,6 +64,7 @@ extern void sub_8F8D880(void*);
 extern void sub_8F8D9CC(void*);
 extern void sub_8F8D5A4(void*);
 extern void sub_8F8DB7C(void*);
+extern u8 sub_8F619EC(struct MarioBrosObject* object);
 void mario_bros_release_pool_object_a(struct MarioBrosPoolObject* object);
 
 struct MarioBrosHeapBlock {
@@ -200,6 +203,19 @@ void mario_bros_release_active_pool_objects_a(void)
                 gMarioGlobal_03000F50.objects4494[index]);
         index++;
     } while (index <= 27);
+}
+
+MB_SECTION(sub_8F5E448)
+void mario_bros_release_ready_object_and_decrement_458e(
+    struct MarioBrosPoolObject* object)
+{
+    if (sub_8F619EC((struct MarioBrosObject*)object) == 1) {
+        mario_bros_release_pool_object_a(object);
+        if (*(u8*)0x03005A90 == 1 &&
+            gMarioGlobal_03000F50.activeCount458E != 0) {
+            gMarioGlobal_03000F50.activeCount458E--;
+        }
+    }
 }
 
 #define DEFINE_FIND_RUNTIME_ID(name, runtime)                                    \

@@ -93,6 +93,9 @@ names state those allocator and dispatch mechanics; the gameplay owners of the
 two runtime families remain unresolved. The primary runtime also exposes its
 active-object release sweep: it checks each established activity halfword and
 returns only the corresponding active object to the existing pool release path.
+Its readiness-gated sibling releases one supplied object through that same path
+and, while the associated runtime mode is active, decrements the nonzero byte at
+`0x458E`. The byte remains offset-named because its broader role is not yet proven.
 
 Three additional object helpers now share the established `MarioBrosObject`
 layout. One decrements the halfword action countdown and invokes its follow-up
