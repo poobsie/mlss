@@ -7,8 +7,9 @@ struct FieldRuntimeNode {
     struct FieldRuntimeNode* next;
     void* ownerOrCallback;
     void* value;
-    u8 unknown0C[4];
+    void* unknown0C;
     u16 counter10;
+    s16 value12;
 };
 
 /*

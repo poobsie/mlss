@@ -321636,6 +321636,8 @@ _08106B84: .4byte 0x089F808C
 _08106B88: .4byte sub_8104DB8
 _08106B8C: .4byte sub_8103D74
 	.section .text.field_display_nodes_after_sub_8106B90, "ax", %progbits
+	.section .text.field_runtime_node_transition_before_sub_8106BB0, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8106BB0
 sub_8106BB0:
 	push {r4, lr}
@@ -321664,6 +321666,8 @@ _08106BD8:
 _08106BE0: .4byte 0x03000FD8
 _08106BE4: .4byte sub_81071F0
 _08106BE8: .4byte sub_8102F54
+	.endif
+	.section .text.field_runtime_node_transition_after_sub_8106BB0, "ax", %progbits
 	.section .text.field_position_forwarder_before_sub_8106BEC, "ax", %progbits
 	.if 0
 	thumb_func_start sub_8106BEC
@@ -321881,6 +321885,8 @@ sub_8106D54:
 _08106D94: .4byte 0x03000FD8
 _08106D98: .4byte sub_81015E4
 	.section .text.small_functions_08_after_sub_8106D9C, "ax", %progbits
+	.section .text.field_effect_wait_transition_before_sub_8106DF0, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8106DF0
 sub_8106DF0:
 	push {r4, lr}
@@ -321903,6 +321909,8 @@ _08106E12:
 	pop {r0}
 	bx r0
 _08106E18: .4byte sub_8100E5C
+	.endif
+	.section .text.field_effect_wait_transition_after_sub_8106DF0, "ax", %progbits
 	.section .text.small_functions_09_after_sub_8106E1C, "ax", %progbits
 	.section .text.small_functions_10_after_sub_8106E58, "ax", %progbits
 	.section .text.small_functions_11_after_sub_8106EB0, "ax", %progbits

@@ -2133,6 +2133,9 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_07_after_sub_8106AC8);
         src/field/display_nodes.o(.text.small_functions_01.sub_8106B90);
         asm/text08057568.o(.text.field_display_nodes_after_sub_8106B90);
+        asm/text08057568.o(.text.field_runtime_node_transition_before_sub_8106BB0);
+        src/field/runtime_node_transition.o(.text.field_runtime_node_transition.sub_8106BB0);
+        asm/text08057568.o(.text.field_runtime_node_transition_after_sub_8106BB0);
         asm/text08057568.o(.text.field_position_forwarder_before_sub_8106BEC);
         src/field/position_forwarder.o(.text.field_position_forwarder.sub_8106BEC);
         asm/text08057568.o(.text.field_position_forwarder_after_sub_8106BEC);
@@ -2141,6 +2144,9 @@ SECTIONS
         asm/text08057568.o(.text.field_effect_wait_transition_after_sub_8106C10);
         src/field/selection_sequence.o(.text.field_selection_sequence.sub_8106D9C);
         asm/text08057568.o(.text.small_functions_08_after_sub_8106D9C);
+        asm/text08057568.o(.text.field_effect_wait_transition_before_sub_8106DF0);
+        src/field/effect_wait_transition.o(.text.field_effect_wait_transition.sub_8106DF0);
+        asm/text08057568.o(.text.field_effect_wait_transition_after_sub_8106DF0);
         src/field/selection_sequence.o(.text.field_selection_sequence.sub_8106E1C);
         asm/text08057568.o(.text.small_functions_09_after_sub_8106E1C);
         src/field/selection_sequence.o(.text.field_selection_sequence.sub_8106E58);
