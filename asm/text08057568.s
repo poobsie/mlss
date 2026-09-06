@@ -363595,6 +363595,8 @@ sub_81218E0:
 	bx lr
 	.endif
 	.section .text.after_middle_sub_81218E0
+	.section .text.field_indexed_sprites_before_sub_81218E4, "ax", %progbits
+	.if 0
 	thumb_func_start sub_81218E4
 sub_81218E4:
 	push {r4, lr}
@@ -363618,6 +363620,10 @@ sub_81218E4:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+	.section .text.field_indexed_sprites_after_sub_81218E4, "ax", %progbits
+	.section .text.field_indexed_sprites_before_sub_8121910, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8121910
 sub_8121910:
 	push {r4, r5, r6, lr}
@@ -363667,6 +363673,8 @@ _08121968:
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
+	.endif
+	.section .text.field_indexed_sprites_after_sub_8121910, "ax", %progbits
 	.byte 0x00, 0xB5, 0x03, 0x48, 0x00, 0x78, 0x00, 0x28, 0x04, 0xD0, 0x00, 0x20, 0x03, 0xE0, 0x00, 0x00
 	.byte 0x80, 0x0C, 0x00, 0x03, 0x01, 0x20, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0x30, 0xB5, 0x83, 0xB0
 	.byte 0x05, 0x1C, 0x0C, 0x1C, 0x11, 0x1C, 0x24, 0x06, 0x24, 0x0E, 0x08, 0x13, 0x01, 0x38, 0x01, 0x23

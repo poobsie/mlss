@@ -2224,6 +2224,12 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_81218D4);
         src/ui/visibility.o(.text.middle.sub_81218E0);
         asm/text08057568.o(.text.after_middle_sub_81218E0);
+        asm/text08057568.o(.text.field_indexed_sprites_before_sub_81218E4);
+        src/field/indexed_sprites.o(.text.field_indexed_sprites.sub_81218E4);
+        asm/text08057568.o(.text.field_indexed_sprites_after_sub_81218E4);
+        asm/text08057568.o(.text.field_indexed_sprites_before_sub_8121910);
+        src/field/indexed_sprites.o(.text.field_indexed_sprites.sub_8121910);
+        asm/text08057568.o(.text.field_indexed_sprites_after_sub_8121910);
         src/screens/runtime_helpers.o(.text.upper.sub_81219EC);
         asm/text08057568.o(.text.after_upper_sub_81219EC);
         asm/text08057568.o(.text.field_graphics_block_before_sub_81229F0);

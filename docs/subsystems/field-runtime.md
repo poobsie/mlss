@@ -70,6 +70,11 @@ plus the table bias `7`, then decodes it into the workspace buffer at `0x840` wi
 requesting a temporary heap buffer. The concrete resource and workspace payload types
 remain opaque.
 
+Indexed field sprites are stored in 64-byte entries reached through the pointer at
+owner offset `0x158`. The positioning helper selects the entry by byte index and
+forwards its sprite and coordinates while clearing both optional update arguments.
+The adjacent update helper creates a missing sprite or updates the existing one using
+the same entry stride and packed-position input.
 
 The selected-entry sequence is now one three-stage unit instead of three numbered catch-all files. Its stages wait for the shared blocker at `0x310`, prepare the selected entry at `0x349`, commit it through the active object at `0x7C`, clear the selection to `0xFF`, and install the next process callback at each boundary. Scene-specific names require the resource tables used by the assembly helpers.
 
