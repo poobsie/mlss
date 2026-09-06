@@ -45,6 +45,18 @@ void field_update_register_pair_when_owner_active(
     *(u16*)0x0400001E = *(u16*)0x0200001E;
 }
 
+MISC3_SEC(field_follow_display_slide_owner)
+void field_follow_display_slide_owner(struct FieldDisplaySlideFollower* process)
+{
+    process->offset = 25 - process->owner->remainingOffset;
+    if (process->offset > 23) {
+        process->update = 0;
+    } else {
+        *(u16*)0x0400001A = *(u16*)0x0200001A - 24;
+        *(u16*)0x0400001E = *(u16*)0x0200001E - 24;
+    }
+}
+
 MISC3_SEC(field_release_display_object_278)
 void field_release_display_object_278(void)
 {

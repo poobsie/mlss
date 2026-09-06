@@ -455,4 +455,11 @@ toward `0x100`. Reaching that bound clears resource flag `0x10`, installs the
 follow-up callback, and refreshes the resource. The display unit represented by
 the paired halfwords remains unknown.
 
+The connected display-slide follower reads the owner countdown at offset
+`0x14`, stores `25 - countdown` in its own signed offset at `0x10`, and stops
+once that derived offset exceeds 23. While active, it keeps the two display
+registers at `0x0400001A` and `0x0400001E` positioned 24 units before their
+staging values. The owner callback and nearby reverse transition remain in
+assembly because their arithmetic source shapes do not yet match exactly.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

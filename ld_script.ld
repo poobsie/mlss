@@ -2332,6 +2332,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_810CBC8);
         src/field/display.o(.text.misc_helpers_03.sub_810CBDC);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_810CBDC);
+        src/field/display.o(.text.misc_helpers_03.sub_810CC0C);
+        asm/text08057568.o(.text.misc_helpers_03_after_sub_810CC0C);
         src/field/display_nodes.o(.text.misc_helpers_01.sub_810CCB0);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_810CCB0);
         src/field/display_nodes.o(.text.small_functions_01.sub_810CCC8);

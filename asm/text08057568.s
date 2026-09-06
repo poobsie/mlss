@@ -331666,6 +331666,7 @@ _0810CBC0: .4byte 0x089F808C
 _0810CBC4: .4byte 0x03000FD8
 	.section .text.misc_helpers_02_after_sub_810CBC8, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_810CBDC, "ax", %progbits
+	.if 0
 	thumb_func_start sub_810CC0C
 sub_810CC0C:
 	push {lr}
@@ -331699,6 +331700,8 @@ _0810CC3C:
 _0810CC40: .4byte 0x0400001A
 _0810CC44: .4byte 0x0200001A
 _0810CC48: .4byte 0x0200001E
+	.endif
+	.section .text.misc_helpers_03_after_sub_810CC0C, "ax", %progbits
 	thumb_func_start sub_810CC4C
 sub_810CC4C:
 	push {lr}
