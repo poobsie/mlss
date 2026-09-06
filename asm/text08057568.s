@@ -387929,6 +387929,8 @@ _08134B12:
 _08134B18: .4byte 0x04000050
 _08134B1C: .4byte 0x08212560
 _08134B20: .4byte 0x04000054
+	.section .text.middle_discard_sub_8134B24, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8134B24
 sub_8134B24:
 	push {lr}
@@ -387943,6 +387945,10 @@ _08134B32:
 _08134B34:
 	pop {r1}
 	bx r1
+	.endif
+	.section .text.middle_after_sub_8134B24, "ax", %progbits
+	.section .text.middle_discard_sub_8134B38, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8134B38
 sub_8134B38:
 	push {lr}
@@ -387968,6 +387974,8 @@ _08134B4A:
 _08134B60:
 	pop {r0}
 	bx r0
+	.endif
+	.section .text.middle_after_sub_8134B38, "ax", %progbits
 	.if 0
 	thumb_func_start sub_8134B64
 sub_8134B64:
@@ -387979,6 +387987,8 @@ sub_8134B64:
 	bx lr
 	.endif
 	.section .text.after_middle_sub_8134B64
+	.section .text.middle_discard_sub_8134B70, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8134B70
 sub_8134B70:
 	push {lr}
@@ -387996,6 +388006,8 @@ _08134B86:
 	bx r0
 	.byte 0x00, 0x00
 _08134B8C: .4byte 0x08CDC460
+	.endif
+	.section .text.middle_after_sub_8134B70, "ax", %progbits
 	.byte 0x10, 0xB5, 0x04, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x12, 0x04, 0x12, 0x0C, 0x04, 0x48, 0xA0, 0x60
 	.byte 0x20, 0x1C, 0xFF, 0xF7, 0xC9, 0xFF, 0x20, 0x1C, 0x10, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
 	.byte 0x60, 0xC4, 0xCD, 0x08, 0x10, 0xB5, 0x04, 0x1C, 0x04, 0x48, 0xA0, 0x60, 0x20, 0x1C, 0xFF, 0xF7

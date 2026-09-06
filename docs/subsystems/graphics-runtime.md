@@ -125,6 +125,13 @@ counterpart to the two offset transfer entry points. It resolves the same
 relative resource table and converts tile units to bytes before copying to the
 destination beginning at `0x06000000`.
 
+`GraphicsBlendTransition` now covers the compact lifecycle around the existing
+default initializer. The explicit initializer bounds the hardware blend mode,
+clears progress, and starts the update path immediately for a zero-duration
+request. The completion predicate compares progress with the target, while the
+destructor restores the class descriptor and honors the standard low-bit heap
+release flag.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
