@@ -42,3 +42,17 @@ void field_countdown_refresh_and_continue(
         transition->callback = sub_8100E5C;
     }
 }
+
+SEC(sub_8107360)
+void field_countdown_commit_and_stop(
+    struct FieldEffectWaitTransition* transition)
+{
+    s32 timer = transition->timer10;
+
+    if (timer != 0) {
+        transition->timer10--;
+    } else {
+        field_commit_runtime_value_transfer();
+        transition->callback = (void*)timer;
+    }
+}

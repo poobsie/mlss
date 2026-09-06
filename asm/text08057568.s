@@ -322095,6 +322095,8 @@ _0810734A:
 	.byte 0x00, 0x00
 _08107358: .4byte 0x03000FD8
 _0810735C: .4byte 0x00000103
+	.section .text.field_effect_wait_transition_before_sub_8107360, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8107360
 sub_8107360:
 	push {r4, r5, lr}
@@ -322114,6 +322116,8 @@ _0810737A:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
+	.endif
+	.section .text.field_effect_wait_transition_after_sub_8107360, "ax", %progbits
 	thumb_func_start sub_8107380
 sub_8107380:
 	push {r4, r5, r6, lr}

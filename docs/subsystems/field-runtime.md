@@ -107,6 +107,9 @@ A related countdown callback decrements the same signed timer before testing it.
 zero, it waits for the shared runtime flag to clear, refreshes the runtime state,
 and installs its proven continuation.
 
+The later countdown leaf decrements the signed timer while it is nonzero. At zero,
+it commits the pending runtime transfer and clears its callback.
+
 The runtime-node transition waits for the same shared flag, pushes a node onto the
 list at runtime offset `0x4C`, copies the transition values at `0x0C` and `0x12`
 into the node, and advances to its proven continuation.

@@ -2196,6 +2196,9 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_07_after_sub_81071F0);
         src/field/selection_ready.o(.text.small_functions_01.sub_81072A8);
         asm/text08057568.o(.text.small_functions_01_after_sub_81072A8);
+        asm/text08057568.o(.text.field_effect_wait_transition_before_sub_8107360);
+        src/field/effect_wait_transition.o(.text.field_effect_wait_transition.sub_8107360);
+        asm/text08057568.o(.text.field_effect_wait_transition_after_sub_8107360);
         src/field/object_status_transitions.o(.text.object_status_transitions.sub_8108B50);
         asm/text08057568.o(.text.object_status_transitions_after_sub_8108B50);
         src/field/object_flags.o(.text.middle.sub_8108C38);
