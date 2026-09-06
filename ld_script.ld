@@ -1117,6 +1117,10 @@ SECTIONS
         asm/text08057568.o(.text.object_small_runtime_after_sub_808A1D4);
         src/object/behavior_transitions.o(.text.sub_808BEB4);
         asm/text08057568.o(.text.after_sub_808BEB4);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_808BFBC);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_808BFBC);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_808BFF8);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_808BFF8);
         src/object/callback_results.o(.text.misc_helpers_01.sub_808C064);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_808C064);
         src/object/cleanup_gates.o(.text.object_flag_gates.sub_808C070);

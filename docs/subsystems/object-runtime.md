@@ -412,6 +412,14 @@ position transform, and finishes when transformed Y exceeds `0x110` or
 transformed X falls below `-16`. These are named as transformed bounds, not screen
 bounds, because the helper's exact coordinate space remains unresolved.
 
+A later timer-control pair is now represented in C. One callback waits for a
+zero timer, starts animation 5, arms the linked object's timer for 16 ticks, and
+installs the established flag-clear continuation. The other conditionally
+attaches to a ready position owner, counts down, clears the state subfield at
+`0xB4` when its controlling word is zero, stops sound `0x5E`, and finishes the
+object. The state subfield retains its offset-based name because its consumer is
+not yet decompiled.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

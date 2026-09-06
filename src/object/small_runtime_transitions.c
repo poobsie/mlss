@@ -1,3 +1,4 @@
+#include "audio/sound_effects.h"
 #include "object/runtime_leaf_callbacks.h"
 
 #define SEC(symbol) \
@@ -15,6 +16,7 @@ void sub_8074508(struct RuntimeObject* object);
 void sub_8086090(struct RuntimeObject* object);
 void sub_8088964(struct RuntimeObject* object);
 void sub_8088F9C(struct RuntimeObject* object);
+void sub_808C308(struct RuntimeObject* object);
 void sub_807C298(struct RuntimeObject* object);
 void sub_807FC08(s32* x, s32* y, s32* z, s32 argument);
 void sub_8086700(void* state);
@@ -342,6 +344,35 @@ void object_when_value80_clear_prepare_command_6_followup(
         object->followup = sub_8088964;
     }
 }
+
+SEC(sub_808BFBC)
+void object_when_timer_zero_start_animation_5_and_arm_link(
+    struct RuntimeObject* object)
+{
+    if (object->timer == 0) {
+        sub_8082E1C(object, 5, 0, 0);
+        object->linkedObject->timer = 0x10;
+        object->update = sub_808C308;
+    }
+}
+
+SEC(sub_808BFF8)
+void object_attach_ready_owner_then_finish_countdown(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner = object->positionOwner;
+
+    if ((owner->flags76 & 0x80) == 0 && owner->verticalPosition == 0)
+        sub_810DD7C(object, owner, 0xFF);
+    if (object->timer-- <= 0) {
+        if (object->state->value38 == 0)
+            object->state->valueB4 = 0;
+        sound_effect_stop(0x5E);
+        sub_807C298(object);
+    }
+}
+SEC(sub_808BFF8)
+const u16 object_attach_ready_owner_then_finish_countdown_padding = 0;
 
 SEC(sub_809C960)
 s32 object_continue_when_linked_object_clears(struct RuntimeObject* object)

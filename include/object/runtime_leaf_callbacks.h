@@ -177,6 +177,8 @@ struct ObjectRuntimePollOwner;
 #define object_update_arc_then_finish_outside_transformed_bounds sub_8089EC4
 #define object_update_x_then_finish_below_transformed_x_limit sub_8089F44
 #define object_when_value80_clear_prepare_command_6_followup sub_808A1D4
+#define object_when_timer_zero_start_animation_5_and_arm_link sub_808BFBC
+#define object_attach_ready_owner_then_finish_countdown sub_808BFF8
 #define object_continue_when_linked_object_clears sub_809C960
 #define object_begin_fixed_vertical_descent sub_80A2C80
 
@@ -389,6 +391,10 @@ void object_update_arc_then_finish_outside_transformed_bounds(
 void object_update_x_then_finish_below_transformed_x_limit(
     struct RuntimeObject* object);
 void object_when_value80_clear_prepare_command_6_followup(
+    struct RuntimeObject* object);
+void object_when_timer_zero_start_animation_5_and_arm_link(
+    struct RuntimeObject* object);
+void object_attach_ready_owner_then_finish_countdown(
     struct RuntimeObject* object);
 s32 object_continue_when_linked_object_clears(struct RuntimeObject* object);
 void object_begin_fixed_vertical_descent(struct RuntimeObject* object);
