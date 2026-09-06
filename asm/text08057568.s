@@ -321711,6 +321711,8 @@ sub_8106BEC:
 	.byte 0x00, 0x00
 	.endif
 	.section .text.field_position_forwarder_after_sub_8106BEC, "ax", %progbits
+	.section .text.field_effect_wait_transition_before_sub_8106C10, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8106C10
 sub_8106C10:
 	push {r4, r5, lr}
@@ -321751,6 +321753,8 @@ _08106C54:
 	bx r0
 _08106C5C: .4byte 0x00007002
 _08106C60: .4byte sub_8101A6C
+	.endif
+	.section .text.field_effect_wait_transition_after_sub_8106C10, "ax", %progbits
 	thumb_func_start sub_8106C64
 sub_8106C64:
 	push {r4, r5, r6, lr}
