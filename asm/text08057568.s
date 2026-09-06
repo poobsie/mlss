@@ -291793,8 +291793,9 @@ _080F7C34:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_80F7C3C
-sub_80F7C3C:
+	.section .discard.script_command_control_value_transfer, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F7C3C
+asm_discard_sub_80F7C3C:
 	push {lr}
 	ldr r2, [r2, #0x00]
 	cmp r2, #0x01
@@ -291827,6 +291828,7 @@ _080F7C70:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.section .text.misc_helpers_03_after_sub_80F7C3C, "ax", %progbits
 	thumb_func_start sub_80F7C78
 sub_80F7C78:
 	push {r4, r5, lr}

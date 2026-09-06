@@ -62,6 +62,7 @@ struct ScriptArithmeticBridgeArguments;
 #define script_command_dispatch_selected_runtime sub_80F1B14
 #define script_command_branch_on_selected_runtime_flag sub_80F1BA4
 #define script_command_configure_object_slot_183 sub_80F0BA4
+#define script_command_control_value_transfer sub_80F7C3C
 
 u8 script_command_return_from_battle(
     struct ScriptBattleReturnContext* context,
@@ -103,6 +104,8 @@ s32 script_command_branch_if_runtime_byte_30_equals(
     const u32* arguments);
 s32 script_command_set_runtime_byte_32(
     void* context, void* state, const u32* argument);
+s32 script_command_control_value_transfer(
+    void* context, void* state, const s32* operation);
 s32 script_command_set_sound_effect_volume(
     void* context, void* state, const u32* arguments);
 s32 script_command_wait_for_user_input(

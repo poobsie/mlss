@@ -33,6 +33,8 @@ extern void sub_805B618(void *, u16);
 extern void sub_8047E50(void *, u16);
 extern void sub_8047364(void *, u8);
 extern void sub_80473DC(void *);
+extern void sub_807F6EC(s32, s32);
+extern void sub_807F6D0(void);
 extern u8 sub_8027378(void* objectRegistry);
 extern void sub_805C78C(void* object, u8 value0, u8 value1);
 extern void sub_80E9330(void* owner, u16 value);
@@ -409,6 +411,25 @@ s32 script_command_set_runtime_byte_32(
     U8AT(runtime, 0x32) = value;
     return 1;
 }
+
+SEC(sub_80F7C3C)
+s32 script_command_control_value_transfer(
+    void* context, void* state, const s32* operation)
+{
+    switch (*operation) {
+    case 0:
+        sub_807F6EC(0, -1);
+        break;
+    case 1:
+        sub_807F6EC(1, -1);
+        break;
+    case 2:
+        sub_807F6D0();
+        break;
+    }
+    return 1;
+}
+SEC(sub_80F7C3C) const u16 script_command_control_value_transfer_padding = 0;
 
 SEC(sub_80EB05C)
 s32 script_command_control_resource_wait(
