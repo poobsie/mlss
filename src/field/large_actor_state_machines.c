@@ -7,6 +7,12 @@
 
 typedef s32 (*SoundFunction)(s32 sample, s32 duration);
 
+struct FieldActorPlacement {
+    u8 unknown00[0xCB];
+    s8 displayOffsetX;
+    s8 displayOffsetY;
+};
+
 int loc_8198220(void);
 int loc_819832C(void);
 void sub_807C298(struct RuntimeObject* object);
@@ -21,13 +27,20 @@ void sub_8087EFC(void* object);
 void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
                  struct RuntimeObject* object);
 void sub_80C110C(void);
+void sub_80C18E4(void);
+void sub_80C27B0(void);
+void sub_80C347C(void);
 void sub_80C751C(struct RuntimeObject* object);
+void sub_80C8C64(void);
+void sub_80C943C(void);
 void sub_80C9BA8(void);
 void sub_80CBF64(void);
 void sub_80CCA38(void);
 void sub_80D27DC(void);
 void sub_80D53F8(void);
 void sub_80D086C(void);
+void sub_80D205C(void);
+void sub_80D266C(struct FieldAction* process);
 void sub_80D6AA8(void);
 void sub_80D782C(void);
 
@@ -67,6 +80,107 @@ void field_place_actor_a_from_process_state_then_animation_4(
         }
         actionA->secondaryTimer &= 0x0FFF;
         process->update = sub_80C751C;
+    }
+}
+
+#define field_on_actor_b_complete_animation_7_and_sound_35_a sub_80C182C
+SEC(sub_80C182C)
+void field_on_actor_b_complete_animation_7_and_sound_35_a(
+    struct FieldAction* process)
+{
+    struct FieldActor* actorB = gFieldRuntime->actorB;
+    struct RuntimeObject* actionB = (struct RuntimeObject*)&actorB->action;
+    s32 state;
+    s8* flags;
+
+    if (actionB->visual->flags & 8) {
+        sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
+        state = actorB->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(actionB, 7, 0x2063, 0);
+            flags = (s8*)&actionB->visual->flags;
+            *flags = (*flags & -7) | 2;
+        }
+        state = actionB->flags76 & 6;
+        if (state == 2 || state == 4) {
+            actionB->unknown7A =
+                ((SoundFunction)(*(u32*)0x03001038
+                    + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 35);
+            *(u16*)&actionB->unknown7E[0] = 0;
+            flags = (s8*)&actionB->flags79;
+            *flags &= -0x21;
+        }
+        process->update = sub_80C18E4;
+    }
+}
+
+#define field_on_actor_b_complete_animation_11_and_actor_a_sound_a sub_80C26E4
+SEC(sub_80C26E4)
+void field_on_actor_b_complete_animation_11_and_actor_a_sound_a(
+    struct FieldAction* process)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct RuntimeObject* actionA =
+        (struct RuntimeObject*)&runtime->actorA->action;
+    struct FieldActor* actorB = runtime->actorB;
+    struct RuntimeObject* actionB = (struct RuntimeObject*)&actorB->action;
+    s32 state;
+    s8* flags;
+
+    if (actionB->visual->flags & 8) {
+        sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
+        state = actorB->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(actionB, 11, 0x2063, 0);
+            flags = (s8*)&actionB->visual->flags;
+            *flags = (*flags & -7) | 2;
+        }
+        state = actionA->flags76 & 6;
+        if (state == 2 || state == 4) {
+            actionA->unknown7A =
+                ((SoundFunction)(*(u32*)0x03001038
+                    + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 10);
+            *(u16*)&actionA->unknown7E[0] = 0;
+            flags = (s8*)&actionA->flags79;
+            *flags &= -0x21;
+        }
+        actionA->secondaryTimer &= 0x0FFF;
+        process->update = sub_80C27B0;
+    }
+}
+
+#define field_on_actor_b_complete_animation_11_and_actor_a_sound_b sub_80C33B0
+SEC(sub_80C33B0)
+void field_on_actor_b_complete_animation_11_and_actor_a_sound_b(
+    struct FieldAction* process)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct RuntimeObject* actionA =
+        (struct RuntimeObject*)&runtime->actorA->action;
+    struct FieldActor* actorB = runtime->actorB;
+    struct RuntimeObject* actionB = (struct RuntimeObject*)&actorB->action;
+    s32 state;
+    s8* flags;
+
+    if (actionB->visual->flags & 8) {
+        sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
+        state = actorB->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(actionB, 11, 0x2063, 0);
+            flags = (s8*)&actionB->visual->flags;
+            *flags = (*flags & -7) | 2;
+        }
+        state = actionA->flags76 & 6;
+        if (state == 2 || state == 4) {
+            actionA->unknown7A =
+                ((SoundFunction)(*(u32*)0x03001038
+                    + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 10);
+            *(u16*)&actionA->unknown7E[0] = 0;
+            flags = (s8*)&actionA->flags79;
+            *flags &= -0x21;
+        }
+        actionA->secondaryTimer &= 0x0FFF;
+        process->update = sub_80C347C;
     }
 }
 
@@ -131,6 +245,69 @@ void field_emit_actor_a_effect_2fe6_and_arm_sound(struct FieldAction* process)
     }
 }
 
+#define field_on_actor_b_complete_animation_10_and_sound_20 sub_80C8BA0
+SEC(sub_80C8BA0)
+void field_on_actor_b_complete_animation_10_and_sound_20(
+    struct FieldAction* process)
+{
+    struct FieldActor* actorB = gFieldRuntime->actorB;
+    struct RuntimeObject* actionB = (struct RuntimeObject*)&actorB->action;
+    s32 state;
+    s8* flags;
+
+    if (actionB->visual->flags & 8) {
+        sound_effect_play(0x88, SOUND_VOLUME_UNCHANGED);
+        state = actorB->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(actionB, 10, 0x2063, 0);
+            flags = (s8*)&actionB->visual->flags;
+            *flags &= -7;
+        }
+        state = actionB->flags76 & 6;
+        if (state == 2 || state == 4) {
+            actionB->unknown7A =
+                ((SoundFunction)(*(u32*)0x03001038
+                    + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 20);
+            *(u16*)&actionB->unknown7E[0] = 0;
+            flags = (s8*)&actionB->flags79;
+            *flags &= -0x21;
+        }
+        actionB->secondaryTimer &= 0x0FFF;
+        process->update = sub_80C8C64;
+    }
+}
+
+#define field_on_actor_b_complete_animation_7_and_sound_35_b sub_80C9384
+SEC(sub_80C9384)
+void field_on_actor_b_complete_animation_7_and_sound_35_b(
+    struct FieldAction* process)
+{
+    struct FieldActor* actorB = gFieldRuntime->actorB;
+    struct RuntimeObject* actionB = (struct RuntimeObject*)&actorB->action;
+    s32 state;
+    s8* flags;
+
+    if (actionB->visual->flags & 8) {
+        sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
+        state = actorB->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(actionB, 7, 0x2063, 0);
+            flags = (s8*)&actionB->visual->flags;
+            *flags = (*flags & -7) | 2;
+        }
+        state = actionB->flags76 & 6;
+        if (state == 2 || state == 4) {
+            actionB->unknown7A =
+                ((SoundFunction)(*(u32*)0x03001038
+                    + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 35);
+            *(u16*)&actionB->unknown7E[0] = 0;
+            flags = (s8*)&actionB->flags79;
+            *flags &= -0x21;
+        }
+        process->update = sub_80C943C;
+    }
+}
+
 #define field_emit_actor_a_effect_1e_then_animation_8 sub_80D2724
 SEC(sub_80D2724)
 void field_emit_actor_a_effect_1e_then_animation_8(struct FieldAction* process)
@@ -156,6 +333,66 @@ void field_emit_actor_a_effect_1e_then_animation_8(struct FieldAction* process)
             *flags = (*flags & -7) | 2;
         }
         process->update = sub_80D27DC;
+    }
+}
+
+#define field_on_actor_a_complete_place_animation_11 sub_80D1FA4
+SEC(sub_80D1FA4)
+void field_on_actor_a_complete_place_animation_11(struct FieldAction* process)
+{
+    struct FieldActor* actorA = gFieldRuntime->actorA;
+    struct RuntimeObject* actionA = (struct RuntimeObject*)&actorA->action;
+    s32 state;
+    s8* flags;
+
+    if (actionA->visual->flags & 8) {
+        state = actorA->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            sub_808843C(actionA,
+                        actionA->positionX / 0x100
+                            + ((struct FieldActorPlacement*)actorA)->displayOffsetX,
+                        actionA->positionY / 0x100
+                            + ((struct FieldActorPlacement*)actorA)->displayOffsetY,
+                        0, -1);
+            sub_8088274(actionA, 0, 0x66);
+        }
+        state = actionA->flags76 & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(actionA, 11, 0x2036, 0);
+            flags = (s8*)&actionA->visual->flags;
+            *flags = (*flags & -7) | 2;
+        }
+        process->update = sub_80D205C;
+    }
+}
+
+#define field_on_actor_a_complete_place_animation_10 sub_80D266C
+SEC(sub_80D266C)
+void field_on_actor_a_complete_place_animation_10(struct FieldAction* process)
+{
+    struct FieldActor* actorA = gFieldRuntime->actorA;
+    struct RuntimeObject* actionA = (struct RuntimeObject*)&actorA->action;
+    s32 state;
+    s8* flags;
+
+    if (actionA->visual->flags & 8) {
+        state = actorA->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            sub_808843C(actionA,
+                        actionA->positionX / 0x100
+                            + ((struct FieldActorPlacement*)actorA)->displayOffsetX,
+                        actionA->positionY / 0x100
+                            + ((struct FieldActorPlacement*)actorA)->displayOffsetY,
+                        0, -1);
+            sub_8088274(actionA, 0, 0x66);
+        }
+        state = actionA->flags76 & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(actionA, 10, 0x2036, 0);
+            flags = (s8*)&actionA->visual->flags;
+            *flags = (*flags & -7) | 2;
+        }
+        process->update = (void (*)(void))sub_80D2724;
     }
 }
 

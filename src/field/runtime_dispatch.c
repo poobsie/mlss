@@ -8,10 +8,15 @@
 
 struct FieldActiveObjectOwner {
     u8 unknown000[8];
-    struct RuntimeObject object;
-    u8 unknown0BC[0x66];
+    u8 object08[0x11A];
     u8 flags122;
 };
+
+static inline struct RuntimeObject* field_active_runtime_object(
+    struct FieldActiveObjectOwner* owner)
+{
+    return (struct RuntimeObject*)owner->object08;
+}
 
 struct FieldDispatchRuntime {
     u8 unknown00[0x0C];
@@ -43,10 +48,10 @@ void field_prepare_active_object_for_flag_80(void)
 
     runtime = FIELD_RUNTIME;
     if (runtime->flags0C & 0x80) {
-        sub_8097F30(&runtime->activeObjectOwner->object);
+        sub_8097F30(field_active_runtime_object(runtime->activeObjectOwner));
         return;
     }
-    sub_80970B8(&runtime->activeObjectOwner->object);
+    sub_80970B8(field_active_runtime_object(runtime->activeObjectOwner));
 }
 
 SEC(field_restore_saved_callback_when_active_flag_clear)
