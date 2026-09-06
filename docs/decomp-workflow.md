@@ -1,5 +1,63 @@
 # Focused matching-decompilation workflow
 
+## Prepare types and run local comparisons
+
+Run the following commands under Unix or WSL from the repository root. Packet creation
+now preprocesses relevant project headers before calling m2c. Automatic selection uses
+bounded textual references to the target and its callees; it is not a complete call graph.
+Choose the subsystem headers explicitly when automatic selection is incomplete or ambiguous:
+
+```sh
+.decomp-tools/venv/bin/python scripts/decomp_workflow.py packet sub_8000000 \
+  --header include/global.h --header include/ui/object.h --output scratch/function.md
+```
+
+Replace the example symbol and headers with the assigned function and its actual interfaces.
+Repeat `--header` for additional headers, or supply an already preprocessed `--context` file.
+Context generation follows header includes with the Makefile's preprocessor flags. Stable
+scratch paths preserve m2c's parsing cache, and changed headers refresh the context. A context
+failure is reported rather than silently discarding type evidence.
+
+Packets include bounded C reference locations and previous rejection evidence. Raw target
+hex is omitted by default; `--include-bytes` restores it for inspection. The default target
+is the frozen reference ROM, not a potentially nonmatching build. The address span may include
+padding and is not a linked function-size measurement.
+
+Use the local runner before spending model turns on mechanical control-flow variations:
+
+```sh
+.decomp-tools/venv/bin/python scripts/decomp_local.py nullsub_1 \
+  --header include/global.h --seconds 60 --max-variants 3
+.decomp-tools/venv/bin/python scripts/decomp_local.py sub_8000000 \
+  scratch/first.c scratch/second.c --seconds 60 --max-variants 2
+```
+
+With no source arguments, the runner tries the default m2c draft, `--no-switches`, and
+`--gotos-only`, skipping identical drafts. These are bounded translation alternatives,
+not random C permutations. With source arguments it tests only those standalone C files.
+Each must define the target as its first emitted function and include its required types.
+The runner reads compiler flags from the Makefile, compiles in a unique scratch directory,
+and resolves external symbols using the frozen reference ELF. It never installs the draft
+in `src/` or changes assembly/linker ownership.
+
+Results distinguish `types_required`, `decompiler_warning`, `error`, `mismatch`, and `span_match`. Unknown m2c
+types stop automatic variants so the worker can supply evidence-backed signatures instead
+of guessing. A wall-clock deadline bounds subprocesses; complete command logs, source,
+target bytes, linked output, disassembly, and a JSON report remain under `scratch/matching/`.
+The compact report gives byte lengths and the first mismatch offset. A span match requires
+equal lengths and equal bytes, including the span's padding. It remains a diagnostic result:
+review the source, integrate in the correct subsystem, verify linked function bytes, and
+run `make decomp-acceptance`. Reference-address scratch linking does not validate the final
+project layout. ARM-mode functions need a suitable separately configured compiler path;
+this runner uses the repository's normal Thumb compilation flags.
+
+Keep a worker on one family and provide its shared interfaces once. Ask a stronger model
+only a specific unresolved type, ownership, or compiler question, with the best draft and
+failed attempts attached. Do not restart broad workflow reviews between pilot packets.
+Compare at least three comparable packets before claiming token savings. Account allowance
+percentages, raw model tokens, and API charges are distinct measurements; record each only
+when it is actually available, including rejected work and coordination.
+
 The workflow keeps large assembly files out of the model context. It ranks small
 functions and creates a compact evidence packet with the target's assembly callers,
 callees, and neighbors. A packet is a scouting boundary, not permission to turn an

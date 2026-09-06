@@ -93,6 +93,15 @@ previous candidates wait for a single coordinator to transcribe them.
 
 ### Throughput policy
 
+Use `scripts/decomp_workflow.py packet` to prepare type-aware m2c drafts and bounded C
+references. Supply relevant `--header` paths when automatic selection is insufficient.
+Use `scripts/decomp_local.py` under Unix/WSL for bounded scratch compilation of m2c
+alternatives or explicit standalone C variants before spending turns on mechanical
+compiler shaping. Resolve `types_required` and decompiler warnings from evidence;
+do not guess types to force compilation. A local `span_match` is diagnostic only and
+does not replace linked function verification or `make decomp-acceptance`. Keep full
+logs in scratch and inspect the compact mismatch excerpts first.
+
 The default worker task is implementation, not an open-ended subsystem survey.
 
 - Assign a contiguous caller-connected range with 10 to 30 plausible functions. Stop

@@ -270,7 +270,7 @@ def assembly_context(name: str) -> tuple[list[str], list[str]]:
     return sorted(callers), neighbors
 
 
-def m2c_draft(candidate: Candidate, block: str) -> str:
+def m2c_draft(candidate: Candidate, block: str, contexts=(), options=(), timeout=30) -> str:
     executable = ROOT / ".decomp-tools" / "venv" / "bin" / "m2c"
     if not executable.exists():
         return "(m2c unavailable; run scripts/setup-tools.sh)"
@@ -315,8 +315,11 @@ def m2c_draft(candidate: Candidate, block: str) -> str:
         except (OSError, ValueError) as error:
             temporary_path.unlink(missing_ok=True)
             return f"(m2c unavailable through WSL: {error})"
+    for context in contexts:
+        command.extend(["--context", wsl_path(Path(context)) if sys.platform == "win32" else str(context)])
+    command.extend(options)
     try:
-        result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True)
+        result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, timeout=timeout)
     finally:
         temporary_path.unlink(missing_ok=True)
     if result.returncode:
@@ -325,7 +328,24 @@ def m2c_draft(candidate: Candidate, block: str) -> str:
     return result.stdout.strip()
 
 
-def render_packet(name: str, map_name: str, rom_name: str, include_m2c: bool) -> str:
+def c_references(names, limit=12):
+    """Bounded textual references, not a claim of a complete C call graph."""
+    pattern = re.compile(r"\b(?:" + "|".join(map(re.escape, names)) + r")\s*\(")
+    found = []
+    for base in ("include", "src"):
+        for path in sorted((ROOT / base).rglob("*")):
+            if path.suffix not in {".c", ".h"}:
+                continue
+            for number, line in enumerate(path.read_text(errors="replace").splitlines(), 1):
+                if pattern.search(line):
+                    found.append(f"{path.relative_to(ROOT).as_posix()}:{number}: {line.strip()[:180]}")
+                    if len(found) >= limit:
+                        return found
+    return found
+
+
+def render_packet(name: str, map_name: str, rom_name: str, include_m2c: bool,
+                  contexts=(), include_bytes=False) -> str:
     candidate, block = candidate_by_name(name, ROOT / map_name)
     rom_path = ROOT / rom_name
     if not rom_path.exists():
@@ -337,7 +357,13 @@ def render_packet(name: str, map_name: str, rom_name: str, include_m2c: bool) ->
     target = rom[offset : offset + candidate.size].hex(" ")
     calls = sorted(set(CALL.findall(block)))
     callers, neighbors = assembly_context(name)
-    draft = m2c_draft(candidate, block) if include_m2c else "(omitted)"
+    draft = m2c_draft(candidate, block, contexts) if include_m2c else "(omitted)"
+    references = "\n".join(c_references([name] + calls)) or "none found"
+    rejection_path = ROOT / "config/decomp_rejections.json"
+    rejected = json.loads(rejection_path.read_text()).get("entries", []) if rejection_path.exists() else []
+    failures = [entry for entry in rejected if entry.get("symbol") == name]
+    target_description = (f"Target bytes: `{target}`" if include_bytes else
+                          f"Target: `{rom_name}`, offset `0x{offset:X}`, span `{candidate.size}` bytes")
     return f"""# Matching-decompilation packet
 
 Function: `{candidate.name}`
@@ -347,7 +373,15 @@ Source: `{candidate.source}:{candidate.start_line}`
 Assembly callers: `{', '.join(callers) if callers else 'none found'}`
 Callees: `{', '.join(calls) if calls else 'none'}`
 Adjacent functions: `{', '.join(neighbors) if neighbors else 'none'}`
-Target bytes: `{target}`
+{target_description}
+Context files: `{', '.join(str(path) for path in contexts) or 'none supplied'}`
+Previous rejection: `{json.dumps(failures) if failures else 'none recorded'}`
+
+## C references (bounded textual matches)
+
+```text
+{references}
+```
 
 ## Assembly
 
@@ -363,19 +397,11 @@ Target bytes: `{target}`
 
 ## Contract
 
-Matching and detangling use one progressive pipeline. Inspect enough callers, callees,
-adjacent functions, shared data, and existing C interfaces to establish a defensible
-subsystem and typed boundary, then implement. Do not keep surveying after that boundary
-is actionable. Use the canonical source file and header; do not create a root-level
-holding file. Keep an address-based name or checked `field_XX` member when the available
-evidence does not support a semantic name, and record that uncertainty explicitly.
-
-The assigned address range is the write boundary. If a caller-connected family is
-needed to recover a sound interface, report the proposed expansion instead of
-editing outside that boundary. Compile with the repository's pinned agbcc, compare
-the linked bytes against the target bytes above, and reject any mismatch. A raw m2c
-translation or an exact function in an unclassified file is incomplete. A semantic
-rename is not required when an honest structural name is the strongest supported result.
+Follow AGENTS.md and docs/decomp-workflow.md. Implement within the assigned boundary,
+reuse canonical interfaces, and retain honest unknown names. Use decomp_local.py for
+bounded scratch comparisons. A span match is diagnostic; integration still requires
+exact linked functions and the full ROM acceptance gate. Stop after two informed
+shaping failures and preserve the candidate and mismatch.
 
 Report: functions, subsystem, evidence, semantic_names, retained_unknowns,
 shared_interfaces, exact_match, byte_count, changed_files, and follow_up.
@@ -406,7 +432,9 @@ def scan_command(args: argparse.Namespace) -> None:
 
 
 def packet_command(args: argparse.Namespace) -> None:
-    packet = render_packet(args.function, args.map, args.rom, not args.no_m2c)
+    contexts = prepare_contexts(args)
+    packet = render_packet(args.function, args.map, args.rom, not args.no_m2c,
+                           contexts, args.include_bytes)
     if args.output:
         output = ROOT / args.output
         output.parent.mkdir(parents=True, exist_ok=True)
@@ -418,7 +446,8 @@ def packet_command(args: argparse.Namespace) -> None:
 
 def benchmark_command(args: argparse.Namespace) -> None:
     candidate, _ = candidate_by_name(args.function, ROOT / args.map)
-    packet = render_packet(args.function, args.map, args.rom, not args.no_m2c)
+    packet = render_packet(args.function, args.map, args.rom, not args.no_m2c,
+                           prepare_contexts(args), args.include_bytes)
     full_source = (ROOT / candidate.source).read_text(encoding="utf-8", errors="replace")
     source_lines = full_source.splitlines(keepends=True)
     half_window = args.window_lines // 2
@@ -458,6 +487,30 @@ def benchmark_command(args: argparse.Namespace) -> None:
         print(f"Window reduction:  {window_reduction:.4f}%")
 
 
+def inferred_headers(name, block):
+    refs = c_references([name] + sorted(set(CALL.findall(block))), limit=40)
+    headers = sorted({ref.split(":", 1)[0] for ref in refs if ref.startswith("include/")})
+    return ["include/global.h"] + [path for path in headers if path != "include/global.h"]
+
+
+def prepare_contexts(args):
+    contexts = [ROOT / path for path in args.context]
+    if args.no_m2c or contexts:
+        return contexts
+    headers = args.header
+    if not headers:
+        candidate, block = candidate_by_name(args.function, ROOT / args.map)
+        headers = inferred_headers(candidate.name, block)
+    command = ["python3", "scripts/decomp_context.py", *headers]
+    if sys.platform == "win32":
+        command = ["wsl", "--", *command]
+    result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, timeout=40)
+    if result.returncode:
+        raise SystemExit("Context preparation failed; select narrower --header inputs or supply --context:\n"
+                         + result.stderr[-1500:])
+    return [ROOT / result.stdout.strip()]
+
+
 def parser() -> argparse.ArgumentParser:
     result = argparse.ArgumentParser(description=__doc__)
     subparsers = result.add_subparsers(dest="command", required=True)
@@ -475,18 +528,24 @@ def parser() -> argparse.ArgumentParser:
     packet = subparsers.add_parser("packet", help="emit one compact worker packet")
     packet.add_argument("function")
     packet.add_argument("--map", default="mlss.map")
-    packet.add_argument("--rom", default="mlss.gba")
+    packet.add_argument("--rom", default=".decomp-tools/reference/mlss.gba")
     packet.add_argument("--output")
     packet.add_argument("--no-m2c", action="store_true")
+    packet.add_argument("--context", action="append", default=[])
+    packet.add_argument("--header", action="append", default=[])
+    packet.add_argument("--include-bytes", action="store_true")
     packet.set_defaults(handler=packet_command)
 
     benchmark = subparsers.add_parser("benchmark", help="measure packet token reduction")
     benchmark.add_argument("function")
     benchmark.add_argument("--map", default="mlss.map")
-    benchmark.add_argument("--rom", default="mlss.gba")
+    benchmark.add_argument("--rom", default=".decomp-tools/reference/mlss.gba")
     benchmark.add_argument("--encoding", default="o200k_base")
     benchmark.add_argument("--window-lines", type=int, default=200)
     benchmark.add_argument("--no-m2c", action="store_true")
+    benchmark.add_argument("--context", action="append", default=[])
+    benchmark.add_argument("--header", action="append", default=[])
+    benchmark.add_argument("--include-bytes", action="store_true")
     benchmark.add_argument("--json", action="store_true")
     benchmark.set_defaults(handler=benchmark_command)
     return result

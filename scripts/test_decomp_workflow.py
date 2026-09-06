@@ -2,6 +2,7 @@
 
 import unittest
 import tempfile
+from dataclasses import replace
 from pathlib import Path
 
 from decomp_workflow import (
@@ -12,6 +13,7 @@ from decomp_workflow import (
     family_candidates,
     git_tracked_assembly,
     parse_rejections,
+    m2c_draft,
     render_packet,
     token_count,
 )
@@ -30,7 +32,7 @@ class DecompWorkflowTest(unittest.TestCase):
 
     def test_packet_contains_exact_rom_bytes(self):
         candidate, _ = candidate_by_name(self.candidate.name, ROOT / "mlss.map")
-        packet = render_packet(candidate.name, "mlss.map", "mlss.gba", False)
+        packet = render_packet(candidate.name, "mlss.map", "mlss.gba", False, include_bytes=True)
         rom = (ROOT / "mlss.gba").read_bytes()
         offset = candidate.address - 0x08000000
         expected = rom[offset : offset + candidate.size].hex(" ")
@@ -38,11 +40,21 @@ class DecompWorkflowTest(unittest.TestCase):
 
     def test_packet_requires_decomp_time_detangling(self):
         packet = render_packet(self.candidate.name, "mlss.map", "mlss.gba", False)
-        self.assertIn("Matching and detangling use one progressive pipeline", packet)
+        self.assertIn("Follow AGENTS.md and docs/decomp-workflow.md", packet)
         self.assertIn("Assembly callers:", packet)
         self.assertIn("Adjacent functions:", packet)
         self.assertIn("subsystem, evidence, semantic_names, retained_unknowns", packet)
         self.assertNotIn("Write clean C for this function only", packet)
+
+    def test_m2c_uses_recovered_callback_signature(self):
+        candidate = replace(self.candidate, name="context_callback_fixture")
+        block = "\tthumb_func_start context_callback_fixture\ncontext_callback_fixture:\n\tbx r0\n"
+        with tempfile.TemporaryDirectory(dir=ROOT / "scratch") as directory:
+            context = Path(directory) / "context.c"
+            context.write_text("void context_callback_fixture(void (*callback)(void));\n")
+            draft = m2c_draft(candidate, block, [context])
+            self.assertNotIn("M2C_UNK", draft)
+            self.assertIn("void context_callback_fixture", draft)
 
     def test_packet_is_smaller_than_local_context(self):
         candidate, _ = candidate_by_name(self.candidate.name, ROOT / "mlss.map")
