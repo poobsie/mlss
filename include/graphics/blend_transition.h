@@ -15,6 +15,7 @@ struct GraphicsBlendTransition {
 #define graphics_blend_transition_is_complete sub_8134B24
 #define graphics_begin_blend_transition sub_8134B38
 #define graphics_destroy_blend_transition sub_8134B70
+#define graphics_interpolate_blend_value sub_8134BD0
 
 void graphics_initialize_blend_transition_default(
     struct GraphicsBlendTransition* transition);
@@ -24,5 +25,7 @@ void graphics_begin_blend_transition(
     struct GraphicsBlendTransition* transition, u16 mode, u16 target);
 void graphics_destroy_blend_transition(
     struct GraphicsBlendTransition* transition, u32 flags);
+s32 graphics_interpolate_blend_value(
+    s32 start, s32 end, s32 duration, s32 step);
 
 #endif

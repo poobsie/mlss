@@ -2706,6 +2706,8 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_8134B64);
         src/graphics/blend_transition.o(.text.middle.sub_8134B70);
         asm/text08057568.o(.text.middle_after_sub_8134B70);
+        src/graphics/blend_transition.o(.text.middle.sub_8134BD0);
+        asm/text08057568.o(.text.middle_after_sub_8134BD0);
         src/object/tree_traversal.o(.text.child_actions.sub_8135F20);
         asm/text08057568.o(.text.child_actions_after_sub_8135F20);
         src/math/vector3.o(.text.middle.sub_8136688);

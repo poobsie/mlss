@@ -8,6 +8,10 @@ enum {
 
 s32 sub_8134AA8(struct GraphicsBlendTransition* transition);
 void free_heap_8018DA8(void* allocation);
+extern u8 loc_8198220[];
+extern u8 loc_819832C[];
+
+typedef s32 (*GraphicsDivideFunction)(s32 dividend, s32 divisor);
 
 SEC(sub_8134B24)
 s32 graphics_blend_transition_is_complete(
@@ -48,4 +52,22 @@ void graphics_destroy_blend_transition(
     transition->descriptor = (const void*)0x08CDC460;
     if (flags & 1)
         free_heap_8018DA8(transition);
+}
+
+SEC(sub_8134BD0)
+s32 graphics_interpolate_blend_value(
+    s32 start, s32 end, s32 duration, s32 step)
+{
+    GraphicsDivideFunction divide;
+
+    if (duration <= 0)
+        duration = 1;
+    if (step < 0)
+        step = 0;
+    if (step >= duration)
+        step = duration;
+
+    divide = (GraphicsDivideFunction)(*(u8**)0x03001038
+                                      + (loc_819832C - loc_8198220));
+    return start + divide((end - start) * step, duration);
 }

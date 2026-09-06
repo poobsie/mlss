@@ -144,6 +144,11 @@ offset `0x6C` and `0x2800` bytes at offset `0x74`, runs the three established
 resource-building passes, then releases both scratch blocks. Their formats stay
 offset-named because those passes remain coupled assembly routines.
 
+The blend update path uses a typed linear interpolation helper. It normalizes a
+nonpositive duration, clamps the requested step to the transition interval, and
+uses the relocated signed-division routine to calculate the current blend
+coefficient.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
