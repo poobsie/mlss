@@ -2266,6 +2266,8 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80FAEEC);
         src/field/resource_loader.o(.text.misc_helpers_03.sub_80FAEFC);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80FAEFC);
+        src/field/script_ui_commands.o(.text.small_functions_01.sub_80FAF28);
+        asm/text08057568.o(.text.misc_helpers_03_after_sub_80FAF28);
         src/field/script_ui_commands.o(.text.small_functions_01.sub_80FAF8C);
         asm/text08057568.o(.text.field_script_ui_after_sub_80FAF8C);
         src/field/resource_loader.o(.text.small_functions_12.sub_80FAFD8);

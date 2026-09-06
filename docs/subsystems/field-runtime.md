@@ -428,6 +428,13 @@ the start of the shared script/UI state using the runtime memory-fill service.
 The record stride and ownership are established; the individual channel roles
 remain unresolved.
 
+The adjacent `field_script_clear_channel_sprites_and_records` lifecycle wrapper
+first checks bit zero of shared byte `0x9A3`. When set, it clears byte `0x20` on
+each attached visual in the display owner's twelve-entry, `0x40`-byte record
+array, then resets all thirteen channel records. The visual byte is retained as
+`parameter20`; neither its presentation meaning nor the shared flag's trigger
+has enough consumer evidence for a narrower name.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or

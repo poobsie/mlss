@@ -296907,8 +296907,9 @@ _080FAEF8: .4byte 0x000009A1
 	.endif
 	.section .text.after_middle_sub_80FAEEC
 	.section .text.misc_helpers_03_after_sub_80FAEFC, "ax", %progbits
-	thumb_func_start sub_80FAF28
-sub_80FAF28:
+	.section .discard.field_script_clear_channel_sprites_and_records, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FAF28
+asm_discard_sub_80FAF28:
 	push {r4, lr}
 	adds r3, r0, #0x0
 	ldr r0, [r3, #0x24]
@@ -296949,6 +296950,7 @@ _080FAF62:
 	.byte 0x00, 0x00
 _080FAF70: .4byte 0x000009A3
 _080FAF74: .4byte 0xFFFF0000
+	.section .text.misc_helpers_03_after_sub_80FAF28, "ax", %progbits
 	.byte 0x10, 0xB5, 0x04, 0x1C, 0xFF, 0xF7, 0x5A, 0xFF, 0x20, 0x1C, 0xFE, 0xF7, 0x91, 0xFA, 0x10, 0xBC
 	.byte 0x01, 0xBC, 0x00, 0x47
 	.section .discard.field_script_ui_sub_80FAF8C, "ax", %progbits

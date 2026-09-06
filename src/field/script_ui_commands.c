@@ -15,9 +15,9 @@ s32 field_script_configure_screen_layer(
     struct FieldScriptUiRuntime* runtime, void* state, const u32* arguments)
 {
     if (arguments[0] & 1) {
-        screen_configure_layer20_default_and_mark_156(runtime->displayOwner14);
+        screen_configure_layer20_default_and_mark_156((void*)runtime->displayOwner14);
     } else {
-        screen_reset_layer20_and_copy_control(runtime->displayOwner14);
+        screen_reset_layer20_and_copy_control((void*)runtime->displayOwner14);
     }
     return 1;
 }
@@ -31,10 +31,10 @@ s32 field_script_set_owned_sprite_visibility(
 {
     switch (arguments[0]) {
     case 0:
-        ui_hide_owned_sprite(runtime->displayOwner14);
+        ui_hide_owned_sprite((void*)runtime->displayOwner14);
         break;
     case 1:
-        ui_show_owned_sprite(runtime->displayOwner14);
+        ui_show_owned_sprite((void*)runtime->displayOwner14);
         break;
     }
     return 1;
@@ -102,4 +102,25 @@ void field_script_clear_channel_records(struct FieldScriptUiRuntime* runtime)
         record += 0xA8;
         remaining--;
     } while (remaining > 0);
+}
+
+SEC(sub_80FAF28)
+void field_script_clear_channel_sprites_and_records(
+    struct FieldScriptUiRuntime* runtime)
+{
+    if (runtime->sharedState24->channelFlags9A3 & 1) {
+        s16 remaining = 12;
+        struct FieldScriptUiSpriteRecord* record =
+            runtime->displayOwner14->records158;
+
+        do {
+            if (record->visual != NULL) {
+                record->visual->parameter20 = 0;
+            }
+            record++;
+            remaining--;
+        } while (remaining > 0);
+    }
+
+    field_script_clear_channel_records(runtime);
 }
