@@ -67,6 +67,8 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_system_helpers_801AE1C);
         src/battle/buffer_sync.o(.text.early_code_helpers.sub_801AF50);
         asm/text0801A548.o(.text.after_early_code_helpers_801AF50);
+        src/runtime/input_sound_mask.o(.text.runtime_input_sound.sub_801B0AC);
+        asm/text0801A548.o(.text.after_runtime_input_sound_sub_801B0AC);
         src/math/interpolation.o(.text.early_code_helpers.sub_801B748);
         asm/text0801A548.o(.text.after_early_code_helpers_801B748);
         src/math/interpolation.o(.text.sub_801B75C);
@@ -202,6 +204,8 @@ SECTIONS
         asm/text08057568.o(.text.field_map_after_destroy);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805C73C);
         asm/text08057568.o(.text.small_functions_02_after_sub_805C73C);
+        src/graphics/process_state.o(.text.graphics_process_state.sub_805CCC0);
+        asm/text08057568.o(.text.after_graphics_process_sub_805CCC0);
         src/graphics/process_state.o(.text.misc_helpers_01.sub_805CCD8);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_805CCD8);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805DA1C);

@@ -48,11 +48,13 @@ struct Process;
 #define graphics_terminate_process_label_at_2 sub_805CCD8
 #define graphics_apply_staging_source sub_8059FE4
 #define graphics_copy_compact_staging_values sub_805A95C
+#define graphics_free_owner_if_requested sub_805CCC0
 
 void graphics_copy_staging_values(struct GraphicsStagingSource* source);
 void graphics_apply_staging_source(struct GraphicsStagingSource* source);
 void graphics_copy_compact_staging_values(
     struct GraphicsCompactStagingSource* source);
+void graphics_free_owner_if_requested(void* owner, s32 flags);
 void graphics_destroy_transfer_process(struct GraphicsProcessState* process, s32 flags);
 void graphics_destroy_vram_process(struct GraphicsProcessState* process, s32 flags);
 void graphics_terminate_process_label_at_2(struct Process* process);

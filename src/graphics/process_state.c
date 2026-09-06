@@ -10,8 +10,8 @@
     __attribute__((section(".text.misc_helpers_02." STRINGIFY(name))))
 #define MISC3_SEC(name) \
     __attribute__((section(".text.misc_helpers_03." STRINGIFY(name))))
-
 void free_heap_8018D9C();
+void free_heap_8018DA8(void* pointer);
 void sub_8029888(s32 channel, s32 value);
 void sub_80184F4(void* address);
 void sub_8058278(struct GraphicsStagingSource* source);
@@ -82,6 +82,14 @@ SEC(sub_805DA1C) void sub_805DA1C(struct GraphicsProcessState* process, s32 flag
     }
     process_remove((struct Process*)process, flags);
 }
+
+SEC(sub_805CCC0) void graphics_free_owner_if_requested(void* owner, s32 flags)
+{
+    if (flags & 1)
+        free_heap_8018DA8(owner);
+}
+const u16 graphics_free_owner_if_requested_padding
+    SEC(sub_805CCC0) = 0;
 
 void graphics_copy_staging_values(struct GraphicsStagingSource* source)
     __attribute__((alias("sub_8059F24")));

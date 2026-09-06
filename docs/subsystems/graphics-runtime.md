@@ -52,6 +52,8 @@ Two position-state initializers now preserve the current value pair and install 
 
 `graphics_display_manager_get_layer_buffer` indexes the display manager's twenty-byte layer records beginning at offset `0x0C` and returns the selected buffer. Existing field-display callers establish the manager and layer ownership; the buffer's narrower rendering format remains unknown.
 
+`graphics_free_owner_if_requested` is the common low-bit destructor leaf used by several graphics-owning objects. Bit zero requests release of the supplied owner through the established heap routine. The owning classes and higher flag bits remain unspecified because this function only proves the conditional ownership rule.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
