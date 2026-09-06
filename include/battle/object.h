@@ -11,7 +11,8 @@ struct BattleDefinitionObject {
 };
 
 struct BattleSprite {
-    u8 unknown00[4];
+    u16 xPosition;
+    u16 yPosition;
     u16 size04;
     u16 size06;
     u8 unknown08[4];
@@ -95,8 +96,12 @@ struct BattleSpriteArrayOwner5 {
 };
 
 struct BattleSpriteArrayOwner9 {
-    void* unknown00;
+    u16 countdown;
+    u16 unknown02;
     struct BattleSprite* sprites[9];
+    s16 delays[9];
+    s16 phases[9];
+    s16 angles[9];
 };
 
 struct BattleValueObject {

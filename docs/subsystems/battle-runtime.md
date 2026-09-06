@@ -41,6 +41,12 @@ The five compact sprite-owner destructors share cleanup shape but not enough cla
 
 The nine-sprite owner now exposes its matching visibility operation. It shows each non-null sprite in the same array later traversed by `battle_destroy_sprite_array9`, which establishes both the array boundary and the nullable ownership contract without assigning a gameplay identity to the container.
 
+`battle_initialize_sprite_array9` now establishes the container's complete typed
+layout. It creates nine sprites, assigns their initial positions and animation
+indices, clears the per-slot delays and angles, seeds staggered phases, and starts
+the shared countdown. The adjacent scale update confirms those field roles but
+remains in assembly because its compiler scheduling did not match exactly.
+
 The large cleanup helpers are deliberately kept separate from `BattleSpriteMotion`. Their observed fields occur at offsets `0x524`, `0x804`, and `0x80C`, and no evidence yet proves that the two large layouts are the same class.
 
 `battle_tick_countdown_1f2a` decrements a signed counter in the large battle-scene runtime and clears the adjacent value at `0x1F28` once the counter becomes negative. Both fields retain offset-bearing names until the code that arms the counter is recovered.

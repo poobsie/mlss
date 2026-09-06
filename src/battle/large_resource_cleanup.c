@@ -8,6 +8,31 @@ void sub_8021308(void* sprite);
 void free_heap_8018D9C(void* resource);
 void free_heap_8018DA8(void* object);
 void sprite_show_8020CBC(struct BattleSprite* sprite);
+struct BattleSprite* sub_8020DD0(s32, s32, s32, s32, s32, s32, s32);
+void sub_801E150(struct BattleSprite*, s32, s32, s32, s32);
+
+SEC(sub_815D8CC)
+struct BattleSpriteArrayOwner9* battle_initialize_sprite_array9(
+    struct BattleSpriteArrayOwner9* object)
+{
+    s32 i;
+
+    for (i = 0; i <= 8; i++) {
+        object->sprites[i] = sub_8020DD0(4, 0x5005, 0, -1, -1, -1, -1);
+        if (i > 3)
+            object->sprites[i]->xPosition = (i + 1) * 16 + 40;
+        else
+            object->sprites[i]->xPosition = i * 16 + 40;
+        object->sprites[i]->yPosition = 60;
+        sub_801E150(object->sprites[i], i + 10, -1, 0, 0);
+        object->delays[i] = 0;
+        object->phases[i] = i * 4 + i;
+        object->angles[i] = 0;
+    }
+    object->countdown = 1000;
+    return object;
+}
+SEC(sub_815D8CC) const u16 battle_initialize_sprite_array9_padding = 0;
 
 SEC(sub_815EA64)
 void battle_show_sprite_array9(struct BattleSpriteArrayOwner9* object)

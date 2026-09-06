@@ -455221,8 +455221,9 @@ _0815D8C6:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_815D8CC
-sub_815D8CC:
+	.section .discard.upper.sub_815D8CC, "ax", %progbits
+	thumb_func_start asm_discard_sub_815D8CC
+asm_discard_sub_815D8CC:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r10
 	mov r6, r9
@@ -455313,6 +455314,7 @@ _0815D924:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.section .text.after_upper_sub_815D8CC, "ax", %progbits
 	thumb_func_start sub_815D980
 sub_815D980:
 	push {r4, r5, r6, r7, lr}
