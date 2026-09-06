@@ -127,11 +127,13 @@ The primary efficiency metric is exact functions per usage percentage point; exa
 per usage point and functions per wall hour are secondary. Sample account usage at the
 start of a work period and after each integrated packet, not after every tool call.
 
-Evaluate a workflow change only after at least three packets and one hour. Promote it
-when exact functions per usage point improves by at least 2x, exact bytes per usage point
-does not fall below 90% of the prior phase, median packet size is at least five functions,
-and acceptance remains perfect. If the sample is too small or usage percentage is too
-coarse, continue the pilot rather than claiming a speedup. Investigate when scouting
+Evaluate a workflow change only after at least three independent packets over at least
+one hour in a comparable measurement window. Promote it only when exactness remains
+perfect, counts and linked function bytes reconcile, and measured output per cost
+improves. Most packets should meet either five exact functions or 256 exact linked bytes;
+the byte threshold is a valid alternative to the function threshold. Historical windows
+without usage data can describe throughput but cannot support a cost-efficiency claim.
+If usage percentage is too coarse, leave cost improvement unresolved. Investigate when scouting
 exceeds 15% of model work, documentation plus integration exceeds 20%, an unchanged
 rejected candidate is retried, or three consecutive candidates in one family fail.
 

@@ -37,6 +37,20 @@
       "required_evidence": "a source form justified by newly recovered blend-update callers"
     },
     {
+      "symbol": "sub_819A9B4",
+      "status": "deferred",
+      "attempts": 1,
+      "mismatch_class": "literal and table-base folding",
+      "required_evidence": "a source form or recovered table type that preserves the separate table-base subtraction"
+    },
+    {
+      "symbol": "sub_819A9DC",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "pointer lifetime and literal scheduling",
+      "required_evidence": "a recovered interface or source form that changes pointer lifetime and literal scheduling"
+    },
+    {
       "symbol": "sub_819B0AC",
       "status": "exhausted",
       "attempts": 2,

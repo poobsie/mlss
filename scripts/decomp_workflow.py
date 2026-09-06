@@ -224,6 +224,11 @@ def selected_candidates(args: argparse.Namespace) -> list[Candidate]:
         raise SystemExit(f"Missing {map_path}. Build the project first.")
     assembly = [ROOT / args.asm] if args.asm else git_tracked_assembly()
     candidates = discover(map_path, assembly)
+    family_name = getattr(args, "family", None)
+    if family_name:
+        candidates = family_candidates(
+            candidates, family_name, getattr(args, "family_size", 20)
+        )
     rejected_names, rejected_addresses = rejected_candidates()
     candidates = [
         item
@@ -231,9 +236,8 @@ def selected_candidates(args: argparse.Namespace) -> list[Candidate]:
         if item.name not in rejected_names and item.address not in rejected_addresses
     ]
     candidates = [item for item in candidates if item.size <= args.max_bytes]
-    family_name = getattr(args, "family", None)
     if family_name:
-        return family_candidates(candidates, family_name, getattr(args, "family_size", 20))
+        return candidates
     candidates.sort(key=lambda item: (item.score, item.size, item.address))
     return candidates[: args.limit]
 
@@ -338,7 +342,7 @@ def render_packet(name: str, map_name: str, rom_name: str, include_m2c: bool) ->
 
 Function: `{candidate.name}`
 Address: `{candidate.address_hex}`
-Size: `{candidate.size}` bytes
+Address span: `{candidate.size}` bytes
 Source: `{candidate.source}:{candidate.start_line}`
 Assembly callers: `{', '.join(callers) if callers else 'none found'}`
 Callees: `{', '.join(calls) if calls else 'none'}`
@@ -393,7 +397,7 @@ def scan_command(args: argparse.Namespace) -> None:
     if args.json:
         print(json.dumps([{**asdict(item), "address_hex": item.address_hex} for item in candidates], indent=2))
         return
-    print("address     bytes score repeats calls branches source:line function")
+    print("address      span score repeats calls branches source:line function")
     for item in candidates:
         print(
             f"{item.address_hex} {item.size:5d} {item.score:5d} {item.repeated_shape:7d} "

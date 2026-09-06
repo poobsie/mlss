@@ -99,7 +99,8 @@ The tracked telemetry ledger provides prospective evidence for workflow changes:
 
 ```sh
 python3 scripts/decomp_telemetry.py snapshot --phase batched-v1 \
-  --functions 2157 --matched-bytes 125442 --accepted 8 --attempted 12 \
+  --functions 2157 --matched-bytes 125442 --accepted 8 --accepted-bytes 632 \
+  --attempted 12 \
   --rejected 4 --model gpt-5.6-luna --wall-minutes 30 \
   --gate-seconds 10 --coordination-minutes 3 --usage-used-percent 1
 python3 scripts/decomp_telemetry.py report
@@ -108,6 +109,11 @@ python3 scripts/decomp_telemetry.py report
 Supply the live values printed by the acceptance and progress commands. When available,
 also record the account usage reset timestamp so usage deltas are never compared across
 weekly windows. Record exhausted candidates once:
+
+Scanner sizes are address spans to the next mapped symbol. They are useful for assignment
+boundaries, but can include unnamed or non-function bytes. Record accepted bytes from the
+linked ELF `FUNC` sizes and require the packet total to match the integrated matched `.text`
+delta.
 
 ```sh
 python3 scripts/decomp_telemetry.py reject sub_8000000 \

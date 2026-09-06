@@ -14,6 +14,8 @@ class DecompTelemetryTest(unittest.TestCase):
             "matched_text_bytes": 1000,
             "usage_used_percent": 10,
             "usage_resets_at": 123,
+            "usage_limit_id": "codex",
+            "usage_window_minutes": 10080,
         }
         last = {
             "timestamp": "2026-09-06T18:00:00Z",
@@ -21,6 +23,8 @@ class DecompTelemetryTest(unittest.TestCase):
             "matched_text_bytes": 1800,
             "usage_used_percent": 15,
             "usage_resets_at": 123,
+            "usage_limit_id": "codex",
+            "usage_window_minutes": 10080,
         }
         measured = rate(first, last)
         self.assertIsNotNone(measured)
@@ -35,6 +39,8 @@ class DecompTelemetryTest(unittest.TestCase):
             "matched_text_bytes": 1000,
             "usage_used_percent": 90,
             "usage_resets_at": 123,
+            "usage_limit_id": "codex",
+            "usage_window_minutes": 10080,
         }
         last = {
             "timestamp": "2026-09-06T17:00:00Z",
@@ -42,6 +48,24 @@ class DecompTelemetryTest(unittest.TestCase):
             "matched_text_bytes": 1200,
             "usage_used_percent": 2,
             "usage_resets_at": 456,
+            "usage_limit_id": "codex",
+            "usage_window_minutes": 10080,
+        }
+        measured = rate(first, last)
+        self.assertNotIn("functions_per_usage_percent", measured)
+
+    def test_rate_ignores_usage_without_window_identity(self):
+        first = {
+            "timestamp": "2026-09-06T16:00:00Z",
+            "functions": 100,
+            "matched_text_bytes": 1000,
+            "usage_used_percent": 10,
+        }
+        last = {
+            "timestamp": "2026-09-06T17:00:00Z",
+            "functions": 110,
+            "matched_text_bytes": 1200,
+            "usage_used_percent": 11,
         }
         measured = rate(first, last)
         self.assertNotIn("functions_per_usage_percent", measured)

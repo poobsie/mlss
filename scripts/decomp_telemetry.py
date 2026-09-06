@@ -41,14 +41,30 @@ def parse_timestamp(value: str) -> datetime:
 def record_snapshot(args: argparse.Namespace) -> None:
     if not 0 <= args.functions <= TOTAL_FUNCTIONS:
         raise SystemExit(f"functions must be between 0 and {TOTAL_FUNCTIONS}")
+    timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    records = read_jsonl(METRICS)
+    previous = next(
+        (item for item in reversed(records) if item.get("phase") == args.phase), None
+    )
+    matched_delta = (
+        args.matched_bytes - previous["matched_text_bytes"] if previous else 0
+    )
+    if args.accepted_bytes is not None and previous and args.accepted_bytes != matched_delta:
+        raise SystemExit(
+            f"accepted bytes ({args.accepted_bytes}) do not reconcile with matched .text "
+            f"delta ({matched_delta})"
+        )
+    accepted_bytes = args.accepted_bytes if args.accepted_bytes is not None else matched_delta
     record = {
-        "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "timestamp": timestamp,
+        "integrated_at": args.integrated_at or timestamp,
         "commit": current_commit(),
         "phase": args.phase,
         "functions": args.functions,
         "total_functions": TOTAL_FUNCTIONS,
         "matched_text_bytes": args.matched_bytes,
         "accepted_candidates": args.accepted,
+        "accepted_bytes": accepted_bytes,
         "attempted_candidates": args.attempted,
         "rejected_candidates": args.rejected,
         "model": args.model,
@@ -60,6 +76,14 @@ def record_snapshot(args: argparse.Namespace) -> None:
         record["usage_used_percent"] = args.usage_used_percent
     if args.usage_resets_at is not None:
         record["usage_resets_at"] = args.usage_resets_at
+    if args.usage_limit_id is not None:
+        record["usage_limit_id"] = args.usage_limit_id
+    if args.usage_window_minutes is not None:
+        record["usage_window_minutes"] = args.usage_window_minutes
+    if args.started_at is not None:
+        record["started_at"] = args.started_at
+    if args.completed_at is not None:
+        record["completed_at"] = args.completed_at
     if args.note:
         record["note"] = args.note
     write_jsonl_record(METRICS, record)
@@ -78,7 +102,12 @@ def rate(first: dict, last: dict) -> dict[str, float] | None:
     result["functions_per_hour"] = result["functions"] / hours
     result["bytes_per_hour"] = result["bytes"] / hours
     if (
-        first.get("usage_resets_at") == last.get("usage_resets_at")
+        first.get("usage_resets_at") is not None
+        and first.get("usage_resets_at") == last.get("usage_resets_at")
+        and first.get("usage_limit_id") is not None
+        and first.get("usage_limit_id") == last.get("usage_limit_id")
+        and first.get("usage_window_minutes") is not None
+        and first.get("usage_window_minutes") == last.get("usage_window_minutes")
         and first.get("usage_used_percent") is not None
         and last.get("usage_used_percent") is not None
     ):
@@ -168,6 +197,7 @@ def parser() -> argparse.ArgumentParser:
     snapshot.add_argument("--functions", type=int, required=True)
     snapshot.add_argument("--matched-bytes", type=int, required=True)
     snapshot.add_argument("--accepted", type=int, default=0)
+    snapshot.add_argument("--accepted-bytes", type=int)
     snapshot.add_argument("--attempted", type=int, default=0)
     snapshot.add_argument("--rejected", type=int, default=0)
     snapshot.add_argument("--model", default="unspecified")
@@ -176,6 +206,11 @@ def parser() -> argparse.ArgumentParser:
     snapshot.add_argument("--coordination-minutes", type=float, default=0)
     snapshot.add_argument("--usage-used-percent", type=float)
     snapshot.add_argument("--usage-resets-at", type=int)
+    snapshot.add_argument("--usage-limit-id")
+    snapshot.add_argument("--usage-window-minutes", type=int)
+    snapshot.add_argument("--started-at")
+    snapshot.add_argument("--completed-at")
+    snapshot.add_argument("--integrated-at")
     snapshot.add_argument("--note")
     snapshot.set_defaults(func=record_snapshot)
 
