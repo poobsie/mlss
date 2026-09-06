@@ -97947,108 +97947,9 @@ _0808FCD4: .4byte runtime_object_finish_action
 	.section .text.jump_setups_after_sub_808FE50, "ax", %progbits
 	.section .text.jump_setups_alternate_after_sub_808FEB4, "ax", %progbits
 	.section .text.object_vertical_motion_after_sub_808FF18, "ax", %progbits
-	thumb_func_start sub_808FF88
-sub_808FF88:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r2, r4, #0x0
-	adds r2, #0xB2
-	adds r0, #0x94
-	ldr r1, [r0, #0x00]
-	ldrh r0, [r2, #0x00]
-	adds r0, r0, r1
-	strh r0, [r2, #0x00]
-	movs r0, #0x00
-	ldsh r1, [r2, r0]
-	ldr r0, [r4, #0x40]
-	adds r0, r0, r1
-	str r0, [r4, #0x18]
-	movs r1, #0x00
-	ldsh r0, [r2, r1]
-	cmp r0, #0x00
-	bgt _0808FFEC
-	ldr r0, _0808FFF4 @ =0x08090051
-	str r0, [r4, #0x4C]
-	adds r0, r4, #0x0
-	bl sub_808CAC4
-	lsls r0, r0, #0x18
-	cmp r0, #0x00
-	bne _0808FFEC
-	movs r2, #0x80
-	lsls r2, r2, #0x06
-	adds r0, r4, #0x0
-	movs r1, #0x06
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r4, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x02
-	orrs r0, r1
-	strb r0, [r2, #0x12]
-	adds r2, r4, #0x0
-	adds r2, #0x77
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x08
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x01
-	orrs r0, r1
-	strb r0, [r2, #0x00]
-_0808FFEC:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0808FFF4: .4byte sub_8090050
+	.section .text.object_vertical_motion_after_sub_808FF88, "ax", %progbits
 	.section .text.landing_transitions_after_sub_808FFF8, "ax", %progbits
-	thumb_func_start sub_8090050
-sub_8090050:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r2, r4, #0x0
-	adds r2, #0xB2
-	adds r0, #0x94
-	ldr r1, [r0, #0x00]
-	ldrh r0, [r2, #0x00]
-	adds r0, r0, r1
-	strh r0, [r2, #0x00]
-	movs r1, #0x00
-	ldsh r0, [r2, r1]
-	ldr r1, [r4, #0x40]
-	adds r1, r1, r0
-	str r1, [r4, #0x18]
-	ldr r0, [r4, #0x28]
-	adds r0, #0xE0
-	ldr r0, [r0, #0x00]
-	cmp r1, r0
-	bgt _0809009C
-	subs r2, #0x3B
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x08
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x00]
-	ldr r0, [r4, #0x28]
-	adds r0, #0xE0
-	ldr r0, [r0, #0x00]
-	str r0, [r4, #0x18]
-	movs r2, #0x80
-	lsls r2, r2, #0x06
-	adds r0, r4, #0x0
-	movs r1, #0x08
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r0, _080900A4 @ =0x080900D5
-	str r0, [r4, #0x4C]
-_0809009C:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_080900A4: .4byte sub_80900D4
+	.section .text.landing_transitions_alternate_after_sub_8090050, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_80900A8, "ax", %progbits
 	thumb_func_start sub_80900D4
 sub_80900D4:
@@ -98247,62 +98148,7 @@ _08090348: .4byte sub_809034C
 	.section .text.jump_setups_after_sub_8090460, "ax", %progbits
 	.section .text.jump_setups_alternate_after_sub_80904C4, "ax", %progbits
 	.section .text.object_vertical_motion_after_sub_8090528, "ax", %progbits
-	thumb_func_start sub_8090598
-sub_8090598:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r2, r4, #0x0
-	adds r2, #0xB2
-	adds r0, #0x94
-	ldr r1, [r0, #0x00]
-	ldrh r0, [r2, #0x00]
-	adds r0, r0, r1
-	strh r0, [r2, #0x00]
-	movs r0, #0x00
-	ldsh r1, [r2, r0]
-	ldr r0, [r4, #0x40]
-	adds r0, r0, r1
-	str r0, [r4, #0x18]
-	movs r1, #0x00
-	ldsh r0, [r2, r1]
-	cmp r0, #0x00
-	bgt _080905FC
-	ldr r0, _08090604 @ =0x08090661
-	str r0, [r4, #0x4C]
-	adds r0, r4, #0x0
-	bl sub_808CAC4
-	lsls r0, r0, #0x18
-	cmp r0, #0x00
-	bne _080905FC
-	movs r2, #0x80
-	lsls r2, r2, #0x06
-	adds r0, r4, #0x0
-	movs r1, #0x06
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r4, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x02
-	orrs r0, r1
-	strb r0, [r2, #0x12]
-	adds r2, r4, #0x0
-	adds r2, #0x77
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x08
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x01
-	orrs r0, r1
-	strb r0, [r2, #0x00]
-_080905FC:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08090604: .4byte sub_8090660
+	.section .text.object_vertical_motion_after_sub_8090598, "ax", %progbits
 	.section .text.landing_transitions_after_sub_8090608, "ax", %progbits
 	.section .text.landing_transitions_alternate_after_sub_8090660, "ax", %progbits
 	.section .text.object_flag_actions_after_sub_80906B8, "ax", %progbits

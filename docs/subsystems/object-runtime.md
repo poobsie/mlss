@@ -466,6 +466,12 @@ integration and animation-6 transition used by the established jump family, then
 continues to its existing `0x2000` landing callback. The cleanup gate clears the
 owner's pending flag and finishes on action flags or after its short timer expires.
 
+Two later alternate-command jump branches now share the typed vertical-motion
+implementation. Each integrates velocity and acceleration, switches to animation
+6 during descent when the shared transition helper remains idle, and enters its
+established landing continuation. One paired landing callback is also in C; it
+clamps to the state's floor height and starts animation 8 with command `0x2000`.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

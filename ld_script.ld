@@ -1283,8 +1283,12 @@ SECTIONS
         src/object/jump_setups_alternate.o(.text.jump_setups_alternate.sub_808FEB4);
         src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_808FF18);
         asm/text08057568.o(.text.object_vertical_motion_after_sub_808FF18);
+        src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_808FF88);
+        asm/text08057568.o(.text.object_vertical_motion_after_sub_808FF88);
         src/object/landing_transitions.o(.text.landing_transitions.sub_808FFF8);
         asm/text08057568.o(.text.landing_transitions_after_sub_808FFF8);
+        src/object/landing_transitions_alternate.o(.text.landing_transitions_alternate.sub_8090050);
+        asm/text08057568.o(.text.landing_transitions_alternate_after_sub_8090050);
         src/object/completion_actions.o(.text.misc_helpers_03.sub_80900A8);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80900A8);
         src/object/completion_actions.o(.text.object_flag_actions.sub_809034C);
@@ -1302,6 +1306,8 @@ SECTIONS
         src/object/jump_setups_alternate.o(.text.jump_setups_alternate.sub_80904C4);
         src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_8090528);
         asm/text08057568.o(.text.object_vertical_motion_after_sub_8090528);
+        src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_8090598);
+        asm/text08057568.o(.text.object_vertical_motion_after_sub_8090598);
         src/object/landing_transitions.o(.text.landing_transitions.sub_8090608);
         asm/text08057568.o(.text.landing_transitions_after_sub_8090608);
         src/object/landing_transitions_alternate.o(.text.landing_transitions_alternate.sub_8090660);

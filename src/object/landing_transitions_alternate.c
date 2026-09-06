@@ -1,5 +1,5 @@
 #include "global.h"
-#include "object/runtime_object.h"
+#include "object/vertical_motion_callbacks.h"
 
 #define SEC(name) __attribute__((section(".text.landing_transitions_alternate." #name)))
 
@@ -37,6 +37,7 @@ extern void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
     }
 
 DEFINE_LANDING_ALT(sub_808F054, sub_808F0D8)
+DEFINE_LANDING_ALT(object_land_on_state_floor_with_alternate_animation_8_second_path, sub_80900D4)
 DEFINE_LANDING_ALT(sub_8090660, sub_80906E4)
 DEFINE_LANDING_ALT(sub_80909CC, sub_8090A50)
 DEFINE_LANDING_ALT(sub_8090DC8, sub_8090E4C)
