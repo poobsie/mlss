@@ -116,56 +116,106 @@ def raw_byte_count(block: str) -> int:
 
 def discover(map_path: Path, assembly: list[Path]) -> list[Candidate]:
     addresses = map_addresses(map_path)
-    parsed: list[tuple[Path, str, str, int, int, str]] = []
+    parsed: list[tuple[Path, str, str, int, int, str, int, int | None]] = []
     shape_counts: dict[str, int] = {}
     for path in assembly:
-        for name, mode, start, end, block in function_blocks(path):
+        all_blocks = function_blocks(path)
+        block_addresses = [addresses.get(block[0]) for block in all_blocks]
+        for index, (name, mode, start, end, block) in enumerate(all_blocks):
+            address = block_addresses[index]
+            if address is None:
+                continue
+            next_addresses = [item for item in block_addresses[index + 1:] if item is not None and item > address]
+            if next_addresses:
+                boundary = min(next_addresses)
+            else:
+                mapped_after = [item for item in addresses.values() if item > address]
+                boundary = min(mapped_after) if mapped_after else None
             if (
                 name not in addresses
                 or SWI.search(block)
                 or name.startswith(("_call_via_", "__"))
             ):
                 continue
-            parsed.append((path, name, mode, start, end, block))
+            parsed.append((path, name, mode, start, end, block, address, boundary))
             block_shape = shape(block)
             shape_counts[block_shape] = shape_counts.get(block_shape, 0) + 1
 
-    by_source: dict[Path, list[tuple[str, str, int, int, str]]] = {}
-    for path, name, mode, start, end, block in parsed:
-        by_source.setdefault(path, []).append((name, mode, start, end, block))
-
     candidates: list[Candidate] = []
-    for path, blocks in by_source.items():
-        for index, (name, mode, start, end, block) in enumerate(blocks):
-            address = addresses[name]
-            if index + 1 >= len(blocks):
-                continue
-            next_address = addresses[blocks[index + 1][0]]
-            size = next_address - address
-            if size <= 0:
-                continue
-            calls = len(CALL.findall(block))
-            branches = len(BRANCH.findall(block))
-            raw_bytes = raw_byte_count(block)
-            repeats = shape_counts.get(shape(block), 1)
-            score = size + calls * 24 + branches * 10 + raw_bytes * 2 - min(repeats, 10) * 3
-            candidates.append(
-                Candidate(
-                    name=name,
-                    mode=mode,
-                    source=str(path.relative_to(ROOT)).replace("\\", "/"),
-                    start_line=start,
-                    end_line=end,
-                    address=address,
-                    size=size,
-                    calls=calls,
-                    branches=branches,
-                    raw_bytes=raw_bytes,
-                    repeated_shape=repeats,
-                    score=score,
-                )
+    for path, name, mode, start, end, block, address, boundary in parsed:
+        if boundary is None:
+            continue
+        size = boundary - address
+        if size <= 0:
+            continue
+        calls = len(CALL.findall(block))
+        branches = len(BRANCH.findall(block))
+        raw_bytes = raw_byte_count(block)
+        repeats = shape_counts.get(shape(block), 1)
+        score = size + calls * 24 + branches * 10 + raw_bytes * 2 - min(repeats, 10) * 3
+        candidates.append(
+            Candidate(
+                name=name,
+                mode=mode,
+                source=str(path.relative_to(ROOT)).replace("\\", "/"),
+                start_line=start,
+                end_line=end,
+                address=address,
+                size=size,
+                calls=calls,
+                branches=branches,
+                raw_bytes=raw_bytes,
+                repeated_shape=repeats,
+                score=score,
             )
+        )
     return candidates
+
+
+def parse_rejections(document: object) -> tuple[set[str], set[int]]:
+    """Return exhausted symbol names and addresses from a rejection document."""
+    names: set[str] = set()
+    addresses: set[int] = set()
+    entries = document.get("entries", []) if isinstance(document, dict) else []
+    for entry in entries:
+        if not isinstance(entry, dict) or entry.get("status") != "exhausted":
+            continue
+        if isinstance(entry.get("symbol"), str):
+            names.add(entry["symbol"])
+        value = entry.get("address")
+        try:
+            addresses.add(int(value, 0) if isinstance(value, str) else int(value))
+        except (TypeError, ValueError):
+            continue
+    return names, addresses
+
+
+def rejected_candidates() -> tuple[set[str], set[int]]:
+    """Return candidates explicitly exhausted in the optional rejection ledger."""
+    path = ROOT / "config" / "decomp_rejections.json"
+    if not path.exists():
+        return set(), set()
+    try:
+        document = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError, TypeError):
+        return set(), set()
+    return parse_rejections(document)
+
+
+def family_candidates(candidates: list[Candidate], name: str, limit: int) -> list[Candidate]:
+    """Select one contiguous source-order family from an already parsed scan."""
+    matching = [item for item in candidates if item.name == name]
+    if not matching:
+        raise SystemExit(f"Assembly function not found: {name}")
+    target = matching[0]
+    same_source = sorted(
+        (item for item in candidates if item.source == target.source),
+        key=lambda item: (item.start_line, item.address),
+    )
+    center = next(index for index, item in enumerate(same_source) if item.name == name)
+    limit = max(1, limit)
+    start = max(0, min(center - limit // 2, len(same_source) - limit))
+    return same_source[start:start + limit]
 
 
 def selected_candidates(args: argparse.Namespace) -> list[Candidate]:
@@ -174,7 +224,16 @@ def selected_candidates(args: argparse.Namespace) -> list[Candidate]:
         raise SystemExit(f"Missing {map_path}. Build the project first.")
     assembly = [ROOT / args.asm] if args.asm else git_tracked_assembly()
     candidates = discover(map_path, assembly)
+    rejected_names, rejected_addresses = rejected_candidates()
+    candidates = [
+        item
+        for item in candidates
+        if item.name not in rejected_names and item.address not in rejected_addresses
+    ]
     candidates = [item for item in candidates if item.size <= args.max_bytes]
+    family_name = getattr(args, "family", None)
+    if family_name:
+        return family_candidates(candidates, family_name, getattr(args, "family_size", 20))
     candidates.sort(key=lambda item: (item.score, item.size, item.address))
     return candidates[: args.limit]
 
@@ -404,6 +463,8 @@ def parser() -> argparse.ArgumentParser:
     scan.add_argument("--asm", help="limit scanning to one assembly file")
     scan.add_argument("--max-bytes", type=int, default=96)
     scan.add_argument("--limit", type=int, default=25)
+    scan.add_argument("--family", help="emit neighboring plausible functions around one symbol")
+    scan.add_argument("--family-size", type=int, default=20)
     scan.add_argument("--json", action="store_true")
     scan.set_defaults(handler=scan_command)
 

@@ -93,6 +93,33 @@ in worker-owned documentation create avoidable merge conflicts and become stale 
 Report accepted exact functions and bytes per round. Do not report candidate counts as
 decompilation progress.
 
+## Measuring throughput
+
+The tracked telemetry ledger provides prospective evidence for workflow changes:
+
+```sh
+python3 scripts/decomp_telemetry.py snapshot --phase batched-v1 \
+  --functions 2157 --matched-bytes 125442 --accepted 8 --attempted 12 \
+  --rejected 4 --model gpt-5.6-luna --wall-minutes 30 \
+  --gate-seconds 10 --coordination-minutes 3 --usage-used-percent 1
+python3 scripts/decomp_telemetry.py report
+```
+
+Supply the live values printed by the acceptance and progress commands. When available,
+also record the account usage reset timestamp so usage deltas are never compared across
+weekly windows. Record exhausted candidates once:
+
+```sh
+python3 scripts/decomp_telemetry.py reject sub_8000000 \
+  --mismatch-class "literal register allocation" \
+  --required-evidence "a recovered type that changes literal lifetime"
+```
+
+The scanner omits exhausted entries until their stated evidence changes. A workflow has
+not proved faster merely because its prompt is shorter or one packet succeeds. Compare
+at least three packets over at least one hour, count rejected work and coordination, and
+require exact acceptance throughout.
+
 ## Acceptance
 
 A decompiled slice is accepted only when its code is in a defensible subsystem module,

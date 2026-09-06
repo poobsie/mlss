@@ -119,6 +119,28 @@ The default worker task is implementation, not an open-ended subsystem survey.
   incomplete. Sorting code into the correct subsystem must not become a demand to solve
   the entire subsystem before accepting exact C.
 
+Record each pushed implementation checkpoint with `scripts/decomp_telemetry.py snapshot`
+and include accepted, attempted, and rejected candidates, model, elapsed minutes, gate
+seconds, coordination minutes, matched functions/bytes, and the current Codex usage
+percentage when available. Use `scripts/decomp_telemetry.py report` to compare phases.
+The primary efficiency metric is exact functions per usage percentage point; exact bytes
+per usage point and functions per wall hour are secondary. Sample account usage at the
+start of a work period and after each integrated packet, not after every tool call.
+
+Evaluate a workflow change only after at least three packets and one hour. Promote it
+when exact functions per usage point improves by at least 2x, exact bytes per usage point
+does not fall below 90% of the prior phase, median packet size is at least five functions,
+and acceptance remains perfect. If the sample is too small or usage percentage is too
+coarse, continue the pilot rather than claiming a speedup. Investigate when scouting
+exceeds 15% of model work, documentation plus integration exceeds 20%, an unchanged
+rejected candidate is retried, or three consecutive candidates in one family fail.
+
+Use inexpensive models for bounded extraction, sibling-pattern implementation, and
+clerical work. Escalate to a stronger model only for a specific ownership, type, or
+compiler-shape question expected to unlock several functions. Include failures,
+escalation, review, and integration in the model's measured cost; cheap calls that need
+expensive repair are not efficient.
+
 Run `make decomp-acceptance` before accepting a completed slice. This verifies the ROM
 and every linked C function, then rejects active or queued cleanup work and any source
 still assigned to the unclassified bucket. A deferred subsystem is acceptable only when

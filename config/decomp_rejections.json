@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "symbol": "sub_805FC80",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "return shape and live-result register allocation",
+      "required_evidence": "a source shape that preserves the original result register lifetime"
+    },
+    {
+      "symbol": "sub_805FCC8",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "byte-mask folding, return layout, and literal scheduling",
+      "required_evidence": "a proven type or compiler construct that changes mask and literal scheduling"
+    },
+    {
+      "symbol": "sub_80602B4",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "indexed stores replace advancing-pointer stores",
+      "required_evidence": "a source form that forces the original advancing pointer"
+    },
+    {
+      "symbol": "sub_80603D8",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "position register inversion",
+      "required_evidence": "new caller or type evidence that changes operand evaluation order"
+    },
+    {
+      "symbol": "sub_8134AA8",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "register and literal ordering",
+      "required_evidence": "a source form justified by newly recovered blend-update callers"
+    },
+    {
+      "symbol": "sub_819B0AC",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "register lifetime",
+      "required_evidence": "a recovered command structure or caller that changes value lifetime"
+    },
+    {
+      "symbol": "sub_819B290",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "literal register allocation",
+      "required_evidence": "a compiler construct or shared symbol layout that fixes literal allocation"
+    },
+    {
+      "symbol": "sub_819B2E0",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "literal-pool padding",
+      "required_evidence": "an exact section-boundary strategy for the four padding bytes"
+    }
+  ]
+}

@@ -75,7 +75,7 @@ tools:
 verify: rom
 	@python3 scripts/verify_exact_functions.py
 
-progress: verify
+progress: tools $(ROM)
 	@python3 scripts/progress.py
 
 detangle-status:
@@ -85,7 +85,7 @@ decomp-acceptance: verify
 	@python3 scripts/detangling_status.py check
 
 $(C_BUILDDIR)/%.o : $(C_SUBDIR)/%.c
-	@$(CPP) $(CPPFLAGS) $< -o $(C_BUILDDIR)/$*.i
+	@$(CPP) $(CPPFLAGS) -MMD -MP -MF $(C_BUILDDIR)/$*.d -MT $@ $< -o $(C_BUILDDIR)/$*.i
 	@$(CC1) $(C_BUILDDIR)/$*.i $(CFLAGS) -o $(C_BUILDDIR)/$*.s
 	@echo -e ".text\n\t.align\t2, 0\n" >> $(C_BUILDDIR)/$*.s
 	$(AS) $(ASFLAGS) -o $@ $(C_BUILDDIR)/$*.s
@@ -102,7 +102,7 @@ $(C_SUBDIR)/%.o: $(C_BUILDDIR)/%.o
 $(ASM_SUBDIR)/%.o: $(ASM_BUILDDIR)/%.o
 	cp $< $@
 
-$(ELF): $(OBJS)
+$(ELF): $(OBJS) ld_script.ld symbols.txt $(LIBC) $(LIBGCC)
 	cd $(OBJ_DIR) && $(LD) -Map ../$(MAP) -T ../ld_script.ld -o ../$@ $(LDFLAGS) $(OBJS_REL)
 
 $(ROM): $(ELF)
