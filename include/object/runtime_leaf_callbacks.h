@@ -194,6 +194,8 @@ struct ObjectRuntimePollOwner;
 #define object_finish_action_on_flags_38_or_after_20_ticks_later sub_8091B90
 #define object_finish_action_on_flags_38_or_after_24_ticks_variant sub_8092C70
 #define object_finish_action_on_flags_38_or_after_20_ticks_variant sub_8092D20
+#define object_attach_owner_then_emit_effect_1cf9 sub_80954DC
+#define object_on_visual_complete_start_animation_9_then_idle sub_8095548
 #define object_continue_when_linked_object_clears sub_809C960
 #define object_begin_fixed_vertical_descent sub_80A2C80
 
@@ -439,6 +441,10 @@ void object_finish_action_on_flags_38_or_after_20_ticks_later(
 void object_finish_action_on_flags_38_or_after_24_ticks_variant(
     struct RuntimeObject* object);
 void object_finish_action_on_flags_38_or_after_20_ticks_variant(
+    struct RuntimeObject* object);
+s32 object_attach_owner_then_emit_effect_1cf9(
+    struct RuntimeObject* object, void* owner, s32 command);
+void object_on_visual_complete_start_animation_9_then_idle(
     struct RuntimeObject* object);
 s32 object_continue_when_linked_object_clears(struct RuntimeObject* object);
 void object_begin_fixed_vertical_descent(struct RuntimeObject* object);

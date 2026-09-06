@@ -1502,8 +1502,12 @@ SECTIONS
         asm/text08057568.o(.text.object_flag_actions_after_sub_8094FD4);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_8095000);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8095000);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_80954DC);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_80954DC);
         src/object/fixed_visual_transitions.o(.text.misc_helpers_03.sub_809551C);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_809551C);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8095548);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_8095548);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8096E08);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8096E44);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8096E6C);

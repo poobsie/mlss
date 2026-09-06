@@ -104306,70 +104306,9 @@ _080954D6:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_80954DC
-sub_80954DC:
-	push {r4, lr}
-	add sp, #-0x004
-	adds r4, r0, #0x0
-	bl sub_810DD7C
-	ldr r1, [r4, #0x10]
-	cmp r1, #0x00
-	bge _080954EE
-	adds r1, #0xFF
-_080954EE:
-	asrs r1, r1, #0x08
-	ldr r2, [r4, #0x14]
-	cmp r2, #0x00
-	bge _080954F8
-	adds r2, #0xFF
-_080954F8:
-	asrs r2, r2, #0x08
-	ldr r3, [r4, #0x18]
-	cmp r3, #0x00
-	bge _08095502
-	adds r3, #0xFF
-_08095502:
-	asrs r3, r3, #0x08
-	str r4, [sp, #0x000]
-	ldr r0, _08095518 @ =0x00001CF9
-	bl sub_80DF024
-	movs r0, #0x00
-	add sp, #0x004
-	pop {r4}
-	pop {r1}
-	bx r1
-	.byte 0x00, 0x00
-_08095518: .4byte 0x00001CF9
+	.section .text.object_small_runtime_after_sub_80954DC, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_809551C, "ax", %progbits
-	thumb_func_start sub_8095548
-sub_8095548:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	ldr r0, [r4, #0x08]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _08095574
-	adds r0, r4, #0x0
-	movs r1, #0x09
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r4, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x12]
-	ldr r0, _0809557C @ =0x08095581
-	str r0, [r4, #0x4C]
-_08095574:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0809557C: .4byte 0x08095581
+	.section .text.object_small_runtime_after_sub_8095548, "ax", %progbits
 	.byte 0x70, 0x47, 0x00, 0x00
 	thumb_func_start sub_8095584
 sub_8095584:

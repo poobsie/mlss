@@ -493,6 +493,12 @@ implementation. Each integrates the signed vertical step, clamps to the state's
 known floor height, clears the active motion flag, starts animation 8 with command
 `0x2000`, restores visual mode 2, and installs its established completion callback.
 
+The following object branch now has typed interfaces for its compact owner and
+visual callbacks. Its auxiliary callback forwards the supplied owner and command,
+then emits effect `0x1CF9` at the object's current fixed-point position. The visual
+callback waits for completion, starts animation 9, clears the visual mode bits,
+and installs the adjacent idle return callback.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

@@ -33,6 +33,8 @@ void sub_8082E1C(struct RuntimeObject* object, s32 animation, s32 command,
 void sub_8087CE4(struct RuntimeObject* object);
 void sub_808864C(struct RuntimeObject* object);
 void sub_80873B8(struct RuntimeObject* object, s32 command, s32 argument);
+void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
+                 struct RuntimeObject* object);
 void sub_809C954(struct RuntimeObject* object);
 void sub_80A2BC0(struct RuntimeObject* object);
 
@@ -527,6 +529,31 @@ void object_start_animation_5_fixed_jump_with_sound_2b(
     flags = (s8*)&object->visual->flags;
     *flags = (*flags & -7) | 2;
     object->update = sub_808DF5C;
+}
+
+SEC(sub_80954DC)
+s32 object_attach_owner_then_emit_effect_1cf9(
+    struct RuntimeObject* object, void* owner, s32 command)
+{
+    sub_810DD7C(object, owner, command);
+    sub_80DF024(0x1CF9, object->currentPositionX / 0x100,
+                object->currentPositionY / 0x100,
+                object->verticalPosition / 0x100, object);
+    return 0;
+}
+
+SEC(sub_8095548)
+void object_on_visual_complete_start_animation_9_then_idle(
+    struct RuntimeObject* object)
+{
+    s8* flags;
+
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 9, 0, 0);
+        flags = (s8*)&object->visual->flags;
+        *flags &= -7;
+        object->update = (RuntimeObjectCallback)0x08095581;
+    }
 }
 
 SEC(sub_809C960)
