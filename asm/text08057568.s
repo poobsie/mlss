@@ -292543,8 +292543,9 @@ _080F829C: .4byte 0x0300034C
 _080F82A0: .4byte 0x000003FF
 _080F82A4: .4byte 0xFFFFFC00
 	.section .text.field_runtime_after_sub_80F827C, "ax", %progbits
-	thumb_func_start sub_80F82A8
-sub_80F82A8:
+	.section .discard.field_swap_indexed_object_owners, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F82A8
+asm_discard_sub_80F82A8:
 	push {r4, r5, r6, lr}
 	ldr r6, _080F82E4 @ =0x03000FD8
 	ldr r1, [r6, #0x00]
@@ -292576,6 +292577,7 @@ sub_80F82A8:
 	bx r1
 	.byte 0x00, 0x00
 _080F82E4: .4byte 0x03000FD8
+	.section .text.field_runtime_after_sub_80F82A8, "ax", %progbits
 	thumb_func_start sub_80F82E8
 sub_80F82E8:
 	push {r4, lr}

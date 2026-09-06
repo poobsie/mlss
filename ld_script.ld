@@ -2216,6 +2216,8 @@ SECTIONS
         asm/text08057568.o(.text.field_runtime_after_sub_80F8198);
         src/field/runtime_flags.o(.text.small_functions_01.sub_80F827C);
         asm/text08057568.o(.text.field_runtime_after_sub_80F827C);
+        src/field/global_object_transitions.o(.text.small_functions_01.sub_80F82A8);
+        asm/text08057568.o(.text.field_runtime_after_sub_80F82A8);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80F8438);
         asm/text08057568.o(.text.field_runtime_after_sub_80F8438);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80F84AC);

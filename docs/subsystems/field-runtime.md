@@ -482,4 +482,9 @@ whose signed `valueF8 - valueF6` span exceeds the caller's threshold by the
 largest amount, or `-1` when none qualify. The two halfwords retain offset-based
 names because their gameplay units are not established by current callers.
 
+`field_swap_indexed_object_owners` exchanges two entries in the shared indexed
+owner array and rewrites each moved owner's `slotIndexF4`. This confirms that the
+byte is the owner's back-reference to its current registry slot, while the
+gameplay identities assigned to individual slots remain unresolved.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

@@ -42,6 +42,23 @@ s32 field_find_object_with_largest_value_span(void* context, s32 threshold)
     return selectedIndex;
 }
 
+SMALL_SEC(field_swap_indexed_object_owners)
+s32 field_swap_indexed_object_owners(
+    void* context, void* state, const s32* indices)
+{
+    struct FieldIndexedObjectRuntime* runtime = FIELD_INDEXED_OBJECT_RUNTIME;
+    s32 firstIndex = indices[0];
+    struct FieldRuntimeObjectOwner* firstOwner =
+        runtime->objectOwners58[firstIndex];
+
+    runtime->objectOwners58[firstIndex] = runtime->objectOwners58[indices[1]];
+    runtime->objectOwners58[indices[1]] = firstOwner;
+    runtime->objectOwners58[firstIndex]->slotIndexF4 = firstIndex;
+    FIELD_INDEXED_OBJECT_RUNTIME->objectOwners58[indices[1]]->slotIndexF4 =
+        indices[1];
+    return 1;
+}
+
 #define START_FIRST_OBJECT_ANIMATION_47(object, continuation)                \
     do {                                                                     \
         sub_8082E1C(&FIELD_OBJECT_RUNTIME->firstObjectOwner->object,          \
