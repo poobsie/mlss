@@ -1059,6 +1059,10 @@ SECTIONS
         asm/text08057568.o(.text.object_motion_after_sub_808842C);
         src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8088508);
         asm/text08057568.o(.text.object_small_runtime_after_sub_8088508);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8088560);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_8088560);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_80885C4);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_80885C4);
         src/object/small_state_helpers.o(.text.misc_helpers_01.sub_808862C);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_808862C);
         src/object/small_state_helpers.o(.text.misc_helpers_01.sub_808863C);

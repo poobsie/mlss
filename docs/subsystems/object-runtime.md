@@ -357,6 +357,13 @@ current animation, removes visual control bits `0x40`, `0x02`, and `0x04`, then
 restores the callback saved in `followup`. The visual bits remain numeric because
 their rendering effects are not independently established.
 
+Two setup callbacks feed that continuation path. For active modes 2 and 4 they
+select command `0x2000` for object variant `-1` and `0x204D` otherwise, start
+animation 5 or 4, and normalize the visual mode to 2. The animation-5 path enters
+the motion update directly; the animation-4 path first saves the current update in
+`followup`. Command identities remain numeric because the associated visual asset
+tables are still assembly-only.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

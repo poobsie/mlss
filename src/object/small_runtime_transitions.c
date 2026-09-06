@@ -17,6 +17,8 @@ void sub_8089F44(struct RuntimeObject* object);
 void sub_8086700(void* state);
 void sub_8082E1C(struct RuntimeObject* object, s32 animation, s32 command,
                  s32 argument);
+void sub_8087C6C(struct RuntimeObject* object);
+void sub_808864C(struct RuntimeObject* object);
 void sub_809C954(struct RuntimeObject* object);
 void sub_80A2BC0(struct RuntimeObject* object);
 
@@ -137,6 +139,41 @@ void object_finish_motion_and_restore_saved_update(
 }
 SEC(sub_8088508)
 const u16 object_finish_motion_and_restore_saved_update_padding = 0;
+
+SEC(sub_8088560)
+void object_start_animation_5_then_update_motion(struct RuntimeObject* object)
+{
+    s8* flags;
+    u8 mode = object->flags76 & 6;
+
+    if (mode == 2 || mode == 4) {
+        if (object->state->variant == -1)
+            sub_8082E1C(object, 5, 0x2000, 0);
+        else
+            sub_8082E1C(object, 5, 0x204D, 0);
+        flags = (s8*)&object->visual->flags;
+        *flags = (*flags & -7) | 2;
+    }
+    object->update = sub_8087C6C;
+}
+
+SEC(sub_80885C4)
+void object_save_update_then_start_animation_4(struct RuntimeObject* object)
+{
+    s8* flags;
+    u8 mode = object->flags76 & 6;
+
+    if (mode == 2 || mode == 4) {
+        if (object->state->variant == -1)
+            sub_8082E1C(object, 4, 0x2000, 0);
+        else
+            sub_8082E1C(object, 4, 0x204D, 0);
+        flags = (s8*)&object->visual->flags;
+        *flags = (*flags & -7) | 2;
+    }
+    object->followup = object->update;
+    object->update = sub_808864C;
+}
 
 SEC(sub_8089BD4)
 void object_update_x_offset_until_timer_expires(struct RuntimeObject* object)
