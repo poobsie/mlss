@@ -123,6 +123,11 @@ The former option-screen tail is a 64-byte error screen used only on the Mario B
 
 The exact record semantics are not yet proven, so the synchronization function deliberately uses `records` rather than `scores`. Its field-level data model should be recovered with the surrounding Mario Bros subsystem.
 
+The startup dispatcher now has an explicit screen boundary. Saved-state marker
+`0x0307` creates the backup-clear confirmation process; every other value creates
+the company intro. Both paths preserve their original allocation labels and use
+the established typed constructors.
+
 ## Remaining screen work
 
 All currently decompiled screen C now has a subsystem path, canonical public header, typed process ownership, and evidence-backed lifecycle names. Some adjacent assembly remains in `asm/screens/options_and_backup.s`; it should be split further as those functions are converted to C.

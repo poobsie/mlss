@@ -335897,8 +335897,9 @@ sub_810D468:
 _0810D4B8: .4byte 0x03000FD8
 _0810D4BC: .4byte 0xFFFFF800
 _0810D4C0: .4byte 0xFFFFE000
-	thumb_func_start sub_810D4C4
-sub_810D4C4:
+	.section .discard.runtime_upper_sub_810D4C4, "ax", %progbits
+	thumb_func_start asm_discard_sub_810D4C4
+asm_discard_sub_810D4C4:
 	ldr r0, _0810D4D8 @ =0x03000FD8
 	ldr r0, [r0, #0x00]
 	movs r1, #0xC4
@@ -335911,6 +335912,7 @@ sub_810D4C4:
 	.byte 0x00, 0x00
 _0810D4D8: .4byte 0x03000FD8
 _0810D4DC: .4byte 0x00000241
+	.section .text.after_runtime_upper_sub_810D4C4, "ax", %progbits
 	thumb_func_start sub_810D4E0
 sub_810D4E0:
 	push {r4, lr}

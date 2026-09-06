@@ -62,3 +62,10 @@ Three adjacent UI-runtime leaves now use the established `UiObject` layout. `ui_
 Two compact runtime leaves expose operations that recur in screen and object construction paths. `runtime_embedded_object_at_0c` returns the embedded subobject at offset `0x0C`. `runtime_large_owner_clear_slots` clears the words at offsets `0x804` and `0x80C` and returns the owner pointer, matching callers that may retain `r0`. The unusually large owner overlay and both field names remain structural because current callers do not establish their payload semantics.
 
 `runtime_set_input_sound_mask` stores the 16-bit mask consumed by the early input test and written by the script command handler. The recovered callers prove that it gates input-related sound behavior, but do not yet establish individual bit meanings, so the API names the mask without inventing button assignments.
+
+The early service resume helper now creates the global owned-buffer process, invokes
+the two established resource initializers, and records that the service group is
+active. The group remains generic because the paired initializers are still in
+assembly. A separate upper-runtime leaf follows the proven owner pointer at offset
+`0x310` and writes value `0x241` to its node halfword at offset `0x18`; those fields
+remain structural until the node's consumers establish their payload meaning.

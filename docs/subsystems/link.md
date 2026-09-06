@@ -12,3 +12,8 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports ev
 `multiplayer_frame_update` is called from the frame interrupt path. While multiplayer is active and ready, it records a pending result, swaps the active transfer buffers, reads the serial status bit, writes the multiplayer idle word `0xFEFE`, starts serial I/O, and arms Timer 3. `multiplayer_mark_transfer_ready` sets the readiness byte only for an active link state.
 
 The state overlay names only fields proven by those operations. The four buffer words are still distinguished by offsets because their payload directions are not yet established.
+
+The early link control byte also selects a transfer-value multiplier. The recovered
+helper maps its upper two bits to multipliers of 1, 4, 16, or 64. The physical unit
+and the meaning of the remaining control bits are not yet established, so the API
+names the scaling operation without guessing at baud rate or packet size.

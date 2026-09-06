@@ -776,8 +776,9 @@ _0801AE90: .4byte 0x0000FF7F
 _0801AE94: .4byte 0x0400010E
 _0801AE98: .4byte 0x0400010C
 _0801AE9C: .4byte 0x03000D18
-	thumb_func_start sub_801AEA0
-sub_801AEA0:
+	.section .discard.link_early_sub_801AEA0, "ax", %progbits
+	thumb_func_start asm_discard_sub_801AEA0
+asm_discard_sub_801AEA0:
 	push {lr}
 	adds r1, r0, #0x0
 	ldr r0, _0801AEB8 @ =0x03000D18
@@ -813,6 +814,7 @@ _0801AED4:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.section .text.after_link_early_sub_801AEA0, "ax", %progbits
 	thumb_func_start sub_801AEDC
 sub_801AEDC:
 	push {r4, r5, r6, lr}
@@ -925,8 +927,9 @@ _0801AFD4:
 	bx r0
 _0801AFDC: .4byte 0x03000D40
 _0801AFE0: .4byte 0x05000001
-	thumb_func_start sub_801AFE4
-sub_801AFE4:
+	.section .discard.link_early_sub_801AFE4, "ax", %progbits
+	thumb_func_start asm_discard_sub_801AFE4
+asm_discard_sub_801AFE4:
 	push {r4, lr}
 	ldr r4, _0801B010 @ =0x03000D40
 	ldrb r1, [r4, #0x00]
@@ -948,10 +951,12 @@ _0801B008:
 	bx r0
 	.byte 0x00, 0x00
 _0801B010: .4byte 0x03000D40
+	.section .text.after_link_early_sub_801AFE4, "ax", %progbits
 	.byte 0x00, 0xB5, 0xFF, 0xF7, 0xC3, 0xFF, 0x05, 0x48, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD0, 0xCD, 0xF0
 	.byte 0xCD, 0xFE, 0x00, 0x20, 0xFF, 0xF7, 0xDC, 0xFF, 0x01, 0xBC, 0x00, 0x47, 0xB8, 0x0F, 0x00, 0x03
-	thumb_func_start sub_801B034
-sub_801B034:
+	.section .discard.link_early_sub_801B034, "ax", %progbits
+	thumb_func_start asm_discard_sub_801B034
+asm_discard_sub_801B034:
 	push {r4, lr}
 	ldr r0, _0801B058 @ =0x0300034C
 	ldrh r1, [r0, #0x28]
@@ -986,6 +991,7 @@ _0801B07A:
 	pop {r0}
 	bx r0
 _0801B080: .4byte 0x081E23A8
+	.section .text.after_link_early_sub_801B034, "ax", %progbits
 	thumb_func_start sub_801B084
 sub_801B084:
 	push {lr}
