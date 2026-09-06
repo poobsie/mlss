@@ -2161,6 +2161,9 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_10_after_sub_8106E58);
         src/field/selection_sequence.o(.text.field_selection_sequence.sub_8106EB0);
         asm/text08057568.o(.text.small_functions_11_after_sub_8106EB0);
+        asm/text08057568.o(.text.field_runtime_resource_teardown_before_sub_8106EE8);
+        src/field/runtime_resource_teardown.o(.text.field_runtime_resource_teardown.sub_8106EE8);
+        asm/text08057568.o(.text.field_runtime_resource_teardown_after_sub_8106EE8);
         src/field/runtime_dispatch.o(.text.misc_helpers_03.sub_810707C);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_810707C);
         src/field/effect_entry_sequence.o(.text.field_effect_entry_sequence.sub_81071F0);

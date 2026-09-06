@@ -321858,6 +321858,8 @@ _08106E18: .4byte sub_8100E5C
 	.section .text.small_functions_09_after_sub_8106E1C, "ax", %progbits
 	.section .text.small_functions_10_after_sub_8106E58, "ax", %progbits
 	.section .text.small_functions_11_after_sub_8106EB0, "ax", %progbits
+	.section .text.field_runtime_resource_teardown_before_sub_8106EE8, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8106EE8
 sub_8106EE8:
 	push {r4, r5, lr}
@@ -321895,6 +321897,8 @@ _08106F06:
 _08106F28: .4byte 0x03000FD8
 _08106F2C: .4byte 0x03000FDC
 _08106F30: .4byte 0x00008E58
+	.endif
+	.section .text.field_runtime_resource_teardown_after_sub_8106EE8, "ax", %progbits
 	thumb_func_start sub_8106F34
 sub_8106F34:
 	push {r4, lr}

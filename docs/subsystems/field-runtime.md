@@ -111,6 +111,10 @@ The runtime-node transition waits for the same shared flag, pushes a node onto t
 list at runtime offset `0x4C`, copies the transition values at `0x0C` and `0x12`
 into the node, and advances to its proven continuation.
 
+The runtime-resource teardown drains the node chain owned through runtime offset
+`0x364`, destroys the linked visual, clears both ownership links, and installs the
+continuation sourced from dispatch offset `0x8E58`.
+
 A fourth selection-setup stage waits on an external readiness poll and flag `0x04` at `0x2BF`. Mode `2` resets both indexed display selections through the same assembly helper before the process advances.
 
 The paired-object slide sequence moves the objects at runtime offsets `0x37C` and `0x278` left by one 24.8 fixed-point pixel per tick. Once view conversion places them at screen X 208, it snaps both positions to that boundary, starts animation 4 on the second object, clears the flag at `0x342`, and installs the next process callback.
