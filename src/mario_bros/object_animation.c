@@ -109,6 +109,25 @@ void mario_bros_advance_animation_cycle_three_frame(
     obj->animationFrame = frame;
 }
 
+MB_SECTION(sub_8F8B1D4)
+void mario_bros_advance_animation_cycle_three_frame_b(
+    struct MarioBrosObject* obj)
+{
+    u8 variant = obj->animationVariant;
+    u8 frame = obj->animationFrame;
+
+    frame++;
+
+    if (frame > 2) {
+        frame = 0;
+        variant++;
+        if (variant > 3)
+            variant = 1;
+    }
+    obj->animationVariant = variant;
+    obj->animationFrame = frame;
+}
+
 MB_SECTION(sub_8F65690)
 void mario_bros_advance_animation_toggle_slow(
     struct MarioBrosObject* obj)
