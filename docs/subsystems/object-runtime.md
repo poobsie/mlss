@@ -478,6 +478,12 @@ typed velocity integration, animation-6 transition, and command `0x2000` landing
 handoff. The stop callback waits for visual completion, stops command `0x2000`,
 and clears the object's active update.
 
+The later action branch now includes paired short cleanup gates and its alternate
+floor landing. Both gates clear the owner's pending flag, then finish on action
+flags or after their observed 24- and 20-tick limits. The landing callback clamps
+vertical motion to the state's floor height, starts animation 8 with command
+`0x2000`, restores visual mode 2, and enters the existing completion callback.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
