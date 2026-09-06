@@ -499,6 +499,15 @@ then emits effect `0x1CF9` at the object's current fixed-point position. The vis
 callback waits for completion, starts animation 9, clears the visual mode bits,
 and installs the adjacent idle return callback.
 
+The owner-position effect branch now exposes its setup and readiness-gated
+completion callbacks. Setup reads the three fixed-point words at owner-state
+offsets `0xD8`, `0xDC`, and `0xE0`, offsets the first coordinate by `0x22`,
+then configures animation 5, the object's stored display value, and sound
+`0x112`. Completion waits on the shared readiness query, starts animation
+`0x0F`, restores visual mode 2, stops that sound, and enters the established
+12-tick visual-completion delay. The first two owner-state words remain
+offset-named until callers distinguish their axes from other positional views.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

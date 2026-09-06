@@ -335164,6 +335164,8 @@ _0810F6C6:
 	bx r0
 	.byte 0x00, 0x00
 _0810F6D0: .4byte sub_810FD54
+	.section .text.object_late_visual_transitions_before_sub_810F6D4, "ax", %progbits
+	.if 0
 	thumb_func_start sub_810F6D4
 sub_810F6D4:
 	push {r4, lr}
@@ -335237,6 +335239,8 @@ _0810F758:
 	pop {r0}
 	bx r0
 _0810F760: .4byte sub_810FD54
+	.endif
+	.section .text.object_late_visual_transitions_after_sub_810F6D4, "ax", %progbits
 	thumb_func_start sub_810F764
 sub_810F764:
 	push {r4, r5, r6, r7, lr}
@@ -335932,6 +335936,7 @@ _0810FD06:
 	bx r0
 _0810FD0C: .4byte 0x0000011B
 	.section .text.small_functions_08_after_sub_810FD10, "ax", %progbits
+	.if 0
 	thumb_func_start sub_810FD54
 sub_810FD54:
 	push {r4, lr}
@@ -335963,6 +335968,8 @@ _0810FD8A:
 	pop {r0}
 	bx r0
 _0810FD90: .4byte sub_810FEF4
+	.endif
+	.section .text.object_late_visual_transitions_after_sub_810FD54, "ax", %progbits
 	thumb_func_start sub_810FD94
 sub_810FD94:
 	push {r4, lr}

@@ -30,7 +30,9 @@ struct RuntimeObjectState {
     s8 displayOffsetX;
     s8 displayOffsetY;
     s8 displayOffsetZ;
-    u8 unknownC6[0x1A];
+    u8 unknownC6[0x12];
+    s32 valueD8;
+    s32 valueDC;
     s32 floorHeight;
     struct RuntimeObjectValueSource* valueSourceE4;
     u8 unknownE8[4];
@@ -130,6 +132,8 @@ void runtime_object_finish_action(struct RuntimeObject* object);
 #define runtime_object_start_timed_motion sub_808842C
 #define runtime_object_visual_apply_transform sub_8083E84
 #define runtime_object_begin_owner_vector_motion sub_80874B4
+#define object_start_owner_position_effect_and_continue sub_810F6D4
+#define object_finish_owner_position_effect_when_ready sub_810FD54
 void runtime_object_when_value80_clear_prepare_state_motion(
     struct RuntimeObject* object);
 void runtime_object_clear_behavior(struct RuntimeObject* object);
@@ -140,5 +144,9 @@ void runtime_object_start_timed_motion(struct RuntimeObject* object, s32 value, 
 void runtime_object_visual_apply_transform(
     struct RuntimeObjectVisual* visual, s32 transform);
 void runtime_object_begin_owner_vector_motion(struct RuntimeObject* object);
+void object_start_owner_position_effect_and_continue(
+    struct RuntimeObject* object);
+void object_finish_owner_position_effect_when_ready(
+    struct RuntimeObject* object);
 
 #endif
