@@ -95,6 +95,10 @@ The linked-value callback copies byte `0x0A` from the object referenced at owner
 offset `0x6C` into runtime byte `0x2F9`, then invokes the shared refresh helper. The
 value remains generically named because neither side establishes its domain.
 
+The paired visual-timer callbacks decrement the signed timer at `0x10`. At zero they
+deactivate the linked visual at `0x08`, install their proven continuation, seed the
+next timer with either `0x20` or `0x10`, and invoke the continuation immediately.
+
 A fourth selection-setup stage waits on an external readiness poll and flag `0x04` at `0x2BF`. Mode `2` resets both indexed display selections through the same assembly helper before the process advances.
 
 The paired-object slide sequence moves the objects at runtime offsets `0x37C` and `0x278` left by one 24.8 fixed-point pixel per tick. Once view conversion places them at screen X 208, it snaps both positions to that boundary, starts animation 4 on the second object, clears the flag at `0x342`, and installs the next process callback.

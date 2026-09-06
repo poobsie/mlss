@@ -321483,6 +321483,8 @@ _0810682E:
 _08106834: .4byte 0x03000FD8
 _08106838: .4byte 0x0000033F
 _0810683C: .4byte sub_8106020
+	.section .text.field_visual_timer_transitions_before_sub_8106840, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8106840
 sub_8106840:
 	push {r4, lr}
@@ -321510,6 +321512,10 @@ _08106868:
 	bx r0
 	.byte 0x00, 0x00
 _08106870: .4byte sub_81067D4
+	.endif
+	.section .text.field_visual_timer_transitions_after_sub_8106840, "ax", %progbits
+	.section .text.field_visual_timer_transitions_before_sub_8106874, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8106874
 sub_8106874:
 	push {r4, lr}
@@ -321537,6 +321543,8 @@ _0810689C:
 	bx r0
 	.byte 0x00, 0x00
 _081068A4: .4byte sub_8105F28
+	.endif
+	.section .text.field_visual_timer_transitions_after_sub_8106874, "ax", %progbits
 	thumb_func_start sub_81068A8
 sub_81068A8:
 	push {r4, r5, r6, r7, lr}
