@@ -20,6 +20,7 @@ s32 sub_810DD7C();
 
 DEFINE_PADDED_FORWARDER(object_stop_sound_6c_then_forward_setup_a, 0x6C, sub_8087124)
 DEFINE_PADDED_FORWARDER(object_stop_sound_6c_then_forward_setup_b, 0x6C, sub_8086C64)
+DEFINE_PADDED_FORWARDER(object_stop_sound_6c_then_forward_setup_c, 0x6C, sub_810DD7C)
 DEFINE_PADDED_FORWARDER(object_stop_sound_81_then_forward_setup_a, 0x81, sub_8087124)
 DEFINE_PADDED_FORWARDER(object_stop_sound_81_then_forward_setup_b, 0x81, sub_8086C64)
 DEFINE_PADDED_FORWARDER(object_stop_sound_81_then_forward_setup_c, 0x81, sub_810DD7C)

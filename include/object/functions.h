@@ -123,6 +123,7 @@
 #define object_setup_then_clear_value80 sub_80612B4
 #define object_stop_sound_6c_then_forward_setup_a sub_80899C4
 #define object_stop_sound_6c_then_forward_setup_b sub_80899E4
+#define object_stop_sound_6c_then_forward_setup_c sub_8089A04
 #define object_stop_sound_81_then_forward_setup_a sub_808A174
 #define object_stop_sound_81_then_forward_setup_b sub_808A194
 #define object_stop_sound_81_then_forward_setup_c sub_808A1B4

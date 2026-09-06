@@ -172,6 +172,7 @@ struct ObjectRuntimePollOwner;
 #define object_on_visual_complete_start_animation_6_motion sub_808864C
 #define object_update_motion_then_restore_saved_update sub_80886E0
 #define object_update_x_offset_until_timer_expires sub_8089BD4
+#define object_clear_behavior_on_visual_complete sub_8089C00
 #define object_continue_when_linked_object_clears sub_809C960
 #define object_begin_fixed_vertical_descent sub_80A2C80
 
@@ -376,6 +377,7 @@ void object_on_visual_complete_start_animation_6_motion(
 void object_update_motion_then_restore_saved_update(
     struct RuntimeObject* object);
 void object_update_x_offset_until_timer_expires(struct RuntimeObject* object);
+void object_clear_behavior_on_visual_complete(struct RuntimeObject* object);
 s32 object_continue_when_linked_object_clears(struct RuntimeObject* object);
 void object_begin_fixed_vertical_descent(struct RuntimeObject* object);
 

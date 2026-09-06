@@ -1079,6 +1079,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80899C4);
         src/object/setup_forwarders.o(.text.misc_helpers_02.sub_80899E4);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80899E4);
+        src/object/setup_forwarders.o(.text.misc_helpers_02.sub_8089A04);
+        asm/text08057568.o(.text.misc_helpers_02_after_sub_8089A04);
         src/object/small_value_transitions.o(.text.misc_helpers_01.sub_8089AB0);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8089AB0);
         src/object/terminal_gates.o(.text.misc_helpers_01.sub_8089AC8);
@@ -1089,6 +1091,8 @@ SECTIONS
         asm/text08057568.o(.text.state_and_signal_transitions_after_sub_8089B90);
         src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8089BD4);
         asm/text08057568.o(.text.object_small_runtime_after_sub_8089BD4);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8089C00);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_8089C00);
         src/object/small_state_helpers.o(.text.misc_helpers_01.sub_808A098);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_808A098);
         src/object/linked_owner_state_transitions.o(.text.misc_helpers_03.sub_808A0B0);

@@ -247,6 +247,15 @@ void object_update_x_offset_until_timer_expires(struct RuntimeObject* object)
         object->update = sub_8089F44;
 }
 
+SEC(sub_8089C00)
+void object_clear_behavior_on_visual_complete(struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8)
+        runtime_object_clear_behavior(object);
+}
+SEC(sub_8089C00)
+const u16 object_clear_behavior_on_visual_complete_padding = 0;
+
 SEC(sub_809C960)
 s32 object_continue_when_linked_object_clears(struct RuntimeObject* object)
 {

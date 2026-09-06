@@ -378,6 +378,13 @@ command, normalizes the visual mode, and installs the cleanup callback that
 restores the saved update. The command values and completion bit remain numeric
 until their producers and rendering effects provide stronger names.
 
+The later object-control cluster now exposes two additional compact callbacks.
+One stops sound `0x6C` before forwarding the object, owner, and setup command to
+the shared initializer. The other consumes visual completion by clearing the
+object's active behavior through the established runtime helper. The sound ID
+and visual bit remain numeric because their asset and renderer meanings are not
+independently established.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
