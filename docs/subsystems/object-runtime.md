@@ -514,6 +514,14 @@ command, restores visual mode 2, copies the position owner's current coordinates
 starts the 24-tick countdown with sound `0xAE`, and continues into the existing
 linked-object creation callback.
 
+The same paired-object chain now exposes its auxiliary-object setup callbacks.
+One starts the primary or secondary animation-1 command, creates command object
+`0x208D`, marks that object's runtime flag `0x20`, and installs the existing pair
+continuation. A later visual-completion callback creates command object `0x2089`
+from the secondary action owner, clears its upper flag bits, attaches it as the
+linked object, and selects the established motion-node update when its mode is
+active.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

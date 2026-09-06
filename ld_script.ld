@@ -1510,6 +1510,8 @@ SECTIONS
         asm/text08057568.o(.text.object_small_runtime_after_sub_8095548);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8096364);
         asm/text08057568.o(.text.paired_object_callbacks_after_sub_8096364);
+        src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8096D8C);
+        asm/text08057568.o(.text.paired_object_callbacks_after_sub_8096D8C);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8096E08);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8096E44);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8096E6C);
@@ -1520,6 +1522,8 @@ SECTIONS
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8097024);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_809706C);
         asm/text08057568.o(.text.paired_object_callbacks_after_sub_809706C);
+        src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8097648);
+        asm/text08057568.o(.text.paired_object_callbacks_after_sub_8097648);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8097D50);
         asm/text08057568.o(.text.paired_object_callbacks_reject_sub_8097DB4);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8097E28);

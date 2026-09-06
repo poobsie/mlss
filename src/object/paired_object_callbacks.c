@@ -11,8 +11,12 @@ void sub_8082E1C(
 void sub_80884AC(struct RuntimeObject* object);
 void sub_807C298(struct RuntimeObject* object);
 void sub_807FB64(struct RuntimeObjectVisual* visual);
+void sub_807FA14(struct RuntimeObject* object);
 struct RuntimeObject* sub_807C0D0(
     struct RuntimeObject* object, s32 command, s32 argument);
+struct RuntimeObject* sub_807BF34(
+    struct RuntimeObjectState* state, s32 command, s32 argument,
+    s32 displayOffset, s32 x, s32 y, s32 z);
 
 void sub_80963E4(struct RuntimeObject* object);
 void sub_80967A4(struct RuntimeObject* object);
@@ -25,6 +29,7 @@ void sub_80974F8(struct RuntimeObject* object);
 void sub_8097648(struct RuntimeObject* object);
 void sub_80976D0(struct RuntimeObject* object);
 void sub_8097978(struct RuntimeObject* object);
+void sub_8097C38(struct RuntimeObject* object);
 void sub_8097D50(struct RuntimeObject* object);
 void sub_8097DB4(struct RuntimeObject* object);
 void sub_8097F10(struct RuntimeObject* object);
@@ -67,6 +72,29 @@ void object_finish_motion_copy_owner_position_then_count_down(
         sound_effect_play(0xAE, SOUND_VOLUME_UNCHANGED);
         object->update = object_count_down_then_spawn_command_208c;
     }
+}
+
+SEC(sub_8096D8C)
+void object_start_pair_animation_1_and_spawn_command_208d(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* primary = PRIMARY_ACTION_OBJECT;
+    struct RuntimeObject* spawned;
+    s8* flags;
+    s32 command;
+
+    if ((object->flags76 & 6) == 2) {
+        command = 0x2051;
+        if (object == primary)
+            command -= 0x2F;
+        sub_8082E1C(object, 1, command, 0);
+        flags = (s8*)&object->visual->flags;
+        *flags = (*flags & -7) | 2;
+    }
+    spawned = sub_807C0D0(object, 0, 0);
+    sub_8082E1C(spawned, 1, 0x208D, 0);
+    spawned->unknown78 = (spawned->unknown78 & 0x1F) | 0x20;
+    object->update = sub_80967A4;
 }
 
 SEC(sub_8096E08)
@@ -198,6 +226,27 @@ void object_on_visual_complete_stop_pair_animations(
         sub_8082E1C(primary, -1, -1, 0);
         sub_8082E1C(secondary, -1, -1, 0);
         object->update = 0;
+    }
+}
+
+SEC(sub_8097648)
+void object_on_visual_complete_spawn_secondary_command_2089(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* secondary = SECONDARY_ACTION_OBJECT;
+    struct RuntimeObject* spawned;
+
+    if (object->visual->flags & 8) {
+        spawned = sub_807BF34(
+            secondary->state, 0x2089, 0, -0x40, -1, 0, 1);
+        sub_8082E1C(spawned, 0, 0, 0);
+        spawned->unknown78 &= 0x1F;
+        object->linkedObject = spawned;
+        sub_807FA14(spawned);
+        if ((spawned->flags76 & 6) == 2 ||
+            (spawned->flags76 & 6) == 4)
+            spawned->update = sub_8097C38;
+        sub_8097DB4(object);
     }
 }
 
