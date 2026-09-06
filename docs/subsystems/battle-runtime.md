@@ -59,6 +59,11 @@ clearing motion and sprite state. A connected setup leaf selects animation 22,
 chooses horizontal velocity toward the runtime's reference object, clears
 vertical velocity, and enters state 1. Gameplay identities remain unresolved.
 
+The common animation gate now avoids restarting the sprite's current animation,
+and the base destructor resets the descriptor, releases the owned sprite, and
+optionally frees the motion object. Together they expose the shared setup and
+teardown boundary used by the descriptor-specific battle variants.
+
 The large cleanup helpers are deliberately kept separate from `BattleSpriteMotion`. Their observed fields occur at offsets `0x524`, `0x804`, and `0x80C`, and no evidence yet proves that the two large layouts are the same class.
 
 `battle_tick_countdown_1f2a` decrements a signed counter in the large battle-scene runtime and clears the adjacent value at `0x1F28` once the counter becomes negative. Both fields retain offset-bearing names until the code that arms the counter is recovered.

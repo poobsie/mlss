@@ -2999,12 +2999,16 @@ SECTIONS
         src/battle/sprite_owner.o(.text.sub_815FA40);
         src/battle/sprite_owner.o(.text.sub_815FA50);
         asm/text08057568.o(.text.after_815FA50);
+        src/battle/sprite_motion_variants.o(.text.battle_sprite_callbacks.sub_815FA70);
+        asm/text08057568.o(.text.after_battle_sprite_callbacks_sub_815FA70);
         src/battle/sprite_motion.o(.text.text_upper_structural.sub_815FACC);
         asm/text08057568.o(.text.after_815FACC);
         src/battle/sprite_motion.o(.text.text_upper_structural.sub_815FAE4);
         asm/text08057568.o(.text.after_text_upper_structural_sub_815FAE4);
         src/battle/sprite_owner.o(.text.sub_815FAFC);
         asm/text08057568.o(.text.after_815FAFC);
+        src/battle/sprite_motion_variants.o(.text.text_upper_structural.battle_destroy_sprite_motion_base);
+        asm/text08057568.o(.text.after_text_upper_structural_sub_815FB14);
         src/graphics/transfer.o(.text.high.sub_8160E4C);
         asm/text08057568.o(.text.high_after_sub_8160E4C);
         src/battle/large_resource_cleanup.o(.text.upper.sub_8160E6C);

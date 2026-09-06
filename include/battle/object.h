@@ -19,6 +19,8 @@ struct BattleSprite {
     u16 value0C;
     u8 unknown0E[4];
     u8 flags;
+    u8 unknown13[0x0E];
+    u8 animation21;
 };
 
 struct BattleEffectObject {

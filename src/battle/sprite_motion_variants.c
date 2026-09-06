@@ -9,14 +9,14 @@
 
 extern void sub_815F97C(struct BattleSpriteMotion*, s32);
 extern struct BattleSprite* sub_815FA3C(struct BattleSpriteMotion*);
-extern void sub_815FA70(struct BattleSpriteMotion*, s32);
 extern void sub_815FAFC(struct BattleSpriteMotion*);
-extern void sub_815FB14(struct BattleSpriteMotion*, void*);
 extern void sub_815FAA4(struct BattleSpriteMotion*, void*);
 extern void sub_815FACC(struct BattleSpriteMotion*);
 extern void sub_8021308(void*);
+extern void free_heap_8018DA8(void*);
 extern s32 sub_8199F30(void);
 extern s16 sub_8160854(void*, s32);
+extern void sub_801E150(struct BattleSprite*, s32, s32, s32, s32);
 
 struct BattleSpritePosition {
     u16 x;
@@ -37,6 +37,27 @@ struct BattleMotionDescriptor {
     u16 padding3A;
     void (*callback3C)(void*);
 };
+
+CALLBACK_SEC(battle_set_sprite_motion_animation_if_changed)
+void battle_set_sprite_motion_animation_if_changed(
+    struct BattleSpriteMotion* object, s32 animation)
+{
+    u16 animationId = animation;
+    struct BattleSprite* sprite = object->sprite;
+    if (sprite != 0 && sprite->animation21 != (s16)animationId)
+        sub_801E150(sprite, (s16)animationId, 0, 0, 0);
+}
+CALLBACK_SEC(sub_815FA70) const u16 battle_set_sprite_motion_animation_padding = 0;
+
+SEC(battle_destroy_sprite_motion_base)
+void battle_destroy_sprite_motion_base(
+    struct BattleSpriteMotion* object, void* argument)
+{
+    object->descriptor = (void*)0x08CDCF70;
+    sub_815FAFC(object);
+    if ((u32)argument & 1)
+        free_heap_8018DA8(object);
+}
 
 SEC(battle_initialize_sprite_motion_base)
 struct BattleSpriteMotion* battle_initialize_sprite_motion_base(

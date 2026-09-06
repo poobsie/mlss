@@ -458158,8 +458158,9 @@ _0815FA34:
 	bx r0
 	.section .text.after_815FA50, "ax", %progbits
 	.byte 0x70, 0x47, 0x00, 0x00, 0x01, 0x49, 0x01, 0x63, 0x70, 0x47, 0x00, 0x00, 0x70, 0xCF, 0xCD, 0x08
-	thumb_func_start sub_815FA70
-sub_815FA70:
+	.section .discard.battle_sprite_callbacks.sub_815FA70, "ax", %progbits
+	thumb_func_start asm_discard_sub_815FA70
+asm_discard_sub_815FA70:
 	push {lr}
 	add sp, #-0x004
 	lsls r1, r1, #0x10
@@ -458186,6 +458187,7 @@ _0815FA9C:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.after_battle_sprite_callbacks_sub_815FA70, "ax", %progbits
 	thumb_func_start sub_815FAA4
 sub_815FAA4:
 	push {r4, lr}
@@ -458245,8 +458247,9 @@ asm_discard_sub_815FAE4:
 	.section .text.after_text_upper_structural_sub_815FAE4, "ax", %progbits
 	.align 2, 0
 	.section .text.after_815FAFC, "ax", %progbits
-	thumb_func_start sub_815FB14
-sub_815FB14:
+	.section .discard.text_upper_structural.sub_815FB14, "ax", %progbits
+	thumb_func_start asm_discard_sub_815FB14
+asm_discard_sub_815FB14:
 	push {r4, r5, lr}
 	adds r5, r0, #0x0
 	adds r4, r1, #0x0
@@ -458265,6 +458268,7 @@ _0815FB32:
 	pop {r0}
 	bx r0
 _0815FB38: .4byte 0x08CDCF70
+	.section .text.after_text_upper_structural_sub_815FB14, "ax", %progbits
 	.byte 0x2E, 0x30, 0x02, 0x78, 0xFD, 0x21, 0x11, 0x40, 0x01, 0x70, 0x70, 0x47, 0x2E, 0x30, 0x02, 0x78
 	.byte 0x02, 0x21, 0x11, 0x43, 0x01, 0x70, 0x70, 0x47, 0x2E, 0x30, 0x01, 0x78, 0x02, 0x20, 0x08, 0x40
 	.byte 0x00, 0x06, 0x00, 0x0E, 0x70, 0x47, 0x00, 0x00, 0x2E, 0x30, 0x02, 0x78, 0xFE, 0x21, 0x11, 0x40

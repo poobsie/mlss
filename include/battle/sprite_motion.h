@@ -44,6 +44,8 @@ struct BattleFixedOrigin;
 #define battle_sync_sprite_motion_resources_variant_b sub_815F428
 #define battle_prepare_sprite_motion_toward_runtime_x sub_815F2E8
 #define battle_initialize_sprite_motion_base sub_815F8F4
+#define battle_set_sprite_motion_animation_if_changed sub_815FA70
+#define battle_destroy_sprite_motion_base sub_815FB14
 #define battle_sync_sprite_motion_to_camera sub_815861C
 #define battle_initialize_scaled_sprite_motion sub_815F238
 #define battle_initialize_grounded_sprite_motion_b sub_815F5C8
@@ -165,6 +167,10 @@ void battle_prepare_sprite_motion_toward_runtime_x(
     struct BattleSpriteMotion*);
 struct BattleSpriteMotion* battle_initialize_sprite_motion_base(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*);
+void battle_set_sprite_motion_animation_if_changed(
+    struct BattleSpriteMotion*, s32 animation);
+void battle_destroy_sprite_motion_base(
+    struct BattleSpriteMotion*, void* argument);
 void* battle_initialize_scaled_sprite_motion(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
 void* battle_initialize_grounded_sprite_motion_b(
