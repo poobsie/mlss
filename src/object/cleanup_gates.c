@@ -8,12 +8,23 @@
 #define STRINGIFY(value) STRINGIFY_INNER(value)
 #define MISC_SEC(name) \
     __attribute__((section(".text.misc_helpers_02." STRINGIFY(name))))
+#define MISC3_SEC(name) \
+    __attribute__((section(".text.misc_helpers_03." STRINGIFY(name))))
 
 void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
 void sub_807C298(struct RuntimeObject* object);
 s32 sub_8087CE4();
 s32 sub_80884AC();
+
+MISC3_SEC(sub_805FD40)
+void object_finish_when_state_value_ba_clear(struct RuntimeObject* object)
+{
+    if (object->state->valueBA == 0)
+        sub_807C298(object);
+}
+MISC3_SEC(sub_805FD40)
+const u16 object_finish_when_state_value_ba_clear_padding = 0;
 
 #define DEFINE_OBJECT_FLAG_GATE(name)                                    \
     SEC(name) void name(struct RuntimeObject* object)                    \

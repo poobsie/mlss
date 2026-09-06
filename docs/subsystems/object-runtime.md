@@ -683,6 +683,12 @@ while the ROM does so before. A connected release predicate matched its
 instructions but remains raw because the linker replaced trailing zero fill
 with a Thumb NOP.
 
+`object_finish_when_state_value_ba_clear` exposes a compact lifecycle gate in
+the graphics-adjacent owner callbacks. It follows the object's state pointer
+and finishes the object only when the signed halfword at state offset `0xBA`
+is zero. The field remains offset-named because its producer and gameplay role
+are not yet recovered.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

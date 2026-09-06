@@ -15444,8 +15444,9 @@ _0805FD3A:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_805FD40
-sub_805FD40:
+	.section .discard.object_finish_when_state_value_ba_clear, "ax", %progbits
+	thumb_func_start asm_discard_sub_805FD40
+asm_discard_sub_805FD40:
 	push {lr}
 	adds r1, r0, #0x0
 	ldr r0, [r1, #0x28]
@@ -15460,6 +15461,7 @@ _0805FD56:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.misc_helpers_03_after_sub_805FD40, "ax", %progbits
 	thumb_func_start sub_805FD5C
 sub_805FD5C:
 	push {r4, lr}
