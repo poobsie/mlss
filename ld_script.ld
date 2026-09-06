@@ -2202,6 +2202,8 @@ SECTIONS
         asm/text08057568.o(.text.state_field_helpers_after_sub_8150E38);
         src/runtime/compact_leaves.o(.text.runtime_compact.sub_8150EFC);
         asm/text08057568.o(.text.after_8150EFC);
+        src/battle/resource_destructors.o(.text.battle_resource_destructors.sub_8150F60);
+        asm/text08057568.o(.text.battle_resource_destructors_after_sub_8150F60);
         src/battle/sprite_variant_container.o(.text.upper.sub_8158000);
         asm/text08057568.o(.text.after_upper_sub_8158000);
         src/battle/sprite_variant_container.o(.text.upper.sub_8158044);
@@ -2444,6 +2446,8 @@ SECTIONS
         asm/text08057568.o(.text.after_8160EA4);
         src/runtime/compact_leaves.o(.text.runtime_compact.sub_8160EC4);
         asm/text08057568.o(.text.after_8160EC4);
+        src/battle/coordinate_state.o(.text.battle_coordinate_state.sub_816127C);
+        asm/text08057568.o(.text.battle_coordinate_state_after_sub_816127C);
         src/graphics/high_helpers.o(.text.high.sub_81612E4);
         asm/text08057568.o(.text.high_after_sub_81612E4);
         src/graphics/high_helpers.o(.text.high.sub_816132C);
@@ -2464,6 +2468,8 @@ SECTIONS
         asm/text08057568.o(.text.after_816168C);
         src/battle/single_sprite_destructors.o(.text.upper.sub_81617F4);
         asm/text08057568.o(.text.after_upper_sub_81617F4);
+        src/battle/resource_destructors.o(.text.battle_resource_destructors.sub_8161924);
+        asm/text08057568.o(.text.battle_resource_destructors_after_sub_8161924);
         src/battle/single_sprite_destructors.o(.text.upper.sub_8161A38);
         asm/text08057568.o(.text.after_upper_sub_8161A38);
         src/battle/single_sprite_destructors.o(.text.upper.sub_8161C08);

@@ -21,6 +21,10 @@ The current C boundary is organized under `src/battle/` by responsibility:
 
 The destructor file also groups seven entry points that install vtable `0x08CDCA30`, including the base entry referenced by that vtable itself. Their shared `BattleVtableObject` layout proves a value pointer at offset `0` and vtable at offset `4`; subclass identities remain unknown.
 
+The coordinate boundary now exposes `battle_write_relative_coordinates`, which subtracts a caller-supplied origin from the two fixed-point positions at offsets `0x14` and `0x18`, shifts both to integer coordinates, and writes the pair through offset `0x0C`. The projector's wider battle class and the coordinate units below the observed 8-bit fractional shift remain unknown.
+
+Two caller-connected destructors now describe their proven ownership rules. `battle_destroy_runtime_resource_owner` releases the runtime resource at offset `0x28`, releases the buffer at offset `0`, then optionally frees its owner. `battle_destroy_coordinate_resource_pair` releases the two resources at offsets `0x08` and `0x0C`, then applies the same low-bit owner-free convention. Their class names remain structural because the current constructors prove allocation and ownership, but not narrower gameplay identities.
+
 `BattleDefinitionObject`, `BattleEffectObject`, `BattleRuntimeValues`, and `BattleSpriteOwner` represent separate observed layouts. They are not merged into a speculative inheritance tree.
 
 `BattleSpriteMotionOwner` extends the proven sprite-owner prefix with values at `0x18`, `0x20`, `0x24`, and `0x38`. Its two recovered configuration methods select mode `4` with `0xC8` or mode `3` with `0x64`, negate the supplied value into `0x20`, clear `0x38`, and clear the attached sprite's halfword at `0x0C`. Those values remain structural until the assembly update routines establish their physical units.
