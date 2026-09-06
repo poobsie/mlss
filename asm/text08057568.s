@@ -274528,8 +274528,9 @@ asm_discard_sub_80EAA5C:
 	bx r1
 _080EAA80: .4byte 0x0300034C
 	.section .text.script_command_helpers_after_sub_80EAA5C, "ax", %progbits
-	thumb_func_start sub_80EAA84
-sub_80EAA84:
+	.section .discard.script_command_sub_80EAA84, "ax", %progbits
+	thumb_func_start asm_discard_sub_80EAA84
+asm_discard_sub_80EAA84:
 	push {r4, r5, lr}
 	add sp, #-0x008
 	adds r4, r2, #0x0
@@ -274566,6 +274567,7 @@ _080EAAAE:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
+	.section .text.script_command_helpers_after_sub_80EAA84, "ax", %progbits
 	thumb_func_start sub_80EAACC
 sub_80EAACC:
 	push {lr}
@@ -274710,8 +274712,9 @@ _080EACBC:
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_80EACDC
-sub_80EACDC:
+	.section .discard.script_command_sub_80EACDC, "ax", %progbits
+	thumb_func_start asm_discard_sub_80EACDC
+asm_discard_sub_80EACDC:
 	push {r4, lr}
 	add sp, #-0x008
 	ldr r0, [r2, #0x04]
@@ -274793,6 +274796,7 @@ _080EAD6C:
 	bx r1
 	.byte 0x00, 0x00
 _080EAD78: .4byte 0x03000D44
+	.section .text.script_command_helpers_after_sub_80EACDC, "ax", %progbits
 	thumb_func_start sub_80EAD7C
 sub_80EAD7C:
 	ldr r3, _080EAD94 @ =0x03000D44
@@ -274830,8 +274834,9 @@ asm_discard_sub_80EADC4:
 _080EADE4: .4byte 0x03000D44
 	.section .text.script_command_helpers_after_sub_80EADC4, "ax", %progbits
 	.byte 0x01, 0x20, 0x70, 0x47
-	thumb_func_start sub_80EADEC
-sub_80EADEC:
+	.section .discard.script_command_sub_80EADEC, "ax", %progbits
+	thumb_func_start asm_discard_sub_80EADEC
+asm_discard_sub_80EADEC:
 	push {r4, r5, lr}
 	adds r4, r2, #0x0
 	adds r5, r3, #0x0
@@ -274867,9 +274872,12 @@ _080EAE24:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-	.byte 0x00, 0x00, 0x01, 0x20, 0x70, 0x47
-	thumb_func_start sub_80EAE30
-sub_80EAE30:
+	.byte 0x00, 0x00
+	.section .text.script_command_helpers_after_sub_80EADEC, "ax", %progbits
+	.byte 0x01, 0x20, 0x70, 0x47
+	.section .discard.script_command_sub_80EAE30, "ax", %progbits
+	thumb_func_start asm_discard_sub_80EAE30
+asm_discard_sub_80EAE30:
 	push {r4, r5, lr}
 	adds r4, r1, #0x0
 	adds r5, r3, #0x0

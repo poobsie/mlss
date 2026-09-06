@@ -13,10 +13,17 @@ struct ScriptIndexedObjectCallbackArguments;
 struct ScriptActiveObjectCallbackArguments;
 struct ScriptObjectRuntime;
 struct ScriptRuntimeSignedTripletArguments;
+struct ScriptSelectedInputMaskArguments;
+struct ScriptSelectedRuntimeByteArguments;
+struct ScriptRuntimeSlotOwner;
 
 #define script_command_return_from_battle script_cmd_btl_return
 #define script_command_set_runtime_direction_sign sub_80EAD98
 #define script_command_forward_input_mask sub_80EAA5C
+#define script_command_forward_selected_input_mask sub_80EAA84
+#define script_command_forward_selected_runtime_byte sub_80EACDC
+#define script_command_wait_for_runtime_slot sub_80EADEC
+#define script_command_dispatch_runtime_slot sub_80EAE30
 #define script_command_branch_if_runtime_byte_30_equals sub_80EAE9C
 #define script_command_apply_runtime_signed_triplet sub_80EADC4
 #define script_command_forward_runtime_byte_30 sub_80EAE70
@@ -61,11 +68,25 @@ s32 script_command_set_runtime_direction_sign(
     void* context, void* state, const u32* argument);
 s32 script_command_forward_input_mask(
     void* context, u8* owner, const s16* argument, void* commandContext);
+s32 script_command_forward_selected_input_mask(
+    void* context, u8* owner,
+    const struct ScriptSelectedInputMaskArguments* arguments,
+    void* commandContext);
+s32 script_command_forward_selected_runtime_byte(
+    void* context, u8* owner,
+    const struct ScriptSelectedRuntimeByteArguments* arguments,
+    void* commandContext);
 s32 script_command_apply_runtime_signed_triplet(
     void* context, void* state,
     const struct ScriptRuntimeSignedTripletArguments* arguments);
 s32 script_command_forward_runtime_byte_30(
     void* context, u8* owner, const s16* argument, void* commandContext);
+s32 script_command_wait_for_runtime_slot(
+    void* context, struct ScriptRuntimeSlotOwner* owner,
+    struct ScriptExecutionState* state, const u32* identifier);
+s32 script_command_dispatch_runtime_slot(
+    void* context, struct ScriptRuntimeSlotOwner* owner,
+    void* state, const u32* identifier);
 s32 script_command_branch_if_runtime_byte_30_equals(
     void* context, struct ScriptExecutionState* state,
     const u32* arguments);

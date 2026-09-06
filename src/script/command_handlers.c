@@ -70,10 +70,16 @@ extern void sub_8047B08(void*, s32, s32);
 extern void sub_8047B5C(void*, s16);
 extern void sub_8046A10(void*);
 extern void sub_801BBE4(void*, s8, s8, s8);
+extern void sub_80E8EE0(void* owner, u8 slot);
 
 struct ScriptInputRuntimePrefix {
-    u8 unknown00[0x2E];
+    u8 unknown00[0x28];
+    u16 mask28;
+    u16 mask2A;
+    u8 unknown2C[2];
     u16 activeMask;
+    u8 unknown30[0x48];
+    u16 keyControl;
 };
 
 extern struct ScriptInputRuntimePrefix gScriptInputRuntime;
@@ -128,12 +134,82 @@ struct ScriptRuntimeSignedTripletArguments {
     s8 value2;
 };
 
+struct ScriptSelectedInputMaskArguments {
+    s16 value;
+    u16 padding02;
+    u16 selector;
+};
+
+struct ScriptSelectedRuntimeByteArguments {
+    s16 value;
+    u16 padding02;
+    s32 byteSelector;
+};
+
+struct ScriptRuntimeSlot {
+    u8 unknown00[0x0C];
+    u8 identifier;
+    u8 unknown0D[2];
+    u8 active;
+};
+
+struct ScriptRuntimeSlotOwner {
+    struct ScriptRuntimeSlot* slots;
+};
+
+
 SEC(sub_80EAA5C)
 s32 script_command_forward_input_mask(
     void* context, u8* owner, const s16* argument, void* commandContext)
 {
     sub_80E9C4C(commandContext, owner + 0x18, 0, 0,
                 *argument, gScriptInputRuntime.activeMask);
+    return 1;
+}
+
+SEC(sub_80EAA84)
+s32 script_command_forward_selected_input_mask(
+    void* context, u8* owner,
+    const struct ScriptSelectedInputMaskArguments* arguments,
+    void* commandContext)
+{
+    u16 mask = arguments->selector;
+
+    if (mask == 0)
+        mask = gScriptInputRuntime.mask2A;
+    else if (mask == 1)
+        mask = gScriptInputRuntime.mask28;
+    else
+        mask = 0;
+    sub_80E9C4C(commandContext, owner + 0x18, 0, 0,
+                arguments->value, mask);
+    return 1;
+}
+
+SEC(sub_80EACDC)
+s32 script_command_forward_selected_runtime_byte(
+    void* context, u8* owner,
+    const struct ScriptSelectedRuntimeByteArguments* arguments,
+    void* commandContext)
+{
+    switch (arguments->byteSelector) {
+    case 0:
+        sub_80E9C4C(commandContext, owner + 0x18, 0, 0,
+                    arguments->value, (s8)U8AT(SCRIPT_GLOBAL_D44, 0x22));
+        break;
+    case 1:
+        sub_80E9C4C(commandContext, owner + 0x18, 0, 0,
+                    arguments->value, (s8)U8AT(SCRIPT_GLOBAL_D44, 0x23));
+        break;
+    case 2:
+        sub_80E9C4C(commandContext, owner + 0x18, 0, 0,
+                    arguments->value, (s8)U8AT(SCRIPT_GLOBAL_D44, 0x25));
+        break;
+    case 3:
+        sub_80E9C4C(commandContext, owner + 0x18, 0, 0,
+                    arguments->value, (s8)U8AT(SCRIPT_GLOBAL_D44, 0x24));
+        break;
+    }
     return 1;
 }
 
@@ -144,6 +220,46 @@ s32 script_command_apply_runtime_signed_triplet(
 {
     sub_801BBE4(SCRIPT_GLOBAL_D44,
                 arguments->value0, arguments->value1, arguments->value2);
+    return 1;
+}
+
+SEC(sub_80EADEC)
+s32 script_command_wait_for_runtime_slot(
+    void* context, struct ScriptRuntimeSlotOwner* owner,
+    struct ScriptExecutionState* state, const u32* identifier)
+{
+    s16 slot = 0;
+    struct ScriptRuntimeSlot* entry = owner->slots;
+
+    while (slot <= 3) {
+        if (entry->active &&
+            (entry->identifier == *identifier || *identifier == 0x3F)) {
+            state->cursor = state->resumeCursor;
+            return 0;
+        }
+        slot++;
+        entry++;
+    }
+    return 1;
+}
+SEC(sub_80EADEC) const u16 script_command_wait_for_runtime_slot_padding = 0;
+
+SEC(sub_80EAE30)
+s32 script_command_dispatch_runtime_slot(
+    void* context, struct ScriptRuntimeSlotOwner* owner,
+    void* state, const u32* identifier)
+{
+    s16 slot = 0;
+    struct ScriptRuntimeSlot* entry = owner->slots;
+
+    while (slot <= 3) {
+        if (entry->active && entry->identifier == *identifier) {
+            sub_80E8EE0(owner, (u8)slot);
+            break;
+        }
+        slot++;
+        entry++;
+    }
     return 1;
 }
 
