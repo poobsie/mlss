@@ -325,6 +325,14 @@ action once its visual is ready. The numeric sound and command identities remain
 structural, and the unlabeled constructor tail immediately following the terminal
 pair remains in assembly.
 
+Two neighboring lifecycle callbacks now use the shared runtime-object interface.
+One waits for `value80` to clear before installing the existing state-motion
+continuation. The other detaches an embedded object when applicable, releases its
+visual state, clears all observed behavior and ownership slots, and performs the
+established flag-gated resource release. The containing state's offset `0x78` and
+the released resource value remain structural because their producers are still in
+assembly.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
