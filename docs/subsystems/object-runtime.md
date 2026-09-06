@@ -585,6 +585,15 @@ for readiness, start animation 4, restore visual mode 2, stop sound `0x11B`, and
 return to their corresponding auxiliary or behavior-sensitive owner-effect
 setup.
 
+The later visual chain now exposes its compact stop, vector-setup handoff, and
+owner-variant animation pair. The stop callback clears the object's update after
+visual completion. The setup callback starts animation 2, restores visual mode
+2, clears the known state byte at `0x113`, and enters the existing vector setup.
+The paired callbacks select animations `0x11`/`0x12` and then `0x0A`/`0x0B` from
+the negated owner variant, preserving the observed completion gate before the
+second transition. The intervening arithmetic callback remains raw after its
+bounded source shapes changed the original instruction selection.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

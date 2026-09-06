@@ -37,6 +37,10 @@ void sub_810FFB0(struct RuntimeObject*);
 void sub_8110134(struct RuntimeObject*);
 void sub_8110178(struct RuntimeObject*);
 void sub_810F764(struct RuntimeObject*);
+void sub_81101BC(struct RuntimeObject*);
+void sub_8110A30(struct RuntimeObject*);
+void sub_811108C(struct RuntimeObject*);
+void sub_8111174(struct RuntimeObject*);
 void object_on_visual_complete_delay_12(struct RuntimeObject*);
 void sub_81109D0(struct RuntimeObject*);
 void sub_8110A94(struct RuntimeObject*);
@@ -377,6 +381,87 @@ void object_return_to_variant_owner_effect_when_ready(
         *flags = value;
         sound_effect_stop(0x11B);
         object->update = object_start_owner_position_effect_variant_and_continue;
+    }
+}
+
+SEC(sub_8110948)
+void object_stop_when_visual_complete(struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, -1, -1, 0);
+        object->update = 0;
+    }
+}
+
+SEC(sub_81109F4)
+void object_prepare_vector_setup_from_owner_state(struct RuntimeObject* object)
+{
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    sub_8082E1C(object, 2, 0, 0);
+    flags = &object->visual->flags;
+    value = *flags;
+    mask = -7;
+    value &= mask;
+    value |= 2;
+    *flags = value;
+    object->state->value113 = 0;
+    object->update = sub_81101BC;
+}
+
+SEC(sub_811104C)
+void object_start_owner_variant_animation_11_or_12(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner = object->positionOwner;
+    s32 variant;
+    s32 animation;
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    variant = owner->state->variant;
+    variant = -variant;
+    animation = 0x11;
+    if (variant != 1)
+        animation = 0x12;
+    sub_8082E1C(object, animation, 0, 0);
+    flags = &object->visual->flags;
+    value = *flags;
+    mask = -7;
+    value &= mask;
+    value |= 2;
+    *flags = value;
+    object->update = object_continue_owner_variant_animation_10_or_11;
+}
+
+SEC(sub_8111174)
+void object_continue_owner_variant_animation_10_or_11(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner;
+    s32 variant;
+    s32 animation;
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (object->visual->flags & 8) {
+        owner = object->positionOwner;
+        variant = -owner->state->variant;
+        animation = 0xA;
+        if (variant != 1)
+            animation = 0xB;
+        sub_8082E1C(object, animation, 0, 0);
+        flags = &object->visual->flags;
+        value = *flags;
+        mask = -7;
+        value &= mask;
+        value |= 2;
+        *flags = value;
+        object->update = sub_811108C;
     }
 }
 
