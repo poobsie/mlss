@@ -69,6 +69,14 @@ SEC(sub_80F7590) void field_clear_nested_flags_1788(u32 mask)
     target->flags1788 &= ~mask;
 }
 
+SEC(sub_80F75B4) void field_set_nested_flags_1788(u32 mask)
+{
+    struct FieldNestedFlagTarget* target;
+
+    target = FIELD_NESTED_FLAG_RUNTIME->container244->target2C;
+    target->flags1788 |= mask;
+}
+
 MISC3_SEC(field_set_nested_flags_1788_and_1798)
 void field_set_nested_flags_1788_and_1798(u32 mask)
 {

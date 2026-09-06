@@ -293276,8 +293276,9 @@ _080F7584: .4byte 0x03000FD8
 _080F7588: .4byte 0x00001788
 _080F758C: .4byte 0x00001798
 	.section .text.small_functions_01_after_sub_80F7590, "ax", %progbits
-	thumb_func_start sub_80F75B4
-sub_80F75B4:
+	.section .discard.field_set_nested_flags_1788, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F75B4
+asm_discard_sub_80F75B4:
 	ldr r1, _080F75D0 @ =0x03000FD8
 	ldr r1, [r1, #0x00]
 	movs r2, #0x91

@@ -1,4 +1,5 @@
 #include "field/selection_sequence.h"
+#include "field/runtime_flags.h"
 
 #define SEC(name) __attribute__((section(".text.field_selection_sequence." #name)))
 #define FIELD_RUNTIME (*(struct FieldSelectionRuntime**)0x03000FD8)
@@ -8,7 +9,6 @@ void sub_8081E2C(void* object);
 void sub_8081EAC(u8 entry);
 void sub_8095584(void* object);
 void sub_80F7068(u8 entry, s32 value);
-void sub_80F75B4(u32 flags);
 void sub_80F75D8(u32 flags);
 void sub_8100D18(struct FieldSelectionProcess* process);
 void sub_8100E5C(struct FieldSelectionProcess* process);
@@ -44,7 +44,7 @@ void sub_8106E58(struct FieldSelectionProcess* process)
             sub_80F7068(FIELD_RUNTIME->selectedEntry349, -1);
             FIELD_RUNTIME->selectedEntry349 = 0xFF;
             process->update = sub_8100E5C;
-            sub_80F75B4(8);
+            field_set_nested_flags_1788(8);
         }
     }
 }

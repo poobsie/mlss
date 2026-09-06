@@ -260,6 +260,13 @@ gameplay reason for the open-extent constants remain unknown.
 
 ## Verification
 
+The nested field-flag owner now exposes the direct setter paired with its existing
+clear helper. `field_set_nested_flags_1788` follows the runtime's container and
+target pointers, then ORs the requested mask into `flags1788`. Its caller uses mask
+`0x08` while committing a selected field entry. The individual bit meaning remains
+unresolved, so the name records the proven ownership and operation without assigning
+a speculative gameplay label.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or
