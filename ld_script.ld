@@ -2215,6 +2215,9 @@ SECTIONS
         asm/text08057568.o(.text.state_field_helpers_after_sub_8116610);
         src/field/value_transfer.o(.text.field_value_transfer.sub_8116620);
         asm/text08057568.o(.text.field_value_transfer_after_sub_8116620);
+        asm/text08057568.o(.text.field_display_transfer_before_sub_81169C8);
+        src/field/display_transfer.o(.text.field_display_transfer.sub_81169C8);
+        asm/text08057568.o(.text.field_display_transfer_after_sub_81169C8);
         src/ui/visibility.o(.text.middle.sub_81218C8);
         asm/text08057568.o(.text.after_middle_sub_81218C8);
         src/ui/visibility.o(.text.middle.sub_81218D4);

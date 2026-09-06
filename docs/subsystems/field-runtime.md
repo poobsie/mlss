@@ -61,6 +61,10 @@ at `0x44` has priority, followed by an empty source at `0x34`; otherwise flag `0
 at `0x32` selects between the two ready states. The numeric results remain unchanged
 because their consumers do not yet establish stable semantic labels.
 
+The display-transfer process keeps a one-bit phase at process offset `0x1C`.
+Its callback toggles that phase directly; the surrounding display callbacks remain
+in assembly until their indirect-call contracts are established.
+
 The selected-entry sequence is now one three-stage unit instead of three numbered catch-all files. Its stages wait for the shared blocker at `0x310`, prepare the selected entry at `0x349`, commit it through the active object at `0x7C`, clear the selection to `0xFF`, and install the next process callback at each boundary. Scene-specific names require the resource tables used by the assembly helpers.
 
 A fourth selection-setup stage waits on an external readiness poll and flag `0x04` at `0x2BF`. Mode `2` resets both indexed display selections through the same assembly helper before the process advances.
