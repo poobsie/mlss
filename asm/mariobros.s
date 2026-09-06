@@ -86835,8 +86835,9 @@ sub_8F91574:
 _08F915E0: .4byte 0x03000F40
 _08F915E4: .4byte 0x0000447C
 _08F915E8: .4byte 0x00000226
-	thumb_func_start sub_8F915EC
-sub_8F915EC:
+	.section .discard.mariobros_display_sub_8F915EC, "ax", %progbits
+	thumb_func_start asm_sub_8F915EC
+asm_sub_8F915EC:
 	push {lr}
 	add sp, #-0x014
 	adds r1, r0, #0x0
@@ -86854,6 +86855,7 @@ _08F9160A:
 	add sp, #0x014
 	pop {r0}
 	bx r0
+	.section .text.after_mariobros_display_sub_8F915EC, "ax", %progbits
 	thumb_func_start sub_8F91610
 sub_8F91610:
 	push {lr}

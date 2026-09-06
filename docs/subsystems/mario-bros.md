@@ -123,6 +123,12 @@ symbols; names describe only the observable state contract. Nearby tile-code and
 direction-animation candidates remain in assembly because two natural typed C
 forms changed register allocation.
 
+A later compact display consumer now uses the 20-byte descriptor prepared by its
+existing sibling helpers. When source byte `0x01` equals 20, it constructs that
+descriptor, offsets the established X field by 24, and submits the related display
+sequence. The source byte remains offset-named because its wider state meaning is
+not yet established.
+
 The same object layer now exposes a 64-tick lifetime helper. It increments the
 low byte of `value24` and returns the object to the existing pool once the next
 value exceeds 63. The record's gameplay class and the release routine's broader

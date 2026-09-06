@@ -11,9 +11,22 @@ struct MarioBrosEffectState {
     u16 activeEffect;
 };
 
+struct MarioBrosDisplaySource {
+    u8 unknown00;
+    u8 value01;
+};
+
+struct MarioBrosDisplayDescriptor {
+    s32 x;
+    u8 unknown04[0x10];
+};
+
 void sub_8F66490(struct MarioBrosEffectState* state);
 void sub_8F5CC20(struct MarioBrosObject* object);
 void sub_8F5F060(struct MarioBrosObject* object);
+void sub_8F914F4(struct MarioBrosDisplayDescriptor* descriptor,
+                 struct MarioBrosDisplaySource* source);
+void sub_8F91574(struct MarioBrosDisplayDescriptor* descriptor);
 
 SECTION(sub_8F6118C)
 void mario_bros_tick_action_countdown(struct MarioBrosObject* object)
@@ -64,3 +77,16 @@ void mario_bros_tick_lifetime_64(struct MarioBrosObject* object)
     object->value24 = elapsed;
 }
 SECTION(sub_8F660E4) const u16 mario_bros_tick_lifetime_64_padding = 0;
+
+SECTION(sub_8F915EC)
+void mario_bros_emit_offset_display_if_value01_20_b(
+    struct MarioBrosDisplaySource* source)
+{
+    struct MarioBrosDisplayDescriptor descriptor;
+
+    if (source->value01 == 0x14) {
+        sub_8F914F4(&descriptor, source);
+        descriptor.x += 0x18;
+        sub_8F91574(&descriptor);
+    }
+}
