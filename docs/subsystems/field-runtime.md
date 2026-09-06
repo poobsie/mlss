@@ -400,4 +400,12 @@ The neighboring high-nibble clear remains part of the same typed status API.
 More complex consumers are still in assembly until their callback owner explains
 whether these are animation, movement, or interaction timers.
 
+Three probability gates claim one of the status bits `0x4000`, `0x2000`, or
+`0x1000` when that bit is clear and the caller's threshold accepts a random
+remainder from zero through 99. A successful claim clears the other status bits
+in the high nibble, installs the selected bit, and writes mode `0x0C` into bits
+two through four of the byte at offset `0x122`. The caller proves that these are
+parallel selections, but their gameplay directions remain unknown, so the API
+retains the bit values instead of inventing directional names.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

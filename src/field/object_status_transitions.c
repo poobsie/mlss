@@ -31,6 +31,26 @@ void field_object_start_variant_action_when_ready(
 void field_object_prepare_variant_action(
     struct FieldObjectStatusProcess* process);
 
+#define DEFINE_STATUS_FLAG_CLAIM(symbol, flag)                            \
+    SEC(symbol) s32 symbol(                                               \
+        struct FieldObjectStatus* object, s32 threshold)                  \
+    {                                                                     \
+        s8* modeFlags;                                                    \
+                                                                          \
+        if (!(object->flags11E & (flag))                                  \
+            && threshold >= sub_81DD77C(0x64, sub_8199F30())) {           \
+            object->flags11E = (object->flags11E & 0x0FFF) | (flag);      \
+            modeFlags = (s8*)&object->flags122;                           \
+            *modeFlags = (*modeFlags & -0x1D) | 0x0C;                     \
+            return 1;                                                     \
+        }                                                                 \
+        return 0;                                                         \
+    }
+
+DEFINE_STATUS_FLAG_CLAIM(sub_8108D8C, 0x4000)
+DEFINE_STATUS_FLAG_CLAIM(sub_8108DE4, 0x2000)
+DEFINE_STATUS_FLAG_CLAIM(sub_8108E3C, 0x1000)
+
 SEC(sub_8108B50)
 void field_object_play_sound_151_after_delay(
     struct FieldObjectStatusProcess* process)

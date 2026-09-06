@@ -325212,6 +325212,8 @@ _08108D86:
 	pop {r4, r5, r6}
 	pop {r1}
 	bx r1
+	.section .text.field_status_random_flags_before_sub_8108D8C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8108D8C
 sub_8108D8C:
 	push {r4, r5, r6, r7, lr}
@@ -325347,6 +325349,8 @@ _08108E8E:
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
+	.endif
+	.section .text.field_status_random_flags_after_sub_8108E3C, "ax", %progbits
 	thumb_func_start sub_8108E94
 sub_8108E94:
 	push {r4, r5, lr}

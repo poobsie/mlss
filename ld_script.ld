@@ -2251,6 +2251,11 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_8108CBC);
         src/field/object_status_transitions.o(.text.object_status_transitions.sub_8108CD0);
         asm/text08057568.o(.text.object_status_transitions_after_sub_8108CD0);
+        asm/text08057568.o(.text.field_status_random_flags_before_sub_8108D8C);
+        src/field/object_status_transitions.o(.text.object_status_transitions.sub_8108D8C);
+        src/field/object_status_transitions.o(.text.object_status_transitions.sub_8108DE4);
+        src/field/object_status_transitions.o(.text.object_status_transitions.sub_8108E3C);
+        asm/text08057568.o(.text.field_status_random_flags_after_sub_8108E3C);
         src/field/display.o(.text.field_display.sub_810C950);
         asm/text08057568.o(.text.small_functions_07_after_sub_810C950);
         src/field/display.o(.text.misc_helpers_03.sub_810CAD0);

@@ -29,5 +29,15 @@ static inline struct RuntimeObject* field_object_status_runtime_object(
 #define field_consume_flag_20 sub_8108C64
 #define field_consume_flag_08 sub_8108C90
 #define field_clear_flags_11e_high_nibble sub_8108CBC
+#define field_try_claim_status_flag_4000 sub_8108D8C
+#define field_try_claim_status_flag_2000 sub_8108DE4
+#define field_try_claim_status_flag_1000 sub_8108E3C
+
+s32 field_try_claim_status_flag_4000(
+    struct FieldObjectStatus* object, s32 threshold);
+s32 field_try_claim_status_flag_2000(
+    struct FieldObjectStatus* object, s32 threshold);
+s32 field_try_claim_status_flag_1000(
+    struct FieldObjectStatus* object, s32 threshold);
 
 #endif
