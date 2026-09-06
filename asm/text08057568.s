@@ -365427,6 +365427,8 @@ _081229E0: .4byte 0x00004020
 _081229E4: .4byte 0x083BF370
 _081229E8: .4byte 0xFDA00000
 _081229EC: .4byte 0x00004074
+	.section .text.field_graphics_block_before_sub_81229F0, "ax", %progbits
+	.if 0
 	thumb_func_start sub_81229F0
 sub_81229F0:
 	push {r4, lr}
@@ -365450,6 +365452,8 @@ sub_81229F0:
 	bx r0
 	.byte 0x00, 0x00
 _08122A1C: .4byte 0x0300034C
+	.endif
+	.section .text.field_graphics_block_after_sub_81229F0, "ax", %progbits
 	thumb_func_start sub_8122A20
 sub_8122A20:
 	push {r4, r5, r6, r7, lr}

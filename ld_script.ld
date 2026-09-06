@@ -2226,6 +2226,9 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_81218E0);
         src/screens/runtime_helpers.o(.text.upper.sub_81219EC);
         asm/text08057568.o(.text.after_upper_sub_81219EC);
+        asm/text08057568.o(.text.field_graphics_block_before_sub_81229F0);
+        src/field/graphics_block.o(.text.field_graphics_block.sub_81229F0);
+        asm/text08057568.o(.text.field_graphics_block_after_sub_81229F0);
         src/screens/runtime_helpers.o(.text.upper.sub_8122BA0);
         asm/text08057568.o(.text.after_upper_sub_8122BA0);
         src/runtime/global_state.o(.text.upper.sub_8123340);
