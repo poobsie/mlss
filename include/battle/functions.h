@@ -50,6 +50,7 @@ struct BattleSpriteArrayOwner9;
 #define battle_destroy_resource_quad sub_815ECA8
 #define battle_destroy_sprite_array5 sub_815EB70
 #define battle_destroy_sprite_array9 sub_815EACC
+#define battle_show_sprite_array9 sub_815EA64
 #define battle_effect_hide_sprite_and_reset sub_815EC3C
 #define battle_effect_get_value sub_815EC8C
 #define battle_clear_value_14 sub_8158E10
@@ -101,6 +102,7 @@ void battle_destroy_large_resource_pair(struct BattleLargeResourceOwner* object,
 void battle_destroy_resource_quad(struct BattleResourceQuadOwner* object, s32 flags);
 void battle_destroy_sprite_array5(struct BattleSpriteArrayOwner5* object, s32 flags);
 void battle_destroy_sprite_array9(struct BattleSpriteArrayOwner9* object, s32 flags);
+void battle_show_sprite_array9(struct BattleSpriteArrayOwner9* object);
 void battle_set_flag_12d_10(struct BattleControlObject* object);
 void battle_set_flag_12d_20(struct BattleControlObject* object);
 void battle_set_flag_12c_01(struct BattleControlObject* object);

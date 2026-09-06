@@ -2877,6 +2877,8 @@ SECTIONS
         asm/text08057568.o(.text.after_815E9EC);
         src/runtime/definition_state.o(.text.sub_815EA08);
         asm/text08057568.o(.text.after_815EA08);
+        src/battle/large_resource_cleanup.o(.text.upper.sub_815EA64);
+        asm/text08057568.o(.text.after_upper_sub_815EA64);
         src/battle/large_resource_cleanup.o(.text.upper.sub_815EACC);
         asm/text08057568.o(.text.after_815EACC);
         src/battle/large_resource_cleanup.o(.text.upper.sub_815EB70);

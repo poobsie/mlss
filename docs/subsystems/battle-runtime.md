@@ -39,6 +39,8 @@ The sprite variant container clears its state, installs descriptor `0x08CDC4D0`,
 
 The five compact sprite-owner destructors share cleanup shape but not enough class evidence to merge their layouts. Three unconditional single-sprite variants use offset `0`; one nullable sprite uses offset `4`; one owns three nullable sprites at offsets `0`, `4`, and `8`. Their semantic names describe those proven layouts and preserve variant suffixes where separate ROM entry points remain unexplained.
 
+The nine-sprite owner now exposes its matching visibility operation. It shows each non-null sprite in the same array later traversed by `battle_destroy_sprite_array9`, which establishes both the array boundary and the nullable ownership contract without assigning a gameplay identity to the container.
+
 The large cleanup helpers are deliberately kept separate from `BattleSpriteMotion`. Their observed fields occur at offsets `0x524`, `0x804`, and `0x80C`, and no evidence yet proves that the two large layouts are the same class.
 
 `battle_tick_countdown_1f2a` decrements a signed counter in the large battle-scene runtime and clears the adjacent value at `0x1F28` once the counter becomes negative. Both fields retain offset-bearing names until the code that arms the counter is recovered.

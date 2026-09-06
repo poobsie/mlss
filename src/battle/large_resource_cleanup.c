@@ -7,6 +7,24 @@
 void sub_8021308(void* sprite);
 void free_heap_8018D9C(void* resource);
 void free_heap_8018DA8(void* object);
+void sprite_show_8020CBC(struct BattleSprite* sprite);
+
+SEC(sub_815EA64)
+void battle_show_sprite_array9(struct BattleSpriteArrayOwner9* object)
+{
+    struct BattleSprite** sprites = object->sprites;
+
+    if (object->sprites[0] != 0) sprite_show_8020CBC(object->sprites[0]);
+    if (sprites[1] != 0) sprite_show_8020CBC(sprites[1]);
+    if (object->sprites[2] != 0) sprite_show_8020CBC(object->sprites[2]);
+    if (object->sprites[3] != 0) sprite_show_8020CBC(object->sprites[3]);
+    if (object->sprites[4] != 0) sprite_show_8020CBC(object->sprites[4]);
+    if (object->sprites[5] != 0) sprite_show_8020CBC(object->sprites[5]);
+    if (object->sprites[6] != 0) sprite_show_8020CBC(object->sprites[6]);
+    if (object->sprites[7] != 0) sprite_show_8020CBC(object->sprites[7]);
+    if (object->sprites[8] != 0) sprite_show_8020CBC(object->sprites[8]);
+}
+SEC(sub_815EA64) const u16 battle_show_sprite_array9_padding = 0;
 
 SEC(sub_815EB70)
 void battle_destroy_sprite_array5(struct BattleSpriteArrayOwner5* object, s32 flags)
