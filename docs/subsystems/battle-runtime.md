@@ -53,6 +53,12 @@ optional attached sprite, and mirrors the primary sprite coordinates into the
 separately owned position resource. Their only behavioral difference is the
 order in which those two attachments are synchronized.
 
+The shared sprite-motion initializer now copies the typed configuration into the
+fixed-point position, rendering, animation, priority, and variant fields while
+clearing motion and sprite state. A connected setup leaf selects animation 22,
+chooses horizontal velocity toward the runtime's reference object, clears
+vertical velocity, and enters state 1. Gameplay identities remain unresolved.
+
 The large cleanup helpers are deliberately kept separate from `BattleSpriteMotion`. Their observed fields occur at offsets `0x524`, `0x804`, and `0x80C`, and no evidence yet proves that the two large layouts are the same class.
 
 `battle_tick_countdown_1f2a` decrements a signed counter in the large battle-scene runtime and clears the adjacent value at `0x1F28` once the counter becomes negative. Both fields retain offset-bearing names until the code that arms the counter is recovered.

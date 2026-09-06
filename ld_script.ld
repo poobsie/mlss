@@ -2953,6 +2953,8 @@ SECTIONS
         asm/text08057568.o(.text.after_815F290);
         src/battle/sprite_motion.o(.text.text_late_helpers.sub_815F2C4);
         asm/text08057568.o(.text.after_text_late_helpers_sub_815F2C4);
+        src/battle/sprite_motion_variants.o(.text.battle_sprite_callbacks.sub_815F2E8);
+        asm/text08057568.o(.text.after_battle_sprite_callbacks_sub_815F2E8);
         src/battle/definition_initializers.o(.text.sub_815F340);
         asm/text08057568.o(.text.after_815F340);
         src/battle/sprite_motion_variants.o(.text.battle_sprite_callbacks.sub_815F354);
@@ -2985,6 +2987,8 @@ SECTIONS
         asm/text08057568.o(.text.after_815F898);
         src/battle/destructors.o(.text.sub_815F8BC);
         asm/text08057568.o(.text.after_815F8BC);
+        src/battle/sprite_motion_variants.o(.text.text_upper_structural.battle_initialize_sprite_motion_base);
+        asm/text08057568.o(.text.after_text_upper_structural_sub_815F8F4);
         src/battle/sprite_owner.o(.text.sub_815FA3C);
         src/battle/sprite_owner.o(.text.sub_815FA40);
         src/battle/sprite_owner.o(.text.sub_815FA50);

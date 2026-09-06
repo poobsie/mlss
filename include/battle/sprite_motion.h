@@ -42,6 +42,8 @@ struct BattleFixedOrigin;
 #define battle_destroy_sprite_motion_resources sub_815F474
 #define battle_sync_sprite_motion_resources_variant_a sub_815F380
 #define battle_sync_sprite_motion_resources_variant_b sub_815F428
+#define battle_prepare_sprite_motion_toward_runtime_x sub_815F2E8
+#define battle_initialize_sprite_motion_base sub_815F8F4
 #define battle_sync_sprite_motion_to_camera sub_815861C
 #define battle_initialize_scaled_sprite_motion sub_815F238
 #define battle_initialize_grounded_sprite_motion_b sub_815F5C8
@@ -56,11 +58,23 @@ struct BattleSpriteMotion {
     s16 velocityX;
     u8 unknown16[2];
     s16 velocityY;
-    u8 unknown1A[0x0A];
+    u8 unknown1A[2];
+    s16 accelerationX;
+    u8 unknown1E[2];
+    s16 accelerationY;
+    u8 unknown22[2];
     u8 state;
-    u8 unknown25;
+    u8 priority;
     u8 variant26;
-    u8 unknown27[9];
+    u8 unknown27;
+    u8 spriteKind;
+    u8 animation;
+    u8 palette;
+    u8 renderFlags;
+    u8 unknown2C;
+    u8 unknown2D;
+    u8 unknown2E;
+    u8 unknown2F;
     const void* descriptor;
     union BattleSpriteMotionSlot34 {
         struct {
@@ -147,6 +161,10 @@ void battle_sync_sprite_motion_resources_variant_a(
     struct BattleSpriteMotion*, const struct BattleFixedOrigin*);
 void battle_sync_sprite_motion_resources_variant_b(
     struct BattleSpriteMotion*, const struct BattleFixedOrigin*);
+void battle_prepare_sprite_motion_toward_runtime_x(
+    struct BattleSpriteMotion*);
+struct BattleSpriteMotion* battle_initialize_sprite_motion_base(
+    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*);
 void* battle_initialize_scaled_sprite_motion(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
 void* battle_initialize_grounded_sprite_motion_b(

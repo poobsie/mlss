@@ -5,9 +5,8 @@
     __attribute__((section(".text.battle_sprite_callbacks." #name)))
 #define CALLBACK_SEC(name) CALLBACK_SEC_INNER(name)
 #define BATTLE_CAMERA (*(s16**)0x03001014)
+#define BATTLE_RUNTIME (*(u8**)0x03001020)
 
-extern void* sub_815F8F4(
-    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*);
 extern void sub_815F97C(struct BattleSpriteMotion*, s32);
 extern struct BattleSprite* sub_815FA3C(struct BattleSpriteMotion*);
 extern void sub_815FA70(struct BattleSpriteMotion*, s32);
@@ -38,6 +37,38 @@ struct BattleMotionDescriptor {
     u16 padding3A;
     void (*callback3C)(void*);
 };
+
+SEC(battle_initialize_sprite_motion_base)
+struct BattleSpriteMotion* battle_initialize_sprite_motion_base(
+    struct BattleSpriteMotion* object,
+    const struct BattleSpriteMotionConfig* config)
+{
+    s32 coordinate;
+    object->descriptor = (void*)0x08CDCF70;
+    coordinate = config->x << 8;
+    object->previousX = coordinate;
+    object->positionX = coordinate;
+    coordinate = config->y << 8;
+    object->previousY = coordinate;
+    object->positionY = coordinate;
+    object->velocityX = 0;
+    object->velocityY = 0;
+    object->accelerationX = 0;
+    object->accelerationY = 0;
+    object->state = 0;
+    object->priority = config->priority;
+    object->variant26 = config->unknown06;
+    object->unknown27 = config->unknown07;
+    object->spriteKind = config->spriteKind;
+    object->animation = config->animation;
+    object->palette = config->unknown08;
+    object->renderFlags = config->unknown09;
+    object->unknown2C = config->palette;
+    object->unknown2D = config->renderFlags;
+    object->sprite = 0;
+    object->unknown2E = 0;
+    return object;
+}
 
 /*
  * These callbacks form two mirrored battle-effect families. Descriptor
@@ -116,6 +147,24 @@ DEFINE_SPRITE_SIZE_SETUP(battle_setup_sprite_motion_size_a)
 CALLBACK_SEC(sub_8158B90) const u16 sub_8158B90_padding = 0;
 DEFINE_SPRITE_SIZE_SETUP(battle_setup_sprite_motion_size_b)
 CALLBACK_SEC(sub_815F3CC) const u16 sub_815F3CC_padding = 0;
+
+CALLBACK_SEC(battle_prepare_sprite_motion_toward_runtime_x)
+void battle_prepare_sprite_motion_toward_runtime_x(
+    struct BattleSpriteMotion* object)
+{
+    struct BattleSpriteMotion* target;
+    if (sub_815FA3C(object) != 0) {
+        sub_815FA70(object, 0x16);
+        sub_815FA3C(object)->value0C = 0;
+    }
+    target = *(struct BattleSpriteMotion**)(BATTLE_RUNTIME + 0x1C98);
+    if (object->positionX > target->positionX)
+        object->velocityX = 0x200;
+    else
+        object->velocityX = -0x200;
+    object->velocityY = 0;
+    object->state = 1;
+}
 
 CALLBACK_SEC(battle_sync_sprite_motion_resources_variant_a)
 void battle_sync_sprite_motion_resources_variant_a(
