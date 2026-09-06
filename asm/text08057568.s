@@ -294256,8 +294256,9 @@ _080F7F94:
 	bx r1
 _080F7F9C: .4byte 0x03000FD8
 _080F7FA0: .4byte 0x000002BF
-	thumb_func_start sub_80F7FA4
-sub_80F7FA4:
+	.section .discard.field_apply_indexed_object_visual_transform, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F7FA4
+asm_discard_sub_80F7FA4:
 	push {lr}
 	ldr r0, _080F7FC4 @ =0x03000FD8
 	ldr r1, [r0, #0x00]
@@ -294274,8 +294275,10 @@ sub_80F7FA4:
 	bx r1
 	.byte 0x00, 0x00
 _080F7FC4: .4byte 0x03000FD8
-	thumb_func_start sub_80F7FC8
-sub_80F7FC8:
+	.section .text.field_runtime_after_sub_80F7FA4, "ax", %progbits
+	.section .discard.field_copy_indexed_object_vector, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F7FC8
+asm_discard_sub_80F7FC8:
 	ldr r0, _080F8004 @ =0x03000FD8
 	ldr r1, [r0, #0x00]
 	ldm r2!, {r0}
@@ -294307,6 +294310,7 @@ sub_80F7FC8:
 	ldrb r0, [r2, #0x00]
 	bx lr
 _080F8004: .4byte 0x03000FD8
+	.section .text.field_runtime_after_sub_80F7FC8, "ax", %progbits
 	thumb_func_start sub_80F8008
 sub_80F8008:
 	push {lr}

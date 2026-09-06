@@ -296,6 +296,19 @@ with a bias of six, and operation zero writes the low byte of the supplied value
 The array entries' gameplay identities remain unresolved, so both the base offset
 and index bias remain explicit.
 
+`field_apply_indexed_object_visual_transform` resolves a script-selected owner
+from the field runtime's pointer array at offset `0x58`, follows its established
+`RuntimeObject` layout, and applies the command's transform value to the object's
+visual. The transform helper reads a three-component table, but the table values'
+rendering meaning is not yet established, so the public name stops at the proven
+visual-transform boundary.
+
+The adjacent `field_copy_indexed_object_vector` command copies the three-word
+vector at owner offsets `0xD8` through `0xE0` between two independently selected
+objects, then returns the command stream's following byte. Current code proves the
+vector boundary and copy direction, but not its coordinate space or the meaning of
+that returned control byte.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or
