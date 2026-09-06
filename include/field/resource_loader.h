@@ -33,12 +33,15 @@ struct FieldResourceRuntime {
 
 #define field_resource_loader_shutdown sub_80FAEFC
 #define field_resource_loader_destroy sub_80FAFD8
+#define field_resource_loader_create sub_80FB080
 #define field_owned_resource_destroy sub_80E8EFC
 #define field_resource_block_list_destroy sub_80E9484
 
 void field_resource_loader_shutdown(struct FieldResourceLoaderProcess* loader);
 void field_resource_loader_destroy(struct FieldResourceLoaderProcess* loader,
                                    u32 flags);
+struct FieldResourceLoaderProcess* field_resource_loader_create(
+    struct FieldResourceLoaderProcess* loader, u8 priority, char* label);
 void field_owned_resource_destroy(struct FieldOwnedResource* resource, u32 flags);
 void field_resource_block_list_destroy(struct FieldResourceBlockList* list,
                                        u32 flags);

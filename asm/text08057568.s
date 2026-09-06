@@ -296988,8 +296988,9 @@ _080FAFB8: .4byte 0x000009A1
 	.byte 0x10, 0xB5, 0x04, 0x1C, 0xA0, 0x6A, 0x04, 0x21, 0xEB, 0xF7, 0xF8, 0xFF, 0xA0, 0x6A, 0x10, 0x21
 	.byte 0xEC, 0xF7, 0xA4, 0xF8, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
 	.section .text.small_functions_12_after_sub_80FAFD8, "ax", %progbits
-	thumb_func_start sub_80FB080
-sub_80FB080:
+	.section .discard.field_resource_loader_create, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FB080
+asm_discard_sub_80FB080:
 	push {r4, r5, lr}
 	adds r4, r0, #0x0
 	lsls r1, r1, #0x18
@@ -297058,6 +297059,7 @@ _080FB118: .4byte 0x083B9D00
 _080FB11C: .4byte 0x083BA13C
 _080FB120: .4byte 0x0000056C
 _080FB124: .4byte 0x083BA4A8
+	.section .text.small_functions_12_after_sub_80FB080, "ax", %progbits
 	thumb_func_start init_fobj_with_data_80FB128
 init_fobj_with_data_80FB128: @ 080FB128
 	push {r4, r5, r6, r7, lr}

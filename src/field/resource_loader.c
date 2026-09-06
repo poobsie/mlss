@@ -12,12 +12,33 @@ void sub_80FADD4(struct FieldResourceLoaderProcess* loader);
     __attribute__((section(".text.misc_helpers_02." STRINGIFY(symbol))))
 
 #define FIELD_RESOURCE_RUNTIME (*(struct FieldResourceRuntime**)0x03000FC0)
+#define FIELD_RESOURCE_MEMORY_FILL \
+    (*(void (**)(u32, void*, u32))0x03001034)
+#define FIELD_RESOURCE_LOADER_DEFINITION \
+    ((struct ProcessDefinition*)0x08CDC328)
+#define FIELD_RESOURCE_LOADER_WORKSPACE_LABEL ((char*)0x082001E0)
 
 #define FIELD_RESOURCE_DEFAULT_55C (*(void**)0x083B9704)
 #define FIELD_RESOURCE_DEFAULT_560 (*(void**)0x083B98C4)
 #define FIELD_RESOURCE_DEFAULT_564 (*(void**)0x083B9D00)
 #define FIELD_RESOURCE_DEFAULT_568 (*(void**)0x083BA13C)
 #define FIELD_RESOURCE_DEFAULT_56C (*(void**)0x083BA4A8)
+
+struct FieldResourceDefaultDescriptor {
+    u8 unknown00[8];
+    void* resource;
+};
+
+#define FIELD_RESOURCE_DESCRIPTOR_55C \
+    ((struct FieldResourceDefaultDescriptor*)0x083B9704)
+#define FIELD_RESOURCE_DESCRIPTOR_560 \
+    ((struct FieldResourceDefaultDescriptor*)0x083B98C4)
+#define FIELD_RESOURCE_DESCRIPTOR_564 \
+    ((struct FieldResourceDefaultDescriptor*)0x083B9D00)
+#define FIELD_RESOURCE_DESCRIPTOR_568 \
+    ((struct FieldResourceDefaultDescriptor*)0x083BA13C)
+#define FIELD_RESOURCE_DESCRIPTOR_56C \
+    ((struct FieldResourceDefaultDescriptor*)0x083BA4A8)
 
 MISC2_SEC(field_owned_resource_destroy)
 void field_owned_resource_destroy(struct FieldOwnedResource* resource, u32 flags)
@@ -68,4 +89,28 @@ void field_resource_loader_destroy(struct FieldResourceLoaderProcess* loader,
     FIELD_RESOURCE_RUNTIME->resourceDefault568 = FIELD_RESOURCE_DEFAULT_568;
     FIELD_RESOURCE_RUNTIME->resourceDefault56C = FIELD_RESOURCE_DEFAULT_56C;
     process_remove(&loader->process, flags);
+}
+
+SEC("small_functions_12", sub_80FB080)
+struct FieldResourceLoaderProcess* field_resource_loader_create(
+    struct FieldResourceLoaderProcess* loader, u8 priority, char* label)
+{
+    process_add(&loader->process, priority, label);
+    loader->process.definition = FIELD_RESOURCE_LOADER_DEFINITION;
+    loader->secondResource = 0;
+    loader->firstResource = 0;
+    loader->workspace = heap_alloc_block(
+        TRUE, 0x9A8, FIELD_RESOURCE_LOADER_WORKSPACE_LABEL);
+    FIELD_RESOURCE_MEMORY_FILL(0, loader->workspace, 0x9A8);
+    FIELD_RESOURCE_RUNTIME->resourceDefault55C =
+        FIELD_RESOURCE_DESCRIPTOR_55C->resource;
+    FIELD_RESOURCE_RUNTIME->resourceDefault560 =
+        FIELD_RESOURCE_DESCRIPTOR_560->resource;
+    FIELD_RESOURCE_RUNTIME->resourceDefault564 =
+        FIELD_RESOURCE_DESCRIPTOR_564->resource;
+    FIELD_RESOURCE_RUNTIME->resourceDefault568 =
+        FIELD_RESOURCE_DESCRIPTOR_568->resource;
+    FIELD_RESOURCE_RUNTIME->resourceDefault56C =
+        FIELD_RESOURCE_DESCRIPTOR_56C->resource;
+    return loader;
 }
