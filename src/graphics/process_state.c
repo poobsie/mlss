@@ -32,6 +32,20 @@ u8 sub_8114C1C(
 #define FRAME_TRANSFER_SOURCE (*(void**)0x03000E08)
 #define FRAME_TRANSFER_STAGING (*(u16**)0x03000E0C)
 
+SEC(sub_8059E5C)
+void graphics_destroy_allocated_buffer_owner(
+    struct GraphicsAllocatedBufferOwner* owner, s32 flags)
+{
+    owner->descriptor = (const void*)0x08CDC278;
+    if (owner->buffer78 != 0)
+        free_heap_8018D9C(owner->buffer78);
+    if (owner->buffer70 != 0)
+        free_heap_8018D9C(owner->buffer70);
+    if (owner->buffer68 != 0)
+        free_heap_8018D9C(owner->buffer68);
+    process_remove((struct Process*)owner, flags);
+}
+
 MISC2_SEC(graphics_apply_staging_source)
 void graphics_apply_staging_source(struct GraphicsStagingSource* source)
 {

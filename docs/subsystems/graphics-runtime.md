@@ -132,6 +132,12 @@ request. The completion predicate compares progress with the target, while the
 destructor restores the class descriptor and honors the standard low-bit heap
 release flag.
 
+`graphics_destroy_allocated_buffer_owner` establishes a separate early graphics
+ownership boundary. It installs terminal descriptor `0x08CDC278`, releases the
+three optional allocations at offsets `0x78`, `0x70`, and `0x68`, then removes
+the process. The intervening pointers remain offset-named because this teardown
+does not establish their formats or ownership rules.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

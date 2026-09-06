@@ -98,6 +98,17 @@ extern const struct GraphicsResourceEntryDefinition* const
 extern const struct GraphicsOwnerConfigurationRecord
     gGraphicsOwnerConfigurationTable[];
 
+struct GraphicsAllocatedBufferOwner {
+    u8 unknown00[0x18];
+    const void* descriptor;
+    u8 unknown1C[0x4C];
+    void* buffer68;
+    u8 unknown6C[4];
+    void* buffer70;
+    u8 unknown74[4];
+    void* buffer78;
+};
+
 struct GraphicsProcessState {
     u8 unknown00[0x18];
     const void* descriptor;
@@ -112,6 +123,7 @@ struct GraphicsProcessState {
 
 struct Process;
 #define graphics_terminate_process_label_at_2 sub_805CCD8
+#define graphics_destroy_allocated_buffer_owner sub_8059E5C
 #define graphics_apply_staging_source sub_8059FE4
 #define graphics_copy_compact_staging_values sub_805A95C
 #define graphics_free_owner_if_requested sub_805CCC0
@@ -131,6 +143,8 @@ struct Process;
 #define graphics_set_configuration_state_and_load sub_805DA04
 
 void graphics_copy_staging_values(struct GraphicsStagingSource* source);
+void graphics_destroy_allocated_buffer_owner(
+    struct GraphicsAllocatedBufferOwner* owner, s32 flags);
 void graphics_apply_staging_source(struct GraphicsStagingSource* source);
 void graphics_copy_compact_staging_values(
     struct GraphicsCompactStagingSource* source);
