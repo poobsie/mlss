@@ -1608,6 +1608,10 @@ SECTIONS
         asm/text08057568.o(.text.actor_state_transitions_reversed_after_sub_80C8A7C);
         src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80C9AEC);
         asm/text08057568.o(.text.large_actor_state_machines_after_sub_80C9AEC);
+        src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80CBE70);
+        asm/text08057568.o(.text.large_actor_state_machines_after_sub_80CBE70);
+        src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80CC964);
+        asm/text08057568.o(.text.large_actor_state_machines_after_sub_80CC964);
         src/field/actor_command_transitions.o(.text.actor_command_transitions.sub_80CCDEC);
         asm/text08057568.o(.text.actor_command_transitions_after_sub_80CCDEC);
         src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_80CD18C);
@@ -1622,6 +1626,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80D2D34);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_80D2D4C);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80D2D4C);
+        src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80D69D8);
+        asm/text08057568.o(.text.large_actor_state_machines_after_sub_80D69D8);
         src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80D7774);
         asm/text08057568.o(.text.large_actor_state_machines_after_sub_80D7774);
         src/object/middle_transitions.o(.text.middle.sub_80D8C68);

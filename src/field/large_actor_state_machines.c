@@ -16,7 +16,10 @@ void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
                  struct RuntimeObject* object);
 void sub_80C110C(void);
 void sub_80C9BA8(void);
+void sub_80CBF64(void);
+void sub_80CCA38(void);
 void sub_80D27DC(void);
+void sub_80D6AA8(void);
 void sub_80D782C(void);
 
 #define field_complete_actor_b_command_2063_and_arm_sound sub_80C1054
@@ -105,6 +108,118 @@ void field_emit_actor_a_effect_1e_then_animation_8(struct FieldAction* process)
             *flags = (*flags & -7) | 2;
         }
         process->update = sub_80D27DC;
+    }
+}
+
+#define field_set_both_actor_animation_7_and_arm_actor_b_sound sub_80CC964
+SEC(sub_80CC964)
+void field_set_both_actor_animation_7_and_arm_actor_b_sound(
+    struct FieldAction* process)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct RuntimeObject* actionA =
+        (struct RuntimeObject*)&runtime->actorA->action;
+    struct RuntimeObject* actionB =
+        (struct RuntimeObject*)&runtime->actorB->action;
+    s32 state;
+    s8* flags;
+
+    if ((actionA->flags76 & 6) == 2 || (actionA->flags76 & 6) == 4) {
+        sub_8082E1C(actionA, 7, 0x2035, 0);
+        flags = (s8*)&actionA->visual->flags;
+        *flags = (*flags & -7) | 2;
+    }
+    state = actionB->flags76 & 6;
+    if (state == 2 || state == 4) {
+        sub_8082E1C(actionB, 7, 0x2064, 0);
+        flags = (s8*)&actionB->visual->flags;
+        *flags = (*flags & -7) | 2;
+    }
+    state = actionB->flags76 & 6;
+    if (state == 2 || state == 4) {
+        actionB->unknown7A =
+            ((SoundFunction)(*(u32*)0x03001038
+                + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 8);
+        *(u16*)&actionB->unknown7E[0] = 0;
+        flags = (s8*)&actionB->flags79;
+        *flags &= -0x21;
+    }
+    process->update = sub_80CCA38;
+}
+
+#define field_on_actor_b_complete_set_animation_6_and_arm_sound sub_80CBE70
+SEC(sub_80CBE70)
+void field_on_actor_b_complete_set_animation_6_and_arm_sound(
+    struct FieldAction* process)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct FieldActor* actorA = runtime->actorA;
+    struct RuntimeObject* actionA = (struct RuntimeObject*)&actorA->action;
+    struct RuntimeObject* actionB =
+        (struct RuntimeObject*)&runtime->actorB->action;
+    s32 state;
+    s8* flags;
+
+    if (actionB->visual->flags & 8) {
+        sound_effect_play(0x88, SOUND_VOLUME_UNCHANGED);
+        if ((actorA->stateFlags & 6) == 2 ||
+            (actorA->stateFlags & 6) == 4) {
+            sub_8082E1C(actionA, 6, 0x2035, 0);
+            flags = (s8*)&actionA->visual->flags;
+            *flags &= -7;
+        }
+        state = actionB->flags76 & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(actionB, 6, 0x2064, 0);
+            flags = (s8*)&actionB->visual->flags;
+            *flags &= -7;
+        }
+        state = actionB->flags76 & 6;
+        if (state == 2 || state == 4) {
+            actionB->unknown7A =
+                ((SoundFunction)(*(u32*)0x03001038
+                    + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 10);
+            *(u16*)&actionB->unknown7E[0] = 0;
+            flags = (s8*)&actionB->flags79;
+            *flags &= -0x21;
+        }
+        actionB->secondaryTimer &= 0x0FFF;
+        process->update = sub_80CBF64;
+    }
+}
+
+#define field_when_actor_a_idle_finish_actor_b_and_arm_sound sub_80D69D8
+SEC(sub_80D69D8)
+void field_when_actor_a_idle_finish_actor_b_and_arm_sound(
+    struct FieldAction* process)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct RuntimeObject* actionA =
+        (struct RuntimeObject*)&runtime->actorA->action;
+    struct FieldActor* actorB = runtime->actorB;
+    struct RuntimeObject* actionB = (struct RuntimeObject*)&actorB->action;
+    s32 state;
+    s8* flags;
+
+    if (actionA->update == 0) {
+        sound_effect_play(0x2E, SOUND_VOLUME_UNCHANGED);
+        state = actorB->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            actorB->soundHandle =
+                ((SoundFunction)(*(u32*)0x03001038
+                    + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 32);
+            actorB->value86 = 0;
+            flags = (s8*)&actorB->flags81;
+            *flags &= -0x21;
+        }
+        state = actionA->flags76 & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(actionA, 0, 0x2024, 0);
+            flags = (s8*)&actionA->visual->flags;
+            *flags = (*flags & -7) | 2;
+        }
+        actionB->secondaryTimer &= 0x0FFF;
+        process->update = sub_80D6AA8;
     }
 }
 

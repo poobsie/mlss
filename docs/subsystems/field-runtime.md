@@ -192,6 +192,16 @@ otherwise, sets visual mode 2, and advances. The effect IDs, command IDs, and
 continuation callbacks remain numeric or address-named because their broader roles
 are not yet established by callers.
 
+The paired-actor sequence also exposes two coordinated animation transitions and
+its actor-idle handoff. The animation transition assigns animation 7 and distinct
+commands to both actors, then arms actor B's sound handle for eight ticks. The
+completion-gated variant assigns animation 6, clears both visual modes, arms the
+same handle for ten ticks, masks actor B's secondary timer, and advances. The
+handoff waits for actor A's callback to clear, plays sound `0x2E`, arms actor B's
+sound handle for 32 ticks, restores actor A's command `0x2024`, masks actor B's
+secondary timer, and advances. Numeric sounds and commands retain their identifiers
+until resource tables or named consumers establish their gameplay roles.
+
 ## Verification
 
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
