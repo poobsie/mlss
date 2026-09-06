@@ -1,9 +1,12 @@
 #include "runtime/functions.h"
 
+#include "memory/heap.h"
+
 #define SEC(name) __attribute__((section(".text.upper.sub_8123340")))
 
 void free_heap_8018D9C(void* pointer);
-void heap_free_block(void* pointer);
+
+typedef void (*RuntimeMemoryFill)(u32 value, void* destination, u32 size);
 
 #define STRINGIFY_INNER(value) #value
 #define STRINGIFY(value) STRINGIFY_INNER(value)
@@ -21,6 +24,18 @@ void runtime_release_global_state_fbc(void)
         heap_free_block(*state);
         *state = 0;
     }
+}
+
+MISC2_SEC(runtime_initialize_global_state_fbc)
+void runtime_initialize_global_state_fbc(void)
+{
+    void** stateSlot = (void**)0x03000FBC;
+    void* state = heap_alloc_block(TRUE, 0x34, (const char*)0x08200180);
+    RuntimeMemoryFill fill;
+
+    *stateSlot = state;
+    fill = *(RuntimeMemoryFill*)0x03001034;
+    fill(0, state, 0x34);
 }
 
 MISC2_SEC(runtime_release_global_state_fb4_fb8_fbc)

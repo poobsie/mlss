@@ -7,6 +7,7 @@
 #include "script/command_handlers.h"
 #include "script/command_context.h"
 #include "script/execution_state.h"
+#include "script/runtime_slots.h"
 
 #define SEC(name) __attribute__((section(".text.script_command_handlers." #name)))
 #define STRINGIFY_INNER(value) #value
@@ -70,7 +71,6 @@ extern void sub_8047B08(void*, s32, s32);
 extern void sub_8047B5C(void*, s16);
 extern void sub_8046A10(void*);
 extern void sub_801BBE4(void*, s8, s8, s8);
-extern void sub_80E8EE0(void* owner, u8 slot);
 
 struct ScriptInputRuntimePrefix {
     u8 unknown00[0x28];
@@ -152,17 +152,6 @@ struct ScriptArithmeticBridgeArguments {
     u32 operation;
     s32 result;
     s32 operand;
-};
-
-struct ScriptRuntimeSlot {
-    u8 unknown00[0x0C];
-    u8 identifier;
-    u8 unknown0D[2];
-    u8 active;
-};
-
-struct ScriptRuntimeSlotOwner {
-    struct ScriptRuntimeSlot* slots;
 };
 
 
@@ -290,7 +279,7 @@ s32 script_command_dispatch_runtime_slot(
 
     while (slot <= 3) {
         if (entry->active && entry->identifier == *identifier) {
-            sub_80E8EE0(owner, (u8)slot);
+            script_runtime_slot_hide(owner, (u8)slot);
             break;
         }
         slot++;

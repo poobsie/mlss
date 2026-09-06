@@ -91,6 +91,7 @@ documents the relationship while the source preserves the exact ROM bytes.
 | `sub_80EADC4` | `script_command_apply_runtime_signed_triplet` | Reads three signed command bytes at four-byte intervals and applies them to the runtime selected through `0x03000D44`. The callee's gameplay operation remains unresolved. |
 | `sub_80EADEC` | `script_command_wait_for_runtime_slot` | Scans four 16-byte runtime slots and yields after restoring the saved cursor when an active slot has the requested identifier. Identifier `0x3F` accepts any active slot. |
 | `sub_80EAE30` | `script_command_dispatch_runtime_slot` | Finds the active runtime slot with the requested identifier and dispatches its zero-based slot index through the established owner helper. The slots' gameplay identity remains unknown. |
+| `sub_80E8EE0` | `script_runtime_slot_hide` | Hides the sprite owned by one indexed runtime slot and clears the slot's active byte. |
 | `sub_80EAE70` | `script_command_forward_runtime_byte_30` | Forwards the signed command value and byte `0x30` of the runtime selected through `0x03000FB8` through the same command bridge. The byte's gameplay identity remains unknown. |
 | `sub_80EAE9C` | `script_command_branch_if_runtime_byte_30_equals` | Branches when runtime byte `0x30` equals the command's full-width expected value. |
 | `sub_80EB048` | `script_command_set_runtime_byte_32` | Stores the low byte of the command argument in runtime byte `0x32`. |
@@ -127,6 +128,8 @@ The execution state now exposes the saved cursor at offset `0x14`. Three wait ha
 `script_state_enable_primary_flag_2` is shared by six setup-oriented command handlers. Each caller passes the command execution state as its third argument, and the helper sets bit `0x0002` in `primaryFlags`. The gameplay meaning of that bit remains unknown, so the numeric identity is retained instead of assigning a speculative state name. The other three callback arguments are unused by this helper and remain structurally typed.
 
 `script_command_return_from_battle` now exposes the final miscellaneous script handler. A nonzero command argument marks field-runtime return flag `0x02`, then the handler delegates to the ordinary script return operation using the context embedded at offset `0x1C`. The original `script_cmd_btl_return` symbol remains available to assembly through the semantic alias.
+
+The runtime-slot dispatcher now shares a typed 16-byte slot layout with its hide operation. The layout establishes the owned sprite pointer, identifier, delayed-hide timer, and active byte. Coordinate and timer maintenance remain in assembly because the current compiler shapes do not reproduce them exactly; the slots' gameplay identity is still unresolved.
 
 ## Verification
 

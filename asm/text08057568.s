@@ -269266,8 +269266,9 @@ _080E8D5A:
 	bx r1
 	.byte 0x00, 0x00
 	.section .text.misc_helpers_02_after_sub_80E8D74, "ax", %progbits
-	thumb_func_start sub_80E8D90
-sub_80E8D90:
+	.section .discard.runtime_initialize_global_state_fbc, "ax", %progbits
+	thumb_func_start asm_discard_sub_80E8D90
+asm_discard_sub_80E8D90:
 	push {r4, lr}
 	ldr r4, _080E8DB4 @ =0x03000FBC
 	ldr r2, _080E8DB8 @ =0x08200180
@@ -269402,8 +269403,9 @@ _080E8EDA:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_80E8EE0
-sub_80E8EE0:
+	.section .discard.script_runtime_slot_hide, "ax", %progbits
+	thumb_func_start asm_discard_sub_80E8EE0
+asm_discard_sub_80E8EE0:
 	push {r4, lr}
 	lsls r1, r1, #0x18
 	lsrs r1, r1, #0x14

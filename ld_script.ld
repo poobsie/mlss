@@ -1992,8 +1992,10 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80E57FC);
         src/runtime/global_state.o(.text.misc_helpers_02.sub_80E8D74);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80E8D74);
+        src/runtime/global_state.o(.text.misc_helpers_02.sub_80E8D90);
         src/runtime/global_state.o(.text.misc_helpers_02.sub_80E8DC0);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80E8DC0);
+        src/script/runtime_slots.o(.text.script_runtime_slots.sub_80E8EE0);
         src/field/resource_loader.o(.text.misc_helpers_02.sub_80E8EFC);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80E8EFC);
         src/graphics/packed_value.o(.text.small_functions_01.sub_80E8F1C);
