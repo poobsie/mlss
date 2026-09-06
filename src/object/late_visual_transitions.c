@@ -35,6 +35,8 @@ void sub_810FE94(struct RuntimeObject*);
 void sub_810FB20(struct RuntimeObject*);
 void sub_810FFB0(struct RuntimeObject*);
 void sub_8110134(struct RuntimeObject*);
+void sub_8110178(struct RuntimeObject*);
+void sub_810F764(struct RuntimeObject*);
 void object_on_visual_complete_delay_12(struct RuntimeObject*);
 void sub_81109D0(struct RuntimeObject*);
 void sub_8110A94(struct RuntimeObject*);
@@ -292,6 +294,89 @@ void object_start_far_owner_position_effect(struct RuntimeObject* object)
         sub_8082E1C(object, 3, 0, 0);
         sound_effect_play(0x11B, SOUND_VOLUME_UNCHANGED);
         object->update = sub_8110134;
+    }
+}
+
+SEC(sub_8110034)
+void object_countdown_then_start_paired_owner_effect(
+    struct RuntimeObject* object)
+{
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (object->timer != 0) {
+        object->timer--;
+    } else {
+        sub_8082E1C(object, 0x10, 0, 0);
+        flags = &object->visual->flags;
+        value = *flags;
+        mask = -7;
+        value &= mask;
+        value |= 2;
+        *flags = value;
+        object->update = sub_810F764;
+    }
+}
+
+SEC(sub_81100B0)
+void object_start_far_owner_position_effect_variant(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner;
+    struct RuntimeObjectState* state;
+
+    if (object->visual->flags & 8) {
+        owner = object->positionOwner;
+        state = owner->state;
+        sub_808843C(object, state->valueD8 / 256 + 0x44,
+                    state->valueDC / 256, state->floorHeight / 256, 0x100);
+        sub_80880C4(object, 0x280);
+        sub_8082E1C(object, 3, 0, 0);
+        sound_effect_play(0x11B, SOUND_VOLUME_UNCHANGED);
+        object->update = sub_8110178;
+    }
+}
+
+SEC(sub_8110134)
+void object_return_to_auxiliary_owner_effect_when_ready(
+    struct RuntimeObject* object)
+{
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (sub_8087CE4() == 0) {
+        sub_8082E1C(object, 4, 0, 0);
+        flags = &object->visual->flags;
+        value = *flags;
+        mask = -7;
+        value &= mask;
+        value |= 2;
+        *flags = value;
+        sound_effect_stop(0x11B);
+        object->update = object_start_owner_position_effect_with_auxiliary;
+    }
+}
+
+SEC(sub_8110178)
+void object_return_to_variant_owner_effect_when_ready(
+    struct RuntimeObject* object)
+{
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (sub_8087CE4() == 0) {
+        sub_8082E1C(object, 4, 0, 0);
+        flags = &object->visual->flags;
+        value = *flags;
+        mask = -7;
+        value &= mask;
+        value |= 2;
+        *flags = value;
+        sound_effect_stop(0x11B);
+        object->update = object_start_owner_position_effect_variant_and_continue;
     }
 }
 

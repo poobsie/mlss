@@ -142,6 +142,10 @@ void runtime_object_finish_action(struct RuntimeObject* object);
 #define object_finish_owner_position_effect_with_delayed_spawn sub_810FC70
 #define object_start_animation_2_then_owner_offset_effect sub_810FEC8
 #define object_start_far_owner_position_effect sub_810FFB0
+#define object_countdown_then_start_paired_owner_effect sub_8110034
+#define object_start_far_owner_position_effect_variant sub_81100B0
+#define object_return_to_auxiliary_owner_effect_when_ready sub_8110134
+#define object_return_to_variant_owner_effect_when_ready sub_8110178
 #define object_finish_owner_position_effect_with_spawn sub_810FD94
 #define object_finish_owner_position_effect_when_ready sub_810FD54
 void runtime_object_when_value80_clear_prepare_state_motion(
@@ -172,6 +176,14 @@ void object_finish_owner_position_effect_with_delayed_spawn(
 void object_start_animation_2_then_owner_offset_effect(
     struct RuntimeObject* object);
 void object_start_far_owner_position_effect(struct RuntimeObject* object);
+void object_countdown_then_start_paired_owner_effect(
+    struct RuntimeObject* object);
+void object_start_far_owner_position_effect_variant(
+    struct RuntimeObject* object);
+void object_return_to_auxiliary_owner_effect_when_ready(
+    struct RuntimeObject* object);
+void object_return_to_variant_owner_effect_when_ready(
+    struct RuntimeObject* object);
 void object_finish_owner_position_effect_with_spawn(
     struct RuntimeObject* object);
 void object_finish_owner_position_effect_when_ready(

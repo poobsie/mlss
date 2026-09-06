@@ -576,6 +576,15 @@ calls the established cleanup pair on the object's state only after its linked
 object is clear. A nearby visual-and-link stop transition remains raw after its bounded
 source shapes changed the original register allocation.
 
+The following timer and far-offset variant loop are now typed as well. The timer
+counts down through the established signed halfword, then starts animation
+`0x10`, restores visual mode 2, and enters the raw paired-owner constructor. The
+variant setup uses the same owner-state coordinates and `0x44` X offset as its
+sibling, then selects the alternate completion. Both completion callbacks wait
+for readiness, start animation 4, restore visual mode 2, stop sound `0x11B`, and
+return to their corresponding auxiliary or behavior-sensitive owner-effect
+setup.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
