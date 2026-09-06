@@ -274564,8 +274564,9 @@ _080EAA54:
 	pop {r4, r5, r6}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_80EAA5C
-sub_80EAA5C:
+	.section .discard.script_command_sub_80EAA5C, "ax", %progbits
+	thumb_func_start asm_discard_sub_80EAA5C
+asm_discard_sub_80EAA5C:
 	push {lr}
 	add sp, #-0x008
 	adds r0, r3, #0x0
@@ -274584,6 +274585,7 @@ sub_80EAA5C:
 	pop {r1}
 	bx r1
 _080EAA80: .4byte 0x0300034C
+	.section .text.script_command_helpers_after_sub_80EAA5C, "ax", %progbits
 	thumb_func_start sub_80EAA84
 sub_80EAA84:
 	push {r4, r5, lr}
@@ -274865,8 +274867,9 @@ sub_80EAD7C:
 	.byte 0x00, 0x00
 _080EAD94: .4byte 0x03000D44
 	.section .text.script_command_helpers_after_sub_80EAD98, "ax", %progbits
-	thumb_func_start sub_80EADC4
-sub_80EADC4:
+	.section .discard.script_command_sub_80EADC4, "ax", %progbits
+	thumb_func_start asm_discard_sub_80EADC4
+asm_discard_sub_80EADC4:
 	push {r4, lr}
 	ldr r0, _080EADE4 @ =0x03000D44
 	ldr r0, [r0, #0x00]
@@ -274883,6 +274886,7 @@ sub_80EADC4:
 	pop {r1}
 	bx r1
 _080EADE4: .4byte 0x03000D44
+	.section .text.script_command_helpers_after_sub_80EADC4, "ax", %progbits
 	.byte 0x01, 0x20, 0x70, 0x47
 	thumb_func_start sub_80EADEC
 sub_80EADEC:
@@ -274958,8 +274962,9 @@ _080EAE68:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_80EAE70
-sub_80EAE70:
+	.section .discard.script_command_sub_80EAE70, "ax", %progbits
+	thumb_func_start asm_discard_sub_80EAE70
+asm_discard_sub_80EAE70:
 	push {lr}
 	add sp, #-0x008
 	adds r0, r3, #0x0

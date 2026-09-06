@@ -12,10 +12,14 @@ struct ScriptSelectedRuntimeArguments;
 struct ScriptIndexedObjectCallbackArguments;
 struct ScriptActiveObjectCallbackArguments;
 struct ScriptObjectRuntime;
+struct ScriptRuntimeSignedTripletArguments;
 
 #define script_command_return_from_battle script_cmd_btl_return
 #define script_command_set_runtime_direction_sign sub_80EAD98
+#define script_command_forward_input_mask sub_80EAA5C
 #define script_command_branch_if_runtime_byte_30_equals sub_80EAE9C
+#define script_command_apply_runtime_signed_triplet sub_80EADC4
+#define script_command_forward_runtime_byte_30 sub_80EAE70
 #define script_command_set_runtime_byte_32 sub_80EB048
 #define script_command_control_sound_effect sub_80EAEF8
 #define script_command_set_sound_effect_volume sub_80EAEE0
@@ -55,6 +59,13 @@ u8 script_command_return_from_battle(
 
 s32 script_command_set_runtime_direction_sign(
     void* context, void* state, const u32* argument);
+s32 script_command_forward_input_mask(
+    void* context, u8* owner, const s16* argument, void* commandContext);
+s32 script_command_apply_runtime_signed_triplet(
+    void* context, void* state,
+    const struct ScriptRuntimeSignedTripletArguments* arguments);
+s32 script_command_forward_runtime_byte_30(
+    void* context, u8* owner, const s16* argument, void* commandContext);
 s32 script_command_branch_if_runtime_byte_30_equals(
     void* context, struct ScriptExecutionState* state,
     const u32* arguments);

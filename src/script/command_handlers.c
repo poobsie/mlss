@@ -69,6 +69,14 @@ extern void sub_80E9C4C(void*, void*, void*, s32, s32, s32);
 extern void sub_8047B08(void*, s32, s32);
 extern void sub_8047B5C(void*, s16);
 extern void sub_8046A10(void*);
+extern void sub_801BBE4(void*, s8, s8, s8);
+
+struct ScriptInputRuntimePrefix {
+    u8 unknown00[0x2E];
+    u16 activeMask;
+};
+
+extern struct ScriptInputRuntimePrefix gScriptInputRuntime;
 
 struct ScriptObjectBytePairArguments {
     u8 value0;
@@ -111,6 +119,42 @@ struct ScriptSelectedRuntimeArguments {
     u16 padding02;
     s32 runtimeSelector;
 };
+
+struct ScriptRuntimeSignedTripletArguments {
+    s8 value0;
+    u8 padding01[3];
+    s8 value1;
+    u8 padding05[3];
+    s8 value2;
+};
+
+SEC(sub_80EAA5C)
+s32 script_command_forward_input_mask(
+    void* context, u8* owner, const s16* argument, void* commandContext)
+{
+    sub_80E9C4C(commandContext, owner + 0x18, 0, 0,
+                *argument, gScriptInputRuntime.activeMask);
+    return 1;
+}
+
+SEC(sub_80EADC4)
+s32 script_command_apply_runtime_signed_triplet(
+    void* context, void* state,
+    const struct ScriptRuntimeSignedTripletArguments* arguments)
+{
+    sub_801BBE4(SCRIPT_GLOBAL_D44,
+                arguments->value0, arguments->value1, arguments->value2);
+    return 1;
+}
+
+SEC(sub_80EAE70)
+s32 script_command_forward_runtime_byte_30(
+    void* context, u8* owner, const s16* argument, void* commandContext)
+{
+    sub_80E9C4C(commandContext, owner + 0x18, 0, 0,
+                *argument, U8AT(SCRIPT_GLOBAL_FB8, 0x30));
+    return 1;
+}
 
 SEC(sub_80EAD98)
 s32 script_command_set_runtime_direction_sign(

@@ -83,7 +83,10 @@ documents the relationship while the source preserves the exact ROM bytes.
 | `sub_80F0938` | `script_command_set_battle_flags_12c` | Applies the established flags-mode operation, with `-32` selecting the dedicated flag `0x01` path. |
 | `sub_80F0984` | `script_wait_for_battle_control_ready` | Restores the saved cursor and yields when the battle-control readiness predicate returns one. |
 | `sub_80F0BA4` | `script_command_configure_object_slot_183` | Forwards two command bytes to the object in the already established registry slot 183. |
+| `sub_80EAA5C` | `script_command_forward_input_mask` | Forwards the signed command value and the input runtime's halfword at offset `0x2E` through the shared six-argument command bridge. The mask's individual bit meanings remain unknown. |
 | `sub_80EAD98` | `script_command_set_runtime_direction_sign` | Stores `1` or `0xFF` in runtime byte `0x29` according to whether the command argument is zero. The owner of the runtime record remains unresolved. |
+| `sub_80EADC4` | `script_command_apply_runtime_signed_triplet` | Reads three signed command bytes at four-byte intervals and applies them to the runtime selected through `0x03000D44`. The callee's gameplay operation remains unresolved. |
+| `sub_80EAE70` | `script_command_forward_runtime_byte_30` | Forwards the signed command value and byte `0x30` of the runtime selected through `0x03000FB8` through the same command bridge. The byte's gameplay identity remains unknown. |
 | `sub_80EAE9C` | `script_command_branch_if_runtime_byte_30_equals` | Branches when runtime byte `0x30` equals the command's full-width expected value. |
 | `sub_80EB048` | `script_command_set_runtime_byte_32` | Stores the low byte of the command argument in runtime byte `0x32`. |
 | `sub_80EAEF8` | `script_command_control_sound_effect` | Starts, stops, or waits for a sound effect according to the command operation. A zero sound identifier on the stop path stops all sound effects. |
