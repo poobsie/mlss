@@ -35,3 +35,16 @@ void runtime_object_clear_behavior(struct RuntimeObject* object)
     if ((object->flags76 & 6) == 2)
         sub_80F75D8(0x40000);
 }
+
+SEC(sub_80877C0)
+u32 runtime_object_advance_vertical_to_limit(struct RuntimeObject* object)
+{
+    object->motionDuration92 += object->verticalAcceleration;
+    object->verticalPosition = object->positionZBase + object->motionDuration92;
+    if ((s32)object->value98 < object->verticalPosition)
+        return 0;
+    object->verticalPosition = object->value98;
+    object->verticalAcceleration = 0;
+    return 1;
+}
+SEC(sub_80877C0) const u16 sub_80877C0_padding = 0;

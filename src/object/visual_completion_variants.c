@@ -39,7 +39,7 @@ SEC(sub_806533C) void sub_806533C(struct RuntimeObject* object)
 SEC(sub_809A858) void sub_809A858(struct RuntimeObject* object)
 {
     if (object->visual->flags & 8) {
-        if (!(object->flags98 & 2))
+        if (!(object->value98 & 2))
             sub_8082E1C(object, 5, 0, 0);
         else
             sub_8082E1C(object, 7, 0, 0);
@@ -69,7 +69,7 @@ SEC(sub_80D9F50) void sub_80D9F50(struct RuntimeObject* object)
 SEC(sub_809A808) void sub_809A808(struct RuntimeObject* object)
 {
     if (object->visual->flags & 8) {
-        if (!(object->flags98 & 1))
+        if (!(object->value98 & 1))
             sub_8082E1C(object, 3, 0, 0);
         else
             sub_8082E1C(object, 4, 0, 0);

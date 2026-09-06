@@ -105,7 +105,7 @@ struct RuntimeObject {
     u8 unknown90[2];
     s16 motionDuration92;
     s32 verticalAcceleration;
-    u32 flags98;
+    u32 value98;
     s32 behaviorState;
     s32 valueA0;
     s32 valueA4;
@@ -125,10 +125,12 @@ void runtime_object_finish_action(struct RuntimeObject* object);
 
 #define runtime_object_when_value80_clear_prepare_state_motion sub_808750C
 #define runtime_object_clear_behavior sub_8087540
+#define runtime_object_advance_vertical_to_limit sub_80877C0
 #define runtime_object_start_timed_motion sub_808842C
 void runtime_object_when_value80_clear_prepare_state_motion(
     struct RuntimeObject* object);
 void runtime_object_clear_behavior(struct RuntimeObject* object);
+u32 runtime_object_advance_vertical_to_limit(struct RuntimeObject* object);
 void runtime_object_start_timed_motion(struct RuntimeObject* object, s32 value, s32 duration);
 
 #endif

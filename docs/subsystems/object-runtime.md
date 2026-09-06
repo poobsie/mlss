@@ -333,6 +333,11 @@ established flag-gated resource release. The containing state's offset `0x78` an
 the released resource value remain structural because their producers are still in
 assembly.
 
+An adjacent motion step now advances the signed halfword at offset `0x92`, derives
+vertical position from the object's base coordinate, and clamps at `value98` while
+clearing the step value. `value98` stays structural because other object variants
+use its low bits as flags, so a single stronger field meaning is not yet supported.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
