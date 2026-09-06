@@ -104,6 +104,30 @@ void field_script_clear_channel_records(struct FieldScriptUiRuntime* runtime)
     } while (remaining > 0);
 }
 
+SEC(sub_80FAE64)
+void field_script_update_indexed_visual_channel(
+    struct FieldScriptUiRuntime* runtime, struct ScriptExecutionState* channel,
+    u8 index)
+{
+    struct RuntimeObjectVisual* visual =
+        runtime->displayOwner14->records158[index].visual;
+    s8* flags = (s8*)&visual->flags;
+    u8 updatedFlags = (*flags & -7) | 2;
+
+    *flags = updatedFlags;
+    if (updatedFlags & 8) {
+        channel->waitTimer--;
+        if (channel->waitTimer == 0) {
+            *flags |= 0x10;
+            channel->primaryFlags ^= 0x20;
+        }
+        *flags &= -7;
+    }
+}
+
+SEC(sub_80FAE64)
+const u16 field_script_update_indexed_visual_channel_padding = 0;
+
 SEC(sub_80FAF28)
 void field_script_clear_channel_sprites_and_records(
     struct FieldScriptUiRuntime* runtime)

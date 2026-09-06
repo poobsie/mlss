@@ -296841,8 +296841,9 @@ _080FAE3A:
 _080FAE5C: .4byte 0x03001034
 _080FAE60: .4byte 0xFFFF0000
 	.section .text.field_script_ui_after_sub_80FAE34, "ax", %progbits
-	thumb_func_start sub_80FAE64
-sub_80FAE64:
+	.section .discard.field_script_update_indexed_visual_channel, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FAE64
+asm_discard_sub_80FAE64:
 	push {r4, r5, lr}
 	adds r4, r1, #0x0
 	lsls r2, r2, #0x18
@@ -296893,6 +296894,7 @@ _080FAEBC:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.field_script_ui_after_sub_80FAE64, "ax", %progbits
 	.section .text.small_functions_01_after_sub_80FAEC4, "ax", %progbits
 	.if 0
 	thumb_func_start sub_80FAEEC
