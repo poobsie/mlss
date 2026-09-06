@@ -1,3 +1,4 @@
+#include "audio/sound_effects.h"
 #include "object/functions.h"
 #include "object/runtime_object.h"
 
@@ -15,6 +16,11 @@ void sub_806E414(struct RuntimeObject* object);
 void sub_806EADC(struct RuntimeObject* object);
 void sub_80700C8(struct RuntimeObject* object);
 void sub_806FBD0(struct RuntimeObject* object);
+void sub_8060360(struct RuntimeObject* object);
+void sub_80605CC(struct RuntimeObject* object);
+s32 sub_8086858(struct RuntimeObject* object, s32 effect);
+
+#define GLOBAL_EFFECT_OBJECT (*(struct RuntimeObject**)0x03000E3C)
 
 #define DEFINE_TIMED_VISUAL_TRANSITION(name, animation, duration, next)      \
     SEC(name) void name(struct RuntimeObject* object)                        \
@@ -40,3 +46,19 @@ DEFINE_TIMED_VISUAL_TRANSITION(object_on_visual_complete_animation_39_delay_1,
                                0x27, 1, sub_80700C8)
 DEFINE_TIMED_VISUAL_TRANSITION(object_on_visual_complete_animation_29_delay_5,
                                0x1D, 5, sub_806FBD0)
+
+SEC(sub_8060694)
+void sub_8060694(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        object->timer--;
+        if (object->timer < 0) {
+            sub_8082E1C(object, 7, 0, 0);
+            GLOBAL_EFFECT_OBJECT = (struct RuntimeObject*)sub_8086858(object, 0x1428);
+            object->tertiaryUpdate = sub_8060360;
+            sound_effect_play(0x83, SOUND_VOLUME_UNCHANGED);
+            object->update = sub_80605CC;
+        }
+    }
+}

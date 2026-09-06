@@ -1,3 +1,5 @@
+#include "audio/sound_effects.h"
+#include "object/functions.h"
 #include "object/runtime_object.h"
 
 #define STRINGIFY_INNER(value) #value
@@ -6,10 +8,16 @@
     __attribute__((section(".text.misc_helpers_03." STRINGIFY(name))))
 
 void sub_805FF30(struct RuntimeObject* object);
+void sub_80605CC(struct RuntimeObject* object);
+void sub_8060090(struct RuntimeObject* object);
+void sub_806062C(struct RuntimeObject* object);
+void sub_808750C(struct RuntimeObject* object);
 void sub_807C298(struct RuntimeObject* object);
 void sub_807FC08(s32* x, s32* y, s32* z, s32 argument);
 void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
+void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
+                 struct RuntimeObject* object);
 
 SEC(sub_805FD40)
 void object_finish_when_state_value_ba_clear(struct RuntimeObject* object)
@@ -82,5 +90,61 @@ void object_when_value80_clear_snap_to_behavior_position(
         object->currentPositionX = object->behaviorState;
         sub_8082E1C(object, 8, 0, 0);
         object->update = sub_805FF30;
+    }
+}
+
+SEC(sub_8060500)
+void object_on_visual_complete_countdown_then_animation_13(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        object->timer--;
+        if (object->timer < 0) {
+            sub_8082E1C(object, 13, 0, 0);
+            sound_effect_play(0x83, SOUND_VOLUME_UNCHANGED);
+            object->update = object_on_visual_complete_animation_2_variant_a;
+        }
+    }
+}
+
+SEC(sub_8060544)
+void sub_8060544(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        object->timer = 4;
+        sub_8082E1C(object, 9, 0, 0);
+        sub_80DF024(0x10F5, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        object->update = sub_806062C;
+    }
+}
+
+SEC(sub_806062C)
+void object_on_visual_complete_countdown_emit_effect_1107(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        object->timer--;
+        if (object->timer < 0) {
+            sub_8082E1C(object, 10, 0, 0);
+            sub_80DF024(0x1107, object->positionX / 0x100,
+                        object->positionY / 0x100,
+                        object->positionZBase / 0x100, object);
+            object->update = sub_8060090;
+        }
+    }
+}
+
+__attribute__((section(".text.small_functions_02.sub_8060BB8")))
+void sub_8060BB8(struct RuntimeObject* object)
+{
+    s32 value = (u16)object->timer - 1;
+
+    object->timer = value;
+    if ((value << 16) <= 0) {
+        sub_8082E1C(object, 7, 0, 0);
+        object->update = sub_808750C;
     }
 }

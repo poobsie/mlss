@@ -697,6 +697,13 @@ the existing visual-completion cleanup callback. `stateValueB0`,
 `secondaryTimer`, and `behaviorState` remain generic because this chain proves
 how they are consumed, but not their broader gameplay identities.
 
+The adjacent completion callbacks are now typed as one continuation family.
+They cover animation 9 with a four-tick delay and effect `0x10F5`, animation 13
+after a signed countdown, animation 10 with effect `0x1107`, and animation 7
+countdowns that either create effect `0x1428` or return to the established idle
+callback. The effect object global and tertiary callback remain structural; the
+observed animation, timer, sound, and effect values are exact.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

@@ -16114,8 +16114,9 @@ _08060400: .4byte 0xFFFFFE9A
 	.section .text.conditional_setup_transitions_after_sub_806048C, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_80604B8, "ax", %progbits
 	.section .text.countdown_handlers_after_sub_80604E0, "ax", %progbits
-	thumb_func_start sub_8060500
-sub_8060500:
+	.section .discard.object_on_visual_complete_countdown_then_animation_13, "ax", %progbits
+	thumb_func_start asm_discard_sub_8060500
+asm_discard_sub_8060500:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	ldr r0, [r4, #0x08]
@@ -16148,8 +16149,10 @@ _0806053A:
 	pop {r0}
 	bx r0
 _08060540: .4byte sub_80605CC
-	thumb_func_start sub_8060544
-sub_8060544:
+	.section .text.misc_helpers_03_after_sub_8060500, "ax", %progbits
+	.section .discard.object_on_visual_complete_animation_9_delay_4_emit_effect_10f5, "ax", %progbits
+	thumb_func_start asm_discard_sub_8060544
+asm_discard_sub_8060544:
 	push {r4, lr}
 	add sp, #-0x004
 	adds r4, r0, #0x0
@@ -16201,8 +16204,9 @@ _080605A0: .4byte sub_806062C
 	.section .text.misc_helpers_01_after_sub_80605A4, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_80605CC, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_80605F8, "ax", %progbits
-	thumb_func_start sub_806062C
-sub_806062C:
+	.section .discard.object_on_visual_complete_countdown_emit_effect_1107, "ax", %progbits
+	thumb_func_start asm_discard_sub_806062C
+asm_discard_sub_806062C:
 	push {r4, lr}
 	add sp, #-0x004
 	adds r4, r0, #0x0
@@ -16255,8 +16259,10 @@ _08060684:
 	bx r0
 _0806068C: .4byte 0x00001107
 _08060690: .4byte sub_8060090
-	thumb_func_start sub_8060694
-sub_8060694:
+	.section .text.misc_helpers_03_after_sub_806062C, "ax", %progbits
+	.section .discard.object_on_visual_complete_countdown_animation_7_emit_effect_1428, "ax", %progbits
+	thumb_func_start asm_discard_sub_8060694
+asm_discard_sub_8060694:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	ldr r0, [r4, #0x08]
@@ -16299,6 +16305,7 @@ _080606E4: .4byte 0x00001428
 _080606E8: .4byte 0x03000E3C
 _080606EC: .4byte sub_8060360
 _080606F0: .4byte sub_80605CC
+	.section .text.misc_helpers_03_after_sub_8060694, "ax", %progbits
 	thumb_func_start sub_80606F4
 sub_80606F4:
 	push {r4, r5, r6, r7, lr}
@@ -16869,8 +16876,9 @@ _08060B5E:
 	bx r0
 _08060B64: .4byte sub_8060C44
 	.section .text.small_functions_02_after_sub_8060B68, "ax", %progbits
-	thumb_func_start sub_8060BB8
-sub_8060BB8:
+	.section .discard.object_countdown_animation_7_then_idle, "ax", %progbits
+	thumb_func_start asm_discard_sub_8060BB8
+asm_discard_sub_8060BB8:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r1, r4, #0x0
@@ -16894,6 +16902,7 @@ _08060BDC:
 	bx r0
 	.byte 0x00, 0x00
 _08060BE4: .4byte sub_808750C
+	.section .text.small_functions_02_after_sub_8060BB8, "ax", %progbits
 	.byte 0x02, 0x1C, 0xA8, 0x32, 0x02, 0x21, 0x11, 0x60, 0x01, 0x49, 0xC1, 0x64, 0x01, 0x20, 0x70, 0x47
 	.byte 0xE9, 0x0C, 0x06, 0x08, 0x02, 0x1C, 0xA8, 0x32, 0x01, 0x21, 0x11, 0x60, 0x01, 0x49, 0xC1, 0x64
 	.byte 0x01, 0x20, 0x70, 0x47, 0xE9, 0x0C, 0x06, 0x08, 0x10, 0xB5, 0x04, 0x1C, 0x39, 0xF1, 0x8C, 0xF9

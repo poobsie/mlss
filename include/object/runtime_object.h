@@ -135,6 +135,11 @@ void runtime_object_finish_action(struct RuntimeObject* object);
 #define object_on_visual_complete_start_animation_5 sub_805FDB8
 #define object_update_offset_motion_then_finish_outside_transformed_bounds sub_805FE74
 #define object_when_value80_clear_snap_to_behavior_position sub_805FEF4
+#define object_on_visual_complete_countdown_then_animation_13 sub_8060500
+#define object_on_visual_complete_countdown_emit_effect_1107 sub_806062C
+#define object_on_visual_complete_animation_9_delay_4_emit_effect_10f5 sub_8060544
+#define object_on_visual_complete_countdown_animation_7_emit_effect_1428 sub_8060694
+#define object_countdown_animation_7_then_idle sub_8060BB8
 #define runtime_resolve_reflected_interval sub_8087878
 #define runtime_object_start_timed_motion sub_808842C
 #define runtime_object_visual_apply_transform sub_8083E84
@@ -185,6 +190,15 @@ void object_update_offset_motion_then_finish_outside_transformed_bounds(
     struct RuntimeObject* object);
 void object_when_value80_clear_snap_to_behavior_position(
     struct RuntimeObject* object);
+void object_on_visual_complete_countdown_then_animation_13(
+    struct RuntimeObject* object);
+void object_on_visual_complete_countdown_emit_effect_1107(
+    struct RuntimeObject* object);
+void object_on_visual_complete_animation_9_delay_4_emit_effect_10f5(
+    struct RuntimeObject* object);
+void object_on_visual_complete_countdown_animation_7_emit_effect_1428(
+    struct RuntimeObject* object);
+void object_countdown_animation_7_then_idle(struct RuntimeObject* object);
 s32 runtime_resolve_reflected_interval(s32* total, s32* lowerDistance,
                                        s32 lower, s32 upper, s32 position);
 void runtime_object_start_timed_motion(struct RuntimeObject* object, s32 value, s32 duration);
