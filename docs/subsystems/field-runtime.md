@@ -214,6 +214,21 @@ animation, command, scale, and motion values retain their identifiers. The adjac
 view-relative effect transition remains in assembly because its natural typed forms
 do not reproduce the original register allocation.
 
+The late collision-query boundary now exposes two leaf checks around the shared
+query record. `field_collision_query_owner_enabled` follows the query's owner
+pointer and tests bit 0 at owner offset `0x1D6`. The paired unbounded query passes
+the record's four signed bounds and owner directly to the established geometric
+test, using `0x7FFF` and zero for its two open extents.
+
+| Previous name | Recovered name | Evidence |
+| --- | --- | --- |
+| `sub_80FBE5C` | `field_collision_query_owner_enabled` | Returns whether bit 0 is set in the query owner's collision-state byte at offset `0x1D6`. |
+| `sub_80FC148` | `field_collision_test_owner_unbounded` | Tests the query's bounds against its owner through the shared geometry helper with the established open-extent constants. |
+
+The bounds layout and pointer ownership are proven by adjacent query wrappers.
+The axis represented by each bound, the meaning of owner flag bit 0, and the
+gameplay reason for the open-extent constants remain unknown.
+
 ## Verification
 
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and

@@ -2052,6 +2052,11 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80FB7E0);
         src/field/metadata.o(.text.middle.sub_80FB7F0);
         asm/text08057568.o(.text.after_middle_sub_80FB7F0);
+        src/field/collision_queries.o(.text.field_collision_queries.sub_80FBE5C);
+        asm/text08057568.o(.text.after_field_collision_owner_enabled);
+        asm/text08057568.o(.text.before_field_collision_owner_unbounded);
+        src/field/collision_queries.o(.text.field_collision_queries.sub_80FC148);
+        asm/text08057568.o(.text.after_field_collision_queries);
         src/field/alternate_actor_action.o(.text.small_functions_12.sub_80FD8BC);
         asm/text08057568.o(.text.small_functions_12_after_sub_80FD8BC);
         src/field/object_slide_sequence.o(.text.field_object_slide_sequence.sub_81040DC);

@@ -301294,8 +301294,9 @@ _080FBE56:
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_80FBE5C
-sub_80FBE5C:
+	.section .discard.field_collision_queries, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FBE5C
+asm_discard_sub_80FBE5C:
 	push {lr}
 	ldr r0, [r1, #0x00]
 	movs r1, #0xEB
@@ -301314,6 +301315,7 @@ _080FBE76:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.section .text.after_field_collision_owner_enabled, "ax", %progbits
 	thumb_func_start sub_80FBE7C
 sub_80FBE7C:
 	push {lr}
@@ -301687,6 +301689,7 @@ _080FC11C:
 	pop {r1}
 	bx r1
 _080FC124: .4byte 0x00007FFF
+	.section .text.before_field_collision_owner_unbounded, "ax", %progbits
 	thumb_func_start sub_80FC128
 sub_80FC128:
 	push {r4, lr}
@@ -301704,8 +301707,9 @@ sub_80FC128:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_80FC148
-sub_80FC148:
+	.section .discard.field_collision_owner_unbounded, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FC148
+asm_discard_sub_80FC148:
 	push {lr}
 	adds r0, r1, #0x0
 	ldr r1, [r0, #0x00]
@@ -301718,6 +301722,7 @@ sub_80FC148:
 	pop {r1}
 	bx r1
 _080FC160: .4byte 0x00007FFF
+	.section .text.after_field_collision_queries, "ax", %progbits
 	thumb_func_start sub_80FC164
 sub_80FC164:
 	push {lr}
