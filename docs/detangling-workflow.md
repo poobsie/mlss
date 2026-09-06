@@ -1,6 +1,9 @@
 # Detangling workflow
 
-Detangling is part of matching decompilation, not a cleanup phase after it. The unit of work is a bounded subsystem slice, not an arbitrary number of functions and not an entire unfinished subsystem.
+Detangling is part of the decompilation pipeline, with progressive confidence. The unit
+of work is a bounded subsystem slice, not an arbitrary function and not an entire
+unfinished subsystem. Immediate subsystem placement and consistent typed interfaces are
+required; gameplay-specific names wait for evidence.
 
 The persistent queue is stored in `config/detangling.json`. It tracks legacy cleanup
 and genuine evidence blockers; newly matched code should normally arrive already
@@ -23,10 +26,15 @@ The queue state is authoritative; the scanner's uncertainty count is only a tria
 4. Define a slice small enough to verify and commit independently. A useful default is 5 to 25 functions or one shared structure plus its direct users.
 5. Mark the subsystem `active` in the queue.
 6. Recover the boundary and ownership first: source folder, public header, shared types, and linker placement.
-7. Recover function signatures, field names, constants, and semantic names together. Keep address names where evidence is insufficient.
+7. Recover the function signatures, checked field layout, constants, and names supported
+   by the slice. Keep address and `field_XX` names where evidence is insufficient; this
+   is an honest intermediate state, not grounds to reject otherwise maintainable C.
 8. Update all known callers and remove superseded local declarations.
-9. Record evidence, unresolved questions, and matching constraints in the subsystem document.
-10. Run `make decomp-acceptance`. Do not accept a mismatching or unclassified slice.
+9. Record packet-level evidence, unresolved questions, and matching constraints in the
+   subsystem document. Avoid one paragraph per trivial leaf.
+10. Use incremental object/linked-byte checks while implementing. Run
+   `make decomp-acceptance` once for the completed packet. Do not accept a mismatching or
+   unclassified slice.
 11. Commit the verified slice, update its queue state, then immediately select the next slice.
 
 No user prompt is required between successful slices. Continue until all currently decompiled C has either been detangled or assigned a concrete deferred evidence requirement.

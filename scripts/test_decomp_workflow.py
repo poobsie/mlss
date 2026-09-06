@@ -34,7 +34,7 @@ class DecompWorkflowTest(unittest.TestCase):
 
     def test_packet_requires_decomp_time_detangling(self):
         packet = render_packet(self.candidate.name, "mlss.map", "mlss.gba", False)
-        self.assertIn("Matching and detangling are one acceptance unit", packet)
+        self.assertIn("Matching and detangling use one progressive pipeline", packet)
         self.assertIn("Assembly callers:", packet)
         self.assertIn("Adjacent functions:", packet)
         self.assertIn("subsystem, evidence, semantic_names, retained_unknowns", packet)

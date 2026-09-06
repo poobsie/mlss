@@ -300,19 +300,19 @@ Target bytes: `{target}`
 
 ## Contract
 
-Matching and detangling are one acceptance unit. Inspect the listed callers,
-callees, adjacent functions, shared data, and existing C interfaces before editing.
-Classify the function into a defensible subsystem and use its canonical source file
-and header. Do not create a root-level holding file. Keep an address-based name or
-raw field offset when the available evidence does not support a semantic name, and
-record that uncertainty explicitly.
+Matching and detangling use one progressive pipeline. Inspect enough callers, callees,
+adjacent functions, shared data, and existing C interfaces to establish a defensible
+subsystem and typed boundary, then implement. Do not keep surveying after that boundary
+is actionable. Use the canonical source file and header; do not create a root-level
+holding file. Keep an address-based name or checked `field_XX` member when the available
+evidence does not support a semantic name, and record that uncertainty explicitly.
 
 The assigned address range is the write boundary. If a caller-connected family is
 needed to recover a sound interface, report the proposed expansion instead of
 editing outside that boundary. Compile with the repository's pinned agbcc, compare
 the linked bytes against the target bytes above, and reject any mismatch. A raw m2c
-translation, an exact function in an unclassified file, or a semantic rename without
-evidence is incomplete.
+translation or an exact function in an unclassified file is incomplete. A semantic
+rename is not required when an honest structural name is the strongest supported result.
 
 Report: functions, subsystem, evidence, semantic_names, retained_unknowns,
 shared_interfaces, exact_match, byte_count, changed_files, and follow_up.

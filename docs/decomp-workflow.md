@@ -40,10 +40,11 @@ the current exact build:
 
 ## Coordinating multiple agents
 
-Use a two-stage flow. First, assign compact packets to evidence workers. They identify
-the likely subsystem, caller-connected family, shared state, signature, naming evidence,
-and facts that remain unknown. The coordinator then chooses a bounded slice, normally 5
-to 25 related functions, and assigns disjoint address ranges for implementation.
+Use an implementation-first pipeline. Assign compact packets directly to isolated
+workers when the subsystem and address boundary are already defensible. A separate
+evidence pass is reserved for genuinely ambiguous ownership, ABI, or data boundaries;
+it is not the default precondition for writing C. A bounded slice normally contains 10
+to 30 plausible related functions in one contiguous range.
 
 The stages form a continuous pipeline, not separate backlogs. Once the evidence for a
 slice is sufficient, the same worker should implement and exact-match it in an isolated
@@ -65,11 +66,24 @@ For sustained parallel work:
 
 1. Create one worktree per worker from the latest accepted commit.
 2. Assign one bounded subsystem slice and explicit source ownership to each worker.
-3. Have each worker implement, compare exact bytes, document uncertainty, and commit the
-   accepted subset. Two informed shaping attempts per function are enough for one batch;
-   restore difficult outliers to assembly and keep moving.
-4. Integrate worker commits one at a time. Resolve shared header and linker order centrally,
-   rerun `make decomp-acceptance`, push the verified checkpoint, then refill the workers.
+3. Have each worker implement, compare exact bytes, document uncertainty, and commit a
+   useful packet. Two informed shaping attempts per function are enough for one batch;
+   restore difficult outliers to assembly and keep moving. Do not stop after the first
+   match when other compiler-friendly functions remain in the assigned range.
+4. Integrate non-overlapping worker commits together when practical. Resolve shared
+   header and linker order centrally, run one full clean `make decomp-acceptance` for
+   the combined checkpoint, push it, then refill all workers from that checkpoint.
+
+The normal packet target is 5 or more exact functions or 256 or more executable bytes,
+preferably 8 to 20 functions or 512 to 2048 bytes. A smaller packet is justified only
+by local exhaustion, an interface decision, or a 30-minute checkpoint. Do not require a
+fixed survey count. Scouting ends when implementation can begin.
+
+Subsystem classification and deep semantic naming have different costs. Classification
+is required immediately. A checked typed layout may retain `field_XX`, numeric constants,
+and address-based function names when that is the strongest honest statement available.
+Refine those names when adjacent callers or data supply evidence; do not hold exact code
+in assembly while guessing gameplay meaning.
 
 Subsystem documents describe recovered behavior and retained uncertainty. Do not copy the
 current project-wide function count into every subsystem page; use `make progress` for live
