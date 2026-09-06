@@ -621,6 +621,16 @@ mode 2, and enters the established spawn transition. The neighboring orbit
 calculation and spawn transition remain raw after bounded attempts produced
 different register allocation and lookup ordering.
 
+A later animation-control sequence now exposes its compact visual and timer
+gates. One completed-visual callback starts animation 4 and a 32-tick delay;
+two siblings start animation `0x0D`, restore visual mode 2, and enter their
+established completion callbacks. The connected variant selector reads the
+state variant, starts animation 1 with command `0x2028` or `0x2057`, and retains
+the observed raw callback at `0x081125C9`. Its motion-helper gate installs the
+next typed continuation only when the shared poll clears. The neighboring
+ready-stop remains raw after both source shapes selected the opposite
+callee-save allocation.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

@@ -45,6 +45,11 @@ void sub_81111C0(struct RuntimeObject*);
 void sub_8110CB0(struct RuntimeObject*);
 void sub_81112C4(struct RuntimeObject*);
 void sub_8111754(struct RuntimeObject*);
+void sub_8112450(struct RuntimeObject*);
+void sub_8112498(struct RuntimeObject*);
+void sub_811254C(struct RuntimeObject*);
+s32 sub_8087124(struct RuntimeObject*);
+void sub_81125CC(struct RuntimeObject*);
 
 void object_on_visual_complete_delay_12(struct RuntimeObject*);
 void sub_81109D0(struct RuntimeObject*);
@@ -548,6 +553,84 @@ void object_on_visual_complete_countdown_effect_2700(
         }
     }
 }
+
+SEC(sub_8112030)
+void object_on_visual_complete_start_animation_4_timer_32(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 4, 0, 0);
+        object->timer = 0x20;
+        object->update = sub_8112450;
+    }
+}
+
+SEC(sub_811213C)
+void object_when_timer_active_start_animation_13(
+    struct RuntimeObject* object)
+{
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (object->timer != 0) {
+        sub_8082E1C(object, 0xD, 0, 0);
+        flags = &object->visual->flags;
+        value = *flags;
+        mask = -7;
+        value &= mask;
+        value |= 2;
+        *flags = value;
+        object->update = object_on_visual_complete_increment_timer_then_continue;
+    }
+}
+
+SEC(sub_81122D0)
+void object_on_visual_complete_start_animation_13(
+    struct RuntimeObject* object)
+{
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 0xD, 0, 0);
+        flags = &object->visual->flags;
+        value = *flags;
+        mask = -7;
+        value &= mask;
+        value |= 2;
+        *flags = value;
+        object->update = object_on_visual_complete_animation_14_variant_a;
+    }
+}
+
+SEC(sub_811230C)
+void object_start_state_variant_animation_1(struct RuntimeObject* object)
+{
+    s32 variant;
+
+    variant = -object->state->variant;
+    if (variant != 1) {
+        sub_8082E1C(object, 1, 0x2057, 0);
+    } else {
+        sub_8082E1C(object, 1, 0x2028, 0);
+    }
+    object->update = (RuntimeObjectCallback)0x081125C9;
+}
+
+SEC(sub_8112394)
+s32 object_continue_when_motion_helper_clear(struct RuntimeObject* object)
+{
+    s32 result = sub_8087124(object);
+
+    if (result == 0) {
+        object->update = sub_81125CC;
+        return 0;
+    }
+    return result;
+}
+
 
 
 
