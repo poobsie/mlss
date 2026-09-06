@@ -15,6 +15,8 @@ void sub_8074508(struct RuntimeObject* object);
 void sub_8086090(struct RuntimeObject* object);
 void sub_8089F44(struct RuntimeObject* object);
 void sub_8086700(void* state);
+void sub_8082E1C(struct RuntimeObject* object, s32 animation, s32 command,
+                 s32 argument);
 void sub_809C954(struct RuntimeObject* object);
 void sub_80A2BC0(struct RuntimeObject* object);
 
@@ -114,6 +116,27 @@ void object_runtime_finish_when_target_flag_2_clears(
         owner->pending04 = pending;
     }
 }
+
+SEC(sub_8088508)
+void object_finish_motion_and_restore_saved_update(
+    struct RuntimeObject* object)
+{
+    s8* flags;
+
+    if (object->flags79 & 0x20) {
+        if ((object->flags76 & 6) == 2 || (object->flags76 & 6) == 4) {
+            sub_8082E1C(object, 0, -1, 0);
+            flags = (s8*)&object->visual->flags11;
+            *flags &= -0x41;
+            flags = (s8*)&object->visual->flags;
+            *flags &= -7;
+        }
+        object->update = object->followup;
+        object->followup = 0;
+    }
+}
+SEC(sub_8088508)
+const u16 object_finish_motion_and_restore_saved_update_padding = 0;
 
 SEC(sub_8089BD4)
 void object_update_x_offset_until_timer_expires(struct RuntimeObject* object)

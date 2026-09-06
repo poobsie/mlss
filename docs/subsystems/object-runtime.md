@@ -351,6 +351,12 @@ target byte at `0x111` to clear, finalizes the target subobject at offset `0x08`
 and clears the pending word. The owner, target, and flag keep structural names
 because their assembly callers do not establish a narrower object class.
 
+The motion continuation paired with this family now waits for the established
+completion bit at object offset `0x79`. For active modes 2 and 4 it clears the
+current animation, removes visual control bits `0x40`, `0x02`, and `0x04`, then
+restores the callback saved in `followup`. The visual bits remain numeric because
+their rendering effects are not independently established.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
