@@ -24,6 +24,7 @@
 
 struct UiObject;
 struct UiObjectPairValues;
+struct UiSpritePair;
 struct UiObjectGrid;
 struct UiObjectGroup4;
 struct UiObjectNodeList;
@@ -34,5 +35,7 @@ void ui_object_grid_reset_visual(struct UiObjectGrid* grid, u32 row, u32 column)
 void ui_object_list_apply_state(struct UiObjectNodeList* list, u32 mode, u32 value);
 void ui_object_group4_reset_state(struct UiObjectGroup4* group);
 u32 ui_object_visual_is_idle(struct UiObject* object);
+void ui_object_reset(struct UiObject* object, void* value);
+void ui_sprite_pair_hide(struct UiSpritePair* object);
 
 #endif

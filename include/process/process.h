@@ -23,6 +23,10 @@
 #define process_prepare_graphics_definition_d220 sub_816D538
 #define process_destroy_definition_d290 sub_8171FC0
 #define process_prepare_graphics_definition_d290 sub_8171AFC
+#define process_definition_d140_advance_to_state4_on_start sub_8167DF8
+#define process_definition_d140_reset_ui_objects sub_8167E30
+#define process_definition_d278_advance_to_state4_on_start sub_8171B44
+#define process_definition_d278_hide_sprite_pairs sub_8171BF0
 
 struct Process* process_add(struct Process* process, u8 priority, char* label);
 void process_execute_all(void);
@@ -38,6 +42,14 @@ void process_prepare_graphics_definition_d140(struct Process* process);
 void process_prepare_graphics_definition_d1b0(struct Process* process);
 void process_prepare_graphics_definition_d220(struct Process* process);
 void process_prepare_graphics_definition_d290(struct Process* process);
+void process_definition_d140_advance_to_state4_on_start(
+    struct DefinitionD140Process* process);
+void process_definition_d140_reset_ui_objects(
+    struct DefinitionD140Process* process, void* value20, void* value24);
+void process_definition_d278_advance_to_state4_on_start(
+    struct DefinitionD278Process* process);
+void process_definition_d278_hide_sprite_pairs(
+    struct DefinitionD278Process* process);
 void process_timed_update(struct TimedProcess* process);
 void process_destroy_owned_buffer(struct OwnedBufferProcess* process, u32 flags);
 void process_remove_global_owned_buffer(void);

@@ -39,6 +39,27 @@ struct OwnedBufferProcess {
     void* buffer;
 };
 
+struct UiObject;
+struct UiSpritePair;
+
+struct DefinitionD140Process {
+    struct Process process;
+    void* field_1C;
+    struct UiObject* object20;
+    struct UiObject* object24;
+    u8 gap28[0x2C];
+    u32 state54;
+};
+
+struct DefinitionD278Process {
+    struct Process process;
+    u8 gap1C[0x28];
+    u32 state44;
+    u8 gap48[0x24];
+    struct UiSpritePair* spritePair6C;
+    struct UiSpritePair* spritePair70;
+};
+
 extern struct ProcessDefinition gBaseProcessDefinition __asm__("stru_8CDBD68");
 
 #endif

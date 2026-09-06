@@ -31,6 +31,12 @@ variant also forwards to a parent-process setup routine. Definition-based
 names remain mechanical because the enclosing screen classes are not yet
 identified.
 
+The D140 process also owns two UI objects that can be reset together with
+independent values. Its control path advances to state 4 when Start is
+pressed. The sibling process at definition `0x08CDD278` has the same
+Start-driven state transition and a setup leaf that hides its two sprite
+pairs after construction.
+
 `TimedProcess` extends the base process with a limit, current count, and step byte. Its update increments the count, reports progress through `sub_801B7B0`, then removes itself with definition `0x08CDBD98` when the limit is reached.
 
 `OwnedBufferProcess` extends the base process with an optional owned buffer. Its destructor installs definition `0x08CDBDA8`, frees the buffer when present, and removes the process. A global-slot helper destroys the instance stored at `0x03000D44` and clears that slot.

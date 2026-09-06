@@ -3100,6 +3100,10 @@ SECTIONS
         asm/text08057568.o(.text.after_8165454);
         src/process/definition_initializers.o(.text.process_definition_initializers.sub_8167D00);
         asm/text08057568.o(.text.process_definition_initializers_after_sub_8167D00);
+        src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_8167DF8);
+        asm/text08057568.o(.text.process_definition_callbacks_after_sub_8167DF8);
+        src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_8167E30);
+        asm/text08057568.o(.text.process_definition_callbacks_after_sub_8167E30);
         src/graphics/high_helpers.o(.text.high.sub_8167E9C);
         asm/text08057568.o(.text.high_after_sub_8167E9C);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_8167EBC);
@@ -3146,6 +3150,10 @@ SECTIONS
         asm/text08057568.o(.text.process_destructors_after_sub_816D96C);
         src/process/definition_initializers.o(.text.process_definition_initializers.sub_8171AFC);
         asm/text08057568.o(.text.process_definition_initializers_after_sub_8171AFC);
+        src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_8171B44);
+        asm/text08057568.o(.text.process_definition_callbacks_after_sub_8171B44);
+        src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_8171BF0);
+        asm/text08057568.o(.text.process_definition_callbacks_after_sub_8171BF0);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_8171C20);
         asm/text08057568.o(.text.object_destructors_after_sub_8171C20);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_8171C88);
