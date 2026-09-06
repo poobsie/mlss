@@ -142,6 +142,11 @@ A fourth selection-setup stage waits on an external readiness poll and flag `0x0
 
 The paired-object slide sequence moves the objects at runtime offsets `0x37C` and `0x278` left by one 24.8 fixed-point pixel per tick. Once view conversion places them at screen X 208, it snaps both positions to that boundary, starts animation 4 on the second object, clears the flag at `0x342`, and installs the next process callback.
 
+The paired slide teardown moves the same objects right by three 24.8 fixed-point
+pixels per tick and projects the shared position through the view at runtime offset
+`0x24C`. Past screen X `0x103`, it releases the object at `0x278`, destroys and
+clears the object at `0x37C`, and stops its runtime node callback.
+
 The later completion callback for that sequence now shares the same typed runtime. It waits for visual completion on the second object, starts animation 5, sets its visual parameter to `0x10`, and advances the field process.
 
 A separate field-effect process now exposes its gate at runtime offset `0x248`, entry identifier at process offset `0x0C`, and 12-tick delay at `0x10`. Once the gate clears, it resets the surrounding dispatch state, resolves the entry, forwards the entry metadata's 16-bit dispatch value when present, and advances. The metadata value remains structural because the receiving assembly routine has not established whether it identifies text, graphics, or another effect resource.

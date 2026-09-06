@@ -321937,6 +321937,8 @@ _081072A4: .4byte sub_8104A84
 	.endif
 	.section .text.field_display_value_transition_after_sub_8107248, "ax", %progbits
 	.section .text.small_functions_01_after_sub_81072A8, "ax", %progbits
+	.section .text.field_object_slide_sequence_before_sub_81072DC, "ax", %progbits
+	.if 0
 	thumb_func_start sub_81072DC
 sub_81072DC:
 	push {r4, r5, r6, r7, lr}
@@ -322002,6 +322004,8 @@ _0810734A:
 	.byte 0x00, 0x00
 _08107358: .4byte 0x03000FD8
 _0810735C: .4byte 0x00000103
+	.endif
+	.section .text.field_object_slide_sequence_after_sub_81072DC, "ax", %progbits
 	.section .text.field_effect_wait_transition_before_sub_8107360, "ax", %progbits
 	.if 0
 	thumb_func_start sub_8107360

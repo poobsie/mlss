@@ -5,6 +5,8 @@
 #include "field/view_state.h"
 #include "object/runtime_object.h"
 
+struct FieldRuntimeNode;
+
 struct FieldSlideObject {
     u8 unknown00[8];
     struct RuntimeObjectVisual* visual;
@@ -30,5 +32,7 @@ struct FieldSlideProcess {
 
 void field_slide_pair_to_screen_x_208(struct FieldSlideProcess* process);
 void field_wait_then_start_second_object_animation_5(struct FieldSlideProcess* process);
+#define field_slide_pair_right_and_release sub_81072DC
+void field_slide_pair_right_and_release(struct FieldRuntimeNode* node);
 
 #endif

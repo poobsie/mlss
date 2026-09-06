@@ -1,4 +1,6 @@
 #include "field/object_slide_sequence.h"
+#include "field/display.h"
+#include "field/runtime_nodes.h"
 
 #define SEC(name) __attribute__((section(".text.field_object_slide_sequence." #name)))
 #define FIELD_RUNTIME (*(struct FieldSlideRuntime**)0x03000FD8)
@@ -7,6 +9,7 @@ void sub_8106AC8(struct FieldSlideProcess* process);
 void sub_8104184(struct FieldSlideProcess* process);
 void sub_8082C58(FieldViewState* view, s32* x, s32* y, s32* depth, s32 unused);
 void sub_8082E1C(void* object, s32 animation, s32 value, s32 flags);
+void sub_807C298(struct FieldSlideObject* object);
 
 SEC(sub_81040DC) void sub_81040DC(struct FieldSlideProcess* process)
 {
@@ -52,6 +55,39 @@ SEC(sub_8106AC8) void sub_8106AC8(struct FieldSlideProcess* process)
         sub_8082E1C(second, 5, 0, 0);
         second->visual->parameter20 = 0x10;
         process->update = sub_8104184;
+    }
+}
+
+SEC(sub_81072DC)
+void field_slide_pair_right_and_release(struct FieldRuntimeNode* node)
+{
+    s32 screenX;
+    s32 screenY;
+    s32 depth;
+    s32 position;
+    s32 roundedPosition;
+    struct FieldSlideRuntime* runtime;
+    struct FieldSlideObject* first;
+    struct FieldSlideObject* second;
+
+    runtime = FIELD_RUNTIME;
+    first = runtime->firstObject;
+    second = runtime->secondObject;
+    position = first->positionX + 0x300;
+    first->positionX = position;
+    second->positionX = position;
+    roundedPosition = first->positionX;
+    if (roundedPosition < 0)
+        roundedPosition += 0xFF;
+    screenX = roundedPosition >> 8;
+    screenY = 0;
+    depth = 0;
+    sub_8082C58(runtime->view, &screenX, &screenY, &depth, 0);
+    if (screenX > 0x103) {
+        field_release_display_object_278();
+        sub_807C298(first);
+        FIELD_RUNTIME->firstObject = 0;
+        node->ownerOrCallback = 0;
     }
 }
 
