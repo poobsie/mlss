@@ -42,3 +42,19 @@ void field_advance_status_cycle_transition(
         }
     }
 }
+
+SEC(sub_810D4E0)
+void field_finish_status_cycle_when_selected_object_idle(
+    struct FieldStatusCycleProcess* process)
+{
+    struct FieldStatusCycleRuntime* runtime;
+    struct RuntimeObject* object;
+
+    sub_810971C(process);
+    runtime = FIELD_RUNTIME;
+    object = runtime->objects2FC[runtime->selection310->objectIndex];
+    if (object->update == NULL) {
+        runtime->flags007 &= 0x1F;
+        process->update = sub_810971C;
+    }
+}

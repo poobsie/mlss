@@ -331736,6 +331736,7 @@ _0810CD94: .4byte sub_810B318
 	.byte 0xC2, 0x68, 0x00, 0x21, 0x51, 0x60, 0x41, 0x60, 0x03, 0x48, 0x00, 0x68, 0xA4, 0x22, 0x92, 0x00
 	.byte 0x80, 0x18, 0x01, 0x60, 0x70, 0x47, 0x00, 0x00, 0xD8, 0x0F, 0x00, 0x03
 	.section .text.small_functions_08_after_sub_810CDB4, "ax", %progbits
+	.if 0
 	thumb_func_start sub_810CDFC
 sub_810CDFC:
 	push {r4, lr}
@@ -331804,6 +331805,8 @@ _0810CE78: .4byte 0x3F3B3F3F
 _0810CE7C: .4byte 0x7FF07FF0
 _0810CE80: .4byte 0x04000044
 _0810CE84: .4byte 0x0200001A
+	.endif
+	.section .text.field_display_after_sub_810CDFC, "ax", %progbits
 	thumb_func_start sub_810CE88
 sub_810CE88:
 	push {r4, r5, lr}
@@ -332514,6 +332517,7 @@ asm_discard_sub_810D4C4:
 _0810D4D8: .4byte 0x03000FD8
 _0810D4DC: .4byte 0x00000241
 	.section .text.after_runtime_upper_sub_810D4C4, "ax", %progbits
+	.if 0
 	thumb_func_start sub_810D4E0
 sub_810D4E0:
 	push {r4, lr}
@@ -332548,6 +332552,8 @@ _0810D516:
 	bx r0
 _0810D51C: .4byte 0x03000FD8
 _0810D520: .4byte sub_810971C
+	.endif
+	.section .text.field_status_cycle_transition_after_sub_810D4E0, "ax", %progbits
 	thumb_func_start sub_810D524
 sub_810D524:
 	push {r4, r5, r6, r7, lr}

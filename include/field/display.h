@@ -9,6 +9,13 @@ struct FieldDisplayProcess {
     u8 unknown00[4];
     void (*update)(struct FieldDisplayProcess* process);
     void* resource;
+    u8 unknown0C[6];
+    s16 value12;
+};
+
+struct FieldDisplayWindowProcess {
+    u8 unknown00[0x16];
+    s16 value16;
 };
 
 struct FieldDisplayRegisterOwner {
@@ -57,6 +64,7 @@ void field_configure_display_layer(s32 value);
 #define field_update_register_pair_when_owner_active sub_810CBDC
 #define field_follow_display_slide_owner sub_810CC0C
 #define field_release_display_object_278 sub_810D170
+#define field_update_display_window_geometry sub_810CDFC
 #define field_update_register_pair_and_stop_when_owner_inactive sub_810D5F4
 
 void field_finish_display_processes_27c_280(void);
@@ -65,6 +73,8 @@ void field_update_register_pair_when_owner_active(
 void field_follow_display_slide_owner(
     struct FieldDisplaySlideFollower* process);
 void field_release_display_object_278(void);
+void field_update_display_window_geometry(
+    struct FieldDisplayWindowProcess* process);
 void field_update_register_pair_and_stop_when_owner_inactive(
     struct FieldDisplayRegisterProcess* process);
 

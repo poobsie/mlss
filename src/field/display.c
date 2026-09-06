@@ -57,6 +57,28 @@ void field_follow_display_slide_owner(struct FieldDisplaySlideFollower* process)
     }
 }
 
+SEC(sub_810CDFC)
+void field_update_display_window_geometry(
+    struct FieldDisplayWindowProcess* process)
+{
+    struct FieldDisplayProcess* owner = FIELD_RUNTIME->process290;
+    s32 left;
+
+    if (owner->value12 <= 63) {
+        left = 8;
+    } else {
+        left = owner->value12 / 256;
+    }
+    *(u32*)0x04000018 = (u16)(left - 7) | ((process->value16 - 6) << 16);
+    *(u32*)0x04000048 = 0x3F3B3F3F;
+    *(u32*)0x04000040 = 0x7FF07FF0;
+    *(u32*)0x04000044 =
+        (*(volatile u16*)0x0200001A + 0x99) |
+        ((*(volatile u16*)0x0200001A + 0x8E) << 8) |
+        (((*(volatile u16*)0x0200001A + 0x99) |
+          ((*(volatile u16*)0x0200001A + 0x8E) << 8)) << 16);
+}
+
 MISC3_SEC(field_release_display_object_278)
 void field_release_display_object_278(void)
 {

@@ -449,6 +449,9 @@ pointers beginning at runtime offset `0x2FC` through the signed index owned at
 `0x310`. An object with an active update installs the follow-up transition;
 otherwise the routine clears the high three runtime mode bits and returns to the
 object-group update callback. The phase's visual units are not yet established.
+The follow-up uses the same typed selection path: it runs the shared object-group
+update, waits for the selected object's callback to clear, then clears the mode
+bits and returns to that update callback.
 
 The display-scale transition has two modes selected by runtime flag `0x80` at
 offset `0x0B`. In release mode, bit zero of the process state selects one of the
@@ -465,5 +468,12 @@ once that derived offset exceeds 23. While active, it keeps the two display
 registers at `0x0400001A` and `0x0400001E` positioned 24 units before their
 staging values. The owner callback and nearby reverse transition remain in
 assembly because their arithmetic source shapes do not yet match exactly.
+
+The display-window updater derives one packed coordinate from the signed value
+at offset `0x12` of the runtime-owned process and another from its caller's
+signed value at `0x16`. It writes the established window-control constants and
+builds both horizontal bounds from the staging halfword at `0x0200001A`.
+Those values retain neutral names because their precise screen units are not
+established by the current callers.
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

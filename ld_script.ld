@@ -2348,6 +2348,8 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_07_after_sub_810CCF4);
         src/field/display.o(.text.field_display.sub_810CDB4);
         asm/text08057568.o(.text.small_functions_08_after_sub_810CDB4);
+        src/field/display.o(.text.field_display.sub_810CDFC);
+        asm/text08057568.o(.text.field_display_after_sub_810CDFC);
         src/field/display.o(.text.field_display.sub_810D00C);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_810D00C);
         src/field/display.o(.text.field_display.sub_810D038);
@@ -2358,6 +2360,8 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_810D260);
         src/runtime/upper_leaves.o(.text.runtime_upper.sub_810D4C4);
         asm/text08057568.o(.text.after_runtime_upper_sub_810D4C4);
+        src/field/status_cycle_transition.o(.text.field_status_cycle_transition.sub_810D4E0);
+        asm/text08057568.o(.text.field_status_cycle_transition_after_sub_810D4E0);
         src/field/display.o(.text.misc_helpers_03.sub_810D5F4);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_810D5F4);
         src/object/conditional_mode_transitions.o(.text.object_child_mode_transitions.sub_810FBFC);
