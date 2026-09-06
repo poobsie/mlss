@@ -18,7 +18,7 @@ void sub_80E9D1C(void);
 void sub_801BD50(u8 priority);
 
 SEC(sub_801AFE4)
-void runtime_resume_global_services(void)
+void runtime_resume_global_services(int unused)
 {
     u8* flags = (u8*)0x03000D40;
 

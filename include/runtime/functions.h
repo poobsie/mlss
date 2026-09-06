@@ -31,7 +31,7 @@ void runtime_release_global_state_fc4(void);
 void runtime_release_global_state_fbc(void);
 void runtime_release_global_state_fb4_fb8_fbc(void);
 void runtime_release_and_clear_global_state_fc0(void);
-void runtime_resume_global_services(void);
+void runtime_resume_global_services(int unused);
 void runtime_set_node_value_241(void);
 
 #endif

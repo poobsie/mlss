@@ -122,7 +122,7 @@ void* alloc_Zero(int, bool32, char*, u8);
 u32 sub_80198B0(int*);
 void sub_801A6B0(void);
 void sub_801ABE8(u16, u16, int);
-void sub_801AFE4(void);
+void sub_801AFE4(int unused);
 void sub_801E150(struct Sprite*, int, int, int, int);
 void sub_8020994(int, int, int, int);
 void sub_8020A78(void);
