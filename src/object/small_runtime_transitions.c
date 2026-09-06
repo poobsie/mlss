@@ -16,6 +16,7 @@ void sub_8074508(struct RuntimeObject* object);
 void sub_8086090(struct RuntimeObject* object);
 void sub_8088964(struct RuntimeObject* object);
 void sub_8088F9C(struct RuntimeObject* object);
+void sub_808AEE4(struct RuntimeObject* object);
 void sub_808C308(struct RuntimeObject* object);
 void sub_807C298(struct RuntimeObject* object);
 void sub_807F47C(struct RuntimeObject* object);
@@ -393,6 +394,33 @@ void object_when_value80_clear_start_animation_1_then_continue(
         sub_807F47C(object);
         object->update = sub_808C510;
     }
+}
+
+SEC(sub_808C2E0)
+void object_when_value80_clear_stop_sound_and_begin_velocity_motion(
+    struct RuntimeObject* object)
+{
+    s32 value = object->value80;
+
+    if (value == 0) {
+        sound_effect_stop(0x5E);
+        object->state->valueB4 = value;
+        object->update = (RuntimeObjectCallback)0x0808C601;
+    }
+}
+
+SEC(sub_808C348)
+void object_prepare_owner_variant_command_for_24_tick_followup(
+    struct RuntimeObject* object)
+{
+    object->timer = 0x18;
+    if (((struct RuntimeObject*)object->positionOwner)->state->variant ==
+        RUNTIME_OBJECT_VARIANT_FIRST)
+        sub_80873B8(object, 4, 0);
+    if (((struct RuntimeObject*)object->positionOwner)->state->variant ==
+        RUNTIME_OBJECT_VARIANT_SECOND)
+        sub_80873B8(object, 6, 0);
+    object->followup = sub_808AEE4;
 }
 
 SEC(sub_809C960)

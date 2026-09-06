@@ -1143,10 +1143,14 @@ SECTIONS
         asm/text08057568.o(.text.object_small_runtime_after_sub_808C1C4);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_808C1FC);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_808C1FC);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_808C2E0);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_808C2E0);
         src/object/behavior_transitions.o(.text.sub_808C308);
         asm/text08057568.o(.text.after_sub_808C308);
         src/object/followup_setups.o(.text.misc_helpers_01.sub_808C324);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_808C324);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_808C348);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_808C348);
         src/object/followup_setups.o(.text.misc_helpers_01.sub_808C39C);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_808C39C);
         src/object/followup_setups.o(.text.misc_helpers_01.sub_808C3C0);

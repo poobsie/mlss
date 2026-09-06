@@ -181,6 +181,8 @@ struct ObjectRuntimePollOwner;
 #define object_attach_ready_owner_then_finish_countdown sub_808BFF8
 #define object_clear_behavior_when_timer_zero sub_808C04C
 #define object_when_value80_clear_start_animation_1_then_continue sub_808C1C4
+#define object_when_value80_clear_stop_sound_and_begin_velocity_motion sub_808C2E0
+#define object_prepare_owner_variant_command_for_24_tick_followup sub_808C348
 #define object_continue_when_linked_object_clears sub_809C960
 #define object_begin_fixed_vertical_descent sub_80A2C80
 
@@ -400,6 +402,10 @@ void object_attach_ready_owner_then_finish_countdown(
     struct RuntimeObject* object);
 void object_clear_behavior_when_timer_zero(struct RuntimeObject* object);
 void object_when_value80_clear_start_animation_1_then_continue(
+    struct RuntimeObject* object);
+void object_when_value80_clear_stop_sound_and_begin_velocity_motion(
+    struct RuntimeObject* object);
+void object_prepare_owner_variant_command_for_24_tick_followup(
     struct RuntimeObject* object);
 s32 object_continue_when_linked_object_clears(struct RuntimeObject* object);
 void object_begin_fixed_vertical_descent(struct RuntimeObject* object);

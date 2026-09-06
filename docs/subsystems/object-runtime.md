@@ -426,6 +426,14 @@ plays sound `0xAD`, starts animation 1, applies the established object reset, an
 installs the next flag-driven continuation. Numeric animation and sound values
 remain unchanged because their asset identities are not established here.
 
+The next two control callbacks are also in C. The first waits for `value80` to
+clear, stops sound `0x5E`, clears the state halfword at `0xB4`, and installs the
+raw continuation at `0x0808C601`. Inspection of that continuation shows a compact
+per-axis integrator that adds signed fields `0xAE`, `0xB0`, and `0xB2` to the
+three current positions; it remains raw to avoid adding a symbol to the stable
+function denominator. The second stores a 24-tick timer, selects command 4 or 6
+from the position owner's established variant, and installs its followup.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
