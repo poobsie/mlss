@@ -378,11 +378,16 @@ Other command values leave it unchanged. The byte remains offset-named until a
 reader establishes what the toggle controls.
 
 The field script-block boundary now exposes a `0x100`-byte-strided state region
-owned through context offset `0x2C`. `field_reset_selected_script_block` clears the
-selected block's flags and restores its cursor from the adjacent saved cursor.
-`field_set_selected_script_block_flag_4` sets or clears flag `0x0004` in the same
-block. The flag meaning and the reason the state region begins at offset `0x700`
-remain unresolved, so the layout records only the proven cursor and flag fields.
+owned through context offset `0x2C`. `field_activate_script_block` snapshots a
+block's cursor and sets its active flag, while
+`field_branch_if_script_block_active` redirects the caller when that flag is set.
+`field_reset_selected_script_block` clears the selected block's flags and restores
+its cursor from the adjacent saved cursor. `field_set_selected_script_block_flag_4`
+sets or clears flag `0x0004` in the same block. Activation can address the root
+block or an indexed block beginning at slot one; reset and flag operations select
+from a region beginning at offset `0x700`. The flag meanings and the reason for
+those two selection bases remain unresolved, so the layout records only the
+proven cursor and flag fields.
 
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is

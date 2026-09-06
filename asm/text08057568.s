@@ -294849,8 +294849,9 @@ _080F88CC:
 	bx r1
 	.byte 0x00, 0x00
 _080F88FC: .4byte 0x00001794
-	thumb_func_start sub_80F8900
-sub_80F8900:
+	.section .discard.field_branch_if_script_block_active, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F8900
+asm_discard_sub_80F8900:
 	push {r4, r5, lr}
 	adds r4, r0, #0x0
 	adds r5, r1, #0x0
@@ -294887,8 +294888,10 @@ _080F8936:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_80F8940
-sub_80F8940:
+	.section .text.field_script_blocks_after_sub_80F8900, "ax", %progbits
+	.section .discard.field_activate_script_block, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F8940
+asm_discard_sub_80F8940:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	ldm r2!, {r3}
@@ -294926,6 +294929,7 @@ _080F896C:
 	pop {r1}
 	bx r1
 _080F8980: .4byte 0xFFFF0000
+	.section .text.field_script_blocks_after_sub_80F8940, "ax", %progbits
 	thumb_func_start sub_80F8984
 sub_80F8984:
 	push {r4, r5, r6, lr}
