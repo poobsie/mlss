@@ -6,6 +6,7 @@
 
 void _08F6F340(u32);
 void TrackStop(struct MusicPlayerInfo*, struct MusicPlayerTrack*);
+void mario_bros_call_secondary_object_callback_b(void*);
 
 MB_LATE_SECTION(sub_8F510CC) void mario_bros_disable_interrupts(void) {
     *(volatile u16*)0x04000004 = 0;
@@ -32,6 +33,45 @@ void mario_bros_reset_sound_dma_if_ident_changed(void)
         soundInfo->pcmDmaCounter = 0;
         soundInfo->ident = ident - 10;
     }
+}
+
+MB_LATE_SECTION(sub_8F950E0)
+void MPlayOpen(
+    struct MusicPlayerInfo* mplayInfo,
+    struct MusicPlayerTrack* tracks,
+    u8 trackCount)
+{
+    struct SoundInfo* soundInfo;
+
+    if (trackCount == 0)
+        return;
+    if (trackCount > MAX_MUSICPLAYER_TRACKS)
+        trackCount = MAX_MUSICPLAYER_TRACKS;
+
+    soundInfo = SOUND_INFO_PTR;
+    if (soundInfo->ident != ID_NUMBER)
+        return;
+
+    soundInfo->ident++;
+    mario_bros_call_secondary_object_callback_b(mplayInfo);
+    mplayInfo->tracks = tracks;
+    mplayInfo->trackCount = trackCount;
+    mplayInfo->status = MUSICPLAYER_STATUS_PAUSE;
+    while (trackCount != 0) {
+        tracks->flags = 0;
+        trackCount--;
+        tracks++;
+    }
+
+    if (soundInfo->MPlayMainHead != NULL) {
+        mplayInfo->MPlayMainNext = soundInfo->MPlayMainHead;
+        mplayInfo->musicPlayerNext = soundInfo->musicPlayerHead;
+        soundInfo->MPlayMainHead = NULL;
+    }
+    soundInfo->musicPlayerHead = mplayInfo;
+    soundInfo->MPlayMainHead = (MPlayMainFunc)0x0201B929;
+    soundInfo->ident = ID_NUMBER;
+    mplayInfo->ident = ID_NUMBER;
 }
 
 MB_LATE_SECTION(sub_8F9523C)

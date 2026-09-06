@@ -90343,8 +90343,9 @@ _08F950D4: .4byte 0x03007FF0
 _08F950D8: .4byte 0x68736D53
 _08F950DC: .4byte 0x040000C6
 	.section .text.after_mariobros_sound_dma_sub_8F950A4, "ax", %progbits
-	thumb_func_start sub_8F950E0
-sub_8F950E0:
+	.section .discard.mariobros_mplay_open_sub_8F950E0, "ax", %progbits
+	thumb_func_start asm_sub_8F950E0
+asm_sub_8F950E0:
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0x0
 	adds r6, r1, #0x0
@@ -90406,6 +90407,7 @@ _08F95144:
 _08F9514C: .4byte 0x03007FF0
 _08F95150: .4byte 0x68736D53
 _08F95154: .4byte 0x0201B929
+	.section .text.after_mariobros_mplay_open_sub_8F950E0, "ax", %progbits
 	thumb_func_start sub_8F95158
 sub_8F95158:
 	push {r4, r5, r6, r7, lr}

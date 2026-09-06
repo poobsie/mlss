@@ -154,6 +154,12 @@ quarter-scale volume adjustment, marks volume state dirty, and preserves the
 driver's identity lock around the traversal. Neighboring pitch and pan controls
 remain raw where their entry boundaries are anonymous.
 
+Player initialization now uses the canonical `MPlayOpen` contract. It clamps
+the supplied track count, clears each track's flags, links the player into the
+sound driver's player and update lists, and restores both identity fields. The
+relocated update entry remains the observed numeric address until its copied
+code boundary is independently detangled.
+
 ## Next boundary
 
 The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.
