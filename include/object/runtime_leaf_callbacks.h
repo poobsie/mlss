@@ -165,6 +165,7 @@ struct ObjectRuntimePollOwner;
 #define object_count_down_timer_then_resume sub_80875B8
 #define object_finish_saved_update_countdown sub_8087BA4
 #define object_runtime_finish_when_target_flag_2_clears sub_8087C20
+#define object_update_motion_then_start_animation_8 sub_8087C6C
 #define object_finish_motion_and_restore_saved_update sub_8088508
 #define object_start_animation_5_then_update_motion sub_8088560
 #define object_save_update_then_start_animation_4 sub_80885C4
@@ -365,6 +366,7 @@ void object_count_down_timer_then_resume(struct RuntimeObject* object);
 void object_finish_saved_update_countdown(struct RuntimeObject* object);
 void object_runtime_finish_when_target_flag_2_clears(
     struct ObjectRuntimePollOwner* owner);
+void object_update_motion_then_start_animation_8(struct RuntimeObject* object);
 void object_finish_motion_and_restore_saved_update(
     struct RuntimeObject* object);
 void object_start_animation_5_then_update_motion(struct RuntimeObject* object);

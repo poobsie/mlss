@@ -371,6 +371,13 @@ advances that motion, clears animation and visual control bits at completion, th
 restores and clears `followup`. The underlying motion calculation remains in
 assembly because its fixed-point fields are not yet independently identified.
 
+The shared animation-5 and animation-6 motion path now also has its outbound
+continuation in C. It advances the same assembly motion calculation, waits for
+the completion bit, selects animation 8 with the established variant-dependent
+command, normalizes the visual mode, and installs the cleanup callback that
+restores the saved update. The command values and completion bit remain numeric
+until their producers and rendering effects provide stronger names.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

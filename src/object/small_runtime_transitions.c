@@ -17,7 +17,6 @@ void sub_8089F44(struct RuntimeObject* object);
 void sub_8086700(void* state);
 void sub_8082E1C(struct RuntimeObject* object, s32 animation, s32 command,
                  s32 argument);
-void sub_8087C6C(struct RuntimeObject* object);
 void sub_8087CE4(struct RuntimeObject* object);
 void sub_808864C(struct RuntimeObject* object);
 void sub_809C954(struct RuntimeObject* object);
@@ -117,6 +116,28 @@ void object_runtime_finish_when_target_flag_2_clears(
     if (pending == 0) {
         sub_8086700((u8*)target + 8);
         owner->pending04 = pending;
+    }
+}
+
+SEC(sub_8087C6C)
+void object_update_motion_then_start_animation_8(
+    struct RuntimeObject* object)
+{
+    s8* flags;
+    u8 mode;
+
+    sub_8087CE4(object);
+    if (object->flags79 & 0x20) {
+        mode = object->flags76 & 6;
+        if (mode == 2 || mode == 4) {
+            if (object->state->variant == -1)
+                sub_8082E1C(object, 8, 0x2000, 0);
+            else
+                sub_8082E1C(object, 8, 0x204D, 0);
+            flags = (s8*)&object->visual->flags;
+            *flags = (*flags & -7) | 2;
+        }
+        object->update = object_finish_motion_and_restore_saved_update;
     }
 }
 
