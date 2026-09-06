@@ -113771,30 +113771,7 @@ _0809AE70: .4byte 0x02000052
 _0809AE74: .4byte 0x00000808
 _0809AE78: .4byte 0x084FB814
 _0809AE7C: .4byte sub_809AE80
-	thumb_func_start sub_809AE80
-sub_809AE80:
-	push {r4, r5, lr}
-	adds r4, r0, #0x0
-	ldr r5, [r4, #0x2C]
-	bl sub_8087EFC
-	adds r0, r4, #0x0
-	adds r0, #0x79
-	ldrb r1, [r0, #0x00]
-	movs r0, #0x20
-	ands r0, r1
-	cmp r0, #0x00
-	beq _0809AEA6
-	adds r0, r5, #0x0
-	adds r1, r4, #0x0
-	movs r2, #0xFF
-	bl sub_810DD7C
-	ldr r0, _0809AEAC @ =0x0809B031
-	str r0, [r4, #0x4C]
-_0809AEA6:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-_0809AEAC: .4byte 0x0809B031
+	.section .text.late_runtime_callbacks_after_sub_809AE80, "ax", %progbits
 	.section .text.after_sub_809AEB0, "ax", %progbits
 	thumb_func_start sub_809AECC
 sub_809AECC:
@@ -115761,21 +115738,7 @@ _0809C284:
 _0809C28C: .4byte 0x03000FD8
 _0809C290: .4byte sub_809C3C8
 	.section .text.paired_motion_effect_callbacks_after_sub_809C214, "ax", %progbits
-	thumb_func_start sub_809C294
-sub_809C294:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	ldr r0, [r4, #0x30]
-	cmp r0, #0x00
-	bne _0809C2AA
-	ldr r0, [r4, #0x28]
-	bl sub_807B7A8
-	ldr r0, [r4, #0x28]
-	bl sub_807FE40
-_0809C2AA:
-	pop {r4}
-	pop {r0}
-	bx r0
+	.section .text.late_runtime_callbacks_after_sub_809C294, "ax", %progbits
 	.byte 0x00, 0x21, 0x01, 0x65, 0x03, 0x49, 0xC1, 0x64, 0x7C, 0x30, 0x80, 0x21, 0x49, 0x00, 0x01, 0x80
 	.byte 0x01, 0x20, 0x70, 0x47, 0x49, 0xC4, 0x09, 0x08
 	.section .text.paired_motion_effect_callbacks_reject_sub_809C2C8, "ax", %progbits

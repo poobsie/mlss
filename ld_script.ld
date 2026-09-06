@@ -1582,6 +1582,8 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_05_after_sub_809A808);
         src/object/visual_completion_variants.o(.text.object_visual_completion_variants.sub_809A858);
         asm/text08057568.o(.text.small_functions_06_after_sub_809A858);
+        src/object/late_runtime_callbacks.o(.text.late_runtime_callbacks.sub_809AE80);
+        asm/text08057568.o(.text.late_runtime_callbacks_after_sub_809AE80);
         src/object/behavior_transitions.o(.text.sub_809AEB0);
         asm/text08057568.o(.text.after_sub_809AEB0);
         src/object/command_transitions.o(.text.command_transitions.sub_809B038);
@@ -1627,6 +1629,8 @@ SECTIONS
         asm/text08057568.o(.text.vertical_boundary_callbacks_after_sub_809C1E8);
         asm/text08057568.o(.text.paired_motion_effect_callbacks_reject_sub_809C214);
         asm/text08057568.o(.text.paired_motion_effect_callbacks_after_sub_809C214);
+        src/object/late_runtime_callbacks.o(.text.late_runtime_callbacks.sub_809C294);
+        asm/text08057568.o(.text.late_runtime_callbacks_after_sub_809C294);
         asm/text08057568.o(.text.paired_motion_effect_callbacks_reject_sub_809C2C8);
         asm/text08057568.o(.text.paired_motion_effect_callbacks_reject_sub_809C348);
         asm/text08057568.o(.text.paired_motion_effect_callbacks_reject_sub_809C3C8);

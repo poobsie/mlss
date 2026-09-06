@@ -568,6 +568,14 @@ continuation. The preceding readiness reset and auxiliary motion poll remain raw
 after bounded attempts changed store order and callee-save allocation; the raw
 callback at `0x0810FBBD` remains intentionally unnamed.
 
+The following runtime slice now includes a motion-update notification and a
+state-cleanup predicate. The motion callback preserves its position owner,
+runs the established motion step, forwards the owner and object when runtime
+flag `0x20` becomes set, and enters the existing continuation. The cleanup gate
+calls the established cleanup pair on the object's state only after its linked
+object is clear. A nearby visual-and-link stop transition remains raw after its bounded
+source shapes changed the original register allocation.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

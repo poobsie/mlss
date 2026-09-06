@@ -182,5 +182,9 @@ void object_clear_behavior_on_visual_complete_variant_b(
     struct RuntimeObject* object);
 void object_integrate_downward_exit_until_offscreen(
     struct RuntimeObject* object);
+void object_update_motion_then_notify_owner_on_flag_20(
+    struct RuntimeObject* object);
+void object_cleanup_state_when_unlinked(
+    struct RuntimeObject* object);
 
 #endif
