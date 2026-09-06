@@ -1669,6 +1669,10 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_809EB58);
         src/object/terminal_gates.o(.text.misc_helpers_01.sub_809EB70);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_809EB70);
+        src/object/effect_animation_transitions.o(.text.effect_animation_transitions.sub_809EB8C);
+        asm/text08057568.o(.text.effect_animation_transitions_after_sub_809EB8C);
+        src/object/effect_animation_transitions.o(.text.effect_animation_transitions.sub_809EBDC);
+        asm/text08057568.o(.text.effect_animation_transitions_after_sub_809EBDC);
         src/object/saved_update_transitions.o(.text.misc_helpers_02.sub_809F068);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_809F068);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_809F084);

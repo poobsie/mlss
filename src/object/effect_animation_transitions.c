@@ -1,5 +1,6 @@
 #include "object/functions.h"
 #include "object/runtime_object.h"
+#include "audio/sound_effects.h"
 
 #define STRINGIFY_INNER(value) #value
 #define STRINGIFY(value) STRINGIFY_INNER(value)
@@ -14,6 +15,40 @@ s32 sub_8086D80(struct RuntimeObject* object,
 void sub_807F47C(struct RuntimeObject* object);
 void sub_807C298(struct RuntimeObject* object);
 void sub_809F194(struct RuntimeObject* object);
+void sub_8082E1C(struct RuntimeObject* object, s32 animation,
+                 s32 command, s32 argument);
+void sub_80873B8(struct RuntimeObject* object, s32 kind, s32 duration);
+void sub_809E5E4(struct RuntimeObject* object);
+
+SEC(object_when_value80_clear_start_owner_variant_animation_and_followup)
+void object_when_value80_clear_start_owner_variant_animation_and_followup(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner;
+
+    if (object->value80 == 0) {
+        owner = object->positionOwner;
+        object->timer = object->valueA0;
+        sub_80873B8(object, 15 - owner->state->variant, 0);
+        object->followup =
+            object_select_animation_20_or_21_from_owner_variant_and_continue;
+        sound_effect_play(0x62, SOUND_VOLUME_UNCHANGED);
+    }
+}
+
+SEC(object_select_animation_20_or_21_from_owner_variant_and_continue)
+void object_select_animation_20_or_21_from_owner_variant_and_continue(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner;
+
+    owner = object->positionOwner;
+    if (owner->state->variant == RUNTIME_OBJECT_VARIANT_FIRST)
+        sub_8082E1C(object, 0x14, 0, 0);
+    if (owner->state->variant == RUNTIME_OBJECT_VARIANT_SECOND)
+        sub_8082E1C(object, 0x15, 0, 0);
+    object->update = sub_809E5E4;
+}
 
 SEC(object_when_pair_query_clear_emit_effect_2661_and_continue)
 s32 object_when_pair_query_clear_emit_effect_2661_and_continue(

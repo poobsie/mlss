@@ -237,5 +237,9 @@ s32 object_when_pair_query_clear_emit_effect_2661_and_continue(
     struct RuntimeObject* object, struct RuntimeObject* comparedObject);
 s32 object_notify_owner_emit_effect_2651_and_destroy(
     struct RuntimeObject* object, void* owner, s32 command);
+void object_when_value80_clear_start_owner_variant_animation_and_followup(
+    struct RuntimeObject* object);
+void object_select_animation_20_or_21_from_owner_variant_and_continue(
+    struct RuntimeObject* object);
 
 #endif

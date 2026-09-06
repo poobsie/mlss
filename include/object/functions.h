@@ -280,6 +280,8 @@
 #define object_emit_effect_2adb_then_notify_owner sub_80A0740
 #define object_when_pair_query_clear_emit_effect_2661_and_continue sub_809F0A8
 #define object_notify_owner_emit_effect_2651_and_destroy sub_809F100
+#define object_when_value80_clear_start_owner_variant_animation_and_followup sub_809EB8C
+#define object_select_animation_20_or_21_from_owner_variant_and_continue sub_809EBDC
 
 /* Middle-address behavior families whose owning callback tables remain in assembly. */
 #define object_invoke_shared_terminal_action_a sub_80D2D28

@@ -640,6 +640,14 @@ next typed continuation only when the shared poll clears. The neighboring
 ready-stop remains raw after both source shapes selected the opposite
 callee-save allocation.
 
+The owner-variant handoff now includes its `value80`-gated setup and follow-up.
+When `value80` clears, the setup copies `valueA0` into the signed timer, derives
+setup kind `15 - variant`, installs the follow-up, and plays sound `0x62`. The
+follow-up selects animation `0x14` for variant -1 or `0x15` for variant -2,
+then returns to the established paired-object transition. The adjacent
+auxiliary callback installer remains raw after bounded source shapes changed
+its argument-load order.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

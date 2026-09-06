@@ -120601,80 +120601,9 @@ _0809EB50:
 	.byte 0x00, 0x00
 	.section .text.misc_helpers_01_after_sub_809EB58, "ax", %progbits
 	.section .text.misc_helpers_01_after_sub_809EB70, "ax", %progbits
-	thumb_func_start sub_809EB8C
-sub_809EB8C:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r0, #0x80
-	ldr r0, [r0, #0x00]
-	cmp r0, #0x00
-	bne _0809EBC6
-	ldr r2, [r4, #0x2C]
-	adds r0, r4, #0x0
-	adds r0, #0xA0
-	ldr r1, [r0, #0x00]
-	adds r0, #0x0C
-	strh r1, [r0, #0x00]
-	ldr r0, [r2, #0x28]
-	adds r0, #0xEC
-	movs r1, #0x00
-	ldsh r0, [r0, r1]
-	movs r1, #0x0F
-	subs r1, r1, r0
-	adds r0, r4, #0x0
-	movs r2, #0x00
-	bl sub_80873B8
-	ldr r0, _0809EBCC @ =0x0809EBDD
-	str r0, [r4, #0x50]
-	movs r1, #0x01
-	negs r1, r1
-	movs r0, #0x62
-	bl sound_effect_play
-_0809EBC6:
-	pop {r4}
-	pop {r0}
-	bx r0
-_0809EBCC: .4byte sub_809EBDC
+	.section .text.effect_animation_transitions_after_sub_809EB8C, "ax", %progbits
 	.byte 0x01, 0x49, 0xC1, 0x64, 0x01, 0x20, 0x70, 0x47, 0xC5, 0xE4, 0x09, 0x08
-	thumb_func_start sub_809EBDC
-sub_809EBDC:
-	push {r4, r5, lr}
-	adds r4, r0, #0x0
-	ldr r5, [r4, #0x2C]
-	ldr r0, [r5, #0x28]
-	adds r0, #0xEC
-	movs r2, #0x00
-	ldsh r1, [r0, r2]
-	movs r0, #0x01
-	negs r0, r0
-	cmp r1, r0
-	bne _0809EBFE
-	adds r0, r4, #0x0
-	movs r1, #0x14
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-_0809EBFE:
-	ldr r0, [r5, #0x28]
-	adds r0, #0xEC
-	movs r2, #0x00
-	ldsh r1, [r0, r2]
-	movs r0, #0x02
-	negs r0, r0
-	cmp r1, r0
-	bne _0809EC1A
-	adds r0, r4, #0x0
-	movs r1, #0x15
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-_0809EC1A:
-	ldr r0, _0809EC24 @ =0x0809E5E5
-	str r0, [r4, #0x4C]
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-_0809EC24: .4byte sub_809E5E4
+	.section .text.effect_animation_transitions_after_sub_809EBDC, "ax", %progbits
 	thumb_func_start sub_809EC28
 sub_809EC28:
 	push {r4, lr}
