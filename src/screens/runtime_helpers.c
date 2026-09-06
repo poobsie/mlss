@@ -12,6 +12,8 @@ struct ScreenLayerOwner20 {
     u8 initialized69;
     u8 unknown06A[0xEC];
     u8 initialized156;
+    u8 unknown157[0x27];
+    u16 control17E;
 };
 
 struct ScreenLayerOwner15C {
@@ -20,6 +22,13 @@ struct ScreenLayerOwner15C {
     u8 unknown0F0[0x6C];
     void* layer15C;
 };
+
+struct ScreenRuntimeStateOverlay {
+    u8 unknown000[0x884];
+    s32 field884;
+};
+
+extern struct ScreenRuntimeStateOverlay gScreenRuntimeState __asm__("gGameState");
 
 void sub_81151E4(
     void* layer, u8 flags, u16 value, u16 size,
@@ -39,6 +48,15 @@ void screen_configure_layer20_default_and_mark_156(
     struct ScreenLayerOwner20* owner)
 {
     sub_81151E4(owner->layer20, 4, 0, 8, 0xFFFF, 0xFFFF, 0, 0);
+    owner->initialized156 = 1;
+}
+
+SEC(screen_reset_layer20_and_copy_control)
+void screen_reset_layer20_and_copy_control(struct ScreenLayerOwner20* owner)
+{
+    gScreenRuntimeState.field884 = -1;
+    sub_81151E4(owner->layer20, 0, 0, 8, 0xFFFF, 0xFFFF, 0, 0);
+    *(u16*)0x02000000 = owner->control17E;
     owner->initialized156 = 1;
 }
 

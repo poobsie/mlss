@@ -76,6 +76,15 @@ forwards its sprite and coordinates while clearing both optional update argument
 The adjacent update helper creates a missing sprite or updates the existing one using
 the same entry stride and packed-position input.
 
+The adjacent layer-reset helper invalidates runtime word `0x884`, resets the layer at
+owner offset `0x20`, copies the owner halfword at `0x17E` to `0x02000000`, and marks
+byte `0x156` initialized. The destination halfword remains generically named.
+
+The intervening byte-coded callbacks actually begin at `0x08121970` and `0x0812198C`.
+The first reports whether runtime byte `0x03000C80` is clear; the second creates a
+sprite and stores it in the indexed 64-byte entry. They remain byte-coded because no
+stable symbols currently establish those boundaries.
+
 The selected-entry sequence is now one three-stage unit instead of three numbered catch-all files. Its stages wait for the shared blocker at `0x310`, prepare the selected entry at `0x349`, commit it through the active object at `0x7C`, clear the selection to `0xFF`, and install the next process callback at each boundary. Scene-specific names require the resource tables used by the assembly helpers.
 
 A fourth selection-setup stage waits on an external readiness poll and flag `0x04` at `0x2BF`. Mode `2` resets both indexed display selections through the same assembly helper before the process advances.
