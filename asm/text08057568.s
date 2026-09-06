@@ -116740,58 +116740,7 @@ _0809B35A:
 _0809B364: .4byte 0x000040C2
 _0809B368: .4byte sub_809B370
 _0809B36C: .4byte sub_809B3DC
-	thumb_func_start sub_809B370
-sub_809B370:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	ldr r0, [r4, #0x14]
-	movs r1, #0x80
-	lsls r1, r1, #0x01
-	adds r0, r0, r1
-	str r0, [r4, #0x14]
-	movs r0, #0x98
-	lsls r0, r0, #0x06
-	str r0, [r4, #0x18]
-	ldr r0, [r4, #0x28]
-	adds r0, #0xF6
-	movs r1, #0x00
-	ldsh r0, [r0, r1]
-	cmp r0, #0x00
-	beq _0809B3C0
-	ldr r2, _0809B3CC @ =0x03001038
-	ldr r0, _0809B3D0 @ =0x0819832C
-	ldr r1, _0809B3D4 @ =0x08198220
-	subs r0, r0, r1
-	ldr r2, [r2, #0x00]
-	adds r2, r2, r0
-	movs r0, #0x80
-	lsls r0, r0, #0x07
-	movs r1, #0x18
-	bl _call_via_r2
-	adds r2, r4, #0x0
-	adds r2, #0x7A
-	movs r1, #0x00
-	strh r0, [r2, #0x00]
-	adds r0, r4, #0x0
-	adds r0, #0x7E
-	strh r1, [r0, #0x00]
-	subs r2, #0x01
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x21
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x00]
-_0809B3C0:
-	ldr r0, _0809B3D8 @ =0x0809B505
-	str r0, [r4, #0x4C]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0809B3CC: .4byte 0x03001038
-_0809B3D0: .4byte 0x0819832C
-_0809B3D4: .4byte 0x08198220
-_0809B3D8: .4byte sub_809B504
+	.section .text.paired_motion_effect_callbacks_after_sub_809B370, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_809B3DC, "ax", %progbits
 	thumb_func_start sub_809B410
 sub_809B410:
@@ -116944,6 +116893,7 @@ _0809B5A0: .4byte 0x0000015D
 _0809B5A4: .4byte sub_809B610
 .endif
 	.section .text.object_unique_callbacks_after_sub_809B558, "ax", %progbits
+	.section .text.paired_motion_effect_callbacks_reject_sub_809B5A8, "ax", %progbits
 	thumb_func_start sub_809B5A8
 sub_809B5A8:
 	push {r4, r5, lr}
@@ -116996,6 +116946,7 @@ _0809B5FA:
 _0809B604: .4byte 0x000040C2
 _0809B608: .4byte 0x00001202
 _0809B60C: .4byte sub_809B678
+	.section .text.paired_motion_effect_callbacks_reject_sub_809B610, "ax", %progbits
 	thumb_func_start sub_809B610
 sub_809B610:
 	push {r4, r5, lr}
@@ -117048,102 +116999,7 @@ _0809B662:
 _0809B66C: .4byte 0x000040C2
 _0809B670: .4byte 0x00001202
 _0809B674: .4byte sub_809B6D8
-	thumb_func_start sub_809B678
-sub_809B678:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	ldr r2, [r4, #0x2C]
-	ldr r0, [r2, #0x40]
-	cmp r0, #0x00
-	bne _0809B69C
-	adds r0, r2, #0x0
-	adds r0, #0x76
-	ldrb r1, [r0, #0x00]
-	movs r0, #0x3E
-	ands r0, r1
-	cmp r0, #0x02
-	bne _0809B69C
-	adds r0, r4, #0x0
-	adds r1, r2, #0x0
-	movs r2, #0xFF
-	bl sub_810DD7C
-_0809B69C:
-	ldr r0, [r4, #0x08]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _0809B6C8
-	ldr r2, _0809B6D0 @ =0x000040C2
-	adds r0, r4, #0x0
-	movs r1, #0x03
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r4, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x02
-	orrs r0, r1
-	strb r0, [r2, #0x12]
-	ldr r0, _0809B6D4 @ =0x0809B739
-	str r0, [r4, #0x4C]
-_0809B6C8:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0809B6D0: .4byte 0x000040C2
-_0809B6D4: .4byte sub_809B738
-	thumb_func_start sub_809B6D8
-sub_809B6D8:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	ldr r2, [r4, #0x2C]
-	ldr r0, [r2, #0x40]
-	cmp r0, #0x00
-	bne _0809B6FC
-	adds r0, r2, #0x0
-	adds r0, #0x76
-	ldrb r1, [r0, #0x00]
-	movs r0, #0x3E
-	ands r0, r1
-	cmp r0, #0x02
-	bne _0809B6FC
-	adds r0, r4, #0x0
-	adds r1, r2, #0x0
-	movs r2, #0xFF
-	bl sub_810DD7C
-_0809B6FC:
-	ldr r0, [r4, #0x08]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _0809B728
-	ldr r2, _0809B730 @ =0x000040C2
-	adds r0, r4, #0x0
-	movs r1, #0x03
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r4, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x02
-	orrs r0, r1
-	strb r0, [r2, #0x12]
-	ldr r0, _0809B734 @ =0x0809B755
-	str r0, [r4, #0x4C]
-_0809B728:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0809B730: .4byte 0x000040C2
-_0809B734: .4byte sub_809B754
+	.section .text.paired_motion_effect_callbacks_after_sub_809B6D8, "ax", %progbits
 	.section .text.after_sub_809B738, "ax", %progbits
 	.section .text.after_sub_809B754, "ax", %progbits
 	thumb_func_start sub_809B770
@@ -117361,58 +117217,7 @@ _0809B914: .4byte 0x000040C2
 _0809B918: .4byte 0x00001202
 _0809B91C: .4byte sub_809B920
 	.section .text.conditional_command_transitions_after_sub_809B920, "ax", %progbits
-	thumb_func_start sub_809B960
-sub_809B960:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	ldr r0, [r4, #0x14]
-	movs r1, #0x80
-	lsls r1, r1, #0x01
-	adds r0, r0, r1
-	str r0, [r4, #0x14]
-	movs r0, #0x98
-	lsls r0, r0, #0x06
-	str r0, [r4, #0x18]
-	ldr r0, [r4, #0x28]
-	adds r0, #0xF6
-	movs r1, #0x00
-	ldsh r0, [r0, r1]
-	cmp r0, #0x00
-	beq _0809B9B0
-	ldr r2, _0809B9BC @ =0x03001038
-	ldr r0, _0809B9C0 @ =0x0819832C
-	ldr r1, _0809B9C4 @ =0x08198220
-	subs r0, r0, r1
-	ldr r2, [r2, #0x00]
-	adds r2, r2, r0
-	movs r0, #0x80
-	lsls r0, r0, #0x07
-	movs r1, #0x28
-	bl _call_via_r2
-	adds r2, r4, #0x0
-	adds r2, #0x7A
-	movs r1, #0x00
-	strh r0, [r2, #0x00]
-	adds r0, r4, #0x0
-	adds r0, #0x7E
-	strh r1, [r0, #0x00]
-	subs r2, #0x01
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x21
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x00]
-_0809B9B0:
-	ldr r0, _0809B9C8 @ =0x0809BA45
-	str r0, [r4, #0x4C]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0809B9BC: .4byte 0x03001038
-_0809B9C0: .4byte 0x0819832C
-_0809B9C4: .4byte 0x08198220
-_0809B9C8: .4byte sub_809BA44
+	.section .text.paired_motion_effect_callbacks_after_sub_809B960, "ax", %progbits
 	thumb_func_start sub_809B9CC
 sub_809B9CC:
 	push {r4, lr}
@@ -117896,6 +117701,7 @@ _0809BE26:
 	.byte 0x00, 0x00
 _0809BE48: .4byte 0x03000FD8
 _0809BE4C: .4byte sub_809C214
+	.section .text.paired_motion_effect_callbacks_reject_sub_809BE50, "ax", %progbits
 	thumb_func_start sub_809BE50
 sub_809BE50:
 	push {r4, r5, r6, lr}
@@ -117965,6 +117771,7 @@ _0809BECE:
 	.byte 0x00, 0x00
 _0809BED8: .4byte 0x03000FD8
 _0809BEDC: .4byte sub_809C1E8
+	.section .text.paired_motion_effect_callbacks_after_sub_809BE50, "ax", %progbits
 	thumb_func_start sub_809BEE0
 sub_809BEE0:
 	push {r4, r5, r6, lr}
@@ -118043,6 +117850,7 @@ _0809BF5E:
 	.byte 0x00, 0x00
 _0809BF80: .4byte 0x03000FD8
 _0809BF84: .4byte sub_809C168
+	.section .text.paired_motion_effect_callbacks_reject_sub_809BF88, "ax", %progbits
 	thumb_func_start sub_809BF88
 sub_809BF88:
 	push {r4, r5, r6, lr}
@@ -118112,6 +117920,7 @@ _0809C006:
 	.byte 0x00, 0x00
 _0809C010: .4byte 0x03000FD8
 _0809C014: .4byte sub_809C13C
+	.section .text.paired_motion_effect_callbacks_after_sub_809BF88, "ax", %progbits
 	thumb_func_start sub_809C018
 sub_809C018:
 	push {r4, r5, r6, lr}
@@ -118188,6 +117997,7 @@ _0809C094:
 	bx r0
 _0809C0B4: .4byte 0x03000FD8
 _0809C0B8: .4byte sub_809C0BC
+	.section .text.paired_motion_effect_callbacks_reject_sub_809C0BC, "ax", %progbits
 	thumb_func_start sub_809C0BC
 sub_809C0BC:
 	push {r4, r5, r6, lr}
@@ -118249,7 +118059,9 @@ _0809C12C:
 	bx r0
 _0809C134: .4byte 0x03000FD8
 _0809C138: .4byte sub_809C2C8
+	.section .text.paired_motion_effect_callbacks_after_sub_809C0BC, "ax", %progbits
 	.section .text.vertical_boundary_callbacks_after_sub_809C13C, "ax", %progbits
+	.section .text.paired_motion_effect_callbacks_reject_sub_809C168, "ax", %progbits
 	thumb_func_start sub_809C168
 sub_809C168:
 	push {r4, r5, r6, lr}
@@ -118311,7 +118123,9 @@ _0809C1D8:
 	bx r0
 _0809C1E0: .4byte 0x03000FD8
 _0809C1E4: .4byte sub_809C348
+	.section .text.paired_motion_effect_callbacks_after_sub_809C168, "ax", %progbits
 	.section .text.vertical_boundary_callbacks_after_sub_809C1E8, "ax", %progbits
+	.section .text.paired_motion_effect_callbacks_reject_sub_809C214, "ax", %progbits
 	thumb_func_start sub_809C214
 sub_809C214:
 	push {r4, r5, r6, lr}
@@ -118373,6 +118187,7 @@ _0809C284:
 	bx r0
 _0809C28C: .4byte 0x03000FD8
 _0809C290: .4byte sub_809C3C8
+	.section .text.paired_motion_effect_callbacks_after_sub_809C214, "ax", %progbits
 	thumb_func_start sub_809C294
 sub_809C294:
 	push {r4, lr}
@@ -118390,6 +118205,7 @@ _0809C2AA:
 	bx r0
 	.byte 0x00, 0x21, 0x01, 0x65, 0x03, 0x49, 0xC1, 0x64, 0x7C, 0x30, 0x80, 0x21, 0x49, 0x00, 0x01, 0x80
 	.byte 0x01, 0x20, 0x70, 0x47, 0x49, 0xC4, 0x09, 0x08
+	.section .text.paired_motion_effect_callbacks_reject_sub_809C2C8, "ax", %progbits
 	thumb_func_start sub_809C2C8
 sub_809C2C8:
 	push {r4, r5, r6, lr}
@@ -118451,6 +118267,7 @@ _0809C338:
 	bx r0
 _0809C340: .4byte 0x03000FD8
 _0809C344: .4byte sub_809C478
+	.section .text.paired_motion_effect_callbacks_reject_sub_809C348, "ax", %progbits
 	thumb_func_start sub_809C348
 sub_809C348:
 	push {r4, r5, r6, lr}
@@ -118512,6 +118329,7 @@ _0809C3B8:
 	bx r0
 _0809C3C0: .4byte 0x03000FD8
 _0809C3C4: .4byte sub_809BF88
+	.section .text.paired_motion_effect_callbacks_reject_sub_809C3C8, "ax", %progbits
 	thumb_func_start sub_809C3C8
 sub_809C3C8:
 	push {r4, r5, r6, lr}
@@ -118573,7 +118391,9 @@ _0809C438:
 	bx r0
 _0809C440: .4byte 0x03000FD8
 _0809C444: .4byte sub_809BE50
+	.section .text.paired_motion_effect_callbacks_after_sub_809C3C8, "ax", %progbits
 	.section .text.command_transitions_after_sub_809C448, "ax", %progbits
+	.section .text.paired_motion_effect_callbacks_reject_sub_809C478, "ax", %progbits
 	thumb_func_start sub_809C478
 sub_809C478:
 	push {r4, r5, r6, lr}
@@ -118635,6 +118455,7 @@ _0809C4E8:
 	bx r0
 _0809C4F0: .4byte 0x03000FD8
 _0809C4F4: .4byte sub_809C570
+	.section .text.paired_motion_effect_callbacks_after_sub_809C478, "ax", %progbits
 	thumb_func_start sub_809C4F8
 sub_809C4F8:
 	push {r4, lr}

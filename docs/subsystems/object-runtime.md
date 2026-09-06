@@ -299,6 +299,15 @@ structural. Four register-sensitive members remain in assembly after the capped
 shaping pass; their surrounding typed callbacks retain the raw continuation symbols
 without inventing names for code that did not match exactly.
 
+Two paired fixed-height motion callbacks now expose their fixed-point Y step,
+vertical height, conditional motion-step initialization, and continuation. Their
+neighboring owner-attachment callbacks name the proven owner readiness test before
+starting animation 3 with command `0x40C2`. The related owner-effect and
+screen-position variants remain in assembly after the capped shaping pass because
+their natural typed forms changed instruction scheduling or omitted compiler
+bookkeeping bytes. Numeric commands, effect `0x1202`, and the pair's gameplay
+identity remain deliberately structural.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

@@ -1,0 +1,20 @@
+#ifndef GUARD_OBJECT_PAIRED_MOTION_EFFECT_CALLBACKS_H
+#define GUARD_OBJECT_PAIRED_MOTION_EFFECT_CALLBACKS_H
+
+#include "object/runtime_object.h"
+
+#define object_begin_fixed_height_motion_step_24 sub_809B370
+#define object_begin_fixed_height_motion_step_40 sub_809B960
+#define object_attach_owner_then_start_animation_3_a sub_809B678
+#define object_attach_owner_then_start_animation_3_b sub_809B6D8
+
+#define DECLARE_PAIRED_MOTION_CALLBACK(name) \
+    void name(struct RuntimeObject* object)
+
+DECLARE_PAIRED_MOTION_CALLBACK(object_begin_fixed_height_motion_step_24);
+DECLARE_PAIRED_MOTION_CALLBACK(object_begin_fixed_height_motion_step_40);
+DECLARE_PAIRED_MOTION_CALLBACK(object_attach_owner_then_start_animation_3_a);
+DECLARE_PAIRED_MOTION_CALLBACK(object_attach_owner_then_start_animation_3_b);
+#undef DECLARE_PAIRED_MOTION_CALLBACK
+
+#endif
