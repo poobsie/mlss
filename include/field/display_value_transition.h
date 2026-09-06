@@ -21,10 +21,13 @@ struct FieldDisplayValueTransition {
 
 #define field_draw_value_until_visual_finishes sub_8106A30
 #define field_advance_scaled_step_sequence sub_8106A88
+#define field_draw_value_then_push_callback_node sub_8107248
 
 void field_draw_value_until_visual_finishes(
     struct FieldDisplayValueTransition* transition);
 void field_advance_scaled_step_sequence(
+    struct FieldDisplayValueTransition* transition);
+void field_draw_value_then_push_callback_node(
     struct FieldDisplayValueTransition* transition);
 
 #endif

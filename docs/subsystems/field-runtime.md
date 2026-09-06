@@ -126,6 +126,10 @@ Its adjacent step callback passes three times the signed step at `0x14` to the
 shared updater and stores the result at `0x10`. A zero low eleven-bit result
 advances the step, and completion clears the result and installs the next callback.
 
+The later display-value callback uses the same horizontal-position and number-draw
+path. After ten ticks it pushes the proven callback onto runtime node list `0x4C`,
+clears its timer, and installs the next transition callback.
+
 The alternate-visual transition selects the opposite owner from the one-bit runtime
 selector at `0x2C0`. When flag `0x08` is set on that owner's linked visual, it
 installs and immediately invokes the proven continuation.

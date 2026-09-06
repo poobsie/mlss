@@ -321950,6 +321950,8 @@ _081071D0:
 _081071E8: .4byte sub_8107150
 _081071EC: .4byte 0x084FCE8C
 	.section .text.small_functions_07_after_sub_81071F0, "ax", %progbits
+	.section .text.field_display_value_transition_before_sub_8107248, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8107248
 sub_8107248:
 	push {r4, r5, r6, r7, lr}
@@ -321994,6 +321996,8 @@ _08107298: .4byte 0x03000FD8
 _0810729C: .4byte 0x00000342
 _081072A0: .4byte sub_81072DC
 _081072A4: .4byte sub_8104A84
+	.endif
+	.section .text.field_display_value_transition_after_sub_8107248, "ax", %progbits
 	.section .text.small_functions_01_after_sub_81072A8, "ax", %progbits
 	thumb_func_start sub_81072DC
 sub_81072DC:
