@@ -35,6 +35,14 @@ struct FieldResourceDefaultDescriptor {
     void* resource;
 };
 
+struct FieldResourceGlobalState {
+    u8 unknown000[0x888];
+    s8 flags888;
+};
+
+extern struct FieldResourceGlobalState gFieldResourceGlobalState
+    __asm__("gGameState");
+
 #define FIELD_RESOURCE_DESCRIPTOR_55C \
     ((struct FieldResourceDefaultDescriptor*)0x083B9704)
 #define FIELD_RESOURCE_DESCRIPTOR_560 \
@@ -182,6 +190,17 @@ void field_destroy_owned_objects_and_allocations(
     free_heap_8018DA8(runtime->ownedAllocationsA8[5]);
     free_heap_8018DA8(runtime->ownedAllocationsA8[6]);
     free_heap_8018DA8(runtime->ownedAllocationsA8[7]);
+}
+
+EARLY_RESOURCE_SEC(sub_80292A0)
+void field_clear_runtime_flag_and_mode_vram(
+    const struct FieldResourceCleanupContext* context)
+{
+    gFieldResourceGlobalState.flags888 &= -0x41;
+    if (context->mode6 == 6) {
+        FIELD_RESOURCE_MEMORY_FILL(0, (void*)0x0600C000, 0x20);
+        *(u16*)0x02000008 = 0x1508;
+    }
 }
 
 EARLY_RESOURCE_SEC(sub_80293F8)

@@ -23289,8 +23289,9 @@ _08029280:
 	bx r0
 _08029298: .4byte 0x03000E00
 _0802929C: .4byte 0x03000E04
-	thumb_func_start sub_80292A0
-sub_80292A0:
+	.section .discard.field_clear_runtime_flag_and_mode_vram, "ax", %progbits
+	thumb_func_start asm_discard_sub_80292A0
+asm_discard_sub_80292A0:
 	push {lr}
 	ldr r2, _080292D4 @ =0x0300034C
 	ldr r1, _080292D8 @ =0x00000888
@@ -23323,6 +23324,7 @@ _080292DC: .4byte 0x03001034
 _080292E0: .4byte 0x0600C000
 _080292E4: .4byte 0x02000008
 _080292E8: .4byte 0x00001508
+	.section .text.after_field_object_resource_handles_80292A0, "ax", %progbits
 	.section .discard.field_destroy_owned_objects_and_allocations, "ax", %progbits
 	thumb_func_start asm_discard_sub_80292EC
 asm_discard_sub_80292EC:

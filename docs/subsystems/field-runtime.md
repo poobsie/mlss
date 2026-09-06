@@ -185,6 +185,11 @@ The scene-state accessor at `0x080FAEEC` is now `field_get_scene_state_value_9a1
 
 `FieldResourceLoaderProcess` owns two independently released resources and one heap workspace. Its constructor installs the process definition, clears both owned-resource slots, allocates and zeroes the `0x9A8`-byte workspace, and installs five resources from descriptor offset `0x08`. Its shutdown path clears the runtime-active flag; destruction restores five default resource pointers before removing the process. The five resource roles remain offset-named because only their tables and lifecycle are recovered.
 
+The adjacent `field_clear_runtime_flag_and_mode_vram` cleanup callback clears
+global-state flag `0x40`. When its signed mode field is `6`, it also clears the
+`0x20`-byte VRAM block at `0x0600C000` and restores control halfword `0x1508` at
+`0x02000008`; the mode's presentation role remains unknown.
+
 `field_start_alternate_actor_action` chooses the object at runtime offset `0x80` or `0x84` from flag `0x04` at `0x2C0`, starts the corresponding command and visual placement, installs the next selection callback, and plays sound `0x2B`. The two objects are deliberately not given character names without evidence from their construction paths.
 
 The small field-runtime utilities now have typed homes: a visual-completion branch process, a fixed five-command setup, nested flag clearing, conditional flag toggling, a three-tier random result for identifier `0x200`, selection readiness, and construction of two linked display nodes. Constants remain in the public names when current C proves their use but not their design meaning.
