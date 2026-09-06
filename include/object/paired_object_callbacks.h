@@ -3,6 +3,7 @@
 
 #include "object/runtime_object.h"
 
+#define object_finish_motion_copy_owner_position_then_count_down sub_8096364
 #define object_update_motion_until_z_base_then_start_animation_6 sub_8096E08
 #define object_stop_when_motion_poll_clears sub_8096E44
 #define object_count_down_then_spawn_command_208c sub_8096E6C
@@ -21,6 +22,8 @@
 #define DECLARE_PAIRED_OBJECT_CALLBACK(name) \
     void name(struct RuntimeObject* object)
 
+DECLARE_PAIRED_OBJECT_CALLBACK(
+    object_finish_motion_copy_owner_position_then_count_down);
 DECLARE_PAIRED_OBJECT_CALLBACK(
     object_update_motion_until_z_base_then_start_animation_6);
 DECLARE_PAIRED_OBJECT_CALLBACK(object_stop_when_motion_poll_clears);

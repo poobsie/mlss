@@ -42,6 +42,33 @@ void sub_8098934(struct RuntimeObject* object);
 #define SECONDARY_ACTION_OBJECT \
     (&FIELD_OBJECT_RUNTIME->secondaryActionOwner->object)
 
+SEC(sub_8096364)
+void object_finish_motion_copy_owner_position_then_count_down(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* primary = PRIMARY_ACTION_OBJECT;
+    struct RuntimeObject* owner = object->positionOwner;
+    s8* flags;
+    s32 command;
+
+    if (sub_8087CE4(object) == 0) {
+        if ((object->flags76 & 6) == 2) {
+            command = 0x2052;
+            if (object == primary)
+                command -= 0x2F;
+            sub_8082E1C(object, 4, command, 0);
+            flags = (s8*)&object->visual->flags;
+            *flags = (*flags & -7) | 2;
+        }
+        object->currentPositionX = owner->currentPositionX;
+        object->currentPositionY = owner->currentPositionY;
+        object->verticalPosition = owner->verticalPosition;
+        object->timer = 0x18;
+        sound_effect_play(0xAE, SOUND_VOLUME_UNCHANGED);
+        object->update = object_count_down_then_spawn_command_208c;
+    }
+}
+
 SEC(sub_8096E08)
 void object_update_motion_until_z_base_then_start_animation_6(
     struct RuntimeObject* object)

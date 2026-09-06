@@ -508,6 +508,12 @@ then configures animation 5, the object's stored display value, and sound
 12-tick visual-completion delay. The first two owner-state words remain
 offset-named until callers distinguish their axes from other positional views.
 
+The connected paired-object path now exposes its motion-completion handoff. Once
+motion polling clears, it selects the established primary or secondary animation
+command, restores visual mode 2, copies the position owner's current coordinates,
+starts the 24-tick countdown with sound `0xAE`, and continues into the existing
+linked-object creation callback.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

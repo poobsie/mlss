@@ -1508,6 +1508,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_809551C);
         src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8095548);
         asm/text08057568.o(.text.object_small_runtime_after_sub_8095548);
+        src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8096364);
+        asm/text08057568.o(.text.paired_object_callbacks_after_sub_8096364);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8096E08);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8096E44);
         src/object/paired_object_callbacks.o(.text.paired_object_callbacks.sub_8096E6C);
