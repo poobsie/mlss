@@ -340,6 +340,13 @@ array and replaces bit `0x20` at owner offset `0x110`. A zero command value sets
 the bit and a nonzero value clears it. The bit's gameplay meaning remains unknown,
 so the name records the proven location and operation.
 
+`field_start_selected_object_vector_motion` selects either the active field object
+or an indexed owner, then starts its established owner-vector motion when the
+object still has an update callback. The active owner at runtime offset `0x7C` and
+the nine-pointer array beginning at `0x58` are now represented explicitly. The
+motion helper's coordinate space remains unknown, so the name records only its
+proven vector synchronization behavior.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or

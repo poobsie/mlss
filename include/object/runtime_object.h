@@ -129,6 +129,7 @@ void runtime_object_finish_action(struct RuntimeObject* object);
 #define runtime_resolve_reflected_interval sub_8087878
 #define runtime_object_start_timed_motion sub_808842C
 #define runtime_object_visual_apply_transform sub_8083E84
+#define runtime_object_begin_owner_vector_motion sub_80874B4
 void runtime_object_when_value80_clear_prepare_state_motion(
     struct RuntimeObject* object);
 void runtime_object_clear_behavior(struct RuntimeObject* object);
@@ -138,5 +139,6 @@ s32 runtime_resolve_reflected_interval(s32* total, s32* lowerDistance,
 void runtime_object_start_timed_motion(struct RuntimeObject* object, s32 value, s32 duration);
 void runtime_object_visual_apply_transform(
     struct RuntimeObjectVisual* visual, s32 transform);
+void runtime_object_begin_owner_vector_motion(struct RuntimeObject* object);
 
 #endif

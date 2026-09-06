@@ -22,7 +22,8 @@ struct FieldObjectRuntime {
 
 struct FieldIndexedObjectRuntime {
     u8 unknown00[0x58];
-    struct FieldRuntimeObjectOwner* objectOwners58[1];
+    struct FieldRuntimeObjectOwner* objectOwners58[9];
+    struct FieldRuntimeObjectOwner* activeObjectOwner7C;
 };
 
 #define field_start_first_object_animation_47_then_continue_a sub_8072500
@@ -31,6 +32,7 @@ struct FieldIndexedObjectRuntime {
 #define field_copy_indexed_object_vector sub_80F7FC8
 #define field_update_indexed_object_vector sub_80F8008
 #define field_configure_indexed_object_flag_20 sub_80F80C4
+#define field_start_selected_object_vector_motion sub_80F8198
 
 void field_start_first_object_animation_47_then_continue_a(
     struct RuntimeObject* object);
@@ -43,6 +45,8 @@ s32 field_copy_indexed_object_vector(
 s32 field_update_indexed_object_vector(
     void* context, void* state, const s32* arguments);
 s32 field_configure_indexed_object_flag_20(
+    void* context, void* state, const s32* arguments);
+s32 field_start_selected_object_vector_motion(
     void* context, void* state, const s32* arguments);
 
 #endif

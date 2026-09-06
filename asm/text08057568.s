@@ -294253,8 +294253,9 @@ sub_80F8148:
 	bx r1
 	.byte 0x00, 0x00
 _080F8194: .4byte 0x03000FD8
-	thumb_func_start sub_80F8198
-sub_80F8198:
+	.section .discard.field_start_selected_object_vector_motion, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F8198
+asm_discard_sub_80F8198:
 	push {lr}
 	ldr r0, _080F81B0 @ =0x03000FD8
 	ldr r3, [r0, #0x00]
@@ -294286,6 +294287,7 @@ _080F81CC:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.section .text.field_runtime_after_sub_80F8198, "ax", %progbits
 	thumb_func_start sub_80F81D4
 sub_80F81D4:
 	push {lr}

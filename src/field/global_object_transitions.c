@@ -111,3 +111,27 @@ s32 field_configure_indexed_object_flag_20(
     *flags110 = clearMask;
     return 1;
 }
+
+SMALL_SEC(field_start_selected_object_vector_motion)
+s32 field_start_selected_object_vector_motion(
+    void* context, void* state, const s32* arguments)
+{
+    struct FieldIndexedObjectRuntime* runtime = FIELD_INDEXED_OBJECT_RUNTIME;
+    struct FieldRuntimeObjectOwner* active = runtime->activeObjectOwner7C;
+
+    if (active != 0) {
+        s32 selector = arguments[0];
+        struct FieldRuntimeObjectOwner* owner;
+
+        if (selector < 0)
+            owner = active;
+        else
+            owner = runtime->objectOwners58[selector];
+        if (owner->object.update != 0)
+            runtime_object_begin_owner_vector_motion(&owner->object);
+    }
+    return 1;
+}
+
+SMALL_SEC(field_start_selected_object_vector_motion)
+const u16 field_start_selected_object_vector_motion_padding = 0;
