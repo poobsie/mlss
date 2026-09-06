@@ -533,6 +533,15 @@ the three known owner-state coordinates before continuing. The intermediate
 paired-object constructor remains raw because its register allocation did not
 match within the bounded source-shape attempts.
 
+The auxiliary owner-position branch now has its typed setup and effect-spawn
+completion. Setup mirrors the established owner-coordinate selection, copies the
+owner's display ordering, starts animation 5 and sound `0x112`, then enables the
+auxiliary visual path and installs its tertiary callback. Its completion waits
+for shared readiness, restores visual mode 2, stops the sound, emits effect
+`0x215C` at the object's fixed-point position, and enters the existing delayed
+visual callback. The nearby paired-effect stop remains raw after the bounded
+source shapes selected the opposite callee-save ordering.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

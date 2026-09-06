@@ -17,6 +17,7 @@ void sub_80880C4(struct RuntimeObject*, s32);
 u8 sub_8087CE4(void);
 void sub_807FB64(struct RuntimeObjectVisual*);
 void sub_807C298(struct RuntimeObject*);
+void sub_807F4FC(struct RuntimeObject*);
 void sub_80DF024(s32, s32, s32, s32, struct RuntimeObject*);
 void sub_810DD7C(struct RuntimeObject*, struct RuntimeObject*, s32);
 u8 sub_80883F0(struct RuntimeObject*);
@@ -24,6 +25,10 @@ void sub_810F824(struct RuntimeObject*);
 void sub_810FD54(struct RuntimeObject*);
 void sub_810FD94(struct RuntimeObject*);
 void sub_810FCE0(struct RuntimeObject*);
+void sub_810FF18(struct RuntimeObject*);
+void sub_810FC34(struct RuntimeObject*);
+void sub_810FC70(struct RuntimeObject*);
+void sub_810FBC4(struct RuntimeObject*);
 void object_on_visual_complete_delay_12(struct RuntimeObject*);
 void sub_81109D0(struct RuntimeObject*);
 void sub_8110A94(struct RuntimeObject*);
@@ -131,6 +136,37 @@ void object_finish_paired_owner_effect(struct RuntimeObject* object)
     }
 }
 
+SEC(sub_810F904)
+void object_start_owner_position_effect_with_auxiliary(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner;
+    struct RuntimeObjectState* state;
+
+    if (object->visual->flags & 8) {
+        owner = object->positionOwner;
+        state = owner->state;
+        object->unknown75 = owner->unknown75 - 1;
+        if (object->behaviorState != 0) {
+            sub_808843C(object, state->valueD8 / 256 + 0x2A,
+                        state->valueDC / 256, state->floorHeight / 256,
+                        0x100);
+            object->update = sub_810FC70;
+        } else {
+            sub_808843C(object, state->valueD8 / 256 + 0x22,
+                        state->valueDC / 256, state->floorHeight / 256,
+                        0x100);
+            object->update = sub_810FC34;
+        }
+        sub_80880C4(object, object->valueA0);
+        sub_8082E1C(object, 5, 0, 0);
+        object->visual->parameter20 = object->valueA4;
+        sound_effect_play(0x112, SOUND_VOLUME_UNCHANGED);
+        sub_807F4FC(object);
+        object->tertiaryUpdate = sub_810FBC4;
+    }
+}
+
 SEC(sub_810FD54)
 void object_finish_owner_position_effect_when_ready(
     struct RuntimeObject* object)
@@ -149,6 +185,30 @@ void object_finish_owner_position_effect_when_ready(
         *flags = value;
         sound_effect_stop(0x112);
         object->update = object_on_visual_complete_delay_12;
+    }
+}
+
+SEC(sub_810FD94)
+void object_finish_owner_position_effect_with_spawn(
+    struct RuntimeObject* object)
+{
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (sub_8087CE4() == 0) {
+        sub_8082E1C(object, 6, 0, 0);
+        flags = &object->visual->flags;
+        value = *flags;
+        mask = -7;
+        value &= mask;
+        value |= 2;
+        *flags = value;
+        sound_effect_stop(0x112);
+        sub_80DF024(0x215C, object->positionX / 256,
+                    object->positionY / 256, object->positionZBase / 256,
+                    object);
+        object->update = sub_810FF18;
     }
 }
 

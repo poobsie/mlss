@@ -135,6 +135,8 @@ void runtime_object_finish_action(struct RuntimeObject* object);
 #define object_start_owner_position_effect_and_continue sub_810F6D4
 #define object_start_owner_position_effect_variant_and_continue sub_810F5E4
 #define object_finish_paired_owner_effect sub_810F824
+#define object_start_owner_position_effect_with_auxiliary sub_810F904
+#define object_finish_owner_position_effect_with_spawn sub_810FD94
 #define object_finish_owner_position_effect_when_ready sub_810FD54
 void runtime_object_when_value80_clear_prepare_state_motion(
     struct RuntimeObject* object);
@@ -151,6 +153,10 @@ void object_start_owner_position_effect_and_continue(
 void object_start_owner_position_effect_variant_and_continue(
     struct RuntimeObject* object);
 void object_finish_paired_owner_effect(struct RuntimeObject* object);
+void object_start_owner_position_effect_with_auxiliary(
+    struct RuntimeObject* object);
+void object_finish_owner_position_effect_with_spawn(
+    struct RuntimeObject* object);
 void object_finish_owner_position_effect_when_ready(
     struct RuntimeObject* object);
 
