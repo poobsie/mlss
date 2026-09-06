@@ -86,6 +86,7 @@
 #define mario_bros_advance_falling_object_b sub_8F62B50
 #define mario_bros_prepare_linked_object_a sub_8F62FCC
 #define mario_bros_prepare_linked_object_b sub_8F89920
+#define mario_bros_start_linked_fall_unless_state_7_b sub_8F8A6D4
 
 #define mario_bros_normalize_variant_a sub_8F66A40
 #define mario_bros_normalize_variant_b sub_8F8D394

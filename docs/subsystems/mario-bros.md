@@ -87,6 +87,11 @@ pair initializes each family-specific linked object through the same narrow runt
 overlay. Family suffixes remain because the owning gameplay tables are still in
 assembly.
 
+The later mirrored runtime also exposes a linked-fall transition. Unless the object
+is already in state 7, it runs the existing setup, installs the established downward
+delta, and forwards the linked record's index to the paired position and activation
+helpers. The record remains narrowly typed because no other field role is proven.
+
 The pool layer now includes mirrored heap-block release operations that unlink a
 block and update the free-list head, plus mirrored link-context dispatchers. Their
 names state those allocator and dispatch mechanics; the gameplay owners of the

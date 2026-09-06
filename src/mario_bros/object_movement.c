@@ -11,6 +11,13 @@ extern u8 sub_8F65EA0(void*);
 extern void sub_8F63D28(void* object);
 extern void sub_8F609BC(struct MarioBrosObject*);
 extern void sub_8F627DC(struct MarioBrosObject*);
+extern void sub_8F8A67C(struct MarioBrosObject*);
+extern void sub_8F87C18(u32, u32, u16, u8);
+extern void sub_8F85E10(u8, u32);
+
+struct MarioBrosLinkedIndex {
+    u8 index;
+};
 
 MB_LATE_SECTION(sub_8F5F3C8) void mario_bros_update_object_position_a(struct MarioBrosObject* object) {
     object->positionX = sub_8F6124C(object->positionX, object->value18);
@@ -33,6 +40,20 @@ MB_HELPER_SECTION(sub_8F63DB8) void mario_bros_start_object_fall_unless_state_7(
 MB_LATE_SECTION(sub_8F85D1C) void mario_bros_update_object_position_b(struct MarioBrosObject* object) {
     object->positionX = sub_8F87BA0(object->positionX, object->value18);
     object->positionY += object->value1C;
+}
+
+MB_LATE_SECTION(sub_8F8A6D4)
+void mario_bros_start_linked_fall_unless_state_7_b(
+    struct MarioBrosObject* object)
+{
+    if (object->state != 7) {
+        sub_8F8A67C(object);
+        object->value1C = -0x180;
+        sub_8F87C18(object->positionX, object->positionY, 3,
+                    ((struct MarioBrosLinkedIndex*)object->value38)->index);
+        sub_8F85E10(
+            ((struct MarioBrosLinkedIndex*)object->value38)->index, 3);
+    }
 }
 
 #define DEFINE_FALLING_ADVANCE(name, wrapped_add, post_update)                 \
