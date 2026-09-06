@@ -269,6 +269,14 @@ producers and continuations establish stronger names.
 
 `runtime_object_start_timed_motion` stores the caller's duration at object offset `0x92` before forwarding the object and motion value to the established initializer. The duration unit remains unspecified because the initializer and tick consumer are still assembly-only.
 
+Twenty-three repeated vertical-motion callbacks now share the typed object and state
+layouts. Seventeen integrate vertical velocity and position, then select animation 6
+and either command `0x204D` or `0x2000` after the shared motion predicate clears. Six
+related landing callbacks clamp the object to `state->floorHeight`, select animation
+8 with command `0x204D`, update the proven flag bits, and install their continuations.
+Lettered path suffixes distinguish otherwise identical callbacks whose assembly-only
+continuations do not yet establish gameplay-specific identities.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
