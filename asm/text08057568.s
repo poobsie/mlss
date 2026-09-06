@@ -373908,6 +373908,7 @@ _0812AA68: .4byte 0x08211A90
 _0812AA6C: .4byte 0x08CDC408
 _0812AA70: .4byte 0x08211A98
 _0812AA74: .4byte 0x08211AA0
+	.if 0
 	thumb_func_start sub_812AA78
 sub_812AA78:
 	push {r4, r5, r6, lr}
@@ -374022,6 +374023,8 @@ _0812AB50:
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
+	.endif
+	.section .text.after_upper_sub_812AA78, "ax", %progbits
 	thumb_func_start sub_812AB60
 sub_812AB60:
 	push {r4, r5, r6, r7, lr}
