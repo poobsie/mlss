@@ -423,6 +423,11 @@ root channel owned by the command runtime and records value two at shared byte
 clears primary-channel flag `0x0004`. The channel state values and flag meaning
 remain deliberately unnamed until consumers establish their gameplay roles.
 
+`field_script_clear_channel_records` clears the thirteen `0xA8`-byte records at
+the start of the shared script/UI state using the runtime memory-fill service.
+The record stride and ownership are established; the individual channel roles
+remain unresolved.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or

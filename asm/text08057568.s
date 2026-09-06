@@ -296815,8 +296815,9 @@ _080FAE06:
 _080FAE28: .4byte 0x000009A2
 _080FAE2C: .4byte 0x00000888
 _080FAE30: .4byte 0xFFFF0000
-	thumb_func_start sub_80FAE34
-sub_80FAE34:
+	.section .discard.field_script_clear_channel_records, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FAE34
+asm_discard_sub_80FAE34:
 	push {r4, r5, lr}
 	movs r5, #0x0D
 	ldr r4, [r0, #0x24]
@@ -296839,6 +296840,7 @@ _080FAE3A:
 	bx r0
 _080FAE5C: .4byte 0x03001034
 _080FAE60: .4byte 0xFFFF0000
+	.section .text.field_script_ui_after_sub_80FAE34, "ax", %progbits
 	thumb_func_start sub_80FAE64
 sub_80FAE64:
 	push {r4, r5, lr}

@@ -2258,6 +2258,8 @@ SECTIONS
         asm/text08057568.o(.text.field_script_ui_after_sub_80FAC30);
         src/field/script_ui_commands.o(.text.small_functions_01.sub_80FAD2C);
         asm/text08057568.o(.text.field_script_ui_after_sub_80FAD2C);
+        src/field/script_ui_commands.o(.text.small_functions_01.sub_80FAE34);
+        asm/text08057568.o(.text.field_script_ui_after_sub_80FAE34);
         src/field/entry_toggle.o(.text.small_functions_01.sub_80FAEC4);
         asm/text08057568.o(.text.small_functions_01_after_sub_80FAEC4);
         src/field/metadata.o(.text.middle.sub_80FAEEC);

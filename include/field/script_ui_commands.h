@@ -23,6 +23,7 @@ struct FieldScriptUiRuntime {
 #define field_script_start_global_script_channel sub_80FAC30
 #define field_script_set_indexed_channel_flag_4 sub_80FAD2C
 #define field_script_start_root_channel_and_mark_running sub_80FAF8C
+#define field_script_clear_channel_records sub_80FAE34
 
 s32 field_script_configure_screen_layer(
     struct FieldScriptUiRuntime* runtime, void* state, const u32* arguments);
@@ -36,5 +37,6 @@ s32 field_script_set_indexed_channel_flag_4(
     struct FieldScriptUiRuntime* runtime, void* state, const s32* arguments);
 void field_script_start_root_channel_and_mark_running(
     struct FieldScriptUiRuntime* runtime, u32 cursor);
+void field_script_clear_channel_records(struct FieldScriptUiRuntime* runtime);
 
 #endif

@@ -4,6 +4,8 @@
 #include "ui/visibility.h"
 
 #define SCRIPT_FIELD_RUNTIME (*(u8**)0x03000FD0)
+typedef void (*FieldScriptMemoryFill)(u32 value, void* destination, u32 size);
+#define FIELD_SCRIPT_MEMORY_FILL (*(volatile FieldScriptMemoryFill*)0x03001034)
 
 #define SEC(symbol) \
     __attribute__((section(".text.small_functions_01." #symbol)))
@@ -87,4 +89,17 @@ void field_script_start_root_channel_and_mark_running(
         (struct ScriptExecutionState*)runtime->sharedState24,
         cursor, 0, 1, 0xFF);
     runtime->sharedState24->channelState9A1 = 2;
+}
+
+SEC(sub_80FAE34)
+void field_script_clear_channel_records(struct FieldScriptUiRuntime* runtime)
+{
+    s16 remaining = 13;
+    u8* record = (u8*)runtime->sharedState24;
+
+    do {
+        FIELD_SCRIPT_MEMORY_FILL(0, record, 0xA8);
+        record += 0xA8;
+        remaining--;
+    } while (remaining > 0);
 }
