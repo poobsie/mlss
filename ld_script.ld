@@ -2092,6 +2092,9 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_13_after_sub_81040DC);
         src/field/random_tier.o(.text.small_functions_01.sub_8106928);
         asm/text08057568.o(.text.small_functions_01_after_sub_8106928);
+        asm/text08057568.o(.text.field_runtime_value_copy_before_sub_8106994);
+        src/field/runtime_value_copy.o(.text.field_runtime_value_copy.sub_8106994);
+        asm/text08057568.o(.text.field_runtime_value_copy_after_sub_8106994);
         src/field/runtime_flags.o(.text.small_functions_01.sub_81069B4);
         asm/text08057568.o(.text.small_functions_01_after_sub_81069B4);
         src/field/action_process.o(.text.misc_helpers_01.sub_8106A10);
@@ -2100,6 +2103,9 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_07_after_sub_8106AC8);
         src/field/display_nodes.o(.text.small_functions_01.sub_8106B90);
         asm/text08057568.o(.text.field_display_nodes_after_sub_8106B90);
+        asm/text08057568.o(.text.field_position_forwarder_before_sub_8106BEC);
+        src/field/position_forwarder.o(.text.field_position_forwarder.sub_8106BEC);
+        asm/text08057568.o(.text.field_position_forwarder_after_sub_8106BEC);
         src/field/selection_sequence.o(.text.field_selection_sequence.sub_8106D9C);
         asm/text08057568.o(.text.small_functions_08_after_sub_8106D9C);
         src/field/selection_sequence.o(.text.field_selection_sequence.sub_8106E1C);

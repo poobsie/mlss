@@ -87,6 +87,14 @@ stable symbols currently establish those boundaries.
 
 The selected-entry sequence is now one three-stage unit instead of three numbered catch-all files. Its stages wait for the shared blocker at `0x310`, prepare the selected entry at `0x349`, commit it through the active object at `0x7C`, clear the selection to `0xFF`, and install the next process callback at each boundary. Scene-specific names require the resource tables used by the assembly helpers.
 
+The position-forwarding node passes its context pointer, signed coordinates at `0x12`
+and `0x14`, and flag bit `12` to the shared field helper. Other flag bits and the
+context payload remain unnamed because this wrapper does not interpret them.
+
+The linked-value callback copies byte `0x0A` from the object referenced at owner
+offset `0x6C` into runtime byte `0x2F9`, then invokes the shared refresh helper. The
+value remains generically named because neither side establishes its domain.
+
 A fourth selection-setup stage waits on an external readiness poll and flag `0x04` at `0x2BF`. Mode `2` resets both indexed display selections through the same assembly helper before the process advances.
 
 The paired-object slide sequence moves the objects at runtime offsets `0x37C` and `0x278` left by one 24.8 fixed-point pixel per tick. Once view conversion places them at screen X 208, it snaps both positions to that boundary, starts animation 4 on the second object, clears the flag at `0x342`, and installs the next process callback.

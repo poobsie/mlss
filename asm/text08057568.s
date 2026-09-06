@@ -321728,6 +321728,8 @@ _0810698C:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.field_runtime_value_copy_before_sub_8106994, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8106994
 sub_8106994:
 	push {lr}
@@ -321743,6 +321745,8 @@ sub_8106994:
 	bx r0
 _081069AC: .4byte 0x03000FD8
 _081069B0: .4byte 0x000002F9
+	.endif
+	.section .text.field_runtime_value_copy_after_sub_8106994, "ax", %progbits
 	.section .text.small_functions_01_after_sub_81069B4, "ax", %progbits
 	thumb_func_start sub_81069D4
 sub_81069D4:
@@ -321941,6 +321945,8 @@ _08106BD8:
 _08106BE0: .4byte 0x03000FD8
 _08106BE4: .4byte sub_81071F0
 _08106BE8: .4byte sub_8102F54
+	.section .text.field_position_forwarder_before_sub_8106BEC, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8106BEC
 sub_8106BEC:
 	push {r4, lr}
@@ -321960,6 +321966,8 @@ sub_8106BEC:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+	.section .text.field_position_forwarder_after_sub_8106BEC, "ax", %progbits
 	thumb_func_start sub_8106C10
 sub_8106C10:
 	push {r4, r5, lr}
