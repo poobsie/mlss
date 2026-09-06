@@ -317,6 +317,14 @@ and the primary/secondary path distinction are proven; their gameplay identities
 remain unknown. Neighboring descriptor handoffs and three register-sensitive
 polling variants remain in assembly after the bounded shaping pass.
 
+Seven later callbacks complete the same paired action paths. Three poll an action
+visual, clear its animation and visual mode bits, and install a caller continuation.
+Two play sound `0x2E` before selecting the proven primary animation 13 or secondary
+animation 8 command. The final pair clears and stops the primary or secondary
+action once its visual is ready. The numeric sound and command identities remain
+structural, and the unlabeled constructor tail immediately following the terminal
+pair remains in assembly.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

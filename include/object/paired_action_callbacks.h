@@ -9,4 +9,12 @@
 #define object_poll_primary_action_distance_15_b sub_80A53B0
 #define object_poll_primary_action_distance_18 sub_80A5790
 
+#define object_clear_primary_action_then_continue_a sub_80AC5A4
+#define object_clear_primary_action_then_continue_b sub_80B31F0
+#define object_clear_secondary_action_then_continue sub_80B956C
+#define object_primary_action_sound_2e_animation_13 sub_80B93B0
+#define object_secondary_action_sound_2e_animation_8 sub_80B9420
+#define object_stop_primary_action_when_visual_ready sub_80B95D8
+#define object_stop_secondary_action_when_visual_ready sub_80B9624
+
 #endif
