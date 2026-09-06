@@ -4,6 +4,7 @@
 /* Semantic C names mapped to the original symbols still used by assembly. */
 #define mario_bros_disable_interrupts sub_8F510CC
 #define mario_bros_reset_platform_state sub_8F5C06C
+#define mario_bros_reset_sound_dma_if_ident_changed sub_8F950A4
 #define mario_bros_fill_1024_halfwords sub_8F585B0
 #define mario_bros_clear_tilemap_region sub_8F591F8
 #define mario_bros_update_object_position_a sub_8F5F3C8

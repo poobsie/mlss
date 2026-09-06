@@ -22,6 +22,12 @@ All currently decompiled Mario Bros code now lives under `src/mario_bros`. Legac
 
 The former mixed platform file is split into hardware setup, object movement, global callback forwarding, and tilemap clearing. The movement helper at `0x08F63DB8` now uses the shared object layout: it tests `state` and writes `value1C`, whose more specific meaning remains class-dependent.
 
+The later Mario Bros support code also contains a compact M4A recovery helper.
+When the shared sound-info identity differs from the established M4A value, it
+disables both direct-sound DMA channels, clears the PCM DMA counter, and advances
+the temporary identity lock. The implementation uses the existing `SoundInfo`
+layout and hardware register definitions.
+
 `include/mario_bros/callback.h` names the recovered callback ABI. The assembly routines are register trampolines that jump through argument 0, 1, or 2; C now describes those operations as callback calls. Five global callback slots are named by signature and family. Their gameplay purpose is still unknown because the currently decompiled code only reads them.
 
 `include/mario_bros/functions.h` provides semantic C names while retaining the original `sub_` symbols required by assembly callers. Confirmed names cover interrupt shutdown, platform-state reset, fixed-size buffer and tilemap clearing, object position integration, readiness-gated state advance, and the state-7-guarded fall initializer. The two position routines use `a` and `b` suffixes because their X-coordinate helpers differ but their gameplay classes are not yet identified.
