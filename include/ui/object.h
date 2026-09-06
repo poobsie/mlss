@@ -27,8 +27,8 @@ struct UiObjectPairValues {
 struct UiSpritePair {
     u8 unknown00[0x0C];
     const void* vtable;
-    void* firstSprite;
-    void* secondSprite;
+    struct Sprite* firstSprite;
+    struct Sprite* secondSprite;
 };
 
 #endif

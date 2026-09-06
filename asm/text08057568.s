@@ -463891,6 +463891,7 @@ sub_8163A6C:
 	bx lr
 	.endif
 	.section .text.after_8163A6C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8163A80
 sub_8163A80:
 	push {r4, r5, r6, r7, lr}
@@ -463935,6 +463936,8 @@ sub_8163A80:
 	bx r0
 	.byte 0x00, 0x00
 _08163AD8: .4byte 0x0000FFFF
+	.endif
+	.section .text.after_8163A80, "ax", %progbits
 	thumb_func_start sub_8163ADC
 sub_8163ADC:
 	push {r4, r5, r6, r7, lr}

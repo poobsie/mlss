@@ -3182,6 +3182,8 @@ SECTIONS
         asm/text08057568.o(.text.after_ui_object_helpers_3a64);
         src/ui/object_state.o(.text.sub_8163A6C);
         asm/text08057568.o(.text.after_8163A6C);
+        src/ui/sprite_pair.o(.text.ui_sprite_pair.sub_8163A80);
+        asm/text08057568.o(.text.after_8163A80);
         src/ui/layout_state.o(.text.sub_8163B5C);
         asm/text08057568.o(.text.after_8163B5C);
         src/ui/destructors.o(.text.upper.sub_8163B60);

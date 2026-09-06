@@ -18,6 +18,7 @@
 #define ui_object_update_direction_toward_point sub_8167D50
 #define ui_sprite_pair_destroy_base sub_8163B60
 #define ui_sprite_pair_destroy_variant sub_8163D4C
+#define ui_sprite_pair_create_second_sprite sub_8163A80
 #define ui_clear_flag_8_at_490 sub_816AFDC
 #define ui_stop_sound_97_if_active sub_816D6D4
 #define ui_start_sound_97_if_inactive sub_816D6F0
@@ -49,6 +50,9 @@ void ui_object_update_direction_toward_point(void* unused,
                                              s32 targetX, s32 targetY);
 void ui_object_reset(struct UiObject* object, void* value);
 void ui_sprite_pair_hide(struct UiSpritePair* object);
+void ui_sprite_pair_create_second_sprite(
+    struct UiSpritePair* object, s32 kind, s32 packedPosition, s32 priority,
+    s32 animationId, u32 attributePair);
 void ui_value_tracker_reset(struct UiValueTracker* tracker);
 void ui_countdown_start_60(struct UiCountdown* countdown);
 void ui_delayed_countdown_start_180(struct UiDelayedCountdown* countdown);
