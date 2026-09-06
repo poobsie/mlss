@@ -307,12 +307,16 @@ test, using `0x7FFF` and zero for its two open extents.
 
 | Previous name | Recovered name | Evidence |
 | --- | --- | --- |
+| `sub_80FBDE0` | `field_collision_point_within_bounds` | Converts an object's X, Y, and combined Z-plus-height coordinates from 24.8 fixed point, then checks the signed query bounds and caller-supplied Z limits. |
 | `sub_80FBE5C` | `field_collision_query_owner_enabled` | Returns whether bit 0 is set in the query owner's collision-state byte at offset `0x1D6`. |
 | `sub_80FC148` | `field_collision_test_owner_unbounded` | Tests the query's bounds against its owner through the shared geometry helper with the established open-extent constants. |
 
 The bounds layout and pointer ownership are proven by adjacent query wrappers.
 The axis represented by each bound, the meaning of owner flag bit 0, and the
 gameplay reason for the open-extent constants remain unknown.
+The selector byte following the bounds is not part of the geometric leaf; the
+adjacent selection-policy wrappers remain in assembly until their register-sensitive
+control flow can be reproduced cleanly.
 
 ## Verification
 

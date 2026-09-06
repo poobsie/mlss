@@ -3,13 +3,6 @@
 
 #define SEC(name) __attribute__((section(".text.field_collision_queries." #name)))
 
-struct FieldCollisionQueryBounds {
-    s16 values00[4];
-    s16 extent08;
-    s16 extent0A;
-    s8 objectSelector;
-};
-
 struct FieldCollisionQuery {
     void* owner;
     u8 unknown04[7];
@@ -22,9 +15,22 @@ struct FieldCollisionQueryOwner {
     u8 flags1D6;
 };
 
-extern u8 sub_80FBDE0(
-    const struct FieldCollisionQueryBounds* bounds, void* object,
-    s16 extent0, s16 extent1);
+SEC(sub_80FBDE0)
+u8 field_collision_point_within_bounds(
+    const struct FieldCollisionQueryBounds* bounds,
+    const struct FieldCollisionObjectPosition* object,
+    s16 maximumZ, s16 minimumZ)
+{
+    s16 x = object->x / 0x100;
+    s16 y = object->y / 0x100;
+    s16 z = (object->z + object->height) / 0x100;
+
+    if (x >= bounds->minimumX && x <= bounds->maximumX &&
+        y >= bounds->minimumY && y <= bounds->maximumY &&
+        z >= minimumZ && z <= maximumZ)
+        return 1;
+    return 0;
+}
 
 SEC(sub_80FBE5C)
 u8 field_collision_query_owner_enabled(

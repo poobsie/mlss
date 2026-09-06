@@ -299158,8 +299158,9 @@ _080FBDD4:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_80FBDE0
-sub_80FBDE0:
+	.section .discard.field_collision_point_within_bounds, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FBDE0
+asm_discard_sub_80FBDE0:
 	push {r4, r5, r6, r7, lr}
 	adds r5, r0, #0x0
 	adds r4, r1, #0x0
@@ -299227,6 +299228,7 @@ _080FBE56:
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
+	.section .text.after_field_collision_point_within_bounds, "ax", %progbits
 	.section .discard.field_collision_queries, "ax", %progbits
 	thumb_func_start asm_discard_sub_80FBE5C
 asm_discard_sub_80FBE5C:

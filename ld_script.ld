@@ -2223,6 +2223,8 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80FB7E0);
         src/field/metadata.o(.text.middle.sub_80FB7F0);
         asm/text08057568.o(.text.after_middle_sub_80FB7F0);
+        src/field/collision_queries.o(.text.field_collision_queries.sub_80FBDE0);
+        asm/text08057568.o(.text.after_field_collision_point_within_bounds);
         src/field/collision_queries.o(.text.field_collision_queries.sub_80FBE5C);
         asm/text08057568.o(.text.after_field_collision_owner_enabled);
         asm/text08057568.o(.text.before_field_collision_owner_unbounded);
