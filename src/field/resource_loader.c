@@ -147,7 +147,7 @@ void field_release_inline_resource_objects(
     s32 i;
 
     if (runtime->inlineResourceReleaseEnabled112 != 0) {
-        resourceObject = runtime->inlineResourceObjects30;
+        resourceObject = (void**)&runtime->ownedObjects28[2];
         for (i = 0; i < runtime->inlineResourceCount113; i++) {
             sub_80507E0(*resourceObject);
             resourceObject++;
@@ -157,6 +157,32 @@ void field_release_inline_resource_objects(
 
 EARLY_RESOURCE_SEC(sub_8029380)
 const u16 field_release_inline_resource_objects_padding = 0;
+
+EARLY_RESOURCE_SEC(sub_80292EC)
+void field_destroy_owned_objects_and_allocations(
+    struct FieldObjectResourceRuntime* runtime)
+{
+    struct FieldRuntimeOwnedObject* object;
+    struct FieldRuntimeOwnedObjectDefinition* definition;
+    s32 i;
+
+    for (i = 0; i < runtime->ownedObjectCount10B; i++) {
+        object = runtime->ownedObjects28[i];
+        if (object != 0) {
+            definition = object->definition338;
+            definition->destroy(
+                (u8*)object + definition->ownerOffset8, 3);
+        }
+    }
+    free_heap_8018DA8(runtime->ownedAllocationsA8[0]);
+    free_heap_8018DA8(runtime->ownedAllocationsA8[1]);
+    free_heap_8018DA8(runtime->ownedAllocationsA8[2]);
+    free_heap_8018DA8(runtime->ownedAllocationsA8[3]);
+    free_heap_8018DA8(runtime->ownedAllocationsA8[4]);
+    free_heap_8018DA8(runtime->ownedAllocationsA8[5]);
+    free_heap_8018DA8(runtime->ownedAllocationsA8[6]);
+    free_heap_8018DA8(runtime->ownedAllocationsA8[7]);
+}
 
 EARLY_RESOURCE_SEC(sub_80293F8)
 void field_load_object_resource_handles(

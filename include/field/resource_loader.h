@@ -37,14 +37,27 @@ struct FieldObjectResourceHandleStorage {
     void* auxiliaryResourceHandles15C[1];
 };
 
+struct FieldRuntimeOwnedObjectDefinition {
+    u8 unknown00[8];
+    s16 ownerOffset8;
+    u8 unknown0A[2];
+    void (*destroy)(void* owner, u32 flags);
+};
+
+struct FieldRuntimeOwnedObject {
+    u8 unknown000[0x338];
+    struct FieldRuntimeOwnedObjectDefinition* definition338;
+};
+
 struct FieldObjectResourceRuntime {
     u8 unknown000[0x1C];
     struct FieldObjectResourceHandleStorage* handleStorage1C;
-    u8 unknown020[0x10];
-    void* inlineResourceObjects30[1];
-    u8 unknown034[0x94];
+    u8 unknown020[8];
+    struct FieldRuntimeOwnedObject* ownedObjects28[0x20];
+    void* ownedAllocationsA8[8];
     const u16* resourceIdsC8;
-    u8 unknown0CC[0x40];
+    u8 unknown0CC[0x3F];
+    u8 ownedObjectCount10B;
     u8 resourceCount10C;
     u8 unknown10D[5];
     u8 inlineResourceReleaseEnabled112;
@@ -57,6 +70,7 @@ struct FieldObjectResourceRuntime {
 #define field_load_auxiliary_resource_handles sub_80293B8
 #define field_load_object_resource_handles sub_80293F8
 #define field_release_inline_resource_objects sub_8029380
+#define field_destroy_owned_objects_and_allocations sub_80292EC
 #define field_owned_resource_destroy sub_80E8EFC
 #define field_resource_block_list_destroy sub_80E9484
 
@@ -70,6 +84,8 @@ void field_load_auxiliary_resource_handles(
 void field_load_object_resource_handles(
     struct FieldObjectResourceRuntime* runtime, u16 setIndex);
 void field_release_inline_resource_objects(
+    struct FieldObjectResourceRuntime* runtime);
+void field_destroy_owned_objects_and_allocations(
     struct FieldObjectResourceRuntime* runtime);
 void field_owned_resource_destroy(struct FieldOwnedResource* resource, u32 flags);
 void field_resource_block_list_destroy(struct FieldResourceBlockList* list,

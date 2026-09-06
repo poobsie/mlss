@@ -23323,8 +23323,9 @@ _080292DC: .4byte 0x03001034
 _080292E0: .4byte 0x0600C000
 _080292E4: .4byte 0x02000008
 _080292E8: .4byte 0x00001508
-	thumb_func_start sub_80292EC
-sub_80292EC:
+	.section .discard.field_destroy_owned_objects_and_allocations, "ax", %progbits
+	thumb_func_start asm_discard_sub_80292EC
+asm_discard_sub_80292EC:
 	push {r4, r5, lr}
 	adds r4, r0, #0x0
 	movs r5, #0x00
@@ -23392,6 +23393,7 @@ _0802931A:
 	bx r0
 	.byte 0x00, 0x00
 _0802937C: .4byte 0x0000010B
+	.section .text.after_field_object_resource_handles_80292EC, "ax", %progbits
 	.section .discard.field_release_inline_resource_objects, "ax", %progbits
 	thumb_func_start asm_discard_sub_8029380
 asm_discard_sub_8029380:

@@ -107,6 +107,8 @@ SECTIONS
         asm/text0801A548.o(.text.after_8029070);
         src/battle/control_flags.o(.text.early_bitfield_updates.sub_80290CC);
         asm/text0801A548.o(.text.after_80290CC);
+        src/field/resource_loader.o(.text.field_object_resource_handles.sub_80292EC);
+        asm/text0801A548.o(.text.after_field_object_resource_handles_80292EC);
         src/field/resource_loader.o(.text.field_object_resource_handles.sub_8029380);
         asm/text0801A548.o(.text.after_field_object_resource_handles_8029380);
         src/field/resource_loader.o(.text.field_object_resource_handles.sub_80293B8);
