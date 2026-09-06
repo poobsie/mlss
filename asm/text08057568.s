@@ -381508,6 +381508,7 @@ _0812F490:
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
+	.if 0
 	thumb_func_start sub_812F4A0
 sub_812F4A0:
 	push {r4, r5, r6, r7, lr}
@@ -381557,6 +381558,8 @@ _0812F500: .4byte 0x03000D48
 _0812F504: .4byte 0x0203FFB8
 _0812F508: .4byte 0x00000A14
 _0812F50C: .4byte 0x03000D4C
+	.endif
+	.section .text.after_upper_sub_812F4A0, "ax", %progbits
 	thumb_func_start sub_812F510
 sub_812F510:
 	push {lr}
