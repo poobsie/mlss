@@ -66,6 +66,13 @@ the negated interpolated coordinates until the configured duration has elapsed.
 
 `graphics_free_owner_if_requested` is the common low-bit destructor leaf used by several graphics-owning objects. Bit zero requests release of the supplied owner through the established heap routine. The owning classes and higher flag bits remain unspecified because this function only proves the conditional ownership rule.
 
+`graphics_frame_transfer_callback` is installed into runtime frame-callback slot
+zero by both adjacent graphics resource initializers. It copies the first two
+halfwords from the staging buffer at `0x03000E0C` to the display pair beginning
+at `0x0400001C`, refreshes that staging buffer from the allocation at
+`0x03000E08`, and arms DMA3 from the staging buffer's next halfword. The buffer
+contents remain address-based because their rendering format is not yet proven.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

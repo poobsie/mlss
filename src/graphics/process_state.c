@@ -19,6 +19,9 @@ void sub_80582DC(struct GraphicsStagingSource* source);
 void sub_80584F8(struct GraphicsStagingSource* source);
 void sub_80587BC(struct GraphicsStagingSource* source, s32 mode);
 
+#define FRAME_TRANSFER_SOURCE (*(void**)0x03000E08)
+#define FRAME_TRANSFER_STAGING (*(u16**)0x03000E0C)
+
 MISC2_SEC(graphics_apply_staging_source)
 void graphics_apply_staging_source(struct GraphicsStagingSource* source)
 {
@@ -37,6 +40,25 @@ void graphics_copy_compact_staging_values(
     *(s16*)0x02000014 = source->maskedValue1 & 0x1FF;
     *(s16*)0x02000012 = source->component0 & 0xFF;
     *(s16*)0x02000016 = source->component1 & 0xFF;
+}
+
+SEC(sub_805C5F4)
+void graphics_frame_transfer_callback(void)
+{
+    vu16* displayBase = (vu16*)0x04000014;
+    vu16* displayTarget = displayBase + 4;
+    u16** stagingGlobal = (u16**)0x03000E0C;
+    u16* staging = *stagingGlobal;
+    vu32* dma3;
+
+    displayBase[4] = staging[0];
+    displayBase[5] = staging[1];
+    CpuFastSet(FRAME_TRANSFER_SOURCE, staging, 0xA0);
+    dma3 = (vu32*)0x040000B0;
+    *(vu16*)0x040000BA = 0;
+    dma3[0] = (u32)(*stagingGlobal + 1);
+    dma3[1] = (u32)displayTarget;
+    dma3[2] = 0xA6400001;
 }
 
 SEC(sub_8059F24) void sub_8059F24(struct GraphicsStagingSource* source)

@@ -226,6 +226,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_805A95C);
         src/field/map_graphics.o(.text.field.map_graphics.sub_805A99C);
         asm/text08057568.o(.text.field_map_after_destroy);
+        src/graphics/process_state.o(.text.graphics_process_state.sub_805C5F4);
+        asm/text08057568.o(.text.after_graphics_frame_transfer_callback_805C5F4);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805C73C);
         asm/text08057568.o(.text.small_functions_02_after_sub_805C73C);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805CCC0);

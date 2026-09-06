@@ -8876,8 +8876,9 @@ _0805C5E4: .4byte 0x03000E08
 _0805C5E8: .4byte 0x0000058E
 _0805C5EC: .4byte 0x00000594
 _0805C5F0: .4byte 0x00000596
-	thumb_func_start sub_805C5F4
-sub_805C5F4:
+	.section .discard.graphics_frame_transfer_callback, "ax", %progbits
+	thumb_func_start asm_discard_sub_805C5F4
+asm_discard_sub_805C5F4:
 	push {r4, r5, lr}
 	ldr r2, _0805C62C @ =0x04000014
 	adds r5, r2, #0x0
@@ -8911,6 +8912,7 @@ _0805C634: .4byte 0x03000E08
 _0805C638: .4byte 0x040000B0
 _0805C63C: .4byte 0x040000BA
 _0805C640: .4byte 0xA6400001
+	.section .text.after_graphics_frame_transfer_callback_805C5F4, "ax", %progbits
 	thumb_func_start sub_805C644
 sub_805C644:
 	push {r4, r5, lr}
