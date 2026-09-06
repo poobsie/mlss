@@ -345,6 +345,12 @@ both outputs. The transform retains its address-based identity because the same
 runtime callback is used for operations whose narrower mathematical role is not
 yet established.
 
+One nearby runtime owner now exposes a target pointer at offset `0x08` and a
+pending word at offset `0x04`. Its completion callback waits for bit `0x02` of the
+target byte at `0x111` to clear, finalizes the target subobject at offset `0x08`,
+and clears the pending word. The owner, target, and flag keep structural names
+because their assembly callers do not establish a narrower object class.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

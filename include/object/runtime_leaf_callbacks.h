@@ -3,6 +3,8 @@
 
 #include "object/runtime_object.h"
 
+struct ObjectRuntimePollOwner;
+
 #define object_emit_effect_12cd_release_shared_motion_and_finish sub_8063384
 #define object_emit_effect_12cd_stop_release_and_finish sub_80633D0
 #define object_start_animation_2_and_effect_12a3_when_ready sub_8063420
@@ -162,6 +164,7 @@
 #define object_advance_valueA8_then_wait_for_child sub_807413C
 #define object_count_down_timer_then_resume sub_80875B8
 #define object_finish_saved_update_countdown sub_8087BA4
+#define object_runtime_finish_when_target_flag_2_clears sub_8087C20
 #define object_update_x_offset_until_timer_expires sub_8089BD4
 #define object_continue_when_linked_object_clears sub_809C960
 #define object_begin_fixed_vertical_descent sub_80A2C80
@@ -355,6 +358,8 @@ s32 object_attach_owner_then_begin_horizontal_motion(
 void object_advance_valueA8_then_wait_for_child(struct RuntimeObject* object);
 void object_count_down_timer_then_resume(struct RuntimeObject* object);
 void object_finish_saved_update_countdown(struct RuntimeObject* object);
+void object_runtime_finish_when_target_flag_2_clears(
+    struct ObjectRuntimePollOwner* owner);
 void object_update_x_offset_until_timer_expires(struct RuntimeObject* object);
 s32 object_continue_when_linked_object_clears(struct RuntimeObject* object);
 void object_begin_fixed_vertical_descent(struct RuntimeObject* object);

@@ -14,6 +14,7 @@ void sub_80722F8(struct RuntimeObject* object);
 void sub_8074508(struct RuntimeObject* object);
 void sub_8086090(struct RuntimeObject* object);
 void sub_8089F44(struct RuntimeObject* object);
+void sub_8086700(void* state);
 void sub_809C954(struct RuntimeObject* object);
 void sub_80A2BC0(struct RuntimeObject* object);
 
@@ -89,6 +90,30 @@ void object_finish_saved_update_countdown(struct RuntimeObject* object)
 }
 SEC(sub_8087BA4)
 const u16 object_finish_saved_update_countdown_padding = 0;
+
+struct ObjectRuntimePollTarget {
+    u8 unknown00[0x111];
+    u8 flags111;
+};
+
+struct ObjectRuntimePollOwner {
+    u32 unknown00;
+    s32 pending04;
+    struct ObjectRuntimePollTarget* target08;
+};
+
+SEC(sub_8087C20)
+void object_runtime_finish_when_target_flag_2_clears(
+    struct ObjectRuntimePollOwner* owner)
+{
+    struct ObjectRuntimePollTarget* target = owner->target08;
+    u8 pending = target->flags111 & 2;
+
+    if (pending == 0) {
+        sub_8086700((u8*)target + 8);
+        owner->pending04 = pending;
+    }
+}
 
 SEC(sub_8089BD4)
 void object_update_x_offset_until_timer_expires(struct RuntimeObject* object)
