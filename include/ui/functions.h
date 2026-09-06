@@ -15,6 +15,7 @@
 #define ui_object_list_apply_state sub_8163864
 #define ui_object_group4_reset_state sub_81634DC
 #define ui_object_visual_is_idle sub_8163A08
+#define ui_object_update_direction_toward_point sub_8167D50
 #define ui_sprite_pair_destroy_base sub_8163B60
 #define ui_sprite_pair_destroy_variant sub_8163D4C
 #define ui_clear_flag_8_at_490 sub_816AFDC
@@ -43,6 +44,9 @@ void ui_object_grid_reset_visual(struct UiObjectGrid* grid, u32 row, u32 column)
 void ui_object_list_apply_state(struct UiObjectNodeList* list, u32 mode, u32 value);
 void ui_object_group4_reset_state(struct UiObjectGroup4* group);
 u32 ui_object_visual_is_idle(struct UiObject* object);
+void ui_object_update_direction_toward_point(void* unused,
+                                             struct UiObject* object,
+                                             s32 targetX, s32 targetY);
 void ui_object_reset(struct UiObject* object, void* value);
 void ui_sprite_pair_hide(struct UiSpritePair* object);
 void ui_value_tracker_reset(struct UiValueTracker* tracker);

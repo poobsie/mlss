@@ -468919,8 +468919,9 @@ _08167CF4: .4byte 0x03001038
 _08167CF8: .4byte 0x0819832C
 _08167CFC: .4byte 0x08198220
 	.section .text.process_definition_initializers_after_sub_8167D00, "ax", %progbits
-	thumb_func_start sub_8167D50
-sub_8167D50:
+	.section .discard.sub_8167D50, "ax", %progbits
+	thumb_func_start asm_discard_sub_8167D50
+asm_discard_sub_8167D50:
 	push {r4, lr}
 	adds r4, r1, #0x0
 	ldr r0, [r4, #0x18]
@@ -468949,6 +468950,7 @@ sub_8167D50:
 	pop {r0}
 	bx r0
 _08167D88: .4byte 0x0821422C
+	.section .text.after_sub_8167D50, "ax", %progbits
 	thumb_func_start sub_8167D8C
 sub_8167D8C:
 	push {r4, r5, lr}

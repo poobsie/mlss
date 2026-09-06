@@ -68,3 +68,18 @@ void ui_object_copy_pair_values(struct UiObjectPairValues* object) {
     object->copiedValue54 = object->value52;
     object->copiedValue58 = object->value56;
 }
+
+u16 sub_81DA690(s16 x, s16 y);
+
+void ui_object_update_direction_toward_point(void* unused,
+                                             struct UiObject* object,
+                                             s32 targetX, s32 targetY)
+    __attribute__((section(".text.sub_8167D50")));
+void ui_object_update_direction_toward_point(void* unused,
+                                             struct UiObject* object,
+                                             s32 targetX, s32 targetY) {
+    u16 angle = sub_81DA690((object->value18 - targetX) << 8 >> 16,
+                           (object->value20 - targetY) << 8 >> 16);
+    object->direction52 = *(s8*)(0x0821422C
+        + (((u32)angle + 0x1000) >> 13));
+}

@@ -12,6 +12,8 @@ struct UiObject {
     u32 state40;
     void* value44;
     u16 counter48;
+    u8 unknown4A[8];
+    u16 direction52;
 };
 
 struct UiObjectPairValues {

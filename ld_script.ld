@@ -3161,6 +3161,8 @@ SECTIONS
         asm/text08057568.o(.text.after_8165454);
         src/process/definition_initializers.o(.text.process_definition_initializers.sub_8167D00);
         asm/text08057568.o(.text.process_definition_initializers_after_sub_8167D00);
+        src/ui/object_state.o(.text.sub_8167D50);
+        asm/text08057568.o(.text.after_sub_8167D50);
         src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_8167DF8);
         asm/text08057568.o(.text.process_definition_callbacks_after_sub_8167DF8);
         src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_8167E30);
