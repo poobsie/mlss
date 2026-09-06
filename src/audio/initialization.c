@@ -1,5 +1,6 @@
 #include "global.h"
 #include "audio/driver.h"
+#include "audio/driver_state.h"
 
 #define SEC(name) __attribute__((section(".text.audio_initialization." #name)))
 
@@ -18,7 +19,6 @@ extern struct AudioInitializationState gAudioInitializationState
     __asm__("gGameState");
 
 void sub_819A43C(void);
-void sub_819AFA8(void* buffer);
 void sub_8018E88(s32 first, s32 second);
 
 SEC(sub_8018E24)
@@ -32,7 +32,7 @@ void audio_initialize(void)
     gAudioInitializationState.musicTempos[0] = 0x4B00;
     gAudioInitializationState.musicTempos[1] = 0x4B00;
     sub_819A43C();
-    sub_819AFA8((void*)0x02000480);
+    audio_driver_initialize_state((void*)0x02000480);
     enabledFlags = gAudioInitializationState.enabledFlags;
     enabledFlags |= 6;
     gAudioInitializationState.enabledFlags = enabledFlags;

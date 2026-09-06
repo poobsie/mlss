@@ -45,6 +45,28 @@ index and advances that index modulo eight. The adjacent assembly consumer uses
 the separate read index and retains responsibility for interpreting command
 fields and dispatching them to the player and sound-effect controls.
 
+`audio_driver_initialize_state` installs the supplied driver work area and
+resets both command-ring indices. It also initializes the three player voice
+pools: each voice records its pool and slot indices, inactive flags are cleared,
+and the per-player sound identifiers begin at `0xFFFF`. The first player is
+enabled with the established default tempo of 75. Fields whose roles are not
+proven by these writes remain offset-named.
+
+The reset calls `audio_driver_initialize_sound_hardware`, which programs the
+GBA sound-control registers and resets driver byte `0x4F8` to `0xFF`. The
+control values remain numeric because the local code proves the register writes
+but not every individual bit's intended policy.
+
+The first audio-family implementation pilot checked the interrupted initializers
+before extending the adjacent `0x0819A96C` family. Both initializers were exact
+and were retained. Two informed C shapes for `sub_819A9DC` and one for
+`sub_819A9B4` were rejected: the former changed literal scheduling and pointer
+lifetimes, while the latter folded the table-base subtraction into its literal.
+Those candidates remain in assembly. Pilot metrics were 4 attempted shapes, 2
+accepted functions, 220 accepted executable bytes, 3 rejected shapes, and one
+final acceptance gate with zero mismatches. Wall time was approximately 3
+minutes, with approximately 8 seconds in the final gate.
+
 Two scene-facing wrappers have also been separated from early address buckets. `audio_play_sound_50` starts sound ID `0x50` at the existing volume. `audio_stop_scene_sound_set` issues the original fixed stop sequence for IDs `0x157`, `0x87`, `0xDB`, and `0xDA`; the duplicate stop for `0xDA` is retained because exact reconstruction does not justify deleting it. The sound IDs remain numeric until call-site or asset-table evidence establishes their actual cues.
 
 The six low-level command encoders behind these APIs now live in `src/audio/commands.c`. Their high nybbles are proven by the named callers: `0x1000` stops a music player, `0x2000` resumes it, `0x5000` plays a sound, `0x6000` stops a sound, and `0x7000` stops all sounds. Player identifiers occupy the next byte; sound identifiers occupy the low 12 bits.
