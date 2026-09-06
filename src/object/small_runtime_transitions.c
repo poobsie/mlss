@@ -13,12 +13,15 @@ void sub_8065384(struct RuntimeObject* object);
 void sub_80722F8(struct RuntimeObject* object);
 void sub_8074508(struct RuntimeObject* object);
 void sub_8086090(struct RuntimeObject* object);
+void sub_8088964(struct RuntimeObject* object);
+void sub_8088F9C(struct RuntimeObject* object);
 void sub_8089F44(struct RuntimeObject* object);
 void sub_8086700(void* state);
 void sub_8082E1C(struct RuntimeObject* object, s32 animation, s32 command,
                  s32 argument);
 void sub_8087CE4(struct RuntimeObject* object);
 void sub_808864C(struct RuntimeObject* object);
+void sub_80873B8(struct RuntimeObject* object, s32 command, s32 argument);
 void sub_809C954(struct RuntimeObject* object);
 void sub_80A2BC0(struct RuntimeObject* object);
 
@@ -255,6 +258,30 @@ void object_clear_behavior_on_visual_complete(struct RuntimeObject* object)
 }
 SEC(sub_8089C00)
 const u16 object_clear_behavior_on_visual_complete_padding = 0;
+
+SEC(sub_8089D88)
+void object_select_animation_from_owner_variant_then_continue(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner = object->positionOwner;
+
+    if (owner->state->variant == RUNTIME_OBJECT_VARIANT_FIRST)
+        sub_8082E1C(object, 7, 0, 0);
+    if (owner->state->variant == RUNTIME_OBJECT_VARIANT_SECOND)
+        sub_8082E1C(object, 8, 0, 0);
+    object->update = sub_8088F9C;
+}
+
+SEC(sub_808A1D4)
+void object_when_value80_clear_prepare_command_6_followup(
+    struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        object->timer = 0x18;
+        sub_80873B8(object, 6, 0);
+        object->followup = sub_8088964;
+    }
+}
 
 SEC(sub_809C960)
 s32 object_continue_when_linked_object_clears(struct RuntimeObject* object)

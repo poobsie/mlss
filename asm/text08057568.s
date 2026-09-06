@@ -88445,45 +88445,7 @@ sub_8089D10:
 	bx r0
 	.byte 0x00, 0x00
 _08089D84: .4byte sub_808A0B0
-	thumb_func_start sub_8089D88
-sub_8089D88:
-	push {r4, r5, lr}
-	adds r4, r0, #0x0
-	ldr r5, [r4, #0x2C]
-	ldr r0, [r5, #0x28]
-	adds r0, #0xEC
-	movs r2, #0x00
-	ldsh r1, [r0, r2]
-	movs r0, #0x01
-	negs r0, r0
-	cmp r1, r0
-	bne _08089DAA
-	adds r0, r4, #0x0
-	movs r1, #0x07
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-_08089DAA:
-	ldr r0, [r5, #0x28]
-	adds r0, #0xEC
-	movs r2, #0x00
-	ldsh r1, [r0, r2]
-	movs r0, #0x02
-	negs r0, r0
-	cmp r1, r0
-	bne _08089DC6
-	adds r0, r4, #0x0
-	movs r1, #0x08
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-_08089DC6:
-	ldr r0, _08089DD0 @ =0x08088F9D
-	str r0, [r4, #0x4C]
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-_08089DD0: .4byte sub_8088F9C
+	.section .text.object_small_runtime_after_sub_8089D88, "ax", %progbits
 	thumb_func_start sub_8089DD4
 sub_8089DD4:
 	push {r4, lr}
@@ -88908,29 +88870,7 @@ _0808A170: .4byte sub_8088BC0
 	.section .text.misc_helpers_02_after_sub_808A174, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_808A194, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_808A1B4, "ax", %progbits
-	thumb_func_start sub_808A1D4
-sub_808A1D4:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r0, #0x80
-	ldr r0, [r0, #0x00]
-	cmp r0, #0x00
-	bne _0808A1F6
-	adds r0, r4, #0x0
-	adds r0, #0xAC
-	movs r1, #0x18
-	strh r1, [r0, #0x00]
-	adds r0, r4, #0x0
-	movs r1, #0x06
-	movs r2, #0x00
-	bl sub_80873B8
-	ldr r0, _0808A1FC @ =0x08088965
-	str r0, [r4, #0x50]
-_0808A1F6:
-	pop {r4}
-	pop {r0}
-	bx r0
-_0808A1FC: .4byte sub_8088964
+	.section .text.object_small_runtime_after_sub_808A1D4, "ax", %progbits
 	.byte 0x70, 0x47, 0x00, 0x00
 	thumb_func_start sub_808A204
 sub_808A204:

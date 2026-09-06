@@ -385,6 +385,14 @@ object's active behavior through the established runtime helper. The sound ID
 and visual bit remain numeric because their asset and renderer meanings are not
 independently established.
 
+The same control cluster now exposes a variant selector and a delayed followup
+setup. The selector reads the position owner's established runtime variant,
+chooses animation 7 or 8 for variants `-1` and `-2`, and installs the common
+continuation. The setup waits for `value80` to clear, stores a 24-frame timer,
+forwards command 6 to the shared state helper, and records its followup callback.
+The command and continuation retain conservative names while their larger state
+machines remain in assembly.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
