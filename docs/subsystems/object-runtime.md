@@ -393,6 +393,13 @@ forwards command 6 to the shared state helper, and records its followup callback
 The command and continuation retain conservative names while their larger state
 machines remain in assembly.
 
+Two paired value-clear gates now expose the three-callback sequence used by this
+cluster. Each resets the object, installs callbacks at offsets `0x58`, `0x5C`,
+and `0x60`, copies the current behavior state into the short timer, and prepares
+shared command 3. They differ only in the followup selected for the subsequent
+control branch. Offset `0x58` is now named `auxiliaryUpdate`; its repeated use
+beside the established secondary and tertiary callback slots supports that type.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

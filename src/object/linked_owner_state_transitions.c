@@ -19,12 +19,18 @@ struct FieldObjectPairRuntime {
 
 void sub_80789B4(struct RuntimeObject* object);
 void sub_807C298(struct RuntimeObject* object);
+void sub_807F4FC(struct RuntimeObject* object);
 void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
 void sub_80873B8(struct RuntimeObject* object, s32 kind, s32 duration);
 u8 sub_8087CE4(struct RuntimeObject* object);
 void sub_8087DE4(void* action);
 void sub_80894B8(struct RuntimeObject* object);
+void sub_8088BC0(struct RuntimeObject* object);
+void sub_808A174(struct RuntimeObject* object);
+void sub_808A194(struct RuntimeObject* object);
+void sub_808A1B4(struct RuntimeObject* object);
+void sub_808A204(struct RuntimeObject* object);
 void sub_80D69D8(struct RuntimeObject* object);
 void sub_810DD7C(struct RuntimeObject* object, void* owner, s32 value);
 void sub_81140C0(struct RuntimeObject* object);
@@ -57,6 +63,27 @@ void object_when_value80_clear_arm_followup_kind_3(
         object->followup = sub_80894B8;
     }
 }
+
+#define DEFINE_THREE_CALLBACK_SEQUENCE(name, next)                     \
+    SEC(name) void name(struct RuntimeObject* object)                   \
+    {                                                                   \
+        if (object->value80 == 0) {                                     \
+            sub_807F4FC(object);                                        \
+            object->auxiliaryUpdate = sub_808A1B4;                      \
+            object->secondaryUpdate = sub_808A194;                      \
+            object->tertiaryUpdate = sub_808A174;                       \
+            object->timer = object->behaviorState;                      \
+            sub_80873B8(object, 3, 0);                                  \
+            object->followup = next;                                    \
+        }                                                               \
+    }
+
+DEFINE_THREE_CALLBACK_SEQUENCE(
+    object_when_value80_clear_prepare_three_callback_sequence_a,
+    sub_808A204)
+DEFINE_THREE_CALLBACK_SEQUENCE(
+    object_when_value80_clear_prepare_three_callback_sequence_b,
+    sub_8088BC0)
 
 SEC(object_when_nested_poll_clear_reset_state_and_callbacks)
 void object_when_nested_poll_clear_reset_state_and_callbacks(

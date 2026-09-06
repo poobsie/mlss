@@ -82,7 +82,7 @@ struct RuntimeObject {
     RuntimeObjectCallback update;
     RuntimeObjectCallback followup;
     s32 auxiliaryState;
-    u8 unknown58[4];
+    RuntimeObjectCallback auxiliaryUpdate;
     RuntimeObjectCallback secondaryUpdate;
     RuntimeObjectCallback tertiaryUpdate;
     u8 unknown64[4];

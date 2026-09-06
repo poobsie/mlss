@@ -1099,6 +1099,10 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_808A098);
         src/object/linked_owner_state_transitions.o(.text.misc_helpers_03.sub_808A0B0);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_808A0B0);
+        src/object/linked_owner_state_transitions.o(.text.misc_helpers_03.sub_808A0DC);
+        asm/text08057568.o(.text.misc_helpers_03_after_sub_808A0DC);
+        src/object/linked_owner_state_transitions.o(.text.misc_helpers_03.sub_808A128);
+        asm/text08057568.o(.text.misc_helpers_03_after_sub_808A128);
         src/object/setup_forwarders.o(.text.misc_helpers_02.sub_808A174);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_808A174);
         src/object/setup_forwarders.o(.text.misc_helpers_02.sub_808A194);
