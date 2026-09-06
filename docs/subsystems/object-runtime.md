@@ -420,6 +420,12 @@ attaches to a ready position owner, counts down, clears the state subfield at
 object. The state subfield retains its offset-based name because its consumer is
 not yet decompiled.
 
+Two neighboring terminal gates are now in C. The first clears active behavior
+when the signed timer reaches zero. The second waits for `value80` to clear,
+plays sound `0xAD`, starts animation 1, applies the established object reset, and
+installs the next flag-driven continuation. Numeric animation and sound values
+remain unchanged because their asset identities are not established here.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

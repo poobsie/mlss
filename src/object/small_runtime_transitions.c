@@ -18,7 +18,9 @@ void sub_8088964(struct RuntimeObject* object);
 void sub_8088F9C(struct RuntimeObject* object);
 void sub_808C308(struct RuntimeObject* object);
 void sub_807C298(struct RuntimeObject* object);
+void sub_807F47C(struct RuntimeObject* object);
 void sub_807FC08(s32* x, s32* y, s32* z, s32 argument);
+void sub_808C510(struct RuntimeObject* object);
 void sub_8086700(void* state);
 void sub_8082E1C(struct RuntimeObject* object, s32 animation, s32 command,
                  s32 argument);
@@ -373,6 +375,25 @@ void object_attach_ready_owner_then_finish_countdown(
 }
 SEC(sub_808BFF8)
 const u16 object_attach_ready_owner_then_finish_countdown_padding = 0;
+
+SEC(sub_808C04C)
+void object_clear_behavior_when_timer_zero(struct RuntimeObject* object)
+{
+    if (object->timer == 0)
+        runtime_object_clear_behavior(object);
+}
+
+SEC(sub_808C1C4)
+void object_when_value80_clear_start_animation_1_then_continue(
+    struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        sound_effect_play(0xAD, SOUND_VOLUME_UNCHANGED);
+        sub_8082E1C(object, 1, 0, 0);
+        sub_807F47C(object);
+        object->update = sub_808C510;
+    }
+}
 
 SEC(sub_809C960)
 s32 object_continue_when_linked_object_clears(struct RuntimeObject* object)

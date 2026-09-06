@@ -92437,20 +92437,7 @@ _0808BF38: .4byte sub_808B85C
 	.section .text.object_small_runtime_after_sub_808BFBC, "ax", %progbits
 	.byte 0x01, 0x49, 0xC1, 0x64, 0x01, 0x20, 0x70, 0x47, 0x25, 0xC3, 0x08, 0x08
 	.section .text.object_small_runtime_after_sub_808BFF8, "ax", %progbits
-	thumb_func_start sub_808C04C
-sub_808C04C:
-	push {lr}
-	adds r1, r0, #0x0
-	adds r0, #0xAC
-	movs r2, #0x00
-	ldsh r0, [r0, r2]
-	cmp r0, #0x00
-	bne _0808C060
-	adds r0, r1, #0x0
-	bl sub_8087540
-_0808C060:
-	pop {r0}
-	bx r0
+	.section .text.object_small_runtime_after_sub_808C04C, "ax", %progbits
 	.section .text.misc_helpers_01_after_sub_808C064, "ax", %progbits
 	.section .text.object_flag_gates_after_sub_808C070, "ax", %progbits
 	.byte 0x01, 0x49, 0xC1, 0x64, 0x01, 0x20, 0x70, 0x47, 0x9D, 0xC3, 0x08, 0x08
@@ -92508,33 +92495,7 @@ _0808C15C: .4byte 0x00000C4B
 	.section .text.misc_helpers_01_after_sub_808C190, "ax", %progbits
 	.section .text.object_flag_gates_after_sub_808C19C, "ax", %progbits
 	.byte 0x01, 0x49, 0xC1, 0x64, 0x01, 0x20, 0x70, 0x47, 0xED, 0xC4, 0x08, 0x08
-	thumb_func_start sub_808C1C4
-sub_808C1C4:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r0, #0x80
-	ldr r0, [r0, #0x00]
-	cmp r0, #0x00
-	bne _0808C1F0
-	movs r1, #0x01
-	negs r1, r1
-	movs r0, #0xAD
-	bl sound_effect_play
-	adds r0, r4, #0x0
-	movs r1, #0x01
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	adds r0, r4, #0x0
-	bl sub_807F47C
-	ldr r0, _0808C1F8 @ =0x0808C511
-	str r0, [r4, #0x4C]
-_0808C1F0:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0808C1F8: .4byte sub_808C510
+	.section .text.object_small_runtime_after_sub_808C1C4, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_808C1FC, "ax", %progbits
 	thumb_func_start sub_808C224
 sub_808C224:

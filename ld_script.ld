@@ -1121,6 +1121,8 @@ SECTIONS
         asm/text08057568.o(.text.object_small_runtime_after_sub_808BFBC);
         src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_808BFF8);
         asm/text08057568.o(.text.object_small_runtime_after_sub_808BFF8);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_808C04C);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_808C04C);
         src/object/callback_results.o(.text.misc_helpers_01.sub_808C064);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_808C064);
         src/object/cleanup_gates.o(.text.object_flag_gates.sub_808C070);
@@ -1137,6 +1139,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_808C190);
         src/object/cleanup_gates.o(.text.object_flag_gates.sub_808C19C);
         asm/text08057568.o(.text.object_flag_gates_after_sub_808C19C);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_808C1C4);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_808C1C4);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_808C1FC);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_808C1FC);
         src/object/behavior_transitions.o(.text.sub_808C308);
