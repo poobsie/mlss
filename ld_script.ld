@@ -3715,6 +3715,8 @@ SECTIONS
         asm/text08057568.o(.text.state_field_helpers_after_sub_819B0F8);
         src/audio/driver_state.o(.text.audio_driver_state.sub_819B19C);
         asm/text08057568.o(.text.after_text_upper_structural_sub_819B19C);
+        src/audio/driver_state.o(.text.audio_driver_state.sub_819B418);
+        asm/text08057568.o(.text.after_audio_driver_enqueue_command_sub_819B418);
         src/runtime/high_state.o(.text.high.sub_819B95C);
         asm/text08057568.o(.text.after_sub_819B95C);
         src/audio/commands.o(.text.high.sub_819B970);

@@ -39,6 +39,12 @@ The two recovered driver callbacks now live in `src/audio/driver.c`. `audio_upda
 
 `AudioDriverState` exposes the per-player flags at `0x494` and tempo words at `0x4A4`. The recovered setter is called with `0x4B` while a player is initialized, matching the music layer's default tempo of 75; the paired flag helper marks a selected player active with bit `0x01`.
 
+The driver's eight-entry command ring now exposes its producer as
+`audio_driver_enqueue_command`. It stores a 16-bit command at the current write
+index and advances that index modulo eight. The adjacent assembly consumer uses
+the separate read index and retains responsibility for interpreting command
+fields and dispatching them to the player and sound-effect controls.
+
 Two scene-facing wrappers have also been separated from early address buckets. `audio_play_sound_50` starts sound ID `0x50` at the existing volume. `audio_stop_scene_sound_set` issues the original fixed stop sequence for IDs `0x157`, `0x87`, `0xDB`, and `0xDA`; the duplicate stop for `0xDA` is retained because exact reconstruction does not justify deleting it. The sound IDs remain numeric until call-site or asset-table evidence establishes their actual cues.
 
 The six low-level command encoders behind these APIs now live in `src/audio/commands.c`. Their high nybbles are proven by the named callers: `0x1000` stops a music player, `0x2000` resumes it, `0x5000` plays a sound, `0x6000` stops a sound, and `0x7000` stops all sounds. Player identifiers occupy the next byte; sound identifiers occupy the low 12 bits.

@@ -565018,8 +565018,9 @@ _0819B3EE:
 	.byte 0x00, 0x00
 _0819B410: .4byte 0x03007FF0
 _0819B414: .4byte 0x00000492
-	thumb_func_start sub_819B418
-sub_819B418:
+	.section .discard.audio_driver_enqueue_command_sub_819B418, "ax", %progbits
+	thumb_func_start asm_sub_819B418
+asm_sub_819B418:
 	push {r4, r5, lr}
 	ldr r4, _0819B448 @ =0x03007FF0
 	ldr r2, [r4, #0x00]
@@ -565046,6 +565047,7 @@ sub_819B418:
 	bx r1
 _0819B448: .4byte 0x03007FF0
 _0819B44C: .4byte 0x00000492
+	.section .text.after_audio_driver_enqueue_command_sub_819B418, "ax", %progbits
 	thumb_func_start sub_819B450
 sub_819B450:
 	push {r4, r5, r6, r7, lr}

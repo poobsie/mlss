@@ -32,3 +32,19 @@ void audio_driver_set_player_tempo(s32 player, s32 tempo)
     __attribute__((alias("sub_819B0F8")));
 void audio_driver_mark_player_active(u32 player)
     __attribute__((alias("sub_819B19C")));
+
+SEC(sub_819B418) u32 audio_driver_enqueue_command(u16 command)
+{
+    struct AudioDriverState** driverAddress =
+        (struct AudioDriverState**)0x03007FF0;
+
+    {
+        struct AudioDriverState* driver = *driverAddress;
+        driver->commandQueue[driver->commandWriteIndex] = command;
+    }
+    {
+        struct AudioDriverState* driver = *driverAddress;
+        driver->commandWriteIndex = (driver->commandWriteIndex + 1) & 7;
+    }
+    return 0;
+}
