@@ -5,6 +5,7 @@
 #define MB_LATE_SECTION(name) __attribute__((section(".text.mariobros_late." #name)))
 
 void _08F6F340(u32);
+u32 umul3232H32(u32, u32);
 void TrackStop(struct MusicPlayerInfo*, struct MusicPlayerTrack*);
 void mario_bros_call_secondary_object_callback_b(void*);
 
@@ -33,6 +34,27 @@ void mario_bros_reset_sound_dma_if_ident_changed(void)
         soundInfo->pcmDmaCounter = 0;
         soundInfo->ident = ident - 10;
     }
+}
+
+MB_LATE_SECTION(sub_8F948FC)
+u32 MidiKeyToFreq(struct WaveData* wave, u8 key, u8 fineAdjust)
+{
+    u32 value1;
+    u32 value2;
+    u32 fineAdjustShifted = fineAdjust << 24;
+
+    if (key > 178) {
+        key = 178;
+        fineAdjustShifted = 255 << 24;
+    }
+
+    value1 = gScaleTable[key];
+    value1 = gFreqTable[value1 & 0xF] >> (value1 >> 4);
+    value2 = gScaleTable[key + 1];
+    value2 = gFreqTable[value2 & 0xF] >> (value2 >> 4);
+    return umul3232H32(
+        wave->freq,
+        value1 + umul3232H32(value2 - value1, fineAdjustShifted));
 }
 
 MB_LATE_SECTION(sub_8F950E0)

@@ -104,6 +104,8 @@
 #define mario_bros_tick_lifetime_64 sub_8F660E4
 #define mario_bros_emit_offset_display_if_value01_20_b sub_8F915EC
 #define TrackStop sub_8F945F8
+#define umul3232H32 sub_8F93CE0
+#define MidiKeyToFreq sub_8F948FC
 #define MPlayOpen sub_8F950E0
 #define m4aMPlayStop sub_8F9523C
 #define m4aMPlayVolumeControl sub_8F959CC

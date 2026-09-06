@@ -14,6 +14,8 @@ gMarioGlobal_03000F40 = 0x03000F40;
 gFieldRuntime = 0x03000FD8;
 gMarioBrosSecondaryObjectCallbackA = 0x03006A28;
 gMarioBrosSecondaryObjectCallbackB = 0x03006A2C;
+gScaleTable = 0x020212CC;
+gFreqTable = 0x02021380;
 gMarioBrosTwoArgumentCallback = 0x03006A60;
 gMarioBrosObjectCallbackA = 0x03006AE8;
 gMarioBrosObjectCallbackB = 0x03006AEC;
@@ -3943,6 +3945,8 @@ SECTIONS
         asm/mariobros.o(.text.after_mariobros_animation_sub_8F933E4);
         src/mario_bros/object_pool.o(.text.mariobros_pool_sub_8F93C24);
         asm/mariobros.o(.text.after_mariobros_round5_sub_8F93C24);
+        src/mario_bros/hardware_setup.o(.text.mariobros_late.sub_8F948FC);
+        asm/mariobros.o(.text.after_mariobros_midi_key_to_freq_sub_8F948FC);
         src/mario_bros/global_forwarders.o(.text.mariobros_late.sub_8F94D78);
         asm/mariobros.o(.text.mariobros_late_after_sub_8F94D78);
         src/mario_bros/global_forwarders.o(.text.mariobros_late.sub_8F94D8C);
