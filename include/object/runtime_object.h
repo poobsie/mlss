@@ -215,5 +215,7 @@ void object_update_motion_then_notify_owner_on_flag_20(
     struct RuntimeObject* object);
 void object_cleanup_state_when_unlinked(
     struct RuntimeObject* object);
+s32 object_emit_effect_2adb_then_notify_owner(
+    struct RuntimeObject* object, void* owner, s32 command);
 
 #endif

@@ -277,6 +277,7 @@
 #define object_install_update_and_return_true_b sub_808C190
 #define object_install_update_and_return_true_c sub_809D268
 #define object_install_update_a sub_809C954
+#define object_emit_effect_2adb_then_notify_owner sub_80A0740
 
 /* Middle-address behavior families whose owning callback tables remain in assembly. */
 #define object_invoke_shared_terminal_action_a sub_80D2D28

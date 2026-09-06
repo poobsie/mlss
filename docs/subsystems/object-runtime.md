@@ -607,6 +607,12 @@ position, and installs the existing profile initializer. That initializer and
 its larger motion continuation remain raw because their table-load scheduling
 did not match within the bounded shaping pass.
 
+The effect-dispatch wrapper at `0x080A0740` now has a typed interface. It emits
+effect `0x2ADB` at the object's signed fixed-point position, associates the
+supplied owner with that effect, then forwards the object, owner, and command to
+the established runtime notifier. The numeric effect identifier remains
+structural because its resource table is still in assembly.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
