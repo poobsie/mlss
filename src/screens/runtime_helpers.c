@@ -11,14 +11,19 @@ struct ScreenLayerOwner20 {
     void* layer20;
     u8 unknown024[0x45];
     u8 initialized69;
-    u8 unknown06A[0xEC];
+    u8 unknown06A[0x38];
+    u16 controlA2;
+    u8 unknown0A4[0xB2];
     u8 initialized156;
     u8 unknown157[0x27];
     u16 control17E;
 };
 
 struct ScreenLayerOwner15C {
-    u8 unknown000[0xEF];
+    u8 unknown000[0xE4];
+    u16 transferValueE4;
+    u16 controlE6;
+    u8 unknown0E8[0x7];
     u8 initializedEF;
     u8 unknown0F0[0x6C];
     void* layer15C;
@@ -102,11 +107,53 @@ void screen_configure_layer15c_and_fade_music(
     owner->initializedEF = 1;
 }
 
+SEC(screen_reset_layer15c_play_music_copy_control_and_mark_ef)
+void screen_reset_layer15c_play_music_copy_control_and_mark_ef(
+    struct ScreenLayerOwner15C* owner)
+{
+    gScreenRuntimeState.field884 = -1;
+    sub_81151E4(
+        owner->layer15C, 0, owner->transferValueE4, 0x10,
+        0xFFFF, 0xFFFF, 0, 0);
+    music_play(0, 0x1E, 0);
+    music_set_volume(0, 0xFF, 0x10);
+    *(u16*)0x02000000 = owner->controlE6;
+    owner->initializedEF = 1;
+}
+
+SEC(screen_poll_layer15c_transfer_and_clear_mark_ef)
+s32 screen_poll_layer15c_transfer_and_clear_mark_ef(
+    struct ScreenLayerOwner15C* owner)
+{
+    u8 status = field_value_transfer_status(owner->layer15C);
+    s32 result;
+
+    if (status != 0) {
+        result = 1;
+    } else {
+        owner->initializedEF = status;
+        result = 0;
+    }
+    return result;
+}
+
+SEC(sub_8127AB0) const u16 sub_8127AB0_padding = 0;
+
 SEC(screen_configure_layer20_and_mark_69)
 void screen_configure_layer20_and_mark_69(
     struct ScreenLayerOwner20* owner, u16 value)
 {
     sub_81151E4(owner->layer20, 4, value, 8, 0xFFFF, 0xFFFF, 0, 0);
+    owner->initialized69 = 1;
+}
+
+SEC(screen_reset_layer20_copy_control_a2_and_mark_69)
+void screen_reset_layer20_copy_control_a2_and_mark_69(
+    struct ScreenLayerOwner20* owner)
+{
+    gScreenRuntimeState.field884 = -1;
+    sub_81151E4(owner->layer20, 0, 0, 8, 0xFFFF, 0xFFFF, 0, 0);
+    *(u16*)0x02000000 = owner->controlA2;
     owner->initialized69 = 1;
 }
 
