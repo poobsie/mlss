@@ -673,6 +673,16 @@ A later compact visual gate now starts animation 1, initializes the observed
 owner-selection routines around it remain raw because their layouts and
 control flow need stronger caller evidence.
 
+The nested-link sequence now exposes its compact readiness selector. It polls
+the object two links away, then chooses one of the established continuations
+from the current object's behavior state. The preceding mode-sensitive
+release callback remains raw after bounded shapes changed mask operand order
+and `value98` address scheduling. Its 40-tick motion continuation is also kept
+raw because both source shapes loaded the display-table base after the index,
+while the ROM does so before. A connected release predicate matched its
+instructions but remains raw because the linker replaced trailing zero fill
+with a Thumb NOP.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

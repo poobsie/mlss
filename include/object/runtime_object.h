@@ -164,6 +164,7 @@ void runtime_object_finish_action(struct RuntimeObject* object);
 #define object_on_profile_position_complete_start_effect_countdown sub_81129B4
 #define object_after_visual_complete_delay_2_start_animation_23 sub_8113458
 #define object_on_visual_complete_start_animation_1_timer_40 sub_8113E44
+#define object_when_nested_link_ready_select_behavior_continuation sub_81145C8
 #define object_finish_owner_position_effect_with_spawn sub_810FD94
 #define object_finish_owner_position_effect_when_ready sub_810FD54
 void runtime_object_when_value80_clear_prepare_state_motion(
@@ -232,6 +233,8 @@ void object_on_profile_position_complete_start_effect_countdown(
 void object_after_visual_complete_delay_2_start_animation_23(
     struct RuntimeObject* object);
 void object_on_visual_complete_start_animation_1_timer_40(
+    struct RuntimeObject* object);
+void object_when_nested_link_ready_select_behavior_continuation(
     struct RuntimeObject* object);
 void object_finish_owner_position_effect_with_spawn(
     struct RuntimeObject* object);

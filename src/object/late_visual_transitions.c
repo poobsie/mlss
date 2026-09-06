@@ -52,6 +52,8 @@ s32 sub_8087124(struct RuntimeObject*);
 void sub_81125CC(struct RuntimeObject*);
 void sub_8112D78(struct RuntimeObject*);
 void sub_8114404(struct RuntimeObject*);
+void sub_81147B4(struct RuntimeObject*);
+void sub_81147D0(struct RuntimeObject*);
 
 void object_on_visual_complete_delay_12(struct RuntimeObject*);
 void sub_81109D0(struct RuntimeObject*);
@@ -715,6 +717,20 @@ void object_on_visual_complete_start_animation_1_timer_40(
         sub_8082E1C(object, 1, 0, 0);
         object->timer = 0x28;
         object->update = sub_8114404;
+    }
+}
+
+SEC(sub_81145C8)
+void object_when_nested_link_ready_select_behavior_continuation(
+    struct RuntimeObject* object)
+{
+    if (sub_8087CE4(object->linkedObject->linkedObject) == 0) {
+        s32 behavior = object->behaviorState;
+        RuntimeObjectCallback next = sub_81147B4;
+
+        if (behavior != 0)
+            next = sub_81147D0;
+        object->update = next;
     }
 }
 

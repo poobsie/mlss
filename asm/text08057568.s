@@ -343984,6 +343984,7 @@ _08114524: .4byte 0x00000113
 	.section .text.misc_helpers_03_after_sub_8114528, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_8114558, "ax", %progbits
 	.section .text.small_functions_08_after_sub_811458C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_81145C8
 sub_81145C8:
 	push {r4, lr}
@@ -344009,6 +344010,8 @@ _081145EA:
 	bx r0
 _081145F0: .4byte sub_81147B4
 _081145F4: .4byte sub_81147D0
+	.endif
+	.section .text.object_late_visual_transitions_after_sub_81145C8, "ax", %progbits
 	thumb_func_start sub_81145F8
 sub_81145F8:
 	push {r4, r5, lr}
