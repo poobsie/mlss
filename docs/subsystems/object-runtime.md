@@ -400,6 +400,18 @@ shared command 3. They differ only in the followup selected for the subsequent
 control branch. Offset `0x58` is now named `auxiliaryUpdate`; its repeated use
 beside the established secondary and tertiary callback slots supports that type.
 
+The horizontal exit callback used by the short timer transition is now in C. It
+decreases the signed horizontal step, updates the fixed-point X coordinate,
+converts the object position through the existing runtime transform, and finishes
+the object once transformed X falls below `-16`. The transform keeps its neutral
+name because its broader camera or projection role is not yet independently known.
+
+Its preceding arc callback is now in C as well. It applies the stored horizontal
+step, integrates and decreases the signed vertical velocity, runs the same
+position transform, and finishes when transformed Y exceeds `0x110` or
+transformed X falls below `-16`. These are named as transformed bounds, not screen
+bounds, because the helper's exact coordinate space remains unresolved.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

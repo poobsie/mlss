@@ -15,7 +15,8 @@ void sub_8074508(struct RuntimeObject* object);
 void sub_8086090(struct RuntimeObject* object);
 void sub_8088964(struct RuntimeObject* object);
 void sub_8088F9C(struct RuntimeObject* object);
-void sub_8089F44(struct RuntimeObject* object);
+void sub_807C298(struct RuntimeObject* object);
+void sub_807FC08(s32* x, s32* y, s32* z, s32 argument);
 void sub_8086700(void* state);
 void sub_8082E1C(struct RuntimeObject* object, s32 animation, s32 command,
                  s32 argument);
@@ -258,6 +259,65 @@ void object_clear_behavior_on_visual_complete(struct RuntimeObject* object)
 }
 SEC(sub_8089C00)
 const u16 object_clear_behavior_on_visual_complete_padding = 0;
+
+SEC(sub_8089F44)
+void object_update_x_then_finish_below_transformed_x_limit(
+    struct RuntimeObject* object)
+{
+    s32 transformedX;
+    s32 transformedY;
+    s32 transformedZ;
+    s32 position;
+
+    object->secondaryTimer -= 8;
+    object->currentPositionX = object->positionX + object->secondaryTimer;
+    position = object->currentPositionX;
+    if (position < 0)
+        position += 0xFF;
+    transformedX = position >> 8;
+    position = object->currentPositionY;
+    if (position < 0)
+        position += 0xFF;
+    transformedY = position >> 8;
+    position = object->verticalPosition;
+    if (position < 0)
+        position += 0xFF;
+    transformedZ = position >> 8;
+    sub_807FC08(&transformedX, &transformedY, &transformedZ, 0);
+    if (transformedX < -0x10)
+        sub_807C298(object);
+}
+
+SEC(sub_8089EC4)
+void object_update_arc_then_finish_outside_transformed_bounds(
+    struct RuntimeObject* object)
+{
+    s32 transformedX;
+    s32 transformedY;
+    s32 transformedZ;
+    s32 position;
+
+    object->currentPositionX = object->positionX + object->secondaryTimer;
+    object->verticalPosition = object->positionZBase + object->verticalVelocity;
+    object->verticalVelocity -= 0x5E;
+    position = object->currentPositionX;
+    if (position < 0)
+        position += 0xFF;
+    transformedX = position >> 8;
+    position = object->currentPositionY;
+    if (position < 0)
+        position += 0xFF;
+    transformedY = position >> 8;
+    position = object->verticalPosition;
+    if (position < 0)
+        position += 0xFF;
+    transformedZ = position >> 8;
+    sub_807FC08(&transformedX, &transformedY, &transformedZ, 0);
+    if (transformedY > 0x110)
+        sub_807C298(object);
+    else if (transformedX < -0x10)
+        sub_807C298(object);
+}
 
 SEC(sub_8089D88)
 void object_select_animation_from_owner_variant_then_continue(

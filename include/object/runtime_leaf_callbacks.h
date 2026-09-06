@@ -174,6 +174,8 @@ struct ObjectRuntimePollOwner;
 #define object_update_x_offset_until_timer_expires sub_8089BD4
 #define object_clear_behavior_on_visual_complete sub_8089C00
 #define object_select_animation_from_owner_variant_then_continue sub_8089D88
+#define object_update_arc_then_finish_outside_transformed_bounds sub_8089EC4
+#define object_update_x_then_finish_below_transformed_x_limit sub_8089F44
 #define object_when_value80_clear_prepare_command_6_followup sub_808A1D4
 #define object_continue_when_linked_object_clears sub_809C960
 #define object_begin_fixed_vertical_descent sub_80A2C80
@@ -381,6 +383,10 @@ void object_update_motion_then_restore_saved_update(
 void object_update_x_offset_until_timer_expires(struct RuntimeObject* object);
 void object_clear_behavior_on_visual_complete(struct RuntimeObject* object);
 void object_select_animation_from_owner_variant_then_continue(
+    struct RuntimeObject* object);
+void object_update_arc_then_finish_outside_transformed_bounds(
+    struct RuntimeObject* object);
+void object_update_x_then_finish_below_transformed_x_limit(
     struct RuntimeObject* object);
 void object_when_value80_clear_prepare_command_6_followup(
     struct RuntimeObject* object);
