@@ -24,6 +24,18 @@ SEC(sub_8116610) void sub_8116610(struct FieldValueTransfer* state)
 }
 SEC(sub_8116610) const u16 sub_8116610_padding = 0;
 
+SEC(sub_8116620) u8 field_value_transfer_status(struct FieldValueTransfer* state)
+{
+    if (state->value44 != 0)
+        return 4;
+    if (state->value34 == 0)
+        return 0;
+    if (state->flags32 & 4)
+        return 2;
+    return 1;
+}
+SEC(sub_8116620) const u16 sub_8116620_padding = 0;
+
 void field_move_value_34_to_44(struct FieldValueTransfer* state)
     __attribute__((alias("sub_8116610")));
 

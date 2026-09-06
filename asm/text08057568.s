@@ -348465,6 +348465,7 @@ _0811660A:
 	pop {r0}
 	bx r0
 	.section .text.state_field_helpers_after_sub_8116610, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8116620
 sub_8116620:
 	push {lr}
@@ -348497,6 +348498,8 @@ _0811664E:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.endif
+	.section .text.field_value_transfer_after_sub_8116620, "ax", %progbits
 	thumb_func_start sub_8116654
 sub_8116654:
 	push {lr}
