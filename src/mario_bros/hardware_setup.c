@@ -5,6 +5,7 @@
 #define MB_LATE_SECTION(name) __attribute__((section(".text.mariobros_late." #name)))
 
 void _08F6F340(u32);
+void TrackStop(struct MusicPlayerInfo*, struct MusicPlayerTrack*);
 
 MB_LATE_SECTION(sub_8F510CC) void mario_bros_disable_interrupts(void) {
     *(volatile u16*)0x04000004 = 0;
@@ -30,5 +31,25 @@ void mario_bros_reset_sound_dma_if_ident_changed(void)
         *(vu16*)0x040000D2 = 0xB600;
         soundInfo->pcmDmaCounter = 0;
         soundInfo->ident = ident - 10;
+    }
+}
+
+MB_LATE_SECTION(sub_8F9523C)
+void m4aMPlayStop(struct MusicPlayerInfo* mplayInfo)
+{
+    struct MusicPlayerTrack* track;
+    int trackCount;
+
+    if (mplayInfo->ident == ID_NUMBER) {
+        mplayInfo->ident++;
+        mplayInfo->status |= MUSICPLAYER_STATUS_PAUSE;
+        trackCount = mplayInfo->trackCount;
+        track = mplayInfo->tracks;
+        while (trackCount > 0) {
+            TrackStop(mplayInfo, track);
+            trackCount--;
+            track++;
+        }
+        mplayInfo->ident = ID_NUMBER;
     }
 }

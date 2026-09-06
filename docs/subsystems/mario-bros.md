@@ -142,6 +142,12 @@ ownership policy are not yet established, so the name describes only the proven
 lifetime behavior. Nearby input, phase, direction, and mode helpers remain in
 assembly after natural C forms changed stack or register allocation.
 
+The embedded M4A lifecycle now includes its typed player-stop path. It validates
+the standard player identity, marks the player paused, stops each configured
+track through `TrackStop`, and restores the identity after the traversal. The
+adjacent continue leaf remains in assembly because natural typed forms either
+added a frame or replaced the observed return with alignment padding.
+
 ## Next boundary
 
 The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.

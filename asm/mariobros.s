@@ -90527,8 +90527,9 @@ _08F9522E:
 	pop {r0}
 	bx r0
 _08F95238: .4byte 0x68736D53
-	thumb_func_start sub_8F9523C
-sub_8F9523C:
+	.section .discard.mariobros_mplay_stop_sub_8F9523C, "ax", %progbits
+	thumb_func_start asm_sub_8F9523C
+asm_sub_8F9523C:
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0x0
 	ldr r1, [r6, #0x34]
@@ -90562,6 +90563,7 @@ _08F95272:
 	pop {r0}
 	bx r0
 _08F95278: .4byte 0x68736D53
+	.section .text.after_mariobros_mplay_stop_sub_8F9523C, "ax", %progbits
 	thumb_func_start sub_8F9527C
 sub_8F9527C:
 	push {r4, r5, r6, r7, lr}

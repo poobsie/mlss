@@ -3931,6 +3931,8 @@ SECTIONS
         asm/mariobros.o(.text.mariobros_late_after_sub_8F94D8C);
         src/mario_bros/hardware_setup.o(.text.mariobros_late.sub_8F950A4);
         asm/mariobros.o(.text.after_mariobros_sound_dma_sub_8F950A4);
+        src/mario_bros/hardware_setup.o(.text.mariobros_late.sub_8F9523C);
+        asm/mariobros.o(.text.after_mariobros_mplay_stop_sub_8F9523C);
         src/mario_bros/command_readers_secondary.o(.text);
         asm/mariobros.o(.text.mariobros_after_f95e94);
     }
