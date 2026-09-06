@@ -128,6 +128,8 @@ documents the relationship while the source preserves the exact ROM bytes.
 | `sub_80F7C78` | `script_command_wait_for_value_transfer` | Yields until the value-transfer status and its companion readiness predicate clear, field flag `0x20` at offset `0x2BF` is clear, and the offset-`0x2F0` resource pointer is null. The latter roles remain structurally named. |
 | `sub_80F7CD0` | `script_command_start_value_transfer` | Starts a value-transfer operation with the command's duration, flags, and dispatch value. The signed selector chooses kind 0 or 4 and whether the service value is zero or `0x7FFF`. |
 | `sub_80F7D0C` | `script_command_start_display_value_transfer` | Starts the display-derived value-transfer variant with the command's dispatch value and the same signed-selector mapping. |
+| `sub_80F8438` | `script_command_forward_selected_object_index` | Selects one of the six indexed field objects by the requested threshold/span mode, then forwards that object's index through the shared script result bridge. |
+| `sub_80F84AC` | `script_command_forward_object_property` | Queries the command-selected property of an indexed field object, then forwards the result through the same bridge. The property selector meanings remain unresolved. |
 
 The execution state now exposes the saved cursor at offset `0x14`. Three wait handlers restore that cursor and yield when their respective condition becomes true: the primary actor height test, field flag `0x291` bit 0, or a context-owned asynchronous operation. `script_command_branch_if_condition` decodes its aligned condition, operand, and target-cursor record and updates the current cursor only when the shared condition evaluator succeeds.
 

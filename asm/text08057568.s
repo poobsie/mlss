@@ -292685,8 +292685,9 @@ _080F8432:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_80F8438
-sub_80F8438:
+	.section .discard.script_command_forward_selected_object_index, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F8438
+asm_discard_sub_80F8438:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -292746,8 +292747,10 @@ _080F847C:
 	bx r1
 	.byte 0x00, 0x00
 _080F84A8: .4byte 0x00001794
-	thumb_func_start sub_80F84AC
-sub_80F84AC:
+	.section .text.field_runtime_after_sub_80F8438, "ax", %progbits
+	.section .discard.script_command_forward_object_property, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F84AC
+asm_discard_sub_80F84AC:
 	push {r4, r5, r6, lr}
 	mov r6, r8
 	push {r6}
@@ -292783,6 +292786,7 @@ sub_80F84AC:
 	bx r1
 	.byte 0x00, 0x00
 _080F84F4: .4byte 0x00001794
+	.section .text.field_runtime_after_sub_80F84AC, "ax", %progbits
 	thumb_func_start sub_80F84F8
 sub_80F84F8:
 	push {lr}

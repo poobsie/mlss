@@ -3,6 +3,7 @@
 #include "audio/sound_effects.h"
 #include "battle/functions.h"
 #include "battle/object.h"
+#include "field/global_object_transitions.h"
 #include "field/selection_sequence.h"
 #include "script/command_handlers.h"
 #include "script/command_context.h"
@@ -67,6 +68,26 @@ struct ScriptVisualResourceContext {
     struct ScriptVisualResourceTable* resourceTable;
 };
 
+struct ScriptObjectSelectionContext {
+    u8 unknown00[0x2C];
+    u8* fieldState2C;
+};
+
+struct ScriptObjectSelectionArguments {
+    s16 bridgeValue;
+    u16 padding02;
+    s32 selectionMode;
+    s32 threshold;
+};
+
+struct ScriptObjectPropertyArguments {
+    s16 bridgeValue;
+    s16 padding02;
+    s16 objectIndex;
+    s16 padding06;
+    s32 propertySelector;
+};
+
 extern void sub_801B0AC(u16);
 extern void sub_803C898(void *, s32);
 extern void sub_805C7B4(void *, u8);
@@ -116,6 +137,9 @@ extern void sub_8047D44(void*);
 extern void sub_805113C(void*);
 extern void sub_8050FD0(void*);
 extern void sub_80E9C4C(void*, void*, void*, s32, s32, s32);
+extern s32 sub_80F7868(void* context, s32 threshold);
+extern s32 sub_80F78C4(void* context, s32 threshold);
+extern s32 sub_80F6B44(void* context, s16 objectIndex, s32 propertySelector);
 extern void sub_8047B08(void*, s32, s32);
 extern void sub_8047B5C(void*, s16);
 extern void sub_8046A10(void*);
@@ -1073,6 +1097,48 @@ s32 script_command_branch_on_selected_runtime_flag(
     }
     if (*(u16*)(runtime + 0xA0) & 1)
         state->cursor = *arguments;
+    return 1;
+}
+
+SEC(sub_80F8438)
+s32 script_command_forward_selected_object_index(
+    struct ScriptObjectSelectionContext* context, u8* owner,
+    const struct ScriptObjectSelectionArguments* arguments,
+    void* commandContext)
+{
+    s32 selectedIndex;
+
+    switch (arguments->selectionMode) {
+    case 0:
+        selectedIndex = sub_80F78C4(context, arguments->threshold);
+        break;
+    case 1:
+        selectedIndex = sub_80F7868(context, arguments->threshold);
+        break;
+    case 2:
+        selectedIndex = field_find_object_with_largest_value_span(
+            context, arguments->threshold);
+        break;
+    }
+
+    sub_80E9C4C(
+        commandContext, owner + 0x18, context->fieldState2C + 0x1794,
+        (s32)(owner + 0xA8), arguments->bridgeValue, selectedIndex);
+    return 1;
+}
+
+SEC(sub_80F84AC)
+s32 script_command_forward_object_property(
+    struct ScriptObjectSelectionContext* context, u8* owner,
+    const struct ScriptObjectPropertyArguments* arguments,
+    void* commandContext)
+{
+    s32 propertyValue = sub_80F6B44(
+        context, arguments->objectIndex, arguments->propertySelector);
+
+    sub_80E9C4C(
+        commandContext, owner + 0x18, context->fieldState2C + 0x1794,
+        (s32)(owner + 0xA8), arguments->bridgeValue, propertyValue);
     return 1;
 }
 
