@@ -95,6 +95,7 @@
 #define mario_bros_tick_action_countdown sub_8F6118C
 #define mario_bros_begin_enabled_fall sub_8F64B84
 #define mario_bros_clear_pending_effect_update sub_8F69E2C
+#define mario_bros_tick_lifetime_64 sub_8F660E4
 
 #define mario_bros_call_object_callback_a sub_8F6E1F8
 #define mario_bros_call_object_callback_b sub_8F6E20C

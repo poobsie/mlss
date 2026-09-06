@@ -3150,6 +3150,8 @@ SECTIONS
         asm/mariobros.o(.text.after_mariobros_direct_handler_sub_8F65118);
         src/mario_bros/object_animation.o(.text.mariobros_helpers_sub_8F65690);
         asm/mariobros.o(.text.after_mariobros_helpers_sub_8F65690);
+        src/mario_bros/small_runtime_helpers.o(.text.mariobros_small_sub_8F660E4);
+        asm/mariobros.o(.text.after_mariobros_small_sub_8F660E4);
         src/mario_bros/state_helpers.o(.text.mariobros_helpers_sub_8F663B4);
         asm/mariobros.o(.text.after_mariobros_state_reset_sub_8F663B4);
         src/mario_bros/state_helpers.o(.text.mariobros_helpers_sub_8F66A40);

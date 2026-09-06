@@ -41946,8 +41946,9 @@ _08F660DC:
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
-	thumb_func_start sub_8F660E4
-sub_8F660E4:
+	.section .discard.mariobros_small_sub_8F660E4, "ax"
+	thumb_func_start asm_discard_sub_8F660E4
+asm_discard_sub_8F660E4:
 	push {lr}
 	adds r1, r0, #0x0
 	ldrh r0, [r1, #0x24]
@@ -41967,6 +41968,7 @@ _08F66102:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.after_mariobros_small_sub_8F660E4, "ax"
 	thumb_func_start sub_8F66108
 sub_8F66108:
 	push {lr}

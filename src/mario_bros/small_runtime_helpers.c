@@ -13,6 +13,7 @@ struct MarioBrosEffectState {
 
 void sub_8F66490(struct MarioBrosEffectState* state);
 void sub_8F5CC20(struct MarioBrosObject* object);
+void sub_8F5F060(struct MarioBrosObject* object);
 
 SECTION(sub_8F6118C)
 void mario_bros_tick_action_countdown(struct MarioBrosObject* object)
@@ -49,3 +50,17 @@ void mario_bros_clear_pending_effect_update(struct MarioBrosEffectState* state)
         state->pendingUpdate = 0;
 }
 SECTION(sub_8F69E2C) const u16 mario_bros_clear_pending_effect_update_padding = 0;
+
+SECTION(sub_8F660E4)
+void mario_bros_tick_lifetime_64(struct MarioBrosObject* object)
+{
+    u32 elapsed;
+
+    elapsed = (u32)((object->value24 << 0x18) + 0x01000000) >> 0x18;
+    if (elapsed > 0x3F) {
+        sub_8F5F060(object);
+        return;
+    }
+    object->value24 = elapsed;
+}
+SECTION(sub_8F660E4) const u16 mario_bros_tick_lifetime_64_padding = 0;

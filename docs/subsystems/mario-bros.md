@@ -105,6 +105,13 @@ symbols; names describe only the observable state contract. Nearby tile-code and
 direction-animation candidates remain in assembly because two natural typed C
 forms changed register allocation.
 
+The same object layer now exposes a 64-tick lifetime helper. It increments the
+low byte of `value24` and returns the object to the existing pool once the next
+value exceeds 63. The record's gameplay class and the release routine's broader
+ownership policy are not yet established, so the name describes only the proven
+lifetime behavior. Nearby input, phase, direction, and mode helpers remain in
+assembly after natural C forms changed stack or register allocation.
+
 ## Next boundary
 
 The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.
