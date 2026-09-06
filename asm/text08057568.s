@@ -294223,8 +294223,9 @@ asm_discard_sub_80F7FC8:
 	bx lr
 _080F8004: .4byte 0x03000FD8
 	.section .text.field_runtime_after_sub_80F7FC8, "ax", %progbits
-	thumb_func_start sub_80F8008
-sub_80F8008:
+	.section .discard.field_update_indexed_object_vector, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F8008
+asm_discard_sub_80F8008:
 	push {lr}
 	adds r3, r2, #0x0
 	ldr r0, _080F8028 @ =0x03000FD8
@@ -294281,6 +294282,7 @@ _080F806E:
 	movs r0, #0x01
 	pop {r1}
 	bx r1
+	.section .text.field_runtime_after_sub_80F8008, "ax", %progbits
 	thumb_func_start sub_80F8074
 sub_80F8074:
 	push {lr}
@@ -294325,8 +294327,9 @@ sub_80F80B4:
 	bx r1
 	.endif
 	.section .text.after_middle_sub_80F80B4
-	thumb_func_start sub_80F80C4
-sub_80F80C4:
+	.section .discard.field_configure_indexed_object_flag_20, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F80C4
+asm_discard_sub_80F80C4:
 	push {lr}
 	ldr r0, _080F80F8 @ =0x03000FD8
 	ldr r1, [r0, #0x00]
@@ -294355,6 +294358,7 @@ _080F80DE:
 	pop {r1}
 	bx r1
 _080F80F8: .4byte 0x03000FD8
+	.section .text.field_runtime_after_sub_80F80C4, "ax", %progbits
 	thumb_func_start sub_80F80FC
 sub_80F80FC:
 	push {r4, lr}

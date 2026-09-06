@@ -63,3 +63,51 @@ s32 field_copy_indexed_object_vector(
     destination->vectorD8[2] = source->vectorD8[2];
     return *(const u8*)arguments;
 }
+
+SMALL_SEC(field_update_indexed_object_vector)
+s32 field_update_indexed_object_vector(
+    void* context, void* state, const s32* arguments)
+{
+    s32 operation;
+    struct FieldRuntimeObjectOwner* owner =
+        FIELD_INDEXED_OBJECT_RUNTIME->objectOwners58[arguments[1]];
+
+    operation = *arguments++;
+    switch (operation) {
+    case 0:
+        owner->vectorD8[0] = arguments[1] << 8;
+        owner->vectorD8[1] = arguments[2] << 8;
+        owner->vectorD8[2] = arguments[3] << 8;
+        break;
+    case 1:
+        owner->vectorD8[0] += arguments[1] << 8;
+        owner->vectorD8[1] += arguments[3] << 8;
+        owner->vectorD8[2] += arguments[2] << 8;
+        break;
+    }
+    return 1;
+}
+
+SMALL_SEC(field_configure_indexed_object_flag_20)
+s32 field_configure_indexed_object_flag_20(
+    void* context, void* state, const s32* arguments)
+{
+    struct FieldRuntimeObjectOwner* owner =
+        FIELD_INDEXED_OBJECT_RUNTIME->objectOwners58[arguments[1]];
+    s32 flag = 0;
+    u8* flags110;
+    s32 flags;
+    s32 clearMask;
+
+    if (arguments[0] == 0)
+        flag = 1;
+    flags110 = &owner->flags110;
+    flag <<= 5;
+    flags = *flags110;
+    clearMask = 0x21;
+    clearMask = -clearMask;
+    clearMask &= flags;
+    clearMask |= flag;
+    *flags110 = clearMask;
+    return 1;
+}

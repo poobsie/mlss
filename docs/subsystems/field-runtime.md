@@ -317,6 +317,17 @@ objects, then returns the command stream's following byte. Current code proves t
 vector boundary and copy direction, but not its coordinate space or the meaning of
 that returned control byte.
 
+`field_update_indexed_object_vector` writes or increments the same three-word
+vector using values shifted by eight fractional bits. Operation zero stores the
+three command values in order. Operation one adds the first value to component
+zero, the third to component one, and the second to component two; that asymmetry
+is preserved because the coordinate convention has not yet been identified.
+
+`field_configure_indexed_object_flag_20` selects an owner through the same runtime
+array and replaces bit `0x20` at owner offset `0x110`. A zero command value sets
+the bit and a nonzero value clears it. The bit's gameplay meaning remains unknown,
+so the name records the proven location and operation.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or

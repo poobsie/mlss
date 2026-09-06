@@ -2085,8 +2085,12 @@ SECTIONS
         asm/text08057568.o(.text.field_runtime_after_sub_80F7FA4);
         src/field/global_object_transitions.o(.text.small_functions_01.sub_80F7FC8);
         asm/text08057568.o(.text.field_runtime_after_sub_80F7FC8);
+        src/field/global_object_transitions.o(.text.small_functions_01.sub_80F8008);
+        asm/text08057568.o(.text.field_runtime_after_sub_80F8008);
         src/script/state_commands.o(.text.middle.sub_80F80B4);
         asm/text08057568.o(.text.after_middle_sub_80F80B4);
+        src/field/global_object_transitions.o(.text.small_functions_01.sub_80F80C4);
+        asm/text08057568.o(.text.field_runtime_after_sub_80F80C4);
         src/script/command_handlers.o(.text.misc_helpers_03.script_cmd_btl_return);
         asm/text08057568.o(.text.misc_helpers_03_after_script_cmd_btl_return);
         src/field/runtime_flags.o(.text.misc_helpers_03.sub_80F8C60);
