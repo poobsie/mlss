@@ -14,6 +14,47 @@ void sub_8021308(void*);
 void sprite_hide_8021F20(void*);
 void sub_80184F4(void*);
 void sub_8018218(void*, void*, u32, u32, u32);
+extern s32 sub_8163E50(s32, s32, s32, s32);
+
+SEC(sub_8164FA4) s32 graphics_tile_buffer_interpolation_is_complete(
+    struct GraphicsTileBufferOwner* object) {
+    s32 value;
+    if (object->interpolationProgress9C > object->interpolationDuration98)
+        return 1;
+    value = sub_8163E50(
+        object->interpolationStartX28,
+        object->interpolationTargetX90,
+        object->interpolationDuration98,
+        object->interpolationProgress9C);
+    *object->output50 = -value;
+    value = sub_8163E50(
+        object->interpolationStartY2C,
+        object->interpolationTargetY94,
+        object->interpolationDuration98,
+        object->interpolationProgress9C);
+    *object->output54 = -value;
+    object->interpolationProgress9C++;
+    return 0;
+}
+
+SEC(sub_8164FF4) void graphics_begin_tile_buffer_interpolation(
+    struct GraphicsTileBufferOwner* object, s32 targetX, s32 targetY,
+    s32 duration) {
+    object->interpolationProgress9C = 0;
+    object->interpolationDuration98 = duration;
+    if (targetX <= 3)
+        targetX = 4;
+    if (targetY <= 3)
+        targetY = 4;
+    if (targetX + object->tileColumns30 * 8 > 236)
+        targetX = 236 - object->tileColumns30 * 8;
+    if (targetY + object->tileRows34 * 8 > 156)
+        targetY = 156 - object->tileRows34 * 8;
+    object->interpolationTargetX90 = targetX;
+    object->interpolationTargetY94 = targetY;
+    sprite_hide_8021F20(object->firstSprite);
+    sprite_hide_8021F20(object->secondSprite);
+}
 SEC(sub_816316C) void graphics_position_state_write_shared(
     struct GraphicsPositionState* state) {
     if (state->flags20 & 1) {
@@ -198,3 +239,4 @@ PAD(sub_8165250);
 PAD(sub_8163280);
 PAD(sub_8163308);
 PAD(sub_81650DC);
+PAD(sub_8164FA4);

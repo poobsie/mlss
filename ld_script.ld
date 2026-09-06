@@ -3138,6 +3138,9 @@ SECTIONS
         asm/text08057568.o(.text.after_8163FA8);
         src/runtime/word_triplet.o(.text.sub_8163FB8);
         asm/text08057568.o(.text.after_8163FB8);
+        src/graphics/high_helpers.o(.text.high.sub_8164FA4);
+        src/graphics/high_helpers.o(.text.high.sub_8164FF4);
+        asm/text08057568.o(.text.high_after_sub_8164FF4);
         src/graphics/high_helpers.o(.text.high.sub_816507C);
         asm/text08057568.o(.text.after_816507C);
         src/graphics/high_helpers.o(.text.high.sub_81650DC);

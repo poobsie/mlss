@@ -465895,8 +465895,9 @@ _08164F94:
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_8164FA4
-sub_8164FA4:
+	.section .discard.high_sub_8164FA4, "ax", %progbits
+	thumb_func_start asm_discard_sub_8164FA4
+asm_discard_sub_8164FA4:
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0x0
 	adds r5, r4, #0x0
@@ -465937,8 +465938,9 @@ _08164FEC:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_8164FF4
-sub_8164FF4:
+	.section .discard.high_sub_8164FF4, "ax", %progbits
+	thumb_func_start asm_discard_sub_8164FF4
+asm_discard_sub_8164FF4:
 	push {r4, r5, lr}
 	adds r4, r0, #0x0
 	adds r5, r1, #0x0
@@ -465985,6 +465987,7 @@ _08165030:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
+	.section .text.high_after_sub_8164FF4, "ax", %progbits
 	thumb_func_start sub_816504C
 sub_816504C:
 	push {r4, r5, lr}

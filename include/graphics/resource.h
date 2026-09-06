@@ -42,7 +42,10 @@ struct GraphicsTileBufferOwner {
     void* resource1C;
     void* tileBuffer20;
     void* resource24;
-    u8 unknown28[0x10];
+    s32 interpolationStartX28;
+    s32 interpolationStartY2C;
+    s32 tileColumns30;
+    s32 tileRows34;
     void* transfer38;
     u8 unknown3C[8];
     void* resource44;
@@ -50,6 +53,11 @@ struct GraphicsTileBufferOwner {
     u8 unknown4C[4];
     u16* output50;
     u16* output54;
+    u8 unknown58[0x38];
+    s32 interpolationTargetX90;
+    s32 interpolationTargetY94;
+    s32 interpolationDuration98;
+    s32 interpolationProgress9C;
 };
 
 struct GraphicsPaletteOwner {

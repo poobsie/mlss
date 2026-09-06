@@ -55,6 +55,10 @@ clears both external output halfwords, releases the two sprites and four owned
 heap blocks, runs the shared graphics cleanup, and optionally frees the owner.
 The battle-side refresh callback forwards the owner's tile-buffer object to the
 established rebuild-and-upload routine and normalizes its result to a boolean.
+Its interpolation setup clamps the requested target against the visible bounds
+derived from the tile dimensions, resets the progress counter, and hides both
+sprites. The paired completion predicate updates the two external offsets with
+the negated interpolated coordinates until the configured duration has elapsed.
 
 `graphics_destroy_linked_visual` now exposes the complete linked-visual teardown path. It detaches a non-null visual, clears flag bits `0x04` and `0x08` at offset `0x13`, runs the graphics cleanup, and releases the visual. The remaining flag bits stay unnamed until their writers and rendering effects are recovered.
 
