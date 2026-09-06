@@ -704,6 +704,12 @@ countdowns that either create effect `0x1428` or return to the established idle
 callback. The effect object global and tertiary callback remain structural; the
 observed animation, timer, sound, and effect values are exact.
 
+The next contiguous callbacks now cover a readiness-gated animation-2 setup,
+a visual-completion effect `0x124C` that saves the base height, and a signed
+countdown that starts animation 4 before returning to the common idle callback.
+The continuation at `0x08060E7D` remains a literal because it enters an
+assembly routine without an independent symbol.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

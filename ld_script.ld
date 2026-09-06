@@ -334,8 +334,14 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_02_after_sub_8060BB8);
         src/object/gated_setup_transitions.o(.text.misc_helpers_03.sub_8060CB8);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8060CB8);
+        src/object/state_completion_motion.o(.text.misc_helpers_03.sub_8060CE8);
+        asm/text08057568.o(.text.misc_helpers_03_after_sub_8060CE8);
         src/object/small_value_transitions.o(.text.misc_helpers_02.sub_8060DC4);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8060DC4);
+        src/object/state_completion_motion.o(.text.misc_helpers_02.sub_8060DEC);
+        asm/text08057568.o(.text.misc_helpers_02_after_sub_8060DEC);
+        src/object/state_completion_motion.o(.text.misc_helpers_02.sub_8060E4C);
+        asm/text08057568.o(.text.misc_helpers_02_after_sub_8060E4C);
         src/object/owner_setups.o(.text.misc_helpers_01.sub_80612B4);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80612B4);
         src/object/small_value_transitions.o(.text.misc_helpers_02.sub_80612D4);

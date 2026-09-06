@@ -12,6 +12,10 @@ void sub_80605CC(struct RuntimeObject* object);
 void sub_8060090(struct RuntimeObject* object);
 void sub_806062C(struct RuntimeObject* object);
 void sub_808750C(struct RuntimeObject* object);
+void sub_8060D4C(struct RuntimeObject* object);
+void sub_8060DEC(struct RuntimeObject* object);
+void sub_807F4FC(struct RuntimeObject* object);
+s32 sub_8082B00(struct RuntimeObject* object);
 void sub_807C298(struct RuntimeObject* object);
 void sub_807FC08(s32* x, s32* y, s32* z, s32 argument);
 void sub_8082E1C(
@@ -134,6 +138,45 @@ void object_on_visual_complete_countdown_emit_effect_1107(
                         object->positionZBase / 0x100, object);
             object->update = sub_8060090;
         }
+    }
+}
+
+SEC(sub_8060CE8)
+void sub_8060CE8(struct RuntimeObject* object)
+{
+    if (sub_8082B00(object) == 0) {
+        sub_807F4FC(object);
+        object->tertiaryUpdate = sub_8060D4C;
+        object->verticalVelocity = object->verticalPosition / 0x100;
+        object->secondaryTimer = object->currentPositionX / 0x100;
+        object->stateValueB0 = object->currentPositionY / 0x100;
+        sub_8082E1C(object, 2, 0, 0);
+        object->update = sub_8060DEC;
+    }
+}
+
+__attribute__((section(".text.misc_helpers_02.sub_8060DEC")))
+void sub_8060DEC(struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 3, 0, 0);
+        sub_80DF024(0x124C, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        object->value8C = object->positionZBase;
+        object->update = (RuntimeObjectCallback)0x08060E7D;
+    }
+}
+
+__attribute__((section(".text.misc_helpers_02.sub_8060E4C")))
+void sub_8060E4C(struct RuntimeObject* object)
+{
+    s32 value = (u16)object->timer - 1;
+
+    object->timer = value;
+    if ((value << 16) <= 0) {
+        sub_8082E1C(object, 4, 0, 0);
+        object->update = sub_808750C;
     }
 }
 

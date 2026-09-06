@@ -16968,8 +16968,9 @@ _08060CAE:
 	bx r0
 _08060CB4: .4byte sub_8060DC4
 	.section .text.misc_helpers_03_after_sub_8060CB8, "ax", %progbits
-	thumb_func_start sub_8060CE8
-sub_8060CE8:
+	.section .discard.object_state_setup_2, "ax", %progbits
+	thumb_func_start asm_discard_sub_8060CE8
+asm_discard_sub_8060CE8:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	bl sub_8082B00
@@ -17019,6 +17020,7 @@ _08060D3E:
 	bx r0
 _08060D44: .4byte sub_8060D4C
 _08060D48: .4byte sub_8060DEC
+	.section .text.misc_helpers_03_after_sub_8060CE8, "ax", %progbits
 	thumb_func_start sub_8060D4C
 sub_8060D4C:
 	push {r4, r5, r6, lr}
@@ -17081,8 +17083,9 @@ _08060DB6:
 	.byte 0x00, 0x00
 _08060DC0: .4byte sub_8060E4C
 	.section .text.misc_helpers_02_after_sub_8060DC4, "ax", %progbits
-	thumb_func_start sub_8060DEC
-sub_8060DEC:
+	.section .discard.object_visual_complete_effect_124c, "ax", %progbits
+	thumb_func_start asm_discard_sub_8060DEC
+asm_discard_sub_8060DEC:
 	push {r4, lr}
 	add sp, #-0x004
 	adds r4, r0, #0x0
@@ -17131,8 +17134,10 @@ _08060E3C:
 	bx r0
 _08060E44: .4byte 0x0000124C
 _08060E48: .4byte 0x08060E7D
-	thumb_func_start sub_8060E4C
-sub_8060E4C:
+	.section .text.misc_helpers_02_after_sub_8060DEC, "ax", %progbits
+	.section .discard.object_countdown_animation_4_idle, "ax", %progbits
+	thumb_func_start asm_discard_sub_8060E4C
+asm_discard_sub_8060E4C:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r1, r4, #0x0
@@ -17156,6 +17161,7 @@ _08060E70:
 	bx r0
 	.byte 0x00, 0x00
 _08060E78: .4byte sub_808750C
+	.section .text.misc_helpers_02_after_sub_8060E4C, "ax", %progbits
 	.byte 0x02, 0x1C, 0xAC, 0x32, 0x00, 0x21, 0x11, 0x80, 0x01, 0x49, 0xC1, 0x64, 0x70, 0x47, 0x00, 0x00
 	.byte 0xFD, 0x08, 0x06, 0x08
 	thumb_func_start sub_8060E90
