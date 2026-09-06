@@ -3041,6 +3041,8 @@ SECTIONS
         asm/text08057568.o(.text.after_8160EA4);
         src/runtime/compact_leaves.o(.text.runtime_compact.sub_8160EC4);
         asm/text08057568.o(.text.after_8160EC4);
+        src/battle/coordinate_state.o(.text.battle_coordinate_state.sub_8161180);
+        asm/text08057568.o(.text.battle_coordinate_state_after_sub_8161180);
         src/battle/coordinate_state.o(.text.battle_coordinate_state.sub_816127C);
         asm/text08057568.o(.text.battle_coordinate_state_after_sub_816127C);
         src/graphics/high_helpers.o(.text.high.sub_81612E4);

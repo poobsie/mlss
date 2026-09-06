@@ -31,6 +31,12 @@ Two caller-connected destructors now describe their proven ownership rules. `bat
 
 `BattleSpriteMotionOwner` extends the proven sprite-owner prefix with values at `0x18`, `0x20`, `0x24`, and `0x38`. Its two recovered configuration methods select mode `4` with `0xC8` or mode `3` with `0x64`, negate the supplied value into `0x20`, clear `0x38`, and clear the attached sprite's halfword at `0x0C`. Those values remain structural until the assembly update routines establish their physical units.
 
+`battle_update_coordinate_projector_motion` advances the projector's fixed-point
+position by its X velocity and combined Y velocity and acceleration. It then
+queries the established height context at the updated X coordinate and clamps
+the Y coordinate to that returned boundary. The adjacent relative-coordinate
+writer uses the same position fields and output object.
+
 `BattleSpriteMotion` is the broader sprite-backed position object initialized by `sub_815F8F4`. It records 24.8 X and Y positions, their previous values, signed per-frame velocities, a state byte, a descriptor, and overlapping subclass storage from `0x34` onward. The overlap is represented explicitly: the same slot can be a 16-bit constructor value or an owned child pointer depending on the installed descriptor.
 
 The recovered sprite-motion variant family includes four initializers, two state preparations, four child-destructor variants, five owned-resource destructor variants, and two identical attached-position synchronization entry points. Semantic aliases state the proven lifecycle behavior, while variant suffixes remain until descriptor tables or construction callers identify their battle entities. The shared motion helper adds X velocity and Y velocity plus the caller's Y offset each tick.
