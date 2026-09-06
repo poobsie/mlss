@@ -522,6 +522,17 @@ from the secondary action owner, clears its upper flag bits, attaches it as the
 linked object, and selects the established motion-node update when its mode is
 active.
 
+The sibling owner-position setup and the paired path's terminal transition are
+now represented in typed C. The sibling setup selects its coordinate offset and
+height scale from the object's established behavior state, copies the owner's
+display ordering, starts animation 5, and routes to the corresponding completion
+callback. The paired terminal transition conditionally refreshes the owner
+binding, emits the variant-selected effect at the linked object's fixed-point
+position, destroys that linked object, and rebuilds the controller effect from
+the three known owner-state coordinates before continuing. The intermediate
+paired-object constructor remains raw because its register allocation did not
+match within the bounded source-shape attempts.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

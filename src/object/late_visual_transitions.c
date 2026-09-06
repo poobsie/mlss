@@ -16,8 +16,14 @@ void sub_808843C(struct RuntimeObject*, s32, s32, s32, s32);
 void sub_80880C4(struct RuntimeObject*, s32);
 u8 sub_8087CE4(void);
 void sub_807FB64(struct RuntimeObjectVisual*);
+void sub_807C298(struct RuntimeObject*);
+void sub_80DF024(s32, s32, s32, s32, struct RuntimeObject*);
+void sub_810DD7C(struct RuntimeObject*, struct RuntimeObject*, s32);
+u8 sub_80883F0(struct RuntimeObject*);
 void sub_810F824(struct RuntimeObject*);
 void sub_810FD54(struct RuntimeObject*);
+void sub_810FD94(struct RuntimeObject*);
+void sub_810FCE0(struct RuntimeObject*);
 void object_on_visual_complete_delay_12(struct RuntimeObject*);
 void sub_81109D0(struct RuntimeObject*);
 void sub_8110A94(struct RuntimeObject*);
@@ -66,6 +72,62 @@ void object_start_owner_position_effect_and_continue(
         object->visual->parameter20 = object->valueA4;
         sound_effect_play(0x112, SOUND_VOLUME_UNCHANGED);
         object->update = sub_810FD54;
+    }
+}
+
+SEC(sub_810F5E4)
+void object_start_owner_position_effect_variant_and_continue(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner;
+    struct RuntimeObjectState* state;
+
+    if (object->visual->flags & 8) {
+        owner = object->positionOwner;
+        state = owner->state;
+        object->unknown75 = owner->unknown75 - 1;
+        if (object->behaviorState != 0) {
+            sub_808843C(object, state->valueD8 / 256 + 0x2A,
+                        state->valueDC / 256, state->floorHeight / 4096,
+                        0x100);
+            object->update = sub_810FD94;
+        } else {
+            sub_808843C(object, state->valueD8 / 256 + 0x22,
+                        state->valueDC / 256, state->floorHeight / 256,
+                        0x100);
+            object->update = object_finish_owner_position_effect_when_ready;
+        }
+        sub_80880C4(object, object->valueA0);
+        sub_8082E1C(object, 5, 0, 0);
+        object->visual->parameter20 = object->valueA4;
+        sound_effect_play(0x112, SOUND_VOLUME_UNCHANGED);
+    }
+}
+
+SEC(sub_810F824)
+void object_finish_paired_owner_effect(struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner = object->positionOwner;
+    struct RuntimeObject* linked;
+    s32 effect;
+
+    if (!(owner->flags76 & 0x80) && owner->verticalPosition == 0)
+        sub_810DD7C(object, owner, 0xFF);
+
+    if (sub_80883F0(object) == 0) {
+        linked = object->linkedObject;
+        effect = object->state->variant == 0x3C ? 0x2165 : 0x216E;
+        sub_80DF024(effect, linked->positionX / 256,
+                    linked->positionY / 256, linked->positionZBase / 256,
+                    linked);
+        sub_807C298(linked);
+        sound_effect_stop(0x10F);
+        sub_808843C(object, object->state->valueD8 / 256,
+                    object->state->valueDC / 256,
+                    object->state->floorHeight / 256, 0x100);
+        sub_80880C4(object, 0x300);
+        sound_effect_play(0x11B, SOUND_VOLUME_UNCHANGED);
+        object->update = sub_810FCE0;
     }
 }
 
