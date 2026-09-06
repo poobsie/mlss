@@ -15,14 +15,56 @@
 #define MISC3_SEC(name) \
     __attribute__((section(".text.misc_helpers_03." STRINGIFY(name))))
 #define FIELD_RUNTIME (*(struct FieldSelectionRuntime**)0x03000FD8)
+#define FIELD_COMMAND_RUNTIME (*(struct ScriptCommandFieldRuntime**)0x03000FD8)
 #define SCRIPT_GLOBAL_D44 (*(void**)0x03000D44)
 #define SCRIPT_GLOBAL_FB8 (*(void**)0x03000FB8)
 #define SCRIPT_FIELD_RUNTIME (*(u8**)0x03000FD0)
 #define SCRIPT_GLOBAL_FC0 (*(u8**)0x03000FC0)
 #define U8AT(pointer, offset) (*(u8*)((u8*)(pointer) + (offset)))
+#define field_value_transfer_status sub_8116620
 
+struct FieldValueTransfer;
 struct ScriptBattleReturnContext {
     u8 unknown00[0x1C];
+};
+
+struct ScriptCommandFieldRuntime {
+    u8 unknown000[0x248];
+    struct FieldValueTransfer* valueTransfer;
+    u8 unknown24C[0x73];
+    u8 flags2BF;
+    u8 unknown2C0[0x30];
+    void* resource2F0;
+};
+
+struct ScriptValueTransferArguments {
+    s32 selector;
+    s32 duration;
+    u16 flags;
+    u8 padding0A[2];
+    u16 dispatchValue;
+};
+
+struct ScriptDisplayValueTransferArguments {
+    s32 selector;
+    s32 dispatchValue;
+};
+
+struct ScriptVisualResourceRecord {
+    struct GraphicsLinkedVisual* visual;
+    u8 unknown04[8];
+    u8 identifier;
+    u8 unknown0D[2];
+    u8 active;
+};
+
+struct ScriptVisualResourceTable {
+    struct ScriptVisualResourceRecord* records;
+};
+
+struct ScriptVisualResourceContext {
+    u8 unknown00[0x28];
+    struct ScriptVisualResourceTable* resourceTable;
 };
 
 extern void sub_801B0AC(u16);
@@ -35,6 +77,11 @@ extern void sub_8047364(void *, u8);
 extern void sub_80473DC(void *);
 extern void sub_807F6EC(s32, s32);
 extern void sub_807F6D0(void);
+extern u8 sub_8116620(struct FieldValueTransfer* state);
+extern u8 sub_80E3CF4(void);
+extern void sub_807F708(
+    s32 kind, s32 value, s32 duration, s32 flags, s32 dispatchValue);
+extern void sub_807F754(s32 kind, s32 value, s32 dispatchValue);
 extern u8 sub_8027378(void* objectRegistry);
 extern void sub_805C78C(void* object, u8 value0, u8 value1);
 extern void sub_80E9330(void* owner, u16 value);
@@ -430,6 +477,68 @@ s32 script_command_control_value_transfer(
     return 1;
 }
 SEC(sub_80F7C3C) const u16 script_command_control_value_transfer_padding = 0;
+
+SEC(sub_80F7BB4)
+s32 script_command_wait_for_matching_visual(
+    struct ScriptVisualResourceContext* context,
+    struct ScriptExecutionState* state, const u32* identifier)
+{
+    s16 i = 0;
+    struct ScriptVisualResourceRecord* record = context->resourceTable->records;
+
+    do {
+        if (record->active &&
+            (record->identifier == *identifier || *identifier == 0x3F)) {
+            state->cursor = state->resumeCursor;
+            return 0;
+        }
+        i++;
+        record++;
+    } while (i <= 3);
+    return 1;
+}
+
+SEC(sub_80F7C78)
+s32 script_command_wait_for_value_transfer(
+    void* context, struct ScriptExecutionState* state)
+{
+    if (field_value_transfer_status(FIELD_COMMAND_RUNTIME->valueTransfer) != 0 ||
+        sub_80E3CF4() != 0 || (FIELD_COMMAND_RUNTIME->flags2BF & 0x20) ||
+        FIELD_COMMAND_RUNTIME->resource2F0 != NULL) {
+        state->cursor = state->resumeCursor;
+        return 0;
+    }
+    return 1;
+}
+
+SEC(sub_80F7CD0)
+s32 script_command_start_value_transfer(
+    void* context, void* state,
+    const struct ScriptValueTransferArguments* arguments)
+{
+    s32 kind = (arguments->selector & 1) ? 4 : 0;
+    s32 value = 0;
+
+    if (arguments->selector > 1)
+        value = 0x7FFF;
+    sub_807F708(kind, value, arguments->duration, arguments->flags,
+                arguments->dispatchValue);
+    return 1;
+}
+
+SEC(sub_80F7D0C)
+s32 script_command_start_display_value_transfer(
+    void* context, void* state,
+    const struct ScriptDisplayValueTransferArguments* arguments)
+{
+    s32 kind = (arguments->selector & 1) ? 4 : 0;
+    s32 value = 0;
+
+    if (arguments->selector > 1)
+        value = 0x7FFF;
+    sub_807F754(kind, value, arguments->dispatchValue);
+    return 1;
+}
 
 SEC(sub_80EB05C)
 s32 script_command_control_resource_wait(

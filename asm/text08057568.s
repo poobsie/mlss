@@ -291634,8 +291634,9 @@ _080F7B88:
 	bx r0
 _080F7BAC: .4byte 0x03000FDC
 _080F7BB0: .4byte 0x03000FD8
-	thumb_func_start sub_80F7BB4
-sub_80F7BB4:
+	.section .discard.script_command_wait_for_matching_visual, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F7BB4
+asm_discard_sub_80F7BB4:
 	push {r4, r5, lr}
 	adds r4, r1, #0x0
 	adds r5, r2, #0x0
@@ -291672,6 +291673,7 @@ _080F7BEE:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
+	.section .text.misc_helpers_03_after_sub_80F7BB4, "ax", %progbits
 	thumb_func_start sub_80F7BF4
 sub_80F7BF4:
 	push {r4, r5, lr}
@@ -291748,8 +291750,9 @@ _080F7C70:
 	bx r1
 	.byte 0x00, 0x00
 	.section .text.misc_helpers_03_after_sub_80F7C3C, "ax", %progbits
-	thumb_func_start sub_80F7C78
-sub_80F7C78:
+	.section .discard.script_command_wait_for_value_transfer, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F7C78
+asm_discard_sub_80F7C78:
 	push {r4, r5, lr}
 	adds r4, r1, #0x0
 	ldr r5, _080F7CC0 @ =0x03000FD8
@@ -291793,8 +291796,10 @@ _080F7CCA:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_80F7CD0
-sub_80F7CD0:
+	.section .text.misc_helpers_03_after_sub_80F7C78, "ax", %progbits
+	.section .discard.script_command_start_value_transfer, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F7CD0
+asm_discard_sub_80F7CD0:
 	push {r4, r5, lr}
 	add sp, #-0x004
 	adds r4, r2, #0x0
@@ -291824,8 +291829,9 @@ _080F7CEE:
 	pop {r1}
 	bx r1
 _080F7D08: .4byte 0x00007FFF
-	thumb_func_start sub_80F7D0C
-sub_80F7D0C:
+	.section .discard.script_command_start_display_value_transfer, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F7D0C
+asm_discard_sub_80F7D0C:
 	push {r4, lr}
 	adds r4, r2, #0x0
 	ldr r2, [r4, #0x00]
@@ -291849,6 +291855,7 @@ _080F7D28:
 	pop {r1}
 	bx r1
 _080F7D38: .4byte 0x00007FFF
+	.section .text.misc_helpers_03_after_sub_80F7D0C, "ax", %progbits
 	.section .discard.field_nested_state_179d, "ax", %progbits
 	thumb_func_start asm_discard_sub_80F7D3C
 asm_discard_sub_80F7D3C:
