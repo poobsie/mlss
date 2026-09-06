@@ -559,6 +559,15 @@ gate clears behavior when completion bit 3 is set. The continuation and adjacent
 effect teardown remain raw after their bounded source-shape attempts failed to
 preserve the original instruction scheduling.
 
+The outward auxiliary path now includes its animation-2 handoff and far-offset
+owner effect. The handoff starts animation 2, restores visual mode 2, and enters
+the established owner-offset setup. That setup rebuilds the effect from the
+known owner-state coordinates with an X offset of `0x44`, applies display value
+`0x280`, starts animation 3 and sound `0x11B`, then installs its observed
+continuation. The preceding readiness reset and auxiliary motion poll remain raw
+after bounded attempts changed store order and callee-save allocation; the raw
+callback at `0x0810FBBD` remains intentionally unnamed.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
