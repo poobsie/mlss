@@ -45,3 +45,8 @@ boundary reverses the velocity and halves its magnitude, producing a damped
 bounce without assigning a screen-specific identity to the object.
 
 `ui_object_group4_reset_state` applies the established update and zero-state operations to each of four owned objects. The group overlay proves only the four-pointer extent, so its wider screen identity remains deliberately unknown. The trailing zero halfword is emitted explicitly because ordinary Thumb section alignment would otherwise substitute a `nop` outside the function body.
+
+The upper UI construction boundary now has a typed initializer for a single
+intro sprite motion record. It establishes the sprite's initial screen position,
+fixed-point phase, delay, and state. The concrete screen identity of this short
+intro remains unknown, so the type names only the behavior established here.

@@ -3143,6 +3143,8 @@ SECTIONS
         asm/text08057568.o(.text.battle_resource_destructors_after_sub_8161924);
         src/battle/single_sprite_destructors.o(.text.upper.sub_8161A38);
         asm/text08057568.o(.text.after_upper_sub_8161A38);
+        src/ui/object_initialization.o(.text.ui_object_init.sub_8161A58);
+        asm/text08057568.o(.text.after_8161A58);
         src/battle/single_sprite_destructors.o(.text.upper.sub_8161C08);
         asm/text08057568.o(.text.after_upper_sub_8161C08);
         src/runtime/bitset.o(.text.runtime_bitset.sub_8163110);

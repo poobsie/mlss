@@ -461012,6 +461012,7 @@ _08161A30:
 	.byte 0x00, 0x00
 	.section .text.after_upper_sub_8161A38, "ax", %progbits
 	thumb_func_start sub_8161A58
+	.if 0
 sub_8161A58:
 	push {r4, r5, r6, lr}
 	add sp, #-0x00C
@@ -461051,6 +461052,8 @@ sub_8161A58:
 	pop {r1}
 	bx r1
 _08161AA8: .4byte 0x00005005
+	.endif
+	.section .text.after_8161A58, "ax", %progbits
 	thumb_func_start sub_8161AAC
 sub_8161AAC:
 	push {r4, r5, r6, r7, lr}
