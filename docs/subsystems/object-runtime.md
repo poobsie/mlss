@@ -613,6 +613,14 @@ supplied owner with that effect, then forwards the object, owner, and command to
 the established runtime notifier. The numeric effect identifier remains
 structural because its resource table is still in assembly.
 
+The profile branch's completion countdown is now typed. After visual completion
+it decrements the observed repetition word, periodically emits effect `0x2700`
+using the object's fixed-point position, and resets the short effect timer to
+999. When the repetition count expires it starts animation 5, restores visual
+mode 2, and enters the established spawn transition. The neighboring orbit
+calculation and spawn transition remain raw after bounded attempts produced
+different register allocation and lookup ordering.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

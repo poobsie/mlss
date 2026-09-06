@@ -44,6 +44,8 @@ void sub_8111174(struct RuntimeObject*);
 void sub_81111C0(struct RuntimeObject*);
 void sub_8110CB0(struct RuntimeObject*);
 void sub_81112C4(struct RuntimeObject*);
+void sub_8111754(struct RuntimeObject*);
+
 void object_on_visual_complete_delay_12(struct RuntimeObject*);
 void sub_81109D0(struct RuntimeObject*);
 void sub_8110A94(struct RuntimeObject*);
@@ -515,6 +517,39 @@ void object_on_visual_complete_spawn_effect_2669(
         object->update = sub_81112C4;
     }
 }
+
+SEC(sub_81116C0)
+void object_on_visual_complete_countdown_effect_2700(
+    struct RuntimeObject* object)
+{
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (object->visual->flags & 8) {
+        object->valueA8--;
+        if (object->valueA8 != 0) {
+            if (object->timer == 0) {
+                sub_80DF024(0x2700, object->positionX / 256,
+                            object->positionY / 256,
+                            object->positionZBase / 256, object);
+                object->timer = 999;
+            }
+            object->timer--;
+        } else {
+            sub_8082E1C(object, 5, 0, 0);
+            flags = &object->visual->flags;
+            value = *flags;
+            mask = -7;
+            value &= mask;
+            value |= 2;
+            *flags = value;
+            object->update = sub_8111754;
+        }
+    }
+}
+
+
 
 
 SEC(sub_810FD54)

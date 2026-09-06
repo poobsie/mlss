@@ -152,6 +152,7 @@ void runtime_object_finish_action(struct RuntimeObject* object);
 #define object_continue_owner_variant_animation_10_or_11 sub_8111174
 #define object_finish_owner_variant_animation_4_or_7 sub_81111C0
 #define object_on_visual_complete_spawn_effect_2669 sub_8111234
+#define object_on_visual_complete_countdown_effect_2700 sub_81116C0
 #define object_finish_owner_position_effect_with_spawn sub_810FD94
 #define object_finish_owner_position_effect_when_ready sub_810FD54
 void runtime_object_when_value80_clear_prepare_state_motion(
@@ -200,6 +201,8 @@ void object_continue_owner_variant_animation_10_or_11(
 void object_finish_owner_variant_animation_4_or_7(
     struct RuntimeObject* object);
 void object_on_visual_complete_spawn_effect_2669(
+    struct RuntimeObject* object);
+void object_on_visual_complete_countdown_effect_2700(
     struct RuntimeObject* object);
 void object_finish_owner_position_effect_with_spawn(
     struct RuntimeObject* object);
