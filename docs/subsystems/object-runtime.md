@@ -710,6 +710,12 @@ countdown that starts animation 4 before returning to the common idle callback.
 The continuation at `0x08060E7D` remains a literal because it enters an
 assembly routine without an independent symbol.
 
+The motion setup continuation now captures the object's current position,
+applies the fixed `0x3000` height offset, arms animation 5, and installs the
+next auxiliary and primary callbacks. Its neighboring effect-repeat callback
+increments the signed repeat counter and emits effect `0x125C` or `0x1274`
+from the same fixed-point position when the limit is reached.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

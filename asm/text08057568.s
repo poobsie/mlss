@@ -17383,8 +17383,9 @@ _08061040:
 	bx r0
 _08061048: .4byte 0x00001071
 _0806104C: .4byte sub_8061050
-	thumb_func_start sub_8061050
-sub_8061050:
+	.section .discard.object_state_motion_setup, "ax", %progbits
+	thumb_func_start asm_discard_sub_8061050
+asm_discard_sub_8061050:
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0x0
 	adds r0, #0x80
@@ -17446,6 +17447,7 @@ _080610C0:
 _080610C8: .4byte 0xFFFFD000
 _080610CC: .4byte sub_80612B4
 _080610D0: .4byte sub_80612FC
+	.section .text.misc_helpers_03_after_sub_8061050, "ax", %progbits
 	thumb_func_start sub_80610D4
 sub_80610D4:
 	push {r4, lr}
@@ -17770,8 +17772,9 @@ _0806144C:
 _08061454: .4byte sub_8060F70
 	.section .text.misc_helpers_02_after_sub_8061458, "ax", %progbits
 	.section .text.small_functions_01_after_sub_8061480, "ax", %progbits
-	thumb_func_start sub_80614B4
-sub_80614B4:
+	.section .discard.object_effect_repeat_counter, "ax", %progbits
+	thumb_func_start asm_discard_sub_80614B4
+asm_discard_sub_80614B4:
 	push {r4, lr}
 	add sp, #-0x004
 	adds r4, r0, #0x0
@@ -17844,6 +17847,7 @@ _0806152E:
 	bx r0
 	.byte 0x00, 0x00
 _08061538: .4byte 0x00001274
+	.section .text.misc_helpers_03_after_sub_80614B4, "ax", %progbits
 	thumb_func_start sub_806153C
 sub_806153C:
 	push {r4, lr}

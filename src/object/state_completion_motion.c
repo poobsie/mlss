@@ -14,6 +14,11 @@ void sub_806062C(struct RuntimeObject* object);
 void sub_808750C(struct RuntimeObject* object);
 void sub_8060D4C(struct RuntimeObject* object);
 void sub_8060DEC(struct RuntimeObject* object);
+void sub_80612B4(struct RuntimeObject* object);
+void sub_80612FC(struct RuntimeObject* object);
+void sub_806123C(struct RuntimeObject* object);
+void sub_8085B38(struct RuntimeObject* object);
+void sound_effect_stop(s32 sound);
 void sub_807F4FC(struct RuntimeObject* object);
 s32 sub_8082B00(struct RuntimeObject* object);
 void sub_807C298(struct RuntimeObject* object);
@@ -177,6 +182,52 @@ void sub_8060E4C(struct RuntimeObject* object)
     if ((value << 16) <= 0) {
         sub_8082E1C(object, 4, 0, 0);
         object->update = sub_808750C;
+    }
+}
+
+__attribute__((section(".text.misc_helpers_03.sub_8061050")))
+void sub_8061050(struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        object->value84 = object->positionX;
+        *(s32*)object->unknown88 = object->positionY;
+        object->value8C = object->positionZBase - 0x3000;
+        {
+            u8 flags = object->flags79;
+            flags |= 0x20;
+            object->flags79 = flags;
+        }
+        object->unknown7C = 0x280;
+        object->unknown7A = 0;
+        sub_8085B38(object);
+        sub_8082E1C(object, 5, 0, 0);
+        sub_807F4FC(object);
+        object->auxiliaryUpdate = sub_80612B4;
+        {
+            u8 flags = object->flags77;
+            flags |= 0x20;
+            object->flags77 = flags;
+        }
+        object->timer = 0;
+        object->valueA8 = 0;
+        object->update = sub_80612FC;
+    }
+}
+
+__attribute__((section(".text.misc_helpers_03.sub_80614B4")))
+void sub_80614B4(struct RuntimeObject* object)
+{
+    object->valueA0++;
+    if (object->valueA0 >= object->valueA4) {
+        object->valueA0 = 0;
+        if (object->behaviorState == 0)
+            sub_80DF024(0x125C, object->positionX / 0x100,
+                        object->positionY / 0x100,
+                        object->positionZBase / 0x100, object);
+        else
+            sub_80DF024(0x1274, object->positionX / 0x100,
+                        object->positionY / 0x100,
+                        object->positionZBase / 0x100, object);
     }
 }
 
