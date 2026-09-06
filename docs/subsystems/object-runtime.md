@@ -460,6 +460,12 @@ Both integrate the signed vertical velocity and acceleration, switch to animatio
 land at the state's established floor height with animation 8. The two paths keep
 their observed command variants, `0x204D` and `0x2000`, through both transitions.
 
+The adjacent action branch now includes another alternate-command vertical path
+and its shared cleanup gate. The motion callback follows the same signed vertical
+integration and animation-6 transition used by the established jump family, then
+continues to its existing `0x2000` landing callback. The cleanup gate clears the
+owner's pending flag and finishes on action flags or after its short timer expires.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
