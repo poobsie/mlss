@@ -325959,6 +325959,7 @@ _08108B48:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.if 0
 	thumb_func_start sub_8108B50
 sub_8108B50:
 	push {r4, lr}
@@ -325986,6 +325987,8 @@ _08108B76:
 	bx r0
 _08108B7C: .4byte 0x00000151
 _08108B80: .4byte sub_8108B10
+	.endif
+	.section .text.object_status_transitions_after_sub_8108B50, "ax", %progbits
 	thumb_func_start sub_8108B84
 sub_8108B84:
 	push {r4, r5, r6, lr}
@@ -326173,6 +326176,7 @@ sub_8108CBC:
 _08108CCC: .4byte 0x00000FFF
 	.endif
 	.section .text.after_middle_sub_8108CBC
+	.if 0
 	thumb_func_start sub_8108CD0
 sub_8108CD0:
 	push {r4, r5, lr}
@@ -326220,6 +326224,8 @@ _08108D1E:
 	bx r0
 _08108D24: .4byte sub_8108BE0
 _08108D28: .4byte 0x0000FFFC
+	.endif
+	.section .text.object_status_transitions_after_sub_8108CD0, "ax", %progbits
 	thumb_func_start sub_8108D2C
 sub_8108D2C:
 	push {r4, r5, r6, lr}

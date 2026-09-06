@@ -1,0 +1,12 @@
+#ifndef GUARD_FIELD_OBJECT_STATUS_TRANSITIONS_H
+#define GUARD_FIELD_OBJECT_STATUS_TRANSITIONS_H
+
+#include "field/object_flags.h"
+
+#define field_object_finish_variant_action_when_visual_ready sub_8108B10
+#define field_object_play_sound_151_after_delay sub_8108B50
+#define field_object_start_variant_action_when_ready sub_8108B84
+#define field_object_prepare_variant_action sub_8108BE0
+#define field_object_consume_pending_action_request sub_8108CD0
+
+#endif
