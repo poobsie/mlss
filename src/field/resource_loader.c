@@ -203,6 +203,30 @@ void field_clear_runtime_flag_and_mode_vram(
     }
 }
 
+EARLY_RESOURCE_SEC(sub_80290E0)
+void field_flush_dirty_workspace_blocks(
+    struct FieldObjectResourceRuntime* runtime)
+{
+    u32* dirtyBlocks = &runtime->dirtyWorkspaceBlocksF0;
+    u32* remainingBlocks;
+    const u8* source;
+    u8* destination;
+
+    if (*dirtyBlocks != 0) {
+        source = runtime->workspace24;
+        destination = (u8*)0x02000080;
+        remainingBlocks = dirtyBlocks;
+        do {
+            if (*remainingBlocks & 1)
+                CpuFastSet(source, destination, 8);
+            source += 0x20;
+            destination += 0x20;
+            *remainingBlocks >>= 1;
+        } while (*remainingBlocks != 0);
+    }
+}
+
+
 EARLY_RESOURCE_SEC(sub_80293F8)
 void field_load_object_resource_handles(
     struct FieldObjectResourceRuntime* runtime, u16 setIndex)

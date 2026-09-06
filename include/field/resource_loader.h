@@ -57,11 +57,14 @@ struct FieldResourceCleanupContext {
 struct FieldObjectResourceRuntime {
     u8 unknown000[0x1C];
     struct FieldObjectResourceHandleStorage* handleStorage1C;
-    u8 unknown020[8];
+    u8 unknown020[4];
+    const u8* workspace24;
     struct FieldRuntimeOwnedObject* ownedObjects28[0x20];
     void* ownedAllocationsA8[8];
     const u16* resourceIdsC8;
-    u8 unknown0CC[0x3F];
+    u8 unknown0CC[0x24];
+    u32 dirtyWorkspaceBlocksF0;
+    u8 unknown0F4[0x17];
     u8 ownedObjectCount10B;
     u8 resourceCount10C;
     u8 unknown10D[5];
@@ -77,6 +80,7 @@ struct FieldObjectResourceRuntime {
 #define field_release_inline_resource_objects sub_8029380
 #define field_destroy_owned_objects_and_allocations sub_80292EC
 #define field_clear_runtime_flag_and_mode_vram sub_80292A0
+#define field_flush_dirty_workspace_blocks sub_80290E0
 #define field_owned_resource_destroy sub_80E8EFC
 #define field_resource_block_list_destroy sub_80E9484
 
@@ -95,6 +99,8 @@ void field_destroy_owned_objects_and_allocations(
     struct FieldObjectResourceRuntime* runtime);
 void field_clear_runtime_flag_and_mode_vram(
     const struct FieldResourceCleanupContext* context);
+void field_flush_dirty_workspace_blocks(
+    struct FieldObjectResourceRuntime* runtime);
 void field_owned_resource_destroy(struct FieldOwnedResource* resource, u32 flags);
 void field_resource_block_list_destroy(struct FieldResourceBlockList* list,
                                        u32 flags);

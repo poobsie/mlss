@@ -23054,8 +23054,9 @@ _080290C4: .4byte 0x03000C78
 _080290C8: .4byte 0x0800063C
 	.section .text.after_80290CC, "ax", %progbits
 	.align 2, 0
-	thumb_func_start sub_80290E0
-sub_80290E0:
+	.section .discard.field_flush_dirty_workspace_blocks, "ax", %progbits
+	thumb_func_start asm_discard_sub_80290E0
+asm_discard_sub_80290E0:
 	push {r4, r5, r6, lr}
 	adds r1, r0, #0x0
 	adds r2, r1, #0x0
@@ -23089,6 +23090,7 @@ _08029116:
 	pop {r0}
 	bx r0
 _0802911C: .4byte 0x02000080
+	.section .text.after_field_object_resource_handles_80290E0, "ax", %progbits
 	thumb_func_start sub_8029120
 sub_8029120:
 	push {r4, r5, r6, r7, lr}
