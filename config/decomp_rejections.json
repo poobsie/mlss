@@ -44,6 +44,20 @@
       "required_evidence": "new caller or type evidence that changes operand evaluation order"
     },
     {
+      "symbol": "sub_8060AF8",
+      "status": "deferred",
+      "attempts": 1,
+      "mismatch_class": "linker overlap and section placement",
+      "required_evidence": "an isolated raw-section split and linker placement for this exact boundary"
+    },
+    {
+      "symbol": "sub_8060C44",
+      "status": "deferred",
+      "attempts": 1,
+      "mismatch_class": "linker overlap and section placement",
+      "required_evidence": "an isolated raw-section split and linker placement for this exact boundary"
+    },
+    {
       "symbol": "sub_80611A8",
       "status": "exhausted",
       "attempts": 2,
@@ -56,6 +70,20 @@
       "attempts": 1,
       "mismatch_class": "compiler layout and downstream section-boundary shift",
       "required_evidence": "a second evidence-backed source shape that preserves the reference layout"
+    },
+    {
+      "symbol": "sub_806123C",
+      "status": "deferred",
+      "attempts": 1,
+      "mismatch_class": "raw-region address displacement",
+      "required_evidence": "a bounded assembly split that preserves the surrounding raw region"
+    },
+    {
+      "symbol": "sub_806153C",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "compiler control-flow shape",
+      "required_evidence": "a recovered type or source construct that changes the generated control flow"
     },
     {
       "symbol": "sub_8134AA8",
