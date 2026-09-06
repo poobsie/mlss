@@ -115,6 +115,12 @@ existing motion layout a concrete relationship between offsets `0x04/0x08`,
 `0x0C/0x10`, and the halfword deltas at `0x14/0x18`; the owning effect identity is
 still not established.
 
+The coordinate-projector lifecycle now exposes sprite creation and destruction
+through the same fixed-point position layout used by its motion and relative-coordinate
+writers. The sprite resource halfword is identified by its direct use in the sprite
+factory; the descriptor, height context, and unrelated constructor payload remain
+structural until their owners are recovered.
+
 Five more leaves expose a runtime flag setter, three large-owner cleanup paths,
 and a compact effect-state update. Their structural layouts name only proven
 ownership and value relationships; unresolved battle entity identities remain

@@ -460155,7 +460155,8 @@ _081612DC:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
-	.section .text.high_after_sub_81612E4, "ax", %progbits
+	.section .text.battle_coordinate_state_discard_sub_81612F8, "ax", %progbits
+	.if 0
 	thumb_func_start sub_81612F8
 sub_81612F8:
 	push {r4, lr}
@@ -460183,7 +460184,10 @@ sub_81612F8:
 	pop {r4}
 	pop {r0}
 	bx r0
-	.section .text.high_after_sub_816132C, "ax", %progbits
+	.endif
+	.section .text.battle_coordinate_state_after_sub_81612F8, "ax", %progbits
+	.section .text.battle_coordinate_state_discard_sub_8161330, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8161330
 sub_8161330:
 	push {r4, r5, lr}
@@ -460207,8 +460211,8 @@ _08161354:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
-	.byte 0x00, 0x00
-_0816135C: .4byte 0x08CDD018
+	.endif
+	.section .text.battle_coordinate_state_after_sub_8161330, "ax", %progbits
 	.byte 0x70, 0xB5, 0x84, 0xB0, 0x04, 0x1C, 0x1A, 0x48, 0xE0, 0x62, 0x22, 0x61, 0x20, 0x1C, 0x2C, 0xC9
 	.byte 0x2C, 0xC0, 0x00, 0x25, 0xE5, 0x60, 0x00, 0x21, 0x60, 0x5E, 0x00, 0x02, 0xE0, 0x61, 0x60, 0x61
 	.byte 0x02, 0x22, 0xA0, 0x5E, 0x00, 0x02, 0x20, 0x62, 0xA0, 0x61, 0x65, 0x62, 0xA5, 0x62, 0x06, 0x23
