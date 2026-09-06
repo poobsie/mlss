@@ -2305,6 +2305,9 @@ SECTIONS
         asm/text08057568.o(.text.field_status_cycle_transition_before_sub_810958C);
         src/field/status_cycle_transition.o(.text.field_status_cycle_transition.sub_810958C);
         asm/text08057568.o(.text.field_status_cycle_transition_after_sub_810958C);
+        asm/text08057568.o(.text.field_display_scale_transition_before_sub_810C398);
+        src/field/display_scale_transition.o(.text.field_display_scale_transition.sub_810C398);
+        asm/text08057568.o(.text.field_display_scale_transition_after_sub_810C398);
         src/field/display.o(.text.field_display.sub_810C950);
         asm/text08057568.o(.text.small_functions_07_after_sub_810C950);
         src/field/display.o(.text.misc_helpers_03.sub_810CAD0);

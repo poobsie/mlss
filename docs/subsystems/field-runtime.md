@@ -440,4 +440,13 @@ pointers beginning at runtime offset `0x2FC` through the signed index owned at
 otherwise the routine clears the high three runtime mode bits and returns to the
 object-group update callback. The phase's visual units are not yet established.
 
+The display-scale transition has two modes selected by runtime flag `0x80` at
+offset `0x0B`. In release mode, bit zero of the process state selects one of the
+two owned processes at runtime offsets `0x284` and `0x288`; its resource is
+released, the slot is cleared, and the owned callback is stopped. In update mode,
+the paired halfwords at resource offsets `0x04` and `0x06` step down by `0x40`
+toward `0x100`. Reaching that bound clears resource flag `0x10`, installs the
+follow-up callback, and refreshes the resource. The display unit represented by
+the paired halfwords remains unknown.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

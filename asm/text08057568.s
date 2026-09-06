@@ -330946,6 +330946,8 @@ _0810C38E:
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
+	.section .text.field_display_scale_transition_before_sub_810C398, "ax", %progbits
+	.if 0
 	thumb_func_start sub_810C398
 sub_810C398:
 	push {r4, r5, r6, lr}
@@ -331009,6 +331011,8 @@ _0810C40A:
 	pop {r0}
 	bx r0
 _0810C410: .4byte sub_810C2B4
+	.endif
+	.section .text.field_display_scale_transition_after_sub_810C398, "ax", %progbits
 	thumb_func_start sub_810C414
 sub_810C414:
 	push {r4, r5, r6, r7, lr}
