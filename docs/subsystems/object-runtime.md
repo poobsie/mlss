@@ -542,6 +542,15 @@ for shared readiness, restores visual mode 2, stops the sound, emits effect
 visual callback. The nearby paired-effect stop remains raw after the bounded
 source shapes selected the opposite callee-save ordering.
 
+The remaining setup and completion siblings in this owner-position branch are
+now typed. One setup rebuilds the standard owner-relative effect and hands off
+to a visual reset that restores mode 2, delays for 40 ticks, and stops sound
+`0x112`. The alternate setup uses fixed X `-0x20`, owner-derived Y and height,
+animation `0x0C`, and an observed raw auxiliary callback boundary before its
+next transition. Its paired completion restores mode 2 and emits effect
+`0x215C` at the object's fixed-point position before entering the established
+delayed-spawn callback.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
