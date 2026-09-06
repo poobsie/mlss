@@ -19,6 +19,17 @@ SEC(get_field_object_count) u8 get_field_object_count(u16 index, u8* countOut)
     return *countOut;
 }
 
+SEC(sub_80FB790) void* field_get_object_auxiliary_list(u16 index, u8* countOut)
+{
+    struct FieldObjectSetDirectory* directory = FIELD_OBJECT_SET_DIRECTORIES[index];
+
+    *countOut = ((directory->packedObjectCount << 2)
+        | (directory->packedResourceCount >> 6)) & 0x1F;
+    return (u8*)directory
+        - ((directory->auxiliaryListBackOffsetHi << 8)
+            | directory->auxiliaryListBackOffsetLo);
+}
+
 SEC(sub_80FB7BC) void* field_get_object_resource_list(u16 index, u8* countOut)
 {
     struct FieldObjectSetDirectory* directory = FIELD_OBJECT_SET_DIRECTORIES[index];

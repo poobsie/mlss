@@ -297881,8 +297881,9 @@ get_field_object_count: @ 080FB778
 _080FB78C: .4byte 0x083D6C58
 	.endif
 	.section .text.after_middle_get_field_object_count
-	thumb_func_start sub_80FB790
-sub_80FB790:
+	.section .discard.field_get_object_auxiliary_list, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FB790
+asm_discard_sub_80FB790:
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x0E
 	ldr r2, _080FB7B8 @ =0x083D6C58
@@ -297904,6 +297905,7 @@ sub_80FB790:
 	bx lr
 	.byte 0x00, 0x00
 _080FB7B8: .4byte 0x083D6C58
+	.section .text.after_middle_sub_80FB790, "ax", %progbits
 	.if 0
 	thumb_func_start sub_80FB7BC
 sub_80FB7BC:

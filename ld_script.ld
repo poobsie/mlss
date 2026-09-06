@@ -2280,6 +2280,8 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_12_after_sub_80FAFD8);
         src/field/metadata.o(.text.middle.get_field_object_count);
         asm/text08057568.o(.text.after_middle_get_field_object_count);
+        src/field/metadata.o(.text.middle.sub_80FB790);
+        asm/text08057568.o(.text.after_middle_sub_80FB790);
         src/field/metadata.o(.text.middle.sub_80FB7BC);
         asm/text08057568.o(.text.after_middle_sub_80FB7BC);
         src/field/metadata.o(.text.middle.sub_80FB7E0);
