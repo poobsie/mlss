@@ -19,6 +19,8 @@ void sub_8088F9C(struct RuntimeObject* object);
 void sub_808AEE4(struct RuntimeObject* object);
 void sub_808A32C(struct RuntimeObject* object);
 void sub_808C754(struct RuntimeObject* object);
+void sub_808C83C(struct RuntimeObject* object);
+void sub_808C968(struct RuntimeObject* object);
 void sub_808C308(struct RuntimeObject* object);
 void sub_807C298(struct RuntimeObject* object);
 void sub_807F47C(struct RuntimeObject* object);
@@ -450,6 +452,44 @@ void object_attach_ready_owner_then_finish_linked_countdown(
         *flags = (*flags & -7) | 2;
         object->update = sub_808A32C;
     }
+}
+
+SEC(sub_808C6BC)
+void object_start_animation_3_and_begin_45_tick_countdown(
+    struct RuntimeObject* object)
+{
+    s8* flags;
+
+    sub_8082E1C(object, 3, 0, 0);
+    flags = (s8*)&object->visual->flags;
+    *flags &= -7;
+    object->timer = 0x2D;
+    object->update = sub_808C83C;
+}
+
+SEC(sub_808C784)
+void object_when_value80_clear_prepare_command_3_for_24_tick_followup(
+    struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        sound_effect_stop(0x6C);
+        object->timer = 0x18;
+        sub_80873B8(object, 3, 0x20);
+        object->followup = object_start_animation_4_then_wait_30_ticks;
+    }
+}
+
+SEC(sub_808C938)
+void object_start_animation_4_then_wait_30_ticks(
+    struct RuntimeObject* object)
+{
+    s8* flags;
+
+    sub_8082E1C(object, 4, 0, 0);
+    flags = (s8*)&object->visual->flags;
+    *flags &= -7;
+    object->update = sub_808C968;
+    object->timer = 0x1E;
 }
 
 SEC(sub_809C960)

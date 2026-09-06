@@ -92716,59 +92716,11 @@ _0808C5FC: .4byte sub_808C784
 	.section .text.object_setup_transitions_after_sub_808C62C, "ax", %progbits
 	.section .text.object_setup_transitions_after_sub_808C65C, "ax", %progbits
 	.section .text.object_setup_transitions_after_sub_808C68C, "ax", %progbits
-	thumb_func_start sub_808C6BC
-sub_808C6BC:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	movs r1, #0x03
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r4, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x12]
-	adds r1, r4, #0x0
-	adds r1, #0xAC
-	movs r0, #0x2D
-	strh r0, [r1, #0x00]
-	ldr r0, _0808C6E8 @ =0x0808C83D
-	str r0, [r4, #0x4C]
-	pop {r4}
-	pop {r0}
-	bx r0
-_0808C6E8: .4byte sub_808C83C
+	.section .text.object_small_runtime_after_sub_808C6BC, "ax", %progbits
 	.section .text.small_functions_01_after_sub_808C6EC, "ax", %progbits
 	.section .text.object_setup_transitions_after_sub_808C724, "ax", %progbits
 	.section .text.object_setup_transitions_after_sub_808C754, "ax", %progbits
-	thumb_func_start sub_808C784
-sub_808C784:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r0, #0x80
-	ldr r0, [r0, #0x00]
-	cmp r0, #0x00
-	bne _0808C7AC
-	movs r0, #0x6C
-	bl sound_effect_stop
-	adds r0, r4, #0x0
-	adds r0, #0xAC
-	movs r1, #0x18
-	strh r1, [r0, #0x00]
-	adds r0, r4, #0x0
-	movs r1, #0x03
-	movs r2, #0x20
-	bl sub_80873B8
-	ldr r0, _0808C7B4 @ =0x0808C939
-	str r0, [r4, #0x50]
-_0808C7AC:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0808C7B4: .4byte sub_808C938
+	.section .text.object_small_runtime_after_sub_808C784, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_808C7B8, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_808C7E4, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_808C810, "ax", %progbits
@@ -92833,30 +92785,7 @@ sub_808C868:
 _0808C8DC: .4byte sub_808A5DC
 	.section .text.misc_helpers_03_after_sub_808C8E0, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_808C90C, "ax", %progbits
-	thumb_func_start sub_808C938
-sub_808C938:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	movs r1, #0x04
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r4, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x12]
-	ldr r0, _0808C964 @ =0x0808C969
-	str r0, [r4, #0x4C]
-	adds r4, #0xAC
-	movs r0, #0x1E
-	strh r0, [r4, #0x00]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0808C964: .4byte sub_808C968
+	.section .text.object_small_runtime_after_sub_808C938, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_808C968, "ax", %progbits
 	thumb_func_start sub_808C994
 sub_808C994:

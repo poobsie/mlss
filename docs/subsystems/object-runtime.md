@@ -441,6 +441,12 @@ attaches to a ready position owner, then starts animation 7 on the controller an
 animation 2 on its linked object, normalizes the linked visual mode to 2, and
 continues into the existing completion path.
 
+The same velocity-control family now includes three later transitions. One starts
+animation 3, clears the visual mode bits, and begins a 45-tick countdown. A
+`value80` gate stops sound `0x6C`, prepares command 3 with argument `0x20`, and
+stores a 24-tick followup. That followup starts animation 4, clears the same
+visual mode bits, and installs the established 30-tick countdown callback.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
