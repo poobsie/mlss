@@ -13,6 +13,11 @@ Every source change must preserve the reference ROM unless a task explicitly say
 ## Decompilation conventions
 
 - Preserve unknown function names such as `sub_8057568` until there is enough evidence for a semantic name. An address-based placeholder is more honest than a confident guess.
+- A function is not decompiled merely because assembly was moved into a C file. Do not
+  count naked functions, inline assembly that implements the routine, `.byte` directives,
+  or equivalent compiler escape hatches as C progress. Small empty register-allocation
+  barriers may support otherwise ordinary typed C, but the behavior itself must remain
+  expressed in portable C.
 - Name source files and linker-section groups by game subsystem when known. When it is not known, use a neutral address range or a plain structural description.
 - Do not use workflow history in permanent names. Terms such as `batch`, `wave`, `push`, `expansion`, `compact`, and numbered author passes describe how code was produced, not what it does.
 - Replace generated identifiers (`arg0`, `var_r0`, `M2C_UNK`, raw field offsets) when types and behavior are understood. Do not invent types merely to make code look finished.

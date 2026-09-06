@@ -16,10 +16,15 @@ from decomp_workflow import (
     m2c_draft,
     render_packet,
     token_count,
+    REGISTER_TRAMPOLINE,
 )
 
 
 class DecompWorkflowTest(unittest.TestCase):
+    def test_register_trampolines_are_not_ranked_as_c_candidates(self):
+        self.assertIsNotNone(REGISTER_TRAMPOLINE.search("\tbx r7\n"))
+        self.assertIsNone(REGISTER_TRAMPOLINE.search("\tbx lr\n"))
+
     @classmethod
     def setUpClass(cls):
         cls.candidates = discover(ROOT / "mlss.map", git_tracked_assembly())

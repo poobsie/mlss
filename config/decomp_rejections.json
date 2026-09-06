@@ -51,6 +51,13 @@
       "required_evidence": "a recovered interface or source form that changes flag evaluation and register scheduling"
     },
     {
+      "symbol": "sub_80EA940",
+      "status": "deferred",
+      "attempts": 1,
+      "mismatch_class": "compiler layout and downstream section-boundary shift",
+      "required_evidence": "a second evidence-backed source shape that preserves the reference layout"
+    },
+    {
       "symbol": "sub_8134AA8",
       "status": "exhausted",
       "attempts": 2,

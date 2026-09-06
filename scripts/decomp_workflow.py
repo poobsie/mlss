@@ -22,6 +22,9 @@ CALL = re.compile(r"^\s*blx?\s+(\S+)", re.MULTILINE)
 BRANCH = re.compile(r"^\s*b(?:eq|ne|gt|ge|lt|le|hi|hs|lo|ls|cc|cs|mi|pl|vs|vc)\s+", re.MULTILINE)
 BYTE = re.compile(r"\.byte\s+(.+)$", re.MULTILINE)
 SWI = re.compile(r"^\s*swi\s+", re.MULTILINE)
+REGISTER_TRAMPOLINE = re.compile(
+    r"^\s*bx\s+r(?:1[0-5]|[0-9])\s*(?:@.*)?$", re.MULTILINE
+)
 INSTRUCTION = re.compile(r"^\s*([a-z][a-z0-9.]*)\s+", re.MULTILINE)
 DISABLED_IF = re.compile(r"^\s*\.if\s+0(?:\s|$)")
 ASSEMBLER_IF = re.compile(r"^\s*\.if(?:n?def|c|nc|eq|ne|gt|ge|lt|le|b|nb)?(?:\s|$)")
@@ -134,6 +137,7 @@ def discover(map_path: Path, assembly: list[Path]) -> list[Candidate]:
             if (
                 name not in addresses
                 or SWI.search(block)
+                or REGISTER_TRAMPOLINE.search(block)
                 or name.startswith(("_call_via_", "__"))
             ):
                 continue
