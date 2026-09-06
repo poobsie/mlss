@@ -1,15 +1,20 @@
 #include "field/resource_loader.h"
+#include "field/metadata.h"
 #include "memory/heap.h"
 
 void sub_80E5968(void* resource, s32 flags);
 void sub_80F94A8(void);
 void sub_80FADD4(struct FieldResourceLoaderProcess* loader);
+void* sub_80214A4(s32 owner, u16 resourceId, s32 slot, s32 retain);
+void* sub_80213A0(s32 owner, u16 resourceId, s32 slot, s32 retain);
 
 #define SEC(group, symbol) __attribute__((section(".text." group "." #symbol)))
 #define STRINGIFY_INNER(value) #value
 #define STRINGIFY(value) STRINGIFY_INNER(value)
 #define MISC2_SEC(symbol) \
     __attribute__((section(".text.misc_helpers_02." STRINGIFY(symbol))))
+#define EARLY_RESOURCE_SEC(symbol) \
+    __attribute__((section(".text.field_object_resource_handles." #symbol)))
 
 #define FIELD_RESOURCE_RUNTIME (*(struct FieldResourceRuntime**)0x03000FC0)
 #define FIELD_RESOURCE_MEMORY_FILL \
@@ -113,4 +118,43 @@ struct FieldResourceLoaderProcess* field_resource_loader_create(
     FIELD_RESOURCE_RUNTIME->resourceDefault56C =
         FIELD_RESOURCE_DESCRIPTOR_56C->resource;
     return loader;
+}
+
+EARLY_RESOURCE_SEC(sub_80293B8)
+void field_load_auxiliary_resource_handles(
+    struct FieldObjectResourceRuntime* runtime)
+{
+    const u16* resourceIds = runtime->resourceIdsC8;
+    s32 i = 0;
+
+    while (i < runtime->resourceCount10C) {
+        runtime->handleStorage1C->auxiliaryResourceHandles15C[i] =
+            sub_80214A4(0, *resourceIds, -1, 1);
+        i++;
+        resourceIds++;
+    }
+}
+
+EARLY_RESOURCE_SEC(sub_80293B8)
+const u16 field_load_auxiliary_resource_handles_padding = 0;
+
+EARLY_RESOURCE_SEC(sub_80293F8)
+void field_load_object_resource_handles(
+    struct FieldObjectResourceRuntime* runtime, u16 setIndex)
+{
+    const u16* resourceIds;
+    s32 i;
+
+    runtime->resourceIdsC8 =
+        field_get_object_resource_list(setIndex, &runtime->resourceCount10C);
+    *(void**)0x03000C78 = 0;
+    resourceIds = runtime->resourceIdsC8;
+    i = 0;
+    while (i < runtime->resourceCount10C) {
+        runtime->handleStorage1C->objectResourceHandles5C[i] =
+            sub_80213A0(0, *resourceIds, -1, 1);
+        i++;
+        resourceIds++;
+    }
+    *(void**)0x03000C78 = (void*)0x0800063C;
 }

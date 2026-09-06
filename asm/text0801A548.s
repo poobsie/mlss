@@ -23423,8 +23423,9 @@ _080293B0:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_80293B8
-sub_80293B8:
+	.section .discard.field_load_auxiliary_resource_handles, "ax", %progbits
+	thumb_func_start asm_discard_sub_80293B8
+asm_discard_sub_80293B8:
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0x0
 	adds r0, #0xC8
@@ -23458,8 +23459,10 @@ _080293E4:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_80293F8
-sub_80293F8:
+	.section .text.after_field_object_resource_handles_80293B8, "ax", %progbits
+	.section .discard.field_load_object_resource_handles, "ax", %progbits
+	thumb_func_start asm_discard_sub_80293F8
+asm_discard_sub_80293F8:
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0x0
 	lsls r0, r1, #0x10
@@ -23510,6 +23513,7 @@ _0802944A:
 	.byte 0x00, 0x00
 _08029458: .4byte 0x03000C78
 _0802945C: .4byte 0x0800063C
+	.section .text.after_field_object_resource_handles_80293F8, "ax", %progbits
 	.section .text.early15a_after_sub_8029460, "ax", %progbits
 	thumb_func_start sub_80294A0
 sub_80294A0:

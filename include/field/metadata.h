@@ -28,5 +28,6 @@ struct FieldSceneOwner {
 
 u8 get_field_object_count(u16 index, u8* countOut);
 void* field_get_object_auxiliary_list(u16 index, u8* countOut);
+void* field_get_object_resource_list(u16 index, u8* countOut);
 
 #endif
