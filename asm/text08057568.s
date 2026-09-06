@@ -295649,8 +295649,9 @@ _080F9534: .4byte 0x03001034
 _080F9538: .4byte 0x0000099C
 _080F953C: .4byte 0x00000908
 _080F9540: .4byte 0x000009A1
-	thumb_func_start sub_80F9544
-sub_80F9544:
+	.section .discard.field_save_indexed_sprite_attributes, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F9544
+asm_discard_sub_80F9544:
 	push {r4, lr}
 	lsls r1, r1, #0x18
 	ldr r0, [r0, #0x14]
@@ -295743,8 +295744,10 @@ _080F95F2:
 	pop {r0}
 	bx r0
 _080F95F8: .4byte 0xFFFFFE7F
-	thumb_func_start sub_80F95FC
-sub_80F95FC:
+	.section .text.field_script_blocks_after_sub_80F9544, "ax", %progbits
+	.section .discard.field_restore_indexed_sprite_attributes, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F95FC
+asm_discard_sub_80F95FC:
 	push {r4, lr}
 	lsls r1, r1, #0x18
 	ldr r0, [r0, #0x14]
@@ -295799,6 +295802,7 @@ sub_80F95FC:
 	pop {r4}
 	pop {r0}
 	bx r0
+	.section .text.field_script_blocks_after_sub_80F95FC, "ax", %progbits
 	thumb_func_start sub_80F9668
 sub_80F9668:
 	push {r4, r5, r6, lr}

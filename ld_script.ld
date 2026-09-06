@@ -2161,6 +2161,10 @@ SECTIONS
         asm/text08057568.o(.text.field_script_blocks_after_sub_80F8DE0);
         src/field/script_block_commands.o(.text.small_functions_01.sub_80F8EB0);
         asm/text08057568.o(.text.field_script_blocks_after_sub_80F8EB0);
+        src/field/sprite_attribute_snapshot.o(.text.small_functions_01.sub_80F9544);
+        asm/text08057568.o(.text.field_script_blocks_after_sub_80F9544);
+        src/field/sprite_attribute_snapshot.o(.text.small_functions_01.sub_80F95FC);
+        asm/text08057568.o(.text.field_script_blocks_after_sub_80F95FC);
         src/script/state_commands.o(.text.misc_helpers_02.sub_80FA6BC);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80FA6BC);
         src/field/entry_toggle.o(.text.small_functions_01.sub_80FAEC4);

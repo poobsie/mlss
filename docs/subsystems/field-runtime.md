@@ -396,6 +396,15 @@ so both names retain the proven offsets or storage role. The root launch wrapper
 starts the primary script channel with flag `1` and mode `0xFF`, using the root
 block owned through context offset `0x2C`.
 
+The indexed sprite-attribute boundary now has a symmetric save/restore pair.
+Each `0x40`-byte record preserves the attached sprite's halfword at offset `0x0E`,
+byte at offset `0x20`, and four packed two-bit groups from offset `0x1F`.
+`field_save_indexed_sprite_attributes` records those values, or installs the
+observed neutral defaults when no sprite is attached;
+`field_restore_indexed_sprite_attributes` writes the saved values back. The
+gameplay meanings of the individual packed groups remain unresolved, so their
+names describe only the proven grouping and direction of transfer.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or
