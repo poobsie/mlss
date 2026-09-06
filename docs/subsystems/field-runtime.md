@@ -405,6 +405,14 @@ observed neutral defaults when no sprite is attached;
 gameplay meanings of the individual packed groups remain unresolved, so their
 names describe only the proven grouping and direction of transfer.
 
+The field script/UI command boundary now uses the existing screen and UI APIs
+directly. `field_script_configure_screen_layer` selects between the two proven
+layer-20 configurations from argument bit zero, and
+`field_script_set_owned_sprite_visibility` maps operations zero and one to hide
+and show. `field_script_mark_return_pending` sets shared byte `0x9A1` before
+returning from the current script channel. The byte remains offset-named because
+its consumers establish lifetime coordination, but not a narrower gameplay term.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or

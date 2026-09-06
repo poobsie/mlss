@@ -296863,8 +296863,9 @@ _080FA6A6:
 	.byte 0x00, 0x00
 _080FA6B8: .4byte 0x083B950C
 	.section .text.misc_helpers_02_after_sub_80FA6BC, "ax", %progbits
-	thumb_func_start sub_80FA6DC
-sub_80FA6DC:
+	.section .discard.field_script_configure_screen_layer, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FA6DC
+asm_discard_sub_80FA6DC:
 	push {lr}
 	adds r3, r0, #0x0
 	ldr r0, [r2, #0x00]
@@ -296882,7 +296883,9 @@ _080FA6F8:
 	movs r0, #0x01
 	pop {r1}
 	bx r1
-	.byte 0x00, 0x00, 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x60, 0x69, 0x27, 0xF0, 0xEA, 0xF8, 0x00, 0x06
+	.byte 0x00, 0x00
+	.section .text.field_script_ui_after_sub_80FA6DC, "ax", %progbits
+	.byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x60, 0x69, 0x27, 0xF0, 0xEA, 0xF8, 0x00, 0x06
 	.byte 0x00, 0x0E, 0x01, 0x28, 0x09, 0xD1, 0x60, 0x6A, 0x03, 0x49, 0x40, 0x18, 0x02, 0x21, 0x01, 0x70
 	.byte 0x01, 0x20, 0x05, 0xE0, 0x00, 0x00, 0xA1, 0x09, 0x00, 0x00, 0x68, 0x69, 0x28, 0x60, 0x00, 0x20
 	.byte 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47
@@ -296940,8 +296943,9 @@ sub_80FA734:
 	pop {r4, r5, r6}
 	pop {r1}
 	bx r1
-	thumb_func_start sub_80FA7A0
-sub_80FA7A0:
+	.section .discard.field_script_set_owned_sprite_visibility, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FA7A0
+asm_discard_sub_80FA7A0:
 	push {lr}
 	ldr r2, [r2, #0x00]
 	cmp r2, #0x00
@@ -296961,8 +296965,10 @@ _080FA7BC:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_80FA7C4
-sub_80FA7C4:
+	.section .text.field_script_ui_after_sub_80FA7A0, "ax", %progbits
+	.section .discard.field_script_mark_return_pending, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FA7C4
+asm_discard_sub_80FA7C4:
 	push {lr}
 	ldr r2, [r0, #0x24]
 	ldr r3, _080FA7E0 @ =0x000009A1
@@ -296977,6 +296983,7 @@ sub_80FA7C4:
 	bx r1
 	.byte 0x00, 0x00
 _080FA7E0: .4byte 0x000009A1
+	.section .text.field_script_ui_after_sub_80FA7C4, "ax", %progbits
 	thumb_func_start sub_80FA7E4
 sub_80FA7E4:
 	push {lr}

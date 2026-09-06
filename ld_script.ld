@@ -2173,6 +2173,12 @@ SECTIONS
         asm/text08057568.o(.text.field_script_blocks_after_sub_80F95FC);
         src/script/state_commands.o(.text.misc_helpers_02.sub_80FA6BC);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80FA6BC);
+        src/field/script_ui_commands.o(.text.small_functions_01.sub_80FA6DC);
+        asm/text08057568.o(.text.field_script_ui_after_sub_80FA6DC);
+        src/field/script_ui_commands.o(.text.small_functions_01.sub_80FA7A0);
+        asm/text08057568.o(.text.field_script_ui_after_sub_80FA7A0);
+        src/field/script_ui_commands.o(.text.small_functions_01.sub_80FA7C4);
+        asm/text08057568.o(.text.field_script_ui_after_sub_80FA7C4);
         src/field/entry_toggle.o(.text.small_functions_01.sub_80FAEC4);
         asm/text08057568.o(.text.small_functions_01_after_sub_80FAEC4);
         src/field/metadata.o(.text.middle.sub_80FAEEC);
