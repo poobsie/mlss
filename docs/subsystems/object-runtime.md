@@ -658,6 +658,21 @@ ROM span ends in zero fill where the linker emits a Thumb NOP. The preceding
 countdown transition also remains raw after the compiler folded the original
 two-instruction unchanged-volume setup into a register-dependent subtraction.
 
+The profile-position completion is now typed through its next effect handoff.
+It waits for readiness, starts animation 3, restores visual mode 2, stops sound
+`0x11B`, and enters the visual-completion callback. That callback starts
+animation 4, emits effect `0x2700` at the object's fixed-point position, resets
+the short timer and repetition state, and returns to the existing effect
+countdown. A connected delayed completion decrements its two-tick timer before
+starting animation `0x17` and entering the observed raw continuation. Its
+linked-variant initializer remains raw after both bounded shapes scheduled the
+animation selector differently from the ROM.
+
+A later compact visual gate now starts animation 1, initializes the observed
+40-tick timer, and installs its existing continuation. The larger motion and
+owner-selection routines around it remain raw because their layouts and
+control flow need stronger caller evidence.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

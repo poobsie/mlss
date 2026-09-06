@@ -50,6 +50,8 @@ void sub_8112498(struct RuntimeObject*);
 void sub_811254C(struct RuntimeObject*);
 s32 sub_8087124(struct RuntimeObject*);
 void sub_81125CC(struct RuntimeObject*);
+void sub_8112D78(struct RuntimeObject*);
+void sub_8114404(struct RuntimeObject*);
 
 void object_on_visual_complete_delay_12(struct RuntimeObject*);
 void sub_81109D0(struct RuntimeObject*);
@@ -641,6 +643,78 @@ void object_stop_animation_and_sound_11b_when_ready_variant_b(
         sub_8082E1C(object, -1, -1, 0);
         object->update = 0;
         sound_effect_stop(0x11B);
+    }
+}
+
+SEC(sub_81127FC)
+void object_complete_profile_position_animation_2(
+    struct RuntimeObject* object)
+{
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (sub_8087CE4(object) == 0) {
+        sub_8082E1C(object, 3, 0, 0);
+        flags = &object->visual->flags;
+        value = *flags;
+        mask = -7;
+        value &= mask;
+        value |= 2;
+        *flags = value;
+        object->update = object_on_profile_position_complete_start_effect_countdown;
+        sound_effect_stop(0x11B);
+    }
+}
+
+SEC(sub_81129B4)
+void object_on_profile_position_complete_start_effect_countdown(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 4, 0, 0);
+        sub_80DF024(0x2700, object->positionX / 256,
+                    object->positionY / 256,
+                    object->positionZBase / 256, object);
+        object->timer = 0;
+        object->valueA8 = 4;
+        object->update = object_on_visual_complete_countdown_effect_2700;
+        sound_effect_play(0x116, SOUND_VOLUME_UNCHANGED);
+    }
+}
+
+SEC(sub_8113458)
+void object_after_visual_complete_delay_2_start_animation_23(
+    struct RuntimeObject* object)
+{
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (object->visual->flags & 8) {
+        if (object->timer != 0) {
+            object->timer--;
+        } else {
+            sub_8082E1C(object, 0x17, 0, 0);
+            flags = &object->visual->flags;
+            value = *flags;
+            mask = -7;
+            value &= mask;
+            value |= 2;
+            *flags = value;
+            object->update = sub_8112D78;
+        }
+    }
+}
+
+SEC(sub_8113E44)
+void object_on_visual_complete_start_animation_1_timer_40(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        sub_8082E1C(object, 1, 0, 0);
+        object->timer = 0x28;
+        object->update = sub_8114404;
     }
 }
 
