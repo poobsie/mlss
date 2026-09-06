@@ -19,6 +19,11 @@ void sub_80582DC(struct GraphicsStagingSource* source);
 void sub_80584F8(struct GraphicsStagingSource* source);
 void sub_80587BC(struct GraphicsStagingSource* source, s32 mode);
 void sub_8115048(void* resourceObject, u8 configurationId, u8 value);
+void graphics_load_runtime_configuration(void* owner, u16 configurationIndex);
+void sub_8018218(void* source, void* destination, u32 size, u32 width, u32 mode);
+void sub_805D0DC(struct GraphicsProcessState* process);
+void sub_805D93C(struct GraphicsProcessState* process, u32 value);
+void sub_805D288(struct GraphicsProcessState* process);
 
 #define FRAME_TRANSFER_SOURCE (*(void**)0x03000E08)
 #define FRAME_TRANSFER_STAGING (*(u16**)0x03000E0C)
@@ -91,6 +96,52 @@ void graphics_apply_indexed_resource_entry_value(
     sub_8115048(
         owner->resourceObject, owner->resourceEntryIndices[index], value);
 }
+
+SEC(sub_805DA04)
+void graphics_set_configuration_state_and_load(
+    struct GraphicsRuntimeConfigurationProcess* process,
+    u16 configurationIndex)
+{
+    process->state = -5;
+    process->configurationIndex = configurationIndex;
+    graphics_load_runtime_configuration(process, process->configurationIndex);
+}
+
+SEC(sub_805C9A4)
+void graphics_copy_indexed_tile_resource_to_vram(
+    void* owner, u16 destinationTile, u8 tileCount, u16 resourceIndex)
+{
+    const u8* resourceBase = (const u8*)0x08940C9C;
+    const u32* resourceOffsets = (const u32*)resourceBase;
+    const void* source = resourceBase + resourceOffsets[resourceIndex];
+    void* destination = (u8*)0x06004000 + destinationTile * 32;
+
+    sub_8018218((void*)source, destination, tileCount * 32, 32, 0);
+}
+
+SEC(sub_805D8DC)
+void graphics_copy_indexed_tile_resource_to_vram_alternate(
+    void* owner, u16 destinationTile, u8 tileCount, u16 resourceIndex)
+{
+    const u8* resourceBase = (const u8*)0x08940C9C;
+    const u32* resourceOffsets = (const u32*)resourceBase;
+    const void* source = resourceBase + resourceOffsets[resourceIndex];
+    void* destination = (u8*)0x06004000 + destinationTile * 32;
+
+    sub_8018218((void*)source, destination, tileCount * 32, 32, 0);
+}
+
+SEC(sub_805D9CC)
+void graphics_rebuild_and_upload_vram_buffer(
+    struct GraphicsProcessState* process)
+{
+    sub_805D0DC(process);
+    sub_805D93C(process, 0);
+    sub_805D288(process);
+    sub_8018218(process->buffer94, (void*)0x06000000, 0x3000, 32, 0);
+}
+const u16 graphics_rebuild_and_upload_vram_buffer_padding
+    SEC(sub_805D9CC) = 0;
 
 SEC(sub_8059F24) void sub_8059F24(struct GraphicsStagingSource* source)
 {

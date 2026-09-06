@@ -9257,8 +9257,9 @@ _0805C968: .4byte 0x083B7108
 	.byte 0x0E, 0xDA, 0x04, 0x1C, 0xA8, 0x34, 0xE9, 0x18, 0x20, 0x68, 0x49, 0x00, 0x09, 0x18, 0x58, 0x00
 	.byte 0x80, 0x19, 0x00, 0x88, 0x08, 0x80, 0x58, 0x1C, 0x00, 0x04, 0x03, 0x0C, 0x93, 0x42, 0xF2, 0xDB
 	.byte 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-	thumb_func_start sub_805C9A4
-sub_805C9A4:
+	.section .discard.graphics_copy_indexed_tile_resource_to_vram, "ax", %progbits
+	thumb_func_start asm_discard_sub_805C9A4
+asm_discard_sub_805C9A4:
 	push {r4, lr}
 	add sp, #-0x004
 	lsls r1, r1, #0x10
@@ -9284,6 +9285,7 @@ sub_805C9A4:
 	.byte 0x00, 0x00
 _0805C9D4: .4byte 0x08940C9C
 _0805C9D8: .4byte 0x06004000
+	.section .text.after_graphics_copy_indexed_tile_resource_to_vram_805C9A4, "ax", %progbits
 	thumb_func_start sub_805C9DC
 sub_805C9DC:
 	push {r4, r5, r6, r7, lr}
@@ -10922,8 +10924,9 @@ _0805D7D8: .4byte 0x00007FFF
 	.byte 0x78, 0x43, 0x30, 0x18, 0x02, 0x1C, 0xB2, 0x32, 0x00, 0x21, 0x14, 0x70, 0x01, 0x32, 0x11, 0x70
 	.byte 0xB4, 0x30, 0x01, 0x70, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC
 	.byte 0x00, 0x47, 0x00, 0x00, 0xD0, 0x0D, 0x00, 0x03, 0x3C, 0x28, 0x3B, 0x08, 0xFF, 0x7F, 0x00, 0x00
-	thumb_func_start sub_805D8DC
-sub_805D8DC:
+	.section .discard.graphics_copy_indexed_tile_resource_to_vram_alternate, "ax", %progbits
+	thumb_func_start asm_discard_sub_805D8DC
+asm_discard_sub_805D8DC:
 	push {r4, lr}
 	add sp, #-0x004
 	lsls r1, r1, #0x10
@@ -10949,6 +10952,7 @@ sub_805D8DC:
 	.byte 0x00, 0x00
 _0805D90C: .4byte 0x08940C9C
 _0805D910: .4byte 0x06004000
+	.section .text.after_graphics_copy_indexed_tile_resource_to_vram_alternate_805D8DC, "ax", %progbits
 	thumb_func_start sub_805D914
 sub_805D914:
 	push {r4, lr}
@@ -11041,8 +11045,9 @@ _0805D9BC: .4byte 0x086FFC20
 _0805D9C0: .4byte 0x03000DD0
 _0805D9C4: .4byte 0x083AAC4C
 _0805D9C8: .4byte 0x000007FF
-	thumb_func_start sub_805D9CC
-sub_805D9CC:
+	.section .discard.graphics_rebuild_and_upload_vram_buffer, "ax", %progbits
+	thumb_func_start asm_discard_sub_805D9CC
+asm_discard_sub_805D9CC:
 	push {r4, lr}
 	add sp, #-0x004
 	adds r4, r0, #0x0
@@ -11067,8 +11072,10 @@ sub_805D9CC:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-	thumb_func_start sub_805DA04
-sub_805DA04:
+	.section .text.after_graphics_rebuild_and_upload_vram_buffer_805D9CC, "ax", %progbits
+	.section .discard.graphics_set_configuration_state_and_load, "ax", %progbits
+	thumb_func_start asm_discard_sub_805DA04
+asm_discard_sub_805DA04:
 	push {lr}
 	ldr r2, _0805DA18 @ =0x0000FFFB
 	strh r2, [r0, #0x1C]
@@ -11079,6 +11086,7 @@ sub_805DA04:
 	bx r0
 	.byte 0x00, 0x00
 _0805DA18: .4byte 0x0000FFFB
+	.section .text.after_graphics_set_configuration_state_and_load_805DA04, "ax", %progbits
 	.section .text.small_functions_02_after_sub_805DA1C, "ax", %progbits
 	thumb_func_start sub_805DA78
 sub_805DA78:

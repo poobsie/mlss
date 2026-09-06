@@ -84,6 +84,18 @@ offset `0x57C`, translates a caller-supplied slot through the byte array at
 `0x580`, and forwards the resulting resource-entry index and value to the shared
 resource operation. The entry's visual or gameplay identity remains unknown.
 
+The paired indexed tile-resource transfer entry points read a relative source
+offset from the table at `0x08940C9C`, convert the destination tile and tile
+count to byte units, and copy the selected data to character VRAM beginning at
+`0x06004000`. Their otherwise identical entry points remain separate because
+their owning callback roles have not been recovered.
+
+`graphics_rebuild_and_upload_vram_buffer` runs the three established rebuild
+passes and uploads the owner's `0x3000`-byte buffer at offset `0x94` to VRAM.
+`graphics_set_configuration_state_and_load` records state `-5` and the selected
+configuration index before invoking the adjacent 24-byte runtime-record loader.
+The configuration record's remaining fields stay unnamed.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

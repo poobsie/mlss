@@ -234,10 +234,18 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_02_after_sub_805C73C);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805C78C);
         asm/text08057568.o(.text.after_graphics_apply_indexed_resource_entry_value_805C78C);
+        src/graphics/process_state.o(.text.graphics_process_state.sub_805C9A4);
+        asm/text08057568.o(.text.after_graphics_copy_indexed_tile_resource_to_vram_805C9A4);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805CCC0);
         asm/text08057568.o(.text.after_graphics_process_sub_805CCC0);
         src/graphics/process_state.o(.text.misc_helpers_01.sub_805CCD8);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_805CCD8);
+        src/graphics/process_state.o(.text.graphics_process_state.sub_805D8DC);
+        asm/text08057568.o(.text.after_graphics_copy_indexed_tile_resource_to_vram_alternate_805D8DC);
+        src/graphics/process_state.o(.text.graphics_process_state.sub_805D9CC);
+        asm/text08057568.o(.text.after_graphics_rebuild_and_upload_vram_buffer_805D9CC);
+        src/graphics/process_state.o(.text.graphics_process_state.sub_805DA04);
+        asm/text08057568.o(.text.after_graphics_set_configuration_state_and_load_805DA04);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805DA1C);
         asm/text08057568.o(.text.small_functions_02_after_sub_805DA1C);
         src/object/small_value_transitions.o(.text.misc_helpers_02.sub_805DE90);
