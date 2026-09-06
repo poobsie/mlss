@@ -279,6 +279,17 @@ related landing callbacks clamp the object to `state->floorHeight`, select anima
 Lettered path suffixes distinguish otherwise identical callbacks whose assembly-only
 continuations do not yet establish gameplay-specific identities.
 
+Three later object callbacks now expose distinct state-machine actions. One raises
+the object's Y coordinate, establishes fixed vertical position `0x2600`, selects
+animation 1 with command `0x40C2`, sets visual mode 2, plays sound `0x15D`, and
+installs its continuation. Another advances byte `0x75` by five, performs the
+neighboring setup, resets the animation, and stops updating. The third decrements a
+positive signed timer and otherwise installs callback `sub_809E0EC`. Byte `0x75`,
+the command, and the continuation retain structural or address-based names because
+their assembly-only producers do not yet prove gameplay identities. The adjacent
+command-`0x4109` spawn callback remains in assembly after both bounded C shapes
+changed register allocation.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

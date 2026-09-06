@@ -117516,6 +117516,7 @@ _0809B4E8: .4byte sub_809B1A0
 	.byte 0x01, 0x20, 0x70, 0x47, 0x15, 0xB1, 0x09, 0x08
 	.section .text.activation_command_transitions_after_sub_809B504, "ax", %progbits
 	thumb_func_start sub_809B558
+.if 0
 sub_809B558:
 	push {r4, lr}
 	adds r4, r0, #0x0
@@ -117552,6 +117553,8 @@ sub_809B558:
 _0809B59C: .4byte 0x000040C2
 _0809B5A0: .4byte 0x0000015D
 _0809B5A4: .4byte sub_809B610
+.endif
+	.section .text.object_unique_callbacks_after_sub_809B558, "ax", %progbits
 	thumb_func_start sub_809B5A8
 sub_809B5A8:
 	push {r4, r5, lr}
@@ -119907,6 +119910,7 @@ _0809CA98: .4byte sub_809C660
 	.endif
 	.section .text.object_late_visual_setup_after_sub_809CA6C, "ax", %progbits
 	thumb_func_start sub_809CA9C
+.if 0
 sub_809CA9C:
 	push {r4, r5, lr}
 	adds r4, r0, #0x0
@@ -119928,6 +119932,7 @@ sub_809CA9C:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+.endif
 	.section .text.misc_helpers_01_after_sub_809CAC8, "ax", %progbits
 	thumb_func_start sub_809CAF0
 sub_809CAF0:
@@ -122933,6 +122938,7 @@ _0809E408:
 	bx r0
 	.byte 0x00, 0x00
 	thumb_func_start sub_809E410
+.if 0
 sub_809E410:
 	push {r4, lr}
 	adds r2, r0, #0x0
@@ -122955,6 +122961,7 @@ _0809E42C:
 	bx r0
 	.byte 0x00, 0x00
 _0809E434: .4byte sub_809E0EC
+.endif
 	.section .text.misc_helpers_02_after_sub_809E438, "ax", %progbits
 	thumb_func_start sub_809E454
 sub_809E454:

@@ -1447,6 +1447,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_809B3DC);
         src/object/activation_command_transitions.o(.text.activation_command_transitions.sub_809B504);
         asm/text08057568.o(.text.activation_command_transitions_after_sub_809B504);
+        src/object/unique_state_callbacks.o(.text.object_unique_callbacks.sub_809B558);
+        asm/text08057568.o(.text.object_unique_callbacks_after_sub_809B558);
         src/object/behavior_transitions.o(.text.sub_809B738);
         asm/text08057568.o(.text.after_sub_809B738);
         src/object/behavior_transitions.o(.text.sub_809B754);
@@ -1471,6 +1473,7 @@ SECTIONS
         asm/text08057568.o(.text.object_small_runtime_after_sub_809C960);
         src/object/late_visual_setup.o(.text.object_late_visual_setup.sub_809CA6C);
         asm/text08057568.o(.text.object_late_visual_setup_after_sub_809CA6C);
+        src/object/unique_state_callbacks.o(.text.object_unique_callbacks.sub_809CA9C);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_809CAC8);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_809CAC8);
         src/object/behavior_transitions.o(.text.sub_809D24C);
@@ -1483,6 +1486,7 @@ SECTIONS
         asm/text08057568.o(.text.timed_command_transitions_after_sub_809D49C);
         src/object/field_actor_effect.o(.text.small_functions_12.sub_809D4E4);
         asm/text08057568.o(.text.small_functions_12_after_sub_809D4E4);
+        src/object/unique_state_callbacks.o(.text.object_unique_callbacks.sub_809E410);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_809E438);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_809E438);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_809E49C);
