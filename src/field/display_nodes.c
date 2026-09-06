@@ -6,6 +6,7 @@ extern u32 sub_810B680;
 
 struct FieldDisplayNode* sub_807D2D0(u32* definition, s32 value, s32 argument);
 void sub_810B908(s32 index);
+void sub_810D3B8(s32 value, s32 x, s32 y, s32 mode);
 
 #define SEC(symbol) __attribute__((section(".text.small_functions_01." #symbol)))
 #define STRINGIFY_INNER(value) #value
@@ -14,6 +15,12 @@ void sub_810B908(s32 index);
     __attribute__((section(".text.misc_helpers_01." STRINGIFY(symbol))))
 #define MISC2_SEC(symbol) \
     __attribute__((section(".text.misc_helpers_02." STRINGIFY(symbol))))
+
+SEC(sub_8106B90)
+void field_display_node_draw_offset_box(struct FieldDisplayNode* node)
+{
+    sub_810D3B8(node->value16, node->value12 + 8, node->value14 - 8, 0);
+}
 
 MISC2_SEC(field_ensure_primary_pair_display_nodes)
 void field_ensure_primary_pair_display_nodes(void)

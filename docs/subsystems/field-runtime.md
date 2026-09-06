@@ -146,6 +146,16 @@ clears visual mode bits `1` and `2`, and continues through the shared action
 callback; the other only waits before selecting that callback. The callback itself
 remains address-named because its wider action-state role is still in assembly.
 
+Three direct helpers now sit with their typed field owners. The runtime flag query
+tests the proven `0x10` bit, the view initializer installs its default definition
+before forwarding to the established setup routine, and the display-node helper
+draws an offset box from the node's three signed coordinate values. The adjacent
+configured-box, countdown, display-register, and entry-state routines remain in
+assembly: their behavior is understood, but the available C shapes did not match
+the original instructions exactly. Their wider flag and staging roles therefore
+remain intentionally unnamed until a matching consumer boundary provides better
+evidence.
+
 ## Verification
 
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and

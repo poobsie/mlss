@@ -50,6 +50,17 @@ struct FieldModeRuntime {
 void sub_80F2524(
     struct FieldNestedFlagContainer* container, u8 selector, s32 value);
 
+SEC(sub_8082B00)
+s32 field_runtime_test_flag_10(void)
+{
+    s32 result = FIELD_MODE_RUNTIME->flags00B & 0x10;
+    if (result != 0)
+        return 1;
+    return 0;
+}
+
+static const u16 sub_8082B00_padding SEC(sub_8082B00) = 0;
+
 SEC(sub_80F7590) void field_clear_nested_flags_1788(u32 mask)
 {
     struct FieldNestedFlagTarget* target;

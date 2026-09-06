@@ -76870,25 +76870,7 @@ _08082AF4:
 	bx r0
 	.byte 0x00, 0x00
 _08082AFC: .4byte 0x07FFFFFF
-	thumb_func_start sub_8082B00
-sub_8082B00:
-	push {lr}
-	ldr r0, _08082B14 @ =0x03000FD8
-	ldr r0, [r0, #0x00]
-	ldrb r1, [r0, #0x0B]
-	movs r0, #0x10
-	ands r0, r1
-	cmp r0, #0x00
-	bne _08082B18
-	movs r0, #0x00
-	b _08082B1A
-_08082B14: .4byte 0x03000FD8
-_08082B18:
-	movs r0, #0x01
-_08082B1A:
-	pop {r1}
-	bx r1
-	.byte 0x00, 0x00
+	.section .text.field_runtime_flags_after_sub_8082B00, "ax", %progbits
 	thumb_func_start sub_8082B20
 sub_8082B20:
 	push {r4, r5, r6, r7, lr}
@@ -77099,16 +77081,7 @@ _08082CFC: .4byte 0x00000776
 	.section .text.misc_helpers_01_after_sub_8082D24, "ax", %progbits
 	.section .text.offset_reads_after_sub_8082D40, "ax", %progbits
 	.section .text.offset_reads_after_sub_8082D50, "ax", %progbits
-	thumb_func_start sub_8082D60
-sub_8082D60:
-	push {lr}
-	ldr r2, _08082D70 @ =0x08CDC2A8
-	str r2, [r0, #0x18]
-	bl sub_805A99C
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08082D70: .4byte 0x08CDC2A8
+	.section .text.field_view_state_after_sub_8082D60, "ax", %progbits
 	thumb_func_start sub_8082D74
 sub_8082D74:
 	push {r4, r5, r6, lr}
@@ -324744,23 +324717,7 @@ _08106B80: .4byte 0x084FB588
 _08106B84: .4byte 0x089F808C
 _08106B88: .4byte sub_8104DB8
 _08106B8C: .4byte sub_8103D74
-	thumb_func_start sub_8106B90
-sub_8106B90:
-	push {r4, lr}
-	movs r1, #0x16
-	ldsh r3, [r0, r1]
-	movs r2, #0x12
-	ldsh r1, [r0, r2]
-	adds r1, #0x08
-	movs r4, #0x14
-	ldsh r2, [r0, r4]
-	subs r2, #0x08
-	adds r0, r3, #0x0
-	movs r3, #0x00
-	bl sub_810D3B8
-	pop {r4}
-	pop {r0}
-	bx r0
+	.section .text.field_display_nodes_after_sub_8106B90, "ax", %progbits
 	thumb_func_start sub_8106BB0
 sub_8106BB0:
 	push {r4, lr}

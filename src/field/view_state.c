@@ -10,10 +10,21 @@
     __attribute__((section(".text.misc_helpers_03." STRINGIFY(name))))
 #define FIELD_VIEW_RUNTIME (*(struct FieldSlideRuntime**)0x03000FD8)
 
-void sub_8082C20(FieldViewState* view, s32* x, s32* y, s32* depth,
-                 s32 unused);
 void sub_8082CCC(FieldViewState* view, s16* record, s32 x, s32 y, s32 z,
                  s32 baseline);
+void sub_805A99C(FieldViewState* view, s32 value, const void* descriptor);
+void sub_8082C20(
+    FieldViewState* view, s32* x, s32* y, s32* depth, s32 unused);
+
+static const void* const FIELD_VIEW_DEFAULT_DEFINITION = (void*)0x08CDC2A8;
+
+SEC(sub_8082D60)
+void field_view_install_default_definition(FieldViewState* view, s32 value)
+{
+    const void* definition = FIELD_VIEW_DEFAULT_DEFINITION;
+    view->descriptor = definition;
+    sub_805A99C(view, value, definition);
+}
 
 MISC3_SEC(field_adjust_world_values_for_view)
 void field_adjust_world_values_for_view(

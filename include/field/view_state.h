@@ -4,7 +4,9 @@
 #include "global.h"
 
 typedef struct FieldViewState {
-    u8 unknown000[0x20];
+    u8 unknown000[0x18];
+    const void* descriptor;
+    u8 unknown01C[4];
     s16 panDeltaX;
     s16 panDeltaY;
     u8 unknown024[0x750];
@@ -27,6 +29,8 @@ void field_adjust_world_values_for_view(
     s32* x, s32* y, s32* depth, s32 unused);
 void field_adjust_record_for_view(
     s16* record, s32 x, s32 y, s32 z, s32 baseline);
+#define field_view_install_default_definition sub_8082D60
+void field_view_install_default_definition(FieldViewState* view, s32 value);
 
 /* Address-compatible entry points retained for assembly callers. */
 void sub_8082D00(FieldViewState *view, s32 x, s32 y);
