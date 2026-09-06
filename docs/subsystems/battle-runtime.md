@@ -23,6 +23,8 @@ The destructor file also groups seven entry points that install vtable `0x08CDCA
 
 The coordinate boundary now exposes `battle_write_relative_coordinates`, which subtracts a caller-supplied origin from the two fixed-point positions at offsets `0x14` and `0x18`, shifts both to integer coordinates, and writes the pair through offset `0x0C`. The projector's wider battle class and the coordinate units below the observed 8-bit fractional shift remain unknown.
 
+`battle_install_variant_callback` installs the continuation at `0x081507A8` into a caller-supplied callback slot. Its first two ABI arguments are unused, and the surrounding dispatcher has not yet established a narrower gameplay name for the continuation.
+
 Two caller-connected destructors now describe their proven ownership rules. `battle_destroy_runtime_resource_owner` releases the runtime resource at offset `0x28`, releases the buffer at offset `0`, then optionally frees its owner. `battle_destroy_coordinate_resource_pair` releases the two resources at offsets `0x08` and `0x0C`, then applies the same low-bit owner-free convention. Their class names remain structural because the current constructors prove allocation and ownership, but not narrower gameplay identities.
 
 `BattleDefinitionObject`, `BattleEffectObject`, `BattleRuntimeValues`, and `BattleSpriteOwner` represent separate observed layouts. They are not merged into a speculative inheritance tree.

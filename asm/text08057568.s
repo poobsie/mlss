@@ -443195,6 +443195,7 @@ _08150714:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.if 0
 	thumb_func_start sub_815071C
 sub_815071C:
 	ldr r0, _08150724 @ =0x081507A9
@@ -443202,6 +443203,8 @@ sub_815071C:
 	bx lr
 	.byte 0x00, 0x00
 _08150724: .4byte sub_81507A8
+	.endif
+	.section .text.battle_callback_resource_state_after_sub_815071C, "ax", %progbits
 	.byte 0x01, 0x48, 0x10, 0x60, 0x70, 0x47, 0x00, 0x00, 0xED, 0x07, 0x15, 0x08
 	thumb_func_start sub_8150734
 sub_8150734:

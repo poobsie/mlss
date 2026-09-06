@@ -2185,6 +2185,8 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8150590);
         src/field/callback_chains.o(.text.upper.sub_81506B4);
         asm/text08057568.o(.text.after_upper_sub_81506B4);
+        src/battle/callback_and_resource_state.o(.text.battle_callback_resource_state.sub_815071C);
+        asm/text08057568.o(.text.battle_callback_resource_state_after_sub_815071C);
         src/field/scene_object_properties.o(.text.text_late_helpers.sub_81507EC);
         asm/text08057568.o(.text.after_text_late_helpers_sub_81507EC);
         src/save/flags.o(.text.text_late_helpers.sub_8150A00);
