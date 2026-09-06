@@ -1207,10 +1207,14 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_808DCDC);
         src/object/variant_dispatch.o(.text.object_variant_dispatch.sub_808DD04);
         asm/text08057568.o(.text.object_variant_dispatch_after_sub_808DD04);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.runtime_object_finish_action);
+        asm/text08057568.o(.text.object_small_runtime_after_runtime_object_finish_action);
         src/object/initialization.o(.text.object_initialization.sub_808DD9C);
         asm/text08057568.o(.text.object_initialization_after_sub_808DD9C);
         src/object/jump_setups.o(.text.jump_setups.sub_808DE44);
         asm/text08057568.o(.text.jump_setups_after_sub_808DE44);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_808DEA8);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_808DEA8);
         src/object/completion_actions.o(.text.object_flag_actions.sub_808E09C);
         asm/text08057568.o(.text.object_flag_actions_after_sub_808E09C);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_808E0C8);

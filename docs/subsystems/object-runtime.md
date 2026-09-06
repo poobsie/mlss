@@ -447,6 +447,13 @@ animation 3, clears the visual mode bits, and begins a 45-tick countdown. A
 stores a 24-tick followup. That followup starts animation 4, clears the same
 visual mode bits, and installs the established 30-tick countdown callback.
 
+The later action family now exposes its shared finish routine and one jump setup.
+Finishing is gated by the object's active visual mode; it clears the owner's
+pending flag, removes a linked object, restores visual flags and parameter state,
+stops the active animation command, and clears the update callback. The jump
+setup plays sound `0x2B`, stores a fixed downward acceleration, starts animation
+5 in visual mode 2, and enters the established vertical-motion continuation.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

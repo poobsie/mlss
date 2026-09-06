@@ -188,6 +188,7 @@ struct ObjectRuntimePollOwner;
 #define object_start_animation_3_and_begin_45_tick_countdown sub_808C6BC
 #define object_when_value80_clear_prepare_command_3_for_24_tick_followup sub_808C784
 #define object_start_animation_4_then_wait_30_ticks sub_808C938
+#define object_start_animation_5_fixed_jump_with_sound_2b sub_808DEA8
 #define object_continue_when_linked_object_clears sub_809C960
 #define object_begin_fixed_vertical_descent sub_80A2C80
 
@@ -421,6 +422,8 @@ void object_start_animation_3_and_begin_45_tick_countdown(
 void object_when_value80_clear_prepare_command_3_for_24_tick_followup(
     struct RuntimeObject* object);
 void object_start_animation_4_then_wait_30_ticks(
+    struct RuntimeObject* object);
+void object_start_animation_5_fixed_jump_with_sound_2b(
     struct RuntimeObject* object);
 s32 object_continue_when_linked_object_clears(struct RuntimeObject* object);
 void object_begin_fixed_vertical_descent(struct RuntimeObject* object);

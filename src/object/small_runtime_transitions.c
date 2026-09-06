@@ -21,6 +21,7 @@ void sub_808A32C(struct RuntimeObject* object);
 void sub_808C754(struct RuntimeObject* object);
 void sub_808C83C(struct RuntimeObject* object);
 void sub_808C968(struct RuntimeObject* object);
+void sub_808DF5C(struct RuntimeObject* object);
 void sub_808C308(struct RuntimeObject* object);
 void sub_807C298(struct RuntimeObject* object);
 void sub_807F47C(struct RuntimeObject* object);
@@ -490,6 +491,42 @@ void object_start_animation_4_then_wait_30_ticks(
     *flags &= -7;
     object->update = sub_808C968;
     object->timer = 0x1E;
+}
+
+SEC(runtime_object_finish_action)
+void runtime_object_finish_action(struct RuntimeObject* object)
+{
+    s8* flags;
+
+    if ((object->flags76 & 6) == 2) {
+        if (object->state != 0)
+            object->state->flags111 &= -5;
+        if (object->linkedObject != 0) {
+            sub_807C298(object->linkedObject);
+            object->linkedObject = 0;
+        }
+        flags = (s8*)&object->visual->flags11;
+        *flags &= -0x41;
+        flags = (s8*)&object->visual->flags;
+        *flags &= -0x11;
+        object->visual->parameter20 = 0x10;
+        sub_8082E1C(object, 0, -1, 0);
+        object->update = 0;
+    }
+}
+
+SEC(sub_808DEA8)
+void object_start_animation_5_fixed_jump_with_sound_2b(
+    struct RuntimeObject* object)
+{
+    s8* flags;
+
+    sound_effect_play(0x2B, SOUND_VOLUME_UNCHANGED);
+    object->verticalAcceleration = -0x58;
+    sub_8082E1C(object, 5, 0x2000, 0);
+    flags = (s8*)&object->visual->flags;
+    *flags = (*flags & -7) | 2;
+    object->update = sub_808DF5C;
 }
 
 SEC(sub_809C960)
