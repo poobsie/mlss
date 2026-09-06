@@ -648,6 +648,16 @@ then returns to the established paired-object transition. The adjacent
 auxiliary callback installer remains raw after bounded source shapes changed
 its argument-load order.
 
+The profile-position branch now exposes its compact setup and terminal stop.
+The setup forwards the two observed object state words as position inputs,
+selects display scale `0x300` and animation 2, installs the established
+completion callback, and starts sound `0x11B`. The terminal callback waits for
+the same readiness query, stops animation and sound, and clears the update.
+One adjacent stop has an exact C instruction body but remains raw because its
+ROM span ends in zero fill where the linker emits a Thumb NOP. The preceding
+countdown transition also remains raw after the compiler folded the original
+two-instruction unchanged-volume setup into a register-dependent subtraction.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

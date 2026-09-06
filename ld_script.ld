@@ -2499,10 +2499,14 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_08_after_sub_81124D0);
         src/object/fixed_visual_transitions.o(.text.misc_helpers_03.sub_811254C);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_811254C);
+        src/object/late_visual_transitions.o(.text.object_late_visual_transitions.sub_8112578);
+        asm/text08057568.o(.text.object_late_visual_transitions_after_sub_8112578);
         src/object/direct_animation_transitions.o(.text.misc_helpers_02.sub_81126BC);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_81126BC);
         src/object/linked_owner_state_transitions.o(.text.misc_helpers_03.sub_8112840);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8112840);
+        src/object/late_visual_transitions.o(.text.object_late_visual_transitions.sub_8112984);
+        asm/text08057568.o(.text.object_late_visual_transitions_after_sub_8112984);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_81132AC);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_81132AC);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_8113E20);

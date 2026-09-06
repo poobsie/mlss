@@ -158,6 +158,9 @@ void runtime_object_finish_action(struct RuntimeObject* object);
 #define object_on_visual_complete_start_animation_13 sub_81122D0
 #define object_start_state_variant_animation_1 sub_811230C
 #define object_continue_when_motion_helper_clear sub_8112394
+#define object_start_profile_position_animation_2 sub_8112578
+#define object_complete_profile_position_animation_2 sub_81127FC
+#define object_stop_animation_and_sound_11b_when_ready_variant_b sub_8112984
 #define object_finish_owner_position_effect_with_spawn sub_810FD94
 #define object_finish_owner_position_effect_when_ready sub_810FD54
 void runtime_object_when_value80_clear_prepare_state_motion(
@@ -217,6 +220,10 @@ void object_on_visual_complete_start_animation_13(
     struct RuntimeObject* object);
 void object_start_state_variant_animation_1(struct RuntimeObject* object);
 s32 object_continue_when_motion_helper_clear(struct RuntimeObject* object);
+void object_start_profile_position_animation_2(struct RuntimeObject* object);
+void object_complete_profile_position_animation_2(struct RuntimeObject* object);
+void object_stop_animation_and_sound_11b_when_ready_variant_b(
+    struct RuntimeObject* object);
 void object_finish_owner_position_effect_with_spawn(
     struct RuntimeObject* object);
 void object_finish_owner_position_effect_when_ready(
