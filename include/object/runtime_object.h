@@ -233,5 +233,9 @@ void object_cleanup_state_when_unlinked(
     struct RuntimeObject* object);
 s32 object_emit_effect_2adb_then_notify_owner(
     struct RuntimeObject* object, void* owner, s32 command);
+s32 object_when_pair_query_clear_emit_effect_2661_and_continue(
+    struct RuntimeObject* object, struct RuntimeObject* comparedObject);
+s32 object_notify_owner_emit_effect_2651_and_destroy(
+    struct RuntimeObject* object, void* owner, s32 command);
 
 #endif

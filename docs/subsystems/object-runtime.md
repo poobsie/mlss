@@ -613,6 +613,15 @@ supplied owner with that effect, then forwards the object, owner, and command to
 the established runtime notifier. The numeric effect identifier remains
 structural because its resource table is still in assembly.
 
+Two callbacks installed by the preceding auxiliary initializer now expose the
+rest of its effect handoff. One forwards the supplied owner and command through
+the runtime notifier, emits effect `0x2651` at the object's fixed-point
+position, and destroys the object. The other waits for the established
+pair-query to clear, emits effect `0x2661`, releases the previous auxiliary
+registration, redirects the position owner to the state subobject at offset
+`0x08`, and enters the raw motion continuation. That interior state pointer
+remains structural pending recovery of its owning layout.
+
 The profile branch's completion countdown is now typed. After visual completion
 it decrements the observed repetition word, periodically emits effect `0x2700`
 using the object's fixed-point position, and resets the short effect timer to

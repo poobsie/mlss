@@ -278,6 +278,8 @@
 #define object_install_update_and_return_true_c sub_809D268
 #define object_install_update_a sub_809C954
 #define object_emit_effect_2adb_then_notify_owner sub_80A0740
+#define object_when_pair_query_clear_emit_effect_2661_and_continue sub_809F0A8
+#define object_notify_owner_emit_effect_2651_and_destroy sub_809F100
 
 /* Middle-address behavior families whose owning callback tables remain in assembly. */
 #define object_invoke_shared_terminal_action_a sub_80D2D28
