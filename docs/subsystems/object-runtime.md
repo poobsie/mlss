@@ -454,6 +454,12 @@ stops the active animation command, and clears the update callback. The jump
 setup plays sound `0x2B`, stores a fixed downward acceleration, starts animation
 5 in visual mode 2, and enters the established vertical-motion continuation.
 
+That jump path's mirrored motion and landing callbacks are now represented in C.
+Both integrate the signed vertical velocity and acceleration, switch to animation
+6 while descending when the shared transition helper does not take control, then
+land at the state's established floor height with animation 8. The two paths keep
+their observed command variants, `0x204D` and `0x2000`, through both transitions.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

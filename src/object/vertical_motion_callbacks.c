@@ -6,6 +6,8 @@ u8 sub_808CAC4(struct RuntimeObject* object);
 void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 value);
 
+void sub_808E09C(struct RuntimeObject* object);
+void sub_808E0C8(struct RuntimeObject* object);
 void sub_808EFFC(struct RuntimeObject* object);
 void sub_808FFF8(struct RuntimeObject* object);
 void sub_8090608(struct RuntimeObject* object);
@@ -70,6 +72,31 @@ void sub_8094FD4(struct RuntimeObject* object);
             object->update = next;                                     \
         }                                                              \
     }
+
+#define DEFINE_ALTERNATE_FLOOR_LANDING_CALLBACK(symbol, name, next)     \
+    SEC(symbol)                                                         \
+    void name(struct RuntimeObject* object)                             \
+    {                                                                  \
+        s8* flags;                                                     \
+                                                                       \
+        object->verticalVelocity += object->verticalAcceleration;      \
+        object->verticalPosition =                                     \
+            object->positionZBase + object->verticalVelocity;          \
+        if (object->verticalPosition <= object->state->floorHeight) {   \
+            flags = (s8*)&object->flags77;                             \
+            *flags &= -8;                                              \
+            object->verticalPosition = object->state->floorHeight;     \
+            sub_8082E1C(object, 8, 0x2000, 0);                          \
+            flags = (s8*)&object->visual->flags;                       \
+            *flags = (*flags & -7) | 2;                                \
+            object->update = next;                                     \
+        }                                                              \
+    }
+
+DEFINE_VERTICAL_MOTION_CALLBACK(sub_808DEEC, object_advance_vertical_motion_to_animation_6_initial_path, 0x204D, object_land_on_state_floor_with_animation_8_initial_path)
+DEFINE_VERTICAL_MOTION_CALLBACK(sub_808DF5C, object_advance_vertical_motion_to_alternate_animation_6_initial_path, 0x2000, object_land_on_state_floor_with_alternate_animation_8_initial_path)
+DEFINE_FLOOR_LANDING_CALLBACK(sub_808DFCC, object_land_on_state_floor_with_animation_8_initial_path, sub_808E09C)
+DEFINE_ALTERNATE_FLOOR_LANDING_CALLBACK(sub_808E034, object_land_on_state_floor_with_alternate_animation_8_initial_path, sub_808E0C8)
 
 DEFINE_VERTICAL_MOTION_CALLBACK(sub_808EF1C, object_advance_vertical_motion_to_animation_6_path_a, 0x204D, sub_808EFFC)
 DEFINE_VERTICAL_MOTION_CALLBACK(sub_808FF18, object_advance_vertical_motion_to_animation_6_path_b, 0x204D, sub_808FFF8)

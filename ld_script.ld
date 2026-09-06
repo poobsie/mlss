@@ -1215,6 +1215,14 @@ SECTIONS
         asm/text08057568.o(.text.jump_setups_after_sub_808DE44);
         src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_808DEA8);
         asm/text08057568.o(.text.object_small_runtime_after_sub_808DEA8);
+        src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_808DEEC);
+        asm/text08057568.o(.text.object_vertical_motion_after_sub_808DEEC);
+        src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_808DF5C);
+        asm/text08057568.o(.text.object_vertical_motion_after_sub_808DF5C);
+        src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_808DFCC);
+        asm/text08057568.o(.text.object_vertical_motion_after_sub_808DFCC);
+        src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_808E034);
+        asm/text08057568.o(.text.object_vertical_motion_after_sub_808E034);
         src/object/completion_actions.o(.text.object_flag_actions.sub_808E09C);
         asm/text08057568.o(.text.object_flag_actions_after_sub_808E09C);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_808E0C8);
