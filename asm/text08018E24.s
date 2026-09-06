@@ -3,8 +3,9 @@
 	.syntax unified
 	.text
 
-	thumb_func_start sub_8018E24
-sub_8018E24:
+	.section .discard.audio_initialization_sub_8018E24, "ax", %progbits
+	thumb_func_start asm_discard_sub_8018E24
+asm_discard_sub_8018E24:
 	push {r4, lr}
 	ldr r4, _08018E74 @ =0x0300034C
 	movs r1, #0x89
@@ -47,6 +48,7 @@ _08018E78: .4byte 0x0000089C
 _08018E7C: .4byte 0x000008A4
 _08018E80: .4byte 0x02000480
 _08018E84: .4byte 0x0000088C
+	.section .text.after_audio_initialization_sub_8018E24, "ax", %progbits
 	thumb_func_start sub_8018E88
 sub_8018E88:
 	push {r4, r5, r6, r7, lr}

@@ -51,6 +51,8 @@ SECTIONS
         asm/heap.o(.text);
         src/memory/heap.o(.text);
         asm/text08018E24.o(.text);
+        src/audio/initialization.o(.text.audio_initialization.sub_8018E24);
+        asm/text08018E24.o(.text.after_audio_initialization_sub_8018E24);
         src/audio/sound_effects.o(.text.audio_sound_effects);
         src/audio/music.o(.text.audio_music);
         src/audio/driver.o(.text.audio_driver);

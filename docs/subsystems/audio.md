@@ -41,6 +41,12 @@ Two scene-facing wrappers have also been separated from early address buckets. `
 
 The six low-level command encoders behind these APIs now live in `src/audio/commands.c`. Their high nybbles are proven by the named callers: `0x1000` stops a music player, `0x2000` resumes it, `0x5000` plays a sound, `0x6000` stops a sound, and `0x7000` stops all sounds. Player identifiers occupy the next byte; sound identifiers occupy the low 12 bits.
 
+## Initialization
+
+`audio_initialize` establishes the shared audio defaults before normal servicing begins. It sets the sound-effect volume and both music-player volumes to `0xFF00`, sets both music-player tempos to `0x4B00` (75 in the driver's 8.8 fixed-point representation), initializes the driver, and supplies the driver work area at `0x02000480`. It then enables bits `0x02` and `0x04` in the audio state and invokes the adjacent setup routine with `(0, 100)`.
+
+The exact purpose of those two enable bits and the final setup routine is not yet established, so the routine and fields retain neutral names. The music play, volume interpolation, tempo interpolation, and sound-effect volume functions remain in assembly: straightforward typed versions changed register allocation or control-flow shape and were rejected rather than disguised with compiler-specific aliases.
+
 ## Verification
 
 The rebuilt 112-byte range from `0x08019588` through `0x080195F7`, including the preceding helper and required alignment, matches the reference ROM byte for byte. Its SHA-1 is `aaa68c7b1729cdc6b6dbe1a8c23e237afcaf8d8d`.
