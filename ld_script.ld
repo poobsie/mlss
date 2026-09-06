@@ -1045,6 +1045,8 @@ SECTIONS
         asm/text08057568.o(.text.object_phase_motion_after_sub_8087790);
         src/object/phase_motion.o(.text.object_phase_motion.sub_80877C0);
         asm/text08057568.o(.text.object_phase_motion_after_sub_80877C0);
+        src/object/phase_motion.o(.text.object_phase_motion.sub_8087878);
+        asm/text08057568.o(.text.object_phase_motion_after_sub_8087878);
         src/field/actor_pair_flags.o(.text.field_actor_pair_flags.sub_8087AE0);
         asm/text08057568.o(.text.small_functions_05_after_sub_8087AE0);
         src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8087BA4);

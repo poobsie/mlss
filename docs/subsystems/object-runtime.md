@@ -338,6 +338,13 @@ vertical position from the object's base coordinate, and clamps at `value98` whi
 clearing the step value. `value98` stays structural because other object variants
 use its low bits as flags, so a single stronger field meaning is not yet supported.
 
+The neighboring interval helper clamps or reflects an input position across two
+bounds, converts its distances from each bound through the runtime transform at
+`0x03001038`, and returns the resulting signed output pair. Reflected inputs negate
+both outputs. The transform retains its address-based identity because the same
+runtime callback is used for operations whose narrower mathematical role is not
+yet established.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

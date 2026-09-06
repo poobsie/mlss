@@ -48,3 +48,38 @@ u32 runtime_object_advance_vertical_to_limit(struct RuntimeObject* object)
     return 1;
 }
 SEC(sub_80877C0) const u16 sub_80877C0_padding = 0;
+
+SEC(sub_8087878)
+s32 runtime_resolve_reflected_interval(s32* total, s32* lowerDistance,
+                                       s32 lower, s32 upper, s32 position)
+{
+    s32 reflected = 0;
+    s32 upperDistance;
+    s32 lowerValue;
+
+    if (position < lower) {
+        if (position < upper) {
+            position = lower + upper - position;
+            reflected = 1;
+        } else {
+            position = lower;
+        }
+    } else if (position < upper) {
+        position = upper;
+    }
+
+    upperDistance = (*(s32 (**)(s32))0x03001038)((position - upper) << 8);
+    lowerValue = (*(s32 (**)(s32))0x03001038)((position - lower) << 8);
+    *total = lowerValue + upperDistance;
+    *lowerDistance = lowerValue;
+    if (reflected) {
+        *total = -*total;
+        *lowerDistance = -*lowerDistance;
+    }
+    {
+        s32 result = position;
+        if (result < 0)
+            result += 0xFF;
+        return result >> 8;
+    }
+}
