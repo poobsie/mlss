@@ -2180,6 +2180,12 @@ SECTIONS
         asm/text08057568.o(.text.field_runtime_resource_teardown_before_sub_8106EE8);
         src/field/runtime_resource_teardown.o(.text.field_runtime_resource_teardown.sub_8106EE8);
         asm/text08057568.o(.text.field_runtime_resource_teardown_after_sub_8106EE8);
+        asm/text08057568.o(.text.field_alternate_visual_transition_before_sub_8106FFC);
+        src/field/alternate_visual_transition.o(.text.field_alternate_visual_transition.sub_8106FFC);
+        asm/text08057568.o(.text.field_alternate_visual_transition_after_sub_8106FFC);
+        asm/text08057568.o(.text.field_request_callback_dispatch_before_sub_8107040);
+        src/field/request_callback_dispatch.o(.text.field_request_callback_dispatch.sub_8107040);
+        asm/text08057568.o(.text.field_request_callback_dispatch_after_sub_8107040);
         src/field/runtime_dispatch.o(.text.misc_helpers_03.sub_810707C);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_810707C);
         src/field/effect_entry_sequence.o(.text.field_effect_entry_sequence.sub_81071F0);

@@ -123,6 +123,14 @@ Its adjacent step callback passes three times the signed step at `0x14` to the
 shared updater and stores the result at `0x10`. A zero low eleven-bit result
 advances the step, and completion clears the result and installs the next callback.
 
+The alternate-visual transition selects the opposite owner from the one-bit runtime
+selector at `0x2C0`. When flag `0x08` is set on that owner's linked visual, it
+installs and immediately invokes the proven continuation.
+
+The request callback dispatcher invokes the callback at request-relative offset
+`0x54` when present. Otherwise it installs the continuation from dispatch offset
+`0x8E58` on its process and invokes that continuation immediately.
+
 A fourth selection-setup stage waits on an external readiness poll and flag `0x04` at `0x2BF`. Mode `2` resets both indexed display selections through the same assembly helper before the process advances.
 
 The paired-object slide sequence moves the objects at runtime offsets `0x37C` and `0x278` left by one 24.8 fixed-point pixel per tick. Once view conversion places them at screen X 208, it snaps both positions to that boundary, starts animation 4 on the second object, clears the flag at `0x342`, and installs the next process callback.

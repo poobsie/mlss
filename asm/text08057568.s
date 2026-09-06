@@ -321818,6 +321818,8 @@ _08106FEE:
 	bx r0
 _08106FF4: .4byte 0x03000FD8
 _08106FF8: .4byte sub_80FD960
+	.section .text.field_alternate_visual_transition_before_sub_8106FFC, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8106FFC
 sub_8106FFC:
 	push {lr}
@@ -321852,6 +321854,10 @@ _08107032:
 	.byte 0x00, 0x00
 _08107038: .4byte 0x03000FD8
 _0810703C: .4byte sub_80FD6D4
+	.endif
+	.section .text.field_alternate_visual_transition_after_sub_8106FFC, "ax", %progbits
+	.section .text.field_request_callback_dispatch_before_sub_8107040, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8107040
 sub_8107040:
 	push {lr}
@@ -321881,6 +321887,8 @@ _0810706E:
 	.byte 0x00, 0x00
 _08107074: .4byte 0x03000FDC
 _08107078: .4byte 0x00008E58
+	.endif
+	.section .text.field_request_callback_dispatch_after_sub_8107040, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_810707C, "ax", %progbits
 	thumb_func_start sub_81070B8
 sub_81070B8:
