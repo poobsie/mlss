@@ -325939,6 +325939,8 @@ _0810957C: .4byte 0x0819832C
 _08109580: .4byte 0x08198220
 _08109584: .4byte 0x00000316
 _08109588: .4byte sub_810958C
+	.section .text.field_status_cycle_transition_before_sub_810958C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_810958C
 sub_810958C:
 	push {r4, lr}
@@ -325997,6 +325999,8 @@ _081095F4:
 	bx r0
 	.byte 0x00, 0x00
 _081095FC: .4byte sub_810971C
+	.endif
+	.section .text.field_status_cycle_transition_after_sub_810958C, "ax", %progbits
 	thumb_func_start sub_8109600
 sub_8109600:
 	push {r4, r5, r6, r7, lr}

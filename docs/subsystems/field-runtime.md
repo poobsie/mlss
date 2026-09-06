@@ -424,4 +424,12 @@ two through four of the byte at offset `0x122`. The caller proves that these are
 parallel selections, but their gameplay directions remain unknown, so the API
 retains the bit values instead of inventing directional names.
 
+The status-cycle transition updates the associated object group, advances the
+runtime halfword at `0x314` by `0x400`, and handles the boundary beyond `0x1FFF`.
+At that boundary it pins the phase to `0x2000` and selects one of the five object
+pointers beginning at runtime offset `0x2FC` through the signed index owned at
+`0x310`. An object with an active update installs the follow-up transition;
+otherwise the routine clears the high three runtime mode bits and returns to the
+object-group update callback. The phase's visual units are not yet established.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
