@@ -9,6 +9,11 @@ void free_heap_8018D9C(void* pointer);
 
 typedef void (*RuntimeMemoryFill)(u32 value, void* destination, u32 size);
 
+struct RuntimeGlobalStateFc0 {
+    u8 unknown000[0x394];
+    u16 counters394[0x40];
+};
+
 #define STRINGIFY_INNER(value) #value
 #define STRINGIFY(value) STRINGIFY_INNER(value)
 #define MISC_SEC(name) \
@@ -91,6 +96,28 @@ void runtime_initialize_global_state_fc4(void)
     *stateSlot = state;
     CpuSet(copyStart, state, (size << 10) >> 11);
 }
+
+MISC_SEC(runtime_increment_global_state_fc0_counter)
+u16 runtime_increment_global_state_fc0_counter(u16 counterId)
+{
+    u16 counter;
+
+    if (counterId <= 0x1D17) {
+        u16 index = counterId - 0x1CD8;
+        struct RuntimeGlobalStateFc0* state =
+            *(struct RuntimeGlobalStateFc0**)0x03000FC0;
+
+        counter = state->counters394[index];
+        if (counter <= 0xFFFE)
+            counter++;
+        state->counters394[index] = counter;
+        return counter;
+    }
+    return 0;
+}
+
+MISC_SEC(runtime_increment_global_state_fc0_counter)
+const u16 runtime_increment_global_state_fc0_counter_padding = 0;
 
 MISC_SEC(runtime_release_and_clear_global_state_fc0)
 void runtime_release_and_clear_global_state_fc0(void)

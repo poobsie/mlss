@@ -15,6 +15,7 @@ typedef void (*InterruptCallback)(void);
 #define runtime_release_global_state_fb4 sub_80E57FC
 #define runtime_release_global_state_fc4 sub_80E9AF8
 #define runtime_initialize_global_state_fc4 sub_80E9B0C
+#define runtime_increment_global_state_fc0_counter sub_80E9B8C
 #define runtime_release_global_state_fbc sub_80E8D74
 #define runtime_initialize_global_state_fbc sub_80E8D90
 #define runtime_release_global_state_fb4_fb8_fbc sub_80E8DC0
@@ -32,6 +33,7 @@ void runtime_release_global_state_ff4(void);
 void runtime_release_global_state_fb4(void);
 void runtime_release_global_state_fc4(void);
 void runtime_initialize_global_state_fc4(void);
+u16 runtime_increment_global_state_fc0_counter(u16 counterId);
 void runtime_release_global_state_fbc(void);
 void runtime_initialize_global_state_fbc(void);
 void runtime_release_global_state_fb4_fb8_fbc(void);

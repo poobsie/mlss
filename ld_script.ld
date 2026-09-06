@@ -2016,6 +2016,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80E9AF8);
         src/runtime/global_state.o(.text.misc_helpers_01.sub_80E9B0C);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80E9B0C);
+        src/runtime/global_state.o(.text.misc_helpers_01.sub_80E9B8C);
+        asm/text08057568.o(.text.misc_helpers_01_after_sub_80E9B8C);
         src/runtime/global_state.o(.text.misc_helpers_01.sub_80E9D04);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80E9D04);
         src/runtime/global_state.o(.text.misc_helpers_01.sub_80E9D1C);

@@ -47,6 +47,8 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports ev
 
 The same runtime module now owns the heap lifecycle for global slots `0x03000FB4`, `0x03000FC4`, and `0x03000FC0`. The FC4 initializer allocates enough space for the ARM routine at `0x08000F9C..0x08001010` and copies it into the allocation. The FC0 initializer allocates and zeroes a 0x570-byte block. The FC0 release clears its slot; the FB4 and FC4 releases preserve the original value. Address suffixes remain because callers establish lifecycle and service ownership, but not narrower payload identities.
 
+The FC0 layout now exposes a 64-entry halfword counter bank at offset `0x394`. `runtime_increment_global_state_fc0_counter` maps counter identifiers through base `0x1CD8`, increments values below saturation, and returns the resulting value. The identifier meanings remain numeric because no recovered caller establishes their gameplay roles.
+
 The module now also initializes, releases, and clears global slot `0x03000FBC`. Initialization allocates and zeroes a 0x34-byte block through the shared heap and memory-fill services. Its grouped teardown first invokes the existing `0x03000FB4` release, then releases and clears `0x03000FB8` and `0x03000FBC`. These operations prove shared resource setup and ownership, but not enough payload structure is recovered to replace the address suffixes safely.
 
 `RuntimeIntrusiveList` and `RuntimeIntrusiveNode` recover the generic head, tail, count, previous, and next fields used near `0x08163CD4`. `runtime_intrusive_list_append_unique` first rejects a node already present in the list, then appends it and increments the count. The node payload at offset `0` is intentionally unnamed because this routine never reads it.
