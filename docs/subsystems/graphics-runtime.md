@@ -32,7 +32,14 @@ Thirteen high-address graphics helpers now have mechanical names for their prove
 
 A second packed-value decoder obtains its mode halfword through an owner and source pointer before performing the related normalization. `GraphicsWorkspaceOwner` also exposes the allocation at offset `0x288`; its destructor copies the current global result to `0x02000000`, frees that workspace, and conditionally frees the owner. Neither layout is assigned a narrower rendering role without recovered construction code.
 
-`SpriteVisibilityController` exposes its owned sprite at offset `0x0C` and the comparison value at `0x34` used by the neighboring assembly visibility update. The recovered refresh wrapper runs the shared setup, visibility update, and finalization sequence; the cleanup helper releases and clears that sprite. A narrower gameplay or screen identity is not visible in current callers.
+`SpriteVisibilityController` exposes owned sprites at offsets `0x08` and `0x0C`
+and the comparison value at `0x34` used by the neighboring assembly visibility
+update. Its initializer clears the proven state, installs the two resource
+tables, and selects the initial sentinel values. The refresh callback forwards
+to the established update sequence, while the paired cleanup helpers release
+each sprite. The destructor restores the class descriptor, runs both cleanup
+paths, and honors the standard low-bit heap release flag. A narrower gameplay
+or screen identity is not visible in current callers.
 
 `graphics_terminate_process_label_at_2` writes the terminator in the third byte of the base process label. Its placement beside the constructor and destructor using graphics descriptor `0x08CDC2C8` establishes ownership; the name records the exact base-field operation instead of guessing why that process uses a two-character label.
 
