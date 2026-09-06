@@ -34,6 +34,7 @@ struct GraphicsPositionState;
 #define graphics_upload_tile_buffer sub_81650DC
 #define graphics_upload_palette_state sub_8165420
 #define graphics_destroy_palette_owner sub_8165454
+#define graphics_destroy_tile_buffer_owner sub_8165144
 #define graphics_resource_owner_initialize sub_816156C
 #define graphics_position_state_reset sub_8163298
 #define graphics_position_state_write_shared sub_816316C
@@ -53,6 +54,8 @@ void graphics_upload_tile_buffer(struct GraphicsTileBufferOwner* object);
 void graphics_upload_palette_state(struct GraphicsPaletteOwner* object);
 void graphics_destroy_palette_owner(struct GraphicsPaletteOwner* object,
                                     u32 flags);
+void graphics_destroy_tile_buffer_owner(
+    struct GraphicsTileBufferOwner* object, u32 flags);
 struct GraphicsResourceOwner* graphics_resource_owner_initialize(
     struct GraphicsResourceOwner* object);
 void graphics_position_state_reset(struct GraphicsPositionState* state,

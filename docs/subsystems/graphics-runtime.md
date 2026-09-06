@@ -50,6 +50,12 @@ Two position-state initializers now preserve the current value pair and install 
 
 `graphics_resource_owner_initialize` installs descriptor `0x08CDD060` and clears its transfer pointer. `graphics_fill_background_palettes` replicates one 16-bit value across both 512-byte background palette banks using the BIOS fill operation.
 
+The tile-buffer owner now has an explicit ownership boundary. Its destructor
+clears both external output halfwords, releases the two sprites and four owned
+heap blocks, runs the shared graphics cleanup, and optionally frees the owner.
+The battle-side refresh callback forwards the owner's tile-buffer object to the
+established rebuild-and-upload routine and normalizes its result to a boolean.
+
 `graphics_destroy_linked_visual` now exposes the complete linked-visual teardown path. It detaches a non-null visual, clears flag bits `0x04` and `0x08` at offset `0x13`, runs the graphics cleanup, and releases the visual. The remaining flag bits stay unnamed until their writers and rendering effects are recovered.
 
 `graphics_display_manager_get_layer_buffer` indexes the display manager's twenty-byte layer records beginning at offset `0x0C` and returns the selected buffer. Existing field-display callers establish the manager and layer ownership; the buffer's narrower rendering format remains unknown.

@@ -2769,6 +2769,8 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8158000);
         src/battle/sprite_variant_container.o(.text.upper.sub_8158044);
         asm/text08057568.o(.text.after_upper_sub_8158044);
+        src/battle/sprite_owner.o(.text.sub_81580E0);
+        asm/text08057568.o(.text.after_sub_81580E0);
         src/runtime/definition_state.o(.text.sub_815817C);
         asm/text08057568.o(.text.after_815817C);
         src/runtime/definition_state.o(.text.sub_8158198);
@@ -3138,6 +3140,8 @@ SECTIONS
         asm/text08057568.o(.text.after_816507C);
         src/graphics/high_helpers.o(.text.high.sub_81650DC);
         asm/text08057568.o(.text.after_81650DC);
+        src/graphics/destructors.o(.text.sub_8165144);
+        asm/text08057568.o(.text.after_sub_8165144);
         src/graphics/high_helpers.o(.text.high.sub_8165250);
         asm/text08057568.o(.text.high_after_sub_8165250);
         src/graphics/high_helpers.o(.text.high.sub_8165404);

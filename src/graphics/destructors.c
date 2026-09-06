@@ -3,6 +3,30 @@
 
 void free_heap_8018DA8(void* pointer);
 void heap_free_block(void* pointer);
+void sub_8021308(void* pointer);
+void sub_80E8D74(void);
+
+void graphics_destroy_tile_buffer_owner(
+    struct GraphicsTileBufferOwner* object, u32 flags)
+    __attribute__((section(".text.sub_8165144")));
+void graphics_destroy_tile_buffer_owner(
+    struct GraphicsTileBufferOwner* object, u32 flags) {
+    *object->output50 = 0;
+    *object->output54 = 0;
+    sub_8021308(object->firstSprite);
+    sub_8021308(object->secondSprite);
+    if (object->resource48 != 0)
+        heap_free_block(object->resource48);
+    if (object->resource44 != 0)
+        heap_free_block(object->resource44);
+    if (object->resource1C != 0)
+        heap_free_block(object->resource1C);
+    if (object->resource24 != 0)
+        heap_free_block(object->resource24);
+    sub_80E8D74();
+    if (flags & 1)
+        free_heap_8018DA8(object);
+}
 
 struct GraphicsResourceOwner* graphics_resource_owner_initialize(
     struct GraphicsResourceOwner* object)

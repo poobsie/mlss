@@ -6,6 +6,22 @@ void sprite_hide_8021F20(void* sprite);
 void sprite_show_8020CBC(void* sprite);
 void sub_8021308(void* sprite);
 void sub_815FAE4(void* object, int y);
+extern s32 sub_816504C(void* object);
+
+struct BattleTileBufferOwner {
+    u8 unknown00[0x30];
+    void* tileBufferOwner;
+};
+
+s32 battle_refresh_owned_tile_buffer(struct BattleTileBufferOwner* object)
+    __attribute__((section(".text.sub_81580E0")));
+s32 battle_refresh_owned_tile_buffer(struct BattleTileBufferOwner* object) {
+    if (sub_816504C(object->tileBufferOwner) != 0)
+        return 1;
+    return 0;
+}
+__attribute__((section(".text.sub_81580E0")))
+const u16 battle_refresh_owned_tile_buffer_padding = 0;
 
 struct BattleSprite* battle_sprite_owner_get_sprite(struct BattleSpriteOwner* object)
     __attribute__((section(".text.sub_815FA3C")));

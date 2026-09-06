@@ -15,6 +15,7 @@ struct BattleLargeResourceOwner;
 struct BattleResourceQuadOwner;
 struct BattleSpriteArrayOwner5;
 struct BattleSpriteArrayOwner9;
+struct BattleTileBufferOwner;
 
 /* Semantic C names mapped to original symbols still referenced by assembly. */
 #define battle_initialize_definition_00 sub_8158450
@@ -67,6 +68,7 @@ struct BattleSpriteArrayOwner9;
 #define battle_prepare_resource_if_inactive sub_80297B8
 #define battle_forward_sprite_y sub_815F56C
 #define battle_sync_process_buffers sub_801AF50
+#define battle_refresh_owned_tile_buffer sub_81580E0
 
 #define battle_destroy_sprite_owner_a sub_815F7FC
 #define battle_destroy_sprite_owner_b sub_815F838
@@ -98,6 +100,7 @@ void battle_sprite_motion_configure_mode_4(
 void battle_sprite_motion_configure_mode_3(
     struct BattleSpriteMotionOwner* object, s32 value);
 void battle_tick_countdown_1f2a(struct BattleSceneRuntime* runtime);
+s32 battle_refresh_owned_tile_buffer(struct BattleTileBufferOwner* object);
 void battle_set_runtime_flag_528(struct BattleRuntimeFlags* object);
 void battle_destroy_large_resource_pair(struct BattleLargeResourceOwner* object, s32 flags);
 void battle_destroy_resource_quad(struct BattleResourceQuadOwner* object, s32 flags);

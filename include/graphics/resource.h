@@ -38,10 +38,18 @@ struct GraphicsUploadOwner {
 struct GraphicsTileBufferOwner {
     void* firstSprite;
     void* secondSprite;
-    u8 unknown08[0x18];
+    u8 unknown08[0x14];
+    void* resource1C;
     void* tileBuffer20;
-    u8 unknown24[0x14];
+    void* resource24;
+    u8 unknown28[0x10];
     void* transfer38;
+    u8 unknown3C[8];
+    void* resource44;
+    void* resource48;
+    u8 unknown4C[4];
+    u16* output50;
+    u16* output54;
 };
 
 struct GraphicsPaletteOwner {
