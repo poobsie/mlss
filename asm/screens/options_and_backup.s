@@ -1290,8 +1290,9 @@ _080536D8: .4byte 0x00001D01
 _080536DC: .4byte 0x02000010
 _080536E0: .4byte 0x02000050
 _080536E4: .4byte 0x02000054
-	thumb_func_start backup_clear_screen_destroy
-backup_clear_screen_destroy:
+	.section .discard.backup_clear_screen_destroy, "ax", %progbits
+	thumb_func_start asm_discard_backup_clear_screen_destroy
+asm_discard_backup_clear_screen_destroy:
 	push {r4, r5, lr}
 	adds r4, r0, #0x0
 	adds r5, r1, #0x0
@@ -1358,6 +1359,7 @@ _08053726:
 _0805376C: .4byte 0x08CDC1D8
 _08053770: .4byte 0x0300034C
 _08053774: .4byte 0x00000888
+	.section .text.after_backup_clear_screen_destroy, "ax", %progbits
 	thumb_func_start backup_clear_screen_update
 backup_clear_screen_update:
 	push {r4, r5, r6, r7, lr}

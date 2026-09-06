@@ -185,6 +185,8 @@ SECTIONS
         src/screens/scrollable_view.o(.text);
         src/screens/options.o(.text);
         asm/screens/options_and_backup.o(.text);
+        src/screens/backup_clear.o(.text.backup_clear.destroy);
+        asm/screens/options_and_backup.o(.text.after_backup_clear_screen_destroy);
         src/screens/mario_bros_save_error.o(.text);
         src/screens/backup_clear_helpers.o(.text);
         src/screens/options_dialogs.o(.text);

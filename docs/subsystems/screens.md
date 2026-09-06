@@ -106,6 +106,8 @@ Its 76-byte layout is now `BackupClearScreen` in `include/screens/backup_clear.h
 
 Only bit zero of the byte after the process header is understood: it selects the affirmative or negative cursor position. The remaining bits stay `unknownFlags`. `writeProgress` is passed to and replaced by the backup-write operation, but the format of its intermediate values is not yet recovered.
 
+`backup_clear_screen_destroy` now lives in `src/screens/backup_clear.c`. Its ownership boundary is explicit: it removes the render child, frees the window tilemap, graphics allocation, dialog tilemaps, text-engine code, and text context, resets the display buffers, and finally removes the parent process. The three shared-state bits cleared during display teardown are represented separately in `GameState`; their individual meanings remain unknown, so they retain offset-based names instead of speculative display labels.
+
 ## Mario Bros save-error screen
 
 The former option-screen tail is a 64-byte error screen used only on the Mario Bros return path. Selecting Mario Bros from the title sets the shared handoff state to 1. When the embedded game returns with state 2, `mario_bros_sync_records` compares its records with the saved values and attempts to persist any improvements. A failed synchronization creates this error screen; a successful one returns directly to title-screen entry path 2.

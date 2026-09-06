@@ -30,7 +30,10 @@ struct GameState {
     u16 field_888_0 : 1;
     u16 gameBoyPlayerDetected : 2;
     u16 field_888_3 : 1;
-    u16 field_888_4 : 4;
+    u16 field_888_4 : 1;
+    u16 field_888_5 : 1;
+    u16 field_888_6 : 1;
+    u16 field_888_7 : 1;
     u16 field_889 : 8;
     s32 field_88A_0 : 3;
     s32 gameBoyPlayerLogoFinished : 1;
