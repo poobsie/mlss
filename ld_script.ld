@@ -2010,8 +2010,12 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80E9484);
         src/runtime/global_state.o(.text.misc_helpers_01.sub_80E9AF8);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80E9AF8);
+        src/runtime/global_state.o(.text.misc_helpers_01.sub_80E9B0C);
+        asm/text08057568.o(.text.misc_helpers_01_after_sub_80E9B0C);
         src/runtime/global_state.o(.text.misc_helpers_01.sub_80E9D04);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80E9D04);
+        src/runtime/global_state.o(.text.misc_helpers_01.sub_80E9D1C);
+        asm/text08057568.o(.text.misc_helpers_01_after_sub_80E9D1C);
         src/script/state_commands.o(.text.middle.sub_80EA514);
         asm/text08057568.o(.text.after_middle_sub_80EA514);
         src/script/state_commands.o(.text.middle.sub_80EA530);

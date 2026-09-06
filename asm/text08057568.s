@@ -270555,8 +270555,9 @@ _080E9AEC: .4byte 0x00001D17
 _080E9AF0: .4byte 0xFFFFE328
 _080E9AF4: .4byte 0x03000FC0
 	.section .text.misc_helpers_01_after_sub_80E9AF8, "ax", %progbits
-	thumb_func_start sub_80E9B0C
-sub_80E9B0C:
+	.section .discard.runtime_initialize_global_state_fc4, "ax", %progbits
+	thumb_func_start asm_discard_sub_80E9B0C
+asm_discard_sub_80E9B0C:
 	push {r4, r5, r6, lr}
 	ldr r6, _080E9B38 @ =0x03000FC4
 	ldr r4, _080E9B3C @ =0x08001010
@@ -270581,6 +270582,7 @@ _080E9B38: .4byte 0x03000FC4
 _080E9B3C: .4byte 0x08001010
 _080E9B40: .4byte 0x08000F9C
 _080E9B44: .4byte 0x08200198
+	.section .text.misc_helpers_01_after_sub_80E9B0C, "ax", %progbits
 	.byte 0x00, 0xB5, 0x00, 0x04, 0x01, 0x0C, 0x0A, 0x48, 0x81, 0x42, 0x17, 0xD8, 0x09, 0x4A, 0x88, 0x18
 	.byte 0x00, 0x04, 0x09, 0x49, 0x09, 0x68, 0xC0, 0x0B, 0xE5, 0x22, 0x92, 0x00, 0x89, 0x18, 0x09, 0x18
 	.byte 0x08, 0x88, 0x00, 0x28, 0x02, 0xD0, 0x01, 0x38, 0x00, 0x04, 0x00, 0x0C, 0x08, 0x80, 0x06, 0xE0
@@ -270786,8 +270788,9 @@ _080E9CFE:
 	pop {r1}
 	bx r1
 	.section .text.misc_helpers_01_after_sub_80E9D04, "ax", %progbits
-	thumb_func_start sub_80E9D1C
-sub_80E9D1C:
+	.section .discard.runtime_initialize_global_state_fc0, "ax", %progbits
+	thumb_func_start asm_discard_sub_80E9D1C
+asm_discard_sub_80E9D1C:
 	push {r4, r5, lr}
 	ldr r4, _080E9D44 @ =0x03000FC0
 	movs r5, #0xAE
@@ -270809,6 +270812,7 @@ sub_80E9D1C:
 _080E9D44: .4byte 0x03000FC0
 _080E9D48: .4byte 0x08200190
 _080E9D4C: .4byte 0x03001034
+	.section .text.misc_helpers_01_after_sub_80E9D1C, "ax", %progbits
 	thumb_func_start sub_80E9D50
 sub_80E9D50:
 	push {r4, r5, r6, r7, lr}

@@ -13,8 +13,6 @@ struct RuntimeNodeOwner {
     struct RuntimeNodeValue* node310;
 };
 
-void sub_80E9B0C(void);
-void sub_80E9D1C(void);
 void sub_801BD50(u8 priority);
 
 SEC(sub_801AFE4)
@@ -24,8 +22,8 @@ void runtime_resume_global_services(int unused)
 
     if (!(*flags & 1)) {
         sub_801BD50(1);
-        sub_80E9D1C();
-        sub_80E9B0C();
+        runtime_initialize_global_state_fc0();
+        runtime_initialize_global_state_fc4();
         *flags |= 1;
     }
 }

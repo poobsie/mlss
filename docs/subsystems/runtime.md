@@ -45,7 +45,7 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports ev
 
 `runtime_release_global_state_ff4` releases and clears the shared pointer at `0x03000FF4`. Many object and screen paths consume that state, but its allocation and copying logic do not yet prove a narrower class name, so the global suffix remains explicit.
 
-The same runtime module now owns the heap releases for global slots `0x03000FB4`, `0x03000FC4`, and `0x03000FC0`. The last operation clears its slot after release; the first two preserve the original value. Address suffixes remain because allocation sites have not established narrower resource identities.
+The same runtime module now owns the heap lifecycle for global slots `0x03000FB4`, `0x03000FC4`, and `0x03000FC0`. The FC4 initializer allocates enough space for the ARM routine at `0x08000F9C..0x08001010` and copies it into the allocation. The FC0 initializer allocates and zeroes a 0x570-byte block. The FC0 release clears its slot; the FB4 and FC4 releases preserve the original value. Address suffixes remain because callers establish lifecycle and service ownership, but not narrower payload identities.
 
 The module now also initializes, releases, and clears global slot `0x03000FBC`. Initialization allocates and zeroes a 0x34-byte block through the shared heap and memory-fill services. Its grouped teardown first invokes the existing `0x03000FB4` release, then releases and clears `0x03000FB8` and `0x03000FBC`. These operations prove shared resource setup and ownership, but not enough payload structure is recovered to replace the address suffixes safely.
 

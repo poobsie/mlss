@@ -1,6 +1,7 @@
 #include "runtime/functions.h"
 
 #include "memory/heap.h"
+#include "gba/syscall.h"
 
 #define SEC(name) __attribute__((section(".text.upper.sub_8123340")))
 
@@ -74,10 +75,40 @@ void runtime_release_global_state_fc4(void)
     heap_free_block(*(void**)0x03000FC4);
 }
 
+MISC_SEC(runtime_initialize_global_state_fc4)
+void runtime_initialize_global_state_fc4(void)
+{
+    register void** stateSlot asm("r6") = (void**)0x03000FC4;
+    register const u8* copyEnd asm("r4") = (const u8*)0x08001010;
+    register const u8* copyStart asm("r5") = (const u8*)0x08000F9C;
+    u32 size;
+    void* state;
+
+    asm("" : "+r"(stateSlot), "+r"(copyEnd), "+r"(copyStart));
+    size = copyEnd - copyStart;
+    state = heap_alloc_block(FALSE, size, (const char*)0x08200198);
+
+    *stateSlot = state;
+    CpuSet(copyStart, state, (size << 10) >> 11);
+}
+
 MISC_SEC(runtime_release_and_clear_global_state_fc0)
 void runtime_release_and_clear_global_state_fc0(void)
 {
     void** state = (void**)0x03000FC0;
     heap_free_block(*state);
     *state = 0;
+}
+
+MISC_SEC(runtime_initialize_global_state_fc0)
+void runtime_initialize_global_state_fc0(void)
+{
+    void** stateSlot = (void**)0x03000FC0;
+    u32 size = 0x570;
+    void* state = heap_alloc_block(TRUE, size, (const char*)0x08200190);
+    RuntimeMemoryFill fill;
+
+    *stateSlot = state;
+    fill = *(RuntimeMemoryFill*)0x03001034;
+    fill(0, state, size);
 }
