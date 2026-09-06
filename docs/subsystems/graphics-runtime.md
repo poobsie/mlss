@@ -38,6 +38,8 @@ A second packed-value decoder obtains its mode halfword through an owner and sou
 
 Three final bucket-02 wrappers now have graphics ownership. `graphics_apply_staging_source` copies the established six staging values and runs the four adjacent configuration passes on the same source. `graphics_deactivate_linked_visual` performs the shared visual cleanup before unlinking the visual from the active graphics list. `graphics_update_global_resource_fcc_layer_4_mask_16` invokes the two proven update operations on the graphics resource held at `0x03000FCC`; the address and numeric arguments remain explicit because the underlying resource layout is still assembly-only.
 
+`field_transfer_graphics_resource` measures an indexed graphics resource, runs the installed relocated data callback, and returns the measured size. Callers can retain the callback output as a heap allocation or request a temporary allocation that is copied into their supplied destination and released. The callback's underlying data format remains unnamed.
+
 `GraphicsCompactStagingSource` captures a second four-halfword staging layout at offsets `0x30` through `0x36`. Its copy helper masks the first pair to nine bits and the second pair to eight bits before writing the interleaved staging region at `0x02000010`. The values stay structurally named until the assembly routines that consume this compact format are recovered.
 
 The high-address runtime group now includes compact resource cleanup and state helpers shared with UI code. Their typed owners expose only the fields touched by these leaves; resource and screen identities remain unresolved where callers are still assembly-only.

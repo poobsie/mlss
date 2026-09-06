@@ -370210,6 +370210,7 @@ sub_8127E38:
 _08127E4C: .4byte 0x02000008
 	.endif
 	.section .text.after_middle_sub_8127E38
+	.if 0
 	thumb_func_start sub_8127E50
 sub_8127E50:
 	push {r4, r5, r6, r7, lr}
@@ -370266,6 +370267,8 @@ _08127EBC:
 	bx r1
 _08127EC4: .4byte 0x08210F64
 _08127EC8: .4byte 0x03000C84
+	.endif
+	.section .text.field_graphics_block_after_sub_8127E50, "ax", %progbits
 	thumb_func_start sub_8127ECC
 sub_8127ECC:
 	push {r4, lr}
