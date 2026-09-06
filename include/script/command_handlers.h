@@ -9,6 +9,9 @@ struct ScriptCommandContext;
 struct ScriptInputOwner;
 struct ScriptEffectArguments;
 struct ScriptSelectedRuntimeArguments;
+struct ScriptIndexedObjectCallbackArguments;
+struct ScriptActiveObjectCallbackArguments;
+struct ScriptObjectRuntime;
 
 #define script_command_return_from_battle script_cmd_btl_return
 #define script_command_set_runtime_direction_sign sub_80EAD98
@@ -37,6 +40,8 @@ struct ScriptSelectedRuntimeArguments;
 #define script_command_control_object_motion sub_80F112C
 #define script_command_control_indexed_object_runtime sub_80F143C
 #define script_command_control_object_runtime sub_80F1490
+#define script_command_configure_indexed_object_callback sub_80F1738
+#define script_command_configure_object_callback sub_80F1998
 #define script_command_control_object_pair sub_80F1A1C
 #define script_command_branch_on_field_value_54c sub_80F1AEC
 #define script_command_dispatch_selected_runtime sub_80F1B14
@@ -112,6 +117,12 @@ s32 script_command_control_indexed_object_runtime(
 s32 script_command_control_object_runtime(
     void* context, void* runtime, void* state,
     const s32* operation);
+s32 script_command_configure_indexed_object_callback(
+    struct ScriptCommandContext* context, void* state,
+    const struct ScriptIndexedObjectCallbackArguments* arguments);
+s32 script_command_configure_object_callback(
+    struct ScriptCommandContext* context, struct ScriptObjectRuntime* object,
+    void* target, const struct ScriptActiveObjectCallbackArguments* arguments);
 s32 script_command_control_object_pair(
     void* context, void* object, void* state,
     const s32* operation);

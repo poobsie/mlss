@@ -32,6 +32,23 @@ Three commands use registry slot 183, the pointer at offset `0x304`. Its role is
 
 The former `script_dispatch_helpers.c` cluster was found to be object lifecycle code and moved to the object-runtime queue. The currently recovered script C now has subsystem placement and shared state types; further script work depends on converting adjacent assembly or recovering command data tables.
 
+Two adjacent object commands now expose the callback/configuration protocol shared by
+indexed and active-object dispatch. Each command selects one of two callback entries at
+offsets `0x90` and `0x98` in the object's callback table. An entry supplies both the
+callback and a signed adjustment from the object base to the callback's component.
+After dispatch, both commands apply an animation value and start the same interaction
+path with the object's visual resource.
+
+| Previous name | Recovered name | Evidence |
+| --- | --- | --- |
+| `sub_80F1738` | `script_command_configure_indexed_object_callback` | Selects an object from the context registry, chooses the primary or secondary callback from the command selector, then configures its animation and interaction. |
+| `sub_80F1998` | `script_command_configure_object_callback` | Applies the same callback/configuration sequence to the active object and target supplied by the dispatcher. |
+
+The callback entry layout and command-field roles are established by the mirrored
+handlers. The gameplay identity of the callbacks, the visual resource at object offset
+`0x294`, and the interaction helper at `sub_80EA60C` remain unresolved, so those names
+stay structural.
+
 ## Command execution state
 
 `ScriptExecutionState` captures the command interpreter fields proven by the handlers around `0x080EA514` through `0x080EB248`. The interpreter has a current cursor, an end cursor, one saved return cursor, a 16-word value stack and depth, a wait timer, and two parallel value/flag/mode channels. The purpose and units of the two channels are not yet established, so their names remain structural instead of pretending they are coordinates or animation state.

@@ -283913,8 +283913,9 @@ sub_80F16C0:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_80F1738
-sub_80F1738:
+	.section .discard.script_object_commands_first, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F1738
+asm_discard_sub_80F1738:
 	push {r4, r5, r6, lr}
 	add sp, #-0x004
 	adds r6, r0, #0x0
@@ -284191,8 +284192,9 @@ sub_80F1934:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_80F1998
-sub_80F1998:
+	.section .discard.script_object_commands_second, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F1998
+asm_discard_sub_80F1998:
 	push {r4, r5, r6, r7, lr}
 	add sp, #-0x004
 	adds r6, r0, #0x0

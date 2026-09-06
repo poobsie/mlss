@@ -1990,10 +1990,12 @@ SECTIONS
         asm/text08057568.o(.text.script_command_helpers_after_sub_80F1490);
         src/script/state_commands.o(.text.middle.sub_80F14C4);
         asm/text08057568.o(.text.after_middle_sub_80F14C4);
+        src/script/object_visual_commands.o(.text.script_object_commands.sub_80F1738);
         src/script/command_handlers.o(.text.script_command_handlers.script_command_set_object_mode);
         asm/text08057568.o(.text.script_command_helpers_after_script_cmd_80F17C4);
         src/script/command_handlers.o(.text.script_command_handlers.script_command_advance_object_mode);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80F17DC);
+        src/script/object_visual_commands.o(.text.script_object_commands.sub_80F1998);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80F1A1C);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80F1A1C);
         src/script/state_commands.o(.text.middle.sub_80F1AE4);
