@@ -275,6 +275,13 @@ target pointers, then ORs the requested mask into `flags1788`. Its caller uses m
 unresolved, so the name records the proven ownership and operation without assigning
 a speculative gameplay label.
 
+Two field-script waits now share the established interpreter resume-cursor layout.
+`field_wait_for_nested_state_179d_clear` yields while the low seven bits of the
+nested flag target's byte at `0x179D` remain nonzero.
+`field_wait_for_runtime_flag_10_clear` performs the same resume-and-yield behavior
+through the existing `field_runtime_test_flag_10` query. The state byte's gameplay
+meaning remains unresolved and therefore retains its structural offset.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or

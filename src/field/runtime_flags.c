@@ -1,4 +1,5 @@
 #include "field/runtime_flags.h"
+#include "script/execution_state.h"
 
 #define SEC(symbol) __attribute__((section(".text.small_functions_01." #symbol)))
 #define STRINGIFY_INNER(value) #value
@@ -11,6 +12,8 @@ struct FieldNestedFlagTarget {
     u32 flags1788;
     u8 unknown178C[0x0C];
     u32 flags1798;
+    u8 unknown179C;
+    u8 state179D;
 };
 
 struct FieldNestedFlagContainer {
@@ -76,6 +79,39 @@ SEC(sub_80F75B4) void field_set_nested_flags_1788(u32 mask)
     target = FIELD_NESTED_FLAG_RUNTIME->container244->target2C;
     target->flags1788 |= mask;
 }
+
+SEC(sub_80F7D3C)
+s32 field_wait_for_nested_state_179d_clear(
+    struct FieldNestedFlagContainer* container,
+    struct ScriptExecutionState* state)
+{
+    s32 result;
+
+    if ((container->target2C->state179D & 0x7F) == 0) {
+        result = 1;
+    } else {
+        state->cursor = state->resumeCursor;
+        result = 0;
+    }
+    return result;
+}
+SEC(sub_80F7D3C) const u16 field_wait_for_nested_state_179d_clear_padding = 0;
+
+SEC(sub_80F7E84)
+s32 field_wait_for_runtime_flag_10_clear(
+    void* context, struct ScriptExecutionState* state)
+{
+    s32 result;
+
+    if ((field_runtime_test_flag_10() << 24) == 0) {
+        result = 1;
+    } else {
+        state->cursor = state->resumeCursor;
+        result = 0;
+    }
+    return result;
+}
+SEC(sub_80F7E84) const u16 field_wait_for_runtime_flag_10_clear_padding = 0;
 
 MISC3_SEC(field_set_nested_flags_1788_and_1798)
 void field_set_nested_flags_1788_and_1798(u32 mask)

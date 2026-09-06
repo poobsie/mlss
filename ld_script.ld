@@ -2055,8 +2055,12 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80F75D8);
         src/field/runtime_flags.o(.text.misc_helpers_03.sub_80F7770);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80F7770);
+        src/field/runtime_flags.o(.text.small_functions_01.sub_80F7D3C);
+        asm/text08057568.o(.text.field_runtime_after_sub_80F7D3C);
         src/script/state_commands.o(.text.middle.sub_80F7E80);
         asm/text08057568.o(.text.after_middle_sub_80F7E80);
+        src/field/runtime_flags.o(.text.small_functions_01.sub_80F7E84);
+        asm/text08057568.o(.text.field_runtime_after_sub_80F7E84);
         src/script/state_commands.o(.text.middle.sub_80F80B4);
         asm/text08057568.o(.text.after_middle_sub_80F80B4);
         src/script/command_handlers.o(.text.misc_helpers_03.script_cmd_btl_return);

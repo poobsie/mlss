@@ -294192,8 +294192,9 @@ _080F7D28:
 	pop {r1}
 	bx r1
 _080F7D38: .4byte 0x00007FFF
-	thumb_func_start sub_80F7D3C
-sub_80F7D3C:
+	.section .discard.field_nested_state_179d, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F7D3C
+asm_discard_sub_80F7D3C:
 	push {lr}
 	adds r2, r1, #0x0
 	ldr r0, [r0, #0x2C]
@@ -294215,6 +294216,7 @@ _080F7D5E:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.section .text.field_runtime_after_sub_80F7D3C, "ax", %progbits
 	thumb_func_start sub_80F7D64
 sub_80F7D64:
 	ldr r2, [r0, #0x2C]
@@ -294365,8 +294367,9 @@ sub_80F7E80:
 	bx lr
 	.endif
 	.section .text.after_middle_sub_80F7E80
-	thumb_func_start sub_80F7E84
-sub_80F7E84:
+	.section .discard.field_wait_for_runtime_flag_10_clear, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F7E84
+asm_discard_sub_80F7E84:
 	push {r4, lr}
 	adds r4, r1, #0x0
 	bl sub_8082B00
@@ -294384,6 +294387,7 @@ _080F7E9C:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.section .text.field_runtime_after_sub_80F7E84, "ax", %progbits
 	thumb_func_start sub_80F7EA4
 sub_80F7EA4:
 	push {lr}
