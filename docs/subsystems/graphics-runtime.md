@@ -114,6 +114,12 @@ definition rule to the larger owner layout. It clears the four entry indices at
 configuration record, and creates entries lacking flag `0x40` until the `0x80`
 sentinel. The created resource type remains unspecified.
 
+`graphics_initialize_owner_resource_entries` applies that same bulk rule to the
+smaller owner layout. It clears the four indices at `0x580`, selects the
+definition list through runtime byte `0x08`, and creates entries lacking flag
+`0x40` until the `0x80` sentinel. This complements the single-slot initializer,
+which handles definitions carrying flag `0x40`.
+
 `graphics_copy_indexed_tile_resource_to_base_vram` is the base-character-VRAM
 counterpart to the two offset transfer entry points. It resolves the same
 relative resource table and converts tile units to bytes before copying to the

@@ -232,6 +232,8 @@ SECTIONS
         asm/text08057568.o(.text.after_graphics_initialize_large_owner_resource_entries_805B074);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805B120);
         asm/text08057568.o(.text.after_graphics_copy_indexed_tile_resource_to_base_vram_805B120);
+        src/graphics/process_state.o(.text.graphics_process_state.sub_805B9D4);
+        asm/text08057568.o(.text.after_graphics_initialize_owner_resource_entries_805B9D4);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805C5F4);
         asm/text08057568.o(.text.after_graphics_frame_transfer_callback_805C5F4);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805C644);

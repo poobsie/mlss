@@ -124,6 +124,7 @@ struct Process;
 #define graphics_copy_indexed_tile_resource_to_vram sub_805C9A4
 #define graphics_copy_indexed_tile_resource_to_base_vram sub_805B120
 #define graphics_initialize_large_owner_resource_entries sub_805B074
+#define graphics_initialize_owner_resource_entries sub_805B9D4
 #define graphics_copy_indexed_tile_resource_to_vram_alternate sub_805D8DC
 #define graphics_rebuild_and_upload_vram_buffer sub_805D9CC
 #define graphics_load_runtime_configuration sub_805D914
@@ -149,6 +150,8 @@ void graphics_copy_indexed_tile_resource_to_base_vram(
     void* owner, u16 destinationTile, u8 tileCount, u16 resourceIndex);
 void graphics_initialize_large_owner_resource_entries(
     struct GraphicsLargeResourceEntryOwner* owner);
+void graphics_initialize_owner_resource_entries(
+    struct GraphicsResourceEntryOwner* owner);
 void graphics_copy_indexed_tile_resource_to_vram_alternate(
     void* owner, u16 destinationTile, u8 tileCount, u16 resourceIndex);
 void graphics_rebuild_and_upload_vram_buffer(

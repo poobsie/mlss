@@ -246,6 +246,44 @@ void graphics_initialize_large_owner_resource_entries(
     } while (1);
 }
 
+SEC(sub_805B9D4)
+void graphics_initialize_owner_resource_entries(
+    struct GraphicsResourceEntryOwner* owner)
+{
+    const struct GraphicsResourceEntryDefinition* definitions;
+    u8 nextIndex;
+
+    for (nextIndex = 0; nextIndex <= 3; nextIndex++)
+        owner->resourceEntryIndices[nextIndex] |= 0xFF;
+    if (owner->resourceObject == 0)
+        return;
+    {
+        u8 definitionDirectoryIndex =
+            gGraphicsTransferRuntimeSelection
+                .resourceDefinitionDirectoryIndex;
+        definitions =
+            gGraphicsResourceEntryDefinitionTable[definitionDirectoryIndex];
+    }
+    if (definitions == 0)
+        return;
+    nextIndex = 0;
+    do {
+        u8 index = nextIndex;
+
+        if (!(definitions[index].flags & 0x40)) {
+            void* resourceObject = owner->resourceObject;
+            u16 packedValue = definitions[index].packedValue | 0x5000;
+
+            owner->resourceEntryIndices[index] = sub_8114C1C(
+                resourceObject, 0xFF, packedValue, 0xFF,
+                0xFFFF, 0xFFFF);
+        }
+        nextIndex++;
+        if (definitions[index].flags & 0x80)
+            break;
+    } while (1);
+}
+
 SEC(sub_805D8DC)
 void graphics_copy_indexed_tile_resource_to_vram_alternate(
     void* owner, u16 destinationTile, u8 tileCount, u16 resourceIndex)
