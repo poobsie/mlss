@@ -1558,10 +1558,13 @@ SECTIONS
         asm/text08057568.o(.text.actor_interaction_transitions_after_sub_80B9504);
         src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_80B992C);
         asm/text08057568.o(.text.actor_state_transitions_after_sub_80B992C);
+        src/field/actor_runtime_callbacks.o(.text.actor_runtime_callbacks.sub_80C0930);
         src/object/poll_cleanup_transitions.o(.text.misc_helpers_03.sub_80C0980);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80C0980);
         src/field/actor_command_transitions.o(.text.actor_command_transitions.sub_80C0B1C);
         asm/text08057568.o(.text.actor_command_transitions_after_sub_80C0B1C);
+        src/field/actor_runtime_callbacks.o(.text.actor_runtime_callbacks.sub_80C0BE4);
+        asm/text08057568.o(.text.actor_runtime_callbacks_after_sub_80C0BE4);
         src/field/actor_state_transitions_reversed.o(.text.actor_state_transitions_reversed.sub_80C0F30);
         asm/text08057568.o(.text.actor_state_transitions_reversed_after_sub_80C0F30);
         src/field/actor_command_transitions.o(.text.actor_command_transitions.sub_80C8684);

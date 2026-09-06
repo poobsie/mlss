@@ -194533,6 +194533,7 @@ _080C0920:
 	bx r0
 _080C092C: .4byte 0x0000204F
 	thumb_func_start sub_80C0930
+.if 0
 sub_80C0930:
 	push {r4, r5, lr}
 	adds r5, r0, #0x0
@@ -194572,6 +194573,7 @@ _080C096A:
 _080C0974: .4byte 0x03000FD8
 _080C0978: .4byte 0x00002062
 _080C097C: .4byte sub_80BE8D0
+.endif
 	.section .text.misc_helpers_03_after_sub_80C0980, "ax", %progbits
 	thumb_func_start sub_80C09AC
 sub_80C09AC:
@@ -194815,6 +194817,7 @@ _080C0BD2:
 _080C0BDC: .4byte 0x03000FD8
 _080C0BE0: .4byte sub_80BA44C
 	thumb_func_start sub_80C0BE4
+.if 0
 sub_80C0BE4:
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0x0
@@ -194869,6 +194872,8 @@ _080C0C42:
 _080C0C48: .4byte 0x03000FD8
 _080C0C4C: .4byte 0x00002024
 _080C0C50: .4byte sub_80B99A0
+.endif
+	.section .text.actor_runtime_callbacks_after_sub_80C0BE4, "ax", %progbits
 	thumb_func_start sub_80C0C54
 sub_80C0C54:
 	push {r4, r5, r6, lr}

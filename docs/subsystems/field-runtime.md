@@ -70,6 +70,16 @@ The primary actor-pair flag helper now uses `FieldRuntime` and `FieldActor` dire
 
 The recovered actor-pair completion helper updates actor B's action, waits for its `0x20` flag, resumes actor A only for state bits `2` or `4`, and clears actor B's action update. It shares the same `FieldRuntime`, `FieldActor`, and embedded `FieldAction` layout as the other actor transitions.
 
+Two later field-process callbacks now expose their actor selection and transition
+contracts. One prepares actor B with animation 15 and command `0x2062` when its
+state bits select an active mode, then advances the calling process. The other polls
+actor A, waits for actor flag `0x20`, plays sound `0xAF`, conditionally applies
+command `0x2024`, restores visual mode 2, and advances. The numeric commands and
+continuations remain address-based because their assembly-only consumers do not yet
+establish scene-specific identities. An adjacent actor-A visual-disable callback
+remains in assembly after both bounded C forms changed the compiler's flag-clear
+instruction selection.
+
 The field runtime also exposes actors C and D at offsets `0x80` and `0x84`. A recovered dispatcher installs the supplied action update on each actor whose state bits equal `2`; actor D is optional, while current callers guarantee actor C is present.
 
 `FieldDisplayRuntime` consolidates the display manager at `0x250` and four owned display-process slots from `0x284` through `0x290`. The recovered lifecycle helpers release or finish those processes while disabling the associated layer pairs 0/1, 2/3, and 4/5; a separate entry configures layer 0 with the caller's value.
