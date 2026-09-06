@@ -594,6 +594,19 @@ the negated owner variant, preserving the observed completion gate before the
 second transition. The intervening arithmetic callback remains raw after its
 bounded source shapes changed the original instruction selection.
 
+The sound-backed sibling now exposes its visual-completion half. It selects
+animation 4 or 7 from the same negated owner variant, restores visual mode 2,
+returns to the established owner callback, and stops sound `0x89`. Its setup
+half remains raw after bounded source shapes changed the volume setup and visual
+register allocation.
+
+The following completed-visual callback now exposes the handoff into the
+profile-driven motion branch. It initializes the observed short motion fields,
+configures animation `0x0A`, emits effect `0x2669` at the object's fixed-point
+position, and installs the existing profile initializer. That initializer and
+its larger motion continuation remain raw because their table-load scheduling
+did not match within the bounded shaping pass.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

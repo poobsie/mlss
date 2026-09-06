@@ -2453,8 +2453,12 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_811108C);
         src/object/late_visual_transitions.o(.text.object_late_visual_transitions.sub_8111174);
         asm/text08057568.o(.text.object_late_visual_transitions_after_sub_8111174);
+        src/object/late_visual_transitions.o(.text.object_late_visual_transitions.sub_81111C0);
+        asm/text08057568.o(.text.object_late_visual_transitions_after_sub_81111C0);
         src/object/linked_transitions.o(.text.misc_helpers_02.sub_8111214);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8111214);
+        src/object/late_visual_transitions.o(.text.object_late_visual_transitions.sub_8111234);
+        asm/text08057568.o(.text.object_late_visual_transitions_after_sub_8111234);
         src/object/small_state_helpers.o(.text.misc_helpers_01.sub_8112064);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8112064);
         src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_8112350);

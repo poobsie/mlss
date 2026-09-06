@@ -338015,6 +338015,7 @@ _081111B6:
 _081111BC: .4byte sub_811108C
 	.endif
 	.section .text.object_late_visual_transitions_after_sub_8111174, "ax", %progbits
+	.if 0
 	thumb_func_start sub_81111C0
 sub_81111C0:
 	push {r4, lr}
@@ -338058,7 +338059,10 @@ _08111208:
 	bx r0
 	.byte 0x00, 0x00
 _08111210: .4byte sub_8110CB0
+	.endif
+	.section .text.object_late_visual_transitions_after_sub_81111C0, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_8111214, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8111234
 sub_8111234:
 	push {r4, lr}
@@ -338131,6 +338135,8 @@ _081112B4:
 	bx r0
 _081112BC: .4byte 0x00002669
 _081112C0: .4byte sub_81112C4
+	.endif
+	.section .text.object_late_visual_transitions_after_sub_8111234, "ax", %progbits
 	thumb_func_start sub_81112C4
 sub_81112C4:
 	push {r4, r5, lr}

@@ -41,6 +41,9 @@ void sub_81101BC(struct RuntimeObject*);
 void sub_8110A30(struct RuntimeObject*);
 void sub_811108C(struct RuntimeObject*);
 void sub_8111174(struct RuntimeObject*);
+void sub_81111C0(struct RuntimeObject*);
+void sub_8110CB0(struct RuntimeObject*);
+void sub_81112C4(struct RuntimeObject*);
 void object_on_visual_complete_delay_12(struct RuntimeObject*);
 void sub_81109D0(struct RuntimeObject*);
 void sub_8110A94(struct RuntimeObject*);
@@ -59,6 +62,7 @@ struct ObjectPositionOwner {
     u8 unknown00[0x28];
     struct ObjectPositionSource* positionSource;
 };
+
 
 SEC(sub_810FD10) void sub_810FD10(struct RuntimeObject* object)
 {
@@ -464,6 +468,54 @@ void object_continue_owner_variant_animation_10_or_11(
         object->update = sub_811108C;
     }
 }
+
+SEC(sub_81111C0)
+void object_finish_owner_variant_animation_4_or_7(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner;
+    s32 variant;
+    s32 animation;
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (object->visual->flags & 8) {
+        owner = object->positionOwner;
+        variant = -owner->state->variant;
+        animation = 4;
+        if (variant != 1)
+            animation = 7;
+        sub_8082E1C(object, animation, 0, 0);
+        flags = &object->visual->flags;
+        value = *flags;
+        mask = -7;
+        value &= mask;
+        value |= 2;
+        *flags = value;
+        object->update = sub_8110CB0;
+        sound_effect_stop(0x89);
+    }
+}
+
+SEC(sub_8111234)
+void object_on_visual_complete_spawn_effect_2669(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & 8) {
+        object->secondaryTimer = 0x17;
+        object->stateValueB0 = 0;
+        sub_808843C(object, 0x60 - object->secondaryTimer / 2,
+                    0x6C, 0, 0x100);
+        sub_80880C4(object, 0x300);
+        sub_8082E1C(object, 0xA, 0, 0);
+        sub_80DF024(0x2669, object->positionX / 256,
+                    object->positionY / 256, object->positionZBase / 256,
+                    object);
+        object->update = sub_81112C4;
+    }
+}
+
 
 SEC(sub_810FD54)
 void object_finish_owner_position_effect_when_ready(
