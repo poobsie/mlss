@@ -97,6 +97,13 @@ void screen_configure_layer20_default(struct ScreenLayerOwner20* owner)
     sub_81151E4(owner->layer20, 4, 0, 8, 0xFFFF, 0xFFFF, 0, 0);
 }
 
+SEC(screen_reset_layer20_default)
+void screen_reset_layer20_default(struct ScreenLayerOwner20* owner)
+{
+    gScreenRuntimeState.field884 = -1;
+    sub_81151E4(owner->layer20, 0, 0, 8, 0xFFFF, 0xFFFF, 0, 0);
+}
+
 SEC(screen_launch_shop)
 void screen_launch_shop(s32 firstMode, s32 secondMode)
 {

@@ -2588,6 +2588,8 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_812A8AC);
         src/screens/runtime_helpers.o(.text.upper.sub_812F528);
         asm/text08057568.o(.text.after_upper_sub_812F528);
+        src/screens/runtime_helpers.o(.text.upper.sub_812F550);
+        asm/text08057568.o(.text.after_upper_sub_812F550);
         src/screens/runtime_helpers.o(.text.upper.sub_812F5A4);
         asm/text08057568.o(.text.after_upper_sub_812F5A4);
         src/object/late_visual_transitions.o(.text.upper.sub_8132570);

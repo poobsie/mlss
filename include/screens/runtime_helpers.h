@@ -9,6 +9,7 @@
 #define screen_configure_layer15c_and_fade_music sub_8127ADC
 #define screen_configure_layer20_and_mark_69 sub_812A8AC
 #define screen_configure_layer20_default sub_812F528
+#define screen_reset_layer20_default sub_812F550
 #define screen_launch_shop sub_812F5A4
 
 struct ScreenLayerOwner20;
@@ -23,6 +24,7 @@ void screen_configure_layer15c_and_fade_music(
 void screen_configure_layer20_and_mark_69(
     struct ScreenLayerOwner20* owner, u16 value);
 void screen_configure_layer20_default(struct ScreenLayerOwner20* owner);
+void screen_reset_layer20_default(struct ScreenLayerOwner20* owner);
 void screen_launch_shop(s32 firstMode, s32 secondMode);
 
 #endif
