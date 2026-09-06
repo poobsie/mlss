@@ -294284,8 +294284,9 @@ _080F7E9C:
 	bx r1
 	.byte 0x00, 0x00
 	.section .text.field_runtime_after_sub_80F7E84, "ax", %progbits
-	thumb_func_start sub_80F7EA4
-sub_80F7EA4:
+	.section .discard.field_indexed_runtime_byte_350, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F7EA4
+asm_discard_sub_80F7EA4:
 	push {lr}
 	ldm r2!, {r0}
 	subs r0, #0x06
@@ -294308,6 +294309,7 @@ _080F7EC4:
 	bx r1
 	.byte 0x00, 0x00
 _080F7ECC: .4byte 0x03000FD8
+	.section .text.field_runtime_after_sub_80F7EA4, "ax", %progbits
 	thumb_func_start sub_80F7ED0
 sub_80F7ED0:
 	push {lr}

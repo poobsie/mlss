@@ -47,6 +47,7 @@ struct FieldModeRuntime {
     s8 mode3A5;
 };
 
+
 #define FIELD_NESTED_FLAG_RUNTIME (*(struct FieldNestedFlagRuntime**)0x03000FD8)
 #define FIELD_MODE_RUNTIME (*(struct FieldModeRuntime**)0x03000FD8)
 
@@ -112,6 +113,22 @@ s32 field_wait_for_runtime_flag_10_clear(
     return result;
 }
 SEC(sub_80F7E84) const u16 field_wait_for_runtime_flag_10_clear_padding = 0;
+
+SEC(sub_80F7EA4)
+s32 field_set_indexed_runtime_byte_350(
+    void* context, void* state, const s32* arguments)
+{
+    u16 index = *arguments++ - 6;
+    s32 operation = *arguments++;
+
+    if (operation == 0) {
+        u8* indexedBytes = (u8*)FIELD_NESTED_FLAG_RUNTIME + 0x350;
+        indexedBytes[index] = arguments[0];
+    }
+    return 1;
+}
+
+
 
 MISC3_SEC(field_set_nested_flags_1788_and_1798)
 void field_set_nested_flags_1788_and_1798(u32 mask)

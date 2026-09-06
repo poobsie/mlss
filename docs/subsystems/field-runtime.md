@@ -286,6 +286,12 @@ nested flag target's byte at `0x179D` remain nonzero.
 through the existing `field_runtime_test_flag_10` query. The state byte's gameplay
 meaning remains unresolved and therefore retains its structural offset.
 
+`field_set_indexed_runtime_byte_350` exposes a narrow script command over the
+field runtime's byte array beginning at offset `0x350`. Command indices are stored
+with a bias of six, and operation zero writes the low byte of the supplied value.
+The array entries' gameplay identities remain unresolved, so both the base offset
+and index bias remain explicit.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or
