@@ -389,6 +389,13 @@ from a region beginning at offset `0x700`. The flag meanings and the reason for
 those two selection bases remain unresolved, so the layout records only the
 proven cursor and flag fields.
 
+Later helpers expose three additional edges of that runtime. The indexed query
+reads a halfword at local offset `0x1A0`, and the count setter records a byte-sized
+count as a word at region offset `0x1780`. Their gameplay meanings remain unknown,
+so both names retain the proven offsets or storage role. The root launch wrapper
+starts the primary script channel with flag `1` and mode `0xFF`, using the root
+block owned through context offset `0x2C`.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or

@@ -1,4 +1,5 @@
 #include "field/script_block_commands.h"
+#include "script/execution_state.h"
 
 #define SEC(symbol) \
     __attribute__((section(".text.small_functions_01." #symbol)))
@@ -92,3 +93,33 @@ s32 field_set_selected_script_block_flag_4(
     }
     return 1;
 }
+
+SEC(sub_80F8DA4)
+u16 field_get_indexed_script_halfword_1a0(
+    struct FieldScriptBlockOwner* owner, u8 index)
+{
+    return *(u16*)(owner->scriptRegion2C + ((u8)index << 8) + 0x1A0);
+}
+
+SEC(sub_80F8DA4)
+const u16 field_get_indexed_script_halfword_1a0_padding = 0;
+
+SEC(sub_80F8DE0)
+void field_set_script_runtime_count(
+    struct FieldScriptBlockOwner* owner, u8 count)
+{
+    *(u32*)(owner->scriptRegion2C + 0x1780) = count;
+}
+
+SEC(sub_80F8EB0)
+void field_start_root_script_block(
+    struct FieldScriptBlockOwner* owner, u32 cursor)
+{
+    script_state_replace_primary_channel(
+        (u8*)owner + 0x1C,
+        (struct ScriptExecutionState*)owner->scriptRegion2C,
+        cursor, 0, 1, 0xFF);
+}
+
+SEC(sub_80F8EB0)
+const u16 field_start_root_script_block_padding = 0;
