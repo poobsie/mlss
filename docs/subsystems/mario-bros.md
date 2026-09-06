@@ -90,7 +90,9 @@ assembly.
 The pool layer now includes mirrored heap-block release operations that unlink a
 block and update the free-list head, plus mirrored link-context dispatchers. Their
 names state those allocator and dispatch mechanics; the gameplay owners of the
-two runtime families remain unresolved.
+two runtime families remain unresolved. The primary runtime also exposes its
+active-object release sweep: it checks each established activity halfword and
+returns only the corresponding active object to the existing pool release path.
 
 Three additional object helpers now share the established `MarioBrosObject`
 layout. One decrements the halfword action countdown and invokes its follow-up

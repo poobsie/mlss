@@ -3716,6 +3716,8 @@ SECTIONS
         asm/mariobros.o(.text.after_mariobros_geometry_sub_8F5E8B8);
         src/mario_bros/object_pool.o(.text.mariobros_pool_sub_8F5F060);
         asm/mariobros.o(.text.after_mariobros_pool_sub_8F5F060);
+        src/mario_bros/object_pool.o(.text.mariobros_pool_sub_8F5F0B0);
+        asm/mariobros.o(.text.after_mariobros_pool_sub_8F5F0B0);
         src/mario_bros/object_pool.o(.text.mariobros_pool_sub_8F5F1C8);
         asm/mariobros.o(.text.after_mariobros_pool_sub_8F5F1C8);
         src/mario_bros/object_pool.o(.text.mariobros_pool_sub_8F5F23C);

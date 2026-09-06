@@ -27454,6 +27454,7 @@ _08F5F0A8: .4byte 0x00004494
 _08F5F0AC: .4byte 0x08F9FA74
 	.section .text.after_mariobros_pool_sub_8F5F060, "ax"
 	.align 2
+	.if 0
 	thumb_func_start sub_8F5F0B0
 sub_8F5F0B0:
 	push {r4, r5, r6, lr}
@@ -27486,6 +27487,8 @@ _08F5F0D2:
 _08F5F0E4: .4byte 0x03000F50
 _08F5F0E8: .4byte 0x00004494
 _08F5F0EC: .4byte 0x00004544
+	.endif
+	.section .text.after_mariobros_pool_sub_8F5F0B0, "ax", %progbits
 	thumb_func_start sub_8F5F0F0
 sub_8F5F0F0:
 	push {r4, r5, r6, r7, lr}

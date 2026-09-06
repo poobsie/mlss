@@ -62,6 +62,7 @@ extern void sub_8F8D880(void*);
 extern void sub_8F8D9CC(void*);
 extern void sub_8F8D5A4(void*);
 extern void sub_8F8DB7C(void*);
+void mario_bros_release_pool_object_a(struct MarioBrosPoolObject* object);
 
 struct MarioBrosHeapBlock {
     /* Only the low allocation bit is established by these release helpers. */
@@ -187,6 +188,19 @@ DEFINE_RESET_RECORD(mario_bros_reset_pool_record_a, 0x03001BC8, sub_8F51010,
                     0x08F9FE38)
 DEFINE_RESET_RECORD(mario_bros_reset_pool_record_b, 0x03001BB8, sub_8F93C24,
                     0x0201E180)
+
+MB_SECTION(sub_8F5F0B0)
+void mario_bros_release_active_pool_objects_a(void)
+{
+    u8 index = 0;
+
+    do {
+        if (gMarioGlobal_03000F50.active4544[index] != 0)
+            mario_bros_release_pool_object_a(
+                gMarioGlobal_03000F50.objects4494[index]);
+        index++;
+    } while (index <= 27);
+}
 
 #define DEFINE_FIND_RUNTIME_ID(name, runtime)                                    \
     MB_SECTION(name) u16 name(u16 runtimeId) {                                    \

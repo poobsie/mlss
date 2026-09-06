@@ -54,6 +54,7 @@
 
 #define mario_bros_release_pool_object_a sub_8F5F060
 #define mario_bros_release_pool_object_b sub_8F859B4
+#define mario_bros_release_active_pool_objects_a sub_8F5F0B0
 #define mario_bros_attach_pool_object_a sub_8F5D7F8
 #define mario_bros_attach_pool_object_b sub_8F8414C
 #define mario_bros_propagate_high_flag_a sub_8F61374
