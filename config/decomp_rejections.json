@@ -44,6 +44,13 @@
       "required_evidence": "new caller or type evidence that changes operand evaluation order"
     },
     {
+      "symbol": "sub_80611A8",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "register scheduling and flag-mask operand order",
+      "required_evidence": "a recovered interface or source form that changes flag evaluation and register scheduling"
+    },
+    {
       "symbol": "sub_8134AA8",
       "status": "exhausted",
       "attempts": 2,
@@ -70,6 +77,20 @@
       "attempts": 2,
       "mismatch_class": "register and literal scheduling",
       "required_evidence": "a recovered callback interface or source form that changes register and literal scheduling"
+    },
+    {
+      "symbol": "sub_819B9B4",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "command-mask literal folding",
+      "required_evidence": "a source construct that preserves the reference 0x9000 literal-load sequence"
+    },
+    {
+      "symbol": "sub_819BA10",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "command-mask literal folding",
+      "required_evidence": "a source construct that preserves the reference 0x8000 literal-load sequence"
     },
     {
       "symbol": "sub_819B290",
