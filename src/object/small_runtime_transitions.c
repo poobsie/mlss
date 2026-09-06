@@ -17,6 +17,8 @@ void sub_8086090(struct RuntimeObject* object);
 void sub_8088964(struct RuntimeObject* object);
 void sub_8088F9C(struct RuntimeObject* object);
 void sub_808AEE4(struct RuntimeObject* object);
+void sub_808A32C(struct RuntimeObject* object);
+void sub_808C754(struct RuntimeObject* object);
 void sub_808C308(struct RuntimeObject* object);
 void sub_807C298(struct RuntimeObject* object);
 void sub_807F47C(struct RuntimeObject* object);
@@ -421,6 +423,33 @@ void object_prepare_owner_variant_command_for_24_tick_followup(
         RUNTIME_OBJECT_VARIANT_SECOND)
         sub_80873B8(object, 6, 0);
     object->followup = sub_808AEE4;
+}
+
+SEC(sub_808C4EC)
+void object_prepare_command_2_for_3_tick_followup(
+    struct RuntimeObject* object)
+{
+    object->timer = 3;
+    sub_80873B8(object, 2, 3);
+    object->followup = sub_808C754;
+}
+
+SEC(sub_808C52C)
+void object_attach_ready_owner_then_finish_linked_countdown(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner = object->positionOwner;
+    s8* flags;
+
+    if ((owner->flags76 & 0x80) == 0 && owner->verticalPosition == 0)
+        sub_810DD7C(object, owner, 0xFF);
+    if (object->timer-- <= 0) {
+        sub_8082E1C(object, 7, 0, 0);
+        sub_8082E1C(object->linkedObject, 2, 0, 0);
+        flags = (s8*)&object->linkedObject->visual->flags;
+        *flags = (*flags & -7) | 2;
+        object->update = sub_808A32C;
+    }
 }
 
 SEC(sub_809C960)

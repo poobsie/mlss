@@ -434,6 +434,13 @@ three current positions; it remains raw to avoid adding a symbol to the stable
 function denominator. The second stores a 24-tick timer, selects command 4 or 6
 from the position owner's established variant, and installs its followup.
 
+The traced velocity path now includes its compact setup and linked countdown
+transition. The setup stores a three-tick timer, prepares command 2 with the same
+duration, and records the established followup. The countdown conditionally
+attaches to a ready position owner, then starts animation 7 on the controller and
+animation 2 on its linked object, normalizes the linked visual mode to 2, and
+continues into the existing completion path.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
