@@ -1572,6 +1572,10 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_809A120);
         src/object/fixed_visual_transitions.o(.text.misc_helpers_03.sub_809A14C);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_809A14C);
+        src/object/late_effect_transitions.o(.text.late_effect_transitions.sub_809A630);
+        asm/text08057568.o(.text.late_effect_transitions_after_sub_809A630);
+        src/object/late_effect_transitions.o(.text.late_effect_transitions.sub_809A6CC);
+        asm/text08057568.o(.text.late_effect_transitions_after_sub_809A6CC);
         src/object/behavior_transitions.o(.text.sub_809A7EC);
         asm/text08057568.o(.text.after_sub_809A7EC);
         src/object/visual_completion_variants.o(.text.object_visual_completion_variants.sub_809A808);

@@ -551,6 +551,14 @@ next transition. Its paired completion restores mode 2 and emits effect
 `0x215C` at the object's fixed-point position before entering the established
 delayed-spawn callback.
 
+The later exit branch now exposes its compact motion-completion and visual gates.
+The motion gate waits for the shared motion poll to clear, halves the observed
+signed step at offset `0xAE`, clears the following two motion fields, resets the
+motion helper, and enters the established off-screen continuation. The visual
+gate clears behavior when completion bit 3 is set. The continuation and adjacent
+effect teardown remain raw after their bounded source-shape attempts failed to
+preserve the original instruction scheduling.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

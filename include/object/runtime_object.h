@@ -171,5 +171,11 @@ void object_finish_owner_position_effect_with_spawn(
     struct RuntimeObject* object);
 void object_finish_owner_position_effect_when_ready(
     struct RuntimeObject* object);
+s32 object_when_motion_complete_begin_downward_exit(
+    struct RuntimeObject* object);
+void object_clear_behavior_on_visual_complete_variant_b(
+    struct RuntimeObject* object);
+void object_integrate_downward_exit_until_offscreen(
+    struct RuntimeObject* object);
 
 #endif
