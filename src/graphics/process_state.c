@@ -24,6 +24,10 @@ void sub_8018218(void* source, void* destination, u32 size, u32 width, u32 mode)
 void sub_805D0DC(struct GraphicsProcessState* process);
 void sub_805D93C(struct GraphicsProcessState* process, u32 value);
 void sub_805D288(struct GraphicsProcessState* process);
+void sub_805B618(void* owner, u16 index);
+u8 sub_8114C1C(
+    void* resourceObject, u8 value1, u16 value2, u8 value3,
+    u32 value4, u32 value5);
 
 #define FRAME_TRANSFER_SOURCE (*(void**)0x03000E08)
 #define FRAME_TRANSFER_STAGING (*(u16**)0x03000E0C)
@@ -95,6 +99,79 @@ void graphics_apply_indexed_resource_entry_value(
 {
     sub_8115048(
         owner->resourceObject, owner->resourceEntryIndices[index], value);
+}
+
+SEC(sub_805C7B4)
+void graphics_initialize_resource_entry_index(
+    struct GraphicsResourceEntryOwner* owner, u8 index)
+{
+    void* resourceObject = owner->resourceObject;
+
+    if (resourceObject != 0) {
+        u8 directoryIndex =
+            gGraphicsTransferRuntimeSelection
+                .resourceDefinitionDirectoryIndex;
+        const struct GraphicsResourceEntryDefinition* definitions =
+            gGraphicsResourceEntryDefinitionTable[directoryIndex];
+
+        if (definitions != 0 && (definitions[index].flags & 0x40)) {
+            u16 packedValue = definitions[index].packedValue | 0x5000;
+
+            owner->resourceEntryIndices[index] = sub_8114C1C(
+                resourceObject, 0xFF, packedValue, 0xFF, 0xFFFF, 0xFFFF);
+        }
+    }
+}
+
+SEC(sub_805C8A4)
+void graphics_apply_entries_matching_record_halfword_12(
+    void* owner, u16 value)
+{
+    const struct GraphicsIndexedResourceRecord* records;
+    u8 directoryIndex =
+        gGraphicsTransferRuntimeSelection.resourceDirectoryIndex;
+    u16 nextIndex;
+
+    if (directoryIndex == 0)
+        return;
+    records = gGraphicsResourceDirectoryTable[directoryIndex].records;
+    nextIndex = 0;
+    do {
+        u16 index = nextIndex;
+        u16 recordValue =
+            ((u32)records[index].packed.fields.packedValue12 << 17) >> 24;
+
+        if (recordValue == value)
+            sub_805B618(owner, index);
+        nextIndex++;
+        if (((const u8*)&records[index].packed.fields.packedValue12)[1] & 0x80)
+            break;
+    } while (1);
+}
+
+SEC(sub_805C908)
+void graphics_apply_entries_matching_record_word_10(void* owner, u16 value)
+{
+    const struct GraphicsIndexedResourceRecord* records;
+    u8 directoryIndex =
+        gGraphicsTransferRuntimeSelection.resourceDirectoryIndex;
+    u16 nextIndex;
+
+    if (directoryIndex == 0)
+        return;
+    records = gGraphicsResourceDirectoryTable[directoryIndex].records;
+    nextIndex = 0;
+    do {
+        u16 index = nextIndex;
+        u16 recordValue =
+            (records[index].packed.packedValue10 << 9) >> 24;
+
+        if (recordValue == value)
+            sub_805B618(owner, index);
+        nextIndex++;
+        if (((const u8*)&records[index].packed.fields.packedValue12)[1] & 0x80)
+            break;
+    } while (1);
 }
 
 SEC(sub_805DA04)

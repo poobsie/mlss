@@ -91,7 +91,6 @@ struct ScriptObjectPropertyArguments {
 
 extern void sub_801B0AC(u16);
 extern void sub_803C898(void *, s32);
-extern void sub_805C7B4(void *, u8);
 extern void sub_805B490(void *, u16);
 extern void sub_805B618(void *, u16);
 extern void sub_8047E50(void *, u16);
@@ -855,7 +854,8 @@ SEC(sub_80F0BA4) const u16 sub_80F0BA4_padding = 0;
         return result;                                                   \
     }
 
-DEFINE_OBJECT_COMMAND(sub_80F0BC0, u8, sub_805C7B4, 1)
+DEFINE_OBJECT_COMMAND(
+    sub_80F0BC0, u8, graphics_initialize_resource_entry_index, 1)
 DEFINE_OBJECT_COMMAND(sub_80F0BD8, u16, sub_805B490, 0)
 DEFINE_OBJECT_COMMAND(sub_80F0BF0, u16, sub_805B618, 0)
 

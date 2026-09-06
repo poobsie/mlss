@@ -33,8 +33,33 @@ struct GraphicsCompactStagingSource {
 };
 
 struct GraphicsTransferRuntimeSelection {
-    u8 unknown00[0x0B];
+    u8 unknown00[0x08];
+    u8 resourceDefinitionDirectoryIndex;
+    u8 unknown09;
+    u8 resourceDirectoryIndex;
     u8 destinationRecord;
+};
+
+struct GraphicsResourceEntryDefinition {
+    u8 flags;
+    u8 packedValue;
+    u8 unknown02[2];
+};
+
+struct GraphicsIndexedResourceRecord {
+    u8 unknown00[0x10];
+    union {
+        u32 packedValue10;
+        struct {
+            u8 unknown10[2];
+            u16 packedValue12;
+        } fields;
+    } packed;
+};
+
+struct GraphicsResourceDirectorySelection {
+    const struct GraphicsIndexedResourceRecord* records;
+    u8 unknown04[4];
 };
 
 struct GraphicsResourceEntryOwner {
@@ -52,6 +77,10 @@ struct GraphicsRuntimeConfigurationProcess {
 extern volatile struct GraphicsTransferRuntimeSelection
     gGraphicsTransferRuntimeSelection;
 extern const u8 gGraphicsTransferDestinationTable[][4];
+extern const struct GraphicsResourceDirectorySelection
+    gGraphicsResourceDirectoryTable[];
+extern const struct GraphicsResourceEntryDefinition* const
+    gGraphicsResourceEntryDefinitionTable[];
 
 struct GraphicsProcessState {
     u8 unknown00[0x18];
@@ -73,6 +102,9 @@ struct Process;
 #define graphics_frame_transfer_callback sub_805C5F4
 #define graphics_selected_register_transfer_callback sub_805C644
 #define graphics_apply_indexed_resource_entry_value sub_805C78C
+#define graphics_initialize_resource_entry_index sub_805C7B4
+#define graphics_apply_entries_matching_record_halfword_12 sub_805C8A4
+#define graphics_apply_entries_matching_record_word_10 sub_805C908
 #define graphics_copy_indexed_tile_resource_to_vram sub_805C9A4
 #define graphics_copy_indexed_tile_resource_to_vram_alternate sub_805D8DC
 #define graphics_rebuild_and_upload_vram_buffer sub_805D9CC
@@ -88,6 +120,11 @@ void graphics_frame_transfer_callback(void);
 void graphics_selected_register_transfer_callback(void);
 void graphics_apply_indexed_resource_entry_value(
     struct GraphicsResourceEntryOwner* owner, u8 index, u8 value);
+void graphics_initialize_resource_entry_index(
+    struct GraphicsResourceEntryOwner* owner, u8 index);
+void graphics_apply_entries_matching_record_halfword_12(
+    void* owner, u16 value);
+void graphics_apply_entries_matching_record_word_10(void* owner, u16 value);
 void graphics_copy_indexed_tile_resource_to_vram(
     void* owner, u16 destinationTile, u8 tileCount, u16 resourceIndex);
 void graphics_copy_indexed_tile_resource_to_vram_alternate(

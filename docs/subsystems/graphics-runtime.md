@@ -96,6 +96,18 @@ passes and uploads the owner's `0x3000`-byte buffer at offset `0x94` to VRAM.
 configuration index before invoking the adjacent 24-byte runtime-record loader.
 The configuration record's remaining fields stay unnamed.
 
+`GraphicsIndexedResourceRecord` establishes the twenty-byte, sentinel-terminated
+records selected through runtime byte `0x0A`. Two scanners extract the proven
+bit ranges from the word at `0x10` or halfword at `0x12` and apply every matching
+entry to the owner. The packed values remain offset-named because their concrete
+resource meaning is not established by these consumers.
+
+`graphics_initialize_resource_entry_index` follows the independently selected
+four-byte definition list, requires flag `0x40`, combines its byte at `0x01`
+with `0x5000`, and stores the created entry index in the owner's array at
+`0x580`. That array is the same one consumed by the indexed resource-entry
+forwarding helper.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

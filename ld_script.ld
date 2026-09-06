@@ -234,6 +234,12 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_02_after_sub_805C73C);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805C78C);
         asm/text08057568.o(.text.after_graphics_apply_indexed_resource_entry_value_805C78C);
+        src/graphics/process_state.o(.text.graphics_process_state.sub_805C7B4);
+        asm/text08057568.o(.text.after_graphics_initialize_resource_entry_index_805C7B4);
+        src/graphics/process_state.o(.text.graphics_process_state.sub_805C8A4);
+        asm/text08057568.o(.text.after_graphics_apply_entries_matching_record_halfword_12_805C8A4);
+        src/graphics/process_state.o(.text.graphics_process_state.sub_805C908);
+        asm/text08057568.o(.text.after_graphics_apply_entries_matching_record_word_10_805C908);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805C9A4);
         asm/text08057568.o(.text.after_graphics_copy_indexed_tile_resource_to_vram_805C9A4);
         src/graphics/process_state.o(.text.graphics_process_state.sub_805CCC0);

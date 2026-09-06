@@ -9025,8 +9025,9 @@ asm_discard_sub_805C78C:
 	bx r0
 _0805C7B0: .4byte 0x0000057C
 	.section .text.after_graphics_apply_indexed_resource_entry_value_805C78C, "ax", %progbits
-	thumb_func_start sub_805C7B4
-sub_805C7B4:
+	.section .discard.graphics_initialize_resource_entry_index, "ax", %progbits
+	thumb_func_start asm_discard_sub_805C7B4
+asm_discard_sub_805C7B4:
 	push {r4, r5, lr}
 	add sp, #-0x008
 	adds r5, r0, #0x0
@@ -9079,6 +9080,7 @@ _0805C814: .4byte 0x0000057C
 _0805C818: .4byte 0x03000DD0
 _0805C81C: .4byte 0x083B79C4
 _0805C820: .4byte 0x0000FFFF
+	.section .text.after_graphics_initialize_resource_entry_index_805C7B4, "ax", %progbits
 	thumb_func_start sub_805C824
 sub_805C824:
 	push {r4, r5, r6, r7, lr}
@@ -9149,8 +9151,9 @@ _0805C894:
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-	thumb_func_start sub_805C8A4
-sub_805C8A4:
+	.section .discard.graphics_apply_entries_matching_record_halfword_12, "ax", %progbits
+	thumb_func_start asm_discard_sub_805C8A4
+asm_discard_sub_805C8A4:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -9201,8 +9204,10 @@ _0805C8F6:
 	bx r0
 _0805C900: .4byte 0x03000DD0
 _0805C904: .4byte 0x083B7108
-	thumb_func_start sub_805C908
-sub_805C908:
+	.section .text.after_graphics_apply_entries_matching_record_halfword_12_805C8A4, "ax", %progbits
+	.section .discard.graphics_apply_entries_matching_record_word_10, "ax", %progbits
+	thumb_func_start asm_discard_sub_805C908
+asm_discard_sub_805C908:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
 	push {r7}
@@ -9253,6 +9258,7 @@ _0805C95A:
 	bx r0
 _0805C964: .4byte 0x03000DD0
 _0805C968: .4byte 0x083B7108
+	.section .text.after_graphics_apply_entries_matching_record_word_10_805C908, "ax", %progbits
 	.byte 0x70, 0xB5, 0x1E, 0x1C, 0x12, 0x04, 0x89, 0x04, 0x0D, 0x0C, 0x00, 0x23, 0x92, 0x0B, 0x93, 0x42
 	.byte 0x0E, 0xDA, 0x04, 0x1C, 0xA8, 0x34, 0xE9, 0x18, 0x20, 0x68, 0x49, 0x00, 0x09, 0x18, 0x58, 0x00
 	.byte 0x80, 0x19, 0x00, 0x88, 0x08, 0x80, 0x58, 0x1C, 0x00, 0x04, 0x03, 0x0C, 0x93, 0x42, 0xF2, 0xDB
