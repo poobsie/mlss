@@ -295136,8 +295136,9 @@ _080F89FC:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_80F8A08
-sub_80F8A08:
+	.section .discard.field_reset_selected_script_block, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F8A08
+asm_discard_sub_80F8A08:
 	ldr r1, [r2, #0x00]
 	lsls r1, r1, #0x08
 	ldr r0, [r0, #0x2C]
@@ -295154,6 +295155,7 @@ sub_80F8A08:
 	movs r0, #0x01
 	bx lr
 	.byte 0x00, 0x00
+	.section .text.field_script_blocks_after_sub_80F8A08, "ax", %progbits
 	thumb_func_start sub_80F8A28
 sub_80F8A28:
 	push {r4, lr}
@@ -295212,8 +295214,9 @@ _080F8A84:
 	bx r1
 	.byte 0x00, 0x00
 _080F8A8C: .4byte 0xFFFF0000
-	thumb_func_start sub_80F8A90
-sub_80F8A90:
+	.section .discard.field_set_selected_script_block_flag_4, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F8A90
+asm_discard_sub_80F8A90:
 	push {lr}
 	ldr r1, [r2, #0x04]
 	lsls r1, r1, #0x08
@@ -295247,6 +295250,7 @@ _080F8AC2:
 	pop {r1}
 	bx r1
 _080F8AC8: .4byte 0x0000FFFB
+	.section .text.field_script_blocks_after_sub_80F8A90, "ax", %progbits
 	thumb_func_start ybai_script_update_80F8ACC
 ybai_script_update_80F8ACC: @ 080F8ACC
 	push {r4, r5, lr}

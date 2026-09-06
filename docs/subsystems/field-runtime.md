@@ -377,6 +377,13 @@ runtime byte at offset `0x2F8`: command zero stores one and command one stores z
 Other command values leave it unchanged. The byte remains offset-named until a
 reader establishes what the toggle controls.
 
+The field script-block boundary now exposes a `0x100`-byte-strided state region
+owned through context offset `0x2C`. `field_reset_selected_script_block` clears the
+selected block's flags and restores its cursor from the adjacent saved cursor.
+`field_set_selected_script_block_flag_4` sets or clears flag `0x0004` in the same
+block. The flag meaning and the reason the state region begins at offset `0x700`
+remain unresolved, so the layout records only the proven cursor and flag fields.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or
