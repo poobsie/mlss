@@ -10,6 +10,7 @@ void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
 
 void sub_805DF88(struct RuntimeObject* object);
+void sub_805F910(struct RuntimeObject* object);
 void sub_80602B4(struct RuntimeObject* object);
 void sub_8061DA8(struct RuntimeObject* object);
 void sub_806259C(struct RuntimeObject* object);
@@ -75,6 +76,8 @@ DEFINE_VISUAL_TRANSITION(object_on_visual_complete_animation_10_variant_a,
                          0xA, sub_8099BE4)
 DEFINE_VISUAL_TRANSITION(object_on_visual_complete_animation_14_variant_a,
                          0xE, sub_8111848)
+DEFINE_VISUAL_TRANSITION(object_on_visual_complete_start_animation_5,
+                         5, sub_805F910)
 
 SEC(object_on_visual_complete_command_4071_then_idle)
 void object_on_visual_complete_command_4071_then_idle(

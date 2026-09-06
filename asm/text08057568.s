@@ -15462,8 +15462,9 @@ _0805FD56:
 	bx r0
 	.byte 0x00, 0x00
 	.section .text.misc_helpers_03_after_sub_805FD40, "ax", %progbits
-	thumb_func_start sub_805FD5C
-sub_805FD5C:
+	.section .discard.object_accelerate_left_to_behavior_position, "ax", %progbits
+	thumb_func_start asm_discard_sub_805FD5C
+asm_discard_sub_805FD5C:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r0, #0xB0
@@ -15511,8 +15512,10 @@ _0805FDAE:
 	pop {r0}
 	bx r0
 _0805FDB4: .4byte sub_805FF30
-	thumb_func_start sub_805FDB8
-sub_805FDB8:
+	.section .text.misc_helpers_03_after_sub_805FD5C, "ax", %progbits
+	.section .discard.object_on_visual_complete_start_animation_5, "ax", %progbits
+	thumb_func_start asm_discard_sub_805FDB8
+asm_discard_sub_805FDB8:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	ldr r0, [r4, #0x08]
@@ -15534,6 +15537,7 @@ _0805FDD8:
 	bx r0
 	.byte 0x00, 0x00
 _0805FDE0: .4byte sub_805F910
+	.section .text.misc_helpers_03_after_sub_805FDB8, "ax", %progbits
 	.byte 0x03, 0x1C, 0x19, 0x1C, 0xAE, 0x31, 0x80, 0x20, 0x40, 0x00, 0x08, 0x80, 0x1A, 0x1C, 0x84, 0x32
 	.byte 0xD8, 0x6A, 0x81, 0x6A, 0x08, 0x1C, 0xD8, 0x30, 0x00, 0x68, 0x10, 0x60, 0x04, 0x32, 0xDC, 0x31
 	.byte 0x08, 0x68, 0x10, 0x60, 0x19, 0x1C, 0x9C, 0x31, 0x18, 0x69, 0x08, 0x60, 0x04, 0x31, 0x58, 0x69
@@ -15543,8 +15547,9 @@ _0805FDE0: .4byte sub_805F910
 	.byte 0x00, 0x68, 0x10, 0x60, 0x04, 0x32, 0xDC, 0x31, 0x08, 0x68, 0x10, 0x60, 0x61, 0x46, 0x9C, 0x31
 	.byte 0x62, 0x46, 0x10, 0x69, 0x08, 0x60, 0x04, 0x31, 0x50, 0x69, 0x08, 0x60, 0x60, 0x46, 0xB0, 0x30
 	.byte 0x03, 0x80, 0x02, 0x48, 0xD0, 0x64, 0x01, 0x20, 0x70, 0x47, 0x00, 0x00, 0x59, 0xFF, 0x05, 0x08
-	thumb_func_start sub_805FE74
-sub_805FE74:
+	.section .discard.object_update_offset_motion_then_finish_outside_transformed_bounds, "ax", %progbits
+	thumb_func_start asm_discard_sub_805FE74
+asm_discard_sub_805FE74:
 	push {r4, lr}
 	add sp, #-0x00C
 	adds r4, r0, #0x0
@@ -15611,8 +15616,10 @@ _0805FEEC:
 	pop {r4}
 	pop {r0}
 	bx r0
-	thumb_func_start sub_805FEF4
-sub_805FEF4:
+	.section .text.misc_helpers_03_after_sub_805FE74, "ax", %progbits
+	.section .discard.object_when_value80_clear_snap_to_behavior_position, "ax", %progbits
+	thumb_func_start asm_discard_sub_805FEF4
+asm_discard_sub_805FEF4:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r0, #0x80
@@ -15642,6 +15649,7 @@ _0805FF26:
 	pop {r0}
 	bx r0
 _0805FF2C: .4byte sub_805FF30
+	.section .text.misc_helpers_03_after_sub_805FEF4, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_805FF30, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_805FF58, "ax", %progbits
 	thumb_func_start sub_805FF80

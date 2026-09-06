@@ -131,6 +131,10 @@ void runtime_object_finish_action(struct RuntimeObject* object);
 #define runtime_object_clear_behavior sub_8087540
 #define runtime_object_advance_vertical_to_limit sub_80877C0
 #define object_finish_when_state_value_ba_clear sub_805FD40
+#define object_accelerate_left_to_behavior_position sub_805FD5C
+#define object_on_visual_complete_start_animation_5 sub_805FDB8
+#define object_update_offset_motion_then_finish_outside_transformed_bounds sub_805FE74
+#define object_when_value80_clear_snap_to_behavior_position sub_805FEF4
 #define runtime_resolve_reflected_interval sub_8087878
 #define runtime_object_start_timed_motion sub_808842C
 #define runtime_object_visual_apply_transform sub_8083E84
@@ -175,6 +179,12 @@ void runtime_object_when_value80_clear_prepare_state_motion(
 void runtime_object_clear_behavior(struct RuntimeObject* object);
 u32 runtime_object_advance_vertical_to_limit(struct RuntimeObject* object);
 void object_finish_when_state_value_ba_clear(struct RuntimeObject* object);
+void object_accelerate_left_to_behavior_position(struct RuntimeObject* object);
+void object_on_visual_complete_start_animation_5(struct RuntimeObject* object);
+void object_update_offset_motion_then_finish_outside_transformed_bounds(
+    struct RuntimeObject* object);
+void object_when_value80_clear_snap_to_behavior_position(
+    struct RuntimeObject* object);
 s32 runtime_resolve_reflected_interval(s32* total, s32* lowerDistance,
                                        s32 lower, s32 upper, s32 position);
 void runtime_object_start_timed_motion(struct RuntimeObject* object, s32 value, s32 duration);

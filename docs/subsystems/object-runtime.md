@@ -689,6 +689,14 @@ and finishes the object only when the signed halfword at state offset `0xBA`
 is zero. The field remains offset-named because its producer and gameplay role
 are not yet recovered.
 
+The surrounding completion chain is isolated in `state_completion_motion.c`.
+It accelerates an object left toward the position held in `behaviorState`, or
+updates a subtractive position/vertical offset until transformed screen
+coordinates leave the accepted bounds. Both paths converge on animation 8 and
+the existing visual-completion cleanup callback. `stateValueB0`,
+`secondaryTimer`, and `behaviorState` remain generic because this chain proves
+how they are consumed, but not their broader gameplay identities.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
