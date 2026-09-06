@@ -108,6 +108,17 @@ with `0x5000`, and stores the created entry index in the owner's array at
 `0x580`. That array is the same one consumed by the indexed resource-entry
 forwarding helper.
 
+`graphics_initialize_large_owner_resource_entries` applies the complementary
+definition rule to the larger owner layout. It clears the four entry indices at
+`0x76C`, selects a definition list through byte `0x05` of the owner's twelve-byte
+configuration record, and creates entries lacking flag `0x40` until the `0x80`
+sentinel. The created resource type remains unspecified.
+
+`graphics_copy_indexed_tile_resource_to_base_vram` is the base-character-VRAM
+counterpart to the two offset transfer entry points. It resolves the same
+relative resource table and converts tile units to bytes before copying to the
+destination beginning at `0x06000000`.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

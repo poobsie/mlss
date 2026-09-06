@@ -196,6 +196,56 @@ void graphics_copy_indexed_tile_resource_to_vram(
     sub_8018218((void*)source, destination, tileCount * 32, 32, 0);
 }
 
+SEC(sub_805B120)
+void graphics_copy_indexed_tile_resource_to_base_vram(
+    void* owner, u16 destinationTile, u8 tileCount, u16 resourceIndex)
+{
+    const u8* resourceBase = (const u8*)0x08940C9C;
+    const u32* resourceOffsets = (const u32*)resourceBase;
+    const void* source = resourceBase + resourceOffsets[resourceIndex];
+    void* destination = (u8*)0x06000000 + destinationTile * 32;
+
+    sub_8018218((void*)source, destination, tileCount * 32, 32, 0);
+}
+
+SEC(sub_805B074)
+void graphics_initialize_large_owner_resource_entries(
+    struct GraphicsLargeResourceEntryOwner* owner)
+{
+    const struct GraphicsResourceEntryDefinition* definitions;
+    u8 nextIndex;
+
+    for (nextIndex = 0; nextIndex <= 3; nextIndex++)
+        owner->resourceEntryIndices[nextIndex] |= 0xFF;
+    if (owner->resourceObject == 0)
+        return;
+    {
+        u8 definitionDirectoryIndex =
+            gGraphicsOwnerConfigurationTable[owner->configurationIndex]
+                .resourceDefinitionDirectoryIndex;
+        definitions =
+            gGraphicsResourceEntryDefinitionTable[definitionDirectoryIndex];
+    }
+    if (definitions == 0)
+        return;
+    nextIndex = 0;
+    do {
+        u8 index = nextIndex;
+
+        if (!(definitions[index].flags & 0x40)) {
+            void* resourceObject = owner->resourceObject;
+            u16 packedValue = definitions[index].packedValue | 0x5000;
+
+            owner->resourceEntryIndices[index] = sub_8114C1C(
+                resourceObject, 0xFF, packedValue, 0xFF,
+                0xFFFF, 0xFFFF);
+        }
+        nextIndex++;
+        if (definitions[index].flags & 0x80)
+            break;
+    } while (1);
+}
+
 SEC(sub_805D8DC)
 void graphics_copy_indexed_tile_resource_to_vram_alternate(
     void* owner, u16 destinationTile, u8 tileCount, u16 resourceIndex)

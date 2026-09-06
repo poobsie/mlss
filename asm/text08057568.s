@@ -6617,8 +6617,9 @@ _0805B064: .4byte 0x000002B2
 _0805B068: .4byte 0x00007FFF
 _0805B06C: .4byte 0x000002AE
 _0805B070: .4byte 0x000002AF
-	thumb_func_start sub_805B074
-sub_805B074:
+	.section .discard.graphics_initialize_large_owner_resource_entries, "ax", %progbits
+	thumb_func_start asm_discard_sub_805B074
+asm_discard_sub_805B074:
 	push {r4, r5, r6, r7, lr}
 	add sp, #-0x008
 	adds r6, r0, #0x0
@@ -6704,8 +6705,10 @@ _0805B110: .4byte 0x0000076C
 _0805B114: .4byte 0x083AFC5C
 _0805B118: .4byte 0x083B79C4
 _0805B11C: .4byte 0x0000FFFF
-	thumb_func_start sub_805B120
-sub_805B120:
+	.section .text.after_graphics_initialize_large_owner_resource_entries_805B074, "ax", %progbits
+	.section .discard.graphics_copy_indexed_tile_resource_to_base_vram, "ax", %progbits
+	thumb_func_start asm_discard_sub_805B120
+asm_discard_sub_805B120:
 	push {r4, lr}
 	add sp, #-0x004
 	lsls r1, r1, #0x10
@@ -6730,6 +6733,7 @@ sub_805B120:
 	pop {r0}
 	bx r0
 _0805B150: .4byte 0x08940C9C
+	.section .text.after_graphics_copy_indexed_tile_resource_to_base_vram_805B120, "ax", %progbits
 	thumb_func_start sub_805B154
 sub_805B154:
 	push {r4, r5, r6, r7, lr}

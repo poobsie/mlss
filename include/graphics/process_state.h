@@ -68,6 +68,20 @@ struct GraphicsResourceEntryOwner {
     u8 resourceEntryIndices[4];
 };
 
+struct GraphicsLargeResourceEntryOwner {
+    u8 unknown00[0x1E];
+    u16 configurationIndex;
+    u8 unknown20[0x748];
+    void* resourceObject;
+    u8 resourceEntryIndices[4];
+};
+
+struct GraphicsOwnerConfigurationRecord {
+    u8 unknown00[5];
+    u8 resourceDefinitionDirectoryIndex;
+    u8 unknown06[6];
+};
+
 struct GraphicsRuntimeConfigurationProcess {
     u8 unknown00[0x1C];
     s16 state;
@@ -81,6 +95,8 @@ extern const struct GraphicsResourceDirectorySelection
     gGraphicsResourceDirectoryTable[];
 extern const struct GraphicsResourceEntryDefinition* const
     gGraphicsResourceEntryDefinitionTable[];
+extern const struct GraphicsOwnerConfigurationRecord
+    gGraphicsOwnerConfigurationTable[];
 
 struct GraphicsProcessState {
     u8 unknown00[0x18];
@@ -106,6 +122,8 @@ struct Process;
 #define graphics_apply_entries_matching_record_halfword_12 sub_805C8A4
 #define graphics_apply_entries_matching_record_word_10 sub_805C908
 #define graphics_copy_indexed_tile_resource_to_vram sub_805C9A4
+#define graphics_copy_indexed_tile_resource_to_base_vram sub_805B120
+#define graphics_initialize_large_owner_resource_entries sub_805B074
 #define graphics_copy_indexed_tile_resource_to_vram_alternate sub_805D8DC
 #define graphics_rebuild_and_upload_vram_buffer sub_805D9CC
 #define graphics_load_runtime_configuration sub_805D914
@@ -127,6 +145,10 @@ void graphics_apply_entries_matching_record_halfword_12(
 void graphics_apply_entries_matching_record_word_10(void* owner, u16 value);
 void graphics_copy_indexed_tile_resource_to_vram(
     void* owner, u16 destinationTile, u8 tileCount, u16 resourceIndex);
+void graphics_copy_indexed_tile_resource_to_base_vram(
+    void* owner, u16 destinationTile, u8 tileCount, u16 resourceIndex);
+void graphics_initialize_large_owner_resource_entries(
+    struct GraphicsLargeResourceEntryOwner* owner);
 void graphics_copy_indexed_tile_resource_to_vram_alternate(
     void* owner, u16 destinationTile, u8 tileCount, u16 resourceIndex);
 void graphics_rebuild_and_upload_vram_buffer(
