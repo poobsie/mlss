@@ -465995,24 +465995,7 @@ sub_81639D4:
 	.byte 0x00, 0x00
 	.endif
 	.section .text.after_ui_object_helpers_39e0, "ax", %progbits
-	thumb_func_start sub_8163A08
-sub_8163A08:
-	push {lr}
-	adds r1, r0, #0x0
-	ldr r0, [r1, #0x44]
-	cmp r0, #0x00
-	beq _08163A1C
-	ldr r0, [r1, #0x40]
-	cmp r0, #0x01
-	beq _08163A1C
-	movs r0, #0x00
-	b _08163A1E
-_08163A1C:
-	movs r0, #0x01
-_08163A1E:
-	pop {r1}
-	bx r1
-	.byte 0x00, 0x00
+	.section .text.after_sub_8163A08, "ax", %progbits
 	.section .text.child_actions_after_sub_8163A24, "ax", %progbits
 	.section .text.child_actions_after_sub_8163A44, "ax", %progbits
 	.section .text.after_ui_object_helpers_3a64, "ax", %progbits

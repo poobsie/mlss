@@ -2688,6 +2688,8 @@ SECTIONS
         src/ui/object_state.o(.text.sub_81639E0);
         src/ui/object_state.o(.text.sub_81639F8);
         asm/text08057568.o(.text.after_ui_object_helpers_39e0);
+        src/ui/object_state.o(.text.sub_8163A08);
+        asm/text08057568.o(.text.after_sub_8163A08);
         src/ui/sprite_pair.o(.text.child_actions.sub_8163A24);
         asm/text08057568.o(.text.child_actions_after_sub_8163A24);
         src/ui/sprite_pair.o(.text.child_actions.sub_8163A44);

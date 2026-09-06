@@ -42,6 +42,16 @@ void ui_object_reset(struct UiObject* object, void* value) {
 __attribute__((section(".text.sub_81639F8")))
 const u16 sub_81639F8_padding = 0;
 
+u32 ui_object_visual_is_idle(struct UiObject* object)
+    __attribute__((section(".text.sub_8163A08")));
+u32 ui_object_visual_is_idle(struct UiObject* object) {
+    if (object->value44 != 0 && object->state40 != 1)
+        return 0;
+    return 1;
+}
+__attribute__((section(".text.sub_8163A08")))
+const u16 ui_object_visual_is_idle_padding = 0;
+
 void ui_object_set_values_18_20(struct UiObject* object, u32 value18,
                                 u32 value1C, u32 value20)
     __attribute__((section(".text.sub_8163A64")));
