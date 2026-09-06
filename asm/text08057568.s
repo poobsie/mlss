@@ -8913,8 +8913,9 @@ _0805C638: .4byte 0x040000B0
 _0805C63C: .4byte 0x040000BA
 _0805C640: .4byte 0xA6400001
 	.section .text.after_graphics_frame_transfer_callback_805C5F4, "ax", %progbits
-	thumb_func_start sub_805C644
-sub_805C644:
+	.section .discard.graphics_selected_register_transfer_callback, "ax", %progbits
+	thumb_func_start asm_discard_sub_805C644
+asm_discard_sub_805C644:
 	push {r4, r5, lr}
 	ldr r0, _0805C694 @ =0x03000DD0
 	ldrb r1, [r0, #0x0B]
@@ -8963,6 +8964,7 @@ _0805C6A8: .4byte 0x03000E08
 _0805C6AC: .4byte 0x040000B0
 _0805C6B0: .4byte 0x040000BA
 _0805C6B4: .4byte 0xA6400001
+	.section .text.after_graphics_selected_register_transfer_callback_805C644, "ax", %progbits
 	thumb_func_start sub_805C6B8
 sub_805C6B8:
 	push {r4, r5, lr}
@@ -9001,8 +9003,9 @@ _0805C6FC: .4byte 0x00000584
 	.byte 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x04, 0x0E, 0x00, 0x03, 0xB0, 0x00, 0x00, 0x04
 	.byte 0xBA, 0x00, 0x00, 0x04, 0x01, 0x00, 0x40, 0xA2, 0x70, 0x47, 0x00, 0x00
 	.section .text.small_functions_02_after_sub_805C73C, "ax", %progbits
-	thumb_func_start sub_805C78C
-sub_805C78C:
+	.section .discard.graphics_apply_indexed_resource_entry_value, "ax", %progbits
+	thumb_func_start asm_discard_sub_805C78C
+asm_discard_sub_805C78C:
 	push {r4, lr}
 	lsls r1, r1, #0x18
 	lsrs r1, r1, #0x18
@@ -9021,6 +9024,7 @@ sub_805C78C:
 	pop {r0}
 	bx r0
 _0805C7B0: .4byte 0x0000057C
+	.section .text.after_graphics_apply_indexed_resource_entry_value_805C78C, "ax", %progbits
 	thumb_func_start sub_805C7B4
 sub_805C7B4:
 	push {r4, r5, lr}

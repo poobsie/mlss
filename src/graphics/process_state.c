@@ -18,6 +18,7 @@ void sub_8058278(struct GraphicsStagingSource* source);
 void sub_80582DC(struct GraphicsStagingSource* source);
 void sub_80584F8(struct GraphicsStagingSource* source);
 void sub_80587BC(struct GraphicsStagingSource* source, s32 mode);
+void sub_8115048(void* resourceObject, u8 configurationId, u8 value);
 
 #define FRAME_TRANSFER_SOURCE (*(void**)0x03000E08)
 #define FRAME_TRANSFER_STAGING (*(u16**)0x03000E0C)
@@ -59,6 +60,36 @@ void graphics_frame_transfer_callback(void)
     dma3[0] = (u32)(*stagingGlobal + 1);
     dma3[1] = (u32)displayTarget;
     dma3[2] = 0xA6400001;
+}
+
+SEC(sub_805C644)
+void graphics_selected_register_transfer_callback(void)
+{
+    u32 selection =
+        gGraphicsTransferRuntimeSelection.destinationRecord & 0x1F;
+    u32 registerOffset =
+        ((u32)gGraphicsTransferDestinationTable[selection][0] << 30) >> 28;
+    vu16* firstDestination = (vu16*)((u8*)0x04000014 + registerOffset);
+    u16** stagingGlobal = (u16**)0x03000E0C;
+    u16* staging = *stagingGlobal;
+    vu32* dma3;
+
+    firstDestination[0] = staging[0];
+    *(vu16*)((u8*)0x04000016 + registerOffset) = staging[1];
+    CpuFastSet(FRAME_TRANSFER_SOURCE, staging, 0xA0);
+    dma3 = (vu32*)0x040000B0;
+    *(vu16*)0x040000BA = 0;
+    dma3[0] = (u32)(*stagingGlobal + 1);
+    dma3[1] = (u32)firstDestination;
+    dma3[2] = 0xA6400001;
+}
+
+SEC(sub_805C78C)
+void graphics_apply_indexed_resource_entry_value(
+    struct GraphicsResourceEntryOwner* owner, u8 index, u8 value)
+{
+    sub_8115048(
+        owner->resourceObject, owner->resourceEntryIndices[index], value);
 }
 
 SEC(sub_8059F24) void sub_8059F24(struct GraphicsStagingSource* source)

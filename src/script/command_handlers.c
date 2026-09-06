@@ -5,6 +5,7 @@
 #include "battle/object.h"
 #include "field/global_object_transitions.h"
 #include "field/selection_sequence.h"
+#include "graphics/process_state.h"
 #include "script/command_handlers.h"
 #include "script/command_context.h"
 #include "script/execution_state.h"
@@ -104,7 +105,6 @@ extern void sub_807F708(
     s32 kind, s32 value, s32 duration, s32 flags, s32 dispatchValue);
 extern void sub_807F754(s32 kind, s32 value, s32 dispatchValue);
 extern u8 sub_8027378(void* objectRegistry);
-extern void sub_805C78C(void* object, u8 value0, u8 value1);
 extern void sub_80E9330(void* owner, u16 value);
 extern void sub_80E6FB8(void* resource, s32 layer);
 extern void sub_80E7118(void* resource, u8 mask);

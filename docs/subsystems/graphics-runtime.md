@@ -73,6 +73,17 @@ at `0x0400001C`, refreshes that staging buffer from the allocation at
 `0x03000E08`, and arms DMA3 from the staging buffer's next halfword. The buffer
 contents remain address-based because their rendering format is not yet proven.
 
+`graphics_selected_register_transfer_callback` performs the same staging refresh
+and DMA3 setup, but derives the destination register pair from the low five bits
+of the runtime byte at offset `0x0B`. Each four-byte table record contributes a
+two-bit register-pair selector. The other record bytes and the staging format
+remain unnamed because this callback does not establish their contents.
+
+`graphics_apply_indexed_resource_entry_value` follows the resource pointer at
+offset `0x57C`, translates a caller-supplied slot through the byte array at
+`0x580`, and forwards the resulting resource-entry index and value to the shared
+resource operation. The entry's visual or gameplay identity remains unknown.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
