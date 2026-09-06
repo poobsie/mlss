@@ -3,6 +3,20 @@
 
 #define SEC(name) __attribute__((section(".text.text_upper_structural." #name)))
 
+SEC(sub_815FACC)
+void battle_sprite_motion_capture_delta(struct BattleSpriteMotion* object)
+{
+    s32 x = object->positionX;
+    s32 y;
+    object->velocityX = x - object->previousX;
+    y = object->positionY;
+    object->velocityY = y - object->previousY;
+    object->previousX = x;
+    object->previousY = y;
+}
+SEC(sub_815FACC)
+const u16 battle_sprite_motion_capture_delta_padding = 0;
+
 SEC(sub_815FAE4)
 void sub_815FAE4(struct BattleSpriteMotion* object, s32 yOffset)
 {

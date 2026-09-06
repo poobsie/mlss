@@ -72,6 +72,12 @@ recovered 32-bit field width is shared through the graphics header; the battle
 effect and descriptor identities remain structural where current callers do not
 prove them.
 
+`battle_sprite_motion_capture_delta` records the signed X and Y displacement since
+the previous position, then advances the saved position snapshot. This gives the
+existing motion layout a concrete relationship between offsets `0x04/0x08`,
+`0x0C/0x10`, and the halfword deltas at `0x14/0x18`; the owning effect identity is
+still not established.
+
 Five more leaves expose a runtime flag setter, three large-owner cleanup paths,
 and a compact effect-state update. Their structural layouts name only proven
 ownership and value relationships; unresolved battle entity identities remain

@@ -148,4 +148,15 @@ remains address-named because its wider action-state role is still in assembly.
 
 ## Verification
 
+Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
+`0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
+cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or
+`0x10A` with `0x100`. The bit meanings and the units of those armed values remain
+unknown; the shared layout and one-shot relationship are proven by the repeated
+instruction family.
+
+The neighboring high-nibble clear remains part of the same typed status API.
+More complex consumers are still in assembly until their callback owner explains
+whether these are animation, movement, or interaction timers.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

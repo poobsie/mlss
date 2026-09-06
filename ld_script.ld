@@ -1920,6 +1920,12 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_07_after_sub_81071F0);
         src/field/selection_ready.o(.text.small_functions_01.sub_81072A8);
         asm/text08057568.o(.text.small_functions_01_after_sub_81072A8);
+        src/field/object_flags.o(.text.middle.sub_8108C38);
+        asm/text08057568.o(.text.after_middle_sub_8108C38);
+        src/field/object_flags.o(.text.middle.sub_8108C64);
+        asm/text08057568.o(.text.after_middle_sub_8108C64);
+        src/field/object_flags.o(.text.middle.sub_8108C90);
+        asm/text08057568.o(.text.after_middle_sub_8108C90);
         src/field/object_flags.o(.text.middle.sub_8108CBC);
         asm/text08057568.o(.text.after_middle_sub_8108CBC);
         src/field/display.o(.text.field_display.sub_810C950);
@@ -2391,6 +2397,8 @@ SECTIONS
         src/battle/sprite_owner.o(.text.sub_815FA40);
         src/battle/sprite_owner.o(.text.sub_815FA50);
         asm/text08057568.o(.text.after_815FA50);
+        src/battle/sprite_motion.o(.text.text_upper_structural.sub_815FACC);
+        asm/text08057568.o(.text.after_815FACC);
         src/battle/sprite_motion.o(.text.text_upper_structural.sub_815FAE4);
         asm/text08057568.o(.text.after_text_upper_structural_sub_815FAE4);
         src/battle/sprite_owner.o(.text.sub_815FAFC);

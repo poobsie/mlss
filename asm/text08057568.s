@@ -328716,6 +328716,7 @@ _08108C2E:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.if 0
 	thumb_func_start sub_8108C38
 sub_8108C38:
 	push {lr}
@@ -328740,6 +328741,9 @@ _08108C5C:
 	pop {r0}
 	bx r0
 _08108C60: .4byte 0x0000FF7F
+	.endif
+	.section .text.after_middle_sub_8108C38, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8108C64
 sub_8108C64:
 	push {lr}
@@ -328764,6 +328768,9 @@ _08108C88:
 	pop {r0}
 	bx r0
 _08108C8C: .4byte 0x0000FFDF
+	.endif
+	.section .text.after_middle_sub_8108C64, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8108C90
 sub_8108C90:
 	push {lr}
@@ -328788,6 +328795,8 @@ _08108CB4:
 	pop {r0}
 	bx r0
 _08108CB8: .4byte 0x0000FFF7
+	.endif
+	.section .text.after_middle_sub_8108C90, "ax", %progbits
 	.if 0
 	thumb_func_start sub_8108CBC
 sub_8108CBC:
@@ -463105,6 +463114,7 @@ _0815FAC6:
 	pop {r4}
 	pop {r0}
 	bx r0
+	.if 0
 	thumb_func_start sub_815FACC
 sub_815FACC:
 	ldr r3, [r0, #0x04]
@@ -463119,6 +463129,8 @@ sub_815FACC:
 	str r2, [r0, #0x10]
 	bx lr
 	.byte 0x00, 0x00
+	.endif
+	.section .text.after_815FACC, "ax", %progbits
 	thumb_func_start sub_815FAE4
 	.section .discard.text_upper_structural_sub_815FAE4, "ax", %progbits
 	.align 2, 0

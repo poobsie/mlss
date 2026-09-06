@@ -43,6 +43,7 @@ struct BattleFixedOrigin;
 #define battle_sync_sprite_motion_to_camera sub_815861C
 #define battle_initialize_scaled_sprite_motion sub_815F238
 #define battle_initialize_grounded_sprite_motion_b sub_815F5C8
+#define battle_sprite_motion_capture_delta sub_815FACC
 
 struct BattleSpriteMotion {
     struct BattleSprite* sprite;
@@ -78,6 +79,7 @@ struct BattleSpriteMotion {
 
 void battle_sprite_motion_apply_velocity(
     struct BattleSpriteMotion* object, s32 yOffset);
+void battle_sprite_motion_capture_delta(struct BattleSpriteMotion* object);
 void* battle_initialize_sprite_motion_variant_a(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
 void* battle_initialize_sprite_motion_variant_b(
