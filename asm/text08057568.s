@@ -460121,6 +460121,8 @@ sub_816127C:
 	bx r0
 	.endif
 	.section .text.battle_coordinate_state_after_sub_816127C, "ax", %progbits
+	.section .text.battle_coordinate_state_discard_sub_816129C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_816129C
 sub_816129C:
 	push {r4, r5, lr}
@@ -460159,6 +460161,8 @@ _081612DC:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
+	.endif
+	.section .text.battle_coordinate_state_after_sub_816129C, "ax", %progbits
 	.section .text.battle_coordinate_state_discard_sub_81612F8, "ax", %progbits
 	.if 0
 	thumb_func_start sub_81612F8

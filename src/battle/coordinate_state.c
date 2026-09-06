@@ -30,6 +30,19 @@ void battle_write_relative_coordinates(
     projector->output->yPosition = (projector->positionY - origin->y) >> 8;
 }
 
+SEC(sub_816129C)
+void battle_coordinate_projector_set_sprite_visible(
+    struct BattleCoordinateProjector* projector, s32 visible)
+{
+    struct Sprite* sprite = projector->output;
+    if (!(((u8*)sprite)[0x29] & 0x40))
+        sub_801E150(sprite, (s8)projector->unknown08[0], -1, 0, 0);
+    if (visible)
+        sprite_show_8020CBC(projector->output);
+    else
+        sprite_hide_8021F20(projector->output);
+}
+
 SEC(sub_81612F8)
 void battle_coordinate_projector_create_sprite(
     struct BattleCoordinateProjector* projector, s32 variant)

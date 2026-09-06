@@ -3057,6 +3057,8 @@ SECTIONS
         asm/text08057568.o(.text.battle_coordinate_state_after_sub_8161180);
         src/battle/coordinate_state.o(.text.battle_coordinate_state.sub_816127C);
         asm/text08057568.o(.text.battle_coordinate_state_after_sub_816127C);
+        src/battle/coordinate_state.o(.text.battle_coordinate_state.sub_816129C);
+        asm/text08057568.o(.text.battle_coordinate_state_after_sub_816129C);
         src/graphics/high_helpers.o(.text.high.sub_81612E4);
         src/battle/coordinate_state.o(.text.battle_coordinate_state.sub_81612F8);
         asm/text08057568.o(.text.battle_coordinate_state_after_sub_81612F8);

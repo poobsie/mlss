@@ -119,7 +119,9 @@ The coordinate-projector lifecycle now exposes sprite creation and destruction
 through the same fixed-point position layout used by its motion and relative-coordinate
 writers. The sprite resource halfword is identified by its direct use in the sprite
 factory; the descriptor, height context, and unrelated constructor payload remain
-structural until their owners are recovered.
+structural until their owners are recovered. Its visibility transition also applies
+the projector's signed animation selector when the sprite has not yet set its ready
+flag, then forwards the requested show or hide state.
 
 Five more leaves expose a runtime flag setter, three large-owner cleanup paths,
 and a compact effect-state update. Their structural layouts name only proven

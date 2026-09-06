@@ -27,6 +27,7 @@ struct BattleCoordinateOrigin {
 
 #define battle_write_relative_coordinates sub_816127C
 #define battle_update_coordinate_projector_motion sub_8161180
+#define battle_coordinate_projector_set_sprite_visible sub_816129C
 #define battle_coordinate_projector_create_sprite sub_81612F8
 #define battle_destroy_coordinate_projector sub_8161330
 
@@ -35,6 +36,8 @@ void battle_write_relative_coordinates(
     const struct BattleCoordinateOrigin* origin);
 void battle_update_coordinate_projector_motion(
     struct BattleCoordinateProjector* projector);
+void battle_coordinate_projector_set_sprite_visible(
+    struct BattleCoordinateProjector* projector, s32 visible);
 void battle_coordinate_projector_create_sprite(
     struct BattleCoordinateProjector* projector, s32 variant);
 void battle_destroy_coordinate_projector(
