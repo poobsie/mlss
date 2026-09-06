@@ -257,6 +257,16 @@ Fifteen callbacks from the following `0x08077140` through `0x08077924` sequence 
 
 Sixteen callbacks selected from the next forty-function survey now cover visual and `value80` gates, linked-object completion, fixed leftward motion, command `0x4029`, random animation selection, owner signaling, and effects `0x29D2`, `0x2A58`, `0x2A8B`, and `0x2AA6`. The global sequence counter at `0x03000ED0` and variant word at `0x03000F6C` are address-bound pending recovery of their owning process. Raw-tail boundaries and the larger constructors in the surveyed `0x08077ECC` through `0x08079C3C` range remain in assembly.
 
+Ten small runtime transitions now use the shared object layout across several
+existing callback chains. Three readiness gates select the established motion or
+effect continuations, one attaches the caller-supplied owner before beginning a
+horizontal-motion update, and one advances `valueA8` to its proven limit before
+arming a 300-tick child wait. The remaining callbacks count down timers, restore a
+saved follow-up, update X from a signed offset, wait for `linkedObject` to clear,
+or begin a fixed vertical descent. The readiness predicates, owner identities,
+timer units, and numeric effects remain structural until their assembly-only
+producers and continuations establish stronger names.
+
 `runtime_object_start_timed_motion` stores the caller's duration at object offset `0x92` before forwarding the object and motion value to the established initializer. The duration unit remains unspecified because the initializer and tick consumer are still assembly-only.
 
 ## Verification

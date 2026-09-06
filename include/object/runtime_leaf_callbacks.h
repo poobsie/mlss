@@ -155,6 +155,16 @@
 #define object_advance_variant_command_4029_after_visual_countdown sub_8079B48
 #define object_prepare_animation_22_countdown_on_visual_complete sub_8079BD0
 #define object_finish_visual_and_advance_sequence_counter sub_8079C3C
+#define object_continue_slow_exit_motion_when_ready sub_8064274
+#define object_emit_effect_1081_when_ready sub_8064290
+#define object_emit_effect_eff_when_ready sub_8065214
+#define object_attach_owner_then_begin_horizontal_motion sub_80722E0
+#define object_advance_valueA8_then_wait_for_child sub_807413C
+#define object_count_down_timer_then_resume sub_80875B8
+#define object_finish_saved_update_countdown sub_8087BA4
+#define object_update_x_offset_until_timer_expires sub_8089BD4
+#define object_continue_when_linked_object_clears sub_809C960
+#define object_begin_fixed_vertical_descent sub_80A2C80
 
 void object_emit_effect_12cd_release_shared_motion_and_finish(
     struct RuntimeObject* object);
@@ -337,5 +347,16 @@ void object_start_random_animation_7_to_10(struct RuntimeObject* object);
 void object_advance_variant_command_4029_after_visual_countdown(struct RuntimeObject* object);
 void object_prepare_animation_22_countdown_on_visual_complete(struct RuntimeObject* object);
 void object_finish_visual_and_advance_sequence_counter(struct RuntimeObject* object);
+s32 object_continue_slow_exit_motion_when_ready(struct RuntimeObject* object);
+s32 object_emit_effect_1081_when_ready(struct RuntimeObject* object);
+s32 object_emit_effect_eff_when_ready(struct RuntimeObject* object);
+s32 object_attach_owner_then_begin_horizontal_motion(
+    struct RuntimeObject* object, void* owner);
+void object_advance_valueA8_then_wait_for_child(struct RuntimeObject* object);
+void object_count_down_timer_then_resume(struct RuntimeObject* object);
+void object_finish_saved_update_countdown(struct RuntimeObject* object);
+void object_update_x_offset_until_timer_expires(struct RuntimeObject* object);
+s32 object_continue_when_linked_object_clears(struct RuntimeObject* object);
+void object_begin_fixed_vertical_descent(struct RuntimeObject* object);
 
 #endif

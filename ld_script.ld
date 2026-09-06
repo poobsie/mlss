@@ -329,6 +329,9 @@ SECTIONS
         asm/text08057568.o(.text.countdown_transitions_after_sub_8063C8C);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_806424C);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_806424C);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8064274);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8064290);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_8064290);
         src/object/behavior_transitions.o(.text.sub_8064354);
         asm/text08057568.o(.text.after_sub_8064354);
         src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_80643DC);
@@ -361,6 +364,8 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_80651B0);
         src/object/early_visual_transitions.o(.text.object_early_visual_transitions.sub_80651CC);
         asm/text08057568.o(.text.small_functions_03_after_sub_80651CC);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8065214);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_8065214);
         src/object/linked_transitions.o(.text.misc_helpers_02.sub_80652B0);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80652B0);
         src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_80652D4);
@@ -751,6 +756,8 @@ SECTIONS
         asm/text08057568.o(.text.runtime_leaf_callbacks_after_sub_807127C);
         src/object/countdown_actions.o(.text.countdown_actions.sub_80712B0);
         asm/text08057568.o(.text.countdown_actions_after_sub_80712B0);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_80722E0);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_80722E0);
         src/object/small_value_transitions.o(.text.misc_helpers_01.sub_8072370);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8072370);
         src/field/global_object_transitions.o(.text.misc_helpers_02.sub_8072500);
@@ -763,6 +770,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8072738);
         src/object/countdown_handlers.o(.text.countdown_handlers.sub_807411C);
         asm/text08057568.o(.text.countdown_handlers_after_sub_807411C);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_807413C);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_807413C);
         src/object/small_value_transitions.o(.text.misc_helpers_02.sub_80742D4);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80742D4);
         src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_80742FC);
@@ -1008,8 +1017,12 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8087524);
         src/object/saved_update_transitions.o(.text.misc_helpers_02.sub_808759C);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_808759C);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_80875B8);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_80875B8);
         src/field/actor_pair_flags.o(.text.field_actor_pair_flags.sub_8087AE0);
         asm/text08057568.o(.text.small_functions_05_after_sub_8087AE0);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8087BA4);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_8087BA4);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_8087C4C);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8087C4C);
         src/object/motion.o(.text.object_motion.sub_808842C);
@@ -1032,6 +1045,8 @@ SECTIONS
         asm/text08057568.o(.text.state_and_signal_transitions_after_sub_8089B4C);
         src/object/state_and_signal_transitions.o(.text.state_and_signal_transitions.sub_8089B90);
         asm/text08057568.o(.text.state_and_signal_transitions_after_sub_8089B90);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8089BD4);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_8089BD4);
         src/object/small_state_helpers.o(.text.misc_helpers_01.sub_808A098);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_808A098);
         src/object/linked_owner_state_transitions.o(.text.misc_helpers_03.sub_808A0B0);
@@ -1415,6 +1430,8 @@ SECTIONS
         asm/text08057568.o(.text.vertical_boundary_callbacks_after_sub_809C570);
         src/object/callback_results.o(.text.misc_helpers_01.sub_809C954);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_809C954);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_809C960);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_809C960);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_809CAC8);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_809CAC8);
         src/object/behavior_transitions.o(.text.sub_809D24C);
@@ -1451,6 +1468,8 @@ SECTIONS
         asm/text08057568.o(.text.actor_activation_transitions_after_sub_80A1CC4);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_80A2C58);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80A2C58);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_80A2C80);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_80A2C80);
         src/field/actor_activation_transitions.o(.text.actor_activation_transitions.sub_80A2E7C);
         asm/text08057568.o(.text.actor_activation_transitions_after_sub_80A2E7C);
         src/field/actor_interaction_transitions.o(.text.actor_interaction_transitions.sub_80A3ABC);
