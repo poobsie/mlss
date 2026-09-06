@@ -364,6 +364,13 @@ the motion update directly; the animation-4 path first saves the current update 
 `followup`. Command identities remain numeric because the associated visual asset
 tables are still assembly-only.
 
+The animation-4 branch now has both continuations in C. Its first callback waits
+for visual completion, selects animation 6 with the same variant-dependent command,
+normalizes the visual mode, and enters the shared motion update. Its second callback
+advances that motion, clears animation and visual control bits at completion, then
+restores and clears `followup`. The underlying motion calculation remains in
+assembly because its fixed-point fields are not yet independently identified.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
