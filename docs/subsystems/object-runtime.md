@@ -290,6 +290,15 @@ their assembly-only producers do not yet prove gameplay identities. The adjacent
 command-`0x4109` spawn callback remains in assembly after both bounded C shapes
 changed register allocation.
 
+The paired-object transition callbacks now expose the runtime-owned primary and
+secondary action objects instead of repeating raw offsets `0x70` and `0x74`. The
+recovered paths cover motion polling, countdowns, animation and command selection,
+visual completion, counterpart synchronization, and linked-object handoffs across
+two related variants. Numeric commands and the variants' gameplay identities remain
+structural. Four register-sensitive members remain in assembly after the capped
+shaping pass; their surrounding typed callbacks retain the raw continuation symbols
+without inventing names for code that did not match exactly.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

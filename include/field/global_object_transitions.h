@@ -11,6 +11,9 @@ struct FieldRuntimeObjectOwner {
 struct FieldObjectRuntime {
     u8 unknown00[0x58];
     struct FieldRuntimeObjectOwner* firstObjectOwner;
+    u8 unknown5C[0x14];
+    struct FieldRuntimeObjectOwner* primaryActionOwner;
+    struct FieldRuntimeObjectOwner* secondaryActionOwner;
 };
 
 #define field_start_first_object_animation_47_then_continue_a sub_8072500

@@ -1,0 +1,52 @@
+#ifndef GUARD_OBJECT_PAIRED_OBJECT_CALLBACKS_H
+#define GUARD_OBJECT_PAIRED_OBJECT_CALLBACKS_H
+
+#include "object/runtime_object.h"
+
+#define object_update_motion_until_z_base_then_start_animation_6 sub_8096E08
+#define object_stop_when_motion_poll_clears sub_8096E44
+#define object_count_down_then_spawn_command_208c sub_8096E6C
+#define object_finish_position_owner_visual_then_release sub_8096EBC
+#define object_count_down_then_start_pair_animation_7 sub_8096F60
+#define object_on_visual_complete_start_primary_animation_8 sub_8096FCC
+#define object_start_secondary_animation_8 sub_8097024
+#define object_on_visual_complete_stop_pair_animations sub_809706C
+#define object_finish_pair_motion_then_sync_counterpart_a sub_8097D50
+#define object_finish_pair_visual_then_prepare_counterpart_a sub_8097E28
+#define object_finish_pair_motion_then_clear_animation_a sub_8097EB4
+#define object_finish_pair_motion_then_sync_counterpart_b sub_8098790
+#define object_finish_pair_visual_then_prepare_counterpart_b sub_8098860
+#define object_finish_pair_motion_then_clear_animation_b sub_80988D8
+
+#define DECLARE_PAIRED_OBJECT_CALLBACK(name) \
+    void name(struct RuntimeObject* object)
+
+DECLARE_PAIRED_OBJECT_CALLBACK(
+    object_update_motion_until_z_base_then_start_animation_6);
+DECLARE_PAIRED_OBJECT_CALLBACK(object_stop_when_motion_poll_clears);
+DECLARE_PAIRED_OBJECT_CALLBACK(object_count_down_then_spawn_command_208c);
+DECLARE_PAIRED_OBJECT_CALLBACK(
+    object_finish_position_owner_visual_then_release);
+DECLARE_PAIRED_OBJECT_CALLBACK(
+    object_count_down_then_start_pair_animation_7);
+DECLARE_PAIRED_OBJECT_CALLBACK(
+    object_on_visual_complete_start_primary_animation_8);
+DECLARE_PAIRED_OBJECT_CALLBACK(object_start_secondary_animation_8);
+DECLARE_PAIRED_OBJECT_CALLBACK(
+    object_on_visual_complete_stop_pair_animations);
+DECLARE_PAIRED_OBJECT_CALLBACK(
+    object_finish_pair_motion_then_sync_counterpart_a);
+DECLARE_PAIRED_OBJECT_CALLBACK(
+    object_finish_pair_visual_then_prepare_counterpart_a);
+DECLARE_PAIRED_OBJECT_CALLBACK(
+    object_finish_pair_motion_then_clear_animation_a);
+DECLARE_PAIRED_OBJECT_CALLBACK(
+    object_finish_pair_motion_then_sync_counterpart_b);
+DECLARE_PAIRED_OBJECT_CALLBACK(
+    object_finish_pair_visual_then_prepare_counterpart_b);
+DECLARE_PAIRED_OBJECT_CALLBACK(
+    object_finish_pair_motion_then_clear_animation_b);
+
+#undef DECLARE_PAIRED_OBJECT_CALLBACK
+
+#endif
