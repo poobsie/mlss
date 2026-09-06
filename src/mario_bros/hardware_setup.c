@@ -53,3 +53,29 @@ void m4aMPlayStop(struct MusicPlayerInfo* mplayInfo)
         mplayInfo->ident = ID_NUMBER;
     }
 }
+
+MB_LATE_SECTION(sub_8F959CC)
+void m4aMPlayVolumeControl(
+    struct MusicPlayerInfo* mplayInfo, u16 trackBits, u16 volume)
+{
+    struct MusicPlayerTrack* track;
+    u32 bit;
+    int trackCount;
+
+    if (mplayInfo->ident == ID_NUMBER) {
+        mplayInfo->ident++;
+        trackCount = mplayInfo->trackCount;
+        track = mplayInfo->tracks;
+        bit = 1;
+        while (trackCount > 0) {
+            if ((trackBits & bit) != 0 && (track->flags & MPT_FLG_EXIST) != 0) {
+                track->volX = volume >> 2;
+                track->flags |= MPT_FLG_VOLCHG;
+            }
+            trackCount--;
+            track++;
+            bit <<= 1;
+        }
+        mplayInfo->ident = ID_NUMBER;
+    }
+}

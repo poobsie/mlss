@@ -105,6 +105,7 @@
 #define mario_bros_emit_offset_display_if_value01_20_b sub_8F915EC
 #define TrackStop sub_8F945F8
 #define m4aMPlayStop sub_8F9523C
+#define m4aMPlayVolumeControl sub_8F959CC
 #define mario_bros_call_object_callback_a sub_8F6E1F8
 #define mario_bros_call_object_callback_b sub_8F6E20C
 #define mario_bros_call_two_argument_callback sub_8F6F210
