@@ -64,5 +64,6 @@ void graphics_position_state_begin_timed(struct GraphicsPositionState* state,
 void graphics_position_state_begin_distance(struct GraphicsPositionState* state,
                                             s32 x, s32 y);
 void graphics_fill_background_palettes(u16 value);
+u8* graphics_advance_by_nibble_width(u32 value, u8* base);
 
 #endif

@@ -321378,6 +321378,8 @@ _08106A08:
 	bx r0
 	.byte 0x00, 0x00
 	.section .text.misc_helpers_01_after_sub_8106A10, "ax", %progbits
+	.section .text.field_display_value_transition_before_sub_8106A30, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8106A30
 sub_8106A30:
 	push {r4, r5, r6, lr}
@@ -321419,6 +321421,10 @@ _08106A74:
 _08106A7C: .4byte 0x03000FD8
 _08106A80: .4byte 0x00000342
 _08106A84: .4byte sub_8107248
+	.endif
+	.section .text.field_display_value_transition_after_sub_8106A30, "ax", %progbits
+	.section .text.field_display_value_transition_before_sub_8106A88, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8106A88
 sub_8106A88:
 	push {r4, lr}
@@ -321451,6 +321457,8 @@ _08106AB8:
 	.byte 0x00, 0x00
 _08106AC0: .4byte 0x000007FF
 _08106AC4: .4byte sub_8104A00
+	.endif
+	.section .text.field_display_value_transition_after_sub_8106A88, "ax", %progbits
 	.section .text.small_functions_07_after_sub_8106AC8, "ax", %progbits
 	thumb_func_start sub_8106B0C
 sub_8106B0C:
