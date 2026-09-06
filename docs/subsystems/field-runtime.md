@@ -80,6 +80,14 @@ establish scene-specific identities. An adjacent actor-A visual-disable callback
 remains in assembly after both bounded C forms changed the compiler's flag-clear
 instruction selection.
 
+A later actor-A process callback now exposes its linked-object and animation
+handoff. It plays sound `0x85`, conditionally assigns the linked object's update
+from its state bits, applies animation 9 and command `0x2036` when the actor action
+is active, clears its visual mode bits, and advances the calling process. The
+linked-object continuation and numeric command remain address-based pending their
+assembly recovery. A neighboring actor-B link synchronizer remains in assembly
+after both bounded forms expanded its flag updates beyond the original code size.
+
 The field runtime also exposes actors C and D at offsets `0x80` and `0x84`. A recovered dispatcher installs the supplied action update on each actor whose state bits equal `2`; actor D is optional, while current callers guarantee actor C is present.
 
 `FieldDisplayRuntime` consolidates the display manager at `0x250` and four owned display-process slots from `0x284` through `0x290`. The recovered lifecycle helpers release or finish those processes while disabling the associated layer pairs 0/1, 2/3, and 4/5; a separate entry configures layer 0 with the caller's value.

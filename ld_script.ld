@@ -1581,6 +1581,8 @@ SECTIONS
         asm/text08057568.o(.text.actor_command_transitions_after_sub_80CCDEC);
         src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_80CD18C);
         asm/text08057568.o(.text.actor_state_transitions_after_sub_80CD18C);
+        src/field/late_actor_runtime_callbacks.o(.text.late_actor_runtime_callbacks.sub_80D25F8);
+        asm/text08057568.o(.text.late_actor_runtime_callbacks_after_sub_80D25F8);
         src/object/middle_transitions.o(.text.middle.sub_80D2D28);
         asm/text08057568.o(.text.after_middle_sub_80D2D28);
         src/field/value_transfer.o(.text.misc_helpers_01.sub_80D2D34);

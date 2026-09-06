@@ -232297,6 +232297,7 @@ _080D25EC:
 	bx r0
 _080D25F4: .4byte sub_80D2D28
 	thumb_func_start sub_80D25F8
+.if 0
 sub_80D25F8:
 	push {r4, r5, lr}
 	adds r5, r0, #0x0
@@ -232354,6 +232355,8 @@ _080D265C: .4byte 0x03000FD8
 _080D2660: .4byte sub_80D29D4
 _080D2664: .4byte 0x00002036
 _080D2668: .4byte sub_80D266C
+.endif
+	.section .text.late_actor_runtime_callbacks_after_sub_80D25F8, "ax", %progbits
 	thumb_func_start sub_80D266C
 sub_80D266C:
 	push {r4, r5, lr}
