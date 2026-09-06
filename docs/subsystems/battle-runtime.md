@@ -47,6 +47,12 @@ indices, clears the per-slot delays and angles, seeds staggered phases, and star
 the shared countdown. The adjacent scale update confirms those field roles but
 remains in assembly because its compiler scheduling did not match exactly.
 
+Two sprite-motion update variants now expose both attached outputs. Each updates
+the common position binding, copies relative fixed-point coordinates into the
+optional attached sprite, and mirrors the primary sprite coordinates into the
+separately owned position resource. Their only behavioral difference is the
+order in which those two attachments are synchronized.
+
 The large cleanup helpers are deliberately kept separate from `BattleSpriteMotion`. Their observed fields occur at offsets `0x524`, `0x804`, and `0x80C`, and no evidence yet proves that the two large layouts are the same class.
 
 `battle_tick_countdown_1f2a` decrements a signed counter in the large battle-scene runtime and clears the adjacent value at `0x1F28` once the counter becomes negative. Both fields retain offset-bearing names until the code that arms the counter is recovered.

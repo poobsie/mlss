@@ -117,6 +117,52 @@ CALLBACK_SEC(sub_8158B90) const u16 sub_8158B90_padding = 0;
 DEFINE_SPRITE_SIZE_SETUP(battle_setup_sprite_motion_size_b)
 CALLBACK_SEC(sub_815F3CC) const u16 sub_815F3CC_padding = 0;
 
+CALLBACK_SEC(battle_sync_sprite_motion_resources_variant_a)
+void battle_sync_sprite_motion_resources_variant_a(
+    struct BattleSpriteMotion* object, const struct BattleFixedOrigin* origin)
+{
+    struct BattleSprite* sprite;
+    s32 coordinate;
+    sub_815FAA4(object, (void*)origin);
+    sprite = object->slot3C.attachedSprite;
+    if (sprite != 0) {
+        coordinate = origin->x;
+        sprite->xPosition = (object->positionX - coordinate) >> 8;
+        sprite = object->slot3C.attachedSprite;
+        coordinate = origin->y;
+        sprite->yPosition = ((object->savedX - coordinate) >> 8) + 8;
+    }
+    if (object->ownedResource40 != 0) {
+        ((struct BattleSpritePosition*)object->ownedResource40)->x =
+            sub_815FA3C(object)->xPosition;
+        ((struct BattleSpritePosition*)object->ownedResource40)->y =
+            sub_815FA3C(object)->yPosition;
+    }
+}
+
+CALLBACK_SEC(battle_sync_sprite_motion_resources_variant_b)
+void battle_sync_sprite_motion_resources_variant_b(
+    struct BattleSpriteMotion* object, const struct BattleFixedOrigin* origin)
+{
+    struct BattleSprite* sprite;
+    s32 coordinate;
+    sub_815FAA4(object, (void*)origin);
+    if (object->ownedResource40 != 0) {
+        ((struct BattleSpritePosition*)object->ownedResource40)->x =
+            sub_815FA3C(object)->xPosition;
+        ((struct BattleSpritePosition*)object->ownedResource40)->y =
+            sub_815FA3C(object)->yPosition;
+    }
+    sprite = object->slot3C.attachedSprite;
+    if (sprite != 0) {
+        coordinate = origin->x;
+        sprite->xPosition = (object->positionX - coordinate) >> 8;
+        sprite = object->slot3C.attachedSprite;
+        coordinate = origin->y;
+        sprite->yPosition = ((object->savedX - coordinate) >> 8) + 8;
+    }
+}
+
 #define DEFINE_WRAP_X(name)                                             \
 CALLBACK_SEC(name) s32 name(                                            \
     struct BattleSpriteMotion* object, void* unused1, void* unused2,    \

@@ -40,6 +40,8 @@ struct BattleFixedOrigin;
 #define battle_apply_sprite_motion_y sub_8158ECC
 #define battle_initialize_grounded_sprite_motion sub_8158F28
 #define battle_destroy_sprite_motion_resources sub_815F474
+#define battle_sync_sprite_motion_resources_variant_a sub_815F380
+#define battle_sync_sprite_motion_resources_variant_b sub_815F428
 #define battle_sync_sprite_motion_to_camera sub_815861C
 #define battle_initialize_scaled_sprite_motion sub_815F238
 #define battle_initialize_grounded_sprite_motion_b sub_815F5C8
@@ -72,6 +74,7 @@ struct BattleSpriteMotion {
     union BattleSpriteMotionSlot3C {
         s32 savedY;
         struct BattleSpriteMotion* child;
+        struct BattleSprite* attachedSprite;
     } slot3C;
     void* ownedResource40;
     void* ownedResource44;
@@ -140,6 +143,10 @@ void* battle_initialize_grounded_sprite_motion(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
 void battle_destroy_sprite_motion_resources(
     struct BattleSpriteMotion*, void* argument);
+void battle_sync_sprite_motion_resources_variant_a(
+    struct BattleSpriteMotion*, const struct BattleFixedOrigin*);
+void battle_sync_sprite_motion_resources_variant_b(
+    struct BattleSpriteMotion*, const struct BattleFixedOrigin*);
 void* battle_initialize_scaled_sprite_motion(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
 void* battle_initialize_grounded_sprite_motion_b(

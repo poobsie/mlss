@@ -457661,8 +457661,9 @@ sub_815F354:
 _0815F37C: .4byte 0x08CDCD90
 	.endif
 	.section .text.after_815F354, "ax", %progbits
-	thumb_func_start sub_815F380
-sub_815F380:
+	.section .discard.battle_sprite_callbacks.sub_815F380, "ax", %progbits
+	thumb_func_start asm_discard_sub_815F380
+asm_discard_sub_815F380:
 	push {r4, r5, lr}
 	adds r4, r0, #0x0
 	adds r5, r1, #0x0
@@ -457700,6 +457701,7 @@ _0815F3C6:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
+	.section .text.after_battle_sprite_callbacks_sub_815F380, "ax", %progbits
 	.if 0
 	thumb_func_start sub_815F3CC
 sub_815F3CC:
@@ -457721,8 +457723,9 @@ sub_815F3CC:
 	.endif
 	.section .text.after_815F3CC, "ax", %progbits
 	.section .text.after_upper_sub_815F3F0, "ax", %progbits
-	thumb_func_start sub_815F428
-sub_815F428:
+	.section .discard.battle_sprite_callbacks.sub_815F428, "ax", %progbits
+	thumb_func_start asm_discard_sub_815F428
+asm_discard_sub_815F428:
 	push {r4, r5, lr}
 	adds r4, r0, #0x0
 	adds r5, r1, #0x0
@@ -457760,6 +457763,7 @@ _0815F46E:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
+	.section .text.after_battle_sprite_callbacks_sub_815F428, "ax", %progbits
 	.if 0
 	thumb_func_start sub_815F474
 sub_815F474:
