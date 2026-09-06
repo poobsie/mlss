@@ -23392,8 +23392,9 @@ _0802931A:
 	bx r0
 	.byte 0x00, 0x00
 _0802937C: .4byte 0x0000010B
-	thumb_func_start sub_8029380
-sub_8029380:
+	.section .discard.field_release_inline_resource_objects, "ax", %progbits
+	thumb_func_start asm_discard_sub_8029380
+asm_discard_sub_8029380:
 	push {r4, r5, r6, lr}
 	adds r1, r0, #0x0
 	movs r2, #0x89
@@ -23423,6 +23424,7 @@ _080293B0:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.after_field_object_resource_handles_8029380, "ax", %progbits
 	.section .discard.field_load_auxiliary_resource_handles, "ax", %progbits
 	thumb_func_start asm_discard_sub_80293B8
 asm_discard_sub_80293B8:

@@ -7,6 +7,7 @@ void sub_80F94A8(void);
 void sub_80FADD4(struct FieldResourceLoaderProcess* loader);
 void* sub_80214A4(s32 owner, u16 resourceId, s32 slot, s32 retain);
 void* sub_80213A0(s32 owner, u16 resourceId, s32 slot, s32 retain);
+void sub_80507E0(void* resourceObject);
 
 #define SEC(group, symbol) __attribute__((section(".text." group "." #symbol)))
 #define STRINGIFY_INNER(value) #value
@@ -137,6 +138,25 @@ void field_load_auxiliary_resource_handles(
 
 EARLY_RESOURCE_SEC(sub_80293B8)
 const u16 field_load_auxiliary_resource_handles_padding = 0;
+
+EARLY_RESOURCE_SEC(sub_8029380)
+void field_release_inline_resource_objects(
+    struct FieldObjectResourceRuntime* runtime)
+{
+    void** resourceObject;
+    s32 i;
+
+    if (runtime->inlineResourceReleaseEnabled112 != 0) {
+        resourceObject = runtime->inlineResourceObjects30;
+        for (i = 0; i < runtime->inlineResourceCount113; i++) {
+            sub_80507E0(*resourceObject);
+            resourceObject++;
+        }
+    }
+}
+
+EARLY_RESOURCE_SEC(sub_8029380)
+const u16 field_release_inline_resource_objects_padding = 0;
 
 EARLY_RESOURCE_SEC(sub_80293F8)
 void field_load_object_resource_handles(
