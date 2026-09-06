@@ -16,6 +16,7 @@
 #define process_initialize_definition_c4a0 sub_81367C0
 #define process_destroy_definition_c4a0 sub_81367AC
 #define process_destroy_definition_d140 sub_8168294
+#define process_destroy_definition_d1b0 sub_816B3C4
 #define process_destroy_definition_d220 sub_816D96C
 #define process_destroy_definition_d290 sub_8171FC0
 
@@ -28,6 +29,7 @@ void process_enable(struct Process* process);
 void process_disable(struct Process* process);
 void process_remove(struct Process* process, u32 flags);
 void process_destroy_definition_bd98(struct Process* process, u32 flags);
+void process_destroy_definition_d1b0(struct Process* process, u32 flags);
 void process_timed_update(struct TimedProcess* process);
 void process_destroy_owned_buffer(struct OwnedBufferProcess* process, u32 flags);
 void process_remove_global_owned_buffer(void);
