@@ -36,6 +36,12 @@ The `a` through `d` suffixes remain because the
 parallel ROM and work-RAM tables do not yet identify the gameplay classes that own
 them; the frame limits and zero-based or one-based wrap behavior are now explicit.
 
+The later animation family also has a table-driven clock. While `value18` is
+nonzero, it advances `animationFrame` to the state-selected threshold, wraps the
+four-value variant, and refreshes `value06` plus the low flag bit from parallel
+work-RAM tables. Those table roles are established by access width and consumers;
+the owning gameplay class and the broader meaning of `value18` remain unknown.
+
 Two mirrored geometry helpers add a flag-selected horizontal offset and clamp only
 positive overflow. Two more return the remaining horizontal distance when both axes
 fall inside the supplied limits; the vertical test uses absolute magnitude. Their

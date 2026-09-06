@@ -14,6 +14,14 @@ extern void *gMarioData_08FA16CC[];
 extern void *gMarioData_08FA186C[];
 extern u32 gMarioData_08FA0444[];
 extern u32 gMarioData_0201E78C[];
+extern u16 gMarioBrosAnimationValuesB[];
+extern u8 gMarioBrosAnimationFlagsB[];
+extern u8 gMarioBrosAnimationFrameThresholdsB[];
+
+struct __attribute__((packed)) MarioBrosAnimationLowFlag {
+    u8 low : 1;
+    u8 unknown : 7;
+};
 
 #define DEFINE_DIRECTION_FROM_POSITION(name, runtime)                         \
     MB_SECTION(name) void name(struct MarioBrosObject* obj) {                 \
@@ -126,6 +134,28 @@ void mario_bros_advance_animation_cycle_three_frame_b(
     }
     obj->animationVariant = variant;
     obj->animationFrame = frame;
+}
+
+MB_SECTION(sub_8F8B9A8)
+void mario_bros_advance_table_animation_b(struct MarioBrosObject* obj)
+{
+    u8 frame = obj->animationFrame;
+    u8 variant = obj->animationVariant;
+
+    if (obj->value18 != 0) {
+        frame++;
+        if (frame >= gMarioBrosAnimationFrameThresholdsB[obj->state]) {
+            frame = 0;
+            variant++;
+            if (variant > 3)
+                variant = 0;
+            obj->animationVariant = variant;
+            obj->value06 = gMarioBrosAnimationValuesB[variant];
+            ((struct MarioBrosAnimationLowFlag*)&obj->flags0A)->low =
+                gMarioBrosAnimationFlagsB[variant] & 1;
+        }
+        obj->animationFrame = frame;
+    }
 }
 
 MB_SECTION(sub_8F65690)

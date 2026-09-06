@@ -46,6 +46,7 @@
 #define mario_bros_advance_animation_cycle_one_based sub_8F63634
 #define mario_bros_advance_animation_cycle_three_frame sub_8F64880
 #define mario_bros_advance_animation_cycle_three_frame_b sub_8F8B1D4
+#define mario_bros_advance_table_animation_b sub_8F8B9A8
 #define mario_bros_advance_animation_toggle_slow sub_8F65690
 
 #define mario_bros_offset_and_clamp_coordinate_a sub_8F68504

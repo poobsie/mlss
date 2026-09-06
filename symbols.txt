@@ -58,3 +58,6 @@ stru_8CDC248 = 0x08CDC248;
 stru_8CDC258 = 0x08CDC258;
 stru_8CDC268 = 0x08CDC268;
 dword_83A74E4 = 0x083A74E4;
+gMarioBrosAnimationValuesB = 0x0201E758;
+gMarioBrosAnimationFlagsB = 0x0201E760;
+gMarioBrosAnimationFrameThresholdsB = 0x0201E76C;
