@@ -208062,6 +208062,7 @@ _080C7410: .4byte 0x08198220
 _080C7414: .4byte 0x00000FFF
 _080C7418: .4byte sub_80C741C
 	thumb_func_start sub_80C741C
+.if 0
 sub_80C741C:
 	push {r4, r5, r6, r7, lr}
 	mov r7, r8
@@ -208190,6 +208191,8 @@ _080C750C: .4byte 0x03000FD8
 _080C7510: .4byte 0x00002034
 _080C7514: .4byte 0x00000FFF
 _080C7518: .4byte sub_80C751C
+.endif
+	.section .text.large_actor_state_machines_after_sub_80C741C, "ax", %progbits
 	thumb_func_start sub_80C751C
 sub_80C751C:
 	push {r4, r5, r6, r7, lr}
@@ -227427,6 +227430,7 @@ _080D0784: .4byte 0x00002036
 _080D0788: .4byte 0x00002065
 _080D078C: .4byte sub_80D0790
 	thumb_func_start sub_80D0790
+.if 0
 sub_80D0790:
 	push {r4, r5, r6, r7, lr}
 	add sp, #-0x004
@@ -227537,6 +227541,8 @@ _080D085C: .4byte 0x03000FD8
 _080D0860: .4byte 0x0000011F
 _080D0864: .4byte 0x0000204D
 _080D0868: .4byte sub_80D086C
+.endif
+	.section .text.large_actor_state_machines_after_sub_80D0790, "ax", %progbits
 	thumb_func_start sub_80D086C
 sub_80D086C:
 	push {r4, r5, r6, lr}
@@ -237278,6 +237284,7 @@ _080D52E8: .4byte 0x00002066
 _080D52EC: .4byte 0x00002095
 _080D52F0: .4byte sub_80D52F4
 	thumb_func_start sub_80D52F4
+.if 0
 sub_80D52F4:
 	push {r4, r5, r6, lr}
 	add sp, #-0x004
@@ -237409,6 +237416,8 @@ _080D53E8: .4byte 0x03000FD8
 _080D53EC: .4byte 0x00002066
 _080D53F0: .4byte 0x00002095
 _080D53F4: .4byte sub_80D53F8
+.endif
+	.section .text.large_actor_state_machines_after_sub_80D52F4, "ax", %progbits
 	thumb_func_start sub_80D53F8
 sub_80D53F8:
 	push {r4, r5, r6, r7, lr}

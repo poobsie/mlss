@@ -1622,6 +1622,8 @@ SECTIONS
         asm/text08057568.o(.text.actor_state_transitions_reversed_after_sub_80C0F30);
         src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80C1054);
         asm/text08057568.o(.text.large_actor_state_machines_after_sub_80C1054);
+        src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80C741C);
+        asm/text08057568.o(.text.large_actor_state_machines_after_sub_80C741C);
         src/field/actor_command_transitions.o(.text.actor_command_transitions.sub_80C8684);
         asm/text08057568.o(.text.actor_command_transitions_after_sub_80C8684);
         src/field/actor_command_transitions.o(.text.actor_command_transitions.sub_80C8744);
@@ -1640,6 +1642,8 @@ SECTIONS
         asm/text08057568.o(.text.actor_command_transitions_after_sub_80CCDEC);
         src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_80CD18C);
         asm/text08057568.o(.text.actor_state_transitions_after_sub_80CD18C);
+        src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80D0790);
+        asm/text08057568.o(.text.large_actor_state_machines_after_sub_80D0790);
         src/field/late_actor_runtime_callbacks.o(.text.late_actor_runtime_callbacks.sub_80D25F8);
         asm/text08057568.o(.text.late_actor_runtime_callbacks_after_sub_80D25F8);
         src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80D2724);
@@ -1650,6 +1654,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80D2D34);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_80D2D4C);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80D2D4C);
+        src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80D52F4);
+        asm/text08057568.o(.text.large_actor_state_machines_after_sub_80D52F4);
         src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80D69D8);
         asm/text08057568.o(.text.large_actor_state_machines_after_sub_80D69D8);
         src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80D7774);

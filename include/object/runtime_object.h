@@ -20,11 +20,17 @@ struct RuntimeObjectState {
     struct RuntimeObjectVisual* visual10;
     u8 unknown14[0x24];
     s32 value38;
-    u8 unknown3C[0x68];
+    s32 value3C;
+    s32 value40;
+    u8 unknown44[0x60];
     s32 valueA4;
     u8 unknownA8[0x0C];
     s16 valueB4;
-    u8 unknownB6[0x2A];
+    u8 unknownB6[0x0D];
+    s8 displayOffsetX;
+    s8 displayOffsetY;
+    s8 displayOffsetZ;
+    u8 unknownC6[0x1A];
     s32 floorHeight;
     struct RuntimeObjectValueSource* valueSourceE4;
     u8 unknownE8[4];
@@ -108,6 +114,10 @@ struct RuntimeObject {
     s16 secondaryTimer;
     u16 stateValueB0;
     s16 verticalVelocity;
+    u8 unknownB4[0x0F];
+    s8 displayOffsetX;
+    s8 displayOffsetY;
+    s8 displayOffsetZ;
 };
 
 void sub_8087540(struct RuntimeObject* object);

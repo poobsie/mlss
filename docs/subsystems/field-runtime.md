@@ -202,6 +202,18 @@ sound handle for 32 ticks, restores actor A's command `0x2024`, masks actor B's
 secondary timer, and advances. Numeric sounds and commands retain their identifiers
 until resource tables or named consumers establish their gameplay roles.
 
+Three larger placement transitions establish signed display offsets at `0xC3`,
+`0xC4`, and `0xC5` on both runtime objects and their attached state records. One
+positions actor A from a process-owned state record, applies scale `0x600`, and
+starts animation 4. Another reacts to actor B's completion, stops actor A's linked
+object, repositions it from actor A's coordinates and display offsets, and applies
+command `0x66`. The third prepares actor B and its linked object, computes a launch
+position from actor B's coordinates and display offsets, starts motion `0x400`, and
+arms the following transition. The coordinate relationship is proven; the numeric
+animation, command, scale, and motion values retain their identifiers. The adjacent
+view-relative effect transition remains in assembly because its natural typed forms
+do not reproduce the original register allocation.
+
 ## Verification
 
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
