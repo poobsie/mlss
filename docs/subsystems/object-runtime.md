@@ -484,6 +484,10 @@ flags or after their observed 24- and 20-tick limits. The landing callback clamp
 vertical motion to the state's floor height, starts animation 8 with command
 `0x2000`, restores visual mode 2, and enters the existing completion callback.
 
+A neighboring variant branch now includes its paired 24- and 20-tick cleanup
+gates. Both retain the established action-flag and owner-pending behavior before
+invoking the shared action-finish routine.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

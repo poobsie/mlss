@@ -1395,8 +1395,12 @@ SECTIONS
         asm/text08057568.o(.text.object_flag_actions_after_sub_8091FB0);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_8091FDC);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8091FDC);
+        src/object/delayed_cleanup.o(.text.delayed_cleanup_transitions.sub_8092C70);
+        asm/text08057568.o(.text.delayed_cleanup_transitions_after_sub_8092C70);
         src/object/delayed_linked_motion.o(.text.object_delayed_linked_motion.sub_8092CC0);
         asm/text08057568.o(.text.small_functions_05_after_sub_8092CC0);
+        src/object/delayed_cleanup.o(.text.delayed_cleanup_transitions.sub_8092D20);
+        asm/text08057568.o(.text.delayed_cleanup_transitions_after_sub_8092D20);
         src/object/delayed_linked_motion.o(.text.object_delayed_linked_motion.sub_8092D70);
         asm/text08057568.o(.text.small_functions_07_after_sub_8092D70);
         src/object/completion_gates.o(.text.object_completion_gates.sub_8092DD4);
