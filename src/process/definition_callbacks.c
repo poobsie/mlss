@@ -80,6 +80,19 @@ void sub_8171DF0(struct DefinitionD278Process* process)
 }
 SEC(sub_8171DF0) const u16 sub_8171DF0_padding = 0;
 
+SEC(sub_8171E2C)
+bool32 sub_8171E2C(struct DefinitionD278Process* process)
+{
+    if (process->activeSlotA8 != 0 || process->activeSlotAC != 0 ||
+        process->activeSlotB0 != 0 || process->activeSlotB4 != 0 ||
+        process->activeSlotB8 != 0 || process->activeSlotBC != 0 ||
+        process->activeSlotC0 != 0 || process->activeSlotC4 != 0 ||
+        process->activeSlotC8 != 0 || process->activeSlotCC != 0 ||
+        process->activeSlotD0 != 0 || process->activeSlotD4 != 0)
+        return TRUE;
+    return FALSE;
+}
+
 SEC(sub_8171F44)
 void sub_8171F44(struct UiDelayedCountdown* countdown)
 {

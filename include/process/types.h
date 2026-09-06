@@ -58,7 +58,20 @@ struct DefinitionD278Process {
     u8 gap48[0x24];
     struct UiSpritePair* spritePair6C;
     struct UiSpritePair* spritePair70;
-    u8 gap74[0x76];
+    u8 gap74[0x34];
+    u32 activeSlotA8;
+    u32 activeSlotAC;
+    u32 activeSlotB0;
+    u32 activeSlotB4;
+    u32 activeSlotB8;
+    u32 activeSlotBC;
+    u32 activeSlotC0;
+    u32 activeSlotC4;
+    u32 activeSlotC8;
+    u32 activeSlotCC;
+    u32 activeSlotD0;
+    u32 activeSlotD4;
+    u8 gapD8[0x12];
     u16 sound97ActiveEA;
 };
 

@@ -38,6 +38,10 @@ Start-driven state transition and a setup leaf that hides its two sprite
 pairs after construction. Its sound gate records activity in the halfword at
 `0xEA` and starts sound `0x97` only on the inactive-to-active transition; the
 existing clear helper performs the inverse transition and stops the sound.
+The same owner stores activity values in twelve consecutive words from `0xA8`
+through `0xD4`. Its recovered predicate reports whether any of those slots is
+active; the values remain structural until their larger producers are
+detangled.
 
 `TimedProcess` extends the base process with a limit, current count, and step byte. Its update increments the count, reports progress through `sub_801B7B0`, then removes itself with definition `0x08CDBD98` when the limit is reached.
 

@@ -31,4 +31,9 @@ one-hundred-eighty-unit delayed countdown. Their owner identities remain
 unknown, so the public interfaces name only the state behavior established by
 their update callbacks.
 
+The connected UI motion helper advances a fixed-point vertical position by its
+velocity and confines it to the interval from `0x5800` through `0x7800`. Each
+boundary reverses the velocity and halves its magnitude, producing a damped
+bounce without assigning a screen-specific identity to the object.
+
 `ui_object_group4_reset_state` applies the established update and zero-state operations to each of four owned objects. The group overlay proves only the four-pointer extent, so its wider screen identity remains deliberately unknown. The trailing zero halfword is emitted explicitly because ordinary Thumb section alignment would otherwise substitute a `nop` outside the function body.

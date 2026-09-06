@@ -3150,6 +3150,8 @@ SECTIONS
         asm/text08057568.o(.text.high_after_sub_816D6F0);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_816D710);
         asm/text08057568.o(.text.object_destructors_after_sub_816D710);
+        src/ui/motion.o(.text.ui_motion.sub_816D734);
+        asm/text08057568.o(.text.ui_motion_after_sub_816D734);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_816D7B8);
         asm/text08057568.o(.text.object_destructors_after_sub_816D7B8);
         src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_816D814);
@@ -3174,6 +3176,8 @@ SECTIONS
         asm/text08057568.o(.text.high_after_sub_8171DD4);
         src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_8171DF0);
         asm/text08057568.o(.text.process_definition_callbacks_after_sub_8171DF0);
+        src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_8171E2C);
+        asm/text08057568.o(.text.process_definition_callbacks_after_sub_8171E2C);
         src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_8171F44);
         asm/text08057568.o(.text.process_definition_callbacks_after_sub_8171F44);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_8171F84);

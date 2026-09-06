@@ -24,6 +24,7 @@
 #define ui_value_tracker_reset sub_816D814
 #define ui_countdown_start_60 sub_816D898
 #define ui_delayed_countdown_start_180 sub_8171F44
+#define ui_object_update_vertical_bounce sub_816D734
 
 struct UiObject;
 struct UiObjectPairValues;
@@ -34,6 +35,7 @@ struct UiObjectNodeList;
 struct UiValueTracker;
 struct UiCountdown;
 struct UiDelayedCountdown;
+struct UiBouncingObject;
 void ui_object_copy_pair_values(struct UiObjectPairValues* object);
 void ui_object_configure_mode6(struct UiObject* object, s32 value);
 void ui_object_set_visual(struct UiObject* object, void* visual);
@@ -46,5 +48,6 @@ void ui_sprite_pair_hide(struct UiSpritePair* object);
 void ui_value_tracker_reset(struct UiValueTracker* tracker);
 void ui_countdown_start_60(struct UiCountdown* countdown);
 void ui_delayed_countdown_start_180(struct UiDelayedCountdown* countdown);
+void ui_object_update_vertical_bounce(struct UiBouncingObject* object);
 
 #endif
