@@ -138,6 +138,12 @@ three optional allocations at offsets `0x78`, `0x70`, and `0x68`, then removes
 the process. The intervening pointers remain offset-named because this teardown
 does not establish their formats or ownership rules.
 
+`graphics_build_owner_resources_with_scratch_buffers` establishes the temporary
+lifetime of two more owner fields. It allocates and clears `0x3000` bytes at
+offset `0x6C` and `0x2800` bytes at offset `0x74`, runs the three established
+resource-building passes, then releases both scratch blocks. Their formats stay
+offset-named because those passes remain coupled assembly routines.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

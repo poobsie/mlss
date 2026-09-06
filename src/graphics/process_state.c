@@ -11,6 +11,7 @@
 #define MISC3_SEC(name) \
     __attribute__((section(".text.misc_helpers_03." STRINGIFY(name))))
 void free_heap_8018D9C();
+void* alloc_zero_8018DB4(int size, bool32 useEwramHeap, char* label, int clear);
 void free_heap_8018DA8(void* pointer);
 void sub_8029888(s32 channel, s32 value);
 void sub_80184F4(void* address);
@@ -25,6 +26,9 @@ void sub_805D0DC(struct GraphicsProcessState* process);
 void sub_805D93C(struct GraphicsProcessState* process, u32 value);
 void sub_805D288(struct GraphicsProcessState* process);
 void sub_805B618(void* owner, u16 index);
+void sub_8059AF4(struct GraphicsAllocatedBufferOwner* owner);
+void sub_8059D04(struct GraphicsAllocatedBufferOwner* owner, u32 mode);
+void sub_8059924(struct GraphicsAllocatedBufferOwner* owner);
 u8 sub_8114C1C(
     void* resourceObject, u8 value1, u16 value2, u8 value3,
     u32 value4, u32 value5);
@@ -45,6 +49,30 @@ void graphics_destroy_allocated_buffer_owner(
         free_heap_8018D9C(owner->buffer68);
     process_remove((struct Process*)owner, flags);
 }
+
+SEC(sub_8059DDC)
+void graphics_build_owner_resources_with_scratch_buffers(
+    struct GraphicsAllocatedBufferOwner* owner)
+{
+    u32 zero;
+
+    owner->buffer6C =
+        alloc_zero_8018DB4(0x3000, 1, (char*)0x081E27DC, 0);
+    owner->buffer74 =
+        alloc_zero_8018DB4(0x2800, 1, (char*)0x081E27E4, 0);
+    zero = 0;
+    CpuFastSet(&zero, owner->buffer6C, 0x01000C00);
+    zero = 0;
+    CpuFastSet(&zero, owner->buffer74, 0x01000A00);
+    sub_8059AF4(owner);
+    sub_8059D04(owner, 0);
+    sub_8059924(owner);
+    if (owner->buffer74 != 0)
+        free_heap_8018D9C(owner->buffer74);
+    if (owner->buffer6C != 0)
+        free_heap_8018D9C(owner->buffer6C);
+}
+
 
 MISC2_SEC(graphics_apply_staging_source)
 void graphics_apply_staging_source(struct GraphicsStagingSource* source)

@@ -4803,8 +4803,9 @@ _08059DB2:
 _08059DD0: .4byte 0x088C8730
 _08059DD4: .4byte 0x083AAD68
 _08059DD8: .4byte 0x03000DE8
-	thumb_func_start sub_8059DDC
-sub_8059DDC:
+	.section .discard.graphics_build_owner_resources_with_scratch_buffers, "ax", %progbits
+	thumb_func_start asm_discard_sub_8059DDC
+asm_discard_sub_8059DDC:
 	push {r4, r5, lr}
 	add sp, #-0x004
 	adds r5, r0, #0x0
@@ -4858,6 +4859,7 @@ _08059E4C: .4byte 0x081E27DC
 _08059E50: .4byte 0x081E27E4
 _08059E54: .4byte 0x01000C00
 _08059E58: .4byte 0x01000A00
+	.section .text.after_graphics_build_owner_resources_with_scratch_buffers_8059DDC, "ax", %progbits
 	.section .discard.graphics_destroy_allocated_buffer_owner, "ax", %progbits
 	thumb_func_start asm_discard_sub_8059E5C
 asm_discard_sub_8059E5C:

@@ -212,6 +212,8 @@ SECTIONS
         asm/text08057568.o(.text);
         src/screens/scrollable_view_content.o(.text.small_functions_12.sub_8057B58);
         asm/text08057568.o(.text.small_functions_12_after_sub_8057B58);
+        src/graphics/process_state.o(.text.graphics_process_state.sub_8059DDC);
+        asm/text08057568.o(.text.after_graphics_build_owner_resources_with_scratch_buffers_8059DDC);
         src/graphics/process_state.o(.text.graphics_process_state.sub_8059E5C);
         asm/text08057568.o(.text.after_graphics_destroy_allocated_buffer_owner_8059E5C);
         src/graphics/process_state.o(.text.graphics_process_state.sub_8059F24);
