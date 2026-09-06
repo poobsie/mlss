@@ -13,6 +13,9 @@ struct MusicStateOverlay {
     u16 savedVolumes[2];
 };
 
+#define FIELD_MUSIC_SEC(name) \
+    __attribute__((section(".text.field_music." #name)))
+
 extern struct MusicStateOverlay gMusicState __asm__("gGameState");
 
 SECTION(".text.audio_music")
@@ -43,3 +46,17 @@ void music_resume(int player, int volume, u8 fadeDuration) {
 
     music_set_volume(player, (u8)volume, fadeDuration);
 }
+
+FIELD_MUSIC_SEC(sub_8125220)
+void field_resume_selected_music_channels(
+    u8 channelMask, u32 unused, u8 volume)
+{
+    (void)unused;
+    if (channelMask != 0) {
+        if (channelMask & 1)
+            music_resume(0, volume, 30);
+        if (channelMask & 2)
+            music_resume(1, volume, 30);
+    }
+}
+FIELD_MUSIC_SEC(sub_8125220) const u16 sub_8125220_padding = 0;

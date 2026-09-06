@@ -2590,6 +2590,8 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8123340);
         src/save/profile.o(.text.text_upper_singletons.sub_81251DC);
         asm/text08057568.o(.text.after_text_upper_singletons_sub_81251DC);
+        src/audio/music.o(.text.field_music.sub_8125220);
+        asm/text08057568.o(.text.field_graphics_block_after_sub_8125220);
         src/process/definition_initializers.o(.text.upper.tld_init_8127A94);
         asm/text08057568.o(.text.after_upper_tld_init_8127A94);
         src/screens/runtime_helpers.o(.text.upper.sub_8127AB0);

@@ -15,4 +15,8 @@ u16 music_get_song_id(int player);
 void music_stop(int player);
 void music_resume(int player, int volume, u8 fadeDuration);
 
+#define field_resume_selected_music_channels sub_8125220
+void field_resume_selected_music_channels(
+    u8 channelMask, u32 unused, u8 volume);
+
 #endif

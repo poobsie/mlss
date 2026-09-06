@@ -31,6 +31,8 @@ The game maintains two indexed music players. Their public controls are declared
 
 The three controls still implemented in assembly now have stable public names because their arguments, state updates, driver commands, and callers agree. Their lower-level command encoder remains address-named pending reconstruction of the driver protocol.
 
+`field_resume_selected_music_channels` is the field-runtime bridge for resuming either of the two music players. Bits zero and one select the players independently, while the caller supplies the common volume and the helper retains the original fixed fade duration of 30.
+
 ## Driver servicing
 
 The two recovered driver callbacks now live in `src/audio/driver.c`. `audio_update` services the enabled driver from the main loop. `audio_timer0_interrupt` is installed in interrupt slot 3, the GBA Timer 0 interrupt, and services the stream mixer only while audio is enabled.
