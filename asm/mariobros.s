@@ -31750,8 +31750,9 @@ _08F61186:
 	pop {r4}
 	pop {r0}
 	bx r0
-	thumb_func_start sub_8F6118C
-sub_8F6118C:
+	.section .discard.mariobros_small_sub_8F6118C, "ax"
+	thumb_func_start asm_discard_sub_8F6118C
+asm_discard_sub_8F6118C:
 	push {lr}
 	adds r1, r0, #0x0
 	ldrh r0, [r1, #0x24]
@@ -31766,6 +31767,7 @@ sub_8F6118C:
 _08F611A4:
 	pop {r0}
 	bx r0
+	.section .text.after_mariobros_small_sub_8F6118C, "ax"
 	thumb_func_start sub_8F611A8
 sub_8F611A8:
 	push {lr}
@@ -39193,8 +39195,9 @@ _08F64B7E:
 	bx r1
 	.section .text.after_mariobros_pool_sub_8F64B3C, "ax"
 	.align 2
-	thumb_func_start sub_8F64B84
-sub_8F64B84:
+	.section .discard.mariobros_small_sub_8F64B84, "ax"
+	thumb_func_start asm_discard_sub_8F64B84
+asm_discard_sub_8F64B84:
 	push {lr}
 	ldr r1, _08F64BA8 @ =0xFFFFFE00
 	str r1, [r0, #0x1C]
@@ -39215,6 +39218,7 @@ _08F64BA4:
 	pop {r0}
 	bx r0
 _08F64BA8: .4byte 0xFFFFFE00
+	.section .text.after_mariobros_small_sub_8F64B84, "ax"
 	thumb_func_start sub_8F64BAC
 sub_8F64BAC:
 	push {r4, lr}
@@ -49904,8 +49908,9 @@ _08F69E26:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
-	thumb_func_start sub_8F69E2C
-sub_8F69E2C:
+	.section .discard.mariobros_small_sub_8F69E2C, "ax"
+	thumb_func_start asm_discard_sub_8F69E2C
+asm_discard_sub_8F69E2C:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	adds r0, #0x44
@@ -49927,6 +49932,7 @@ _08F69E4C:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.after_mariobros_small_sub_8F69E2C, "ax"
 	thumb_func_start sub_8F69E54
 sub_8F69E54:
 	push {r4, r5, r6, lr}

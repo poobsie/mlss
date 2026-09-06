@@ -92,6 +92,19 @@ block and update the free-list head, plus mirrored link-context dispatchers. The
 names state those allocator and dispatch mechanics; the gameplay owners of the
 two runtime families remain unresolved.
 
+Three additional object helpers now share the established `MarioBrosObject`
+layout. One decrements the halfword action countdown and invokes its follow-up
+when the value reaches zero. Another initializes downward motion while setting
+the two proven enable bits and clearing the auxiliary byte at `0x26`. The third
+services an effect-state record, invoking its existing update when effect slot
+`0x44` is active and then clearing the pending byte at `0x3F`.
+
+The gameplay class owning these records remains unknown. The countdown's
+follow-up and the effect identifier are therefore retained under their original
+symbols; names describe only the observable state contract. Nearby tile-code and
+direction-animation candidates remain in assembly because two natural typed C
+forms changed register allocation.
+
 ## Next boundary
 
 The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.

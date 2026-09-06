@@ -92,6 +92,10 @@
 #define mario_bros_emit_event_and_advance_sequence_a sub_8F58360
 #define mario_bros_emit_event_and_advance_sequence_b sub_8F58398
 
+#define mario_bros_tick_action_countdown sub_8F6118C
+#define mario_bros_begin_enabled_fall sub_8F64B84
+#define mario_bros_clear_pending_effect_update sub_8F69E2C
+
 #define mario_bros_call_object_callback_a sub_8F6E1F8
 #define mario_bros_call_object_callback_b sub_8F6E20C
 #define mario_bros_call_two_argument_callback sub_8F6F210
