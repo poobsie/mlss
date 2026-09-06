@@ -358,6 +358,16 @@ the nine-pointer array beginning at `0x58` are now represented explicitly. The
 motion helper's coordinate space remains unknown, so the name records only its
 proven vector synchronization behavior.
 
+`field_set_inverted_10bit_value` writes the low ten bits of the halfword at game
+state offset `0x78` from the bitwise inverse of the command value while preserving
+the upper six bits. The packed field's consumer is not yet recovered, so its width
+and inversion are explicit instead of assigning a speculative gameplay meaning.
+
+`field_set_runtime_toggle_2f8` exposes the two supported assignments to the field
+runtime byte at offset `0x2F8`: command zero stores one and command one stores zero.
+Other command values leave it unchanged. The byte remains offset-named until a
+reader establishes what the toggle controls.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or

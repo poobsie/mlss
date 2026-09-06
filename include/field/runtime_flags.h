@@ -18,6 +18,8 @@ struct ScriptExecutionState;
 #define field_clear_record_flag_0200_when_nested_flag_4000 sub_80F8C60
 #define field_submit_nested_request_and_mark_pending sub_80F7770
 #define field_runtime_test_flag_10 sub_8082B00
+#define field_set_inverted_10bit_value sub_80F827C
+#define field_set_runtime_toggle_2f8 sub_80F857C
 
 void field_clear_nested_flags_1788(u32 mask);
 void field_set_nested_flags_1788(u32 mask);
@@ -36,5 +38,9 @@ void field_clear_record_flag_0200_when_nested_flag_4000(
 void field_submit_nested_request_and_mark_pending(
     struct FieldNestedFlagRequest* request);
 s32 field_runtime_test_flag_10(void);
+s32 field_set_inverted_10bit_value(
+    void* context, void* state, const s32* arguments);
+s32 field_set_runtime_toggle_2f8(
+    void* context, void* state, const s32* arguments);
 
 #endif

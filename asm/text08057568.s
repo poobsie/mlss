@@ -294313,8 +294313,9 @@ sub_80F8254:
 	.byte 0x00, 0x00
 _080F8274: .4byte 0x03000FD8
 _080F8278: .4byte 0x000002C1
-	thumb_func_start sub_80F827C
-sub_80F827C:
+	.section .discard.field_set_inverted_10bit_value, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F827C
+asm_discard_sub_80F827C:
 	ldr r3, _080F829C @ =0x0300034C
 	ldr r0, [r2, #0x00]
 	ldr r1, _080F82A0 @ =0x000003FF
@@ -294334,6 +294335,7 @@ sub_80F827C:
 _080F829C: .4byte 0x0300034C
 _080F82A0: .4byte 0x000003FF
 _080F82A4: .4byte 0xFFFFFC00
+	.section .text.field_runtime_after_sub_80F827C, "ax", %progbits
 	thumb_func_start sub_80F82A8
 sub_80F82A8:
 	push {r4, r5, r6, lr}
@@ -294643,8 +294645,9 @@ _080F8576:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
-	thumb_func_start sub_80F857C
-sub_80F857C:
+	.section .discard.field_set_runtime_toggle_2f8, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F857C
+asm_discard_sub_80F857C:
 	push {lr}
 	ldr r2, [r2, #0x00]
 	cmp r2, #0x00
@@ -294675,6 +294678,7 @@ _080F85AA:
 	pop {r1}
 	bx r1
 _080F85B0: .4byte 0x03000FD8
+	.section .text.field_runtime_after_sub_80F857C, "ax", %progbits
 	thumb_func_start sub_80F85B4
 sub_80F85B4:
 	push {r4, r5, lr}

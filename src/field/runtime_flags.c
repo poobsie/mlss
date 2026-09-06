@@ -47,9 +47,23 @@ struct FieldModeRuntime {
     s8 mode3A5;
 };
 
+struct FieldPackedValueRuntime {
+    u8 unknown00[0x78];
+    u16 invertedValue78 : 10;
+    u16 unknown78_10 : 6;
+};
+
+struct FieldToggleRuntime {
+    u8 unknown000[0x2F8];
+    u8 toggle2F8;
+};
+
 
 #define FIELD_NESTED_FLAG_RUNTIME (*(struct FieldNestedFlagRuntime**)0x03000FD8)
 #define FIELD_MODE_RUNTIME (*(struct FieldModeRuntime**)0x03000FD8)
+extern struct FieldPackedValueRuntime gFieldPackedValueRuntime
+    __asm__("gGameState");
+#define FIELD_TOGGLE_RUNTIME (*(struct FieldToggleRuntime**)0x03000FD8)
 
 void sub_80F2524(
     struct FieldNestedFlagContainer* container, u8 selector, s32 value);
@@ -124,6 +138,29 @@ s32 field_set_indexed_runtime_byte_350(
     if (operation == 0) {
         u8* indexedBytes = (u8*)FIELD_NESTED_FLAG_RUNTIME + 0x350;
         indexedBytes[index] = arguments[0];
+    }
+    return 1;
+}
+
+SEC(sub_80F827C)
+s32 field_set_inverted_10bit_value(
+    void* context, void* state, const s32* arguments)
+{
+    gFieldPackedValueRuntime.invertedValue78 = (~arguments[0]) & 0x3FF;
+    return 1;
+}
+
+SEC(sub_80F857C)
+s32 field_set_runtime_toggle_2f8(
+    void* context, void* state, const s32* arguments)
+{
+    switch (arguments[0]) {
+    case 0:
+        FIELD_TOGGLE_RUNTIME->toggle2F8 = 1;
+        break;
+    case 1:
+        FIELD_TOGGLE_RUNTIME->toggle2F8 = 0;
+        break;
     }
     return 1;
 }
