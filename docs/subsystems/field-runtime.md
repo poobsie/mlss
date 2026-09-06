@@ -447,6 +447,12 @@ indexed channels. Channels masked by `0x0084` are skipped; the remaining flag
 bits dispatch the established entry-match toggle (`0x0002`), indexed visual
 update (`0x0020`), and wait-timer tick (`0x0010`) operations.
 
+The connected `field_script_stop_indexed_channel_and_update_visual` command
+selects one of those twelve channels, clears its primary flags, advances its
+cursor to the stored end cursor, and sets the corresponding visual's packed
+flag state to two. The visual flag state's presentation meaning is still
+unknown.
+
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
 `0x08` from the shared halfword at offset `0x11E`. Each acknowledged bit is
 cleared and arms the corresponding halfword at offset `0x11C`, `0x10C`, or

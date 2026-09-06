@@ -34,6 +34,7 @@ struct FieldScriptUiRuntime {
 #define field_script_set_owned_sprite_visibility sub_80FA7A0
 #define field_script_mark_return_pending sub_80FA7C4
 #define field_script_start_global_script_channel sub_80FAC30
+#define field_script_stop_indexed_channel_and_update_visual sub_80FAC5C
 #define field_script_set_indexed_channel_flag_4 sub_80FAD2C
 #define field_script_start_root_channel_and_mark_running sub_80FAF8C
 #define field_script_clear_channel_records sub_80FAE34
@@ -48,6 +49,8 @@ s32 field_script_set_owned_sprite_visibility(
 u8 field_script_mark_return_pending(
     struct FieldScriptUiRuntime* runtime, struct ScriptExecutionState* state);
 s32 field_script_start_global_script_channel(
+    struct FieldScriptUiRuntime* runtime, void* state, const u32* arguments);
+s32 field_script_stop_indexed_channel_and_update_visual(
     struct FieldScriptUiRuntime* runtime, void* state, const u32* arguments);
 s32 field_script_set_indexed_channel_flag_4(
     struct FieldScriptUiRuntime* runtime, void* state, const s32* arguments);

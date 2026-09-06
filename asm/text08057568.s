@@ -296562,8 +296562,9 @@ asm_discard_sub_80FAC30:
 	bx r1
 _080FAC58: .4byte 0x03000FD0
 	.section .text.field_script_ui_after_sub_80FAC30, "ax", %progbits
-	thumb_func_start sub_80FAC5C
-sub_80FAC5C:
+	.section .discard.field_script_stop_indexed_channel_and_update_visual, "ax", %progbits
+	thumb_func_start asm_discard_sub_80FAC5C
+asm_discard_sub_80FAC5C:
 	push {r4, lr}
 	ldr r2, [r2, #0x00]
 	movs r1, #0xA8
@@ -296600,6 +296601,7 @@ sub_80FAC5C:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.section .text.field_script_ui_after_sub_80FAC5C, "ax", %progbits
 	thumb_func_start sub_80FACA4
 sub_80FACA4:
 	ldr r0, [r0, #0x14]

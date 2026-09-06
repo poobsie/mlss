@@ -107,6 +107,26 @@ s32 field_script_start_global_script_channel(
     return 1;
 }
 
+SEC(sub_80FAC5C)
+s32 field_script_stop_indexed_channel_and_update_visual(
+    struct FieldScriptUiRuntime* runtime, void* state, const u32* arguments)
+{
+    u32 index = arguments[0];
+    struct ScriptExecutionState* channel =
+        (struct ScriptExecutionState*)runtime->sharedState24 + index + 1;
+    struct RuntimeObjectVisual* visual =
+        runtime->displayOwner14->records158[index].visual;
+    s8* flags = (s8*)&visual->flags;
+
+    channel->primaryFlags = 0;
+    channel->cursor = channel->endCursor;
+    *flags = (*flags & -7) | 2;
+    return 1;
+}
+
+SEC(sub_80FAC5C)
+const u16 field_script_stop_indexed_channel_and_update_visual_padding = 0;
+
 SEC(sub_80FAD2C)
 s32 field_script_set_indexed_channel_flag_4(
     struct FieldScriptUiRuntime* runtime, void* state, const s32* arguments)
