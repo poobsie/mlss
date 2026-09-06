@@ -174,6 +174,15 @@ the original instructions exactly. Their wider flag and staging roles therefore
 remain intentionally unnamed until a matching consumer boundary provides better
 evidence.
 
+Two larger field-process state machines now use the shared actor and object layouts.
+The first waits for actor B's visual completion, conditionally applies animation 10
+and command `0x2063`, initializes its sound handle for 20 ticks, clears the related
+runtime flags, masks the secondary timer, and advances. The second waits for actor
+A's visual completion, disables that action when active, then initializes actor B's
+sound handle for 10 ticks before advancing. The indirect sound allocator remains
+expressed through its established runtime entry point; its resource identity and
+the numeric command remain unresolved.
+
 ## Verification
 
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and
