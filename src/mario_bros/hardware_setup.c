@@ -7,6 +7,7 @@
 void _08F6F340(u32);
 u32 umul3232H32(u32, u32);
 void TrackStop(struct MusicPlayerInfo*, struct MusicPlayerTrack*);
+void m4aMPlayStop(struct MusicPlayerInfo*);
 void mario_bros_call_secondary_object_callback_b(void*);
 
 MB_LATE_SECTION(sub_8F510CC) void mario_bros_disable_interrupts(void) {
@@ -55,6 +56,15 @@ u32 MidiKeyToFreq(struct WaveData* wave, u8 key, u8 fineAdjust)
     return umul3232H32(
         wave->freq,
         value1 + umul3232H32(value2 - value1, fineAdjustShifted));
+}
+
+MB_LATE_SECTION(sub_08F94B58)
+void m4aMPlayAllStop(void)
+{
+    s32 index;
+
+    for (index = 0; index < NUM_MUSIC_PLAYERS; index++)
+        m4aMPlayStop(gMPlayTable[index].info);
 }
 
 MB_LATE_SECTION(sub_8F950E0)

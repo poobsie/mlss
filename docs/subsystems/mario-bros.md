@@ -166,6 +166,12 @@ the relocated M4A scale entries with high-word multiplication, then scales the
 source wave frequency. The two RAM tables are named only for their proven
 element types and access pattern.
 
+The player-control boundary now includes `m4aMPlayAllStop`. It walks the
+configured M4A player table and applies the existing typed stop operation to
+each player, preserving the driver's per-player identity and track cleanup.
+Nearby song-number wrappers remain in assembly because their natural typed
+forms changed literal and working-register allocation.
+
 ## Next boundary
 
 The currently decompiled slice is detangled. Further gameplay-specific names depend on assembly callers, callback initialization paths, and table contents that are outside the current C boundary. Resume this subsystem when those dependencies are decompiled rather than replacing explicit `a`/`b` variants with guesses.

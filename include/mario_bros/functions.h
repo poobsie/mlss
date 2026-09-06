@@ -106,6 +106,7 @@
 #define TrackStop sub_8F945F8
 #define umul3232H32 sub_8F93CE0
 #define MidiKeyToFreq sub_8F948FC
+#define m4aMPlayAllStop sub_08F94B58
 #define MPlayOpen sub_8F950E0
 #define m4aMPlayStop sub_8F9523C
 #define m4aMPlayVolumeControl sub_8F959CC
