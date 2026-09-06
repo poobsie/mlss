@@ -41,6 +41,12 @@ each sprite. The destructor restores the class descriptor, runs both cleanup
 paths, and honors the standard low-bit heap release flag. A narrower gameplay
 or screen identity is not visible in current callers.
 
+The adjacent `GraphicsResourceList` exposes its doubly linked head and tail,
+active-node count, and class descriptor. Its membership predicate walks forward
+from the head through each node's next link. The destructor restores the class
+descriptor, delegates list clearing to the established cleanup routine, and
+honors the standard low-bit heap release flag.
+
 `graphics_terminate_process_label_at_2` writes the terminator in the third byte of the base process label. Its placement beside the constructor and destructor using graphics descriptor `0x08CDC2C8` establishes ownership; the name records the exact base-field operation instead of guessing why that process uses a two-character label.
 
 Three final bucket-02 wrappers now have graphics ownership. `graphics_apply_staging_source` copies the established six staging values and runs the four adjacent configuration passes on the same source. `graphics_deactivate_linked_visual` performs the shared visual cleanup before unlinking the visual from the active graphics list. `graphics_update_global_resource_fcc_layer_4_mask_16` invokes the two proven update operations on the graphics resource held at `0x03000FCC`; the address and numeric arguments remain explicit because the underlying resource layout is still assembly-only.
