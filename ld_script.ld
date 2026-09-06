@@ -1420,6 +1420,8 @@ SECTIONS
         src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_8093000);
         src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_8093070);
         asm/text08057568.o(.text.object_vertical_motion_after_sub_8093070);
+        src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_80930D8);
+        asm/text08057568.o(.text.object_vertical_motion_after_sub_80930D8);
         src/object/completion_actions.o(.text.object_flag_actions.sub_8093140);
         asm/text08057568.o(.text.object_flag_actions_after_sub_8093140);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_809316C);
@@ -1441,6 +1443,8 @@ SECTIONS
         src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_809418C);
         src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_80941FC);
         asm/text08057568.o(.text.object_vertical_motion_after_sub_80941FC);
+        src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_8094264);
+        asm/text08057568.o(.text.object_vertical_motion_after_sub_8094264);
         src/object/completion_actions.o(.text.object_flag_actions.sub_80942CC);
         asm/text08057568.o(.text.object_flag_actions_after_sub_80942CC);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_80942F8);
@@ -1458,6 +1462,8 @@ SECTIONS
         src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_80945E4);
         src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_8094654);
         asm/text08057568.o(.text.object_vertical_motion_after_sub_8094654);
+        src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_80946BC);
+        asm/text08057568.o(.text.object_vertical_motion_after_sub_80946BC);
         src/object/completion_actions.o(.text.object_flag_actions.sub_8094724);
         asm/text08057568.o(.text.object_flag_actions_after_sub_8094724);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_8094750);

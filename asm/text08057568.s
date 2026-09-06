@@ -101361,59 +101361,7 @@ _08092E54: .4byte runtime_object_finish_action
 	.section .text.script_dispatch_after_sub_8092F2C, "ax", %progbits
 	.section .text.object_variant_dispatch_after_sub_8092F68, "ax", %progbits
 	.section .text.object_vertical_motion_after_sub_8093070, "ax", %progbits
-	thumb_func_start sub_80930D8
-sub_80930D8:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r2, r4, #0x0
-	adds r2, #0xB2
-	adds r0, #0x94
-	ldr r1, [r0, #0x00]
-	ldrh r0, [r2, #0x00]
-	adds r0, r0, r1
-	strh r0, [r2, #0x00]
-	movs r1, #0x00
-	ldsh r0, [r2, r1]
-	ldr r1, [r4, #0x40]
-	adds r1, r1, r0
-	str r1, [r4, #0x18]
-	ldr r0, [r4, #0x28]
-	adds r0, #0xE0
-	ldr r0, [r0, #0x00]
-	cmp r1, r0
-	bgt _08093134
-	subs r2, #0x3B
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x08
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x00]
-	ldr r0, [r4, #0x28]
-	adds r0, #0xE0
-	ldr r0, [r0, #0x00]
-	str r0, [r4, #0x18]
-	movs r2, #0x80
-	lsls r2, r2, #0x06
-	adds r0, r4, #0x0
-	movs r1, #0x08
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r4, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x02
-	orrs r0, r1
-	strb r0, [r2, #0x12]
-	ldr r0, _0809313C @ =0x0809316D
-	str r0, [r4, #0x4C]
-_08093134:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_0809313C: .4byte sub_809316C
+	.section .text.object_vertical_motion_after_sub_80930D8, "ax", %progbits
 	.section .text.object_flag_actions_after_sub_8093140, "ax", %progbits
 	.section .text.misc_helpers_01_after_sub_809316C, "ax", %progbits
 	thumb_func_start sub_8093194
@@ -103162,59 +103110,7 @@ _080940F0: .4byte 0x006E1E40
 _080940F4: .4byte sub_809418C
 	.section .text.after_sub_80940F8, "ax", %progbits
 	.section .text.object_vertical_motion_after_sub_80941FC, "ax", %progbits
-	thumb_func_start sub_8094264
-sub_8094264:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r2, r4, #0x0
-	adds r2, #0xB2
-	adds r0, #0x94
-	ldr r1, [r0, #0x00]
-	ldrh r0, [r2, #0x00]
-	adds r0, r0, r1
-	strh r0, [r2, #0x00]
-	movs r1, #0x00
-	ldsh r0, [r2, r1]
-	ldr r1, [r4, #0x40]
-	adds r1, r1, r0
-	str r1, [r4, #0x18]
-	ldr r0, [r4, #0x28]
-	adds r0, #0xE0
-	ldr r0, [r0, #0x00]
-	cmp r1, r0
-	bgt _080942C0
-	subs r2, #0x3B
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x08
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x00]
-	ldr r0, [r4, #0x28]
-	adds r0, #0xE0
-	ldr r0, [r0, #0x00]
-	str r0, [r4, #0x18]
-	movs r2, #0x80
-	lsls r2, r2, #0x06
-	adds r0, r4, #0x0
-	movs r1, #0x08
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r4, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x02
-	orrs r0, r1
-	strb r0, [r2, #0x12]
-	ldr r0, _080942C8 @ =0x080942F9
-	str r0, [r4, #0x4C]
-_080942C0:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_080942C8: .4byte sub_80942F8
+	.section .text.object_vertical_motion_after_sub_8094264, "ax", %progbits
 	.section .text.object_flag_actions_after_sub_80942CC, "ax", %progbits
 	.section .text.misc_helpers_01_after_sub_80942F8, "ax", %progbits
 	thumb_func_start sub_8094320
@@ -103372,59 +103268,7 @@ _08094460: .4byte 0x005A1440
 	.section .text.after_sub_8094514, "ax", %progbits
 	.section .text.script_dispatch_after_sub_8094538, "ax", %progbits
 	.section .text.object_vertical_motion_after_sub_8094654, "ax", %progbits
-	thumb_func_start sub_80946BC
-sub_80946BC:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r2, r4, #0x0
-	adds r2, #0xB2
-	adds r0, #0x94
-	ldr r1, [r0, #0x00]
-	ldrh r0, [r2, #0x00]
-	adds r0, r0, r1
-	strh r0, [r2, #0x00]
-	movs r1, #0x00
-	ldsh r0, [r2, r1]
-	ldr r1, [r4, #0x40]
-	adds r1, r1, r0
-	str r1, [r4, #0x18]
-	ldr r0, [r4, #0x28]
-	adds r0, #0xE0
-	ldr r0, [r0, #0x00]
-	cmp r1, r0
-	bgt _08094718
-	subs r2, #0x3B
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x08
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x00]
-	ldr r0, [r4, #0x28]
-	adds r0, #0xE0
-	ldr r0, [r0, #0x00]
-	str r0, [r4, #0x18]
-	movs r2, #0x80
-	lsls r2, r2, #0x06
-	adds r0, r4, #0x0
-	movs r1, #0x08
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r4, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x02
-	orrs r0, r1
-	strb r0, [r2, #0x12]
-	ldr r0, _08094720 @ =0x08094751
-	str r0, [r4, #0x4C]
-_08094718:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08094720: .4byte sub_8094750
+	.section .text.object_vertical_motion_after_sub_80946BC, "ax", %progbits
 	.section .text.object_flag_actions_after_sub_8094724, "ax", %progbits
 	.section .text.misc_helpers_01_after_sub_8094750, "ax", %progbits
 	thumb_func_start sub_8094778

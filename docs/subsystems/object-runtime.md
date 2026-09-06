@@ -488,6 +488,11 @@ A neighboring variant branch now includes its paired 24- and 20-tick cleanup
 gates. Both retain the established action-flag and owner-pending behavior before
 invoking the shared action-finish routine.
 
+Three more alternate-command landing callbacks now use the typed floor-clamp
+implementation. Each integrates the signed vertical step, clamps to the state's
+known floor height, clears the active motion flag, starts animation 8 with command
+`0x2000`, restores visual mode 2, and installs its established completion callback.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

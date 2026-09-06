@@ -13,6 +13,9 @@ void sub_8090660(struct RuntimeObject* object);
 void sub_80909CC(struct RuntimeObject* object);
 void sub_8090DC8(struct RuntimeObject* object);
 void sub_8091FDC(struct RuntimeObject* object);
+void sub_809316C(struct RuntimeObject* object);
+void sub_80942F8(struct RuntimeObject* object);
+void sub_8094750(struct RuntimeObject* object);
 void sub_808EFFC(struct RuntimeObject* object);
 void sub_808FFF8(struct RuntimeObject* object);
 void sub_8090608(struct RuntimeObject* object);
@@ -103,6 +106,9 @@ DEFINE_VERTICAL_MOTION_CALLBACK(sub_808DF5C, object_advance_vertical_motion_to_a
 DEFINE_FLOOR_LANDING_CALLBACK(sub_808DFCC, object_land_on_state_floor_with_animation_8_initial_path, sub_808E09C)
 DEFINE_ALTERNATE_FLOOR_LANDING_CALLBACK(sub_808E034, object_land_on_state_floor_with_alternate_animation_8_initial_path, sub_808E0C8)
 DEFINE_ALTERNATE_FLOOR_LANDING_CALLBACK(sub_8091F48, object_land_on_state_floor_with_alternate_animation_8_path_a, sub_8091FDC)
+DEFINE_ALTERNATE_FLOOR_LANDING_CALLBACK(sub_80930D8, object_land_on_state_floor_with_alternate_animation_8_path_b, sub_809316C)
+DEFINE_ALTERNATE_FLOOR_LANDING_CALLBACK(sub_8094264, object_land_on_state_floor_with_alternate_animation_8_path_c, sub_80942F8)
+DEFINE_ALTERNATE_FLOOR_LANDING_CALLBACK(sub_80946BC, object_land_on_state_floor_with_alternate_animation_8_path_d, sub_8094750)
 
 DEFINE_VERTICAL_MOTION_CALLBACK(sub_808EF1C, object_advance_vertical_motion_to_animation_6_path_a, 0x204D, sub_808EFFC)
 DEFINE_VERTICAL_MOTION_CALLBACK(sub_808EF8C, object_advance_vertical_motion_to_alternate_animation_6_early_path, 0x2000, sub_808F054)
