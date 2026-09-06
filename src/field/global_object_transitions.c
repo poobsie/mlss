@@ -6,6 +6,8 @@
     __attribute__((section(".text.misc_helpers_02." STRINGIFY(symbol))))
 #define SMALL_SEC(symbol) \
     __attribute__((section(".text.small_functions_01." STRINGIFY(symbol))))
+#define MISC3_SEC(symbol) \
+    __attribute__((section(".text.misc_helpers_03." STRINGIFY(symbol))))
 
 #define FIELD_OBJECT_RUNTIME (*(struct FieldObjectRuntime**)0x03000FD8)
 #define FIELD_INDEXED_OBJECT_RUNTIME \
@@ -15,6 +17,30 @@ void sub_8072550(struct RuntimeObject* object);
 void sub_80725D0(struct RuntimeObject* object);
 void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
+
+MISC3_SEC(field_find_object_with_largest_value_span)
+s32 field_find_object_with_largest_value_span(void* context, s32 threshold)
+{
+    s32 selectedIndex = -1;
+    s16 index = 0;
+    struct FieldRuntimeObjectOwner** owners =
+        FIELD_INDEXED_OBJECT_RUNTIME->objectOwners58;
+
+    do {
+        struct FieldRuntimeObjectOwner* owner = owners[index];
+
+        if (owner != NULL && (owner->object.flags76 & 6) == 4) {
+            s32 span = owner->valueF8 - owner->valueF6;
+
+            if (span > threshold) {
+                threshold = span;
+                selectedIndex = index;
+            }
+        }
+        index++;
+    } while (index <= 5);
+    return selectedIndex;
+}
 
 #define START_FIRST_OBJECT_ANIMATION_47(object, continuation)                \
     do {                                                                     \

@@ -291062,8 +291062,9 @@ sub_80F77AC:
 	bx r0
 _080F77FC: .4byte 0x03000FD8
 _080F7800: .4byte 0x000002BF
-	thumb_func_start sub_80F7804
-sub_80F7804:
+	.section .discard.field_find_object_with_largest_value_span, "ax", %progbits
+	thumb_func_start asm_discard_sub_80F7804
+asm_discard_sub_80F7804:
 	push {r4, r5, r6, r7, lr}
 	adds r5, r1, #0x0
 	movs r6, #0x01
@@ -291115,6 +291116,7 @@ _080F784C:
 	bx r1
 	.byte 0x00, 0x00
 _080F7864: .4byte 0x03000FD8
+	.section .text.misc_helpers_03_after_sub_80F7804, "ax", %progbits
 	thumb_func_start sub_80F7868
 sub_80F7868:
 	push {r4, r5, r6, r7, lr}

@@ -8,7 +8,10 @@ struct FieldRuntimeObjectOwner {
     struct RuntimeObject object;
     u8 unknownD0[8];
     s32 vectorD8[3];
-    u8 unknownE4[0x2C];
+    u8 unknownE4[0x12];
+    s16 valueF6;
+    s16 valueF8;
+    u8 unknownFA[0x16];
     u8 flags110;
 };
 
@@ -33,6 +36,7 @@ struct FieldIndexedObjectRuntime {
 #define field_update_indexed_object_vector sub_80F8008
 #define field_configure_indexed_object_flag_20 sub_80F80C4
 #define field_start_selected_object_vector_motion sub_80F8198
+#define field_find_object_with_largest_value_span sub_80F7804
 
 void field_start_first_object_animation_47_then_continue_a(
     struct RuntimeObject* object);
@@ -48,5 +52,6 @@ s32 field_configure_indexed_object_flag_20(
     void* context, void* state, const s32* arguments);
 s32 field_start_selected_object_vector_motion(
     void* context, void* state, const s32* arguments);
+s32 field_find_object_with_largest_value_span(void* context, s32 threshold);
 
 #endif

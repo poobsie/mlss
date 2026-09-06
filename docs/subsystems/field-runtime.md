@@ -476,4 +476,10 @@ builds both horizontal bounds from the staging halfword at `0x0200001A`.
 Those values retain neutral names because their precise screen units are not
 established by the current callers.
 
+`field_find_object_with_largest_value_span` scans the first six indexed object
+owners whose runtime flags satisfy `(flags76 & 6) == 4`. It returns the index
+whose signed `valueF8 - valueF6` span exceeds the caller's threshold by the
+largest amount, or `-1` when none qualify. The two halfwords retain offset-based
+names because their gameplay units are not established by current callers.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

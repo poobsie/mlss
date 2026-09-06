@@ -2183,6 +2183,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80F75D8);
         src/field/runtime_flags.o(.text.misc_helpers_03.sub_80F7770);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80F7770);
+        src/field/global_object_transitions.o(.text.misc_helpers_03.sub_80F7804);
+        asm/text08057568.o(.text.misc_helpers_03_after_sub_80F7804);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80F7BB4);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80F7BB4);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80F7C3C);
