@@ -72118,39 +72118,6 @@ _0808015A:
 	bx r0
 _08080160: .4byte 0x00002068
 _08080164: .4byte 0x00000111
-	thumb_func_start sub_8080168
-sub_8080168:
-	push {r4, lr}
-	adds r3, r0, #0x0
-	ldr r0, [r3, #0x40]
-	cmp r0, #0x00
-	bgt _08080176
-	movs r0, #0x00
-	b _0808019A
-_08080176:
-	adds r2, r3, #0x0
-	adds r2, #0xB2
-	ldrh r0, [r2, #0x00]
-	subs r0, #0x5E
-	movs r4, #0x00
-	strh r0, [r2, #0x00]
-	movs r0, #0x00
-	ldsh r1, [r2, r0]
-	ldr r0, [r3, #0x40]
-	adds r0, r0, r1
-	str r0, [r3, #0x18]
-	cmp r0, #0x00
-	bgt _08080198
-	strh r4, [r2, #0x00]
-	str r4, [r3, #0x18]
-	movs r0, #0x00
-	b _0808019A
-_08080198:
-	movs r0, #0x01
-_0808019A:
-	pop {r4}
-	pop {r1}
-	bx r1
 	.section .text.misc_helpers_02_after_sub_80801A0, "ax", %progbits
 	thumb_func_start sub_80801BC
 sub_80801BC:
@@ -75975,40 +75942,7 @@ _080821B4: .4byte 0x03000FD8
 _080821B8: .4byte 0x0300034C
 _080821BC: .4byte 0x00000888
 _080821C0: .4byte sub_808225C
-	thumb_func_start sub_80821C4
-sub_80821C4:
-	push {r4, r5, lr}
-	adds r4, r0, #0x0
-	ldr r5, [r4, #0x08]
-	ldrh r1, [r4, #0x10]
-	movs r2, #0x10
-	ldsh r0, [r4, r2]
-	cmp r0, #0x00
-	ble _080821DA
-	subs r0, r1, #0x1
-	strh r0, [r4, #0x10]
-	b _080821F8
-_080821DA:
-	movs r2, #0x01
-	negs r2, r2
-	adds r0, r5, #0x0
-	movs r1, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r5, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	strb r0, [r2, #0x12]
-	ldr r0, _08082200 @ =0x08081F85
-	str r0, [r4, #0x04]
-_080821F8:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08082200: .4byte sub_8081F84
+	.section .text.field_action_motion_after_sub_80821C4, "ax", %progbits
 	thumb_func_start sub_8082204
 sub_8082204:
 	push {r4, lr}
@@ -76050,25 +75984,7 @@ _0808224C: .4byte 0x03000FD8
 _08082250: .4byte 0x0300034C
 _08082254: .4byte 0x00000888
 _08082258: .4byte sub_808227C
-	thumb_func_start sub_808225C
-sub_808225C:
-	push {lr}
-	adds r1, r0, #0x0
-	ldrh r2, [r1, #0x10]
-	movs r3, #0x10
-	ldsh r0, [r1, r3]
-	cmp r0, #0x00
-	ble _08082270
-	subs r0, r2, #0x1
-	strh r0, [r1, #0x10]
-	b _08082274
-_08082270:
-	ldr r0, _08082278 @ =0x08081F85
-	str r0, [r1, #0x04]
-_08082274:
-	pop {r0}
-	bx r0
-_08082278: .4byte sub_8081F84
+	.section .text.field_action_motion_after_sub_808225C, "ax", %progbits
 	thumb_func_start sub_808227C
 sub_808227C:
 	push {r4, r5, lr}

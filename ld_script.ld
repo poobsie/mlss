@@ -967,6 +967,7 @@ SECTIONS
         asm/text08057568.o(.text.field_runtime_nodes_after_sub_807FFB8);
         src/field/runtime_nodes.o(.text.field_runtime_nodes.sub_807FFD8);
         asm/text08057568.o(.text.field_runtime_nodes_after_sub_807FFD8);
+        src/field/action_motion.o(.text.field_action_motion.sub_8080168);
         src/field/action_process.o(.text.misc_helpers_02.sub_80801A0);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80801A0);
         src/field/action_process.o(.text.misc_helpers_01.sub_8081C54);
@@ -981,6 +982,10 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8081FB0);
         src/field/action_process.o(.text.misc_helpers_02.sub_8082158);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8082158);
+        src/field/action_motion.o(.text.field_action_motion.sub_80821C4);
+        asm/text08057568.o(.text.field_action_motion_after_sub_80821C4);
+        src/field/action_motion.o(.text.field_action_motion.sub_808225C);
+        asm/text08057568.o(.text.field_action_motion_after_sub_808225C);
         src/field/view_state.o(.text.field_view_state.sub_8082D00);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8082D00);
         src/field/view_state.o(.text.field_view_state.sub_8082D24);

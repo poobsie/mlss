@@ -138,6 +138,14 @@ The runtime node boundary now exposes the free list at offset `0x3C`, five activ
 
 The neighboring link-node pool uses runtime offsets `0x238` and `0x23C` as its free and active heads. Its allocator clears the low five flag bits before returning a node, while the owner-attaching form also links the owner's values and inline payload. Two payload-node allocators pop from the separate `0x240` pool, clear all `0x1C` bytes through the runtime memory routine, and optionally install three caller values. Those value roles remain offset-named pending recovery of their consumers.
 
+The action-motion boundary now includes the shared vertical-arc step and two timer
+transitions. The arc step subtracts the fixed acceleration `0x5E`, updates the
+object's vertical position relative to `positionZBase`, and clamps both position
+and velocity at landing. One timer transition resets animation command zero,
+clears visual mode bits `1` and `2`, and continues through the shared action
+callback; the other only waits before selecting that callback. The callback itself
+remains address-named because its wider action-state role is still in assembly.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

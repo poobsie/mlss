@@ -1,6 +1,5 @@
 #include "field/action_process.h"
 
-u8 sub_8080168(struct RuntimeObject* object);
 void sub_807DC8C(struct FieldActionProcess* process);
 void sub_8080A40(struct FieldObjectUpdateProcess* process);
 void sub_8081288(struct FieldActionProcess* process);
@@ -25,7 +24,7 @@ void field_action_wait_for_visual_then_branch(struct FieldActionProcess* process
     struct RuntimeObject* object;
 
     object = process->object;
-    branch = sub_8080168(object);
+    branch = field_object_step_vertical_arc(object);
     if (object->visual->flags & 8) {
         if (branch == 0) {
             sub_807DC8C(process);
@@ -38,7 +37,7 @@ void field_action_wait_for_visual_then_branch(struct FieldActionProcess* process
 MISC2_SEC(field_action_finish_when_branch_clear)
 void field_action_finish_when_branch_clear(struct FieldActionProcess* process)
 {
-    if (sub_8080168(process->object) == 0)
+    if (field_object_step_vertical_arc(process->object) == 0)
         sub_807DC8C(process);
 }
 

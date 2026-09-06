@@ -10,6 +10,8 @@ struct FieldActionProcess {
     u8 unknown00[4];
     FieldActionProcessCallback update;
     struct RuntimeObject* object;
+    u8 unknown0C[4];
+    s16 timer;
 };
 
 struct FieldNestedVisualOwner {
@@ -37,6 +39,9 @@ struct FieldObjectUpdateProcess {
 #define field_wait_for_runtime_object_update_to_stop sub_8082158
 #define field_action_wait_for_state_flag_clear sub_8081C54
 #define field_wait_for_nested_visual_completion sub_8106A10
+#define field_object_step_vertical_arc sub_8080168
+#define field_action_count_down_then_reset_visual sub_80821C4
+#define field_action_count_down_then_continue sub_808225C
 
 void field_action_wait_for_visual_then_branch(struct FieldActionProcess* process);
 void field_action_finish_when_branch_clear(struct FieldActionProcess* process);
@@ -46,5 +51,9 @@ void field_wait_for_runtime_object_update_to_stop(
 void field_action_wait_for_state_flag_clear(struct FieldActionProcess* process);
 void field_wait_for_nested_visual_completion(
     struct FieldNestedVisualProcess* process);
+u8 field_object_step_vertical_arc(struct RuntimeObject* object);
+void field_action_count_down_then_reset_visual(
+    struct FieldActionProcess* process);
+void field_action_count_down_then_continue(struct FieldActionProcess* process);
 
 #endif
