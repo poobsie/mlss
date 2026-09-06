@@ -7,6 +7,7 @@ struct ScriptBattleReturnContext;
 struct ScriptExecutionState;
 struct ScriptCommandContext;
 struct ScriptInputOwner;
+struct ScriptResourceOwner;
 struct ScriptEffectArguments;
 struct ScriptSelectedRuntimeArguments;
 struct ScriptIndexedObjectCallbackArguments;
@@ -20,6 +21,7 @@ struct ScriptArithmeticBridgeArguments;
 
 #define script_command_return_from_battle script_cmd_btl_return
 #define script_command_set_runtime_direction_sign sub_80EAD98
+#define script_command_branch_on_resource_flag sub_80EAEBC
 #define script_command_forward_input_mask sub_80EAA5C
 #define script_command_forward_selected_input_mask sub_80EAA84
 #define script_command_apply_arithmetic_and_forward sub_80EAB98
@@ -68,6 +70,9 @@ u8 script_command_return_from_battle(
 
 s32 script_command_set_runtime_direction_sign(
     void* context, void* state, const u32* argument);
+s32 script_command_branch_on_resource_flag(
+    void* context, struct ScriptResourceOwner* owner,
+    struct ScriptExecutionState* state, const u32* arguments);
 s32 script_command_forward_input_mask(
     void* context, u8* owner, const s16* argument, void* commandContext);
 s32 script_command_forward_selected_input_mask(

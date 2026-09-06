@@ -388,6 +388,17 @@ s32 script_command_branch_if_runtime_byte_30_equals(
     return 1;
 }
 
+SEC(sub_80EAEBC)
+s32 script_command_branch_on_resource_flag(
+    void* context, struct ScriptResourceOwner* owner,
+    struct ScriptExecutionState* state, const u32* arguments)
+{
+    if ((U8AT(owner->resources04, 0x1B2) >> *arguments++) & 1)
+        state->cursor = *arguments;
+    return 1;
+}
+SEC(sub_80EAEBC) const u16 script_command_branch_on_resource_flag_padding = 0;
+
 SEC(sub_80EB048)
 s32 script_command_set_runtime_byte_32(
     void* context, void* state, const u32* argument)

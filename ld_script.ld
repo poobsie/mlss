@@ -2074,6 +2074,7 @@ SECTIONS
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EAE70);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EAE9C);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EAE9C);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80EAEBC);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EAEE0);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EAEE0);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EAEF8);

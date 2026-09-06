@@ -272540,8 +272540,9 @@ asm_discard_sub_80EAE70:
 	bx r1
 _080EAE98: .4byte 0x03000FB8
 	.section .text.script_command_helpers_after_sub_80EAE9C, "ax", %progbits
-	thumb_func_start sub_80EAEBC
-sub_80EAEBC:
+	.section .discard.script_command_branch_on_resource_flag, "ax", %progbits
+	thumb_func_start asm_discard_sub_80EAEBC
+asm_discard_sub_80EAEBC:
 	push {lr}
 	ldr r0, [r1, #0x04]
 	movs r1, #0xD9

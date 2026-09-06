@@ -94,6 +94,7 @@ documents the relationship while the source preserves the exact ROM bytes.
 | `sub_80E8EE0` | `script_runtime_slot_hide` | Hides the sprite owned by one indexed runtime slot and clears the slot's active byte. |
 | `sub_80EAE70` | `script_command_forward_runtime_byte_30` | Forwards the signed command value and byte `0x30` of the runtime selected through `0x03000FB8` through the same command bridge. The byte's gameplay identity remains unknown. |
 | `sub_80EAE9C` | `script_command_branch_if_runtime_byte_30_equals` | Branches when runtime byte `0x30` equals the command's full-width expected value. |
+| `sub_80EAEBC` | `script_command_branch_on_resource_flag` | Tests the command-selected bit in resource byte `0x1B2` and replaces the execution cursor with the supplied target when that bit is set. The individual bit meanings remain unknown. |
 | `sub_80EB048` | `script_command_set_runtime_byte_32` | Stores the low byte of the command argument in runtime byte `0x32`. |
 | `sub_80EAEF8` | `script_command_control_sound_effect` | Starts, stops, or waits for a sound effect according to the command operation. A zero sound identifier on the stop path stops all sound effects. |
 | `sub_80EAF4C` | `script_command_control_music` | Starts or resumes music, or changes its volume or tempo. The command's player, value, and fade fields retain structural names until the bytecode format is recovered. |
