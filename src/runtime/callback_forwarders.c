@@ -27,3 +27,14 @@ const u16 sub_801DC38_padding = 0;
 
 void runtime_invoke_pair_callback(struct RuntimeCallbackPacket* packet)
     __attribute__((alias("sub_801DC38")));
+
+__attribute__((section(".text.callback_slots.sub_8029910")))
+void runtime_dispatch_frame_callbacks(void)
+{
+    RuntimeFrameCallback* callbacks = (RuntimeFrameCallback*)0x03000D80;
+
+    if (callbacks[0] != 0)
+        callbacks[0]();
+    if (callbacks[1] != 0)
+        callbacks[1]();
+}

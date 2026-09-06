@@ -24011,8 +24011,9 @@ _080298FA:
 	bx r0
 _08029908: .4byte sub_8029910
 _0802990C: .4byte 0x03000D80
-	thumb_func_start sub_8029910
-sub_8029910:
+	.section .discard.runtime_dispatch_frame_callbacks, "ax", %progbits
+	thumb_func_start asm_discard_sub_8029910
+asm_discard_sub_8029910:
 	push {r4, lr}
 	ldr r4, _08029930 @ =0x03000D80
 	ldr r0, [r4, #0x00]
@@ -24030,6 +24031,7 @@ _08029928:
 	bx r0
 	.byte 0x00, 0x00
 _08029930: .4byte 0x03000D80
+	.section .text.after_runtime_dispatch_frame_callbacks_8029910, "ax", %progbits
 	thumb_func_start sub_8029934
 sub_8029934:
 	push {r4, r5, r6, r7, lr}

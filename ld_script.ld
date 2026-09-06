@@ -127,6 +127,8 @@ SECTIONS
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_80297B8);
         src/audio/scene_cues.o(.text.early_code_helpers.sub_8029878);
         asm/text0801A548.o(.text.after_early_code_helpers_8029878);
+        src/runtime/callback_forwarders.o(.text.callback_slots.sub_8029910);
+        asm/text0801A548.o(.text.after_runtime_dispatch_frame_callbacks_8029910);
         src/field/linked_object_state.o(.text.field_linked_object_state.sub_803C424);
         asm/text0801A548.o(.text.after_early_code_helpers_803C424);
         src/field/linked_object_state.o(.text.field_linked_object_state.sub_803C440);
