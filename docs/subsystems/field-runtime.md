@@ -183,6 +183,15 @@ sound handle for 10 ticks before advancing. The indirect sound allocator remains
 expressed through its established runtime entry point; its resource identity and
 the numeric command remain unresolved.
 
+Two effect-producing actor transitions now share those same layouts. One waits for
+actor B's completion flag, emits effect `0x2FE6` at actor A's fixed-point position,
+plays sound `0x7C`, and, for the active actor states, arms actor A's sound handle for
+24 ticks before advancing. The other waits on actor A, emits effect `0x1E`, plays
+sound `0x65`, selects animation 8 with command `0x2000` for variant `-1` or `0x204D`
+otherwise, sets visual mode 2, and advances. The effect IDs, command IDs, and
+continuation callbacks remain numeric or address-named because their broader roles
+are not yet established by callers.
+
 ## Verification
 
 Three adjacent object-status callbacks now consume flag bits `0x80`, `0x20`, and

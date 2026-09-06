@@ -213684,6 +213684,7 @@ _080C9AE0: .4byte 0x0819832C
 _080C9AE4: .4byte 0x08198220
 _080C9AE8: .4byte sub_80C9AEC
 	thumb_func_start sub_80C9AEC
+.if 0
 sub_80C9AEC:
 	push {r4, r5, r6, r7, lr}
 	add sp, #-0x004
@@ -213775,6 +213776,8 @@ _080C9B98: .4byte 0x03001038
 _080C9B9C: .4byte 0x0819832C
 _080C9BA0: .4byte 0x08198220
 _080C9BA4: .4byte sub_80C9BA8
+.endif
+	.section .text.large_actor_state_machines_after_sub_80C9AEC, "ax", %progbits
 	thumb_func_start sub_80C9BA8
 sub_80C9BA8:
 	push {r4, r5, r6, r7, lr}
@@ -232277,6 +232280,7 @@ _080D2718: .4byte 0x03000FD8
 _080D271C: .4byte 0x00002036
 _080D2720: .4byte sub_80D2724
 	thumb_func_start sub_80D2724
+.if 0
 sub_80D2724:
 	push {r4, r5, r6, r7, lr}
 	add sp, #-0x004
@@ -232370,6 +232374,8 @@ _080D27CC:
 	bx r0
 _080D27D4: .4byte 0x0000204D
 _080D27D8: .4byte sub_80D27DC
+.endif
+	.section .text.large_actor_state_machines_after_sub_80D2724, "ax", %progbits
 	thumb_func_start sub_80D27DC
 sub_80D27DC:
 	push {r4, r5, r6, r7, lr}
