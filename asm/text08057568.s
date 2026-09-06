@@ -274579,8 +274579,9 @@ sub_80EAB00:
 _080EAB1C: .4byte 0x0300034C
 	.section .text.after_middle_sub_80EAB20
 	.section .text.after_middle_script_cmd_conditional_jump
-	thumb_func_start sub_80EAB98
-sub_80EAB98:
+	.section .discard.script_command_sub_80EAB98, "ax", %progbits
+	thumb_func_start asm_discard_sub_80EAB98
+asm_discard_sub_80EAB98:
 	push {r4, r5, r6, lr}
 	add sp, #-0x008
 	adds r5, r1, #0x0
@@ -274624,6 +274625,7 @@ _080EAC54:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.section .text.script_command_helpers_after_sub_80EAB98, "ax", %progbits
 	thumb_func_start sub_80EAC78
 sub_80EAC78:
 	push {r4, r5, r6, r7, lr}

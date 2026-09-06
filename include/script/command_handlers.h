@@ -16,11 +16,13 @@ struct ScriptRuntimeSignedTripletArguments;
 struct ScriptSelectedInputMaskArguments;
 struct ScriptSelectedRuntimeByteArguments;
 struct ScriptRuntimeSlotOwner;
+struct ScriptArithmeticBridgeArguments;
 
 #define script_command_return_from_battle script_cmd_btl_return
 #define script_command_set_runtime_direction_sign sub_80EAD98
 #define script_command_forward_input_mask sub_80EAA5C
 #define script_command_forward_selected_input_mask sub_80EAA84
+#define script_command_apply_arithmetic_and_forward sub_80EAB98
 #define script_command_forward_selected_runtime_byte sub_80EACDC
 #define script_command_wait_for_runtime_slot sub_80EADEC
 #define script_command_dispatch_runtime_slot sub_80EAE30
@@ -72,6 +74,10 @@ s32 script_command_forward_selected_input_mask(
     void* context, u8* owner,
     const struct ScriptSelectedInputMaskArguments* arguments,
     void* commandContext);
+s32 script_command_apply_arithmetic_and_forward(
+    void* context, u8* owner,
+    struct ScriptArithmeticBridgeArguments* arguments,
+    void* commandContext, void* bridgeArgument2, s32 bridgeArgument3);
 s32 script_command_forward_selected_runtime_byte(
     void* context, u8* owner,
     const struct ScriptSelectedRuntimeByteArguments* arguments,

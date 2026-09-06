@@ -1936,6 +1936,8 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80EAB20);
         src/script/state_commands.o(.text.middle.script_cmd_conditional_jump);
         asm/text08057568.o(.text.after_middle_script_cmd_conditional_jump);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80EAB98);
+        asm/text08057568.o(.text.script_command_helpers_after_sub_80EAB98);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EACDC);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EACDC);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EAD98);

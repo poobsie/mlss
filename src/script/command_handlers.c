@@ -146,6 +146,14 @@ struct ScriptSelectedRuntimeByteArguments {
     s32 byteSelector;
 };
 
+struct ScriptArithmeticBridgeArguments {
+    s16 value;
+    u16 padding02;
+    u32 operation;
+    s32 result;
+    s32 operand;
+};
+
 struct ScriptRuntimeSlot {
     u8 unknown00[0x0C];
     u8 identifier;
@@ -185,6 +193,34 @@ s32 script_command_forward_selected_input_mask(
                 arguments->value, mask);
     return 1;
 }
+
+SEC(sub_80EAB98)
+s32 script_command_apply_arithmetic_and_forward(
+    void* context, u8* owner,
+    struct ScriptArithmeticBridgeArguments* arguments,
+    void* commandContext, void* bridgeArgument2, s32 bridgeArgument3)
+{
+    switch (arguments->operation) {
+    case 0: break;
+    case 1: arguments->result += arguments->operand; break;
+    case 2: arguments->result -= arguments->operand; break;
+    case 3: arguments->result *= arguments->operand; break;
+    case 4: arguments->result /= arguments->operand; break;
+    case 5: arguments->result %= arguments->operand; break;
+    case 6: arguments->result <<= arguments->operand; break;
+    case 7: arguments->result >>= arguments->operand; break;
+    case 8: arguments->result &= arguments->operand; break;
+    case 9: arguments->result |= arguments->operand; break;
+    case 10: arguments->result ^= arguments->operand; break;
+    case 11: arguments->result = !arguments->result; break;
+    case 12: arguments->result = ~arguments->result; break;
+    }
+    sub_80E9C4C(commandContext, owner + 0x18,
+                bridgeArgument2, bridgeArgument3,
+                arguments->value, arguments->result);
+    return 1;
+}
+SEC(sub_80EAB98) const u16 script_command_apply_arithmetic_and_forward_padding = 0;
 
 SEC(sub_80EACDC)
 s32 script_command_forward_selected_runtime_byte(
