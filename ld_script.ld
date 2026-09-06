@@ -1291,6 +1291,8 @@ SECTIONS
         asm/text08057568.o(.text.landing_transitions_alternate_after_sub_8090050);
         src/object/completion_actions.o(.text.misc_helpers_03.sub_80900A8);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80900A8);
+        src/object/completion_actions.o(.text.misc_helpers_01.sub_80900D4);
+        asm/text08057568.o(.text.misc_helpers_01_after_sub_80900D4);
         src/object/completion_actions.o(.text.object_flag_actions.sub_809034C);
         asm/text08057568.o(.text.object_flag_actions_after_sub_809034C);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_8090378);
@@ -1327,6 +1329,8 @@ SECTIONS
         src/object/jump_setups_alternate.o(.text.jump_setups_alternate.sub_8090830);
         src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_8090894);
         asm/text08057568.o(.text.object_vertical_motion_after_sub_8090894);
+        src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_8090904);
+        asm/text08057568.o(.text.object_vertical_motion_after_sub_8090904);
         src/object/landing_transitions.o(.text.landing_transitions.sub_8090974);
         asm/text08057568.o(.text.landing_transitions_after_sub_8090974);
         src/object/landing_transitions_alternate.o(.text.landing_transitions_alternate.sub_80909CC);
@@ -1350,6 +1354,8 @@ SECTIONS
         src/object/jump_setups_alternate.o(.text.jump_setups_alternate.sub_8090C2C);
         src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_8090C90);
         asm/text08057568.o(.text.object_vertical_motion_after_sub_8090C90);
+        src/object/vertical_motion_callbacks.o(.text.object_vertical_motion.sub_8090D00);
+        asm/text08057568.o(.text.object_vertical_motion_after_sub_8090D00);
         src/object/landing_transitions.o(.text.landing_transitions.sub_8090D70);
         asm/text08057568.o(.text.landing_transitions_after_sub_8090D70);
         src/object/landing_transitions_alternate.o(.text.landing_transitions_alternate.sub_8090DC8);

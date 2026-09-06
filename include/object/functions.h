@@ -98,6 +98,7 @@
 #define object_on_visual_complete_stop_command_2000_k sub_8094750
 #define object_on_visual_complete_stop_command_2000_l sub_8094BA8
 #define object_on_visual_complete_stop_command_2000_m sub_8095000
+#define object_on_visual_complete_stop_command_2000_initial sub_80900D4
 
 #define object_stop_when_visual_complete_a sub_8064540
 #define object_stop_when_visual_complete_b sub_806B56C

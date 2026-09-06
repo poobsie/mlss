@@ -472,6 +472,12 @@ implementation. Each integrates velocity and acceleration, switches to animation
 established landing continuation. One paired landing callback is also in C; it
 clamps to the state's floor height and starts animation 8 with command `0x2000`.
 
+The forward jump family now includes two more alternate-command descent paths
+and a compact visual-completion stop. The descent callbacks preserve the same
+typed velocity integration, animation-6 transition, and command `0x2000` landing
+handoff. The stop callback waits for visual completion, stops command `0x2000`,
+and clears the object's active update.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

@@ -97951,28 +97951,7 @@ _0808FCD4: .4byte runtime_object_finish_action
 	.section .text.landing_transitions_after_sub_808FFF8, "ax", %progbits
 	.section .text.landing_transitions_alternate_after_sub_8090050, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_80900A8, "ax", %progbits
-	thumb_func_start sub_80900D4
-sub_80900D4:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	ldr r0, [r4, #0x08]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _080900F6
-	movs r2, #0x80
-	lsls r2, r2, #0x06
-	adds r0, r4, #0x0
-	movs r1, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	movs r0, #0x00
-	str r0, [r4, #0x4C]
-_080900F6:
-	pop {r4}
-	pop {r0}
-	bx r0
+	.section .text.misc_helpers_01_after_sub_80900D4, "ax", %progbits
 	.byte 0x10, 0xB5, 0x04, 0x1C, 0x22, 0x1C, 0xB2, 0x32, 0x23, 0x1C, 0x94, 0x33, 0x19, 0x68, 0x10, 0x88
 	.byte 0x40, 0x18, 0x10, 0x80, 0x00, 0x20, 0x11, 0x5E, 0x20, 0x6C, 0x40, 0x18, 0xA0, 0x61, 0x09, 0x48
 	.byte 0x81, 0x8F, 0x01, 0x20, 0x08, 0x40, 0x00, 0x28, 0x0E, 0xD0, 0x1A, 0x68, 0x7A, 0x21, 0x49, 0x42
@@ -98159,62 +98138,7 @@ _08090348: .4byte sub_809034C
 	.section .text.jump_setups_after_sub_80907CC, "ax", %progbits
 	.section .text.jump_setups_alternate_after_sub_8090830, "ax", %progbits
 	.section .text.object_vertical_motion_after_sub_8090894, "ax", %progbits
-	thumb_func_start sub_8090904
-sub_8090904:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r2, r4, #0x0
-	adds r2, #0xB2
-	adds r0, #0x94
-	ldr r1, [r0, #0x00]
-	ldrh r0, [r2, #0x00]
-	adds r0, r0, r1
-	strh r0, [r2, #0x00]
-	movs r0, #0x00
-	ldsh r1, [r2, r0]
-	ldr r0, [r4, #0x40]
-	adds r0, r0, r1
-	str r0, [r4, #0x18]
-	movs r1, #0x00
-	ldsh r0, [r2, r1]
-	cmp r0, #0x00
-	bgt _08090968
-	ldr r0, _08090970 @ =0x080909CD
-	str r0, [r4, #0x4C]
-	adds r0, r4, #0x0
-	bl sub_808CAC4
-	lsls r0, r0, #0x18
-	cmp r0, #0x00
-	bne _08090968
-	movs r2, #0x80
-	lsls r2, r2, #0x06
-	adds r0, r4, #0x0
-	movs r1, #0x06
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r4, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x02
-	orrs r0, r1
-	strb r0, [r2, #0x12]
-	adds r2, r4, #0x0
-	adds r2, #0x77
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x08
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x01
-	orrs r0, r1
-	strb r0, [r2, #0x00]
-_08090968:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08090970: .4byte sub_80909CC
+	.section .text.object_vertical_motion_after_sub_8090904, "ax", %progbits
 	.section .text.landing_transitions_after_sub_8090974, "ax", %progbits
 	.section .text.landing_transitions_alternate_after_sub_80909CC, "ax", %progbits
 	.section .text.object_flag_actions_after_sub_8090A24, "ax", %progbits
@@ -98227,62 +98151,7 @@ _08090970: .4byte sub_80909CC
 	.section .text.jump_setups_after_sub_8090BC8, "ax", %progbits
 	.section .text.jump_setups_alternate_after_sub_8090C2C, "ax", %progbits
 	.section .text.object_vertical_motion_after_sub_8090C90, "ax", %progbits
-	thumb_func_start sub_8090D00
-sub_8090D00:
-	push {r4, lr}
-	adds r4, r0, #0x0
-	adds r2, r4, #0x0
-	adds r2, #0xB2
-	adds r0, #0x94
-	ldr r1, [r0, #0x00]
-	ldrh r0, [r2, #0x00]
-	adds r0, r0, r1
-	strh r0, [r2, #0x00]
-	movs r0, #0x00
-	ldsh r1, [r2, r0]
-	ldr r0, [r4, #0x40]
-	adds r0, r0, r1
-	str r0, [r4, #0x18]
-	movs r1, #0x00
-	ldsh r0, [r2, r1]
-	cmp r0, #0x00
-	bgt _08090D64
-	ldr r0, _08090D6C @ =0x08090DC9
-	str r0, [r4, #0x4C]
-	adds r0, r4, #0x0
-	bl sub_808CAC4
-	lsls r0, r0, #0x18
-	cmp r0, #0x00
-	bne _08090D64
-	movs r2, #0x80
-	lsls r2, r2, #0x06
-	adds r0, r4, #0x0
-	movs r1, #0x06
-	movs r3, #0x00
-	bl sub_8082E1C
-	ldr r2, [r4, #0x08]
-	ldrb r1, [r2, #0x12]
-	movs r0, #0x07
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x02
-	orrs r0, r1
-	strb r0, [r2, #0x12]
-	adds r2, r4, #0x0
-	adds r2, #0x77
-	ldrb r1, [r2, #0x00]
-	movs r0, #0x08
-	negs r0, r0
-	ands r0, r1
-	movs r1, #0x01
-	orrs r0, r1
-	strb r0, [r2, #0x00]
-_08090D64:
-	pop {r4}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08090D6C: .4byte sub_8090DC8
+	.section .text.object_vertical_motion_after_sub_8090D00, "ax", %progbits
 	.section .text.landing_transitions_after_sub_8090D70, "ax", %progbits
 	.section .text.landing_transitions_alternate_after_sub_8090DC8, "ax", %progbits
 	.section .text.object_flag_actions_after_sub_8090E20, "ax", %progbits
