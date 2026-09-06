@@ -57,6 +57,10 @@ GBA sound-control registers and resets driver byte `0x4F8` to `0xFF`. The
 control values remain numeric because the local code proves the register writes
 but not every individual bit's intended policy.
 
+`sub_819B0AC` extends the same lifecycle by draining one player's twelve voices
+and clearing its active flag. Its voice fields remain structural because their
+more specific roles are not yet proven.
+
 Two scene-facing wrappers have also been separated from early address buckets. `audio_play_sound_50` starts sound ID `0x50` at the existing volume. `audio_stop_scene_sound_set` issues the original fixed stop sequence for IDs `0x157`, `0x87`, `0xDB`, and `0xDA`; the duplicate stop for `0xDA` is retained because exact reconstruction does not justify deleting it. The sound IDs remain numeric until call-site or asset-table evidence establishes their actual cues.
 
 The six low-level command encoders behind these APIs now live in `src/audio/commands.c`. Their high nybbles are proven by the named callers: `0x1000` stops a music player, `0x2000` resumes it, `0x5000` plays a sound, `0x6000` stops a sound, and `0x7000` stops all sounds. Player identifiers occupy the next byte; sound identifiers occupy the low 12 bits.

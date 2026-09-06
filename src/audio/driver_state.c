@@ -5,6 +5,21 @@
 
 #define AUDIO_DRIVER_STATE (*(struct AudioDriverState**)0x03007FF0)
 
+void sub_819B070(u32 unused, struct AudioDriverVoice* voice);
+
+SEC(sub_819B0AC) void sub_819B0AC(u32 player)
+{
+    s32 index = 0;
+    struct AudioDriverVoice* voice = AUDIO_DRIVER_STATE->voices[player];
+
+    for (; index < 12; index++, voice++) {
+        if (voice->flags & 1) {
+            sub_819B070(index, voice);
+        }
+    }
+    AUDIO_DRIVER_STATE->playerFlags[player] &= 0xFE;
+}
+
 SEC(sub_819A928) void audio_driver_initialize_sound_hardware(void)
 {
     *(vu8*)REG_ADDR_SOUNDCNT_L = 0x77;

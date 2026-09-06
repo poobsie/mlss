@@ -32,6 +32,7 @@ void sub_819B19C(u32 player);
 u32 sub_819B418(u16 command);
 void sub_819A928(void);
 void sub_819AFA8(void* buffer);
+void sub_819B0AC(u32 player);
 
 #define audio_driver_enqueue_command sub_819B418
 #define audio_driver_initialize_sound_hardware sub_819A928

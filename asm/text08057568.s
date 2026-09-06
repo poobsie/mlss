@@ -564680,7 +564680,8 @@ _0819B0A0:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
-_0819B0A8: .4byte 0x08A80688
+	_0819B0A8: .4byte 0x08A80688
+	.if 0
 	thumb_func_start sub_819B0AC
 sub_819B0AC:
 	push {r4, r5, r6, lr}
@@ -564718,8 +564719,8 @@ _0819B0D0:
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
-_0819B0F0: .4byte 0x03007FF0
-_0819B0F4: .4byte 0x00000494
+	.endif
+	.section .text.after_sub_819B0AC, "ax", %progbits
 	.section .text.state_field_helpers_after_sub_819B0F8, "ax", %progbits
 	thumb_func_start sub_819B110
 sub_819B110:
