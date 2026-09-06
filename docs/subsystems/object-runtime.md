@@ -195,6 +195,8 @@ Two shared-motion callbacks now expose their 24.8 fixed-point coordinate flow. B
 
 `object_begin_effect_centered_between_field_actors` positions an effect from its owner's X coordinate and the active field actors' Y coordinates. It uses the lone active actor's Y or their average when both are active, then starts the proven animation, scale, sound, and continuation. The effect's gameplay identity is not visible in current C.
 
+`object_start_secondary_visual_and_continue` starts visual mode 2 with the established default command, selects visual flag state 2, and installs the continuation at `0x0809C660`. The surrounding behavior identity remains unknown, so the name describes only the proven transition.
+
 Nineteen small object callbacks from the former root bucket now form explicit visual-completion, readiness-setup, `value80`-gated, and state-helper families. Their names expose animation choices, sounds, timers, callback installation, linked-object behavior, and the one ballistic motion update. Variant suffixes and offset-bearing value names remain where neighboring assembly does not establish a gameplay identity.
 
 The 170 scripted-action factory wrappers formerly collected in `text_upper_helpers.c` now live together as one object-runtime construction layer. Every wrapper forwards three coordinates, an event identifier, an update callback, visual identifiers, path-generation settings, orientation flags, and a point-data stream to `object_create_scripted_action`. The two factory macros distinguish entries that mirror the caller's orientation into both object and visual flags from entries that set those flags independently.

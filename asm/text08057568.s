@@ -119879,6 +119879,7 @@ sub_809CA24:
 	bx r0
 	.byte 0x00, 0x00
 _0809CA68: .4byte sub_809CAC8
+	.if 0
 	thumb_func_start sub_809CA6C
 sub_809CA6C:
 	push {r4, lr}
@@ -119903,6 +119904,8 @@ sub_809CA6C:
 	bx r0
 	.byte 0x00, 0x00
 _0809CA98: .4byte sub_809C660
+	.endif
+	.section .text.object_late_visual_setup_after_sub_809CA6C, "ax", %progbits
 	thumb_func_start sub_809CA9C
 sub_809CA9C:
 	push {r4, r5, lr}
