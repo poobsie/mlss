@@ -2564,6 +2564,8 @@ SECTIONS
         asm/text08057568.o(.text.field_indexed_sprites_before_sub_8121910);
         src/field/indexed_sprites.o(.text.field_indexed_sprites.sub_8121910);
         asm/text08057568.o(.text.field_indexed_sprites_after_sub_8121910);
+        src/screens/runtime_helpers.o(.text.upper.sub_81219C4);
+        asm/text08057568.o(.text.after_upper_sub_81219C4);
         src/screens/runtime_helpers.o(.text.upper.sub_81219EC);
         asm/text08057568.o(.text.after_upper_sub_81219EC);
         asm/text08057568.o(.text.screen_runtime_before_sub_8121A20);
@@ -2584,6 +2586,8 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8127ADC);
         src/graphics/packed_value.o(.text.middle.sub_8127E38);
         asm/text08057568.o(.text.after_middle_sub_8127E38);
+        src/screens/runtime_helpers.o(.text.upper.sub_812A888);
+        asm/text08057568.o(.text.after_upper_sub_812A888);
         src/screens/runtime_helpers.o(.text.upper.sub_812A8AC);
         asm/text08057568.o(.text.after_upper_sub_812A8AC);
         src/screens/runtime_helpers.o(.text.upper.sub_812F528);

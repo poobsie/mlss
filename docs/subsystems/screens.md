@@ -134,7 +134,7 @@ the established typed constructors.
 
 All currently decompiled screen C now has a subsystem path, canonical public header, typed process ownership, and evidence-backed lifecycle names. Some adjacent assembly remains in `asm/screens/options_and_backup.s`; it should be split further as those functions are converted to C.
 
-Late screen helpers now live in `src/screens/runtime_helpers.c`. The process launchers retain their ROM allocation labels, allocation sizes, and distinct constructors. The layer helpers use the shared hardware-backed configuration routine, including variants that mark a proven completion byte, copy a control halfword, fade music over sixteen steps, or reset the shared runtime field before applying default transfer parameters. The sparse owner layouts remain separate because matching field offsets alone does not prove a common screen class.
+Late screen helpers now live in `src/screens/runtime_helpers.c`. The process launchers retain their ROM allocation labels, allocation sizes, and distinct constructors. The layer helpers use the shared hardware-backed configuration routine, including variants that mark a proven completion byte, copy a control halfword, fade music over sixteen steps, or reset the shared runtime field before applying default transfer parameters. Paired pollers report an active value transfer and clear the matching completion byte when it finishes; the script wait handler uses the owner variant whose marker is at offset `0x156`. The sparse owner layouts remain separate because matching field offsets alone does not prove a common screen class.
 
 ## Verification
 

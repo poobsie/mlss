@@ -1,4 +1,5 @@
 #include "audio/music.h"
+#include "field/value_transfer.h"
 #include "screens/runtime_helpers.h"
 
 #define STRINGIFY_INNER(value) #value
@@ -51,6 +52,24 @@ void screen_configure_layer20_default_and_mark_156(
     owner->initialized156 = 1;
 }
 
+SEC(screen_poll_layer20_transfer_and_clear_mark_156)
+s32 screen_poll_layer20_transfer_and_clear_mark_156(
+    struct ScreenLayerOwner20* owner)
+{
+    u8 status = field_value_transfer_status(owner->layer20);
+    s32 result;
+
+    if (status != 0) {
+        result = 1;
+    } else {
+        owner->initialized156 = status;
+        result = 0;
+    }
+    return result;
+}
+
+SEC(sub_81219C4) const u16 sub_81219C4_padding = 0;
+
 SEC(screen_reset_layer20_and_copy_control)
 void screen_reset_layer20_and_copy_control(struct ScreenLayerOwner20* owner)
 {
@@ -89,6 +108,22 @@ void screen_configure_layer20_and_mark_69(
 {
     sub_81151E4(owner->layer20, 4, value, 8, 0xFFFF, 0xFFFF, 0, 0);
     owner->initialized69 = 1;
+}
+
+SEC(screen_poll_layer20_transfer_and_clear_mark_69)
+s32 screen_poll_layer20_transfer_and_clear_mark_69(
+    struct ScreenLayerOwner20* owner)
+{
+    u8 status = field_value_transfer_status(owner->layer20);
+    s32 result;
+
+    if (status != 0) {
+        result = 1;
+    } else {
+        owner->initialized69 = status;
+        result = 0;
+    }
+    return result;
 }
 
 SEC(screen_configure_layer20_default)

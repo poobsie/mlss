@@ -361386,6 +361386,7 @@ _08121968:
 	.byte 0x5B, 0x42, 0x00, 0x93, 0x01, 0x93, 0x02, 0x93, 0x01, 0x22, 0xFF, 0xF6, 0x11, 0xFA, 0xAC, 0x21
 	.byte 0x49, 0x00, 0x6D, 0x18, 0x29, 0x68, 0xA4, 0x01, 0x64, 0x18, 0x20, 0x60, 0x03, 0xB0, 0x30, 0xBC
 	.byte 0x01, 0xBC, 0x00, 0x47
+	.if 0
 	thumb_func_start sub_81219C4
 sub_81219C4:
 	push {r4, lr}
@@ -361409,6 +361410,8 @@ _081219E4:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.endif
+	.section .text.after_upper_sub_81219C4, "ax", %progbits
 	.section .text.after_upper_sub_81219EC, "ax", %progbits
 	.section .text.screen_runtime_before_sub_8121A20, "ax", %progbits
 	.if 0
@@ -373709,6 +373712,7 @@ _0812A878: .4byte 0x0203FFB8
 _0812A87C: .4byte 0x00000A14
 _0812A880: .4byte 0x03000D4C
 _0812A884: .4byte 0x0300034C
+	.if 0
 	thumb_func_start sub_812A888
 sub_812A888:
 	push {r4, lr}
@@ -373730,6 +373734,8 @@ _0812A8A6:
 	pop {r4}
 	pop {r1}
 	bx r1
+	.endif
+	.section .text.after_upper_sub_812A888, "ax", %progbits
 	.section .text.after_upper_sub_812A8AC, "ax", %progbits
 	thumb_func_start sub_812A8E0
 sub_812A8E0:
