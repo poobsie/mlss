@@ -27,6 +27,7 @@
 #define process_definition_d140_reset_ui_objects sub_8167E30
 #define process_definition_d278_advance_to_state4_on_start sub_8171B44
 #define process_definition_d278_hide_sprite_pairs sub_8171BF0
+#define process_definition_d278_start_sound_97_once sub_8171DF0
 
 struct Process* process_add(struct Process* process, u8 priority, char* label);
 void process_execute_all(void);
@@ -49,6 +50,8 @@ void process_definition_d140_reset_ui_objects(
 void process_definition_d278_advance_to_state4_on_start(
     struct DefinitionD278Process* process);
 void process_definition_d278_hide_sprite_pairs(
+    struct DefinitionD278Process* process);
+void process_definition_d278_start_sound_97_once(
     struct DefinitionD278Process* process);
 void process_timed_update(struct TimedProcess* process);
 void process_destroy_owned_buffer(struct OwnedBufferProcess* process, u32 flags);

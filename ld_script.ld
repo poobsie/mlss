@@ -3148,6 +3148,10 @@ SECTIONS
         asm/text08057568.o(.text.object_destructors_after_sub_816D710);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_816D7B8);
         asm/text08057568.o(.text.object_destructors_after_sub_816D7B8);
+        src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_816D814);
+        asm/text08057568.o(.text.process_definition_callbacks_after_sub_816D814);
+        src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_816D898);
+        asm/text08057568.o(.text.process_definition_callbacks_after_sub_816D898);
         src/process/destructors.o(.text.process_destructors.sub_816D96C);
         asm/text08057568.o(.text.process_destructors_after_sub_816D96C);
         src/process/definition_initializers.o(.text.process_definition_initializers.sub_8171AFC);
@@ -3164,6 +3168,10 @@ SECTIONS
         asm/text08057568.o(.text.object_destructors_after_sub_8171D58);
         src/ui/sound_state.o(.text.high.sub_8171DD4);
         asm/text08057568.o(.text.high_after_sub_8171DD4);
+        src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_8171DF0);
+        asm/text08057568.o(.text.process_definition_callbacks_after_sub_8171DF0);
+        src/process/definition_callbacks.o(.text.process_definition_callbacks.sub_8171F44);
+        asm/text08057568.o(.text.process_definition_callbacks_after_sub_8171F44);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_8171F84);
         asm/text08057568.o(.text.object_destructors_after_sub_8171F84);
         src/process/destructors.o(.text.process_destructors.sub_8171FC0);

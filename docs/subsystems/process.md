@@ -35,7 +35,9 @@ The D140 process also owns two UI objects that can be reset together with
 independent values. Its control path advances to state 4 when Start is
 pressed. The sibling process at definition `0x08CDD278` has the same
 Start-driven state transition and a setup leaf that hides its two sprite
-pairs after construction.
+pairs after construction. Its sound gate records activity in the halfword at
+`0xEA` and starts sound `0x97` only on the inactive-to-active transition; the
+existing clear helper performs the inverse transition and stops the sound.
 
 `TimedProcess` extends the base process with a limit, current count, and step byte. Its update increments the count, reports progress through `sub_801B7B0`, then removes itself with definition `0x08CDBD98` when the limit is reached.
 

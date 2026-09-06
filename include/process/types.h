@@ -58,6 +58,8 @@ struct DefinitionD278Process {
     u8 gap48[0x24];
     struct UiSpritePair* spritePair6C;
     struct UiSpritePair* spritePair70;
+    u8 gap74[0x76];
+    u16 sound97ActiveEA;
 };
 
 extern struct ProcessDefinition gBaseProcessDefinition __asm__("stru_8CDBD68");

@@ -25,4 +25,10 @@ The same construction layer now exposes an empty-pointer query, a shared-halfwor
 
 Four more high-address UI leaves expose narrow layout and object-state operations through the existing typed owners. Their aliases describe the observed reset, value transfer, or resource relationship without assigning a menu or screen identity that current callers do not prove.
 
+The late UI setup path also exposes narrow initializers for a tracked value and
+its observed peak, a sixty-unit countdown with a subcounter, and the sibling
+one-hundred-eighty-unit delayed countdown. Their owner identities remain
+unknown, so the public interfaces name only the state behavior established by
+their update callbacks.
+
 `ui_object_group4_reset_state` applies the established update and zero-state operations to each of four owned objects. The group overlay proves only the four-pointer extent, so its wider screen identity remains deliberately unknown. The trailing zero halfword is emitted explicitly because ordinary Thumb section alignment would otherwise substitute a `nop` outside the function body.
