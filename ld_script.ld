@@ -3086,6 +3086,8 @@ SECTIONS
         asm/text08057568.o(.text.after_816544C);
         src/graphics/destructors.o(.text.sub_8165454);
         asm/text08057568.o(.text.after_8165454);
+        src/process/definition_initializers.o(.text.process_definition_initializers.sub_8167D00);
+        asm/text08057568.o(.text.process_definition_initializers_after_sub_8167D00);
         src/graphics/high_helpers.o(.text.high.sub_8167E9C);
         asm/text08057568.o(.text.high_after_sub_8167E9C);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_8167EBC);
@@ -3098,6 +3100,8 @@ SECTIONS
         asm/text08057568.o(.text.object_destructors_after_sub_8167FF8);
         src/process/destructors.o(.text.process_destructors.sub_8168294);
         asm/text08057568.o(.text.process_destructors_after_sub_8168294);
+        src/process/definition_initializers.o(.text.process_definition_initializers.sub_816AF94);
+        asm/text08057568.o(.text.process_definition_initializers_after_sub_816AF94);
         src/ui/sound_state.o(.text.high.sub_816AFDC);
         asm/text08057568.o(.text.high_after_sub_816AFDC);
         src/ui/layout_state.o(.text.sub_816AFF0);
@@ -3112,6 +3116,8 @@ SECTIONS
         asm/text08057568.o(.text.object_destructors_after_sub_816B338);
         src/process/destructors.o(.text.process_destructors.sub_816B3C4);
         asm/text08057568.o(.text.process_destructors_after_sub_816B3C4);
+        src/process/definition_initializers.o(.text.process_definition_initializers.sub_816D538);
+        asm/text08057568.o(.text.process_definition_initializers_after_sub_816D538);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_816D608);
         asm/text08057568.o(.text.object_destructors_after_sub_816D608);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_816D6C0);
@@ -3126,6 +3132,8 @@ SECTIONS
         asm/text08057568.o(.text.object_destructors_after_sub_816D7B8);
         src/process/destructors.o(.text.process_destructors.sub_816D96C);
         asm/text08057568.o(.text.process_destructors_after_sub_816D96C);
+        src/process/definition_initializers.o(.text.process_definition_initializers.sub_8171AFC);
+        asm/text08057568.o(.text.process_definition_initializers_after_sub_8171AFC);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_8171C20);
         asm/text08057568.o(.text.object_destructors_after_sub_8171C20);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_8171C88);

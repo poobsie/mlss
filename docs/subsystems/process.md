@@ -23,10 +23,13 @@ Address-named subclass destructors are grouped in `src/process/destructors.c`, b
 
 The early destructor that installs the definition at `0x08CDBD98` is now in the same file and uses the shared `Process` layout and `process_remove` declaration. Its mechanical name retains the definition suffix until the owning process class is identified.
 
-The process owning definition `0x08CDD1B0` now uses the same canonical
-destructor path. Its constructor is visible in the neighboring graphics/UI
-setup sequence, but the class identity remains mechanical until that larger
-owner is recovered.
+The process definitions at `0x08CDD140`, `0x08CDD1B0`, `0x08CDD220`, and
+`0x08CDD290` share a graphics-preparation callback. It resets the graphics
+transfer state, initializes the active graphics context, and replaces the
+saved graphics handle with the result of the platform callback. The first
+variant also forwards to a parent-process setup routine. Definition-based
+names remain mechanical because the enclosing screen classes are not yet
+identified.
 
 `TimedProcess` extends the base process with a limit, current count, and step byte. Its update increments the count, reports progress through `sub_801B7B0`, then removes itself with definition `0x08CDBD98` when the limit is reached.
 
