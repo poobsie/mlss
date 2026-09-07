@@ -291887,6 +291887,7 @@ _080F7D5E:
 	bx r1
 	.byte 0x00, 0x00
 	.section .text.field_runtime_after_sub_80F7D3C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80F7D64
 sub_80F7D64:
 	ldr r2, [r0, #0x2C]
@@ -291901,7 +291902,8 @@ sub_80F7D64:
 	strb r0, [r2, #0x00]
 	movs r0, #0x01
 	bx lr
-_080F7D7C: .4byte 0x0000179D
+	.endif
+	.section .text.field_runtime_after_sub_80F7D64, "ax", %progbits
 	thumb_func_start sub_80F7D80
 sub_80F7D80:
 	push {r4, r5, r6, r7, lr}

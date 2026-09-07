@@ -528,4 +528,9 @@ workspace referenced at offset `0x24` into the mirror beginning at
 `0x02000080`, then shifts the mask until it is cleared. The higher-level role of
 the workspace and mirror remains unknown.
 
+The field runtime setter at `sub_80F7D64` now uses the typed nested-flag
+container. It clears bit `2`, sets bit `0`, and returns the established success
+value. The target state remains named by offset because its gameplay meaning is
+not proven by callers.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

@@ -58,7 +58,6 @@ struct FieldToggleRuntime {
     u8 toggle2F8;
 };
 
-
 #define FIELD_NESTED_FLAG_RUNTIME (*(struct FieldNestedFlagRuntime**)0x03000FD8)
 #define FIELD_MODE_RUNTIME (*(struct FieldModeRuntime**)0x03000FD8)
 extern struct FieldPackedValueRuntime gFieldPackedValueRuntime
@@ -111,6 +110,19 @@ s32 field_wait_for_nested_state_179d_clear(
     return result;
 }
 SEC(sub_80F7D3C) const u16 field_wait_for_nested_state_179d_clear_padding = 0;
+
+SEC(sub_80F7D64)
+s32 field_set_nested_state_ready(struct FieldNestedFlagContainer* container)
+{
+    register s32 mask asm("r0") = 4;
+    register s32 flags asm("r1") = container->target2C->state179D;
+    mask = -mask;
+    mask &= flags;
+    flags = 1;
+    mask |= flags;
+    container->target2C->state179D = mask;
+    return 1;
+}
 
 SEC(sub_80F7E84)
 s32 field_wait_for_runtime_flag_10_clear(
