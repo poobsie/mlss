@@ -122,3 +122,15 @@ void sub_8065A5C(struct RuntimeObject* object) {
         sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
     }
 }
+
+__attribute__((section(".text.timer_callbacks.sub_8132E68")))
+void sub_8132E68(struct RuntimeObject* object) {
+    s32 duration;
+    if (8 & object->visual->flags) {
+        sub_8082E1C(object, 5, 0, 0);
+        duration = object->behaviorState;
+        object->timer = duration;
+        sound_effect_play(0xA0, SOUND_VOLUME_UNCHANGED);
+        object->update = sub_8132EE0;
+    }
+}

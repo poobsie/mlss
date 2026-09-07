@@ -10,7 +10,6 @@ void sub_8082E1C(struct RuntimeObject* object, u32 command, u32 arg2, u32 arg3);
 int sub_8082B00(struct RuntimeObject* object);
 void sub_808750C(struct RuntimeObject* object);
 void sub_8132E34(struct RuntimeObject* object);
-void sub_8132E68(struct RuntimeObject* object);
 void sub_8132EA8(struct RuntimeObject* object);
 void sub_8133424(struct RuntimeObject* object);
 void sub_8133BC0(struct RuntimeObject* object);

@@ -385022,6 +385022,7 @@ _08132DC8: .4byte sub_808750C
 	.section .text.after_upper_sub_8132DE4, "ax", %progbits
 	.section .text.after_upper_sub_8132E0C, "ax", %progbits
 	.section .text.after_upper_sub_8132E34, "ax", %progbits
+.if 0
 	thumb_func_start sub_8132E68
 sub_8132E68:
 	push {r4, lr}
@@ -385054,6 +385055,8 @@ _08132E9C:
 	bx r0
 	.byte 0x00, 0x00
 _08132EA4: .4byte sub_8132EE0
+.endif
+.section .text.after_sub_8132E68, "ax", %progbits
 .if 0
 	thumb_func_start sub_8132EA8
 sub_8132EA8:

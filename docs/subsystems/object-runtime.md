@@ -750,3 +750,8 @@ flag eight before starting animation five and installing `sub_80616B8`.
 `sub_8065A5C` waits for `value80` to clear, starts animation fourteen, copies
 the low halfword of `valueA8` into the timer, installs `sub_8065BD8`, stops
 sound `0x81`, and plays `0xAF`. Their gameplay identities remain unknown.
+
+When visual flag 8 is set, `sub_8132E68` starts animation five, copies the
+low halfword of `behaviorState` into the timer, plays sound `0xA0` at
+unchanged volume, and installs `sub_8132EE0`. The gameplay meaning of
+this stored duration remains unknown.
