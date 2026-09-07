@@ -26,4 +26,7 @@ void field_commit_runtime_value_transfer(void);
 void field_prepare_runtime_value_transfer(s32 mode);
 void field_trigger_primary_actor_object(void);
 
+void sub_81165CC(struct FieldValueTransfer* state, s32 mode);
+void sub_807F448(void);
+
 #endif

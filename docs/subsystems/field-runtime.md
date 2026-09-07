@@ -541,3 +541,9 @@ The full ROM passes its SHA-1 comparison. The exact-function verifier reports ev
 They use the same checked scene-object layout as the neighboring flag setters.
 The individual gameplay meanings remain unknown. Empty allocation barriers preserve
 the original register copies; all tests and state accesses remain expressed in C.
+
+`sub_807F448` checks bit `0x02` in the runtime byte at `0x0C`, calls
+`sub_81165CC` on the existing value-transfer state with mode one, then reloads
+the runtime pointer and clears that bit. The reload preserves the original
+behavior if the call replaces the runtime. The flag keeps its structural name.
+The wide unsigned mask preserves the compiler's constant-register sequence.

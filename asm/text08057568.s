@@ -70547,6 +70547,7 @@ _0807F43E:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+.if 0
 	thumb_func_start sub_807F448
 sub_807F448:
 	push {r4, lr}
@@ -70574,6 +70575,8 @@ _0807F472:
 	pop {r0}
 	bx r0
 _0807F478: .4byte 0x03000FD8
+.endif
+.section .text.after_sub_807F448, "ax", %progbits
 	thumb_func_start sub_807F47C
 sub_807F47C:
 	push {r4, r5, lr}

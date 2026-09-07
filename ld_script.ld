@@ -1044,6 +1044,8 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_12_after_sub_8079C9C);
         src/process/callback_owner.o(.text.process_callback_owner.sub_807A658);
         asm/text08057568.o(.text.small_functions_05_after_sub_807A658);
+        src/field/value_transfer.o(.text.field_value_transfer.sub_807F448);
+        asm/text08057568.o(.text.after_sub_807F448);
         src/field/action_process.o(.text.small_functions_01.sub_807F648);
         asm/text08057568.o(.text.small_functions_01_after_sub_807F648);
         src/field/value_transfer.o(.text.misc_helpers_01.sub_807F6D0);

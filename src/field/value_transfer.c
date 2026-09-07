@@ -11,7 +11,6 @@
 #define FIELD_RUNTIME (*(struct FieldEffectRuntime**)0x03000FD8)
 
 void sub_807C298(struct RuntimeObject* object);
-void sub_81165CC(struct FieldValueTransfer* state, s32 mode);
 
 SEC(sub_8116610) void sub_8116610(struct FieldValueTransfer* state)
 {
@@ -56,4 +55,16 @@ void field_trigger_primary_actor_object(void)
 {
     struct FieldRuntime* runtime = (struct FieldRuntime*)FIELD_RUNTIME;
     sub_807C298(runtime->actorA->action.activeObject);
+}
+
+SEC(sub_807F448) void sub_807F448(void) {
+    struct FieldEffectRuntime* runtime = FIELD_RUNTIME;
+    if (2 & runtime->flags0C) {
+        unsigned long long mask;
+        sub_81165CC(runtime->valueTransfer, 1);
+        /* The call can replace the runtime; reload before clearing its flag. */
+        runtime = FIELD_RUNTIME;
+        mask = -3;
+        runtime->flags0C = mask & runtime->flags0C;
+    }
 }

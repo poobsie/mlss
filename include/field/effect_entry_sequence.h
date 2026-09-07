@@ -16,7 +16,9 @@ struct FieldEffectEntry {
 struct FieldValueTransfer;
 
 struct FieldEffectRuntime {
-    u8 unknown000[0x248];
+    u8 unknown000[0x0C];
+    u8 flags0C;
+    u8 unknown00D[0x23B];
     struct FieldValueTransfer* valueTransfer;
 };
 
