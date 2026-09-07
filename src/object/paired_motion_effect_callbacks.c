@@ -28,7 +28,7 @@ void sub_809BA44(struct RuntimeObject* object);
                                                                          \
         object->currentPositionY += 0x100;                               \
         object->verticalPosition = 0x2600;                               \
-        if (*(s16*)&object->state->unknownEE[8] != 0) {                  \
+        if (object->state->valueF6 != 0) {                  \
             scale = (RuntimeScaleFunction)(                              \
                 RUNTIME_SCALE_BASE + (loc_819832C - loc_8198220));       \
             object->unknown7A = scale(0x4000, distance);                 \

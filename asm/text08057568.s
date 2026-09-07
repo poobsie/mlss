@@ -84071,6 +84071,7 @@ _08087334:
 	pop {r0}
 	bx r0
 	.section .text.misc_helpers_03_after_sub_8087360, "ax", %progbits
+.if 0
 	thumb_func_start sub_808738C
 sub_808738C:
 	push {r4, lr}
@@ -84094,6 +84095,8 @@ _080873B0:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+.endif
+.section .text.after_sub_808738C, "ax", %progbits
 	thumb_func_start sub_80873B8
 sub_80873B8:
 	push {r4, r5, r6, lr}

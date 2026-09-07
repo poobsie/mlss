@@ -1121,6 +1121,8 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_07_after_sub_8086700);
         src/field/runtime_dispatch.o(.text.misc_helpers_03.sub_8087360);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8087360);
+        src/object/state_action.o(.text.object_state_action.sub_808738C);
+        asm/text08057568.o(.text.after_sub_808738C);
         asm/text08057568.o(.text.object_phase_motion_after_sub_80874B4);
         src/object/phase_motion.o(.text.object_phase_motion.sub_808750C);
         asm/text08057568.o(.text.object_phase_motion_after_sub_808750C);

@@ -31,3 +31,15 @@ SEC(sub_8086700) s32 sub_8086700(struct RuntimeObject* object)
     }
     return 0;
 }
+
+void sub_807FE40(struct RuntimeObjectState* state);
+
+SEC(sub_808738C) void sub_808738C(struct RuntimeObjectState* state) {
+    if (state != 0) {
+        sub_807B7A8(state);
+        sub_807FE40(state);
+        if ((u32)state->valueF4 <= 5U)
+            state->valueF0 = 0;
+    }
+}
+SEC(sub_808738C) const u16 sub_808738C_padding = 0;

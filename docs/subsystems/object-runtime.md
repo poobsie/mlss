@@ -726,3 +726,9 @@ issue `sub_8082E1C(object, -1, -1, 0)` and clear the update callback. The
 specific gameplay owners remain unknown. The polling call explicitly receives
 the object used by the original callee, and the cleared callback uses the
 already-zero result to preserve register allocation.
+
+`sub_808738C` accepts a nullable runtime-object state, calls its two existing
+state helpers, and clears `valueF0` when `valueF4` is at most five. These fields
+and the neighboring signed `valueF6` retain structural names until their gameplay
+meaning is established. Existing accesses into that formerly unknown byte range
+now use the named halfword without changing its position.

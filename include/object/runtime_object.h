@@ -39,7 +39,12 @@ struct RuntimeObjectState {
     struct RuntimeObjectValueSource* valueSourceE4;
     u8 unknownE8[4];
     s16 variant;
-    u8 unknownEE[0x23];
+    u8 unknownEE[2];
+    u32 valueF0;
+    u8 valueF4;
+    u8 unknownF5;
+    s16 valueF6;
+    u8 unknownF8[0x19];
     s8 flags111;
     u8 unknown112;
     u8 value113;
@@ -288,5 +293,7 @@ void object_when_value80_clear_start_owner_variant_animation_and_followup(
     struct RuntimeObject* object);
 void object_select_animation_20_or_21_from_owner_variant_and_continue(
     struct RuntimeObject* object);
+
+void sub_808738C(struct RuntimeObjectState* state);
 
 #endif

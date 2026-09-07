@@ -18,7 +18,6 @@ void sub_807F4FC(void*);
 void sub_8021308(void*);
 int sub_8086D80(void*);
 void sub_80DD0CC(void*);
-void sub_808738C(void*);
 s32 sub_8086858(void*, s32);
 u8 sub_8087CE4(struct RuntimeObject*);
 s32 sub_8086700(struct RuntimeObject*);
@@ -475,7 +474,7 @@ SEC(sub_80DB12C) void sub_80DB12C(struct RuntimeObject* object)
                 s32 cleared = 0;                                       \
                 object->update = 0;                                    \
                 owner->state->flags111 &= ~2;                          \
-                if (*(s16*)&owner->state->unknownEE[8] == 0)           \
+                if (owner->state->valueF6 == 0)           \
                     sub_8086700(owner);                                 \
                 else                                                   \
                     owner->update = (RuntimeObjectCallback)cleared;     \
