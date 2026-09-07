@@ -29,6 +29,8 @@ INTERIOR_THUMB_ENTRY = re.compile(
     r"^\s*non_word_aligned_thumb_func_start\s+\S+", re.MULTILINE
 )
 LR_IN_R12 = re.compile(r"^\s*mov\s+r12,\s*lr\s*(?:@.*)?$", re.MULTILINE)
+THUMB_MODE_SWITCH = re.compile(r"^\s*bx\s+pc\s*(?:@.*)?$", re.MULTILINE)
+NONSTANDARD_RETURN = re.compile(r"^\s*mov\s+pc,\s*lr\s*(?:@.*)?$", re.MULTILINE)
 
 
 def is_register_trampoline(block: str) -> bool:
@@ -46,7 +48,12 @@ def is_register_trampoline(block: str) -> bool:
 
 def has_nonstandard_c_abi(block: str) -> bool:
     """Reject assembly helpers whose entry/return contract ordinary C cannot express."""
-    return bool(INTERIOR_THUMB_ENTRY.search(block) or (LR_IN_R12.search(block) and CALL.search(block)))
+    return bool(
+        INTERIOR_THUMB_ENTRY.search(block)
+        or THUMB_MODE_SWITCH.search(block)
+        or NONSTANDARD_RETURN.search(block)
+        or (LR_IN_R12.search(block) and CALL.search(block))
+    )
 
 
 DISCARD_SECTION = re.compile(r"^\s*\.section\s+\.discard(?:\.|\s|$)", re.MULTILINE)

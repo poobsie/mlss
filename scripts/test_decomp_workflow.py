@@ -37,6 +37,8 @@ class DecompWorkflowTest(unittest.TestCase):
                 "\tnon_word_aligned_thumb_func_start inner\ninner:\n\tbx lr\n"
             )
         )
+        self.assertTrue(has_nonstandard_c_abi("\tbx pc\n\t.byte 0x00, 0x00\n"))
+        self.assertTrue(has_nonstandard_c_abi("\tmov pc, lr\n"))
         self.assertFalse(
             has_nonstandard_c_abi("\tpush {lr}\n\tbl helper\n\tpop {r0}\n\tbx r0\n")
         )
