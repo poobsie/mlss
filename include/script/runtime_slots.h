@@ -27,7 +27,9 @@ struct ScriptRuntimeSlotOwner {
 };
 
 #define script_runtime_slot_hide sub_80E8EE0
+#define script_runtime_read_indexed_pair sub_80E9310
 
 void script_runtime_slot_hide(struct ScriptRuntimeSlotOwner* owner, u8 slot);
+u32 script_runtime_read_indexed_pair(void* context, const u8* const* table);
 
 #endif

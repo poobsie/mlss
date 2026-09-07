@@ -2121,6 +2121,8 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_01_after_sub_80E8F1C);
         src/runtime/pointer_access.o(.text.middle.sub_80E92A8);
         asm/text08057568.o(.text.after_middle_sub_80E92A8);
+        src/script/runtime_slots.o(.text.script_runtime_slots.sub_80E9310);
+        asm/text08057568.o(.text.script_runtime_slots_after_sub_80E9310);
         src/field/resource_loader.o(.text.misc_helpers_02.sub_80E9484);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80E9484);
         src/runtime/global_state.o(.text.misc_helpers_01.sub_80E9AF8);

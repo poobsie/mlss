@@ -269464,6 +269464,7 @@ sub_80E92AC:
 	bx r1
 _080E930C: .4byte 0x000001B7
 	thumb_func_start sub_80E9310
+.if 0
 sub_80E9310:
 	ldr r0, _080E932C @ =0x0300034C
 	movs r2, #0x8C
@@ -269480,6 +269481,8 @@ sub_80E9310:
 	bx lr
 	.byte 0x00, 0x00
 _080E932C: .4byte 0x0300034C
+.endif
+	.section .text.script_runtime_slots_after_sub_80E9310, "ax", %progbits
 	thumb_func_start sub_80E9330
 sub_80E9330:
 	push {lr}
