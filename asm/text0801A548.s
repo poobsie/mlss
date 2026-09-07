@@ -2205,6 +2205,7 @@ _0801BD24: .4byte 0x081E23CD
 _0801BD28: .4byte 0x081E23C8
 _0801BD2C: .4byte 0x03000C84
 	.section .text.early15a_after_sub_801BD30, "ax", %progbits
+.if 0
 	thumb_func_start sub_801BD50
 sub_801BD50:
 	push {r4, r5, r6, lr}
@@ -2231,6 +2232,8 @@ _0801BD7A:
 	bx r0
 _0801BD80: .4byte 0x03000D44
 _0801BD84: .4byte 0x081E23C8
+.endif
+.section .text.after_sub_801BD50, "ax", %progbits
 	thumb_func_start sub_801BD88
 sub_801BD88:
 	push {r4, r5, r6, r7, lr}

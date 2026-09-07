@@ -64,4 +64,7 @@ struct Process* process_initialize_tld(
 struct Process* process_initialize_definition_c4a0(
     struct Process* process, u8 priority, char* label);
 
+struct OwnedBufferProcess* time_init(struct OwnedBufferProcess* process, u8 priority, char* label);
+void sub_801BD50(u32 priority);
+
 #endif

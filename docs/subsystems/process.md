@@ -54,3 +54,10 @@ Two upper-region constructors now use the canonical `Process` prefix and the ful
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
+
+`sub_801BD50` creates the global owned-buffer process only when its slot at
+`0x03000D44` is empty. It allocates the original `0x2C` bytes, initializes it
+through `time_init` using the low byte of the requested priority, stores it in
+the slot, then disables that process explicitly. The existing partial process
+layout describes its common header and buffer; the allocation size includes the
+constructor's additional state. The existing initialization label is retained.

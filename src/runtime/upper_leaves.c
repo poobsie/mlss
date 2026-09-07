@@ -1,5 +1,6 @@
 #include "global.h"
 #include "runtime/functions.h"
+#include "process/process.h"
 
 #define SEC(name) __attribute__((section(".text.runtime_upper." #name)))
 
@@ -13,7 +14,6 @@ struct RuntimeNodeOwner {
     struct RuntimeNodeValue* node310;
 };
 
-void sub_801BD50(u8 priority);
 
 SEC(sub_801AFE4)
 void runtime_resume_global_services(int unused)
