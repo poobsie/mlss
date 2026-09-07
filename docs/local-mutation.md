@@ -132,3 +132,17 @@ host's process supervisor. A scheduled follow-up can inspect the compact status
 command, detect an absent worker, and review new matches. Ordinary rejected drafts
 are expected outcomes, not infrastructure incidents. Save reviewed match identities
 separately so follow-ups do not repeatedly inspect the same result.
+
+To view a local progress page with a continuously updated completion estimate:
+
+```sh
+python3 scripts/decomp_campaign_monitor.py scratch/campaign --port 8765
+```
+
+Open `http://localhost:8765`. The page refreshes every 30 seconds and uses no model
+calls. Its estimate covers only the retained draft queue, including observed rates
+of escalation to longer searches. It starts with conservative duration priors and
+gradually weights measured stage durations more heavily. The displayed planning
+range includes uncertainty in escalation rates and an additional allowance for the
+size-ordered queue. It is not a confidence guarantee or an estimate for completing
+the entire decompilation. The status command includes the same estimate as JSON.

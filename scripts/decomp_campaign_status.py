@@ -5,6 +5,7 @@ from collections import Counter
 import fcntl
 import json
 from pathlib import Path
+from decomp_campaign_monitor import estimate
 
 
 def main():
@@ -23,6 +24,7 @@ def main():
                       'completed_searches': len(results),
                       'outcomes': dict(Counter(r['status'] for r in results)),
                       'draft_variants': state['draft_variants'],
+                      'estimate': estimate(state),
                       'matches_needing_review': state['matches'],
                       'last_result': {key: results[-1].get(key) for key in
                                       ('function', 'engine', 'status', 'seconds')} if results else None,
