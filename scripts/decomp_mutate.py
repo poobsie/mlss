@@ -48,7 +48,7 @@ def bounded_process(command, seconds, log, cwd):
             "wall_seconds": round(time.monotonic() - start, 3)}
 
 
-def link_compare(obj, symbol, address, expected, folder, flags, symbols):
+def link_compare(obj, symbol, address, expected, folder, flags, symbols, aliases=None):
     folder.mkdir(exist_ok=True)
     runner = Runner(20, folder)
     defined = reference_symbols(runner, obj)
@@ -58,7 +58,10 @@ def link_compare(obj, symbol, address, expected, folder, flags, symbols):
     linker.write_text(f"SECTIONS {{ .text 0x{address:X} : {{ *(.text*) }} "
                       + ".rodata : { *(.rodata*) } .data : { *(.data*) } .bss : { *(.bss*) } }\n")
     elf, binary = folder / "verify.elf", folder / "verify.bin"
-    runner.run(flags["LD"] + ["--just-symbols=" + str(ROOT / ".decomp-tools/reference/mlss.elf"),
+    imports = ["--just-symbols=" + str(ROOT / ".decomp-tools/reference/mlss.elf")]
+    if aliases:
+        imports.append("--just-symbols=" + str(aliases))
+    runner.run(flags["LD"] + imports + [
                                "-T", str(linker), "-o", str(elf), str(obj)])
     linked = reference_symbols(runner, elf)
     if linked.get(symbol, 0) & ~1 != address:
@@ -94,7 +97,8 @@ def run_search(args):
               "jobs": args.jobs, "seed": args.seed if args.engine == "transmuter" else None, "artifacts": str(folder),
               "acceptance_required": True}
     try:
-        candidate, block = candidate_by_name(args.function, ROOT / "mlss.map")
+        candidate, block = getattr(args, "target", None) or candidate_by_name(args.function, ROOT / "mlss.map")
+        aliases = getattr(args, "symbols_elf", None)
         if candidate.mode != "thumb":
             raise ValueError("trial adapter supports Thumb only")
         runner = Runner(45, folder)
@@ -110,7 +114,7 @@ def run_search(args):
                               + f"\n.text\n.size {args.function}, .-{args.function}\n")
         runner.run(flags["AS"] + flags["ASFLAGS"] + ["-o", str(target_obj), str(target_asm)])
         target_check = link_compare(target_obj, args.function, candidate.address, expected,
-                                    folder / "target-check", flags, symbols)
+                                    folder / "target-check", flags, symbols, aliases)
         if target_check["status"] != "span_match":
             raise ValueError("assembled target does not match the full reference span: " + json.dumps(target_check))
         raw = source.read_text()
@@ -126,7 +130,7 @@ def run_search(args):
         base_obj = folder / "base.o"
         runner.run([str(compile_script), str(base), "-o", str(base_obj)])
         report["baseline"] = link_compare(base_obj, args.function, candidate.address, expected,
-                                           folder / "baseline-check", flags, symbols)
+                                           folder / "baseline-check", flags, symbols, aliases)
         if report["baseline"]["status"] == "span_match":
             report["status"] = "already_matching"
             return report
@@ -170,7 +174,7 @@ def run_search(args):
         best_obj = folder / "best.o"
         check.run([str(compile_script), str(best), "-o", str(best_obj)])
         report["verification"] = link_compare(best_obj, args.function, candidate.address, expected,
-                                               folder / "best-check", flags, symbols)
+                                               folder / "best-check", flags, symbols, aliases)
         report["best_source"] = str(best)
         report["status"] = report["verification"]["status"]
         return report
@@ -191,6 +195,7 @@ def main():
     parser.add_argument("--max-compiles", type=int, default=10000, help="Transmuter compile limit")
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--prepare-only", action="store_true", help="validate input and target without searching")
+    parser.add_argument("--symbols-elf", help="optional exact accepted ELF snapshot for renamed symbol aliases")
     parser.add_argument("--tools", default=os.environ.get("MLSS_MUTATION_TOOLS", str(Path.home() / ".cache/mlss-mutation")))
     parser.add_argument("--work-root", default=str(ROOT / "scratch/mutations"))
     args = parser.parse_args()

@@ -100,3 +100,35 @@ question or the best candidate and a concrete remaining mismatch.
 
 Tool sources: [Transmuter](https://github.com/macabeus/transmuter),
 [decomp-permuter](https://github.com/simonlindholm/decomp-permuter).
+
+## Resumable campaign
+
+After an exact build, copy its ELF to an ignored, fixed snapshot. Run under Linux:
+
+```sh
+mkdir -p scratch/campaign
+cp mlss.elf scratch/campaign/accepted.elf
+python3 scripts/decomp_campaign.py --draft-root .decomp-tools \
+  --output scratch/campaign --symbols-elf scratch/campaign/accepted.elf --jobs 12
+python3 scripts/decomp_campaign_status.py scratch/campaign
+```
+
+Draft filenames must name the target function. The campaign deduplicates their
+contents and checkpoints every engine result. It searches for 30 seconds initially,
+then extends each improving engine to 300 and 1,800 seconds. Stalled drafts stop;
+the overall queue has no wall-clock deadline. Exact spans require source review
+and full acceptance before integration. Draft coverage is distinct from assembly
+coverage: this command does not manufacture missing declarations or new drafts.
+
+Rerun the same command to resume. A process lock prevents concurrent campaigns in
+one output directory. The reference and accepted-symbol snapshot hashes must match
+the checkpoint. Use a new directory after compiler, tool, header, or adapter changes.
+Create `STOP` in the output directory to pause at the next stage boundary; remove
+it before resuming. A crash can repeat its unfinished stage, but completed stages
+are retained. Keep the computer awake for uninterrupted work.
+
+For unattended use, redirect output to a file and detach the process using the
+host's process supervisor. A scheduled follow-up can inspect the compact status
+command, detect an absent worker, and review new matches. Ordinary rejected drafts
+are expected outcomes, not infrastructure incidents. Save reviewed match identities
+separately so follow-ups do not repeatedly inspect the same result.
