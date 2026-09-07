@@ -191,6 +191,20 @@
       "required_evidence": "a recovered interface or source form that changes register allocation without shifting the boundary"
     },
     {
+      "symbol": "sub_80FACA4",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "register allocation and emitted body size",
+      "required_evidence": "a recovered structure or source form that reproduces the 40-byte reference body"
+    },
+    {
+      "symbol": "sub_80FACCC",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "loop register and control-flow shape",
+      "required_evidence": "a source loop form that reproduces the reference register and branch layout"
+    },
+    {
       "symbol": "sub_8134AA8",
       "status": "exhausted",
       "attempts": 2,
