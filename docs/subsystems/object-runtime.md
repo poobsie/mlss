@@ -719,3 +719,10 @@ from the same fixed-point position when the limit is reached.
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
+
+The callbacks `sub_8110C88`, `sub_8112870`, and `sub_8132650` poll their
+runtime object through `sub_8087CE4`. When its low-byte result is zero, they
+issue `sub_8082E1C(object, -1, -1, 0)` and clear the update callback. The
+specific gameplay owners remain unknown. The polling call explicitly receives
+the object used by the original callee, and the cleared callback uses the
+already-zero result to preserve register allocation.

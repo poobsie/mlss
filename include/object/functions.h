@@ -348,4 +348,9 @@
 #define object_when_ready_start_animation_10 sub_80DED4C
 #define object_countdown_install_animation_5_followups_sound_38 sub_80DA264
 
+struct RuntimeObject;
+void sub_8110C88(struct RuntimeObject* object);
+void sub_8112870(struct RuntimeObject* object);
+void sub_8132650(struct RuntimeObject* object);
+
 #endif
