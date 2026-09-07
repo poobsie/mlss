@@ -65,13 +65,6 @@
       "required_evidence": "a recovered interface or source form that changes flag evaluation and register scheduling"
     },
     {
-      "symbol": "sub_80EA940",
-      "status": "deferred",
-      "attempts": 1,
-      "mismatch_class": "compiler layout and downstream section-boundary shift",
-      "required_evidence": "a second evidence-backed source shape that preserves the reference layout"
-    },
-    {
       "symbol": "sub_806123C",
       "status": "deferred",
       "attempts": 1,
@@ -86,11 +79,102 @@
       "required_evidence": "a recovered type or source construct that changes the generated control flow"
     },
     {
+      "symbol": "sub_80E19CC",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "saved-register and literal-base formation",
+      "required_evidence": "a source form that retains one table base in r3 and reconstructs the base-plus-two return"
+    },
+    {
+      "symbol": "sub_80EA940",
+      "status": "deferred",
+      "attempts": 1,
+      "mismatch_class": "compiler layout and downstream section-boundary shift",
+      "required_evidence": "a second evidence-backed source shape that preserves the reference layout"
+    },
+    {
       "symbol": "sub_8134AA8",
       "status": "exhausted",
       "attempts": 2,
       "mismatch_class": "register and literal ordering",
       "required_evidence": "a source form justified by newly recovered blend-update callers"
+    },
+    {
+      "symbol": "sub_8138FA4",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "register allocation and literal address formation",
+      "required_evidence": "a recovered structure or source form that changes register allocation and address formation"
+    },
+    {
+      "symbol": "sub_8138FD4",
+      "status": "deferred",
+      "attempts": 1,
+      "mismatch_class": "compiler register and address-generation shape",
+      "required_evidence": "a second evidence-backed source form that changes address generation"
+    },
+    {
+      "symbol": "sub_8138FF0",
+      "status": "deferred",
+      "attempts": 1,
+      "mismatch_class": "compiler register and address-generation shape",
+      "required_evidence": "a second evidence-backed source form that changes address generation"
+    },
+    {
+      "symbol": "sub_8160C18",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "register allocation and fixed-point shift order",
+      "required_evidence": "a type or source form that retains distance in r5 and preserves the u16 truncation sequence"
+    },
+    {
+      "symbol": "sub_8161954",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "collapsed chained pointer stepping",
+      "required_evidence": "a source form that preserves the reference pointer chain"
+    },
+    {
+      "symbol": "sub_8161C28",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "loop and chained pointer arithmetic",
+      "required_evidence": "a source form that retains target chained pointer arithmetic and explicit stores"
+    },
+    {
+      "symbol": "sub_8163394",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "global folding and object-load scheduling",
+      "required_evidence": "a recovered interface that changes global and table-base register lifetimes"
+    },
+    {
+      "symbol": "sub_8163608",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "pointer strength reduction and saved-register set",
+      "required_evidence": "a source form that preserves pointer stepping and the reference prologue"
+    },
+    {
+      "symbol": "sub_816375C",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "table literal and sprite scheduling",
+      "required_evidence": "a recovered table type that changes literal register order and sprite scheduling"
+    },
+    {
+      "symbol": "sub_81638C4",
+      "status": "deferred",
+      "attempts": 1,
+      "mismatch_class": "stack argument truncation and saved-register set",
+      "required_evidence": "a second evidence-backed source form that preserves the stack byte load and r8 save"
+    },
+    {
+      "symbol": "sub_816393C",
+      "status": "deferred",
+      "attempts": 1,
+      "mismatch_class": "stack argument truncation and register assignment",
+      "required_evidence": "a second evidence-backed source form that preserves the stack byte truncation and r4-r7 assignment"
     },
     {
       "symbol": "sub_819A9B4",
@@ -114,20 +198,6 @@
       "required_evidence": "a recovered callback interface or source form that changes register and literal scheduling"
     },
     {
-      "symbol": "sub_819B9B4",
-      "status": "exhausted",
-      "attempts": 2,
-      "mismatch_class": "command-mask literal folding",
-      "required_evidence": "a source construct that preserves the reference 0x9000 literal-load sequence"
-    },
-    {
-      "symbol": "sub_819BA10",
-      "status": "exhausted",
-      "attempts": 2,
-      "mismatch_class": "command-mask literal folding",
-      "required_evidence": "a source construct that preserves the reference 0x8000 literal-load sequence"
-    },
-    {
       "symbol": "sub_819B290",
       "status": "exhausted",
       "attempts": 2,
@@ -140,6 +210,20 @@
       "attempts": 2,
       "mismatch_class": "literal-pool padding",
       "required_evidence": "an exact section-boundary strategy for the four padding bytes"
+    },
+    {
+      "symbol": "sub_819B9B4",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "command-mask literal folding",
+      "required_evidence": "a source construct that preserves the reference 0x9000 literal-load sequence"
+    },
+    {
+      "symbol": "sub_819BA10",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "command-mask literal folding",
+      "required_evidence": "a source construct that preserves the reference 0x8000 literal-load sequence"
     }
   ]
 }
