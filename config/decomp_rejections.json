@@ -86,11 +86,74 @@
       "required_evidence": "a source form that retains one table base in r3 and reconstructs the base-plus-two return"
     },
     {
+      "symbol": "sub_80E2F40",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "global table caching and constant folding",
+      "required_evidence": "a recovered table interface that changes caching and constant folding"
+    },
+    {
+      "symbol": "sub_80E3034",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "literal pool and callback-address reuse",
+      "required_evidence": "a source form that preserves the reference callback address lifetime"
+    },
+    {
+      "symbol": "sub_80E30B0",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "register allocation and evaluation order",
+      "required_evidence": "a recovered type or source form that changes register ordering"
+    },
+    {
+      "symbol": "sub_80E3158",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "high-register allocation",
+      "required_evidence": "a source form that reproduces the reference high-register lifetime"
+    },
+    {
+      "symbol": "sub_80E3C3C",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "pointer and constant hoisting",
+      "required_evidence": "a source form that preserves target pointer and constant lifetimes"
+    },
+    {
       "symbol": "sub_80E3FD8",
       "status": "exhausted",
       "attempts": 2,
       "mismatch_class": "copy-extent folding and register/literal layout",
       "required_evidence": "a source form that preserves the reference copy extent and r4/r5 register lifetimes"
+    },
+    {
+      "symbol": "sub_80E4FC8",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "switch register and literal layout",
+      "required_evidence": "a source switch form that reproduces register and literal placement"
+    },
+    {
+      "symbol": "sub_80E5058",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "switch register and literal layout",
+      "required_evidence": "a source switch form that reproduces register and literal placement"
+    },
+    {
+      "symbol": "sub_80E5780",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "DMA base register layout",
+      "required_evidence": "a recovered transfer interface that changes DMA base register allocation"
+    },
+    {
+      "symbol": "sub_80E5810",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "address-difference constant folding",
+      "required_evidence": "a source form that preserves the reference address-difference calculation"
     },
     {
       "symbol": "sub_80E8E78",

@@ -180,12 +180,14 @@ def discover(map_path: Path, assembly: list[Path]) -> list[Candidate]:
 
 
 def parse_rejections(document: object) -> tuple[set[str], set[int]]:
-    """Return exhausted symbol names and addresses from a rejection document."""
+    """Return symbols and addresses that require new evidence before retrying."""
     names: set[str] = set()
     addresses: set[int] = set()
     entries = document.get("entries", []) if isinstance(document, dict) else []
     for entry in entries:
-        if not isinstance(entry, dict) or entry.get("status") != "exhausted":
+        if not isinstance(entry, dict) or entry.get("status") not in {
+            "deferred", "exhausted"
+        }:
             continue
         if isinstance(entry.get("symbol"), str):
             names.add(entry["symbol"])

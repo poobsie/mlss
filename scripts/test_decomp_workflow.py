@@ -111,11 +111,12 @@ class DecompWorkflowTest(unittest.TestCase):
                 "entries": [
                     {"symbol": "sub_8000000", "status": "exhausted"},
                     {"address": "0x08000010", "status": "exhausted"},
+                    {"symbol": "sub_8000010", "status": "deferred"},
                     {"symbol": "sub_8000020", "status": "active"},
                 ]
             }
         )
-        self.assertEqual(names, {"sub_8000000"})
+        self.assertEqual(names, {"sub_8000000", "sub_8000010"})
         self.assertEqual(addresses, {0x08000010})
 
 
