@@ -3,6 +3,22 @@
 
 #define BATTLE_SECTION(name) __attribute__((section(name)))
 
+s32 sub_8028E70(struct BattleControlObject* object)
+    BATTLE_SECTION(".text.sub_8028E70");
+s32 sub_8028E70(struct BattleControlObject* object) {
+    s32 bits;
+    s32* value = &bits;
+    s32 result;
+    bits = 3 & object->flagsF9;
+    result = *value;
+    /* Keep the original register copy before normalizing the low flag bits. */
+    asm("" : "+r"(result));
+    if (bits != 0) {
+        result = 1;
+    }
+    return result;
+}
+
 void battle_set_flag_f8_40(struct BattleControlObject* object)
     BATTLE_SECTION(".text.sub_8028EE8");
 void battle_set_flag_f8_40(struct BattleControlObject* object) {

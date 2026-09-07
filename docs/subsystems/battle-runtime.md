@@ -128,4 +128,8 @@ and a compact effect-state update. Their structural layouts name only proven
 ownership and value relationships; unresolved battle entity identities remain
 attached to the original linker symbols.
 
+`sub_8028E70` returns whether either low bit in `BattleControlObject.flagsF9`
+is set. The neighboring motion reset clears the same bits. Their individual
+gameplay meanings remain unknown; the query retains its original symbol.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

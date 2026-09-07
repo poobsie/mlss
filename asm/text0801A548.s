@@ -22745,6 +22745,8 @@ sub_8028E4C:
 	.byte 0x00, 0x00
 .endif
 .section .text.after_early_code_helpers_8028E4C, "ax", %progbits
+
+.if 0
 	thumb_func_start sub_8028E70
 sub_8028E70:
 	push {lr}
@@ -22760,6 +22762,8 @@ _08028E82:
 	adds r0, r1, #0x0
 	pop {r1}
 	bx r1
+.endif
+.section .text.after_8028E70, "ax", %progbits
 	thumb_func_start get_fobj_screen_pos
 get_fobj_screen_pos: @ 08028E88
 	push {r4, r5, r6, lr}

@@ -99,6 +99,8 @@ SECTIONS
         asm/text0801A548.o(.text.after_80208E0);
         src/battle/control_flags.o(.text.early_code_helpers.sub_8028E4C);
         asm/text0801A548.o(.text.after_early_code_helpers_8028E4C);
+        src/battle/control_flags.o(.text.sub_8028E70);
+        asm/text0801A548.o(.text.after_8028E70);
         src/battle/control_flags.o(.text.sub_8028EE8);
         asm/text0801A548.o(.text.after_8028EE8);
         src/battle/control_flags.o(.text.sub_8028F2C);

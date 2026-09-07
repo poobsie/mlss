@@ -115,4 +115,6 @@ void battle_set_flag_12c_01(struct BattleControlObject* object);
 void battle_set_flags_12c_mode(
     struct BattleControlObject* object, s32 value);
 
+s32 sub_8028E70(struct BattleControlObject* object);
+
 #endif
