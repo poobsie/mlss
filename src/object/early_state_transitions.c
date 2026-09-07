@@ -1,4 +1,5 @@
 #include "global.h"
+#include "object/functions.h"
 #include "audio/sound_effects.h"
 #include "object/runtime_object.h"
 
@@ -11,7 +12,6 @@ void sub_806048C(struct RuntimeObject* object);
 void sub_80610D4(struct RuntimeObject* object);
 void sub_8062548(struct RuntimeObject* object);
 void sub_8062F40(struct RuntimeObject* object);
-void sub_8063524(struct RuntimeObject* object);
 void sub_8060CB8(struct RuntimeObject* object);
 void sub_80618A4(struct RuntimeObject* object);
 void sub_806A348(struct RuntimeObject* object);

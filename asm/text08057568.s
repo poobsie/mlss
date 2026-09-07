@@ -21180,6 +21180,7 @@ _080634D0:
 	.byte 0x00, 0x00
 _080634D8: .4byte sub_80634DC
 	.section .text.small_functions_02_after_sub_80634DC, "ax", %progbits
+.if 0
 	thumb_func_start sub_8063524
 sub_8063524:
 	push {r4, lr}
@@ -21214,6 +21215,8 @@ _0806355E:
 	pop {r0}
 	bx r0
 _08063564: .4byte sub_8062FD4
+.endif
+.section .text.after_sub_8063524, "ax", %progbits
 	thumb_func_start sub_8063568
 sub_8063568:
 	push {r4, lr}

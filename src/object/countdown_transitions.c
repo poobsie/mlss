@@ -134,3 +134,17 @@ void sub_8132E68(struct RuntimeObject* object) {
         object->update = sub_8132EE0;
     }
 }
+
+__attribute__((section(".text.timer_callbacks.sub_8063524")))
+void sub_8063524(struct RuntimeObject* object) {
+    u32 remaining;
+    if (8 & object->visual->flags) {
+        remaining = (u16)object->timer - 1U;
+        object->timer = remaining;
+        if ((s32)(remaining << 16) <= 0) {
+            sub_8082E1C(object, 6, 0, 0);
+            sound_effect_play(0xAE, SOUND_VOLUME_UNCHANGED);
+            object->update = sub_8062FD4;
+        }
+    }
+}

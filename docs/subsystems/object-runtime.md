@@ -755,3 +755,8 @@ When visual flag 8 is set, `sub_8132E68` starts animation five, copies the
 low halfword of `behaviorState` into the timer, plays sound `0xA0` at
 unchanged volume, and installs `sub_8132EE0`. The gameplay meaning of
 this stored duration remains unknown.
+
+`sub_8063524` decrements the timer only while visual flag 8 is set.
+At a nonpositive signed 16-bit result it starts animation six, plays
+sound `0xAE` at unchanged volume, and installs `sub_8062FD4`.
+The gameplay identity remains unknown; unsigned arithmetic preserves timer wraparound.
