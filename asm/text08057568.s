@@ -331788,6 +331788,7 @@ _0810D164: .4byte 0x03000FDC
 _0810D168: .4byte 0x00004E70
 _0810D16C: .4byte 0x03000FD8
 	.section .text.misc_helpers_03_after_sub_810D170, "ax", %progbits
+.if 0
 	thumb_func_start sub_810D1A4
 sub_810D1A4:
 	push {r4, lr}
@@ -331817,6 +331818,8 @@ _0810D1D2:
 	pop {r4}
 	pop {r0}
 	bx r0
+.endif
+.section .text.after_sub_810D1A4, "ax", %progbits
 	thumb_func_start sub_810D1D8
 sub_810D1D8:
 	push {r4, lr}

@@ -547,3 +547,9 @@ the original register copies; all tests and state accesses remain expressed in C
 the runtime pointer and clears that bit. The reload preserves the original
 behavior if the call replaces the runtime. The flag keeps its structural name.
 The wide unsigned mask preserves the compiler's constant-register sequence.
+
+`sub_810D1A4` treats the display process's resource as its runtime object,
+clears flag `0x10` in `flags79`, then clears the process update callback when
+`value80` is zero or the low byte returned by `sub_8085A6C` is nonzero. The
+helper is skipped when the value is already zero. The low-byte test uses an
+unsigned shift to avoid signed overflow; unknown meanings retain structural names.

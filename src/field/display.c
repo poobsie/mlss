@@ -273,3 +273,14 @@ void field_disable_display_layers_0_1(void)
     __attribute__((alias("sub_810D00C")));
 void field_configure_display_layer(s32 value)
     __attribute__((alias("sub_810D038")));
+
+s32 sub_8085A6C(struct RuntimeObject* object);
+SEC(sub_810D1A4) void sub_810D1A4(struct FieldDisplayProcess* process) {
+    struct RuntimeObject* object = process->resource;
+    u8 flags = object->flags79;
+    s32 mask = ~0x10;
+    mask &= flags;
+    object->flags79 = mask;
+    if (object->value80 == 0 || ((u32)sub_8085A6C(object) << 24) != 0)
+        process->update = 0;
+}

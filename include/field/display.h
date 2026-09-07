@@ -80,4 +80,6 @@ void field_update_display_window_geometry(
 void field_update_register_pair_and_stop_when_owner_inactive(
     struct FieldDisplayRegisterProcess* process);
 
+void sub_810D1A4(struct FieldDisplayProcess* process);
+
 #endif
