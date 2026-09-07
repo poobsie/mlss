@@ -7,6 +7,19 @@
 
 void sub_819B070(u32 unused, struct AudioDriverVoice* voice);
 
+SEC(sub_819B2E0) void sub_819B2E0(void)
+{
+    s32 index = 0;
+    struct AudioDriverVoice* voice = AUDIO_DRIVER_STATE->voices[0];
+
+    for (; index < 12; index++, voice++) {
+        if (voice->flags & 1) {
+            sub_819B070(index, voice);
+            voice->flags &= 0xFFFE;
+        }
+    }
+}
+
 SEC(sub_819B0AC) void sub_819B0AC(u32 player)
 {
     s32 index = 0;
