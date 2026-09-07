@@ -71,3 +71,38 @@ bool32 animation_scene_poll_runtime_ready(void)
     return FALSE;
 }
 ZERO_PAD(sub_80E3DA4);
+
+SEC(sub_80E3DD0)
+void animation_scene_initialize_transfer_buffer(void)
+{
+    void* optional = ANIMATION_FIELD_RUNTIME->optional2D8;
+    u32 value = 0;
+    AnimationMemoryFill* fillSlot;
+    void* buffer;
+
+    if (optional != 0)
+        value = *(u16*)((u8*)optional + 0x0A);
+    fillSlot = (AnimationMemoryFill*)0x03001034;
+    buffer = (void*)0x02000080;
+    (*fillSlot)(value, buffer, 0x200);
+    value |= value << 16;
+    (*fillSlot)(value, buffer, 0x400);
+    gGameState.field_2 = 0xFFFF;
+    gGameState.field_0 = 0xFFFF;
+    gGameState.field_884 = -1;
+}
+
+SEC(sub_80E4F98)
+void animation_transfer_mark_references(struct AnimationTransferNode* root,
+                                        struct AnimationTransferNode* target)
+{
+    struct AnimationTransferNode* node = root;
+
+    while (node != 0) {
+        if (target == node->key)
+            animation_transfer_mark_references(root, node);
+        else if (target == node)
+            node->state = -1;
+        node = node->next;
+    }
+}

@@ -159,6 +159,13 @@ layer configuration call. The meanings of that halfword and the global word
 cleared by the configuration and readiness paths remain unresolved, so those
 fields retain offset-based names.
 
+The same scene runtime now initializes its shared transfer buffer from the
+optional layer value, first as halfwords and then as a duplicated 32-bit fill
+value. Its linked transfer-node walk recursively marks nodes referenced by the
+selected target before continuing along the sibling chain. The node state byte
+and key pointer are established structurally; their higher-level scene roles
+remain unresolved.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.

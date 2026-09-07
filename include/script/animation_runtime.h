@@ -41,6 +41,13 @@ struct AnimationFieldRuntime {
     void* optional2D8;
 };
 
+struct AnimationTransferNode {
+    s8 state;
+    u8 unknown01[3];
+    struct AnimationTransferNode* next;
+    struct AnimationTransferNode* key;
+};
+
 void sub_80E195C(struct AnimationAttachmentState*, struct AnimationAttachmentOwner*);
 void sub_80E19A8(struct AnimationScriptState*);
 void sub_80E19EC(struct AnimationOffsetState*);
@@ -50,6 +57,8 @@ bool32 sub_80E3CF4(void);
 void sub_80E3D1C(void);
 void sub_80E3D70(void);
 bool32 sub_80E3DA4(void);
+void sub_80E3DD0(void);
+void sub_80E4F98(struct AnimationTransferNode*, struct AnimationTransferNode*);
 
 #define animation_attachment_flush_pending sub_80E195C
 #define animation_script_tick_terminal_wait sub_80E19A8
@@ -60,5 +69,7 @@ bool32 sub_80E3DA4(void);
 #define animation_scene_configure_layer sub_80E3D1C
 #define animation_scene_clear_vram_regions sub_80E3D70
 #define animation_scene_poll_runtime_ready sub_80E3DA4
+#define animation_scene_initialize_transfer_buffer sub_80E3DD0
+#define animation_transfer_mark_references sub_80E4F98
 
 #endif
