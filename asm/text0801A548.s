@@ -60799,6 +60799,7 @@ _080479D8: .4byte 0x000002B6
 	.byte 0x00, 0xD0, 0x01, 0x21, 0x08, 0x1C, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0xB6, 0x02, 0x00, 0x00
 	.byte 0x00, 0xB5, 0x06, 0x49, 0x40, 0x18, 0x01, 0x78, 0x03, 0x20, 0x08, 0x40, 0x01, 0x1C, 0x00, 0x28
 	.byte 0x00, 0xD0, 0x01, 0x21, 0x08, 0x1C, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0xB6, 0x02, 0x00, 0x00
+.if 0
 	thumb_func_start sub_8047A1C
 sub_8047A1C:
 	push {lr}
@@ -60817,6 +60818,9 @@ _08047A30:
 	bx r1
 	.byte 0x00, 0x00
 _08047A38: .4byte 0x000002B5
+.endif
+.section .text.after_sub_8047A1C, "ax", %progbits
+.if 0
 	thumb_func_start sub_8047A3C
 sub_8047A3C:
 	push {lr}
@@ -60835,6 +60839,8 @@ _08047A50:
 	bx r1
 	.byte 0x00, 0x00
 _08047A58: .4byte 0x000002B5
+.endif
+.section .text.after_sub_8047A3C, "ax", %progbits
 	thumb_func_start sub_8047A5C
 sub_8047A5C:
 	push {r4, r5, lr}
@@ -60972,6 +60978,7 @@ _08047B3A:
 _08047B54: .4byte 0x0000023E
 _08047B58: .4byte 0x000002B5
 	.section .text.after_early_bitfield_8047B5C, "ax", %progbits
+.if 0
 	thumb_func_start sub_8047B78
 sub_8047B78:
 	push {lr}
@@ -60990,6 +60997,8 @@ _08047B8C:
 	bx r1
 	.byte 0x00, 0x00
 _08047B94: .4byte 0x000002B5
+.endif
+.section .text.after_sub_8047B78, "ax", %progbits
 	thumb_func_start sub_8047B98
 sub_8047B98:
 	push {r4, r5, lr}

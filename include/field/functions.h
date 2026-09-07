@@ -107,4 +107,9 @@
 #define field_wait_actor_a_then_prepare_actor_b_b sub_80C0F30
 #define field_wait_actor_a_then_prepare_actor_b_c sub_80C8A7C
 
+struct FieldSceneObject;
+int sub_8047A1C(struct FieldSceneObject* object);
+int sub_8047A3C(struct FieldSceneObject* object);
+int sub_8047B78(struct FieldSceneObject* object);
+
 #endif

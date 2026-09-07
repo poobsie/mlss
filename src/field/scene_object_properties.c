@@ -109,3 +109,50 @@ void field_clear_scene_object_modes(struct FieldSceneObject* object)
     field_set_flag_20c_01(object, 0);
     sub_804761C(object, 0);
 }
+
+s32 sub_8047A1C(struct FieldSceneObject* object)
+    FIELD_SECTION(".text.sub_8047A1C");
+s32 sub_8047A1C(struct FieldSceneObject* object) {
+    s32 bits;
+    char result;
+    bits = 0xC0 & object->flags2B5;
+    result = bits;
+    /* Preserve the original register copy before boolean normalization. */
+    asm("" : "+r"(result));
+    if (bits != 0) {
+        result = 1;
+    }
+    return result;
+}
+
+s32 sub_8047A3C(struct FieldSceneObject* object)
+    FIELD_SECTION(".text.sub_8047A3C");
+s32 sub_8047A3C(struct FieldSceneObject* object) {
+    s32 bits;
+    s32* value = &bits;
+    s32 result;
+    bits = 0x30 & object->flags2B5;
+    result = bits;
+    /* Preserve the original register copy before boolean normalization. */
+    asm("" : "+r"(result));
+    if (*value != 0) {
+        result = 1;
+    }
+    return result;
+}
+
+s32 sub_8047B78(struct FieldSceneObject* object)
+    FIELD_SECTION(".text.sub_8047B78");
+s32 sub_8047B78(struct FieldSceneObject* object) {
+    s32 bits;
+    s32* value = &bits;
+    s32 result;
+    bits = 7 & object->flags2B5;
+    result = bits;
+    /* Preserve the original register copy before boolean normalization. */
+    asm("" : "+r"(result));
+    if (*value != 0) {
+        result = 1;
+    }
+    return result;
+}

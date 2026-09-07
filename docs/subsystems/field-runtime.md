@@ -534,3 +534,10 @@ value. The target state remains named by offset because its gameplay meaning is
 not proven by callers.
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
+# Flag queries
+
+`sub_8047A1C`, `sub_8047A3C`, and `sub_8047B78` normalize the `0xC0`,
+`0x30`, and `0x07` groups of `FieldSceneObject.flags2B5` to zero or one.
+They use the same checked scene-object layout as the neighboring flag setters.
+The individual gameplay meanings remain unknown. Empty allocation barriers preserve
+the original register copies; all tests and state accesses remain expressed in C.

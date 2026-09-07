@@ -166,10 +166,16 @@ SECTIONS
         src/field/scene_object_properties.o(.text.sub_8047994);
         src/field/scene_object_properties.o(.text.early_code_helpers.sub_80479A8);
         asm/text0801A548.o(.text.after_80479A8);
+        src/field/scene_object_properties.o(.text.sub_8047A1C);
+        asm/text0801A548.o(.text.after_sub_8047A1C);
+        src/field/scene_object_properties.o(.text.sub_8047A3C);
+        asm/text0801A548.o(.text.after_sub_8047A3C);
         src/field/scene_object_properties.o(.text.sub_8047AF4);
         asm/text0801A548.o(.text.after_8047AF4);
         src/field/scene_object_properties.o(.text.early_bitfield_updates.sub_8047B5C);
         asm/text0801A548.o(.text.after_early_bitfield_8047B5C);
+        src/field/scene_object_properties.o(.text.sub_8047B78);
+        asm/text0801A548.o(.text.after_sub_8047B78);
         src/field/scene_object_properties.o(.text.early_code_helpers.sub_8047D44);
         asm/text0801A548.o(.text.after_early_code_helpers_8047D44);
         src/field/scene_object_properties.o(.text.early_code_helpers.sub_8047D64);
