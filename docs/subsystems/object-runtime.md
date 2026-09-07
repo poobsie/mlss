@@ -744,3 +744,9 @@ signed-shift overflow. Their gameplay identities remain unresolved.
 signed timer result it starts animation ten, plays sound `0x9F` at unchanged
 volume, and installs `sub_8132818`. Its decrement and shift use unsigned
 arithmetic, preserving the original 16-bit wraparound behavior.
+
+`sub_8061864` refreshes object state and gates its timer decrement on visual
+flag eight before starting animation five and installing `sub_80616B8`.
+`sub_8065A5C` waits for `value80` to clear, starts animation fourteen, copies
+the low halfword of `valueA8` into the timer, installs `sub_8065BD8`, stops
+sound `0x81`, and plays `0xAF`. Their gameplay identities remain unknown.

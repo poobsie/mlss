@@ -95,3 +95,30 @@ void sub_8132EA8(struct RuntimeObject* object) {
         object->update = sub_8132818;
     }
 }
+
+__attribute__((section(".text.timer_callbacks.sub_8061864")))
+void sub_8061864(struct RuntimeObject* object) {
+    u32 remaining;
+    sub_80614B4(object);
+    if (8 & object->visual->flags) {
+        remaining = (u16)object->timer - 1U;
+        object->timer = remaining;
+        if ((s32)(remaining << 16) <= 0) {
+            sub_8082E1C(object, 5, 0, 0);
+            object->update = sub_80616B8;
+        }
+    }
+}
+
+__attribute__((section(".text.timer_callbacks.sub_8065A5C")))
+void sub_8065A5C(struct RuntimeObject* object) {
+    s32 duration;
+    if (object->value80 == 0) {
+        sub_8082E1C(object, 14, 0, 0);
+        duration = object->valueA8;
+        object->timer = duration;
+        object->update = sub_8065BD8;
+        sound_effect_stop(0x81);
+        sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
+    }
+}

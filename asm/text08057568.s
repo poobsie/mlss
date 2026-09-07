@@ -18233,6 +18233,7 @@ _08061858:
 _08061860: .4byte sub_808750C
 .endif
 .section .text.after_sub_8061830, "ax", %progbits
+.if 0
 	thumb_func_start sub_8061864
 sub_8061864:
 	push {r4, lr}
@@ -18265,6 +18266,8 @@ _08061898:
 	bx r0
 	.byte 0x00, 0x00
 _080618A0: .4byte sub_80616B8
+.endif
+.section .text.after_sub_8061864, "ax", %progbits
 	thumb_func_start sub_80618A4
 sub_80618A4:
 	push {r4, r5, lr}
@@ -24721,6 +24724,7 @@ _08065A52:
 	pop {r0}
 	bx r0
 _08065A58: .4byte sub_8065A5C
+.if 0
 	thumb_func_start sub_8065A5C
 sub_8065A5C:
 	push {r4, lr}
@@ -24752,6 +24756,8 @@ _08065A92:
 	pop {r0}
 	bx r0
 _08065A98: .4byte sub_8065BD8
+.endif
+.section .text.after_sub_8065A5C, "ax", %progbits
 	thumb_func_start sub_8065A9C
 sub_8065A9C:
 	push {r4, lr}
