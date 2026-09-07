@@ -2,6 +2,20 @@
   "version": 1,
   "entries": [
     {
+      "symbol": "sub_8047EB8",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "mask/prologue register allocation",
+      "required_evidence": "a recovered type or source form that changes mask and saved-register allocation"
+    },
+    {
+      "symbol": "sub_8047EFC",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "prologue allocation and instruction order",
+      "required_evidence": "a source form that reproduces the reference prologue and final instruction sequence"
+    },
+    {
       "symbol": "sub_805FC80",
       "status": "exhausted",
       "attempts": 2,
@@ -205,6 +219,34 @@
       "required_evidence": "a source loop form that reproduces the reference register and branch layout"
     },
     {
+      "symbol": "sub_810D624",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "compiler layout and register allocation",
+      "required_evidence": "a source form that closes the four-byte layout difference without changing register lifetimes"
+    },
+    {
+      "symbol": "sub_81232E0",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "instruction scheduling and register allocation",
+      "required_evidence": "a recovered table type or source form that changes scheduling and register lifetimes"
+    },
+    {
+      "symbol": "sub_8123308",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "instruction scheduling and register allocation",
+      "required_evidence": "a recovered indexed-table interface that changes scheduling and register lifetimes"
+    },
+    {
+      "symbol": "sub_81251F0",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "branch and literal-pool placement",
+      "required_evidence": "a source form that reproduces reference branching and literal placement"
+    },
+    {
       "symbol": "sub_8134AA8",
       "status": "exhausted",
       "attempts": 2,
@@ -315,13 +357,6 @@
       "attempts": 2,
       "mismatch_class": "literal register allocation",
       "required_evidence": "a compiler construct or shared symbol layout that fixes literal allocation"
-    },
-    {
-      "symbol": "sub_819B2E0",
-      "status": "exhausted",
-      "attempts": 2,
-      "mismatch_class": "literal-pool padding",
-      "required_evidence": "an exact section-boundary strategy for the four padding bytes"
     },
     {
       "symbol": "sub_819B9B4",
