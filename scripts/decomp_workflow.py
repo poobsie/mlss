@@ -25,6 +25,19 @@ SWI = re.compile(r"^\s*swi\s+", re.MULTILINE)
 REGISTER_TRAMPOLINE = re.compile(
     r"^\s*bx\s+r(?:1[0-5]|[0-9])\s*(?:@.*)?$", re.MULTILINE
 )
+
+
+def is_register_trampoline(block: str) -> bool:
+    """A bare indirect branch is a trampoline; pop/bx is a normal Thumb return."""
+    instructions = []
+    for line in block.splitlines():
+        code = line.split("@", 1)[0].strip()
+        if not code or code.startswith(".") or ":" in code:
+            continue
+        if code.split()[0] in {"thumb_func_start", "thumb_func_end", "arm_func_start", "arm_func_end"}:
+            continue
+        instructions.append(code)
+    return len(instructions) == 1 and bool(REGISTER_TRAMPOLINE.fullmatch(instructions[0]))
 DISCARD_SECTION = re.compile(r"^\s*\.section\s+\.discard(?:\.|\s|$)", re.MULTILINE)
 INSTRUCTION = re.compile(r"^\s*([a-z][a-z0-9.]*)\s+", re.MULTILINE)
 DISABLED_IF = re.compile(r"^\s*\.if\s+0(?:\s|$)")
@@ -139,7 +152,7 @@ def discover(map_path: Path, assembly: list[Path]) -> list[Candidate]:
             if (
                 name not in addresses
                 or SWI.search(block)
-                or REGISTER_TRAMPOLINE.search(block)
+                or is_register_trampoline(block)
                 or DISCARD_SECTION.search(block)
                 or not block_shape
                 or name.startswith(("_call_via_", "__"))

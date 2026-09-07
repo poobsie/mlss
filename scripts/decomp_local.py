@@ -103,10 +103,12 @@ def compile_candidate(source, symbol, address, expected, folder, runner, flags, 
     if symbol not in defined or defined[symbol] & ~1 != 0:
         raise ValueError("source must define the target as its first emitted function")
     script = folder / "candidate.ld"
-    script.write_text("\n".join(f"PROVIDE({name} = 0x{value:X});" for name, value in symbols.items())
-                      + f"\nSECTIONS {{ .text 0x{address:X} : {{ *(.text*) }} "
+    # Preserve ELF function types/Thumb state. Numeric PROVIDE symbols cause the linker
+    # to insert interworking veneers even when the numeric address has its Thumb bit set.
+    script.write_text(f"SECTIONS {{ .text 0x{address:X} : {{ *(.text*) }} "
                       + ".rodata : { *(.rodata*) } .data : { *(.data*) } .bss : { *(.bss*) } }\n")
-    runner.run(flags["LD"] + ["-T", str(script), "-o", str(elf), str(obj)])
+    runner.run(flags["LD"] + ["--just-symbols=" + str(ROOT / ".decomp-tools/reference/mlss.elf"),
+                               "-T", str(script), "-o", str(elf), str(obj)])
     linked = reference_symbols(runner, elf)
     if symbol not in linked or linked[symbol] & ~1 != address:
         raise ValueError("target must be the first emitted function at its reference address")

@@ -107,6 +107,13 @@ do not guess types to force compilation. A local `span_match` is diagnostic only
 does not replace linked function verification or `make decomp-acceptance`. Keep full
 logs in scratch and inspect the compact mismatch excerpts first.
 
+For a compilable near-match with known interfaces, `scripts/decomp_mutate.py` provides
+an optional bounded CPU search using Transmuter or decomp-permuter. Follow
+`docs/local-mutation.md`; use the unattended trial command for comparisons. Do not
+poll mutations through model turns, equate a tool score of zero with accepted C,
+or retry a rejected candidate without recording that the new mutation search is
+the specific new compiler-shape experiment. Keep source review and full acceptance.
+
 The default worker task is implementation, not an open-ended subsystem survey.
 
 - Assign a contiguous caller-connected range with 10 to 30 plausible functions. Stop

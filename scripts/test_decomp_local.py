@@ -58,6 +58,20 @@ class LocalMatchingTest(unittest.TestCase):
                                   b"\x70\x47\x00\x00", folder, runner, flags,
                                   {"missing_target": 0x08000001})
 
+    @unittest.skipUnless(shutil.which("arm-none-eabi-as"), "requires project ARM toolchain")
+    def test_reference_thumb_call_does_not_gain_an_interworking_veneer(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / "scratch") as directory:
+            folder = Path(directory)
+            source = folder / "fixture.c"
+            source.write_text("extern void sub_80871A8(void);\n"
+                              "void local_call_fixture(void) { sub_80871A8(); }\n")
+            runner = Runner(20, folder)
+            compile_candidate(source, "local_call_fixture", 0x08000000, b"\0" * 12,
+                              folder, runner, build_flags(runner), {})
+            assembly = (folder / "disassembly.txt").read_text()
+            self.assertNotIn("_from_thumb", assembly)
+            self.assertRegex(assembly, r"bl\s+80871a8\s+<sub_80871A8>")
+
 
 if __name__ == "__main__":
     unittest.main()

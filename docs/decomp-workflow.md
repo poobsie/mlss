@@ -2,6 +2,11 @@
 
 ## Prepare types and run local comparisons
 
+For compilable near-matches, the optional CPU mutation stage and unattended engine
+comparison are documented in [local-mutation.md](local-mutation.md). Keep it bounded
+and use it before further model-driven register or expression shaping. It does not
+replace type recovery or acceptance.
+
 Run the following commands under Unix or WSL from the repository root. Packet creation
 now preprocesses relevant project headers before calling m2c. Automatic selection uses
 bounded textual references to the target and its callees; it is not a complete call graph.
