@@ -23851,6 +23851,7 @@ sub_802973C:
 	.byte 0x00, 0x00
 	.section .text.early15a_after_sub_8029788, "ax", %progbits
 	.section .text.text_early_helpers_04_after_sub_80297B8, "ax", %progbits
+.if 0
 	thumb_func_start sub_80297D8
 sub_80297D8:
 	push {r4, lr}
@@ -23874,6 +23875,8 @@ _080297F8:
 	bx r0
 	.byte 0x00, 0x00
 _08029800: .4byte 0xFFFFF87F
+.endif
+.section .text.after_sub_80297D8, "ax", %progbits
 	thumb_func_start sub_8029804
 sub_8029804:
 	adds r3, r0, #0x0

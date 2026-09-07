@@ -124,7 +124,6 @@ extern void sub_80328B4(void*);
 extern u8 sub_803C468(void*);
 extern void sub_8029380(void*);
 extern void sub_803C8A4(void*, s32, s32);
-extern void sub_80297D8(void*, s32);
 extern void sub_8029788(void*);
 extern void sub_8029170(void*, s32);
 extern void sub_80291C8(void*);
@@ -902,7 +901,7 @@ s32 script_command_control_field_registry(
         sub_803C8A4(context->objectRegistry, *arguments, 0);
         break;
     case 1:
-        sub_80297D8(context->objectRegistry, 0);
+        sub_80297D8((struct BattleResourceControlObject*)context->objectRegistry, 0);
         break;
     case 2:
         sub_8029788(context->objectRegistry);

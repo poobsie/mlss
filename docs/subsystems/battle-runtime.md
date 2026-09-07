@@ -133,3 +133,8 @@ is set. The neighboring motion reset clears the same bits. Their individual
 gameplay meanings remain unknown; the query retains its original symbol.
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
+
+`sub_80297D8` calls `sub_805BED8` on `resource304` and clears flags `0x0780`
+when its mode argument is zero. Other mode values leave the object unchanged.
+It uses the same resource-control layout as the adjacent activation and preparation
+helpers. The resource operation's narrower meaning remains unknown.

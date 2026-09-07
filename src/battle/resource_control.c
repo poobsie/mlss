@@ -23,3 +23,15 @@ void battle_prepare_resource_if_inactive(struct BattleResourceControlObject* obj
     if (((s32)(*(u16*)(bytes + 0xFC) << 0x15) >> 0x1C) == 0)
         sub_805BFF0(*(void**)(bytes + 0x304));
 }
+
+void sub_805BED8(void* resource);
+
+void sub_80297D8(struct BattleResourceControlObject* object, s32 mode)
+    __attribute__((section(".text.sub_80297D8")));
+void sub_80297D8(struct BattleResourceControlObject* object, s32 mode) {
+    s32 mask = ~0x780;
+    if (mode == 0) {
+        sub_805BED8(object->resource304);
+        object->flagsFC = mask & object->flagsFC;
+    }
+}
