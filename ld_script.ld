@@ -2097,6 +2097,16 @@ SECTIONS
         asm/text08057568.o(.text.after_80E1AB0);
         src/script/animation_runtime.o(.text.animation_runtime.animation_script_update_4_byte_stream);
         asm/text08057568.o(.text.after_animation_script_update_4_byte_stream);
+        src/script/animation_scene_runtime.o(.text.animation_scene_runtime.sub_80E2EDC);
+        asm/text08057568.o(.text.after_80E2EDC);
+        src/script/animation_scene_runtime.o(.text.animation_scene_runtime.sub_80E3CF4);
+        asm/text08057568.o(.text.after_80E3CF4);
+        src/script/animation_scene_runtime.o(.text.animation_scene_runtime.sub_80E3D1C);
+        asm/text08057568.o(.text.after_80E3D1C);
+        src/script/animation_scene_runtime.o(.text.animation_scene_runtime.sub_80E3D70);
+        asm/text08057568.o(.text.after_80E3D70);
+        src/script/animation_scene_runtime.o(.text.animation_scene_runtime.sub_80E3DA4);
+        asm/text08057568.o(.text.after_80E3DA4);
         src/runtime/global_state.o(.text.misc_helpers_01.sub_80E57FC);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80E57FC);
         src/runtime/global_state.o(.text.misc_helpers_02.sub_80E8D74);

@@ -259271,6 +259271,7 @@ _080E2EC8:
 	bx r0
 _080E2ED8: .4byte 0x0300034C
 	thumb_func_start sub_80E2EDC
+.if 0
 sub_80E2EDC:
 	push {lr}
 	adds r2, r0, #0x0
@@ -259287,6 +259288,8 @@ _080E2EEE:
 	pop {r0}
 	bx r0
 _080E2EF8: .4byte 0x08CDC2E8
+.endif
+	.section .text.after_80E2EDC, "ax", %progbits
 	.byte 0x70, 0xB5, 0x04, 0x1C, 0x1E, 0x1C, 0x04, 0x9D, 0x09, 0x06, 0x09, 0x0E, 0x36, 0xF7, 0x4E, 0xFD
 	.byte 0x0B, 0x48, 0xA0, 0x61, 0x00, 0x20, 0x20, 0x84, 0xE0, 0x61, 0x66, 0x84, 0x21, 0x1C, 0x24, 0x31
 	.byte 0x0F, 0x20, 0x05, 0x40, 0xC0, 0x20, 0x05, 0x43, 0x0D, 0x70, 0x01, 0x31, 0x05, 0x20, 0x08, 0x70
@@ -260995,6 +260998,7 @@ _080E3CE4:
 	pop {r0}
 	bx r0
 	thumb_func_start sub_80E3CF4
+.if 0
 sub_80E3CF4:
 	push {lr}
 	ldr r0, _080E3D10 @ =0x03000FD8
@@ -261016,7 +261020,10 @@ _080E3D16:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+.endif
+	.section .text.after_80E3CF4, "ax", %progbits
 	thumb_func_start sub_80E3D1C
+.if 0
 sub_80E3D1C:
 	push {lr}
 	add sp, #-0x010
@@ -261056,7 +261063,10 @@ _080E3D60: .4byte 0x03000FD8
 _080E3D64: .4byte 0x0000FFFF
 _080E3D68: .4byte 0x0300034C
 _080E3D6C: .4byte 0x00000884
+.endif
+	.section .text.after_80E3D1C, "ax", %progbits
 	thumb_func_start sub_80E3D70
+.if 0
 sub_80E3D70:
 	push {r4, lr}
 	ldr r4, _080E3D98 @ =0x03001034
@@ -261079,7 +261089,10 @@ sub_80E3D70:
 _080E3D98: .4byte 0x03001034
 _080E3D9C: .4byte 0x06004000
 _080E3DA0: .4byte 0x0600F000
+.endif
+	.section .text.after_80E3D70, "ax", %progbits
 	thumb_func_start sub_80E3DA4
+.if 0
 sub_80E3DA4:
 	push {lr}
 	bl sub_8082B00
@@ -261102,6 +261115,8 @@ _080E3DCA:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+.endif
+	.section .text.after_80E3DA4, "ax", %progbits
 	thumb_func_start sub_80E3DD0
 sub_80E3DD0:
 	push {r4, r5, r6, lr}

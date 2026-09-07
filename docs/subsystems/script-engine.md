@@ -151,6 +151,14 @@ script origin to its action or clears the update callback once that action is
 finished. The attachment flag bits and the two published display destinations
 remain structurally named because their higher-level consumers are not yet in C.
 
+The adjacent scene runtime now exposes its process teardown, layer query and
+configuration, VRAM clearing, and readiness polling as ordinary C. The layer
+record is represented by a narrow overlay containing only the two observed
+pointers. The optional record contributes its halfword at offset `0x0A` to the
+layer configuration call. The meanings of that halfword and the global word
+cleared by the configuration and readiness paths remain unresolved, so those
+fields retain offset-based names.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
