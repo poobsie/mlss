@@ -27,6 +27,8 @@ struct FieldDisplayRegisterProcess {
     u8 unknown00[4];
     void (*update)(struct FieldDisplayRegisterProcess* process);
     struct FieldDisplayRegisterOwner* owner;
+    u8 unknown0C[8];
+    s16 value14;
 };
 
 struct FieldDisplaySlideOwner {

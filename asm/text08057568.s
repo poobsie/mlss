@@ -332394,6 +332394,7 @@ _0810D684: .4byte sub_810D70C
 _0810D688: .4byte 0x0400001A
 _0810D68C: .4byte 0x0200001A
 _0810D690: .4byte 0x0200001E
+	.if 0
 	thumb_func_start sub_810D694
 sub_810D694:
 	push {r4, lr}
@@ -332419,6 +332420,9 @@ _0810D6B4:
 	.byte 0x00, 0x00
 _0810D6BC: .4byte 0x0200001A
 _0810D6C0: .4byte sub_810CEC0
+	.endif
+	.section .text.field_display_after_sub_810D694, "ax", %progbits
+	.if 0
 	thumb_func_start sub_810D6C4
 sub_810D6C4:
 	push {r4, lr}
@@ -332454,6 +332458,9 @@ _0810D704:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+	.section .text.field_display_after_sub_810D6C4, "ax", %progbits
+	.if 0
 	thumb_func_start sub_810D70C
 sub_810D70C:
 	ldr r3, _0810D72C @ =0x0400001A
@@ -332472,9 +332479,8 @@ sub_810D70C:
 	str r1, [r0, #0x04]
 	bx lr
 	.byte 0x00, 0x00
-_0810D72C: .4byte 0x0400001A
-_0810D730: .4byte 0x0200001A
-_0810D734: .4byte 0x0200001E
+	.endif
+	.section .text.misc_helpers_03_after_sub_810D70C, "ax", %progbits
 	thumb_func_start sub_810D738
 sub_810D738:
 	push {r4, r5, r6, r7, lr}

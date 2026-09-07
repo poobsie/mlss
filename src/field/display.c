@@ -163,6 +163,61 @@ SEC(sub_810D038) void sub_810D038(s32 value)
     sub_808520C(FIELD_RUNTIME->displayManager, 0, 7, 6, value, 0x91);
 }
 
+void sub_81092B8(void* context);
+void sub_810971C(void* context);
+
+struct FieldDisplayProgressState {
+    u8 unknown00[0x16];
+    s16 value16;
+};
+
+struct FieldDisplayProgressProcess {
+    u8 unknown00[4];
+    void (*update)(struct FieldDisplayProgressProcess* process);
+    u8 unknown08[4];
+    struct FieldDisplayProgressState* state0C;
+};
+
+SEC(sub_810D694)
+void sub_810D694(struct FieldDisplayProgressProcess* process)
+{
+    struct FieldDisplayProgressState* state = process->state0C;
+
+    state->value16 += 3;
+    if (state->value16 > *(volatile u16*)0x0200001A) {
+        state->value16 = *(volatile u16*)0x0200001A;
+        process->update = (void*)0x0810CEC1;
+    }
+}
+
+SEC(sub_810D6C4)
+void sub_810D6C4(void* context)
+{
+    s16* value = (s16*)((u8*)FIELD_RUNTIME + 0x314);
+
+    *value -= 0x400;
+    if (*value > 0) {
+        sub_810971C(context);
+    } else {
+        *value = 0;
+        sub_81092B8(context);
+        sub_810971C(context);
+    }
+}
+
+static const u16 sub_810D6C4_padding
+    __attribute__((section(".text.field_display.sub_810D6C4"))) = 0;
+
+MISC3_SEC(sub_810D70C)
+void sub_810D70C(struct FieldDisplayRegisterProcess* process)
+{
+    *(volatile u16*)0x0400001A =
+        *(volatile u16*)0x0200001A + process->value14;
+    *(volatile u16*)0x0400001E =
+        *(volatile u16*)0x0200001E + process->value14;
+    process->update = 0;
+}
+
 void field_release_display_processes_284_288(void)
     __attribute__((alias("sub_810C950")));
 void field_release_display_process_28c_and_layers_2_3(void)
