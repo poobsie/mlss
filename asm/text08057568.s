@@ -258198,6 +258198,7 @@ _080E1904: .4byte sub_80E1AB0
 	.section .text.script_transitions_after_animation_script_enter_4_byte_stream, "ax", %progbits
 	.section .text.script_transitions_after_animation_script_enter_command_stream, "ax", %progbits
 	thumb_func_start sub_80E195C
+	.if 0
 sub_80E195C:
 	push {r4, r5, r6, lr}
 	mov r12, r1
@@ -258237,7 +258238,10 @@ _080E19A0:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+	.section .text.after_80E195C, "ax", %progbits
 	thumb_func_start sub_80E19A8
+	.if 0
 sub_80E19A8:
 	push {r4, lr}
 	adds r4, r0, #0x0
@@ -258258,6 +258262,8 @@ _080E19C4:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+	.section .text.after_80E19A8, "ax", %progbits
 	thumb_func_start sub_80E19CC
 sub_80E19CC:
 	push {r4, lr}
@@ -258276,6 +258282,7 @@ sub_80E19CC:
 	.byte 0x00, 0x00
 _080E19E8: .4byte 0x0838F8B0
 	thumb_func_start sub_80E19EC
+	.if 0
 sub_80E19EC:
 	push {lr}
 	adds r2, r0, #0x0
@@ -258309,6 +258316,8 @@ _080E1A1A:
 	bx r0
 _080E1A24: .4byte 0x02000018
 _080E1A28: .4byte 0x0200001A
+	.endif
+	.section .text.after_80E19EC, "ax", %progbits
 	thumb_func_start sub_80E1A2C
 sub_80E1A2C:
 	push {r4, r5, r6, lr}
@@ -258369,6 +258378,7 @@ _080E1AA4: .4byte 0x00003EF0
 _080E1AA8: .4byte 0x04000040
 _080E1AAC: .4byte 0xA6600001
 	thumb_func_start sub_80E1AB0
+	.if 0
 sub_80E1AB0:
 	push {r4, r5, r6, lr}
 	add sp, #-0x004
@@ -258402,7 +258412,10 @@ _080E1AE6:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+	.section .text.after_80E1AB0, "ax", %progbits
 	thumb_func_start animation_script_update_4_byte_stream
+	.if 0
 animation_script_update_4_byte_stream:
 	push {r4, r5, r6, lr}
 	add sp, #-0x004
@@ -258447,6 +258460,8 @@ _080E1B38:
 	pop {r4, r5, r6}
 	pop {r0}
 	bx r0
+	.endif
+	.section .text.after_animation_script_update_4_byte_stream, "ax", %progbits
 	.byte 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0xA5, 0xB0, 0x07, 0x1C, 0x8A, 0x46
 	.byte 0x21, 0x92, 0x22, 0x93, 0x00, 0x20, 0x20, 0xA9, 0x08, 0x60, 0x00, 0x22, 0x89, 0x46, 0x21, 0x98
 	.byte 0x82, 0x42, 0x4E, 0xDA, 0x69, 0x46, 0x23, 0x91, 0x11, 0x01, 0x53, 0x46, 0xC8, 0x18, 0x05, 0x68

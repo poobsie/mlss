@@ -2087,6 +2087,16 @@ SECTIONS
         asm/text08057568.o(.text.script_transitions_after_animation_script_enter_4_byte_stream);
         src/script/animation_transitions.o(.text.script_transitions.animation_script_enter_command_stream);
         asm/text08057568.o(.text.script_transitions_after_animation_script_enter_command_stream);
+        src/script/animation_runtime.o(.text.animation_runtime.sub_80E195C);
+        asm/text08057568.o(.text.after_80E195C);
+        src/script/animation_runtime.o(.text.animation_runtime.sub_80E19A8);
+        asm/text08057568.o(.text.after_80E19A8);
+        src/script/animation_runtime.o(.text.animation_runtime.sub_80E19EC);
+        asm/text08057568.o(.text.after_80E19EC);
+        src/script/animation_runtime.o(.text.animation_runtime.sub_80E1AB0);
+        asm/text08057568.o(.text.after_80E1AB0);
+        src/script/animation_runtime.o(.text.animation_runtime.animation_script_update_4_byte_stream);
+        asm/text08057568.o(.text.after_animation_script_update_4_byte_stream);
         src/runtime/global_state.o(.text.misc_helpers_01.sub_80E57FC);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80E57FC);
         src/runtime/global_state.o(.text.misc_helpers_02.sub_80E8D74);

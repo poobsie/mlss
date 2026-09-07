@@ -139,6 +139,18 @@ The execution state now exposes the saved cursor at offset `0x14`. Three wait ha
 
 The runtime-slot dispatcher now shares a typed 16-byte slot layout with its hide operation. The layout establishes the owned sprite pointer, identifier, delayed-hide timer, and active byte. Coordinate and timer maintenance remain in assembly because the current compiler shapes do not reproduce them exactly; the slots' gameplay identity is still unresolved.
 
+The animation runtime now exposes the ordinary state maintenance around the
+stream interpreters. `animation_attachment_flush_pending` consumes the pending
+command and argument from an attachment owner, clears both slots, and dispatches
+the command only while the observed attachment flag group is active.
+`animation_script_tick_terminal_wait` counts down the terminal wait and clears
+the update callback after committing the shared runtime value.
+`animation_offset_update` advances two fixed-point display offsets and publishes
+their integer components. `animation_script_apply_origin` either applies the
+script origin to its action or clears the update callback once that action is
+finished. The attachment flag bits and the two published display destinations
+remain structurally named because their higher-level consumers are not yet in C.
+
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
