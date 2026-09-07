@@ -2700,10 +2700,16 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8122BA0);
         src/runtime/global_state.o(.text.upper.sub_8123340);
         asm/text08057568.o(.text.after_upper_sub_8123340);
+        src/runtime/indexed_table.o(.text.indexed_table.sub_812335C);
+        asm/text08057568.o(.text.indexed_table_after_sub_812335C);
         src/save/profile.o(.text.text_upper_singletons.sub_81251DC);
         asm/text08057568.o(.text.after_text_upper_singletons_sub_81251DC);
         src/audio/music.o(.text.field_music.sub_8125220);
         asm/text08057568.o(.text.field_graphics_block_after_sub_8125220);
+        src/audio/music.o(.text.field_music.sub_81252BC);
+        asm/text08057568.o(.text.field_music_after_sub_81252BC);
+        src/screens/indexed_work_screen.o(.text.indexed_work_screen.sub_8125464);
+        asm/text08057568.o(.text.indexed_work_screen_after_sub_8125464);
         src/process/definition_initializers.o(.text.upper.tld_init_8127A94);
         asm/text08057568.o(.text.after_upper_tld_init_8127A94);
         src/screens/runtime_helpers.o(.text.upper.sub_8127AB0);

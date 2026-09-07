@@ -60,3 +60,23 @@ void field_resume_selected_music_channels(
     }
 }
 FIELD_MUSIC_SEC(sub_8125220) const u16 sub_8125220_padding = 0;
+
+FIELD_MUSIC_SEC(sub_81252BC)
+u8 field_capture_music_channels(u8* songIds, u32 fadeDuration)
+{
+    u8 playingChannels = 0;
+
+    if ((u8)music_is_playing(0) == 1)
+        playingChannels = 1;
+
+    songIds[0] = gMusicState.songIds[0];
+    fadeDuration = (u8)fadeDuration;
+    music_set_volume(0, 0, fadeDuration);
+
+    if ((u8)music_is_playing(1) == 1)
+        playingChannels |= 2;
+
+    songIds[1] = gMusicState.songIds[1];
+    music_set_volume(1, 0, fadeDuration);
+    return playingChannels;
+}

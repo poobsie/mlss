@@ -19,4 +19,7 @@ void music_resume(int player, int volume, u8 fadeDuration);
 void field_resume_selected_music_channels(
     u8 channelMask, u32 unused, u8 volume);
 
+#define field_capture_music_channels sub_81252BC
+u8 field_capture_music_channels(u8* songIds, u32 fadeDuration);
+
 #endif
