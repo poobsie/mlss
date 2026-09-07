@@ -25,6 +25,7 @@ SWI = re.compile(r"^\s*swi\s+", re.MULTILINE)
 REGISTER_TRAMPOLINE = re.compile(
     r"^\s*bx\s+r(?:1[0-5]|[0-9])\s*(?:@.*)?$", re.MULTILINE
 )
+DISCARD_SECTION = re.compile(r"^\s*\.section\s+\.discard(?:\.|\s|$)", re.MULTILINE)
 INSTRUCTION = re.compile(r"^\s*([a-z][a-z0-9.]*)\s+", re.MULTILINE)
 DISABLED_IF = re.compile(r"^\s*\.if\s+0(?:\s|$)")
 ASSEMBLER_IF = re.compile(r"^\s*\.if(?:n?def|c|nc|eq|ne|gt|ge|lt|le|b|nb)?(?:\s|$)")
@@ -128,6 +129,7 @@ def discover(map_path: Path, assembly: list[Path]) -> list[Candidate]:
             address = block_addresses[index]
             if address is None:
                 continue
+            block_shape = shape(block)
             next_addresses = [item for item in block_addresses[index + 1:] if item is not None and item > address]
             if next_addresses:
                 boundary = min(next_addresses)
@@ -138,11 +140,12 @@ def discover(map_path: Path, assembly: list[Path]) -> list[Candidate]:
                 name not in addresses
                 or SWI.search(block)
                 or REGISTER_TRAMPOLINE.search(block)
+                or DISCARD_SECTION.search(block)
+                or not block_shape
                 or name.startswith(("_call_via_", "__"))
             ):
                 continue
             parsed.append((path, name, mode, start, end, block, address, boundary))
-            block_shape = shape(block)
             shape_counts[block_shape] = shape_counts.get(block_shape, 0) + 1
 
     candidates: list[Candidate] = []

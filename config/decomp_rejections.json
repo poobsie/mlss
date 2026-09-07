@@ -86,11 +86,46 @@
       "required_evidence": "a source form that retains one table base in r3 and reconstructs the base-plus-two return"
     },
     {
+      "symbol": "sub_80E3FD8",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "copy-extent folding and register/literal layout",
+      "required_evidence": "a source form that preserves the reference copy extent and r4/r5 register lifetimes"
+    },
+    {
+      "symbol": "sub_80E8E78",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "final coordinate register allocation",
+      "required_evidence": "a recovered slot type or source form that changes final coordinate register lifetime"
+    },
+    {
+      "symbol": "sub_80E8EA0",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "slot-owner caching and reload shape",
+      "required_evidence": "a recovered owner interface that changes compiler caching and reload behavior"
+    },
+    {
       "symbol": "sub_80EA940",
       "status": "deferred",
       "attempts": 1,
       "mismatch_class": "compiler layout and downstream section-boundary shift",
       "required_evidence": "a second evidence-backed source shape that preserves the reference layout"
+    },
+    {
+      "symbol": "sub_80F7D80",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "register allocation and literal-pool placement",
+      "required_evidence": "a recovered structure or source form that changes register lifetimes and literal placement"
+    },
+    {
+      "symbol": "sub_80F7ED0",
+      "status": "exhausted",
+      "attempts": 2,
+      "mismatch_class": "register allocation and section-boundary placement",
+      "required_evidence": "a recovered interface or source form that changes register allocation without shifting the boundary"
     },
     {
       "symbol": "sub_8134AA8",

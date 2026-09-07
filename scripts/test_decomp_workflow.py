@@ -17,6 +17,7 @@ from decomp_workflow import (
     render_packet,
     token_count,
     REGISTER_TRAMPOLINE,
+    DISCARD_SECTION,
 )
 
 
@@ -24,6 +25,11 @@ class DecompWorkflowTest(unittest.TestCase):
     def test_register_trampolines_are_not_ranked_as_c_candidates(self):
         self.assertIsNotNone(REGISTER_TRAMPOLINE.search("\tbx r7\n"))
         self.assertIsNone(REGISTER_TRAMPOLINE.search("\tbx lr\n"))
+
+    def test_discarded_reference_bodies_are_not_ranked(self):
+        self.assertIsNotNone(
+            DISCARD_SECTION.search("\t.section .discard.exact_reference, \"ax\"\n")
+        )
 
     @classmethod
     def setUpClass(cls):
@@ -34,6 +40,9 @@ class DecompWorkflowTest(unittest.TestCase):
         candidate, block = candidate_by_name(self.candidate.name, ROOT / "mlss.map")
         self.assertGreater(candidate.size, 0)
         self.assertFalse(SWI.search(block))
+
+    def test_scanner_omits_disabled_already_linked_function(self):
+        self.assertNotIn("sub_80E9310", {item.name for item in self.candidates})
 
     def test_packet_contains_exact_rom_bytes(self):
         candidate, _ = candidate_by_name(self.candidate.name, ROOT / "mlss.map")
