@@ -732,3 +732,10 @@ state helpers, and clears `valueF0` when `valueF4` is at most five. These fields
 and the neighboring signed `valueF6` retain structural names until their gameplay
 meaning is established. Existing accesses into that formerly unknown byte range
 now use the named halfword without changing its position.
+
+`sub_8132EE0` and `sub_8061830` decrement the object's 16-bit timer and
+dispatch animations six and seven when the signed low halfword is nonpositive.
+The latter first invokes the existing object-state helper `sub_80614B4`.
+They install `sub_8132678` and `sub_808750C` respectively as the next callback.
+The decrement and shift use unsigned arithmetic to preserve wraparound without
+signed-shift overflow. Their gameplay identities remain unresolved.

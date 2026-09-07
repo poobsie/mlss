@@ -62,3 +62,24 @@ DEFINE_PREDECREMENT_TIMER_TRANSITION(object_countdown_then_animation_5_variant_a
                                      5, sub_808A3C4)
 DEFINE_PREDECREMENT_TIMER_TRANSITION(object_countdown_then_animation_5_variant_b,
                                      5, sub_808A27C)
+
+__attribute__((section(".text.timer_callbacks.sub_8132EE0")))
+void sub_8132EE0(struct RuntimeObject* object) {
+    u32 remaining = (u16)object->timer - 1U;
+    object->timer = remaining;
+    if ((s32)(remaining << 16) <= 0) {
+        sub_8082E1C(object, 6, 0, 0);
+        object->update = sub_8132678;
+    }
+}
+__attribute__((section(".text.timer_callbacks.sub_8061830")))
+void sub_8061830(struct RuntimeObject* object) {
+    u32 remaining;
+    sub_80614B4(object);
+    remaining = (u16)object->timer - 1U;
+    object->timer = remaining;
+    if ((s32)(remaining << 16) <= 0) {
+        sub_8082E1C(object, 7, 0, 0);
+        object->update = sub_808750C;
+    }
+}

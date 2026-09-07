@@ -370,6 +370,8 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_01_after_sub_8061480);
         src/object/state_completion_motion.o(.text.misc_helpers_03.sub_80614B4);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80614B4);
+        src/object/countdown_transitions.o(.text.timer_callbacks.sub_8061830);
+        asm/text08057568.o(.text.after_sub_8061830);
         src/object/fixed_visual_transitions.o(.text.misc_helpers_03.sub_8061F3C);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8061F3C);
         src/object/fixed_visual_transitions.o(.text.misc_helpers_03.sub_8061FC8);
@@ -2784,6 +2786,8 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8132E0C);
         src/object/late_command_transitions.o(.text.text_late_helpers.sub_8132E34);
         asm/text08057568.o(.text.after_upper_sub_8132E34);
+        src/object/countdown_transitions.o(.text.timer_callbacks.sub_8132EE0);
+        asm/text08057568.o(.text.after_sub_8132EE0);
         src/object/late_command_transitions.o(.text.text_late_helpers.sub_81332BC);
         asm/text08057568.o(.text.after_text_late_helpers_sub_81332BC);
         src/object/late_command_transitions.o(.text.text_late_helpers.sub_81333D8);
