@@ -2728,6 +2728,10 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_8127E38);
         src/field/graphics_block.o(.text.field_graphics_block.sub_8127E50);
         asm/text08057568.o(.text.field_graphics_block_after_sub_8127E50);
+        src/graphics/indexed_blob.o(.text.graphics_indexed_blob.sub_8127ECC);
+        asm/text08057568.o(.text.graphics_indexed_blob_after_sub_8127ECC);
+        src/screens/indexed_work_view.o(.text.indexed_work_view.sub_8127FC4);
+        asm/text08057568.o(.text.indexed_work_view_after_sub_8127FC4);
         src/screens/runtime_helpers.o(.text.upper.sub_812A888);
         asm/text08057568.o(.text.after_upper_sub_812A888);
         src/screens/runtime_helpers.o(.text.upper.sub_812A8AC);

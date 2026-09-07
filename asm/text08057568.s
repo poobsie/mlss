@@ -370401,6 +370401,7 @@ _08127EC4: .4byte 0x08210F64
 _08127EC8: .4byte 0x03000C84
 	.endif
 	.section .text.field_graphics_block_after_sub_8127E50, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8127ECC
 sub_8127ECC:
 	push {r4, lr}
@@ -370425,6 +370426,8 @@ _08127EEA:
 	bx r1
 	.byte 0x00, 0x00
 _08127EF4: .4byte 0x08A57994
+	.endif
+	.section .text.graphics_indexed_blob_after_sub_8127ECC, "ax", %progbits
 	thumb_func_start sub_8127EF8
 sub_8127EF8:
 	push {r4, r5, r6, lr}
@@ -370516,6 +370519,7 @@ _08127FB4: .4byte 0x0000084C
 _08127FB8: .4byte 0x08210F6C
 _08127FBC: .4byte 0x08CDC3E8
 _08127FC0: .4byte 0x08210F74
+	.if 0
 	thumb_func_start sub_8127FC4
 sub_8127FC4:
 	push {r4, r5, lr}
@@ -370581,6 +370585,8 @@ _08128032:
 _08128040: .4byte 0x08CDC3D8
 _08128044: .4byte 0x0300034C
 _08128048: .4byte 0x00000888
+	.endif
+	.section .text.indexed_work_view_after_sub_8127FC4, "ax", %progbits
 	thumb_func_start sub_812804C
 sub_812804C:
 	push {r4, r5, r6, r7, lr}

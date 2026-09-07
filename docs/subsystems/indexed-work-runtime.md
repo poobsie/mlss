@@ -21,3 +21,14 @@ each global song identifier is retained.
 resource loader, buffer, auxiliary object, and child process before removing
 the screen itself. The process definition address is retained because the
 screen class has not yet been identified by a stable game-facing name.
+
+`graphics_get_indexed_blob` resolves an entry from the relative-offset table at
+`0x08A57994`. Callers may request the entry length, which is derived from the
+next table offset. The table's container format is established, but the blob
+payload type is not, so the API deliberately returns an opaque pointer.
+
+`indexed_work_view_destroy` is the teardown path for the related view process.
+It clears the same work-header halfwords and display flags, then releases its
+resource loader, owned buffer, auxiliary object, and child process. Its typed
+layout records the proven ownership fields while leaving the unexamined state
+between offsets `0x28` and `0xC8` opaque.
