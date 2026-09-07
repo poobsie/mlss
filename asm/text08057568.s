@@ -331850,6 +331850,7 @@ _0810D206:
 	.byte 0x00, 0x00
 _0810D220: .4byte 0x03000FD8
 _0810D224: .4byte 0x00007001
+	.if 0
 	thumb_func_start sub_810D228
 sub_810D228:
 	push {r4, lr}
@@ -331879,6 +331880,8 @@ sub_810D228:
 	bx r0
 	.byte 0x00, 0x00
 _0810D25C: .4byte 0x03000FD8
+	.endif
+	.section .text.field_display_after_sub_810D228, "ax", %progbits
 	.if 0
 	thumb_func_start sub_810D260
 sub_810D260:
@@ -332283,6 +332286,7 @@ _0810D572:
 	pop {r1}
 	bx r1
 _0810D578: .4byte sub_810D6C4
+	.if 0
 	thumb_func_start sub_810D57C
 sub_810D57C:
 	push {lr}
@@ -332341,6 +332345,8 @@ _0810D5EE:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+	.section .text.misc_helpers_03_after_sub_810D57C, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_810D5F4, "ax", %progbits
 	thumb_func_start sub_810D624
 sub_810D624:

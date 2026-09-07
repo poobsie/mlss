@@ -166,6 +166,51 @@ SEC(sub_810D038) void sub_810D038(s32 value)
 void sub_81092B8(void* context);
 void sub_810971C(void* context);
 
+SEC(sub_810D228)
+void sub_810D228(s32 x, s32 y, s32 z)
+{
+    u8* state = *(u8**)((u8*)FIELD_RUNTIME + 0x278);
+
+    *(u32*)(state + 0x84) = (u32)x << 8;
+    *(u32*)(state + 0x10) = (u32)x << 8;
+    *(u32*)(state + 0x88) = (u32)y << 8;
+    *(u32*)(state + 0x14) = (u32)y << 8;
+    *(u32*)(state + 0x8C) = (u32)z << 8;
+    *(u32*)(state + 0x18) = (u32)z << 8;
+}
+
+void sub_8108F14(s32 value);
+
+struct FieldDisplayGlobalFlags {
+    u8 unknown00[0x3E];
+    u16 flags3E;
+};
+
+#define DISPLAY_GLOBAL_FLAGS \
+    (*(volatile struct FieldDisplayGlobalFlags*)0x0300034C)
+
+MISC3_SEC(sub_810D57C)
+void sub_810D57C(void)
+{
+    if (DISPLAY_GLOBAL_FLAGS.flags3E & 1) {
+        u8* state = *(u8**)((u8*)FIELD_RUNTIME + 0x80) + 0xEC;
+        if (*(s16*)state == -1)
+            sub_8108F14(0);
+        else
+            sub_8108F14(1);
+    }
+    if (DISPLAY_GLOBAL_FLAGS.flags3E & 2) {
+        u8* state = *(u8**)((u8*)FIELD_RUNTIME + 0x80) + 0xEC;
+        if (*(s16*)state == -2)
+            sub_8108F14(0);
+        else
+            sub_8108F14(1);
+    }
+}
+
+static const u16 sub_810D57C_padding
+    __attribute__((section(".text.misc_helpers_03.sub_810D57C"))) = 0;
+
 struct FieldDisplayProgressState {
     u8 unknown00[0x16];
     s16 value16;

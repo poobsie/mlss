@@ -162,13 +162,15 @@ nonpositive duration, clamps the requested step to the transition interval, and
 uses the relocated signed-division routine to calculate the current blend
 coefficient.
 
-The display register lifecycle around `0x0810D694` is now typed through the
-existing display runtime. `sub_810D694` advances a nested progress value and
-switches its update callback at the vertical limit, `sub_810D6C4` decrements
-the runtime delay and dispatches the zero case, and `sub_810D70C` publishes the
-stored offset to the two display registers before stopping the process. The
-adjacent `sub_810D624` remains assembly because two ordinary-C shapes still
-miss its four-byte compiler layout difference.
+The display register lifecycle around `0x0810D57C` is now typed through the
+existing display runtime. `sub_810D57C` dispatches the two display-edge flag
+cases, `sub_810D694` advances a nested progress value and switches its update
+callback at the vertical limit, `sub_810D6C4` decrements the runtime delay and
+dispatches the zero case, and `sub_810D70C` publishes the stored offset to the
+two display registers before stopping the process. `sub_810D228` updates the
+fixed-point coordinates of the active display state. The adjacent
+`sub_810D624` remains assembly because two ordinary-C shapes still miss its
+four-byte compiler layout difference.
 
 ## Verification
 
