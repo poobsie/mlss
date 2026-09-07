@@ -2903,6 +2903,8 @@ SECTIONS
         asm/text08057568.o(.text.state_field_helpers_after_sub_8150E2C);
         src/graphics/circular_mask.o(.text.state_field_helpers.sub_8150E38);
         asm/text08057568.o(.text.state_field_helpers_after_sub_8150E38);
+        src/graphics/circular_mask.o(.text.sub_8150E44);
+        asm/text08057568.o(.text.after_sub_8150E44);
         src/runtime/compact_leaves.o(.text.runtime_compact.sub_8150EFC);
         asm/text08057568.o(.text.after_8150EFC);
         src/battle/resource_destructors.o(.text.battle_resource_destructors.sub_8150F60);

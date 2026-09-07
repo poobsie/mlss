@@ -175,3 +175,7 @@ four-byte compiler layout difference.
 ## Verification
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
+`sub_8150E44` writes the circular mask's value at `0x18` and sets the low
+halfword of `value1C` to one when flag `0x20` is clear. The upper halfword is
+preserved. The flag's gameplay meaning and the requested value's units remain
+unknown, so the original function symbol and structural field names are retained.

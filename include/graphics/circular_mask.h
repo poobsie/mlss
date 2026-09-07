@@ -13,7 +13,9 @@ struct CircularMask {
     s32 screenOffsetY;
     s32 centerOffsetX;
     s32 centerOffsetY;
-    u8 unknown14[8];
+    u8 unknown14[4];
+    s16 value18;
+    u8 unknown1A[2];
     s32 value1C;
     u32 value20;
     u8 unknown24[8];
@@ -38,5 +40,7 @@ s32 circular_mask_get_value_1c(struct CircularMask* mask);
 void circular_mask_disable(struct CircularMask* mask);
 void circular_mask_enable(struct CircularMask* mask);
 void circular_mask_set_value(struct CircularMask* mask, s16 value);
+
+void sub_8150E44(struct CircularMask* mask, s32 value);
 
 #endif

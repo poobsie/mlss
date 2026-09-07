@@ -67,3 +67,15 @@ const u16 circular_mask_set_value_padding = 0;
 
 __attribute__((section(".text.state_field_helpers.sub_8150E38")))
 const u16 circular_mask_enable_padding = 0;
+
+void sub_8150E44(struct CircularMask* mask, s32 value)
+    __attribute__((section(".text.sub_8150E44")));
+void sub_8150E44(struct CircularMask* mask, s32 value) {
+    if (!(0x20 & mask->flags)) {
+        /* This setter changes only the low halfword of the shared state word. */
+        *(s16*)&mask->value1C = 1;
+        mask->value18 = value;
+    }
+}
+__attribute__((section(".text.sub_8150E44")))
+const u16 sub_8150E44_padding = 0;

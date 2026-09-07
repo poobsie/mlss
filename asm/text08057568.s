@@ -440503,6 +440503,7 @@ sub_8150DF0:
 	.byte 0x22, 0xFF, 0x02, 0xB0, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
 	.section .text.state_field_helpers_after_sub_8150E2C, "ax", %progbits
 	.section .text.state_field_helpers_after_sub_8150E38, "ax", %progbits
+.if 0
 	thumb_func_start sub_8150E44
 sub_8150E44:
 	push {lr}
@@ -440520,6 +440521,8 @@ _08150E5A:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+.endif
+.section .text.after_sub_8150E44, "ax", %progbits
 	thumb_func_start sub_8150E60
 sub_8150E60:
 	push {r4, lr}
