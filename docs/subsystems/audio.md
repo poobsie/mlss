@@ -76,3 +76,8 @@ The exact purpose of those two enable bits and the final setup routine is not ye
 The rebuilt 112-byte range from `0x08019588` through `0x080195F7`, including the preceding helper and required alignment, matches the reference ROM byte for byte. Its SHA-1 is `aaa68c7b1729cdc6b6dbe1a8c23e237afcaf8d8d`.
 
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
+
+`sub_819BA10` packs the shifted command, argument, and `0x8000` flag into a
+16-bit driver command and returns the command queue result. The specific command
+meaning remains unknown. Unsigned inputs preserve the defined shift operation;
+the wide constant intermediate retains the original register allocation.

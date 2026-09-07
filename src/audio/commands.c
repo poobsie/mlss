@@ -1,8 +1,8 @@
 #include "audio/driver.h"
+#include "audio/driver_state.h"
 
 #define SEC(name) __attribute__((section(".text.high." #name)))
 
-u32 sub_819B418(u16 command);
 
 SEC(sub_819B970) u32 sub_819B970(u32 command, u32 argument)
 {
@@ -39,3 +39,10 @@ PAD(sub_819B970);
 PAD(sub_819B9D0);
 PAD(sub_819B9E8);
 PAD(sub_819BA00);
+
+SEC(sub_819BA10) u32 sub_819BA10(u32 command, u32 argument)
+{
+    /* The wide intermediate preserves the original constant-register copy. */
+    long long bits = 0xFFFF8000;
+    return sub_819B418((u16)((command << 8) | bits | argument));
+}

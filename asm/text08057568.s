@@ -565525,6 +565525,7 @@ _0819B9CC: .4byte 0xFFFF9000
 	.section .text.high_after_sub_819B9D0, "ax", %progbits
 	.section .text.high_after_sub_819B9E8, "ax", %progbits
 	.section .text.high_after_sub_819BA00, "ax", %progbits
+.if 0
 	thumb_func_start sub_819BA10
 sub_819BA10:
 	push {lr}
@@ -565539,6 +565540,8 @@ sub_819BA10:
 	pop {r1}
 	bx r1
 _0819BA28: .4byte 0xFFFF8000
+.endif
+.section .text.after_sub_819BA10, "ax", %progbits
 	thumb_func_start sub_819BA2C
 sub_819BA2C:
 	push {r4, r5, r6, r7, lr}

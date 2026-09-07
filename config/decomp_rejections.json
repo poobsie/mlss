@@ -364,13 +364,6 @@
       "attempts": 2,
       "mismatch_class": "command-mask literal folding",
       "required_evidence": "a source construct that preserves the reference 0x9000 literal-load sequence"
-    },
-    {
-      "symbol": "sub_819BA10",
-      "status": "exhausted",
-      "attempts": 2,
-      "mismatch_class": "command-mask literal folding",
-      "required_evidence": "a source construct that preserves the reference 0x8000 literal-load sequence"
     }
   ]
 }

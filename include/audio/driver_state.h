@@ -39,4 +39,6 @@ void sub_819B2E0(void);
 #define audio_driver_initialize_sound_hardware sub_819A928
 #define audio_driver_initialize_state sub_819AFA8
 
+u32 sub_819BA10(u32 command, u32 argument);
+
 #endif

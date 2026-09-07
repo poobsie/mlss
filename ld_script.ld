@@ -3827,6 +3827,8 @@ SECTIONS
         asm/text08057568.o(.text.high_after_sub_819B9E8);
         src/audio/commands.o(.text.high.sub_819BA00);
         asm/text08057568.o(.text.high_after_sub_819BA00);
+        src/audio/commands.o(.text.high.sub_819BA10);
+        asm/text08057568.o(.text.after_sub_819BA10);
         src/runtime/high_definitions.o(.text.high.sub_81DA85C);
         asm/text08057568.o(.text.high_after_sub_81DA85C);
         src/runtime/noop_callbacks.o(.text.nullsub_5);
