@@ -1,4 +1,5 @@
 #include "global.h"
+#include "audio/sound_effects.h"
 #include "object/functions.h"
 #include "object/runtime_object.h"
 
@@ -81,5 +82,16 @@ void sub_8061830(struct RuntimeObject* object) {
     if ((s32)(remaining << 16) <= 0) {
         sub_8082E1C(object, 7, 0, 0);
         object->update = sub_808750C;
+    }
+}
+
+__attribute__((section(".text.timer_callbacks.sub_8132EA8")))
+void sub_8132EA8(struct RuntimeObject* object) {
+    u32 remaining = (u16)object->timer - 1U;
+    object->timer = remaining;
+    if ((s32)(remaining << 16) <= 0) {
+        sub_8082E1C(object, 10, 0, 0);
+        sound_effect_play(0x9F, -1);
+        object->update = sub_8132818;
     }
 }

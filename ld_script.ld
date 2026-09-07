@@ -2792,6 +2792,8 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8132E0C);
         src/object/late_command_transitions.o(.text.text_late_helpers.sub_8132E34);
         asm/text08057568.o(.text.after_upper_sub_8132E34);
+        src/object/countdown_transitions.o(.text.timer_callbacks.sub_8132EA8);
+        asm/text08057568.o(.text.after_sub_8132EA8);
         src/object/countdown_transitions.o(.text.timer_callbacks.sub_8132EE0);
         asm/text08057568.o(.text.after_sub_8132EE0);
         src/object/late_command_transitions.o(.text.text_late_helpers.sub_81332BC);

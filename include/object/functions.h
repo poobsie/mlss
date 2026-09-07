@@ -358,4 +358,7 @@ void sub_8061830(struct RuntimeObject* object);
 void sub_80614B4(struct RuntimeObject* object);
 void sub_8132678(struct RuntimeObject* object);
 
+void sub_8132EA8(struct RuntimeObject* object);
+void sub_8132818(struct RuntimeObject* object);
+
 #endif

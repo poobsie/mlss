@@ -739,3 +739,8 @@ The latter first invokes the existing object-state helper `sub_80614B4`.
 They install `sub_8132678` and `sub_808750C` respectively as the next callback.
 The decrement and shift use unsigned arithmetic to preserve wraparound without
 signed-shift overflow. Their gameplay identities remain unresolved.
+
+`sub_8132EA8` extends the same timer-callback family: on a nonpositive
+signed timer result it starts animation ten, plays sound `0x9F` at unchanged
+volume, and installs `sub_8132818`. Its decrement and shift use unsigned
+arithmetic, preserving the original 16-bit wraparound behavior.
