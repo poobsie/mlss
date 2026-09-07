@@ -12580,6 +12580,7 @@ _08021FCC:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+.if 0
 	thumb_func_start sub_8021FD4
 sub_8021FD4:
 	push {lr}
@@ -12597,6 +12598,8 @@ _08021FE2:
 	bx r0
 _08021FF0: .4byte 0x0203FFB8
 _08021FF4: .4byte 0x03000D74
+.endif
+.section .text.after_sub_8021FD4, "ax", %progbits
 	thumb_func_start init_fldm_8021FF8
 init_fldm_8021FF8: @ 08021FF8
 	push {r4, r5, r6, r7, lr}

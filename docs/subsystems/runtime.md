@@ -81,3 +81,8 @@ active. The group remains generic because the paired initializers are still in
 assembly. A separate upper-runtime leaf follows the proven owner pointer at offset
 `0x310` and writes value `0x241` to its node halfword at offset `0x18`; those fields
 remain structural until the node's consumers establish their payload meaning.
+
+`sub_8021FD4` releases the allocation stored in the existing global structure's
+`field_3C` when nonzero, calls `sub_80208F4`, then clears the word at `0x03000D74`.
+It does not clear the allocation field itself. The follow-up routine and cleared
+word retain unknown meanings. The canonical allocator receives the actual pointer.

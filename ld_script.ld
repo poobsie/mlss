@@ -97,6 +97,8 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_code_helpers_801DC38);
         src/graphics/sprite_heap.o(.text.sub_80208E0);
         asm/text0801A548.o(.text.after_80208E0);
+        src/runtime/resource_release.o(.text.sub_8021FD4);
+        asm/text0801A548.o(.text.after_sub_8021FD4);
         src/battle/control_flags.o(.text.early_code_helpers.sub_8028E4C);
         asm/text0801A548.o(.text.after_early_code_helpers_8028E4C);
         src/battle/control_flags.o(.text.sub_8028E70);
