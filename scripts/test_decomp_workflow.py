@@ -12,6 +12,7 @@ from decomp_workflow import (
     discover,
     family_candidates,
     git_tracked_assembly,
+    has_nonstandard_c_abi,
     parse_rejections,
     m2c_draft,
     render_packet,
@@ -25,6 +26,20 @@ class DecompWorkflowTest(unittest.TestCase):
     def test_register_trampolines_are_not_ranked_as_c_candidates(self):
         self.assertIsNotNone(REGISTER_TRAMPOLINE.search("\tbx r7\n"))
         self.assertIsNone(REGISTER_TRAMPOLINE.search("\tbx lr\n"))
+
+    def test_nonstandard_abi_helpers_are_not_normal_candidates(self):
+        self.assertTrue(
+            has_nonstandard_c_abi("\tmov r12, lr\n\tbl helper\n\tbx r12\n")
+        )
+        self.assertTrue(
+            has_nonstandard_c_abi(
+                "\tthumb_func_start outer\nouter:\n"
+                "\tnon_word_aligned_thumb_func_start inner\ninner:\n\tbx lr\n"
+            )
+        )
+        self.assertFalse(
+            has_nonstandard_c_abi("\tpush {lr}\n\tbl helper\n\tpop {r0}\n\tbx r0\n")
+        )
 
     def test_discarded_reference_bodies_are_not_ranked(self):
         self.assertIsNotNone(
@@ -43,6 +58,11 @@ class DecompWorkflowTest(unittest.TestCase):
 
     def test_scanner_omits_disabled_already_linked_function(self):
         self.assertNotIn("sub_80E9310", {item.name for item in self.candidates})
+
+    def test_scanner_omits_known_nonstandard_abi_shapes(self):
+        names = {item.name for item in self.candidates}
+        self.assertNotIn("sub_8F6D634", names)
+        self.assertNotIn("sub_8F6D6C0", names)
 
     def test_packet_contains_exact_rom_bytes(self):
         candidate, _ = candidate_by_name(self.candidate.name, ROOT / "mlss.map")

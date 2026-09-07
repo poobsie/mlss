@@ -25,6 +25,10 @@ SWI = re.compile(r"^\s*swi\s+", re.MULTILINE)
 REGISTER_TRAMPOLINE = re.compile(
     r"^\s*bx\s+r(?:1[0-5]|[0-9])\s*(?:@.*)?$", re.MULTILINE
 )
+INTERIOR_THUMB_ENTRY = re.compile(
+    r"^\s*non_word_aligned_thumb_func_start\s+\S+", re.MULTILINE
+)
+LR_IN_R12 = re.compile(r"^\s*mov\s+r12,\s*lr\s*(?:@.*)?$", re.MULTILINE)
 
 
 def is_register_trampoline(block: str) -> bool:
@@ -38,6 +42,13 @@ def is_register_trampoline(block: str) -> bool:
             continue
         instructions.append(code)
     return len(instructions) == 1 and bool(REGISTER_TRAMPOLINE.fullmatch(instructions[0]))
+
+
+def has_nonstandard_c_abi(block: str) -> bool:
+    """Reject assembly helpers whose entry/return contract ordinary C cannot express."""
+    return bool(INTERIOR_THUMB_ENTRY.search(block) or (LR_IN_R12.search(block) and CALL.search(block)))
+
+
 DISCARD_SECTION = re.compile(r"^\s*\.section\s+\.discard(?:\.|\s|$)", re.MULTILINE)
 INSTRUCTION = re.compile(r"^\s*([a-z][a-z0-9.]*)\s+", re.MULTILINE)
 DISABLED_IF = re.compile(r"^\s*\.if\s+0(?:\s|$)")
@@ -153,6 +164,7 @@ def discover(map_path: Path, assembly: list[Path]) -> list[Candidate]:
                 name not in addresses
                 or SWI.search(block)
                 or is_register_trampoline(block)
+                or has_nonstandard_c_abi(block)
                 or DISCARD_SECTION.search(block)
                 or not block_shape
                 or name.startswith(("_call_via_", "__"))
@@ -246,11 +258,6 @@ def selected_candidates(args: argparse.Namespace) -> list[Candidate]:
         raise SystemExit(f"Missing {map_path}. Build the project first.")
     assembly = [ROOT / args.asm] if args.asm else git_tracked_assembly()
     candidates = discover(map_path, assembly)
-    family_name = getattr(args, "family", None)
-    if family_name:
-        candidates = family_candidates(
-            candidates, family_name, getattr(args, "family_size", 20)
-        )
     rejected_names, rejected_addresses = rejected_candidates()
     candidates = [
         item
@@ -258,8 +265,11 @@ def selected_candidates(args: argparse.Namespace) -> list[Candidate]:
         if item.name not in rejected_names and item.address not in rejected_addresses
     ]
     candidates = [item for item in candidates if item.size <= args.max_bytes]
+    family_name = getattr(args, "family", None)
     if family_name:
-        return candidates
+        return family_candidates(
+            candidates, family_name, getattr(args, "family_size", 20)
+        )
     candidates.sort(key=lambda item: (item.score, item.size, item.address))
     return candidates[: args.limit]
 
