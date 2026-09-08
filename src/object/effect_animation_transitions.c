@@ -91,3 +91,16 @@ s32 object_emit_effect_2adb_then_notify_owner(
                 object->verticalPosition / 0x100, owner);
     return sub_810DD7C(object, owner, command);
 }
+
+__attribute__((section(".text.visual_sound_callbacks.sub_80DEDEC")))
+void sub_80DEDEC(struct RuntimeObject* object) {
+    struct RuntimeObjectVisual* visual;
+    s32 mask = -7;
+    if (8 & object->visual->flags) {
+        sub_8082E1C(object, 11, 0, 0);
+        visual = object->visual;
+        visual->flags = (mask & visual->flags) | 2;
+        sound_effect_play(0x128, SOUND_VOLUME_UNCHANGED);
+        object->update = sub_80DEE34;
+    }
+}

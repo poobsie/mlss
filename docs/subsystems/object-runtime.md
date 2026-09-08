@@ -760,3 +760,7 @@ this stored duration remains unknown.
 At a nonpositive signed 16-bit result it starts animation six, plays
 sound `0xAE` at unchanged volume, and installs `sub_8062FD4`.
 The gameplay identity remains unknown; unsigned arithmetic preserves timer wraparound.
+
+`sub_80DEDEC` handles visual flag 8 by starting animation eleven, replacing
+visual flag bits 1 and 2 with bit 1, playing sound `0x128` at unchanged
+volume, and installing `sub_80DEE34`. The gameplay identity remains unknown.
