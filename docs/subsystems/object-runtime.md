@@ -770,3 +770,8 @@ sound `0x117`, valueA8 set to two, and continuation `sub_80DC854`.
 `sub_809BB00` also permits a zero behaviorState; it plays sound `0x65` before
 animation nine (parameter `0x40BF`), updates the visual flag pair, and installs
 `sub_809B770`. Gameplay identities and the animation parameter meaning remain unknown.
+
+`sub_8062548` decrements the timer while visual flag 8 is set. A negative
+signed 16-bit result starts animation six for zero behaviorState or eight
+otherwise, then installs `sub_80621DC`. Zero itself does not trigger this
+transition; unsigned arithmetic preserves timer wraparound.

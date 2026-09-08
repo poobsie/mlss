@@ -392,6 +392,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80623F8);
         src/object/early_state_transitions.o(.text.object_early_state_transitions.sub_80624FC);
         asm/text08057568.o(.text.small_functions_02_after_sub_80624FC);
+        src/object/countdown_transitions.o(.text.timer_callbacks.sub_8062548);
+        asm/text08057568.o(.text.after_sub_8062548);
         src/object/early_state_transitions.o(.text.object_early_state_transitions.sub_8062C48);
         asm/text08057568.o(.text.small_functions_03_after_sub_8062C48);
         src/object/behavior_transitions.o(.text.sub_8062D68);
