@@ -764,3 +764,9 @@ The gameplay identity remains unknown; unsigned arithmetic preserves timer wrapa
 `sub_80DEDEC` handles visual flag 8 by starting animation eleven, replacing
 visual flag bits 1 and 2 with bit 1, playing sound `0x128` at unchanged
 volume, and installing `sub_80DEE34`. The gameplay identity remains unknown.
+
+`sub_80DD878` uses the same visual-flag transition with animation fourteen,
+sound `0x117`, valueA8 set to two, and continuation `sub_80DC854`.
+`sub_809BB00` also permits a zero behaviorState; it plays sound `0x65` before
+animation nine (parameter `0x40BF`), updates the visual flag pair, and installs
+`sub_809B770`. Gameplay identities and the animation parameter meaning remain unknown.

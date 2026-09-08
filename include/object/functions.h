@@ -374,4 +374,10 @@ void sub_8062FD4(struct RuntimeObject* object);
 void sub_80DEDEC(struct RuntimeObject* object);
 void sub_80DEE34(struct RuntimeObject* object);
 
+void sub_80DD878(struct RuntimeObject* object);
+void sub_80DC854(struct RuntimeObject* object);
+
+void sub_809BB00(struct RuntimeObject* object);
+void sub_809B770(struct RuntimeObject* object);
+
 #endif

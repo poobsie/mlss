@@ -1719,6 +1719,8 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_809BA28);
         src/object/activation_command_transitions.o(.text.activation_command_transitions.sub_809BA44);
         asm/text08057568.o(.text.activation_command_transitions_after_sub_809BA44);
+        src/object/effect_animation_transitions.o(.text.visual_sound_callbacks.sub_809BB00);
+        asm/text08057568.o(.text.after_sub_809BB00);
         asm/text08057568.o(.text.paired_motion_effect_callbacks_reject_sub_809BE50);
         asm/text08057568.o(.text.paired_motion_effect_callbacks_after_sub_809BE50);
         asm/text08057568.o(.text.paired_motion_effect_callbacks_reject_sub_809BF88);
@@ -2075,6 +2077,8 @@ SECTIONS
         asm/text08057568.o(.text.actor_animation_transitions_after_sub_80DD798);
         src/field/animation_transitions.o(.text.actor_animation_transitions.sub_80DD7C4);
         asm/text08057568.o(.text.actor_animation_transitions_after_sub_80DD7C4);
+        src/object/effect_animation_transitions.o(.text.visual_sound_callbacks.sub_80DD878);
+        asm/text08057568.o(.text.after_sub_80DD878);
         src/object/middle_transitions.o(.text.middle.sub_80DDA3C);
         asm/text08057568.o(.text.after_middle_sub_80DDA3C);
         src/object/middle_transitions.o(.text.middle.sub_80DDA78);

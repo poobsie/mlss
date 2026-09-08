@@ -104,3 +104,33 @@ void sub_80DEDEC(struct RuntimeObject* object) {
         object->update = sub_80DEE34;
     }
 }
+
+__attribute__((section(".text.visual_sound_callbacks.sub_80DD878")))
+void sub_80DD878(struct RuntimeObject* object) {
+    struct RuntimeObjectVisual* visual;
+    s32 mask = -7;
+    if (8 & object->visual->flags) {
+        sub_8082E1C(object, 14, 0, 0);
+        visual = object->visual;
+        visual->flags = (mask & visual->flags) | 2;
+        sound_effect_play(0x117, SOUND_VOLUME_UNCHANGED);
+        object->valueA8 = 2;
+        object->update = sub_80DC854;
+    }
+}
+
+
+__attribute__((section(".text.visual_sound_callbacks.sub_809BB00")))
+void sub_809BB00(struct RuntimeObject* object) {
+    struct RuntimeObjectVisual* visual;
+    u64 mask;
+    if (object->behaviorState == 0 || (8 & object->visual->flags)) {
+        sound_effect_play(0x65, SOUND_VOLUME_UNCHANGED);
+        sub_8082E1C(object, 9, 0x40BF, 0);
+        visual = object->visual;
+        mask = -7;
+        visual->flags = (mask & visual->flags) | 2;
+
+        object->update = sub_809B770;
+    }
+}

@@ -114939,6 +114939,7 @@ _0809BADE:
 _0809BAF4: .4byte 0x000040BF
 _0809BAF8: .4byte 0x000011E6
 _0809BAFC: .4byte sub_809BB00
+.if 0
 	thumb_func_start sub_809BB00
 sub_809BB00:
 	push {r4, lr}
@@ -114979,6 +114980,8 @@ _0809BB42:
 	bx r0
 _0809BB48: .4byte 0x000040BF
 _0809BB4C: .4byte sub_809B770
+.endif
+.section .text.after_sub_809BB00, "ax", %progbits
 	thumb_func_start sub_809BB50
 sub_809BB50:
 	push {r4, r5, r6, lr}
@@ -251443,6 +251446,7 @@ _080DD862:
 _080DD86C: .4byte 0x000004CC
 _080DD870: .4byte 0x00000117
 _080DD874: .4byte sub_80DCC00
+.if 0
 	thumb_func_start sub_80DD878
 sub_80DD878:
 	push {r4, lr}
@@ -251482,6 +251486,8 @@ _080DD8BA:
 	bx r0
 _080DD8C0: .4byte 0x00000117
 _080DD8C4: .4byte sub_80DC854
+.endif
+.section .text.after_sub_80DD878, "ax", %progbits
 	thumb_func_start sub_80DD8C8
 sub_80DD8C8:
 	push {r4, lr}
