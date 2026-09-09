@@ -5,6 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 import fcntl
 import hashlib
 import json
+import os
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -18,7 +19,10 @@ def digest(path):
 
 def save(path, value):
     temporary = path.with_suffix('.tmp')
-    temporary.write_text(json.dumps(value, indent=2) + '\n')
+    with temporary.open('w') as stream:
+        stream.write(json.dumps(value, indent=2) + '\n')
+        stream.flush()
+        os.fsync(stream.fileno())
     temporary.replace(path)
 
 
@@ -26,6 +30,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--draft-root', type=Path, action='append', required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--exclude-symbols', type=Path,
+                        help='JSON list of symbols withheld from a recovery run')
     parser.add_argument('--symbols-elf', type=Path, required=True,
                         help='snapshot from an exact accepted build')
     parser.add_argument('--jobs', type=int, default=12)
@@ -35,6 +41,8 @@ def main():
     if args.jobs < 2 or args.jobs > 32 or args.jobs % 2 or any(s < 1 for s in args.stages):
         parser.error('use even 2..32 jobs and positive stages')
     root = args.output.resolve()
+    if any(root == Path(p) or Path(p) in root.parents for p in ('/tmp', '/var/tmp', '/run')):
+        parser.error('campaign output must use persistent storage, not a temporary directory')
     root.mkdir(parents=True, exist_ok=True)
     lock = (root/'lock').open('w')
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -42,6 +50,10 @@ def main():
     identity = {'aliases': digest(args.symbols_elf),
                 'reference': digest(workflow.ROOT/'.decomp-tools/reference/mlss.gba'),
                 'stages': args.stages}
+    excluded = set()
+    if args.exclude_symbols:
+        excluded = set(json.loads(args.exclude_symbols.read_text()))
+        identity['exclusions'] = digest(args.exclude_symbols)
     state = json.loads(state_path.read_text()) if state_path.exists() else {
         'identity': identity, 'runs': {}, 'matches': [], 'status': 'running'}
     if state['identity'] != identity:
@@ -54,7 +66,7 @@ def main():
     cases = {}
     for directory in args.draft_root:
         for source in directory.rglob('*.c'):
-            if source.stem in candidates:
+            if source.stem in candidates and source.stem not in excluded:
                 cases[(source.stem, digest(source))] = source.resolve()
     state['eligible_functions'] = len(candidates)
     state['draft_functions'] = len({name for name, _ in cases})

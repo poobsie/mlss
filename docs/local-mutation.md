@@ -114,7 +114,18 @@ python3 scripts/decomp_campaign_status.py scratch/campaign
 ```
 
 Draft filenames must name the target function. The campaign deduplicates their
-contents and checkpoints every engine result. It searches for 30 seconds initially,
+contents. Keep the output directory on persistent storage: temporary directories
+are rejected because cleanup or a reboot can erase the resume state and candidates.
+Checkpoints are flushed before atomic replacement. Keep the accepted ELF, logs,
+and candidate artifacts in the same persistent directory.
+
+After loss of a checkpoint, `--exclude-symbols recovery.json` accepts a JSON list
+of symbols to withhold from a new run. Its hash becomes part of the run identity.
+Use surviving logs and review records to build a conservative exclusion list;
+do not fabricate completed stage records or count exclusions as successful matches.
+An exact resume requires the original state and artifacts.
+
+The campaign checkpoints every engine result. It searches for 30 seconds initially,
 then extends each improving engine to 300 and 1,800 seconds. Stalled drafts stop;
 the overall queue has no wall-clock deadline. Exact spans require source review
 and full acceptance before integration. Draft coverage is distinct from assembly
