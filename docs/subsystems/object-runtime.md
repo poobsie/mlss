@@ -775,3 +775,10 @@ animation nine (parameter `0x40BF`), updates the visual flag pair, and installs
 signed 16-bit result starts animation six for zero behaviorState or eight
 otherwise, then installs `sub_80621DC`. Zero itself does not trigger this
 transition; unsigned arithmetic preserves timer wraparound.
+
+`sub_806C314` decrements the timer while visual flag 8 is set. A nonpositive
+signed 16-bit result stops sound `0x7C`. Nonzero valueA4 selects animation
+nine or fifteen according to valueA8 and installs `sub_806C94C`. Zero valueA4
+selects animation thirty or thirty-one, resets the timer to three, and installs
+`sub_806C3AC`. The roles of valueA4 and valueA8 remain unknown; unsigned
+arithmetic preserves timer wraparound.

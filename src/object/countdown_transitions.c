@@ -166,3 +166,33 @@ void sub_8062548(struct RuntimeObject* object) {
         }
     }
 }
+
+__attribute__((section(".text.timer_callbacks.sub_806C314")))
+void sub_806C314(struct RuntimeObject* object) {
+    RuntimeObjectCallback next;
+    u32 remaining;
+    if (8 & object->visual->flags) {
+        remaining = (u16)object->timer - 1U;
+        object->timer = remaining;
+        if ((s32)(remaining << 16) <= 0) {
+            sound_effect_stop(0x7C);
+            if (object->valueA4 != 0) {
+                if (object->valueA8 == 0) {
+                    sub_8082E1C(object, 9, 0, 0);
+                } else {
+                    sub_8082E1C(object, 15, 0, 0);
+                }
+                next = sub_806C94C;
+            } else {
+                if (object->valueA8 == 0) {
+                    sub_8082E1C(object, 30, 0, 0);
+                } else {
+                    sub_8082E1C(object, 31, 0, 0);
+                }
+                object->timer = 3;
+                next = sub_806C3AC;
+            }
+            object->update = next;
+        }
+    }
+}

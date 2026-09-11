@@ -35145,6 +35145,7 @@ _0806C30C: .4byte 0x00001BFE
 _0806C310: .4byte sub_806B644
 	.endif
 	.section .text.runtime_leaf_callbacks_after_sub_806C2B0, "ax", %progbits
+.if 0
 	thumb_func_start sub_806C314
 sub_806C314:
 	push {r4, r5, lr}
@@ -35223,6 +35224,8 @@ _0806C3A0:
 	bx r0
 	.byte 0x00, 0x00
 _0806C3A8: .4byte sub_806C3AC
+.endif
+.section .text.after_sub_806C314, "ax", %progbits
 	thumb_func_start sub_806C3AC
 sub_806C3AC:
 	push {r4, lr}
