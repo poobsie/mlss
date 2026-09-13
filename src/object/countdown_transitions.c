@@ -196,3 +196,37 @@ void sub_806C314(struct RuntimeObject* object) {
         }
     }
 }
+
+s32 sub_8086858(struct RuntimeObject*, s32);
+
+__attribute__((section(".text.timer_callbacks.sub_806C3AC")))
+void sub_806C3AC(struct RuntimeObject* object) {
+    s32 effect;
+    u8 flags;
+    u32 remaining;
+    struct RuntimeObjectVisual* visual;
+    if (8 & object->visual->flags) {
+        remaining = (u16)object->timer - 1U;
+        object->timer = remaining;
+        if ((s32)(remaining << 16) <= 0) {
+            sound_effect_play(0x44, SOUND_VOLUME_UNCHANGED);
+            object->behaviorState = 0;
+            if (object->valueA8 == 0) {
+                sub_8082E1C(object, 10, 0, 0);
+                effect = 0x163A;
+            } else {
+                sub_8082E1C(object, 16, 0, 0);
+                effect = 0x16BC;
+            }
+            *(s32*)0x03000E3C = sub_8086858(object, effect);
+            flags = object->flags77;
+            object->flags77 = flags | 0x40;
+            object->auxiliaryUpdate = (RuntimeObjectCallback)sub_806C8C0;
+            object->secondaryUpdate = sub_806C848;
+            visual = object->visual;
+            effect = object->valueA0;
+            visual->parameter20 = effect;
+            object->update = sub_806C8D8;
+        }
+    }
+}

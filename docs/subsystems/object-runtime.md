@@ -782,3 +782,12 @@ nine or fifteen according to valueA8 and installs `sub_806C94C`. Zero valueA4
 selects animation thirty or thirty-one, resets the timer to three, and installs
 `sub_806C3AC`. The roles of valueA4 and valueA8 remain unknown; unsigned
 arithmetic preserves timer wraparound.
+
+`sub_806C3AC` continues the visual countdown sequence. On a nonpositive timer
+it plays sound `0x44`, clears behaviorState, and selects animation ten/effect
+`0x163A` or animation sixteen/effect `0x16BC` from valueA8. It saves the effect
+result at `0x03000E3C`, sets flags77 bit 6, installs its followups, and copies
+the low byte of valueA0 into the visual parameter. ValueA0, valueA8, and the
+effect result retain their existing partial descriptions. The auxiliary slot
+uses a cast because `sub_806C8C0` receives an owner argument and returns an
+integer, while the shared slot currently has a one-argument callback type.

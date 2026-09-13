@@ -387,4 +387,8 @@ void sub_806C314(struct RuntimeObject* object);
 void sub_806C3AC(struct RuntimeObject* object);
 void sub_806C94C(struct RuntimeObject* object);
 
+void sub_806C848(struct RuntimeObject* object);
+int sub_806C8C0(struct RuntimeObject* object, void* owner);
+void sub_806C8D8(struct RuntimeObject* object);
+
 #endif

@@ -35226,6 +35226,7 @@ _0806C3A0:
 _0806C3A8: .4byte sub_806C3AC
 .endif
 .section .text.after_sub_806C314, "ax", %progbits
+.if 0
 	thumb_func_start sub_806C3AC
 sub_806C3AC:
 	push {r4, lr}
@@ -35305,6 +35306,8 @@ _0806C444: .4byte 0x03000E3C
 _0806C448: .4byte sub_806C8C0
 _0806C44C: .4byte sub_806C848
 _0806C450: .4byte sub_806C8D8
+.endif
+.section .text.after_sub_806C3AC, "ax", %progbits
 	thumb_func_start sub_806C454
 sub_806C454:
 	push {r4, r5, r6, lr}
