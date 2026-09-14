@@ -86468,6 +86468,7 @@ sub_8088BC0:
 	bx r0
 	.byte 0x00, 0x00
 _08088C38: .4byte sub_8088C3C
+	.if 0
 	thumb_func_start sub_8088C3C
 sub_8088C3C:
 	push {r4, r5, lr}
@@ -86536,6 +86537,8 @@ _08088CBC:
 	bx r0
 	.byte 0x00, 0x00
 _08088CC4: .4byte sub_808750C
+	.endif
+	.section .text.misc_helpers_03_after_sub_8088C3C, "ax", %progbits
 	thumb_func_start sub_8088CC8
 sub_8088CC8:
 	push {r4, r5, lr}
@@ -87633,6 +87636,7 @@ _0808953C: .4byte sub_8089A04
 _08089540: .4byte sub_80899E4
 _08089544: .4byte sub_80899C4
 _08089548: .4byte sub_808954C
+	.if 0
 	thumb_func_start sub_808954C
 sub_808954C:
 	push {r4, r5, lr}
@@ -87701,6 +87705,8 @@ _080895CC:
 	bx r0
 	.byte 0x00, 0x00
 _080895D4: .4byte sub_808750C
+	.endif
+	.section .text.misc_helpers_03_after_sub_808954C, "ax", %progbits
 	thumb_func_start sub_80895D8
 sub_80895D8:
 	push {r4, lr}

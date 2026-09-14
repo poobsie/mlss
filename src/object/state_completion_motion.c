@@ -190,7 +190,7 @@ void sub_8061050(struct RuntimeObject* object)
 {
     if (object->value80 == 0) {
         object->value84 = object->positionX;
-        *(s32*)object->unknown88 = object->positionY;
+        object->value88 = object->positionY;
         object->value8C = object->positionZBase - 0x3000;
         {
             u8 flags = object->flags79;

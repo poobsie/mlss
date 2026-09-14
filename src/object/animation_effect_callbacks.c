@@ -15,8 +15,8 @@ void object_start_animation_2_save_position_a(struct RuntimeObject* object)
     sub_8082E1C(object, 2, 0, 0);
     object->timer = 0;
     object->value84 = object->positionX;
-    /* unknown88 is the saved Y companion to value84 in this callback. */
-    *(s32*)object->unknown88 = object->positionY;
+    /* value88 is the saved Y companion to value84 in this callback. */
+    object->value88 = object->positionY;
     object->update = sub_80997E4;
 }
 
@@ -26,7 +26,7 @@ void object_start_animation_2_save_position_b(struct RuntimeObject* object)
     sub_8082E1C(object, 2, 0, 0);
     object->timer = 0;
     object->value84 = object->positionX;
-    /* unknown88 is the saved Y companion to value84 in this callback. */
-    *(s32*)object->unknown88 = object->positionY;
+    /* value88 is the saved Y companion to value84 in this callback. */
+    object->value88 = object->positionY;
     object->update = sub_8099448;
 }

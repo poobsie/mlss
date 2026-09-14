@@ -20,6 +20,19 @@ struct RuntimeObjectValueSource {
     s8 value6;
 };
 
+/* Position data reached through the owner wrapper used by effect objects. */
+struct ObjectPositionSource {
+    u8 unknown00[0xD8];
+    s32 positionX;
+    s32 positionY;
+    s32 positionZ;
+};
+
+struct ObjectPositionOwner {
+    u8 unknown00[0x28];
+    struct ObjectPositionSource* positionSource;
+};
+
 struct RuntimeObjectVisual;
 
 struct RuntimeObjectState {
@@ -116,7 +129,7 @@ struct RuntimeObject {
     u8 unknown7E[2];
     s32 value80;
     s32 value84;
-    u8 unknown88[4];
+    s32 value88;
     s32 value8C;
     u8 unknown90[2];
     s16 motionDuration92;

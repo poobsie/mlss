@@ -62,19 +62,6 @@ void sub_81127B8(struct RuntimeObject*);
 void sub_81135C0(struct RuntimeObject*);
 void sub_8132594(struct RuntimeObject*);
 
-struct ObjectPositionSource {
-    u8 unknown00[0xD8];
-    s32 positionX;
-    s32 positionY;
-    s32 positionZ;
-};
-
-struct ObjectPositionOwner {
-    u8 unknown00[0x28];
-    struct ObjectPositionSource* positionSource;
-};
-
-
 SEC(sub_810FD10) void sub_810FD10(struct RuntimeObject* object)
 {
     struct RuntimeObject* linked = object->linkedObject;

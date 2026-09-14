@@ -206,7 +206,7 @@ void object_store_motion_target(
     struct RuntimeObject* object, s32 x, s32 y, s32 z)
 {
     object->value84 = x;
-    *(s32*)object->unknown88 = y;
+    object->value88 = y;
     object->value8C = z;
 }
 
@@ -255,7 +255,7 @@ void object_prepare_saved_motion_on_visual_complete(
     if (object->visual->flags & 8) {
         sub_8082E1C(object, 0xD, 0, 0);
         object->value84 = object->secondaryTimer << 8;
-        *(s32*)object->unknown88 = (s16)object->stateValueB0 << 8;
+        object->value88 = (s16)object->stateValueB0 << 8;
         object->value8C = object->positionZBase;
         flags = &object->flags79;
         *flags |= 0x20;
@@ -316,7 +316,7 @@ void object_prepare_fixed_motion_on_visual_complete(
 
     if (object->visual->flags & 8) {
         object->value84 = 0x7800;
-        *(s32*)object->unknown88 = 0x6800;
+        object->value88 = 0x6800;
         object->value8C = object->positionZBase;
         flags = &object->flags79;
         *flags |= 0x20;
@@ -457,7 +457,7 @@ void object_prepare_linked_motion_when_chain_clears(
         sub_8082E1C(object, 9, 0, 0);
         object->linkedObject->currentPositionX = 0x10000;
         object->value84 = object->secondaryTimer << 8;
-        *(s32*)object->unknown88 = (s16)object->stateValueB0 << 8;
+        object->value88 = (s16)object->stateValueB0 << 8;
         object->value8C = object->positionZBase;
         flags = &object->flags79;
         *flags |= 0x20;
@@ -825,8 +825,8 @@ void object_restore_saved_xy_and_start_animation_6(
         x = object->value84;
         object->currentPositionX = x;
         object->positionX = x;
-        /* unknown88 is the saved Y companion to value84 in this sequence. */
-        y = *(s32*)object->unknown88;
+        /* value88 is the saved Y companion to value84 in this sequence. */
+        y = object->value88;
         object->currentPositionY = y;
         object->positionY = y;
         sub_80DF024(0x1296, x / 0x100, y / 0x100 + 2,
@@ -907,9 +907,9 @@ void object_update_accelerating_arc_until_x_threshold(
     if (object->currentPositionX > 0x4000) {
         object->secondaryTimer =
             (object->value84 - object->positionX) / 0x100;
-        /* unknown88 remains typed conservatively despite its saved-Y use. */
+        /* value88 stores the saved Y coordinate for this motion. */
         object->stateValueB0 =
-            (*(s32*)object->unknown88 - object->positionY) / 0x100;
+            (object->value88 - object->positionY) / 0x100;
         object->update = sub_8064C00;
     }
 }
@@ -1259,7 +1259,7 @@ void object_prepare_saved_position_when_value80_clears(
     if (zero == 0) {
         sub_8082E1C(object, 1, 0, 0);
         object->value84 = (s32)*(s16*)((u8*)object + 0xAE) << 8;
-        *(s32*)object->unknown88 = (s32)*(s16*)((u8*)object + 0xB0) << 8;
+        object->value88 = (s32)*(s16*)((u8*)object + 0xB0) << 8;
         object->value8C = (s32)*(s16*)((u8*)object + 0xB2) << 8;
         flags = object->flags79;
         flags |= 0x20;
