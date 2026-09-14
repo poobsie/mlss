@@ -89170,6 +89170,7 @@ _0808A5C8:
 _0808A5D0: .4byte sub_808C174
 _0808A5D4: .4byte 0x00004059
 _0808A5D8: .4byte sub_808C1C4
+	.if 0
 	thumb_func_start sub_808A5DC
 sub_808A5DC:
 	push {r4, r5, lr}
@@ -89235,6 +89236,8 @@ _0808A656:
 	pop {r0}
 	bx r0
 _0808A65C: .4byte sub_808750C
+	.endif
+	.section .text.misc_helpers_02_after_sub_808A5DC, "ax", %progbits
 	thumb_func_start sub_808A660
 sub_808A660:
 	push {r4, r5, r6, r7, lr}
