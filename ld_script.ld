@@ -592,6 +592,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8068274);
         src/object/small_visual_transitions.o(.text.small_functions_01.sub_806829C);
         asm/text08057568.o(.text.small_functions_01_after_sub_806829C);
+        src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_80684B0);
+        asm/text08057568.o(.text.runtime_leaf_callbacks_after_sub_80684B0);
         src/object/early_state_transitions.o(.text.object_early_state_transitions.sub_8068798);
         asm/text08057568.o(.text.small_functions_03_after_sub_8068798);
         src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_80687EC);

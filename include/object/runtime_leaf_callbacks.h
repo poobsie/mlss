@@ -47,6 +47,7 @@ struct ObjectRuntimePollOwner;
 #define object_lower_x_until_motion_target sub_8068818
 #define object_prepare_linked_motion_when_chain_clears sub_8068844
 #define object_finish_variant_countdown_on_visual_complete sub_80688B8
+#define object_advance_variant_timer_then_reposition_link sub_80684B0
 #define object_finish_variant_timer_on_visual_complete sub_8068A50
 #define object_move_left_with_periodic_effect_until_screen_exit sub_8068B68
 #define object_move_left_with_effect_until_owner_target sub_8068BF0
@@ -263,6 +264,8 @@ void object_lower_x_until_motion_target(struct RuntimeObject* object);
 void object_prepare_linked_motion_when_chain_clears(
     struct RuntimeObject* object);
 void object_finish_variant_countdown_on_visual_complete(
+    struct RuntimeObject* object);
+void object_advance_variant_timer_then_reposition_link(
     struct RuntimeObject* object);
 void object_finish_variant_timer_on_visual_complete(
     struct RuntimeObject* object);

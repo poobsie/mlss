@@ -39,7 +39,6 @@ void sub_8066EB4(struct RuntimeObject* object);
 void sub_80679FC(struct RuntimeObject* object);
 void sub_8067DC8(struct RuntimeObject* object);
 void sub_8067E4C(struct RuntimeObject* object);
-void sub_80684B0(struct RuntimeObject* object);
 void sub_806856C(struct RuntimeObject* object);
 void sub_80689AC(struct RuntimeObject* object);
 void sub_8068A50(struct RuntimeObject* object);
@@ -485,6 +484,42 @@ void object_finish_variant_countdown_on_visual_complete(
     }
 }
 
+SEC(sub_80684B0)
+void object_advance_variant_timer_then_reposition_link(
+    struct RuntimeObject* object)
+{
+    s32 variant;
+    s32 elapsed = (u16)object->timer + 1;
+
+    object->timer = elapsed;
+    if (object->valueA8 == 0) {
+        if ((s16)elapsed == 0x1E)
+            sound_effect_play(0x63, SOUND_VOLUME_UNCHANGED);
+    } else if ((s16)elapsed == 0xA) {
+        sound_effect_play(0x63, SOUND_VOLUME_UNCHANGED);
+    }
+
+    if (object->visual->flags & 8) {
+        /* The two branches retain the original call sites and timing. */
+        if (object->valueA8 == 0)
+            sound_effect_stop(0x11B);
+        else
+            sound_effect_stop(0x11B);
+
+        variant = object->valueA8;
+        if (variant == 0) {
+            sub_8082E1C(object, 3, 0, 0);
+            object->timer = variant;
+        } else {
+            sub_8082E1C(object, 6, 0, 0);
+            object->timer = 3;
+        }
+        object->linkedObject->currentPositionX = object->positionX + 0x2200;
+        object->linkedObject->currentPositionY = object->positionY;
+        object->update = object_finish_variant_countdown_on_visual_complete;
+    }
+}
+
 SEC(sub_8068A50)
 void object_finish_variant_timer_on_visual_complete(
     struct RuntimeObject* object)
@@ -496,7 +531,7 @@ void object_finish_variant_timer_on_visual_complete(
                 sub_8082E1C(object, 0xD, 0, 0);
             else
                 sub_8082E1C(object, 0x10, 0, 0);
-            object->update = sub_80684B0;
+            object->update = object_advance_variant_timer_then_reposition_link;
             object->timer = 0;
         }
     }
