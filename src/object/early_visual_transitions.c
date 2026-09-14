@@ -49,7 +49,7 @@ SEC(sub_80651CC) void sub_80651CC(struct RuntimeObject* object)
 {
     if (object->visual->flags & 8) {
         sub_8082E1C(object, 2, 0, 0);
-        *(s32*)0x03000E3C = sub_8086858(object, 0x1509);
+        OBJECT_SHARED_EFFECT_RESULT = sub_8086858(object, 0x1509);
         object->secondaryUpdate = sub_8065310;
         object->update = sub_806533C;
     }
@@ -147,7 +147,7 @@ SEC(sub_80705B4) void sub_80705B4(struct RuntimeObject* object) {
     if (8 & object->visual->flags) {
         sub_8082E1C(object, 0x1B, 0, 0);
         object->valueA8 = (s32)(1 & sub_8199F30());
-        *(s32*)0x03000E3C = 0;
+        OBJECT_SHARED_EFFECT_RESULT = 0;
         sub_807F4FC(object);
         object->tertiaryUpdate = sub_8070424;
         object->update = sub_8070534;

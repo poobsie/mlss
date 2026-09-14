@@ -4,6 +4,10 @@
 #include "common.h"
 
 struct FieldSceneObject;
+/* Flag groups are observed; their gameplay meanings are not yet established. */
+#define FIELD_SCENE_FLAGS_2B5_HIGH 0xC0
+#define FIELD_SCENE_FLAGS_2B5_MIDDLE 0x30
+#define FIELD_SCENE_FLAGS_2B5_LOW 0x07
 typedef void (*FieldSceneDispatch)(u32, struct FieldSceneObject*);
 typedef void (*FieldSceneChainCallback)(
     u32, struct FieldSceneObject*, void* callbackSlot);

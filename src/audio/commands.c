@@ -40,7 +40,7 @@ PAD(sub_819B9D0);
 PAD(sub_819B9E8);
 PAD(sub_819BA00);
 
-SEC(sub_819BA10) u32 sub_819BA10(u32 command, u32 argument)
+SEC(sub_819BA10) u32 audio_driver_enqueue_flagged_command(u32 command, u32 argument)
 {
     /* The wide intermediate preserves the original constant-register copy. */
     long long bits = 0xFFFF8000;

@@ -70,7 +70,8 @@ const u16 circular_mask_enable_padding = 0;
 
 void sub_8150E44(struct CircularMask* mask, s32 value)
     __attribute__((section(".text.sub_8150E44")));
-void sub_8150E44(struct CircularMask* mask, s32 value) {
+void circular_mask_set_value_18_when_flag_20_clear(
+    struct CircularMask* mask, s32 value) {
     if (!(0x20 & mask->flags)) {
         /* This setter changes only the low halfword of the shared state word. */
         *(s16*)&mask->value1C = 1;

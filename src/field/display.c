@@ -275,7 +275,8 @@ void field_configure_display_layer(s32 value)
     __attribute__((alias("sub_810D038")));
 
 s32 sub_8085A6C(struct RuntimeObject* object);
-SEC(sub_810D1A4) void sub_810D1A4(struct FieldDisplayProcess* process) {
+SEC(sub_810D1A4) void field_clear_display_resource_flag_and_stop_when_idle(
+    struct FieldDisplayProcess* process) {
     struct RuntimeObject* object = process->resource;
     u8 flags = object->flags79;
     s32 mask = ~0x10;

@@ -27,6 +27,7 @@ void field_prepare_runtime_value_transfer(s32 mode);
 void field_trigger_primary_actor_object(void);
 
 void sub_81165CC(struct FieldValueTransfer* state, s32 mode);
-void sub_807F448(void);
+#define field_consume_pending_value_transfer_flag sub_807F448
+void field_consume_pending_value_transfer_flag(void);
 
 #endif

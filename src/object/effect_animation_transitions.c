@@ -93,10 +93,10 @@ s32 object_emit_effect_2adb_then_notify_owner(
 }
 
 __attribute__((section(".text.visual_sound_callbacks.sub_80DEDEC")))
-void sub_80DEDEC(struct RuntimeObject* object) {
+void object_on_visual_complete_animation_11_sound_128(struct RuntimeObject* object) {
     struct RuntimeObjectVisual* visual;
     s32 mask = -7;
-    if (8 & object->visual->flags) {
+    if (OBJECT_VISUAL_COMPLETE & object->visual->flags) {
         sub_8082E1C(object, 11, 0, 0);
         visual = object->visual;
         visual->flags = (mask & visual->flags) | 2;
@@ -106,10 +106,10 @@ void sub_80DEDEC(struct RuntimeObject* object) {
 }
 
 __attribute__((section(".text.visual_sound_callbacks.sub_80DD878")))
-void sub_80DD878(struct RuntimeObject* object) {
+void object_on_visual_complete_animation_14_sound_117(struct RuntimeObject* object) {
     struct RuntimeObjectVisual* visual;
     s32 mask = -7;
-    if (8 & object->visual->flags) {
+    if (OBJECT_VISUAL_COMPLETE & object->visual->flags) {
         sub_8082E1C(object, 14, 0, 0);
         visual = object->visual;
         visual->flags = (mask & visual->flags) | 2;
@@ -121,10 +121,10 @@ void sub_80DD878(struct RuntimeObject* object) {
 
 
 __attribute__((section(".text.visual_sound_callbacks.sub_809BB00")))
-void sub_809BB00(struct RuntimeObject* object) {
+void object_when_ready_animation_9_sound_65(struct RuntimeObject* object) {
     struct RuntimeObjectVisual* visual;
     u64 mask;
-    if (object->behaviorState == 0 || (8 & object->visual->flags)) {
+    if (object->behaviorState == 0 || (OBJECT_VISUAL_COMPLETE & object->visual->flags)) {
         sound_effect_play(0x65, SOUND_VOLUME_UNCHANGED);
         sub_8082E1C(object, 9, 0x40BF, 0);
         visual = object->visual;

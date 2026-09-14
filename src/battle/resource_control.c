@@ -28,7 +28,8 @@ void sub_805BED8(void* resource);
 
 void sub_80297D8(struct BattleResourceControlObject* object, s32 mode)
     __attribute__((section(".text.sub_80297D8")));
-void sub_80297D8(struct BattleResourceControlObject* object, s32 mode) {
+void battle_release_resource_when_mode_zero(
+    struct BattleResourceControlObject* object, s32 mode) {
     s32 mask = ~0x780;
     if (mode == 0) {
         sub_805BED8(object->resource304);

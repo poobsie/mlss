@@ -112,10 +112,10 @@ void field_clear_scene_object_modes(struct FieldSceneObject* object)
 
 s32 sub_8047A1C(struct FieldSceneObject* object)
     FIELD_SECTION(".text.sub_8047A1C");
-s32 sub_8047A1C(struct FieldSceneObject* object) {
+s32 field_has_flags_2b5_c0(struct FieldSceneObject* object) {
     s32 bits;
     char result;
-    bits = 0xC0 & object->flags2B5;
+    bits = FIELD_SCENE_FLAGS_2B5_HIGH & object->flags2B5;
     result = bits;
     /* Preserve the original register copy before boolean normalization. */
     asm("" : "+r"(result));
@@ -127,11 +127,12 @@ s32 sub_8047A1C(struct FieldSceneObject* object) {
 
 s32 sub_8047A3C(struct FieldSceneObject* object)
     FIELD_SECTION(".text.sub_8047A3C");
-s32 sub_8047A3C(struct FieldSceneObject* object) {
+s32 field_has_flags_2b5_30(struct FieldSceneObject* object) {
     s32 bits;
+    /* The addressable local retains the original condition/register layout. */
     s32* value = &bits;
     s32 result;
-    bits = 0x30 & object->flags2B5;
+    bits = FIELD_SCENE_FLAGS_2B5_MIDDLE & object->flags2B5;
     result = bits;
     /* Preserve the original register copy before boolean normalization. */
     asm("" : "+r"(result));
@@ -143,11 +144,12 @@ s32 sub_8047A3C(struct FieldSceneObject* object) {
 
 s32 sub_8047B78(struct FieldSceneObject* object)
     FIELD_SECTION(".text.sub_8047B78");
-s32 sub_8047B78(struct FieldSceneObject* object) {
+s32 field_has_flags_2b5_07(struct FieldSceneObject* object) {
     s32 bits;
+    /* The addressable local retains the original condition/register layout. */
     s32* value = &bits;
     s32 result;
-    bits = 7 & object->flags2B5;
+    bits = FIELD_SCENE_FLAGS_2B5_LOW & object->flags2B5;
     result = bits;
     /* Preserve the original register copy before boolean normalization. */
     asm("" : "+r"(result));

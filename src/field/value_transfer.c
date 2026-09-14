@@ -57,7 +57,7 @@ void field_trigger_primary_actor_object(void)
     sub_807C298(runtime->actorA->action.activeObject);
 }
 
-SEC(sub_807F448) void sub_807F448(void) {
+SEC(sub_807F448) void field_consume_pending_value_transfer_flag(void) {
     struct FieldEffectRuntime* runtime = FIELD_RUNTIME;
     if (2 & runtime->flags0C) {
         unsigned long long mask;

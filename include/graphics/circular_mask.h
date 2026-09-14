@@ -41,6 +41,8 @@ void circular_mask_disable(struct CircularMask* mask);
 void circular_mask_enable(struct CircularMask* mask);
 void circular_mask_set_value(struct CircularMask* mask, s16 value);
 
-void sub_8150E44(struct CircularMask* mask, s32 value);
+#define circular_mask_set_value_18_when_flag_20_clear sub_8150E44
+void circular_mask_set_value_18_when_flag_20_clear(
+    struct CircularMask* mask, s32 value);
 
 #endif

@@ -901,7 +901,8 @@ s32 script_command_control_field_registry(
         sub_803C8A4(context->objectRegistry, *arguments, 0);
         break;
     case 1:
-        sub_80297D8((struct BattleResourceControlObject*)context->objectRegistry, 0);
+        battle_release_resource_when_mode_zero(
+            (struct BattleResourceControlObject*)context->objectRegistry, 0);
         break;
     case 2:
         sub_8029788(context->objectRegistry);

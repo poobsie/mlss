@@ -61,3 +61,5 @@ through `time_init` using the low byte of the requested priority, stores it in
 the slot, then disables that process explicitly. The existing partial process
 layout describes its common header and buffer; the allocation size includes the
 constructor's additional state. The existing initialization label is retained.
+The constructor and destructor now use one named global-slot access, so later
+type recovery has a single location to change without altering its address.

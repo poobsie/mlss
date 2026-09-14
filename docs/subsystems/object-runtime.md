@@ -791,3 +791,6 @@ the low byte of valueA0 into the visual parameter. ValueA0, valueA8, and the
 effect result retain their existing partial descriptions. The auxiliary slot
 uses a cast because `sub_806C8C0` receives an owner argument and returns an
 integer, while the shared slot currently has a one-argument callback type.
+The shared result slot at `0x03000E3C` is named in the object interface; its
+precise effect ownership remains unresolved. The 16-bit countdown tests use
+named predicates that preserve the original defined unsigned shift.

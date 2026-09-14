@@ -34,7 +34,8 @@ SEC(sub_8086700) s32 sub_8086700(struct RuntimeObject* object)
 
 void sub_807FE40(struct RuntimeObjectState* state);
 
-SEC(sub_808738C) void sub_808738C(struct RuntimeObjectState* state) {
+SEC(sub_808738C) void object_state_refresh_and_clear_value_f0_if_small(
+    struct RuntimeObjectState* state) {
     if (state != 0) {
         sub_807B7A8(state);
         sub_807FE40(state);

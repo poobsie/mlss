@@ -108,6 +108,9 @@
 #define field_wait_actor_a_then_prepare_actor_b_c sub_80C8A7C
 
 struct FieldSceneObject;
+#define field_has_flags_2b5_c0 sub_8047A1C
+#define field_has_flags_2b5_30 sub_8047A3C
+#define field_has_flags_2b5_07 sub_8047B78
 int sub_8047A1C(struct FieldSceneObject* object);
 int sub_8047A3C(struct FieldSceneObject* object);
 int sub_8047B78(struct FieldSceneObject* object);

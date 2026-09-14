@@ -3,6 +3,13 @@
 
 #include "global.h"
 
+/* Shared effect result used by several object visual transition callbacks. */
+#define OBJECT_SHARED_EFFECT_RESULT (*(s32*)0x03000E3C)
+#define OBJECT_VISUAL_COMPLETE 0x08
+/* The timer is stored as a halfword; test its signed low half after decrement. */
+#define OBJECT_TIMER_NONPOSITIVE(value) ((s32)((value) << 16) <= 0)
+#define OBJECT_TIMER_NEGATIVE(value) ((s32)((value) << 16) < 0)
+
 enum RuntimeObjectVariant {
     RUNTIME_OBJECT_VARIANT_FIRST = -1,
     RUNTIME_OBJECT_VARIANT_SECOND = -2,
@@ -294,6 +301,8 @@ void object_when_value80_clear_start_owner_variant_animation_and_followup(
 void object_select_animation_20_or_21_from_owner_variant_and_continue(
     struct RuntimeObject* object);
 
-void sub_808738C(struct RuntimeObjectState* state);
+#define object_state_refresh_and_clear_value_f0_if_small sub_808738C
+void object_state_refresh_and_clear_value_f0_if_small(
+    struct RuntimeObjectState* state);
 
 #endif

@@ -383,7 +383,7 @@ SEC(sub_80DC0B4) void sub_80DC0B4(void* object)
 {
     if (U32AT(object, 0x80) != 0)
         return;
-    sub_808738C(PTRAT(object, 0x28));
+    object_state_refresh_and_clear_value_f0_if_small(PTRAT(object, 0x28));
     sub_8087540(object);
 }
 SEC(sub_80DC0B4) const u16 sub_80DC0B4_padding = 0;

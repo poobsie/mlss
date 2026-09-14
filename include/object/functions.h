@@ -349,6 +349,23 @@
 #define object_countdown_install_animation_5_followups_sound_38 sub_80DA264
 
 struct RuntimeObject;
+/* The owners of these callback families remain unidentified; the transitions are observed. */
+#define object_poll_and_disable_update_a sub_8110C88
+#define object_poll_and_disable_update_b sub_8112870
+#define object_poll_and_disable_update_c sub_8132650
+#define object_countdown_then_animation_6 sub_8132EE0
+#define object_refresh_and_countdown_then_animation_7 sub_8061830
+#define object_countdown_then_animation_10_sound_9f sub_8132EA8
+#define object_on_visual_complete_countdown_then_animation_5 sub_8061864
+#define object_when_value80_clear_animation_14_sound_af sub_8065A5C
+#define object_on_visual_complete_start_animation_5_sound_a0 sub_8132E68
+#define object_on_visual_complete_countdown_animation_6_sound_ae sub_8063524
+#define object_on_visual_complete_select_animation_6_or_8 sub_8062548
+#define object_on_visual_complete_branch_countdown_sequence sub_806C314
+#define object_continue_visual_countdown_and_spawn_effect sub_806C3AC
+#define object_on_visual_complete_animation_11_sound_128 sub_80DEDEC
+#define object_on_visual_complete_animation_14_sound_117 sub_80DD878
+#define object_when_ready_animation_9_sound_65 sub_809BB00
 void sub_8110C88(struct RuntimeObject* object);
 void sub_8112870(struct RuntimeObject* object);
 void sub_8132650(struct RuntimeObject* object);
