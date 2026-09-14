@@ -1,10 +1,12 @@
 #include "audio/sound_effects.h"
+#include "field/actor.h"
 #include "field/global_object_transitions.h"
 #include "object/paired_object_callbacks.h"
 
 #define SEC(symbol) \
     __attribute__((section(".text.paired_object_callbacks." #symbol)))
 #define FIELD_OBJECT_RUNTIME (*(struct FieldObjectRuntime**)0x03000FD8)
+#define FIELD_ACTOR_RUNTIME (*(struct FieldRuntime**)0x03000FD8)
 u8 sub_8087CE4(struct RuntimeObject* object);
 void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
@@ -247,6 +249,27 @@ void object_on_visual_complete_spawn_secondary_command_2089(
             (spawned->flags76 & 6) == 4)
             spawned->update = sub_8097C38;
         sub_8097DB4(object);
+    }
+}
+
+SEC(sub_80982DC)
+void sub_80982DC(struct RuntimeObject* object)
+{
+    struct RuntimeObject* actorBAction =
+        (struct RuntimeObject*)&FIELD_ACTOR_RUNTIME->actorB->action;
+    struct RuntimeObject* spawned;
+
+    if (object->visual->flags & 8) {
+        spawned = sub_807BF34(
+            actorBAction->state, 0x2089, 0, -0x40, -1, 0, 1);
+        sub_8082E1C(spawned, 0, 0, 0);
+        spawned->unknown78 &= 0x1F;
+        object->linkedObject = spawned;
+        sub_807FA14(spawned);
+        if ((spawned->flags76 & 6) == 2 ||
+            (spawned->flags76 & 6) == 4)
+            spawned->update = sub_8097C38;
+        sub_80987F4(object);
     }
 }
 

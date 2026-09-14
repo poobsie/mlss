@@ -109023,6 +109023,7 @@ _080982CC:
 	pop {r0}
 	bx r0
 _080982D8: .4byte sub_80988D8
+	.if 0
 	thumb_func_start sub_80982DC
 sub_80982DC:
 	push {r4, r5, lr}
@@ -109089,6 +109090,8 @@ _08098350:
 _08098358: .4byte 0x03000FD8
 _0809835C: .4byte 0x00002089
 _08098360: .4byte sub_8097C38
+	.endif
+	.section .text.paired_object_callbacks_after_sub_80982DC, "ax", %progbits
 	thumb_func_start sub_8098364
 sub_8098364:
 	push {r4, r5, r6, r7, lr}
