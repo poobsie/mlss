@@ -43,6 +43,47 @@ void sub_80D205C(void);
 void sub_80D266C(struct FieldAction* process);
 void sub_80D6AA8(void);
 void sub_80D782C(void);
+void sub_80C8418(void);
+
+#define field_emit_actor_a_effect_1e_and_animation_7 sub_80C837C
+SEC(sub_80C837C)
+void field_emit_actor_a_effect_1e_and_animation_7(
+    struct FieldAction* process)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct FieldActor* actorA = runtime->actorA;
+    struct RuntimeObject* actionA = (struct RuntimeObject*)&actorA->action;
+    s32 x;
+    s32 y;
+    s32 z;
+    s32 state;
+    s32 visualMask;
+
+    sub_8087CE4(actionA);
+    if ((actorA->flags81 & 0x20) != 0) {
+        sound_effect_play(0x2E, SOUND_VOLUME_UNCHANGED);
+        x = actionA->currentPositionX;
+        if (x < 0)
+            x += 0xFF;
+        x >>= 8;
+        y = actionA->currentPositionY;
+        if (y < 0)
+            y += 0xFF;
+        y >>= 8;
+        z = actionA->verticalPosition;
+        visualMask = -7;
+        if (z < 0)
+            z += 0xFF;
+        z >>= 8;
+        sub_80DF024(0x1E, x, y, z, actionA);
+        state = actorA->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(actionA, 7, 0x2034, 0);
+            actionA->visual->flags = (actionA->visual->flags & visualMask) | 2;
+        }
+        process->update = (void (*)(void))sub_80C8418;
+    }
+}
 
 #define field_place_actor_a_from_process_state_then_animation_4 sub_80C741C
 SEC(sub_80C741C)

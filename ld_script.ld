@@ -1885,6 +1885,8 @@ SECTIONS
         asm/text08057568.o(.text.large_actor_state_machines_after_sub_80C33B0);
         src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80C741C);
         asm/text08057568.o(.text.large_actor_state_machines_after_sub_80C741C);
+        src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80C837C);
+        asm/text08057568.o(.text.large_actor_state_machines_after_sub_80C837C);
         src/field/actor_command_transitions.o(.text.actor_command_transitions.sub_80C8684);
         asm/text08057568.o(.text.actor_command_transitions_after_sub_80C8684);
         src/field/actor_command_transitions.o(.text.actor_command_transitions.sub_80C8744);

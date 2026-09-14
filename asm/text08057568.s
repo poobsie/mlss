@@ -207563,6 +207563,8 @@ _080C8368:
 _080C8370: .4byte 0x03000FD8
 _080C8374: .4byte 0x00002034
 _080C8378: .4byte sub_80C837C
+	.section .discard.large_actor_state_machines_sub_80C837C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80C837C
 sub_80C837C:
 	push {r4, r5, r6, lr}
@@ -207642,6 +207644,8 @@ _080C8402:
 _080C840C: .4byte 0x03000FD8
 _080C8410: .4byte 0x00002034
 _080C8414: .4byte sub_80C8418
+	.endif
+	.section .text.large_actor_state_machines_after_sub_80C837C, "ax", %progbits
 	thumb_func_start sub_80C8418
 sub_80C8418:
 	push {r4, r5, r6, r7, lr}
