@@ -85,8 +85,10 @@ previous candidates wait for a single coordinator to transcribe them.
 - Keep one active implementation slice per worker. Refill a worker only after its prior
   slice is committed, rejected with evidence, or returned for a boundary decision.
 - Limit compiler-shaping work on one candidate to two informed attempts during a batch.
-  Retain the diagnosis in ignored scratch space, restore its assembly, and continue with
-  the rest of the slice instead of stalling the pipeline.
+  Retain the diagnosis, best typed near-match source, exact mismatch offsets, and
+  comparison command in ignored scratch space; restore its assembly and continue with
+  the rest of the slice instead of stalling the pipeline. A later CPU shape search needs
+  that typed seed. Do not substitute an unsafe raw-offset draft for it.
 - Commit the exact accepted subset even when another candidate in the slice is rejected.
   The coordinator reviews and integrates worker commits sequentially, resolves shared
   interface and linker conflicts, reruns acceptance, pushes, and immediately starts the
