@@ -44,6 +44,56 @@ void sub_80D266C(struct FieldAction* process);
 void sub_80D6AA8(void);
 void sub_80D782C(void);
 void sub_80C8418(void);
+void sub_80A2918(void);
+
+#define field_place_actor_b_from_state_then_animation_4 sub_80A2868
+SEC(sub_80A2868)
+void field_place_actor_b_from_state_then_animation_4(
+    struct FieldAction* process)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct FieldActor* actorB = runtime->actorB;
+    struct RuntimeObject* actionB = (struct RuntimeObject*)&actorB->action;
+    struct RuntimeObjectState* state;
+    s32 rawX;
+    s32 rawY;
+    s32 rawZ;
+    s32 x;
+    s32 y;
+    s32 z;
+    s32 sourceZ;
+    s16 actorHeight;
+
+    sub_80884AC(actionB);
+    if ((actorB->flags81 & 0x20) != 0) {
+        if ((actorB->stateFlags & 6) == 2 ||
+            (actorB->stateFlags & 6) == 4) {
+            state = actionB->state;
+            rawX = state->valueD8;
+            if (rawX < 0)
+                rawX += 0xFF;
+            x = rawX >> 8;
+            rawY = state->valueDC;
+            if (rawY < 0)
+                rawY += 0xFF;
+            y = rawY >> 8;
+            rawZ = state->floorHeight;
+            if (rawZ < 0)
+                rawZ += 0xFF;
+            z = rawZ >> 8;
+            sub_808843C(actionB, x, y, z, -1);
+            sourceZ = actionB->positionZBase;
+            if (sourceZ < 0)
+                sourceZ += 0xFF;
+            sourceZ >>= 8;
+            actorHeight = (s16)(sourceZ + 0x1A);
+            actorB->value9A = actorHeight;
+            sub_8088164(actionB, 0x880);
+        }
+        actionB->secondaryTimer &= 0x0FFF;
+        process->update = sub_80A2918;
+    }
+}
 
 #define field_emit_actor_a_effect_1e_and_animation_7 sub_80C837C
 SEC(sub_80C837C)

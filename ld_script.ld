@@ -1814,6 +1814,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80A1A90);
         src/field/actor_activation_transitions.o(.text.actor_activation_transitions.sub_80A1CC4);
         asm/text08057568.o(.text.actor_activation_transitions_after_sub_80A1CC4);
+        src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80A2868);
+        asm/text08057568.o(.text.large_actor_state_machines_after_sub_80A2868);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_80A2C58);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80A2C58);
         src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_80A2C80);

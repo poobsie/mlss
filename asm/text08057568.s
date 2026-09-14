@@ -128079,6 +128079,8 @@ _080A2858: .4byte 0x03001038
 _080A285C: .4byte 0x0819832C
 _080A2860: .4byte 0x08198220
 _080A2864: .4byte sub_80A2868
+	.section .discard.large_actor_state_machines_sub_80A2868, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80A2868
 sub_80A2868:
 	push {r4, r5, r6, lr}
@@ -128170,6 +128172,8 @@ _080A2902:
 _080A290C: .4byte 0x03000FD8
 _080A2910: .4byte 0x00000FFF
 _080A2914: .4byte sub_80A2918
+	.endif
+	.section .text.large_actor_state_machines_after_sub_80A2868, "ax", %progbits
 	thumb_func_start sub_80A2918
 sub_80A2918:
 	push {r4, r5, r6, r7, lr}

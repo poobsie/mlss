@@ -30,6 +30,8 @@ struct FieldActor {
     s16 soundHandle;
     u8 unknown84[2];
     s16 value86;
+    u8 unknown88[0x12];
+    s16 value9A;
 };
 
 struct FieldRuntime {
