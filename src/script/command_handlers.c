@@ -89,6 +89,24 @@ struct ScriptObjectPropertyArguments {
     s32 propertySelector;
 };
 
+/* The command stream supplies a position descriptor followed by effect data.
+ * Only the flag word and effect value are identified by this handler. */
+struct ScriptBattleCommandArguments {
+    s32 positionMode;
+    s32 unknown04;
+    s32 unknown08;
+    s32 effectFlags;
+    s32 effectValue;
+};
+
+extern void sub_80EA6D4(
+    void* context, const void* arguments, s32* value0, s32* value1,
+    s32* value2);
+extern void sub_80F6AC0(void* context, u8 playerIndex, s32 value, s32 mirror);
+extern void sub_80F76FC(
+    u8 playerIndex, s32 x, s32 y, s32 z, s32 copyPosition);
+extern void sub_80F7644(u8 playerIndex, s32 copyPosition);
+
 extern void sub_801B0AC(u16);
 extern void sub_803C898(void *, s32);
 extern void sub_805B490(void *, u16);
@@ -1141,6 +1159,42 @@ s32 script_command_forward_object_property(
         (s32)(owner + 0xA8), arguments->bridgeValue, propertyValue);
     return 1;
 }
+
+SEC(sub_80F8740)
+s32 script_command_start_battle_command_effect(
+    struct ScriptObjectSelectionContext* context,
+    struct ScriptExecutionState* state,
+    const struct ScriptBattleCommandArguments* arguments)
+{
+    s32 value0;
+    s32 value1;
+    s32 value2;
+    s32 effectValue;
+    s32 mirror;
+    u8 temp_r0;
+    u8 temp_r5;
+    u8 var_r0;
+
+    temp_r0 = context->fieldState2C[0x179C];
+    if (temp_r0 <= 6)
+        var_r0 = temp_r0 - 1;
+    else
+        var_r0 = temp_r0 - 7;
+    temp_r5 = var_r0;
+
+    sub_80EA6D4(
+        (u8*)context + 0x1C, arguments, &value0, &value1, &value2);
+    effectValue = arguments->effectValue;
+    mirror = 0;
+    if ((arguments->effectFlags & 3) == 1)
+        mirror = 1;
+    sub_80F6AC0(context, temp_r5, effectValue, mirror);
+    sub_80F76FC(temp_r5, value0, value1, value2, 0);
+    sub_80F7644(temp_r5, 1);
+    state->primaryFlags |= 2;
+    return 0;
+}
+SEC(sub_80F8740) const u16 sub_80F8740_padding = 0;
 
 SEC(sub_80F112C)
 s32 script_command_control_object_motion(

@@ -24,6 +24,7 @@ struct ScriptVisualResourceContext;
 struct ScriptObjectSelectionContext;
 struct ScriptObjectSelectionArguments;
 struct ScriptObjectPropertyArguments;
+struct ScriptBattleCommandArguments;
 
 #define script_command_return_from_battle script_cmd_btl_return
 #define script_command_set_runtime_direction_sign sub_80EAD98
@@ -75,6 +76,7 @@ struct ScriptObjectPropertyArguments;
 #define script_command_start_display_value_transfer sub_80F7D0C
 #define script_command_forward_selected_object_index sub_80F8438
 #define script_command_forward_object_property sub_80F84AC
+#define script_command_start_battle_command_effect sub_80F8740
 
 u8 script_command_return_from_battle(
     struct ScriptBattleReturnContext* context,
@@ -138,6 +140,10 @@ s32 script_command_forward_object_property(
     struct ScriptObjectSelectionContext* context, u8* owner,
     const struct ScriptObjectPropertyArguments* arguments,
     void* commandContext);
+s32 script_command_start_battle_command_effect(
+    struct ScriptObjectSelectionContext* context,
+    struct ScriptExecutionState* state,
+    const struct ScriptBattleCommandArguments* arguments);
 s32 script_command_set_sound_effect_volume(
     void* context, void* state, const u32* arguments);
 s32 script_command_wait_for_user_input(

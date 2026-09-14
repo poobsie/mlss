@@ -293164,6 +293164,7 @@ _080F8734:
 	pop {r1}
 	bx r1
 _080F873C: .4byte 0x03000FDC
+	.if 0
 	thumb_func_start sub_80F8740
 sub_80F8740:
 	push {r4, r5, r6, r7, lr}
@@ -293228,6 +293229,8 @@ _080F8788:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.endif
+	.section .text.field_runtime_after_sub_80F8740, "ax", %progbits
 	thumb_func_start sub_80F87C0
 sub_80F87C0:
 	push {r4, lr}
