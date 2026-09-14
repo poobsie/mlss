@@ -20,7 +20,12 @@ struct FieldSceneObject {
     u8 unknown000[0x0C];
     s32 positionX;
     s32 positionY;
-    u8 unknown014[0x184];
+    /* Four fixed-point words are quantized together by sub_8046980. */
+    s32 position14;
+    s32 position18;
+    u8 unknown01C[0x38];
+    u8 mode054;
+    u8 unknown055[0x143];
     FieldSceneDispatch dispatch198;
     u8 unknown19C[4];
     FieldSceneChainCallback callback1A0;
@@ -36,7 +41,8 @@ struct FieldSceneObject {
     u8 flags214;
     u8 unknown215[2];
     u8 flags217;
-    u8 unknown218[0x21];
+    u16 value218;
+    u8 unknown21A[0x1F];
     u8 value239;
     u8 unknown23A;
     u8 state23B;
@@ -58,7 +64,9 @@ struct FieldSceneObject {
     u8 unknown298[0x1D];
     u8 flags2B5;
     u8 flags2B6;
-    u8 unknown2B7[0x7D];
+    u8 unknown2B7[0x29];
+    s16 value2E0;
+    u8 unknown2E2[0x52];
     void* entryStateTable;
     const void* descriptor;
     u16 unknown33C;
@@ -70,6 +78,7 @@ struct FieldSceneObject {
     s32 movementStartY;
     u8 unknown350[0x0A];
     u8 flags35A;
+    u8 flags35B;
 };
 
 #endif

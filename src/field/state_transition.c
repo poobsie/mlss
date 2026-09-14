@@ -4,8 +4,6 @@
 
 #define SECTION(name) __attribute__((section(".text.field_state_transition." #name)))
 
-extern void sub_8049000(void *, s32);
-
 SECTION(sub_804FCD4) void field_state_apply_mode_transition(struct FieldStateObject *object)
 {
     s32 value;

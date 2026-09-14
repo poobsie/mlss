@@ -58826,6 +58826,8 @@ _08046970: .4byte 0x0000020F
 _08046974: .4byte 0x00000302
 _08046978: .4byte 0x000002B6
 _0804697C: .4byte 0x00000322
+.section .discard.field_scene_object_sub_8046980, "ax", %progbits
+.if 0
 	thumb_func_start sub_8046980
 sub_8046980:
 	push {r4, r5, lr}
@@ -58899,6 +58901,8 @@ _080469FC:
 _08046A04: .4byte 0x000002B5
 _08046A08: .4byte 0xFFFFFF00
 _08046A0C: .4byte 0x0000020D
+.endif
+.section .text.after_field_scene_object_8046980, "ax", %progbits
 	thumb_func_start sub_8046A10
 sub_8046A10:
 	push {r4, r5, r6, lr}
@@ -63183,6 +63187,8 @@ _0804929C:
 	bx r0
 _080492D4: .4byte 0x00000266
 _080492D8: .4byte 0x00000355
+.section .discard.field_scene_object_sub_80492DC, "ax", %progbits
+.if 0
 	thumb_func_start sub_80492DC
 sub_80492DC:
 	push {r4, lr}
@@ -63257,6 +63263,8 @@ _08049354:
 	bx r0
 _08049368: .4byte 0x00001002
 _0804936C: .4byte 0x0000035A
+.endif
+.section .text.after_field_scene_object_80492DC, "ax", %progbits
 	thumb_func_start sub_8049370
 sub_8049370:
 	push {r4, r5, lr}

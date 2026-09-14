@@ -157,6 +157,8 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_code_helpers_803C898);
         src/field/scene_object_properties.o(.text.early_code_helpers.sub_803E9F0);
         asm/text0801A548.o(.text.after_early_code_helpers_803E9F0);
+        src/field/scene_object_properties.o(.text.field_scene_object.sub_8046980);
+        asm/text0801A548.o(.text.after_field_scene_object_8046980);
         src/field/scene_object_properties.o(.text.early_code_helpers.sub_804776C);
         asm/text0801A548.o(.text.after_early_code_helpers_804776C);
         src/field/scene_object_properties.o(.text.sub_8047784);
@@ -190,6 +192,8 @@ SECTIONS
         asm/text0801A548.o(.text.after_field_configuration_8047E50);
         src/field/destructors.o(.text.field_destructors.sub_8048040);
         asm/text0801A548.o(.text.text_early_helpers_04_after_sub_8048040);
+        src/field/scene_object_properties.o(.text.field_scene_object.sub_80492DC);
+        asm/text0801A548.o(.text.after_field_scene_object_80492DC);
         src/field/collision_record.o(.text.early_code_helpers.sub_804FAF8);
         asm/text0801A548.o(.text.after_early_code_helpers_804FAF8);
         src/field/collision_record.o(.text.early_code_helpers.sub_804FB14);

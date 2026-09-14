@@ -32,6 +32,8 @@ The currently decompiled field-runtime slice is detangled. Further names depend 
 
 `FieldSceneObject` covers the independently observed scene-object tail from offset `0x20F` through `0x340`. Its current helpers clear state under a value guard, mark an attached sprite while selecting state 7, and reset two sprite mode fields after common setup. The no-op entry points adjacent to the sprite reset remain address-named because their callback-table roles are not yet known.
 
+The adjacent scene callbacks are now ordinary typed C. `sub_8046980` rounds the four observed fixed-point position words at `0x0C`, `0x10`, `0x14`, and `0x18` to 256-unit boundaries when the low scene-state group is active, conditionally includes the latter pair, clears `0x2E0` and movement deltas, and removes the active low bits. `sub_80492DC` selects the proven `0x103E` or `0x1053` mode values at `0x218`, applies the corresponding `0x1001`, `0x1028`, or `0x1002` transition through `sub_8049000`, and clears bit `0x02` at `0x35A`. The mode byte at `0x54`, selector, and flags remain structural because their gameplay identities are not established.
+
 The recovered layout now begins at offset `0x20C` and includes property operations for flags, values, and a current-to-previous halfword update at offsets `0x266` and `0x268`. The additional predicate exposes bit `0x01` at offset `0x291`. Offset-bearing names are retained where the gameplay meaning is not yet proven.
 
 The object also selects one 28-byte entry through an index at `0x26E` and a table pointer at `0x334`. Two wrappers perform guarded low-bit state changes on that entry, `2` to `1` and `1` to `2`. Their names state those proven transitions directly; the table's gameplay identity remains unresolved.

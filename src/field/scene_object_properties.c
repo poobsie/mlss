@@ -3,6 +3,65 @@
 
 #define FIELD_SECTION(name) __attribute__((section(name)))
 
+FIELD_SECTION(".text.field_scene_object.sub_8046980")
+void sub_8046980(struct FieldSceneObject* object);
+
+void sub_8046980(struct FieldSceneObject* object) {
+    u32 positionX;
+    u32 positionY;
+    u32 position14;
+    u32 position18;
+    s32 mask;
+
+    mask = -8;
+    if ((object->flags2B5 & 7) != 0) {
+        positionX = object->positionX;
+        object->positionX = (positionX + ((positionX & 0x80) * 2)) & 0xFFFFFF00;
+        positionY = object->positionY;
+        object->positionY = (positionY + ((positionY & 0x80) * 2)) & 0xFFFFFF00;
+        if ((object->flags20D & 0x40) == 0) {
+            position14 = object->position14;
+            object->position14 =
+                (position14 + ((position14 & 0x80) * 2)) & 0xFFFFFF00;
+            position18 = object->position18;
+            object->position18 =
+                (position18 + ((position18 & 0x80) * 2)) & 0xFFFFFF00;
+        }
+        object->value2E0 = 0;
+        object->positionDeltaX = 0;
+        object->positionDeltaY = 0;
+        object->flags2B5 &= mask;
+    }
+}
+
+FIELD_SECTION(".text.field_scene_object.sub_80492DC")
+void sub_80492DC(struct FieldSceneObject* object);
+
+void sub_80492DC(struct FieldSceneObject* object) {
+    u8 mode;
+    s32 value;
+    s32 flagsMask;
+    s32 clearMask;
+
+    mode = object->mode054;
+    flagsMask = -8;
+    clearMask = -5;
+    /* Preserve the original low-register allocation for this callback byte. */
+    asm("" : "+r"(mode));
+
+    if (((mode == 0) && (object->value218 == 0x103E))
+        || ((mode == 1) && (object->value218 == 0x1053))) {
+        object->flags214 = (object->flags214 & flagsMask) | 3;
+        if (object->mode054 == 0) {
+            value = 0x1001 + ((object->flags35B & 8) != 0) * 0x27;
+        } else {
+            value = 0x1002;
+        }
+        sub_8049000(object, value);
+    }
+    object->flags35A &= clearMask;
+}
+
 void sub_8116654(void* table, u8 index);
 void sub_8116680(void* table, u8 index);
 void sub_804761C(struct FieldSceneObject* object, u32 value);
