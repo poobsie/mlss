@@ -39,6 +39,7 @@ void sub_8110178(struct RuntimeObject*);
 void sub_810F764(struct RuntimeObject*);
 void sub_81101BC(struct RuntimeObject*);
 void sub_8110A30(struct RuntimeObject*);
+void sub_8110FC8(struct RuntimeObject*);
 void sub_811108C(struct RuntimeObject*);
 void sub_8111174(struct RuntimeObject*);
 void sub_81111C0(struct RuntimeObject*);
@@ -845,6 +846,24 @@ SEC(sub_8110A30) void sub_8110A30(struct RuntimeObject* object)
         sound_effect_stop(0x119);
         object->update = sub_8110A94;
     }
+}
+
+SEC(sub_8110ED8)
+void object_apply_owner_state_motion_setup(struct RuntimeObject* object)
+{
+    struct ObjectPositionOwner* owner = object->positionOwner;
+    struct ObjectPositionSource* source = owner->positionSource;
+    s32 positionX = source->positionX / 256;
+    s32 positionY = source->positionY / 256;
+    s32 positionZ = source->positionZ / 256 + 4;
+
+    sub_808843C(object, positionX, positionY, positionZ, 0x100);
+    sub_80880C4(object, 0x300);
+    object->unknown75 = source->unknown7D - 1;
+    sub_807F4FC(object);
+    object->secondaryUpdate = (RuntimeObjectCallback)0x08110FC5;
+    object->update = sub_8110FC8;
+    sound_effect_play(0x89, SOUND_VOLUME_UNCHANGED);
 }
 
 SEC(sub_811458C) void sub_811458C(struct RuntimeObject* object)

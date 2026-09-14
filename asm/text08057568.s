@@ -337594,6 +337594,7 @@ _08110EC0:
 	bx r0
 _08110ED0: .4byte 0xFFFFF200
 _08110ED4: .4byte 0xFFFFFF00
+	.if 0
 	thumb_func_start sub_8110ED8
 sub_8110ED8:
 	push {r4, r5, lr}
@@ -337659,6 +337660,8 @@ _08110F0A:
 	.byte 0x00, 0x00
 _08110F54: .4byte 0x08110FC5
 _08110F58: .4byte sub_8110FC8
+	.endif
+	.section .text.object_late_visual_transitions_after_sub_8110ED8, "ax", %progbits
 	thumb_func_start sub_8110F5C
 sub_8110F5C:
 	push {r4, lr}

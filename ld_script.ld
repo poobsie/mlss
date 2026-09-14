@@ -2663,6 +2663,8 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_08_after_sub_8110A30);
         src/object/poll_disable_callbacks.o(.text.object_poll_disable.sub_8110C88);
         asm/text08057568.o(.text.after_sub_8110C88);
+        src/object/late_visual_transitions.o(.text.object_late_visual_transitions.sub_8110ED8);
+        asm/text08057568.o(.text.object_late_visual_transitions_after_sub_8110ED8);
         src/object/late_visual_transitions.o(.text.object_late_visual_transitions.sub_811104C);
         asm/text08057568.o(.text.object_late_visual_transitions_after_sub_811104C);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_811108C);

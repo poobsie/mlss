@@ -22,7 +22,9 @@ struct RuntimeObjectValueSource {
 
 /* Position data reached through the owner wrapper used by effect objects. */
 struct ObjectPositionSource {
-    u8 unknown00[0xD8];
+    u8 unknown00[0x7D];
+    u8 unknown7D;
+    u8 unknown7E[0x5A];
     s32 positionX;
     s32 positionY;
     s32 positionZ;
@@ -185,6 +187,7 @@ void runtime_object_finish_action(struct RuntimeObject* object);
 #define object_return_to_variant_owner_effect_when_ready sub_8110178
 #define object_stop_when_visual_complete sub_8110948
 #define object_prepare_vector_setup_from_owner_state sub_81109F4
+#define object_apply_owner_state_motion_setup sub_8110ED8
 #define object_start_owner_variant_animation_11_or_12 sub_811104C
 #define object_continue_owner_variant_animation_10_or_11 sub_8111174
 #define object_finish_owner_variant_animation_4_or_7 sub_81111C0
@@ -259,6 +262,7 @@ void object_return_to_variant_owner_effect_when_ready(
 void object_stop_when_visual_complete(struct RuntimeObject* object);
 void object_prepare_vector_setup_from_owner_state(
     struct RuntimeObject* object);
+void object_apply_owner_state_motion_setup(struct RuntimeObject* object);
 void object_start_owner_variant_animation_11_or_12(
     struct RuntimeObject* object);
 void object_continue_owner_variant_animation_10_or_11(
