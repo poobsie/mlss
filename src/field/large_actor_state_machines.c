@@ -38,7 +38,9 @@ void sub_80CBF64(void);
 void sub_80CCA38(void);
 void sub_80D27DC(void);
 void sub_80D53F8(void);
-void sub_80D086C(void);
+void sub_80D086C(struct FieldAction* process);
+void sub_80D08F8(struct FieldAction* process);
+void sub_80D0AF8(struct RuntimeObject* object);
 void sub_80D205C(void);
 void sub_80D266C(struct FieldAction* process);
 void sub_80D6AA8(void);
@@ -631,7 +633,34 @@ void field_on_actor_b_complete_place_actor_a_linked_object(
                         actionA->positionZBase / 0x100 + 8, -1);
             sub_8088274(actionA->linkedObject, 0, 0x66);
         }
-        process->update = sub_80D086C;
+        process->update = (void (*)(void))sub_80D086C;
+    }
+}
+
+#define field_on_linked_actor_ready_set_visual_and_continue sub_80D086C
+SEC(sub_80D086C)
+void field_on_linked_actor_ready_set_visual_and_continue(
+    struct FieldAction* process)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct FieldActor* actorA = runtime->actorA;
+    struct RuntimeObject* actionA = (struct RuntimeObject*)&actorA->action;
+    s32 state;
+    s8* flags;
+
+    sub_8087EFC(actionA->linkedObject);
+    if ((actionA->linkedObject->flags79 & 0x20) != 0) {
+        sound_effect_play(0x9C, SOUND_VOLUME_UNCHANGED);
+        state = actorA->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(actionA, 5, 0x2036, 0);
+            flags = (s8*)&actionA->visual->flags;
+            *flags = (*flags & -7) | 2;
+        }
+        state = actionA->linkedObject->flags76 & 6;
+        if (state == 2 || state == 4)
+            actionA->linkedObject->update = sub_80D0AF8;
+        process->update = (void (*)(void))sub_80D08F8;
     }
 }
 

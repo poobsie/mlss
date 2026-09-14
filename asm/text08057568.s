@@ -224920,6 +224920,8 @@ _080D0864: .4byte 0x0000204D
 _080D0868: .4byte sub_80D086C
 .endif
 	.section .text.large_actor_state_machines_after_sub_80D0790, "ax", %progbits
+	.section .discard.large_actor_state_machines_sub_80D086C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80D086C
 sub_80D086C:
 	push {r4, r5, r6, lr}
@@ -224990,6 +224992,8 @@ _080D08E8: .4byte 0x03000FD8
 _080D08EC: .4byte 0x00002036
 _080D08F0: .4byte sub_80D0AF8
 _080D08F4: .4byte sub_80D08F8
+	.endif
+	.section .text.large_actor_state_machines_after_sub_80D086C, "ax", %progbits
 	thumb_func_start sub_80D08F8
 sub_80D08F8:
 	push {r4, r5, r6, r7, lr}
