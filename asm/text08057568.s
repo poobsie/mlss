@@ -145735,6 +145735,8 @@ _080AB350:
 	bx r0
 _080AB358: .4byte 0x03000FD8
 _080AB35C: .4byte sub_80AB360
+	.section .discard.actor_state_transitions_sub_80AB360, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80AB360
 sub_80AB360:
 	push {r4, r5, r6, lr}
@@ -145818,6 +145820,8 @@ _080AB3F0:
 _080AB3F8: .4byte 0x03000FD8
 _080AB3FC: .4byte 0x00002034
 _080AB400: .4byte sub_80AB404
+	.endif
+	.section .text.actor_state_transitions_after_sub_80AB360, "ax", %progbits
 	thumb_func_start sub_80AB404
 sub_80AB404:
 	push {r4, r5, r6, r7, lr}

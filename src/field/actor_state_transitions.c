@@ -1,6 +1,8 @@
 #include "global.h"
+#include "audio/sound_effects.h"
 #include "field/actor.h"
 #include "field/functions.h"
+#include "object/runtime_object.h"
 
 #define SEC(name) __attribute__((section(".text.actor_state_transitions." #name)))
 
@@ -45,6 +47,57 @@ DEFINE_ACTOR_STATE(field_wait_actor_b_then_prepare_actor_a_d, actorA, actorB, su
 
 extern void sub_80884AC(struct FieldAction* action);
 extern void sub_80A99A8(void);
+extern void sub_80AB404(void);
+extern u8 sub_8087CE4(struct RuntimeObject* object);
+extern void sub_8082E1C(struct RuntimeObject* object, s32 animation,
+                        s32 command, s32 argument);
+extern void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
+                        struct RuntimeObject* object);
+
+#define field_emit_actor_a_effect_1e_and_animation_8 sub_80AB360
+SEC(sub_80AB360)
+void field_emit_actor_a_effect_1e_and_animation_8(
+    struct FieldAction* process)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct FieldActor* actorA = runtime->actorA;
+    struct RuntimeObject* actionA = (struct RuntimeObject*)&actorA->action;
+    s32 x;
+    s32 y;
+    s32 z;
+    s32 state;
+    s32 visualMask;
+
+    sub_8087CE4(actionA);
+    if ((actorA->flags81 & 0x20) != 0) {
+        visualMask = -7;
+        sound_effect_play(0x2E, SOUND_VOLUME_UNCHANGED);
+        x = actionA->currentPositionX;
+        if (x < 0)
+            x += 0xFF;
+        x >>= 8;
+        y = actionA->currentPositionY;
+        if (y < 0)
+            y += 0xFF;
+        y >>= 8;
+        z = actionA->verticalPosition;
+        if (z < 0)
+            z += 0xFF;
+        z >>= 8;
+        sub_80DF024(0x1E, x, y, z, actionA);
+        state = actorA->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(actionA, 8, 0x2034, 0);
+            actionA->visual->flags = (actionA->visual->flags & visualMask) | 2;
+        }
+        {
+            u8 visualFlags = actionA->visual->flags11;
+            visualFlags |= 0x40;
+            actionA->visual->flags11 = visualFlags;
+        }
+        process->update = (void (*)(void))sub_80AB404;
+    }
+}
 
 SEC(sub_80AC4AC) void sub_80AC4AC(void)
 {

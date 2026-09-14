@@ -4,7 +4,8 @@
 #include "global.h"
 
 struct FieldVisual {
-    u8 unknown00[0x12];
+    u8 unknown00[0x11];
+    u8 flags11;
     u8 flags;
 };
 
