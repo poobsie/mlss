@@ -107,6 +107,14 @@ do not guess types to force compilation. A local `span_match` is diagnostic only
 does not replace linked function verification or `make decomp-acceptance`. Keep full
 logs in scratch and inspect the compact mismatch excerpts first.
 
+For Windows/WSL worktrees, prepare the local compiler and tool directories used by the
+main checkout before interpreting missing headers or `gbafix` as a candidate failure.
+Compare the freshly built candidate's full linked address span against the canonical
+reference ROM, not an earlier local build or a scratch output. Record the command,
+reference path, span, and first mismatch in the worker result. A worker may report a
+local span match, but only the coordinator's combined `make decomp-acceptance` gate
+can mark the candidate integrated; revert a failed integration before continuing.
+
 For a compilable near-match with known interfaces, `scripts/decomp_mutate.py` provides
 an optional bounded CPU search using Transmuter or decomp-permuter. Follow
 `docs/local-mutation.md`; use the unattended trial command for comparisons. Do not
