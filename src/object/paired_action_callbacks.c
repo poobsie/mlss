@@ -33,6 +33,43 @@ void sub_80B35C8(struct RuntimeObject* object);
 void sub_80B9420(struct RuntimeObject* object);
 void sub_80B95D8(struct RuntimeObject* object);
 void sub_80B9624(struct RuntimeObject* object);
+void sub_80B7A3C(struct RuntimeObject* object);
+
+#define object_sync_actor_actions_then_start_paired_animation sub_80B7980
+SEC(sub_80B7980)
+void object_sync_actor_actions_then_start_paired_animation(
+    struct RuntimeObject* caller)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct FieldActor* actorA = runtime->actorA;
+    struct RuntimeObject* actionA = (struct RuntimeObject*)&actorA->action;
+    struct FieldActor* actorB = runtime->actorB;
+    struct RuntimeObject* actionB = (struct RuntimeObject*)&actorB->action;
+    s32 stateA;
+    s32 stateB;
+    s8* visualFlags;
+
+    sub_8087CE4(actionB);
+    actionA->currentPositionX = actionB->currentPositionX;
+    actionA->currentPositionY = actionB->currentPositionY;
+    actionA->verticalPosition = actionB->verticalPosition;
+    if (actorB->flags81 & 0x20) {
+        sound_effect_play(0x55, SOUND_VOLUME_UNCHANGED);
+        stateA = actorA->stateFlags & 6;
+        if (stateA == 2 || stateA == 4) {
+            sub_8082E1C(actionA, 5, 0x2031, 0);
+            visualFlags = (s8*)&actionA->visual->flags;
+            *visualFlags = (*visualFlags & -7) | 2;
+        }
+        stateB = actionB->flags76 & 6;
+        if (stateB == 2 || stateB == 4) {
+            sub_8082E1C(actionB, 5, 0x2060, 0);
+            visualFlags = (s8*)&actionB->visual->flags;
+            *visualFlags = (*visualFlags & -7) | 2;
+        }
+        caller->update = sub_80B7A3C;
+    }
+}
 
 #define DEFINE_ACTION_POLL(symbol, name, owner, distance, next)          \
     SEC(symbol)                                                          \
