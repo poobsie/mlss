@@ -1,7 +1,11 @@
 #include "script/animation_runtime.h"
+#include "field/runtime_nodes.h"
 
 #define SEC(name) __attribute__((section(".text.animation_runtime." #name)))
 #define PAD(name) SEC(name) const u16 name##_padding = 0
+#define ANIMATION_FIELD_RUNTIME (*(struct AnimationFieldRuntime**)0x03000FD8)
+#define DISPLAY_X_SHADOW (*(volatile u16*)0x02000018)
+#define DISPLAY_Y_SHADOW (*(volatile u16*)0x0200001A)
 
 struct AnimationAction {
     u8 unknown00[0x12];
@@ -13,6 +17,23 @@ extern void sub_8082E1C(void* object, s32 animation, s32 command, s32 argument);
 extern void sub_807FC54(void* object, s32 x, s32 y, s32 z, s32 argument);
 extern void sub_807FB34(void* object);
 extern void sub_80DF024(s32 effect, s32 x, s32 y, s32 z, void* owner);
+
+SEC(sub_80E12F8)
+void animation_offset_set_velocity(s32 velocityX, s32 velocityY)
+{
+    struct AnimationOffsetState* state;
+
+    state = ANIMATION_FIELD_RUNTIME->offsetState274;
+    if (state == 0) {
+        state = (struct AnimationOffsetState*)field_runtime_push_node_list_40(
+            animation_offset_update);
+    }
+    state->velocityX = velocityX;
+    state->velocityY = velocityY;
+    state->positionX = DISPLAY_X_SHADOW << 8;
+    state->positionY = DISPLAY_Y_SHADOW << 8;
+    ANIMATION_FIELD_RUNTIME->offsetState274 = state;
+}
 
 SEC(sub_80E195C)
 void sub_80E195C(struct AnimationAttachmentState* state,

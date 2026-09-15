@@ -37,7 +37,9 @@ struct AnimationSceneProcess {
 struct AnimationFieldRuntime {
     u8 unknown000[0x248];
     void* layer248;
-    u8 unknown24C[0x8C];
+    u8 unknown24C[0x28];
+    struct AnimationOffsetState* offsetState274;
+    u8 unknown278[0x60];
     void* optional2D8;
 };
 
@@ -61,6 +63,7 @@ void sub_80E3DD0(void);
 void sub_80E4F98(struct AnimationTransferNode*, struct AnimationTransferNode*);
 
 #define animation_attachment_flush_pending sub_80E195C
+#define animation_offset_set_velocity sub_80E12F8
 #define animation_script_tick_terminal_wait sub_80E19A8
 #define animation_offset_update sub_80E19EC
 #define animation_script_apply_origin sub_80E1AB0
@@ -71,5 +74,7 @@ void sub_80E4F98(struct AnimationTransferNode*, struct AnimationTransferNode*);
 #define animation_scene_poll_runtime_ready sub_80E3DA4
 #define animation_scene_initialize_transfer_buffer sub_80E3DD0
 #define animation_transfer_mark_references sub_80E4F98
+
+void animation_offset_set_velocity(s32 velocityX, s32 velocityY);
 
 #endif

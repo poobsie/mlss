@@ -256419,6 +256419,8 @@ _080E12E8: .4byte 0x03001034
 _080E12EC: .4byte 0x08198154
 _080E12F0: .4byte 0x081980D8
 _080E12F4: .4byte 0x06004000
+	.section .text.animation_runtime_before_sub_80E12F8, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80E12F8
 sub_80E12F8:
 	push {r4, r5, r6, r7, lr}
@@ -256457,6 +256459,8 @@ _080E1338: .4byte 0x03000FD8
 _080E133C: .4byte sub_80E19EC
 _080E1340: .4byte 0x02000018
 _080E1344: .4byte 0x0200001A
+	.endif
+	.section .text.animation_runtime_after_sub_80E12F8, "ax", %progbits
 	thumb_func_start sub_80E1348
 sub_80E1348:
 	push {r4, r5, lr}
