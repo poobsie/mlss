@@ -1,5 +1,6 @@
 #include "global.h"
 #include "audio/sound_effects.h"
+#include "field/actor.h"
 #include "object/runtime_object.h"
 #include "object/functions.h"
 
@@ -49,6 +50,7 @@ void sub_8111754(struct RuntimeObject*);
 void sub_8112450(struct RuntimeObject*);
 void sub_8112498(struct RuntimeObject*);
 void sub_811254C(struct RuntimeObject*);
+void sub_811251C(struct RuntimeObject*);
 s32 sub_8087124(struct RuntimeObject*);
 void sub_81125CC(struct RuntimeObject*);
 void sub_8112D78(struct RuntimeObject*);
@@ -574,6 +576,27 @@ void object_when_timer_active_start_animation_13(
         value |= 2;
         *flags = value;
         object->update = object_on_visual_complete_increment_timer_then_continue;
+    }
+}
+
+SEC(sub_81121E8)
+void sub_81121E8(struct RuntimeObject* object)
+{
+    struct RuntimeObjectState* state;
+    s32 x;
+    s32 y;
+    s32 z;
+
+    if (gFieldRuntime->guard40 == 0) {
+        state = object->state;
+        x = state->valueD8 / 256;
+        y = state->valueDC / 256;
+        z = state->floorHeight / 256;
+        sub_808843C(object, x, y, z, 0x100);
+        sub_80880C4(object, 0x400);
+        sub_8082E1C(object, 2, 0, 0);
+        object->update = sub_811251C;
+        sound_effect_play(0x11B, -1);
     }
 }
 
