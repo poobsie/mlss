@@ -21,6 +21,7 @@ void sub_80DD0CC(void*);
 s32 sub_8086858(void*, s32);
 u8 sub_8087CE4(struct RuntimeObject*);
 s32 sub_8086700(struct RuntimeObject*);
+void sub_80F7068(s32 entry, s32 value);
 
 #define DECL_NEXT(name) extern void name(void*)
 DECL_NEXT(sub_80D9B9C);
@@ -226,6 +227,19 @@ SEC(sub_80DA480) void sub_80DA480(void* object)
 
 DEFINE_CALL_VOID(sub_80D2D28, object_invoke_shared_terminal_action_a, sub_807C298)
 DEFINE_CALL_VOID(sub_80DEC60, object_invoke_shared_terminal_action_b, sub_807C298)
+
+#define object_forward_state_event_and_return_true sub_80DE9F0
+SEC(sub_80DE9F0)
+s32 object_forward_state_event_and_return_true(struct RuntimeObject* object)
+{
+    object->update =
+        (RuntimeObjectCallback)object_invoke_shared_terminal_action_b;
+    if (object->state->value113 & 0x80) {
+        sub_80F7068(object->state->value113 & 0x7F, 1);
+        object->state->value113 = 0;
+    }
+    return 1;
+}
 
 #define DEFINE_CHECK_UPDATE(symbol, name)                               \
     SEC(symbol) void name(void* object) {                               \

@@ -252254,6 +252254,7 @@ _080DE9E4:
 	bx r0
 	.byte 0x00, 0x00
 _080DE9EC: .4byte sub_80DE780
+.if 0
 	thumb_func_start sub_80DE9F0
 sub_80DE9F0:
 	push {r4, lr}
@@ -252284,6 +252285,8 @@ _080DEA1C:
 	bx r1
 _080DEA24: .4byte sub_80DEC60
 _080DEA28: .4byte 0x00000113
+.endif
+	.section .text.after_middle_sub_80DE9F0, "ax", %progbits
 	thumb_func_start sub_80DEA2C
 sub_80DEA2C:
 	push {r4, r5, r6, r7, lr}

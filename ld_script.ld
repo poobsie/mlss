@@ -2194,6 +2194,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DE960);
         src/object/setup_forwarders.o(.text.misc_helpers_02.sub_80DE980);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DE980);
+        src/object/middle_transitions.o(.text.middle.sub_80DE9F0);
+        asm/text08057568.o(.text.after_middle_sub_80DE9F0);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_80DEA98);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DEA98);
         src/object/middle_transitions.o(.text.middle.sub_80DEB1C);
