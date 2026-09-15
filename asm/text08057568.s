@@ -26368,6 +26368,7 @@ _08066C8C: .4byte 0x00000D0C
 	.section .text.runtime_leaf_callbacks_after_sub_8066E5C, "ax", %progbits
 	.section .text.misc_helpers_03_after_sub_8066EB4, "ax", %progbits
 	.section .text.owner_motion_transitions_after_sub_8066EE0, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8066F60
 sub_8066F60:
 	push {r4, r5, lr}
@@ -26441,6 +26442,8 @@ _08066FE8:
 _08066FF0: .4byte 0x08067831
 _08066FF4: .4byte sub_8067838
 _08066FF8: .4byte sub_8066FFC
+	.endif
+	.section .text.owner_motion_transitions_after_sub_8066F60, "ax", %progbits
 	thumb_func_start sub_8066FFC
 sub_8066FFC:
 	push {r4, r5, r6, r7, lr}
@@ -27535,6 +27538,8 @@ _08067824:
 	bx r0
 	.byte 0x00, 0x00
 _0806782C: .4byte sub_808750C
+	thumb_func_start sub_8067830
+sub_8067830:
 	.byte 0x01, 0x20, 0x40, 0x42, 0x70, 0x47, 0x00, 0x00
 	.section .text.runtime_leaf_callbacks_after_sub_8067838, "ax", %progbits
 	.section .text.countdown_callbacks_after_sub_8067874, "ax", %progbits

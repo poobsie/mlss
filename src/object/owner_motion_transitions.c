@@ -11,12 +11,16 @@ void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
 void sub_8085B38(struct RuntimeObject* object);
 void sub_8066F60(struct RuntimeObject* object);
+void sub_8066FFC(struct RuntimeObject* object);
+s32 sub_8067830(struct RuntimeObject* object);
+s32 sub_8067838(struct RuntimeObject* object);
 void sub_806A204(struct RuntimeObject* object);
 void sub_806A24C(struct RuntimeObject* object);
 void sub_80DAE7C(struct RuntimeObject* object);
 void sub_80DBC84(struct RuntimeObject* object);
 void sub_80DBC3C(struct RuntimeObject* object);
 void sub_80DBBCC(struct RuntimeObject* object);
+s32 sub_8199F30(void);
 
 #define object_on_visual_complete_begin_owner_offset_motion sub_8066EE0
 SEC(sub_8066EE0)
@@ -48,6 +52,42 @@ void object_on_visual_complete_begin_owner_offset_motion(
         object->update = sub_8066F60;
         sound_effect_play(0x11C, SOUND_VOLUME_UNCHANGED);
     }
+}
+
+SEC(sub_8066F60)
+void sub_8066F60(struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner;
+    struct RuntimeObjectState* state;
+    s32* targetStart;
+    s32* target;
+    volatile u8* flags;
+    s32 gateValue;
+
+    gateValue = object->value80;
+    if (gateValue != 0)
+        return;
+
+    sound_effect_stop(0x11C);
+    sub_8082E1C(object, 4, 0, 0);
+    targetStart = &object->value84;
+    target = targetStart;
+    owner = object->positionOwner;
+    state = owner->state;
+    *target = state->valueD8 + 0x1600;
+    target++;
+    *target = state->valueDC;
+    object->value8C = object->positionZBase;
+    flags = &object->flags79;
+    *flags |= 0x20;
+    object->unknown7C = 0x200;
+    object->unknown7A = gateValue;
+    sub_8085B38(object);
+    sub_807F4FC(object);
+    object->auxiliaryUpdate = (RuntimeObjectCallback)sub_8067830;
+    object->tertiaryUpdate = (RuntimeObjectCallback)sub_8067838;
+    object->timer = (sub_8199F30() & 3) + 1;
+    object->update = sub_8066FFC;
 }
 
 SEC(sub_8069558)
