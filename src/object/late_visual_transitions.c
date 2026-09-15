@@ -2,6 +2,7 @@
 #include "audio/sound_effects.h"
 #include "field/actor.h"
 #include "object/runtime_object.h"
+#include "object/runtime_object_list.h"
 #include "object/functions.h"
 
 #define SEC(name) __attribute__((section(".text.object_late_visual_transitions." #name)))
@@ -58,13 +59,16 @@ void sub_8112D78(struct RuntimeObject*);
 void sub_8114404(struct RuntimeObject*);
 void sub_81147B4(struct RuntimeObject*);
 void sub_81147D0(struct RuntimeObject*);
+void sub_81325E8(struct RuntimeObject*);
 
 void object_on_visual_complete_delay_12(struct RuntimeObject*);
 void sub_81109D0(struct RuntimeObject*);
 void sub_8110A94(struct RuntimeObject*);
 void sub_81127B8(struct RuntimeObject*);
 void sub_81135C0(struct RuntimeObject*);
-void sub_8132594(struct RuntimeObject*);
+#define object_when_poll_clear_start_owner_position_effect sub_8132594
+void object_when_poll_clear_start_owner_position_effect(
+    struct RuntimeObject* object);
 
 SEC(sub_810FD10) void sub_810FD10(struct RuntimeObject* object)
 {
@@ -919,6 +923,25 @@ void object_when_global_gate_clear_start_duration_10(
 {
     if ((sub_8087CE4() << 0x18) == 0) {
         sub_80883A0(object, 0x0A);
-        object->update = sub_8132594;
+        object->update = object_when_poll_clear_start_owner_position_effect;
+    }
+}
+
+UPPER_SEC(object_when_poll_clear_start_owner_position_effect)
+void object_when_poll_clear_start_owner_position_effect(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner;
+    s32 x;
+    s32 y;
+
+    if (sub_80883F0(object) == 0) {
+        owner = object->positionOwner;
+        x = owner->positionX / 256;
+        y = owner->positionY / 256;
+        sub_808843C(object, x, y, 0, 0x100);
+        sub_80880C4(object, 0x300);
+        runtime_object_prepend_to_active_list(object);
+        object->update = sub_81325E8;
     }
 }

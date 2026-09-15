@@ -2918,6 +2918,8 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_812F5A4);
         src/object/late_visual_transitions.o(.text.upper.sub_8132570);
         asm/text08057568.o(.text.after_upper_sub_8132570);
+        src/object/late_visual_transitions.o(.text.upper.sub_8132594);
+        asm/text08057568.o(.text.after_upper_sub_8132594);
         src/object/poll_disable_callbacks.o(.text.object_poll_disable.sub_8132650);
         asm/text08057568.o(.text.after_sub_8132650);
         src/object/late_command_transitions.o(.text.text_late_helpers.sub_8132D4C);
