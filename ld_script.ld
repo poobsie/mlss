@@ -2053,6 +2053,8 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80DAAC8);
         src/field/animation_transitions.o(.text.actor_animation_transitions.sub_80DABD0);
         asm/text08057568.o(.text.actor_animation_transitions_after_sub_80DABD0);
+        src/object/owner_motion_transitions.o(.text.owner_motion_transitions.sub_80DAC80);
+        asm/text08057568.o(.text.owner_motion_transitions_after_sub_80DAC80);
         src/object/terminal_gates.o(.text.misc_helpers_01.sub_80DAF30);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80DAF30);
         src/object/middle_transitions.o(.text.middle.sub_80DAF48);

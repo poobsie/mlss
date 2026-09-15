@@ -12,6 +12,7 @@ void sub_8085B38(struct RuntimeObject* object);
 void sub_8066F60(struct RuntimeObject* object);
 void sub_806A204(struct RuntimeObject* object);
 void sub_806A24C(struct RuntimeObject* object);
+void sub_80DAE7C(struct RuntimeObject* object);
 void sub_80DBC3C(struct RuntimeObject* object);
 void sub_80DBBCC(struct RuntimeObject* object);
 
@@ -79,6 +80,46 @@ void sub_8069558(struct RuntimeObject* object)
             object->update = sub_806A24C;
         else
             object->update = sub_806A204;
+    }
+}
+
+SEC(sub_80DAC80)
+void sub_80DAC80(struct RuntimeObject* object)
+{
+    struct ObjectPositionOwner* owner;
+    struct ObjectPositionSource* source;
+    s32* targetStart;
+    s32* target;
+    u16* timerStorage;
+    u16 remaining;
+    s32 gateValue;
+    volatile u8* flags;
+
+    gateValue = object->value80;
+    if (gateValue != 0)
+        return;
+
+    /* Decrement the signed timer through unsigned wrapping storage. */
+    timerStorage = (u16*)&object->timer;
+    remaining = *timerStorage - 1;
+    *timerStorage = *timerStorage - 1;
+    if ((s32)((u32)remaining << 16) < 0) {
+        /* Keep the alias explicit so agbcc emits a store followed by increment. */
+        targetStart = &object->value84;
+        target = targetStart;
+        owner = object->positionOwner;
+        source = owner->positionSource;
+        *target = source->positionX + 0x2800;
+        target++;
+        *target = source->positionY;
+        object->value8C = object->state->floorHeight;
+        flags = &object->flags79;
+        *flags |= 0x20;
+        object->unknown7C = 0x400;
+        object->unknown7A = gateValue;
+        sub_8085B38(object);
+        sub_8082E1C(object, 2, 0, 0);
+        object->update = sub_80DAE7C;
     }
 }
 
