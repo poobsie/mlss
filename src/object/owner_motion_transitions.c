@@ -10,6 +10,8 @@ void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
 void sub_8085B38(struct RuntimeObject* object);
 void sub_8066F60(struct RuntimeObject* object);
+void sub_806A204(struct RuntimeObject* object);
+void sub_806A24C(struct RuntimeObject* object);
 void sub_80DBC3C(struct RuntimeObject* object);
 void sub_80DBBCC(struct RuntimeObject* object);
 
@@ -42,6 +44,41 @@ void object_on_visual_complete_begin_owner_offset_motion(
         sub_8082E1C(object, 3, 0, 0);
         object->update = sub_8066F60;
         sound_effect_play(0x11C, SOUND_VOLUME_UNCHANGED);
+    }
+}
+
+SEC(sub_8069558)
+void sub_8069558(struct RuntimeObject* object)
+{
+    s32 value;
+
+    if (object->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        s32* targetStart;
+        s32* target;
+        struct ObjectPositionOwner* owner;
+        struct ObjectPositionSource* source;
+        volatile u8* flags;
+
+        sub_8082E1C(object, 4, 0, 0);
+        /* Keep the alias explicit so agbcc emits a store followed by increment. */
+        targetStart = &object->value84;
+        target = targetStart;
+        owner = object->positionOwner;
+        source = owner->positionSource;
+        *target = source->positionX + 0x3000;
+        target++;
+        *target = source->positionY;
+        object->value8C = object->positionZBase;
+        flags = &object->flags79;
+        *flags |= 0x20;
+        object->unknown7C = 0x180;
+        object->unknown7A = 0;
+        sub_8085B38(object);
+        value = --object->behaviorState;
+        if (value > 0)
+            object->update = sub_806A24C;
+        else
+            object->update = sub_806A204;
     }
 }
 
