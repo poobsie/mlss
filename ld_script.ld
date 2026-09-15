@@ -2329,6 +2329,8 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_script_cmd_end);
         src/graphics/global_resource.o(.text.misc_helpers_02.sub_80F032C);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80F032C);
+        src/battle/script_runtime.o(.text.battle_script_runtime.sub_80F03C8);
+        asm/text08057568.o(.text.misc_helpers_02_after_sub_80F03C8);
         src/script/state_commands.o(.text.script.state_commands.script_enable_flag_2);
         asm/text08057568.o(.text.script_state_after_enable_primary_flag_2);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80F0540);

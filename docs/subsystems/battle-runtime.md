@@ -132,6 +132,14 @@ attached to the original linker symbols.
 is set. The neighboring motion reset clears the same bits. Their individual
 gameplay meanings remain unknown; the query retains its original symbol.
 
+`battle_script_update_root_channel` updates the root script channel embedded
+at battle-runtime offset `0x1F8`. While channel flag `0x0100` is set, it clears
+that flag once the owning `BattleControlObject` no longer reports either low
+status bit through `sub_8028E70`. It also advances the channel's ordinary wait
+timer through `script_state_tick_wait_timer`. The gameplay meaning of channel
+flag `0x0100` and the process-data context beginning at offset `0x1C` remain
+unknown.
+
 The full ROM passes its SHA-1 comparison. The exact-function verifier reports every linked C function exact, with zero mismatches.
 
 `sub_80297D8` calls `sub_805BED8` on `resource304` and clears flags `0x0780`
