@@ -1882,6 +1882,8 @@ SECTIONS
         asm/text08057568.o(.text.paired_action_callbacks_after_sub_80B9624);
         src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_80B992C);
         asm/text08057568.o(.text.actor_state_transitions_after_sub_80B992C);
+        src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80BC37C);
+        asm/text08057568.o(.text.large_actor_state_machines_after_sub_80BC37C);
         src/field/actor_runtime_callbacks.o(.text.actor_runtime_callbacks.sub_80C0930);
         src/object/poll_cleanup_transitions.o(.text.misc_helpers_03.sub_80C0980);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80C0980);

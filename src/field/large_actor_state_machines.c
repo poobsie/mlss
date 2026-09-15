@@ -7,12 +7,6 @@
 
 typedef s32 (*SoundFunction)(s32 sample, s32 duration);
 
-struct FieldActorPlacement {
-    u8 unknown00[0xCB];
-    s8 displayOffsetX;
-    s8 displayOffsetY;
-};
-
 int loc_8198220(void);
 int loc_819832C(void);
 void sub_807C298(struct RuntimeObject* object);
@@ -48,6 +42,37 @@ void sub_80D6AA8(void);
 void sub_80D782C(void);
 void sub_80C8418(void);
 void sub_80A2918(void);
+void sub_80BC408(struct RuntimeObject* object);
+
+SEC(sub_80BC37C)
+void sub_80BC37C(struct RuntimeObject* caller)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct FieldActor* actorA;
+    struct RuntimeObject* action;
+    s16* actorValue;
+    s32 value;
+    u8 runtimeFlags;
+
+    /* Explicit temporaries retain the original byte and halfword store order. */
+    runtimeFlags = runtime->flags0A;
+    runtimeFlags |= 0xC0;
+    runtime->flags0A = runtimeFlags;
+    actorA = gFieldRuntime->actorA;
+    action = (struct RuntimeObject*)&actorA->action;
+    if ((actorA->stateFlags & 6) == 2 ||
+        (actorA->stateFlags & 6) == 4) {
+        sub_808843C(action,
+            action->positionX / 256 + actorA->displayOffsetX,
+            action->positionY / 256 + actorA->displayOffsetY,
+            0x17, -1);
+        value = 0x18;
+        actorValue = &actorA->value9A;
+        *actorValue = value;
+        sub_8088164(action, 0x300);
+    }
+    caller->update = sub_80BC408;
+}
 
 #define field_place_actor_b_from_state_then_animation_4 sub_80A2868
 SEC(sub_80A2868)
@@ -444,9 +469,9 @@ void field_on_actor_a_complete_place_animation_11(struct FieldAction* process)
         if (state == 2 || state == 4) {
             sub_808843C(actionA,
                         actionA->positionX / 0x100
-                            + ((struct FieldActorPlacement*)actorA)->displayOffsetX,
+                            + actorA->displayOffsetX,
                         actionA->positionY / 0x100
-                            + ((struct FieldActorPlacement*)actorA)->displayOffsetY,
+                            + actorA->displayOffsetY,
                         0, -1);
             sub_8088274(actionA, 0, 0x66);
         }
@@ -474,9 +499,9 @@ void field_on_actor_a_complete_place_animation_10(struct FieldAction* process)
         if (state == 2 || state == 4) {
             sub_808843C(actionA,
                         actionA->positionX / 0x100
-                            + ((struct FieldActorPlacement*)actorA)->displayOffsetX,
+                            + actorA->displayOffsetX,
                         actionA->positionY / 0x100
-                            + ((struct FieldActorPlacement*)actorA)->displayOffsetY,
+                            + actorA->displayOffsetY,
                         0, -1);
             sub_8088274(actionA, 0, 0x66);
         }

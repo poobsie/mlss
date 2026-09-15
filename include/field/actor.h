@@ -32,10 +32,15 @@ struct FieldActor {
     s16 value86;
     u8 unknown88[0x12];
     s16 value9A;
+    u8 unknown9C[0x2F];
+    s8 displayOffsetX;
+    s8 displayOffsetY;
 };
 
 struct FieldRuntime {
-    u8 unknown00[0x70];
+    u8 unknown00[0x0A];
+    u8 flags0A;
+    u8 unknown0B[0x65];
     struct FieldActor* actorA;
     struct FieldActor* actorB;
     u8 unknown78[8];
