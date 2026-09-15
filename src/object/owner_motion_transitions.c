@@ -1,3 +1,4 @@
+#include "audio/sound_effects.h"
 #include "object/functions.h"
 #include "object/runtime_object.h"
 
@@ -8,8 +9,41 @@ void sub_807F4FC(struct RuntimeObject* object);
 void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
 void sub_8085B38(struct RuntimeObject* object);
+void sub_8066F60(struct RuntimeObject* object);
 void sub_80DBC3C(struct RuntimeObject* object);
 void sub_80DBBCC(struct RuntimeObject* object);
+
+#define object_on_visual_complete_begin_owner_offset_motion sub_8066EE0
+SEC(sub_8066EE0)
+void object_on_visual_complete_begin_owner_offset_motion(
+    struct RuntimeObject* object)
+{
+    s32* targetStart;
+    s32* target;
+    struct RuntimeObject* owner;
+    struct RuntimeObjectState* state;
+    volatile u8* flags;
+
+    if (object->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        /* Keep the alias explicit so agbcc emits a store followed by increment. */
+        targetStart = &object->value84;
+        target = targetStart;
+        owner = object->positionOwner;
+        state = owner->state;
+        *target = state->valueD8 + 0x3800;
+        target++;
+        *target = state->valueDC;
+        object->value8C = object->positionZBase;
+        flags = &object->flags79;
+        *flags |= 0x20;
+        object->unknown7C = 0x200;
+        object->unknown7A = 0;
+        sub_8085B38(object);
+        sub_8082E1C(object, 3, 0, 0);
+        object->update = sub_8066F60;
+        sound_effect_play(0x11C, SOUND_VOLUME_UNCHANGED);
+    }
+}
 
 SEC(sub_80DBB1C)
 void sub_80DBB1C(struct RuntimeObject* object)

@@ -560,6 +560,8 @@ SECTIONS
         asm/text08057568.o(.text.runtime_leaf_callbacks_after_sub_8066E5C);
         src/object/fixed_visual_transitions.o(.text.misc_helpers_03.sub_8066EB4);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8066EB4);
+        src/object/owner_motion_transitions.o(.text.owner_motion_transitions.sub_8066EE0);
+        asm/text08057568.o(.text.owner_motion_transitions_after_sub_8066EE0);
         src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_8067838);
         asm/text08057568.o(.text.runtime_leaf_callbacks_after_sub_8067838);
         src/object/countdown_callbacks.o(.text.countdown_callbacks.sub_8067874);
