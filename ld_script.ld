@@ -1794,6 +1794,8 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_809D24C);
         src/object/callback_results.o(.text.misc_helpers_01.sub_809D268);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_809D268);
+        src/object/effect_animation_transitions.o(.text.effect_animation_transitions.sub_809D300);
+        asm/text08057568.o(.text.effect_animation_transitions_after_sub_809D300);
         src/object/timed_command_transitions.o(.text.timed_command_transitions.sub_809D454);
         asm/text08057568.o(.text.timed_command_transitions_after_sub_809D454);
         src/object/timed_command_transitions.o(.text.timed_command_transitions.sub_809D49C);

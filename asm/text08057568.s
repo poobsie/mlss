@@ -117499,6 +117499,7 @@ _0809D2E0:
 	.byte 0x00, 0x00
 _0809D2F8: .4byte 0x00001E3D
 _0809D2FC: .4byte sub_809D394
+	.if 0
 	thumb_func_start sub_809D300
 sub_809D300:
 	push {r4, lr}
@@ -117543,6 +117544,9 @@ _0809D338:
 	.byte 0x00, 0x00
 _0809D350: .4byte 0x00001E3D
 _0809D354: .4byte sub_809D3F4
+	.endif
+
+	.section .text.effect_animation_transitions_after_sub_809D300, "ax", %progbits
 	thumb_func_start sub_809D358
 sub_809D358:
 	push {r4, lr}

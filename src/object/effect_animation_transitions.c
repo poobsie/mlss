@@ -19,6 +19,18 @@ void sub_8082E1C(struct RuntimeObject* object, s32 animation,
                  s32 command, s32 argument);
 void sub_80873B8(struct RuntimeObject* object, s32 kind, s32 duration);
 void sub_809E5E4(struct RuntimeObject* object);
+void sub_809D3F4(struct RuntimeObject* object);
+
+SEC(sub_809D300)
+void sub_809D300(struct RuntimeObject* object)
+{
+    sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
+    sub_8082E1C(object, 4, 0, 0);
+    sub_80DF024(0x1E3D, object->positionX / 0x100,
+                object->positionY / 0x100,
+                object->positionZBase / 0x100, object);
+    object->update = sub_809D3F4;
+}
 
 SEC(object_when_value80_clear_start_owner_variant_animation_and_followup)
 void object_when_value80_clear_start_owner_variant_animation_and_followup(
