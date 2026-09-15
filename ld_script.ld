@@ -3072,6 +3072,8 @@ SECTIONS
         asm/text08057568.o(.text.after_text_upper_structural_sub_814B4C8);
         src/field/event_callbacks.o(.text.text_upper_structural.sub_814BCC0);
         asm/text08057568.o(.text.after_text_upper_structural_sub_814BCC0);
+        src/field/callback_chains.o(.text.upper.sub_814DCFC);
+        asm/text08057568.o(.text.after_upper_sub_814DCFC);
         src/field/scene_object_properties.o(.text.upper.sub_8150590);
         asm/text08057568.o(.text.after_upper_sub_8150590);
         src/field/callback_chains.o(.text.upper.sub_81506B4);

@@ -433487,7 +433487,9 @@ _0814DCEC:
 	.byte 0x00, 0x00
 _0814DCF8: .4byte 0x00007FFF
 	thumb_func_start sub_814DCFC
-sub_814DCFC:
+	.section .discard.upper_sub_814DCFC, "ax", %progbits
+	.align 2, 0
+asm_discard_sub_814DCFC:
 	push {r4, lr}
 	adds r4, r2, #0x0
 	bl sub_814DB34
@@ -433498,6 +433500,8 @@ sub_814DCFC:
 	bx r0
 	.byte 0x00, 0x00
 _0814DD10: .4byte sub_814D838
+	.section .text.after_upper_sub_814DCFC, "ax", %progbits
+	.align 2, 0
 	thumb_func_start sub_814DD14
 sub_814DD14:
 	push {r4, lr}
