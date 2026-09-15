@@ -1,5 +1,6 @@
 #include "audio/sound_effects.h"
 #include "field/actor.h"
+#include "field/display.h"
 #include "field/global_object_transitions.h"
 #include "object/paired_action_callbacks.h"
 
@@ -33,6 +34,7 @@ void sub_80B35C8(struct RuntimeObject* object);
 void sub_80B9420(struct RuntimeObject* object);
 void sub_80B95D8(struct RuntimeObject* object);
 void sub_80B9624(struct RuntimeObject* object);
+void sub_807C298(struct RuntimeObject* object);
 void sub_80B7A3C(struct RuntimeObject* object);
 
 #define object_sync_actor_actions_then_start_paired_animation sub_80B7980
@@ -131,6 +133,21 @@ DEFINE_CLEAR_ACTION_THEN_CONTINUE(sub_80AC5A4,
 DEFINE_CLEAR_ACTION_THEN_CONTINUE(sub_80B31F0,
     object_clear_primary_action_then_continue_b, PRIMARY_ACTION_OWNER,
     sub_80AC950)
+
+SEC(sub_80B325C)
+void sub_80B325C(struct RuntimeObject* object)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct FieldActor* actorA = runtime->actorA;
+    struct FieldActor* actorB = runtime->actorB;
+    struct FieldAction* actionB = &actorB->action;
+
+    if (actorA->action.update == 0 && actionB->update == 0) {
+        field_disable_display_layers_0_1();
+        sub_807C298(object);
+    }
+}
+
 DEFINE_CLEAR_ACTION_THEN_CONTINUE(sub_80B956C,
     object_clear_secondary_action_then_continue, SECONDARY_ACTION_OWNER,
     sub_80B35C8)
