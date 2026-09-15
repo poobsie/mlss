@@ -11,6 +11,23 @@ extern void sub_814706C(void);
 extern void sub_8139AA0(struct FieldEventContext* context);
 extern void sub_81407A0(
     u32 context, struct FieldSceneObject* object, void* callbackSlot);
+extern void sub_814B440(
+    u32 context, struct FieldSceneObject* object, u8 index);
+extern void sub_814AD24(
+    u32 context, struct FieldSceneObject* object, u8 index);
+extern void sub_814B038(
+    u32 context, struct FieldSceneObject* object, u8 index);
+
+SEC(sub_814B4C8)
+void sub_814B4C8(
+    u32 context, struct FieldSceneObject* object, u8 index)
+{
+    sub_814B440(context, object, index);
+    sub_814AD24(context, object, index);
+    sub_814B038(context, object, index);
+}
+
+SEC(sub_814B4C8) const u16 field_apply_indexed_scene_setup_padding = 0;
 
 SEC(sub_81429BC)
 void sub_81429BC(struct FieldSceneObject* object)
@@ -119,3 +136,6 @@ void field_replace_callback_when_secondary_gate_clears(
     __attribute__((alias("sub_814704C")));
 void field_select_random_event_table_entry(struct FieldSceneObject*)
     __attribute__((alias("sub_81429BC")));
+void field_apply_indexed_scene_setup(
+    u32, struct FieldSceneObject*, u8)
+    __attribute__((alias("sub_814B4C8")));

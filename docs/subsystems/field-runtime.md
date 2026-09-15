@@ -214,6 +214,11 @@ slot at `0x19C`: it promotes that slot to the active dispatcher, installs the
 same callback in both chain positions, updates the low mode bits at `0x214`,
 and invokes the promoted dispatcher immediately.
 
+`field_apply_indexed_scene_setup` forwards one byte-sized selection to three
+ordered scene-setup stages. Current callers establish the shared context and
+`FieldSceneObject` arguments, but the selection's gameplay identity remains
+unknown.
+
 The final two upper field helpers now share those types. `field_clear_scene_object_modes` clears the proven low mode bit at `0x20C` and invokes the adjacent still-unidentified mode setter with zero. `field_prepare_callback_slot_3_and_dispatch` resets its scene object, installs the known callback in slot three of a four-entry callback packet, and invokes it immediately.
 
 Three former miscellaneous helpers now use established field-runtime ownership. Two commit or prepare the `FieldValueTransfer` at runtime offset `0x248`; the third triggers the active object attached to the primary actor. `FieldAction::activeObject` is now typed at its proven offset `0x30` within the action.

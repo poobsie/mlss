@@ -428633,7 +428633,9 @@ _0814B4C2:
 	bx r0
 	.byte 0x00, 0x00
 	thumb_func_start sub_814B4C8
-sub_814B4C8:
+	.section .discard.text_upper_structural_sub_814B4C8, "ax", %progbits
+	.align 2, 0
+asm_discard_sub_814B4C8:
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0x0
 	adds r6, r1, #0x0
@@ -428653,6 +428655,8 @@ sub_814B4C8:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.after_text_upper_structural_sub_814B4C8, "ax", %progbits
+	.align 2, 0
 	thumb_func_start sub_814B4F4
 sub_814B4F4:
 	push {r4, r5, lr}
