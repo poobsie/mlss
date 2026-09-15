@@ -147779,6 +147779,7 @@ _080AC4A0:
 	bx r0
 _080AC4A8: .4byte 0x0000204F
 	.section .text.small_functions_06_after_sub_80AC4AC, "ax", %progbits
+.if 0
 	thumb_func_start sub_80AC4F8
 sub_80AC4F8:
 	push {lr}
@@ -147808,6 +147809,8 @@ _080AC51A:
 _080AC524: .4byte 0x03000FD8
 _080AC528: .4byte sub_80AC610
 _080AC52C: .4byte 0x080AC685
+.endif
+	.section .text.actor_state_transitions_after_sub_80AC4F8, "ax", %progbits
 	thumb_func_start sub_80AC530
 sub_80AC530:
 	push {r4, r5, lr}
@@ -147925,6 +147928,8 @@ _080AC670:
 	.byte 0x00, 0x00
 _080AC67C: .4byte 0x0000204D
 _080AC680: .4byte sub_80AA4D8
+	thumb_func_start sub_80AC684
+sub_80AC684:
 	.byte 0x70, 0x47, 0x00, 0x00
 	thumb_func_start sub_80AC688
 sub_80AC688:

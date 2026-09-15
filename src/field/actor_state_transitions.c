@@ -48,6 +48,8 @@ DEFINE_ACTOR_STATE(field_wait_actor_b_then_prepare_actor_a_d, actorA, actorB, su
 extern void sub_80884AC(struct FieldAction* action);
 extern void sub_80A99A8(void);
 extern void sub_80AB404(void);
+extern void sub_80AC610(struct RuntimeObject* object);
+extern void sub_80AC684(struct RuntimeObject* object);
 extern u8 sub_8087CE4(struct RuntimeObject* object);
 extern void sub_8082E1C(struct RuntimeObject* object, s32 animation,
                         s32 command, s32 argument);
@@ -115,6 +117,19 @@ SEC(sub_80AC4AC) void sub_80AC4AC(void)
             actionA->update = sub_80A99A8;
         actionB->update = 0;
     }
+}
+
+#define field_set_actor_b_and_object_continuations sub_80AC4F8
+SEC(sub_80AC4F8)
+void field_set_actor_b_and_object_continuations(struct RuntimeObject* object)
+{
+    struct FieldActor* actor = gFieldRuntime->actorB;
+    struct RuntimeObject* action = (struct RuntimeObject*)&actor->action;
+    s32 state = actor->stateFlags & 6;
+
+    if (state == 2 || state == 4)
+        action->update = sub_80AC610;
+    object->update = sub_80AC684;
 }
 
 SEC(sub_8112350) void sub_8112350(void (*update)(void))

@@ -1893,6 +1893,8 @@ SECTIONS
         asm/text08057568.o(.text.actor_state_transitions_after_sub_80AB360);
         src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_80AC4AC);
         asm/text08057568.o(.text.small_functions_06_after_sub_80AC4AC);
+        src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_80AC4F8);
+        asm/text08057568.o(.text.actor_state_transitions_after_sub_80AC4F8);
         src/object/paired_action_callbacks.o(.text.paired_action_callbacks.sub_80AC5A4);
         asm/text08057568.o(.text.paired_action_callbacks_after_sub_80AC5A4);
         src/field/actor_state_transitions.o(.text.actor_state_transitions.sub_80AC950);
