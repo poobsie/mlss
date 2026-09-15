@@ -23,6 +23,7 @@ void sub_8063B80(struct RuntimeObject* object);
 void sub_8063BA8(struct RuntimeObject* object);
 void sub_8063C60(struct RuntimeObject* object);
 void sub_8063CC8(struct RuntimeObject* object);
+void sub_806432C(struct RuntimeObject* object);
 void sub_8064540(struct RuntimeObject* object);
 void sub_8064E30(struct RuntimeObject* object);
 void sub_8065E2C(struct RuntimeObject* object);
@@ -719,6 +720,19 @@ void object_finish_countdown_with_animation_1(struct RuntimeObject* object)
         *flags = (*flags & -7) | 2;
         object->update = sub_8063C60;
     }
+}
+
+SEC(sub_8064224)
+s32 object_start_animation_1_when_runtime_ready(struct RuntimeObject* object)
+{
+    s32 result = sub_8086D80(object);
+
+    if (result == 0) {
+        sub_8082E1C(object, 1, 0, 0);
+        object->update = sub_806432C;
+        return 0;
+    }
+    return result;
 }
 
 SEC(sub_8064424)

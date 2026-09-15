@@ -19,6 +19,7 @@ struct ObjectRuntimePollOwner;
 #define object_advance_countdown_visual_sequence sub_8063AD4
 #define object_start_animation_7_on_visual_complete sub_8063B2C
 #define object_finish_countdown_with_animation_1 sub_8063C24
+#define object_start_animation_1_when_runtime_ready sub_8064224
 #define object_emit_effect_1081_and_finish sub_8064424
 #define object_start_animation_2_variant_on_ready sub_8064488
 #define object_start_animation_3_then_complex_sequence sub_8064514
@@ -227,6 +228,7 @@ void object_advance_countdown_visual_sequence(struct RuntimeObject* object);
 void object_start_animation_7_on_visual_complete(
     struct RuntimeObject* object);
 void object_finish_countdown_with_animation_1(struct RuntimeObject* object);
+s32 object_start_animation_1_when_runtime_ready(struct RuntimeObject* object);
 void object_emit_effect_1081_and_finish(struct RuntimeObject* object);
 void object_start_animation_2_variant_on_ready(struct RuntimeObject* object);
 void object_start_animation_3_then_complex_sequence(

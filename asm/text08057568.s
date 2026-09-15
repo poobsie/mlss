@@ -22494,7 +22494,9 @@ _0806421E:
 	pop {r0}
 	bx r0
 	thumb_func_start sub_8064224
-sub_8064224:
+	.section .discard.runtime_leaf_callbacks_sub_8064224, "ax", %progbits
+	.align 2, 0
+asm_discard_sub_8064224:
 	push {r4, lr}
 	adds r4, r0, #0x0
 	bl sub_8086D80
