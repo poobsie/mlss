@@ -247008,6 +247008,7 @@ _080DB5E4:
 	bx r0
 	.byte 0x00, 0x00
 _080DB5EC: .4byte sub_80DB5F0
+	.if 0
 	thumb_func_start sub_80DB5F0
 sub_80DB5F0:
 	push {r4, r5, r6, r7, lr}
@@ -247088,6 +247089,8 @@ _080DB688:
 	pop {r0}
 	bx r0
 _080DB690: .4byte sub_80DB694
+	.endif
+	.section .text.object_owner_state_motion_after_sub_80DB5F0, "ax", %progbits
 	thumb_func_start sub_80DB694
 sub_80DB694:
 	push {r4, r5, lr}

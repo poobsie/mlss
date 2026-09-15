@@ -38,10 +38,6 @@ void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
 void sub_809C954(struct RuntimeObject* object);
 void sub_80A2BC0(struct RuntimeObject* object);
 void sub_80895D8(struct RuntimeObject* object);
-s32 sub_808552C(s16* secondaryTimer, u16* stateValue,
-                 s16* verticalVelocity, s32 deltaX, s32 deltaY, s32 deltaZ,
-                 s32 horizontalScale, s32 verticalScale, s32 depthScale,
-                 s32 flags);
 
 SEC(sub_8064274)
 s32 object_continue_slow_exit_motion_when_ready(

@@ -153,6 +153,10 @@ struct RuntimeObject {
 
 void sub_8087540(struct RuntimeObject* object);
 void runtime_object_finish_action(struct RuntimeObject* object);
+s32 sub_808552C(s16* secondaryTimer, u16* stateValue,
+                 s16* verticalVelocity, s32 deltaX, s32 deltaY, s32 deltaZ,
+                 s32 horizontalScale, s32 verticalScale, s32 depthScale,
+                 s32 flags);
 
 #define runtime_object_when_value80_clear_prepare_state_motion sub_808750C
 #define runtime_object_clear_behavior sub_8087540
@@ -172,6 +176,7 @@ void runtime_object_finish_action(struct RuntimeObject* object);
 #define runtime_object_visual_apply_transform sub_8083E84
 #define runtime_object_begin_owner_vector_motion sub_80874B4
 #define object_start_owner_position_effect_and_continue sub_810F6D4
+#define object_start_owner_state_motion_animation_2 sub_80DB5F0
 #define object_start_owner_position_effect_variant_and_continue sub_810F5E4
 #define object_finish_paired_owner_effect sub_810F824
 #define object_start_owner_position_effect_with_auxiliary sub_810F904
