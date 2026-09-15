@@ -47,6 +47,43 @@ void sub_80C1BB8(struct RuntimeObject* object);
 void sub_80C1CE4(struct RuntimeObject* object);
 void sub_80C971C(struct RuntimeObject* object);
 void sub_80C9854(struct RuntimeObject* object);
+void sub_80A2428(struct RuntimeObject* object);
+
+SEC(sub_80A2374)
+void sub_80A2374(struct RuntimeObject* object)
+{
+    struct FieldRuntime* runtime = gFieldRuntime;
+    struct FieldActor* actorB = runtime->actorB;
+    struct RuntimeObject* actionB = (struct RuntimeObject*)&actorB->action;
+    s32 positionX;
+    s32 positionY;
+    s32 positionZ;
+    s32 adjustedX;
+
+    sub_80884AC(actionB);
+    if (actorB->flags81 & 0x20) {
+        s32 state = actorB->stateFlags & 6;
+
+        if (state == 2 || state == 4) {
+            positionX = actionB->positionX;
+            if (positionX < 0)
+                positionX += 0xFF;
+            adjustedX = (positionX >> 8) + actorB->displayOffsetX - 0x38;
+            positionY = actionB->positionY;
+            if (positionY < 0)
+                positionY += 0xFF;
+            sub_808843C(actionB, adjustedX,
+                (positionY >> 8) + actorB->displayOffsetY, 0, -1);
+            positionZ = actionB->positionZBase;
+            if (positionZ < 0)
+                positionZ += 0xFF;
+            actorB->value9A = (positionZ >> 8) + 0x10;
+            sub_8088164(actionB, 0x600);
+        }
+        actionB->secondaryTimer &= 0x0FFF;
+        object->update = sub_80A2428;
+    }
+}
 
 #define field_prepare_actor_a_offset_motion_or_idle sub_80C1AE8
 SEC(sub_80C1AE8)
