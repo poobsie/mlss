@@ -2544,6 +2544,7 @@ SECTIONS
         asm/text08057568.o(.text.field_effect_wait_transition_before_sub_8107360);
         src/field/effect_wait_transition.o(.text.field_effect_wait_transition.sub_8107360);
         asm/text08057568.o(.text.field_effect_wait_transition_after_sub_8107360);
+        src/field/object_status_transitions.o(.text.object_status_transitions.sub_81083EC);
         src/field/object_status_transitions.o(.text.object_status_transitions.sub_81084B4);
         asm/text08057568.o(.text.object_status_transitions_after_sub_81084B4);
         src/field/object_status_transitions.o(.text.object_status_transitions.sub_8108B50);

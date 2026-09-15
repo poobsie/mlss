@@ -31,6 +31,39 @@ void field_object_start_variant_action_when_ready(
 void field_object_prepare_variant_action(
     struct FieldObjectStatusProcess* process);
 
+SEC(sub_81083EC)
+s32 sub_81083EC(struct FieldObjectStatus* object, s32 threshold)
+{
+    u16 previousFlags;
+    u8* modeFlags;
+
+    if ((object->flags11E & 0x400) ||
+        threshold < sub_81DD77C(0x64, sub_8199F30()))
+        return 0;
+
+    previousFlags = object->flags11E;
+    object->flags11E = previousFlags & 0xF3FF;
+    if (!(previousFlags & 0x800)) {
+        modeFlags = &object->control120.bytes.flags122;
+        if (!(*modeFlags & 0x40)) {
+            object->attachment118 =
+                sub_8086E8C(field_object_status_runtime_object(object));
+            *modeFlags |= 0x40;
+        }
+        object->value128 = 0xFF;
+        object->value126 = 1;
+        object->value12A = 1;
+        object->flags11E |= 0x400;
+        goto update_control;
+    }
+    if ((u8)(object->value12C - 0x13) <= 1) {
+update_control:
+        object->control120.value =
+            (object->control120.value & 0xFFFC7FFF) | 0x20000;
+    }
+    return 1;
+}
+
 SEC(sub_81084B4)
 s32 sub_81084B4(struct FieldObjectStatus* object, s32 threshold)
 {
