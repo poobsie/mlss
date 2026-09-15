@@ -49,6 +49,8 @@ void sub_81111C0(struct RuntimeObject*);
 void sub_8110CB0(struct RuntimeObject*);
 void sub_81112C4(struct RuntimeObject*);
 void sub_8111754(struct RuntimeObject*);
+void sub_8111C24(struct RuntimeObject*);
+void sub_8111E30(struct RuntimeObject*, s32, s32);
 void sub_8112450(struct RuntimeObject*);
 void sub_8112498(struct RuntimeObject*);
 void sub_811254C(struct RuntimeObject*);
@@ -562,6 +564,22 @@ void object_on_visual_complete_start_animation_4_timer_32(
         object->timer = 0x20;
         object->update = sub_8112450;
     }
+}
+
+#define object_place_at_owner_state_and_prepare_effect sub_811208C
+SEC(sub_811208C)
+void object_place_at_owner_state_and_prepare_effect(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner = object->positionOwner;
+    struct RuntimeObjectState* state = owner->state;
+    s32 x = state->valueD8 / 256;
+    s32 y = state->valueDC / 256;
+    s32 z = object->positionZBase / 256;
+
+    sub_808843C(object, x, y, z, 0x100);
+    sub_8111E30(object, 0x380, 0xA4);
+    object->update = sub_8111C24;
 }
 
 SEC(sub_811213C)
