@@ -46201,6 +46201,7 @@ _08072642:
 _08072648: .4byte 0x03000FD8
 _0807264C: .4byte sub_8072678
 	.section .text.misc_helpers_02_after_sub_8072650, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8072678
 sub_8072678:
 	push {r4, r5, lr}
@@ -46249,6 +46250,9 @@ _080726C2:
 	.byte 0x00, 0x00
 _080726CC: .4byte 0x00002222
 _080726D0: .4byte sub_80726D4
+	.endif
+
+	.section .text.effect_animation_transitions_after_sub_8072678, "ax", %progbits
 	thumb_func_start sub_80726D4
 sub_80726D4:
 	push {r4, r5, lr}

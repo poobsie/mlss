@@ -900,6 +900,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8072528);
         src/object/small_value_transitions.o(.text.misc_helpers_02.sub_8072650);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8072650);
+        src/object/effect_animation_transitions.o(.text.effect_animation_transitions.sub_8072678);
+        asm/text08057568.o(.text.effect_animation_transitions_after_sub_8072678);
         src/object/fixed_visual_transitions.o(.text.misc_helpers_03.sub_8072738);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8072738);
         src/object/countdown_handlers.o(.text.countdown_handlers.sub_807411C);

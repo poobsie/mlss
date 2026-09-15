@@ -20,6 +20,7 @@ void sub_8082E1C(struct RuntimeObject* object, s32 animation,
 void sub_80873B8(struct RuntimeObject* object, s32 kind, s32 duration);
 void sub_809E5E4(struct RuntimeObject* object);
 void sub_809D3F4(struct RuntimeObject* object);
+void sub_80726D4(struct RuntimeObject* object);
 
 SEC(sub_809D300)
 void sub_809D300(struct RuntimeObject* object)
@@ -30,6 +31,22 @@ void sub_809D300(struct RuntimeObject* object)
                 object->positionY / 0x100,
                 object->positionZBase / 0x100, object);
     object->update = sub_809D3F4;
+}
+
+SEC(sub_8072678)
+void sub_8072678(struct RuntimeObject* object)
+{
+    s32 gateValue;
+
+    gateValue = object->value80;
+    if (gateValue == 0) {
+        sub_8082E1C(object, 0x13, 0, 0);
+        sub_80DF024(0x2222, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        object->update = sub_80726D4;
+        object->secondaryTimer = gateValue;
+    }
 }
 
 SEC(object_when_value80_clear_start_owner_variant_animation_and_followup)
