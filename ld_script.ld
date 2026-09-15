@@ -1819,6 +1819,7 @@ SECTIONS
         asm/text08057568.o(.text.timed_command_transitions_after_sub_809D49C);
         src/object/field_actor_effect.o(.text.small_functions_12.sub_809D4E4);
         asm/text08057568.o(.text.small_functions_12_after_sub_809D4E4);
+        src/object/cleanup_gates.o(.text.misc_helpers_02.sub_809E3E0);
         src/object/unique_state_callbacks.o(.text.object_unique_callbacks.sub_809E410);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_809E438);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_809E438);

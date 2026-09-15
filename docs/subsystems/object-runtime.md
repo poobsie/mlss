@@ -794,3 +794,9 @@ integer, while the shared slot currently has a one-argument callback type.
 The shared result slot at `0x03000E3C` is named in the object interface; its
 precise effect ownership remains unresolved. The 16-bit countdown tests use
 named predicates that preserve the original defined unsigned shift.
+
+`object_update_linked_visual_and_release_on_complete` runs the established
+linked-visual update with the owning object as its explicit argument. Once the
+linked visual reports completion, it stops sound `0xD2`, releases the linked
+object, then releases the owner. The surrounding constructor identifies the
+link relationship, but the gameplay entity and sound identity remain unknown.

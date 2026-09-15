@@ -119447,6 +119447,7 @@ _0809E3D4: .4byte 0x03001038
 _0809E3D8: .4byte 0x0819832C
 _0809E3DC: .4byte 0x08198220
 	thumb_func_start sub_809E3E0
+.if 0
 sub_809E3E0:
 	push {r4, lr}
 	adds r4, r0, #0x0
@@ -119469,6 +119470,7 @@ _0809E408:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+.endif
 	thumb_func_start sub_809E410
 .if 0
 sub_809E410:

@@ -181,6 +181,7 @@
 #define object_poll_then_stop_on_flag20 sub_80D2D4C
 #define object_poll_then_release_on_flag20 sub_809F084
 #define object_when_ready_release sub_809E438
+#define object_update_linked_visual_and_release_on_complete sub_809E3E0
 #define object_when_ready_release_and_stop_sound_10c sub_8113E20
 #define object_when_value80_clear_stop_sound_11a_and_cleanup sub_80DBC84
 #define object_when_value80_clear_mark_visual_flag40_and_cleanup sub_808C1FC
@@ -349,6 +350,8 @@
 #define object_countdown_install_animation_5_followups_sound_38 sub_80DA264
 
 struct RuntimeObject;
+void object_update_linked_visual_and_release_on_complete(
+    struct RuntimeObject* object);
 /* The owners of these callback families remain unidentified; the transitions are observed. */
 #define object_poll_and_disable_update_a sub_8110C88
 #define object_poll_and_disable_update_b sub_8112870

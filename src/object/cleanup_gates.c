@@ -14,6 +14,7 @@ void sub_8082E1C(
 void sub_807C298(struct RuntimeObject* object);
 s32 sub_8087CE4();
 s32 sub_80884AC();
+void sub_809E2E8(struct RuntimeObject* object);
 #define DEFINE_OBJECT_FLAG_GATE(name)                                    \
     SEC(name) void name(struct RuntimeObject* object)                    \
     {                                                                    \
@@ -120,6 +121,20 @@ void object_poll_then_release_on_flag20(struct RuntimeObject* object)
 }
 MISC_SEC(object_poll_then_release_on_flag20)
 const u16 object_poll_then_release_on_flag20_padding = 0;
+
+MISC_SEC(object_update_linked_visual_and_release_on_complete)
+void object_update_linked_visual_and_release_on_complete(
+    struct RuntimeObject* object)
+{
+    sub_809E2E8(object);
+    if (object->linkedObject->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        sound_effect_stop(0xD2);
+        sub_807C298(object->linkedObject);
+        sub_807C298(object);
+    }
+}
+MISC_SEC(object_update_linked_visual_and_release_on_complete)
+const u16 object_update_linked_visual_and_release_on_complete_padding = 0;
 
 MISC_SEC(object_when_ready_release)
 void object_when_ready_release(struct RuntimeObject* object)
