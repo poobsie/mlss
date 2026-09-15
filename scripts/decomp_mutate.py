@@ -18,6 +18,9 @@ from decomp_local import ROOT, Runner, build_flags, compare_span, reference_symb
 from decomp_workflow import candidate_by_name
 
 
+TRANSMUTER_FINALIZATION_GRACE_SECONDS = 30
+
+
 def bounded_process(command, seconds, log, cwd, checkpoint=None):
     """Kill the complete search process group, including compiler children, on expiry."""
     start = time.monotonic()
@@ -83,6 +86,23 @@ def checkpoint_best_source(folder, checkpoint_dir):
     temporary.replace(checkpoint_dir / "best.c")
     score_text = "unknown" if score is None else str(score)
     (checkpoint_dir / "best-score.txt").write_text(score_text + "\n")
+
+
+def run_transmuter_process(command, seconds, log, cwd, checkpoint=None):
+    """Allow Transmuter to drain workers and write its final checkpoint."""
+    return bounded_process(
+        command, seconds + TRANSMUTER_FINALIZATION_GRACE_SECONDS, log, cwd,
+        checkpoint)
+
+
+def search_checkpoint_error(engine, process, compile_attempts, best_exists, search):
+    if best_exists and search.get("baseScore") is not None:
+        return None
+    if (engine == "transmuter" and process.get("timed_out")
+            and compile_attempts > 0):
+        return ("timeout before final checkpoint after "
+                f"{compile_attempts} compiler launches; search outcome unavailable")
+    return "search failed to initialize; see engine.log"
 
 
 def link_compare(obj, symbol, address, expected, folder, flags, symbols, aliases=None):
@@ -188,8 +208,8 @@ def run_search(args):
             (folder / "engine-config.json").write_text(json.dumps(config))
             command = [str(tool_root / "bun-linux-x64/bun"), str(ROOT / "scripts/transmuter-run.mjs"),
                        str(folder / "engine-config.json")]
-            report["process"] = bounded_process(
-                command, args.seconds + 5, folder / "engine.log", ROOT,
+            report["process"] = run_transmuter_process(
+                command, args.seconds, folder / "engine.log", ROOT,
                 (lambda: checkpoint_best_source(folder, checkpoint_dir))
                 if checkpoint_dir is not None else None)
             if (folder / "engine.json").exists():
@@ -213,8 +233,11 @@ def run_search(args):
                                 "bestScore": int((best.parent / "score.txt").read_text()) if outputs
                                 else (int(baseline[1]) if baseline else None)}
         report["compile_attempts"] = len((folder / "compiles.log").read_text().splitlines())
-        if not best.exists() or report.get("search", {}).get("baseScore") is None:
-            raise ValueError("search failed to initialize; see engine.log")
+        checkpoint_error = search_checkpoint_error(
+            args.engine, report.get("process", {}), report["compile_attempts"],
+            best.exists(), report.get("search", {}))
+        if checkpoint_error:
+            raise ValueError(checkpoint_error)
         check = Runner(20, folder / "best-check")
         check.folder.mkdir(exist_ok=True)
         best_obj = folder / "best.o"

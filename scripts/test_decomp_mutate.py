@@ -6,8 +6,16 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 
-from decomp_mutate import bounded_process, checkpoint_best_source, compiler_script
+from decomp_mutate import (
+    TRANSMUTER_FINALIZATION_GRACE_SECONDS,
+    bounded_process,
+    checkpoint_best_source,
+    compiler_script,
+    run_transmuter_process,
+    search_checkpoint_error,
+)
 from decomp_local import Runner, build_flags
 from decomp_workflow import is_register_trampoline
 
@@ -27,6 +35,37 @@ class MutationSafetyTest(unittest.TestCase):
             checkpoint_best_source(root / 'work', root / 'durable')
             self.assertEqual((root / 'durable' / 'best.c').read_text(), 'int value = 5;\n')
             self.assertEqual((root / 'durable' / 'best-score.txt').read_text(), '5\n')
+
+    def test_transmuter_allows_delayed_final_checkpoint_within_grace(self):
+        command = ["mock-transmuter"]
+        log = Path("engine.log")
+        cwd = Path(".")
+        completed = {"returncode": 0, "timed_out": False, "wall_seconds": 31}
+
+        with patch("decomp_mutate.bounded_process", return_value=completed) as run:
+            result = run_transmuter_process(command, 30, log, cwd)
+
+        self.assertEqual(result, completed)
+        run.assert_called_once_with(
+            command, 30 + TRANSMUTER_FINALIZATION_GRACE_SECONDS, log, cwd,
+            None)
+        self.assertIsNone(search_checkpoint_error(
+            "transmuter", {"timed_out": True}, 1409, True,
+            {"baseScore": 13, "bestScore": 13}))
+
+    def test_transmuter_timeout_after_launches_reports_missing_checkpoint(self):
+        error = search_checkpoint_error(
+            "transmuter", {"timed_out": True}, 7107, False, {})
+
+        self.assertIn("timeout before final checkpoint", error)
+        self.assertIn("7107 compiler launches", error)
+        self.assertNotIn("failed to initialize", error)
+
+    def test_missing_checkpoint_before_launches_remains_initialization_failure(self):
+        error = search_checkpoint_error(
+            "transmuter", {"timed_out": True}, 0, False, {})
+
+        self.assertEqual(error, "search failed to initialize; see engine.log")
 
     @unittest.skipUnless(shutil.which('arm-none-eabi-as'), 'requires project ARM toolchain')
     def test_compile_wrapper_removes_temporary_assembly(self):

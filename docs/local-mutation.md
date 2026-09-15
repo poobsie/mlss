@@ -54,8 +54,13 @@ Both tools use the Makefile's pinned agbcc and assembler flags. Candidates are
 preprocessed once, then compiled locally for each mutation. Full logs stay on disk;
 the adapter prints one JSON result. The process-group deadline kills remaining
 search workers and compiler descendants, including after a failed parent exits.
-Transmuter gets up to five seconds of outer shutdown allowance beyond its internal
-search timeout. Preparation and independent verification have separate bounds.
+Transmuter gets up to thirty seconds of outer finalization allowance beyond its
+internal search timeout so it can drain workers and write `best.c` and
+`engine.json`. The process group is still terminated after that allowance.
+Preparation and independent verification have separate bounds. If compiler work
+was launched but no final checkpoint exists at the outer deadline, the adapter
+reports an infrastructure timeout with an unavailable search outcome; it does not
+classify the candidate as exhausted or claim that the search failed to initialize.
 
 ## Acceptance and limitations
 
