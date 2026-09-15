@@ -1926,6 +1926,8 @@ SECTIONS
         src/field/actor_runtime_callbacks.o(.text.actor_runtime_callbacks.sub_80C0930);
         src/object/poll_cleanup_transitions.o(.text.misc_helpers_03.sub_80C0980);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_80C0980);
+        src/field/actor_runtime_callbacks.o(.text.actor_runtime_callbacks.sub_80C09AC);
+        asm/text08057568.o(.text.actor_runtime_callbacks_after_sub_80C09AC);
         src/field/actor_command_transitions.o(.text.actor_command_transitions.sub_80C0B1C);
         asm/text08057568.o(.text.actor_command_transitions_after_sub_80C0B1C);
         src/field/actor_runtime_callbacks.o(.text.actor_runtime_callbacks.sub_80C0BE4);

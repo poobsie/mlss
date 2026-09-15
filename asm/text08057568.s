@@ -190548,6 +190548,7 @@ _080C0978: .4byte 0x00002062
 _080C097C: .4byte sub_80BE8D0
 .endif
 	.section .text.misc_helpers_03_after_sub_80C0980, "ax", %progbits
+.if 0
 	thumb_func_start sub_80C09AC
 sub_80C09AC:
 	push {r4, r5, lr}
@@ -190595,6 +190596,8 @@ _080C09F4:
 _080C09FC: .4byte 0x03000FD8
 _080C0A00: .4byte 0x00002062
 _080C0A04: .4byte sub_80BCF60
+.endif
+	.section .text.actor_runtime_callbacks_after_sub_80C09AC, "ax", %progbits
 	thumb_func_start sub_80C0A08
 sub_80C0A08:
 	push {r4, lr}
