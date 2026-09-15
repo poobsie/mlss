@@ -10,6 +10,7 @@ void sub_80884AC(void* object);
 void sub_80BE8D0(void);
 void sub_80B99A0(void);
 void sub_80BCF60(struct RuntimeObject* object);
+void sub_80BC044(struct RuntimeObject* object);
 
 #define field_prepare_actor_b_command_2062_and_continue sub_80C0930
 SEC(sub_80C0930)
@@ -57,6 +58,32 @@ void field_on_actor_b_visual_complete_start_command_2062(
             *flags = flagValue;
         }
         object->update = sub_80BCF60;
+    }
+}
+
+#define field_on_actor_a_visual_complete_start_command_2033 sub_80C0A58
+SEC(sub_80C0A58)
+void field_on_actor_a_visual_complete_start_command_2033(
+    struct RuntimeObject* object)
+{
+    struct FieldActor* actor = gFieldRuntime->actorA;
+    struct RuntimeObject* action = (struct RuntimeObject*)&actor->action;
+    s32 state;
+    s32 flagValue;
+    s32 mask;
+    volatile u8* flags;
+
+    if (action->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        state = actor->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(action, 6, 0x2033, 0);
+            flags = &action->visual->flags;
+            flagValue = *flags;
+            mask = -7;
+            flagValue &= mask;
+            *flags = flagValue;
+        }
+        object->update = sub_80BC044;
     }
 }
 
