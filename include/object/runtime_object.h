@@ -103,7 +103,7 @@ struct RuntimeObject {
     struct RuntimeObjectState* state;
     void* positionOwner;
     struct RuntimeObject* linkedObject;
-    u8 unknown34[4];
+    struct RuntimeObject* listNext;
     s32 positionX;
     s32 positionY;
     s32 positionZBase;

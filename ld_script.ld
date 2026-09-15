@@ -1084,6 +1084,8 @@ SECTIONS
         asm/text08057568.o(.text.small_functions_05_after_sub_807A658);
         src/field/value_transfer.o(.text.field_value_transfer.sub_807F448);
         asm/text08057568.o(.text.after_sub_807F448);
+        src/object/runtime_object_list.o(.text.runtime_object_list.sub_807F4FC);
+        asm/text08057568.o(.text.runtime_object_list_after_sub_807F4FC);
         src/field/action_process.o(.text.small_functions_01.sub_807F648);
         asm/text08057568.o(.text.small_functions_01_after_sub_807F648);
         src/field/value_transfer.o(.text.misc_helpers_01.sub_807F6D0);

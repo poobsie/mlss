@@ -70389,6 +70389,7 @@ _0807F4F0:
 	bx r0
 _0807F4F4: .4byte 0x03000FD8
 _0807F4F8: .4byte sub_810DD7C
+	.if 0
 	thumb_func_start sub_807F4FC
 sub_807F4FC:
 	push {lr}
@@ -70420,6 +70421,9 @@ _0807F52C: .4byte 0x03000FD8
 _0807F530: .4byte sub_810DD7C
 _0807F534: .4byte sub_8086C64
 _0807F538: .4byte sub_8087124
+	.endif
+
+	.section .text.runtime_object_list_after_sub_807F4FC, "ax", %progbits
 	thumb_func_start sub_807F53C
 sub_807F53C:
 	push {r4, lr}

@@ -43,7 +43,10 @@ struct FieldRuntime {
     u8 unknown0B[0x35];
     /* Nonzero while this class of field-object transition is blocked. */
     u32 guard40;
-    u8 unknown44[0x2C];
+    u8 unknown44[0x10];
+    /* Head of RuntimeObject::listNext chain managed by the field runtime. */
+    struct RuntimeObject* runtimeObjectListHead;
+    u8 unknown58[0x18];
     struct FieldActor* actorA;
     struct FieldActor* actorB;
     u8 unknown78[8];
