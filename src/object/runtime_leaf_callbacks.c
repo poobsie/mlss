@@ -1526,6 +1526,20 @@ s32 object_resume_motion_and_switch_sounds_when_ready(
     return result;
 }
 
+SEC(sub_806E778)
+void object_stop_linked_updates_when_value80_clears(
+    struct RuntimeObject* object)
+{
+    s32 value = object->value80;
+
+    if (value == 0) {
+        object->update = 0;
+        object->linkedObject->update = 0;
+    }
+}
+SEC(sub_806E778)
+const u16 sub_806E778_padding = 0;
+
 SEC(sub_806E7CC)
 void object_start_linked_motion_countdown_when_value80_clears(
     struct RuntimeObject* object)

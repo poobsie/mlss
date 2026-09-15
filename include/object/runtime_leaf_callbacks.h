@@ -64,6 +64,7 @@ s32 sub_8067830(struct RuntimeObject* object);
 #define object_repeat_animation_until_behavior_count_expires sub_806C800
 #define object_finish_visual_and_stop_update sub_806CB3C
 #define object_release_position_owner_and_continue sub_806E690
+#define object_stop_linked_updates_when_value80_clears sub_806E778
 #define object_set_behavior_one_when_runtime_ready sub_806A180
 #define object_finish_when_runtime_ready sub_806A1CC
 #define object_finish_animation_6_when_value80_clears sub_806A204
@@ -290,6 +291,8 @@ void object_repeat_animation_until_behavior_count_expires(
     struct RuntimeObject* object);
 void object_finish_visual_and_stop_update(struct RuntimeObject* object);
 s32 object_release_position_owner_and_continue(struct RuntimeObject* object);
+void object_stop_linked_updates_when_value80_clears(
+    struct RuntimeObject* object);
 s32 object_set_behavior_one_when_runtime_ready(struct RuntimeObject* object);
 s32 object_finish_when_runtime_ready(struct RuntimeObject* object);
 void object_finish_animation_6_when_value80_clears(struct RuntimeObject* object);

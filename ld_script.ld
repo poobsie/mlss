@@ -811,6 +811,7 @@ SECTIONS
         asm/text08057568.o(.text.runtime_leaf_callbacks_after_sub_806E690);
         src/object/small_state_helpers.o(.text.misc_helpers_01.sub_806E754);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_806E754);
+        src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_806E778);
         src/runtime/noop_callbacks.o(.text.nullsub_15);
         asm/text08057568.o(.text.after_nullsub_15);
         src/object/small_value_transitions.o(.text.small_functions_01.sub_806E794);
