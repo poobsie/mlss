@@ -84,6 +84,10 @@ previous candidates wait for a single coordinator to transcribe them.
   Candidate counts, draft bodies, and size-only matches are diagnostic data, not progress.
 - Keep one active implementation slice per worker. Refill a worker only after its prior
   slice is committed, rejected with evidence, or returned for a boundary decision.
+- Before selecting or preparing another candidate, refresh the accepted branch and the
+  coordinator's durable review ledger. Exclude every symbol already marked integrated,
+  exhausted, or blocked, plus symbols assigned to another active lane. A stale worktree
+  is not authoritative queue state; duplicate preparation does not count as throughput.
 - Limit compiler-shaping work on one candidate to two informed attempts during a batch.
   Retain the diagnosis, best typed near-match source, exact mismatch offsets, and
   comparison command in ignored scratch space; restore its assembly and continue with
