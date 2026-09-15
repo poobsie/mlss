@@ -2067,6 +2067,8 @@ SECTIONS
         asm/text08057568.o(.text.object_owner_state_motion_after_sub_80DB5F0);
         src/object/middle_transitions.o(.text.middle.sub_80DB844);
         asm/text08057568.o(.text.after_middle_sub_80DB844);
+        src/object/owner_motion_transitions.o(.text.owner_motion_transitions.sub_80DBB1C);
+        asm/text08057568.o(.text.owner_motion_transitions_after_sub_80DBB1C);
         src/object/saved_update_transitions.o(.text.misc_helpers_02.sub_80DBC3C);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DBC3C);
         src/object/saved_update_transitions.o(.text.misc_helpers_02.sub_80DBC60);
