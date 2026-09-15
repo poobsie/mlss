@@ -37,6 +37,7 @@ void sub_80C9BA8(void);
 void sub_80CBF64(void);
 void sub_80CCA38(void);
 void sub_80D27DC(void);
+void sub_80D405C(void);
 void sub_80D53F8(void);
 void sub_80D086C(struct FieldAction* process);
 void sub_80D08F8(struct FieldAction* process);
@@ -665,6 +666,38 @@ void field_on_linked_actor_ready_set_visual_and_continue(
 }
 
 #define field_on_actor_b_complete_place_and_launch_action sub_80D52F4
+/* Synchronize actor B's attached object before the following launch phase. */
+#define field_prepare_actor_b_linked_object_then_continue sub_80D3FD4
+SEC(sub_80D3FD4)
+void field_prepare_actor_b_linked_object_then_continue(
+    struct FieldAction* process)
+{
+    struct FieldActor* actorB = gFieldRuntime->actorB;
+    struct RuntimeObject* actionB = (struct RuntimeObject*)&actorB->action;
+    struct RuntimeObject* linked;
+    s32 state;
+    s8* flags;
+
+    sub_807C298(actionB->linkedObject->linkedObject);
+    linked = actionB->linkedObject;
+    linked->currentPositionX = actionB->currentPositionX;
+    linked->currentPositionY = actionB->currentPositionY;
+    linked->verticalPosition = actionB->verticalPosition;
+
+    state = actorB->stateFlags & 6;
+    if (state == 2 || state == 4) {
+        sub_8082E1C(actionB, 1, 0x2066, 0);
+        flags = (s8*)&actionB->visual->flags;
+        *flags = (*flags & -7) | 2;
+    }
+    if (actionB->linkedObject != 0) {
+        sub_8082E1C(actionB->linkedObject, 1, 0x2095, 0);
+        flags = (s8*)&actionB->linkedObject->visual->flags;
+        *flags &= -7;
+    }
+    process->update = sub_80D405C;
+}
+
 SEC(sub_80D52F4)
 void field_on_actor_b_complete_place_and_launch_action(
     struct FieldAction* process)

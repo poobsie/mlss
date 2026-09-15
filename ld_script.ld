@@ -1941,6 +1941,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80D2D34);
         src/object/cleanup_gates.o(.text.misc_helpers_02.sub_80D2D4C);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80D2D4C);
+        src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80D3FD4);
+        asm/text08057568.o(.text.large_actor_state_machines_after_sub_80D3FD4);
         src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80D52F4);
         asm/text08057568.o(.text.large_actor_state_machines_after_sub_80D52F4);
         src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80D69D8);

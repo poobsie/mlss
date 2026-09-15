@@ -231957,6 +231957,7 @@ _080D3FC8:
 	pop {r0}
 	bx r0
 _080D3FD0: .4byte 0x0000204F
+	.if 0
 	thumb_func_start sub_80D3FD4
 sub_80D3FD4:
 	push {r4, r5, r6, lr}
@@ -232023,6 +232024,8 @@ _080D404C: .4byte 0x03000FD8
 _080D4050: .4byte 0x00002066
 _080D4054: .4byte 0x00002095
 _080D4058: .4byte sub_80D405C
+	.endif
+	.section .text.large_actor_state_machines_after_sub_80D3FD4, "ax", %progbits
 	thumb_func_start sub_80D405C
 sub_80D405C:
 	push {r4, r5, r6, r7, lr}
