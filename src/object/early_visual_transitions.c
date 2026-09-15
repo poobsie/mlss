@@ -1,8 +1,10 @@
 #include "global.h"
 #include "audio/sound_effects.h"
+#include "field/object_slide_sequence.h"
 #include "object/runtime_object.h"
 
 #define SEC(name) __attribute__((section(".text.object_early_visual_transitions." #name)))
+#define FIELD_RUNTIME (*(struct FieldSlideRuntime**)0x03000FD8)
 
 void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
 s32 sub_8086858(struct RuntimeObject*, s32);
@@ -20,7 +22,7 @@ void sub_806BC40(struct RuntimeObject*);
 void sub_806D6A8(struct RuntimeObject*);
 void sub_8070424(struct RuntimeObject*);
 void sub_8070534(struct RuntimeObject*);
-void sub_80761AC(struct RuntimeObject*);
+void sub_80752BC(struct RuntimeObject*);
 void sub_807F4FC(struct RuntimeObject*);
 u32 sub_8199F30(void);
 
@@ -165,7 +167,17 @@ void object_on_visual_complete_start_animation_15_timed_followup(
         object->timer = 0x10;
         object->value84 = 0x32;
         object->value8C = 0;
-        object->update = sub_80761AC;
+        object->update = object_pan_view_left_until_secondary_timer_expires;
         object->secondaryTimer = 0x20;
     }
+}
+
+SEC(sub_80761AC)
+void object_pan_view_left_until_secondary_timer_expires(
+    struct RuntimeObject* object)
+{
+    field_view_add_pan(FIELD_RUNTIME->view, -1, 0);
+    object->secondaryTimer--;
+    if (object->secondaryTimer <= 0)
+        object->update = sub_80752BC;
 }

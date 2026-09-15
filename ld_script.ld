@@ -966,6 +966,8 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_807608C);
         src/object/early_visual_transitions.o(.text.object_early_visual_transitions.sub_80760F4);
         asm/text08057568.o(.text.after_sub_80760F4);
+        src/object/early_visual_transitions.o(.text.object_early_visual_transitions.sub_80761AC);
+        asm/text08057568.o(.text.after_sub_80761AC);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_8077094);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8077094);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_8077118);
