@@ -5,6 +5,57 @@
 #define SEC(name) __attribute__((section(".text.object_visual_setups." #name)))
 
 extern void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
+extern u32 sub_8199F30(void);
+extern s32 sub_81DD77C(u32 limit, s32 value);
+extern void sub_809400C(struct RuntimeObject* object);
+extern void sub_8094070(struct RuntimeObject* object);
+
+struct ObjectSnapshotDisplayState {
+    u8 unknown00[0x2A];
+    u16 snapshot2A;
+};
+
+struct ObjectSnapshotRuntime {
+    u8 unknown00[0x3C];
+    struct ObjectSnapshotDisplayState display3C;
+};
+
+#define OBJECT_SNAPSHOT_RUNTIME \
+    (*(struct ObjectSnapshotRuntime**)0x03000FF4)
+
+SEC(sub_8093F08)
+s32 sub_8093F08(struct RuntimeObject* object)
+{
+    struct ObjectSnapshotDisplayState* display;
+    volatile u8* objectFlags;
+    s8* visualFlags;
+    s32 flagValue;
+    s32 mask;
+    s32 duration;
+
+    object->descriptor = (const void*)0x084FE9A4;
+    display = &OBJECT_SNAPSHOT_RUNTIME->display3C;
+    objectFlags = &object->flags77;
+    flagValue = *objectFlags;
+    mask = -0x41;
+    flagValue &= mask;
+    mask = -0x21;
+    flagValue &= mask;
+    *objectFlags = flagValue;
+    object->state->snapshot114 = display->snapshot2A;
+
+    duration = sub_81DD77C(5, sub_8199F30()) + 10;
+    if (duration != 0) {
+        sub_8082E1C(object, 4, 0x204D, 0);
+        visualFlags = (s8*)&object->visual->flags;
+        *visualFlags &= -7;
+        object->behaviorState = duration;
+        object->update = sub_8094070;
+    } else {
+        object->update = sub_809400C;
+    }
+    return 1;
+}
 
 #define DEFINE_OBJECT_VISUAL_SETUP(name, sprite_value, behavior_state, next) \
     extern void next(struct RuntimeObject*);                             \

@@ -1562,6 +1562,8 @@ SECTIONS
         asm/text08057568.o(.text.script_dispatch_after_sub_8093EA4);
         src/object/variant_dispatch.o(.text.object_variant_dispatch.sub_8093EE0);
         asm/text08057568.o(.text.object_variant_dispatch_after_sub_8093EE0);
+        src/object/visual_setups.o(.text.object_visual_setups.sub_8093F08);
+        asm/text08057568.o(.text.object_visual_setups_after_sub_8093F08);
         src/object/behavior_transitions.o(.text.sub_8094070);
         asm/text08057568.o(.text.after_sub_8094070);
         src/object/behavior_transitions.o(.text.sub_80940F8);
