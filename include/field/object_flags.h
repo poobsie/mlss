@@ -15,8 +15,22 @@ struct FieldObjectStatus {
     void* attachment118;
     u16 value11C;
     u16 flags11E;
-    u8 unknown120[2];
-    u8 flags122;
+    /* The third byte of this control word is also updated as flags. */
+    union FieldObjectStatusControl {
+        s32 value;
+        struct {
+            u8 unknown120[2];
+            u8 flags122;
+            u8 unknown123;
+        } bytes;
+    } control120;
+    u8 unknown124[2];
+    s16 value126;
+    u8 value128;
+    u8 unknown129;
+    u8 value12A;
+    u8 unknown12B;
+    u8 value12C;
 };
 
 static inline struct RuntimeObject* field_object_status_runtime_object(
