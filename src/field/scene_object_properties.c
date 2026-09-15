@@ -3,6 +3,41 @@
 
 #define FIELD_SECTION(name) __attribute__((section(name)))
 
+void sub_8047EB8(struct FieldSceneObject* object);
+
+FIELD_SECTION(".text.field_scene_object_motion.sub_80402C4")
+void field_step_scene_vertical_motion(struct FieldSceneObject* object)
+{
+    s32* motionState;
+    s32 basePosition;
+    u8 motionLimitFlag;
+
+    motionState = &object->motionState25C;
+    if (*motionState >= 0) {
+        object->position18 += object->motionVelocity258;
+        object->motionVelocity258 -= object->motionAcceleration248;
+        motionLimitFlag = 0x20 & object->flags20D;
+        if (motionLimitFlag == 0) {
+            if (object->position18 <= 0) {
+                sub_8047EB8(object);
+                object->position18 = motionLimitFlag;
+                return;
+            }
+            goto advance_motion_state;
+        }
+        if (object->position14 + object->position18 <=
+                   object->motionLimit24C) {
+            sub_8047EB8(object);
+            basePosition = object->position14;
+            if (basePosition + object->position18 < 0)
+                object->position18 = 0 - basePosition;
+        } else {
+        advance_motion_state:
+            *motionState = *motionState + 1;
+        }
+    }
+}
+
 FIELD_SECTION(".text.field_scene_object.sub_8046980")
 void sub_8046980(struct FieldSceneObject* object);
 

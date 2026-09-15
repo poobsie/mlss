@@ -52,7 +52,13 @@ struct FieldSceneObject {
     u8 unknown240[2];
     s16 positionDeltaX;
     s16 positionDeltaY;
-    u8 unknown246[0x20];
+    u8 unknown246[2];
+    s32 motionAcceleration248;
+    s32 motionLimit24C;
+    u8 unknown250[8];
+    s32 motionVelocity258;
+    s32 motionState25C;
+    u8 unknown260[6];
     u16 value266;
     u16 previousValue268;
     u8 unknown26A[4];

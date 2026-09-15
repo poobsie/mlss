@@ -49870,6 +49870,7 @@ _080402A6:
 	bx r0
 	.byte 0x00, 0x00
 _080402C0: .4byte 0x00000213
+	.if 0
 	thumb_func_start sub_80402C4
 sub_80402C4:
 	push {r4, r5, lr}
@@ -49940,6 +49941,8 @@ _08040346:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
+	.endif
+	.section .text.after_field_scene_object_80402C4, "ax", %progbits
 	thumb_func_start sub_804034C
 sub_804034C:
 	push {lr}

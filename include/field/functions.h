@@ -112,6 +112,8 @@ void sub_8049000(void* object, int value);
 #define field_has_flags_2b5_c0 sub_8047A1C
 #define field_has_flags_2b5_30 sub_8047A3C
 #define field_has_flags_2b5_07 sub_8047B78
+#define field_step_scene_vertical_motion sub_80402C4
+void field_step_scene_vertical_motion(struct FieldSceneObject* object);
 int sub_8047A1C(struct FieldSceneObject* object);
 int sub_8047A3C(struct FieldSceneObject* object);
 int sub_8047B78(struct FieldSceneObject* object);
