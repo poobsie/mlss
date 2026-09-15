@@ -3006,6 +3006,8 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8139A6C);
         src/runtime/callback_forwarders.o(.text.callback_forwarders.sub_813B380);
         asm/text08057568.o(.text.callback_forwarders_after_sub_813B380);
+        src/field/collision_queries.o(.text.field_collision_queries.sub_813B878);
+        asm/text08057568.o(.text.after_field_scene_vertical_ranges_overlap);
         src/runtime/callback_forwarders.o(.text.callback_forwarders.sub_813C484);
         asm/text08057568.o(.text.callback_forwarders_after_sub_813C484);
         src/runtime/callback_forwarders.o(.text.callback_forwarders.sub_813C498);

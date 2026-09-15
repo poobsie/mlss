@@ -4,6 +4,7 @@
 #include "global.h"
 
 struct FieldCollisionQuery;
+struct FieldSceneObject;
 
 struct FieldCollisionQueryBounds {
     s16 minimumX;
@@ -27,6 +28,7 @@ struct FieldCollisionObjectPosition {
 #define field_collision_query_owner_enabled sub_80FBE5C
 #define field_collision_point_within_bounds sub_80FBDE0
 #define field_collision_test_owner_unbounded sub_80FC148
+#define field_scene_vertical_ranges_overlap sub_813B878
 
 u8 field_collision_query_owner_enabled(
     void* unused, const struct FieldCollisionQuery* query);
@@ -36,5 +38,7 @@ u8 field_collision_point_within_bounds(
     s16 maximumZ, s16 minimumZ);
 u8 field_collision_test_owner_unbounded(
     void* unused, const struct FieldCollisionQuery* query);
+u8 field_scene_vertical_ranges_overlap(
+    struct FieldSceneObject* first, struct FieldSceneObject* second);
 
 #endif

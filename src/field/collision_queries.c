@@ -1,5 +1,6 @@
 #include "global.h"
 #include "field/collision_queries.h"
+#include "field/scene_object.h"
 
 #define SEC(name) __attribute__((section(".text.field_collision_queries." #name)))
 
@@ -14,6 +15,18 @@ struct FieldCollisionQueryOwner {
     u8 unknown00[0x1D6];
     u8 flags1D6;
 };
+
+SEC(sub_813B878)
+u8 field_scene_vertical_ranges_overlap(
+    struct FieldSceneObject* first, struct FieldSceneObject* second)
+{
+    u8 overlaps = 0;
+
+    if (first->positionY >= second->positionY - second->verticalExtent276
+        && first->positionY - first->verticalExtent276 <= second->positionY)
+        overlaps = 1;
+    return overlaps;
+}
 
 SEC(sub_80FBDE0)
 u8 field_collision_point_within_bounds(
