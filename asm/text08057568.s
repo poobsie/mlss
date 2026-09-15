@@ -87851,6 +87851,7 @@ _080897F6:
 	pop {r0}
 	bx r0
 _080897FC: .4byte sub_8089800
+	.if 0
 	thumb_func_start sub_8089800
 sub_8089800:
 	push {r4, r5, r6, r7, lr}
@@ -87938,6 +87939,8 @@ _080898A0:
 	pop {r0}
 	bx r0
 _080898AC: .4byte sub_80898B0
+	.endif
+	.section .text.object_small_runtime_after_sub_8089800, "ax", %progbits
 	thumb_func_start sub_80898B0
 sub_80898B0:
 	push {r4, r5, lr}

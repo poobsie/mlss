@@ -38,6 +38,7 @@ void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
 void sub_809C954(struct RuntimeObject* object);
 void sub_80A2BC0(struct RuntimeObject* object);
 void sub_80895D8(struct RuntimeObject* object);
+void sub_80898B0(struct RuntimeObject* object);
 
 SEC(sub_8064274)
 s32 object_continue_slow_exit_motion_when_ready(
@@ -252,6 +253,36 @@ void object_update_motion_then_restore_saved_update(
         }
         object->update = object->followup;
         object->followup = 0;
+    }
+}
+
+SEC(sub_8089800)
+void sub_8089800(struct RuntimeObject* object)
+{
+    struct ObjectPositionOwner* owner;
+    s32* targetX;
+    s32* targetY;
+    s32* targetZ;
+
+    object->timer--;
+    if (object->timer <= 0) {
+        sub_8082E1C(object, 3, 0, 0);
+        owner = object->positionOwner;
+        targetX = &object->value84;
+        *targetX = owner->positionSource->positionX + 0x200;
+        targetY = &object->value88;
+        *targetY = owner->positionSource->positionY;
+        targetZ = &object->value8C;
+        *targetZ = owner->positionSource->positionZ;
+        object->verticalAcceleration = sub_808552C(
+            &object->secondaryTimer, &object->stateValueB0,
+            &object->verticalVelocity,
+            *targetX - object->positionX,
+            *targetY - object->positionY,
+            *targetZ - object->positionZBase,
+            0x400, 0x200, 0x100, 0);
+        sound_effect_play(0x8D, -1);
+        object->update = sub_80898B0;
     }
 }
 
