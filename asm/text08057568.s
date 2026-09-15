@@ -76600,6 +76600,7 @@ _08082A56:
 _08082A68:
 	pop {r1}
 	bx r1
+	.if 0
 	thumb_func_start sub_8082A6C
 sub_8082A6C:
 	push {lr}
@@ -76634,6 +76635,8 @@ _08082AA6:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+	.section .text.field_resource_filter_after_sub_8082A6C, "ax", %progbits
 	thumb_func_start sub_8082AAC
 sub_8082AAC:
 	push {r4, r5, lr}

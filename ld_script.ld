@@ -1141,6 +1141,8 @@ SECTIONS
         asm/text08057568.o(.text.field_action_motion_after_sub_80821C4);
         src/field/action_motion.o(.text.field_action_motion.sub_808225C);
         asm/text08057568.o(.text.field_action_motion_after_sub_808225C);
+        src/field/resource_loader.o(.text.field_resource_filter.sub_8082A6C);
+        asm/text08057568.o(.text.field_resource_filter_after_sub_8082A6C);
         src/field/runtime_flags.o(.text.small_functions_01.sub_8082B00);
         asm/text08057568.o(.text.field_runtime_flags_after_sub_8082B00);
         src/field/view_state.o(.text.field_view_state.sub_8082D00);

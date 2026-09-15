@@ -72,6 +72,9 @@ struct FieldObjectResourceRuntime {
     u8 inlineResourceCount113;
 };
 
+void* sub_80214A4(s32 owner, s32 resourceId, s32 slot, u8 retain);
+void sub_8082A6C(s32 resourceId);
+
 #define field_resource_loader_shutdown sub_80FAEFC
 #define field_resource_loader_destroy sub_80FAFD8
 #define field_resource_loader_create sub_80FB080

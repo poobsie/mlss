@@ -5,7 +5,6 @@
 void sub_80E5968(void* resource, s32 flags);
 void sub_80F94A8(void);
 void sub_80FADD4(struct FieldResourceLoaderProcess* loader);
-void* sub_80214A4(s32 owner, u16 resourceId, s32 slot, s32 retain);
 void* sub_80213A0(s32 owner, u16 resourceId, s32 slot, s32 retain);
 void sub_80507E0(void* resourceObject);
 
@@ -53,6 +52,23 @@ extern struct FieldResourceGlobalState gFieldResourceGlobalState
     ((struct FieldResourceDefaultDescriptor*)0x083BA13C)
 #define FIELD_RESOURCE_DESCRIPTOR_56C \
     ((struct FieldResourceDefaultDescriptor*)0x083BA4A8)
+
+SEC("field_resource_filter", sub_8082A6C)
+void sub_8082A6C(s32 resourceId)
+{
+    s32 group;
+
+    if (resourceId != 0) {
+        group = resourceId & 0xF000;
+        if (group != 0x2000 && group != 0xB000 &&
+            group != 0x4000 && group != 0x7000) {
+            sub_80214A4(0, resourceId, -1, 1);
+        }
+    }
+}
+
+SEC("field_resource_filter", sub_8082A6C)
+const u16 sub_8082A6C_padding = 0;
 
 MISC2_SEC(field_owned_resource_destroy)
 void field_owned_resource_destroy(struct FieldOwnedResource* resource, u32 flags)
