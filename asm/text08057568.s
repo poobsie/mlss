@@ -335876,6 +335876,7 @@ _08110B34:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.if 0
 	thumb_func_start sub_8110B3C
 sub_8110B3C:
 	push {r4, lr}
@@ -335911,6 +335912,8 @@ _08110B78:
 	bx r0
 	.byte 0x00, 0x00
 _08110B80: .4byte sub_8110B84
+	.endif
+	.section .text.object_late_visual_transitions_after_sub_8110B3C, "ax", %progbits
 	thumb_func_start sub_8110B84
 sub_8110B84:
 	push {r4, lr}

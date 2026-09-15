@@ -40,6 +40,7 @@ void sub_8110178(struct RuntimeObject*);
 void sub_810F764(struct RuntimeObject*);
 void sub_81101BC(struct RuntimeObject*);
 void sub_8110A30(struct RuntimeObject*);
+void sub_8110B84(struct RuntimeObject*);
 void sub_8110FC8(struct RuntimeObject*);
 void sub_811108C(struct RuntimeObject*);
 void sub_8111174(struct RuntimeObject*);
@@ -868,6 +869,20 @@ SEC(sub_8110A30) void sub_8110A30(struct RuntimeObject* object)
         sub_807FB64(object->visual);
         sound_effect_stop(0x119);
         object->update = sub_8110A94;
+    }
+}
+
+SEC(sub_8110B3C) void sub_8110B3C(struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner;
+
+    if (object->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        sub_8082E1C(object, 0x11, 0, 0);
+        sub_80883A0(object, 0x10);
+        owner = object->positionOwner;
+        object->unknown75 = owner->unknown75 + 1;
+        sound_effect_stop(0xD5);
+        object->update = sub_8110B84;
     }
 }
 
