@@ -319144,6 +319144,8 @@ _0810710E:
 	pop {r0}
 	bx r0
 _08107114: .4byte sub_810124C
+	.section .text.field_selection_sequence_before_sub_8107118, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8107118
 sub_8107118:
 	push {lr}
@@ -319173,6 +319175,8 @@ _08107144:
 	bx r0
 _08107148: .4byte 0x03000FDC
 _0810714C: .4byte 0x00008E58
+	.endif
+	.section .text.field_selection_sequence_after_sub_8107118, "ax", %progbits
 	thumb_func_start sub_8107150
 sub_8107150:
 	push {r4, r5, r6, lr}

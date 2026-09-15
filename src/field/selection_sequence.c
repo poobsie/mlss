@@ -3,6 +3,12 @@
 
 #define SEC(name) __attribute__((section(".text.field_selection_sequence." #name)))
 #define FIELD_RUNTIME (*(struct FieldSelectionRuntime**)0x03000FD8)
+#define FIELD_CALLBACK_STORE (*(struct FieldSelectionCallbackStore**)0x03000FDC)
+
+struct FieldSelectionCallbackStore {
+    u8 unknown0000[0x8E58];
+    void (*callback8E58)(struct FieldSelectionProcess* process);
+};
 
 void nullsub_4(void);
 void sub_8081E2C(void* object);
@@ -17,6 +23,25 @@ void sub_80FCC78(struct FieldSelectionProcess* process);
 s32 sub_8082B00(void);
 s32 sub_810591C(void);
 void sub_810CB04(s32 actor, s32 value);
+
+SEC(sub_8107118)
+void sub_8107118(struct FieldSelectionProcess* process)
+{
+    struct FieldSelectionRuntime* runtime;
+    s32 flags;
+    s32 mask;
+
+    runtime = FIELD_RUNTIME;
+    flags = runtime->flags00B;
+    if (flags & 2) {
+        mask = 3;
+        mask = -mask;
+        mask &= flags;
+        runtime->flags00B = (u8)mask;
+    } else {
+        process->update = FIELD_CALLBACK_STORE->callback8E58;
+    }
+}
 
 SEC(sub_8106D20)
 void sub_8106D20(struct FieldSelectionProcess* process)
@@ -107,3 +132,6 @@ void field_wait_then_finish_selection_setup(struct FieldSelectionProcess* proces
     __attribute__((alias("sub_8106D9C")));
 void field_begin_selection_transition(struct FieldSelectionProcess* process)
     __attribute__((alias("sub_8106D20")));
+void field_consume_transition_flag_or_restore_callback(
+    struct FieldSelectionProcess* process)
+    __attribute__((alias("sub_8107118")));

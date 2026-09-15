@@ -2587,6 +2587,9 @@ SECTIONS
         asm/text08057568.o(.text.field_request_callback_dispatch_after_sub_8107040);
         src/field/runtime_dispatch.o(.text.misc_helpers_03.sub_810707C);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_810707C);
+        asm/text08057568.o(.text.field_selection_sequence_before_sub_8107118);
+        src/field/selection_sequence.o(.text.field_selection_sequence.sub_8107118);
+        asm/text08057568.o(.text.field_selection_sequence_after_sub_8107118);
         src/field/effect_entry_sequence.o(.text.field_effect_entry_sequence.sub_81071F0);
         asm/text08057568.o(.text.small_functions_07_after_sub_81071F0);
         asm/text08057568.o(.text.field_display_value_transition_before_sub_8107248);

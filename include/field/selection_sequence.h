@@ -38,6 +38,8 @@ void field_wait_then_commit_selected_entry(struct FieldSelectionProcess* process
 void field_wait_then_prepare_selected_entry(struct FieldSelectionProcess* process);
 void field_wait_then_finish_selection_setup(struct FieldSelectionProcess* process);
 void field_begin_selection_transition(struct FieldSelectionProcess* process);
+void field_consume_transition_flag_or_restore_callback(
+    struct FieldSelectionProcess* process);
 
 #define field_start_alternate_actor_action sub_80FD8BC
 
