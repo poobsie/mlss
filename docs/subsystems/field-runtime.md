@@ -50,7 +50,7 @@ The base field-scene destructor and three variant destructors all restore descri
 
 The guarded movement entry point now records `positionX` and `positionY` as the movement-start coordinates before invoking the collision-aware movement routine. Its two observed gates remain named by offset: packed flags `0x0801` at `0x20C` and inhibit bit `0x02` at `0x35A`.
 
-`FieldLinkedObjectOwner` exposes the primary and secondary object pointers at `0x200` and `0x204`. The recovered helpers set both linked states to `0xB2`, test the primary marker against `0x15` and `0x1C`, recognize two proven state ranges, and dispatch states `5` through `12` between two assembly-only handlers.
+`FieldLinkedObjectOwner` exposes the primary and secondary object pointers at `0x200` and `0x204`. The recovered helpers set both linked states to `0xB2`, test the primary marker against `0x15` and `0x1C`, recognize two proven state ranges, and dispatch states `5` through `12` between two assembly-only handlers. The state `0x2A`/`0x2B` query returns true for that unsigned two-value range; outside it, the query clears owner flag bits `0x0180`. The individual meanings of those states and flags remain unknown.
 
 Two adjacent wrappers call their respective field-object operations with enabled mode `1`. They remain variant `a` and `b` until the assembly-only operations at `0x802FAE4` and `0x8029A0C` are recovered.
 

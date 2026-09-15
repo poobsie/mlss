@@ -4,6 +4,7 @@
 #include "battle/functions.h"
 #include "battle/object.h"
 #include "field/global_object_transitions.h"
+#include "field/linked_object.h"
 #include "field/selection_sequence.h"
 #include "graphics/process_state.h"
 #include "script/command_handlers.h"
@@ -139,7 +140,6 @@ extern void sub_803C424(void*);
 extern void sub_80326F4(void*);
 extern u8 sub_803C4A0(void*);
 extern void sub_80328B4(void*);
-extern u8 sub_803C468(void*);
 extern void sub_8029380(void*);
 extern void sub_803C8A4(void*, s32, s32);
 extern void sub_8029788(void*);
@@ -755,7 +755,8 @@ s32 script_command_dispatch_field_object_control(
             sub_80328B4(context->objectRegistry);
             break;
         case 1:
-            result = sub_803C468(context->objectRegistry);
+            result = field_linked_object_check_state_2a_2b(
+                (struct FieldLinkedObjectOwner*)context->objectRegistry);
             if ((result << 24) != 0) {
                 state->cursor = state->resumeCursor;
                 return 0;

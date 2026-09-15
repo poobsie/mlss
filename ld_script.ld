@@ -145,6 +145,8 @@ SECTIONS
         asm/text0801A548.o(.text.after_early_code_helpers_803C424);
         src/field/linked_object_state.o(.text.field_linked_object_state.sub_803C440);
         asm/text0801A548.o(.text.after_early_code_helpers_803C440);
+        src/field/linked_object_state.o(.text.field_linked_object_state.sub_803C468);
+        asm/text0801A548.o(.text.after_early_code_helpers_803C468);
         src/field/linked_object_state.o(.text.field_linked_object_state.sub_803C4D8);
         asm/text0801A548.o(.text.after_early_code_helpers_803C4D8);
         src/field/linked_object_state.o(.text.field_linked_object_state.sub_803C538);

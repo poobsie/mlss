@@ -14,6 +14,13 @@ struct FieldLinkedObjectOwner {
     u8 unknown000[0x200];
     struct FieldLinkedObject* primary;
     struct FieldLinkedObject* secondary;
+    u8 unknown208[2];
+    u16 flags20A;
 };
+
+#define field_linked_object_check_state_2a_2b sub_803C468
+
+u8 field_linked_object_check_state_2a_2b(
+    struct FieldLinkedObjectOwner* owner);
 
 #endif

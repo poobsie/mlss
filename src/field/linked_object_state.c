@@ -28,6 +28,24 @@ SEC(sub_803C440) s32 sub_803C440(struct FieldLinkedObjectOwner* owner)
     return result;
 }
 
+SEC(sub_803C468)
+u8 field_linked_object_check_state_2a_2b(
+    struct FieldLinkedObjectOwner* owner)
+{
+    u16 relativeState;
+    u16 state = owner->primary->state;
+    s32 flagsMask;
+
+    relativeState = (u16)(state - 0x2A);
+    flagsMask = ~0x180;
+    if ((u32)relativeState <= 1U)
+        return TRUE;
+
+    owner->flags20A &= flagsMask;
+    return FALSE;
+}
+SEC(sub_803C468) const u16 sub_803C468_padding = 0;
+
 SEC(sub_803C4D8) s32 sub_803C4D8(struct FieldLinkedObjectOwner* owner)
 {
     u16 state = owner->primary->state;
