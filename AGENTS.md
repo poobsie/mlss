@@ -123,6 +123,9 @@ an optional bounded CPU search using Transmuter or decomp-permuter. Follow
 poll mutations through model turns, equate a tool score of zero with accepted C,
 or retry a rejected candidate without recording that the new mutation search is
 the specific new compiler-shape experiment. Keep source review and full acceptance.
+For a WSL run whose work root is under `/tmp`, always pass `--checkpoint-dir` pointing
+at ignored scratch in the worktree. Review that durable checkpoint before acceptance;
+a WSL restart must not erase the only copy of a winning source.
 
 The default worker task is implementation, not an open-ended subsystem survey.
 

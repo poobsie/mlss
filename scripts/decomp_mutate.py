@@ -18,7 +18,7 @@ from decomp_local import ROOT, Runner, build_flags, compare_span, reference_symb
 from decomp_workflow import candidate_by_name
 
 
-def bounded_process(command, seconds, log, cwd):
+def bounded_process(command, seconds, log, cwd, checkpoint=None):
     """Kill the complete search process group, including compiler children, on expiry."""
     start = time.monotonic()
     with log.open("w") as stream:
@@ -26,10 +26,20 @@ def bounded_process(command, seconds, log, cwd):
                                    start_new_session=True)
         timed_out = False
         try:
-            process.wait(timeout=seconds)
-        except subprocess.TimeoutExpired:
-            timed_out = True
+            deadline = start + seconds
+            while process.poll() is None:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    timed_out = True
+                    break
+                try:
+                    process.wait(timeout=min(1, remaining))
+                except subprocess.TimeoutExpired:
+                    if checkpoint is not None:
+                        checkpoint()
         finally:
+            if checkpoint is not None:
+                checkpoint()
             # Workers can survive a failed or interrupted parent. Never leave them running.
             try:
                 os.killpg(process.pid, signal.SIGTERM)
@@ -46,6 +56,33 @@ def bounded_process(command, seconds, log, cwd):
             process.wait()
     return {"returncode": process.returncode, "timed_out": timed_out,
             "wall_seconds": round(time.monotonic() - start, 3)}
+
+
+def checkpoint_best_source(folder, checkpoint_dir):
+    """Persist the current best source outside a volatile mutation work root."""
+    candidates = []
+    direct_best = folder / "best.c"
+    if direct_best.exists():
+        candidates.append((0, direct_best, None))
+    for source in folder.glob("output-*/source.c"):
+        try:
+            score = int((source.parent / "score.txt").read_text())
+        except (OSError, ValueError):
+            continue
+        candidates.append((score, source, score))
+    if not candidates:
+        return
+    _, source, score = min(candidates, key=lambda item: item[0])
+    try:
+        payload = source.read_bytes()
+    except OSError:
+        return
+    checkpoint_dir.mkdir(parents=True, exist_ok=True)
+    temporary = checkpoint_dir / "best.c.tmp"
+    temporary.write_bytes(payload)
+    temporary.replace(checkpoint_dir / "best.c")
+    score_text = "unknown" if score is None else str(score)
+    (checkpoint_dir / "best-score.txt").write_text(score_text + "\n")
 
 
 def link_compare(obj, symbol, address, expected, folder, flags, symbols, aliases=None):
@@ -92,10 +129,13 @@ def run_search(args):
     root = Path(args.work_root).resolve()
     root.mkdir(parents=True, exist_ok=True)
     folder = Path(tempfile.mkdtemp(prefix=args.function + "-", dir=root))
+    checkpoint_dir = Path(args.checkpoint_dir).resolve() if args.checkpoint_dir else None
     report = {"function": args.function, "engine": args.engine, "source_sha256":
               hashlib.sha256(source.read_bytes()).hexdigest(), "seconds": args.seconds,
               "jobs": args.jobs, "seed": args.seed if args.engine == "transmuter" else None, "artifacts": str(folder),
               "acceptance_required": True}
+    if checkpoint_dir is not None:
+        report["checkpoint_dir"] = str(checkpoint_dir)
     try:
         candidate, block = getattr(args, "target", None) or candidate_by_name(args.function, ROOT / "mlss.map")
         aliases = getattr(args, "symbols_elf", None)
@@ -148,7 +188,10 @@ def run_search(args):
             (folder / "engine-config.json").write_text(json.dumps(config))
             command = [str(tool_root / "bun-linux-x64/bun"), str(ROOT / "scripts/transmuter-run.mjs"),
                        str(folder / "engine-config.json")]
-            report["process"] = bounded_process(command, args.seconds + 5, folder / "engine.log", ROOT)
+            report["process"] = bounded_process(
+                command, args.seconds + 5, folder / "engine.log", ROOT,
+                (lambda: checkpoint_best_source(folder, checkpoint_dir))
+                if checkpoint_dir is not None else None)
             if (folder / "engine.json").exists():
                 report["search"] = json.loads((folder / "engine.json").read_text())
         else:
@@ -156,7 +199,10 @@ def run_search(args):
             command = [str(tool_root / "venv/bin/python"), "-u",
                        str(tool_root / "decomp-permuter/permuter.py"), str(folder),
                        "-j", str(args.jobs), "--stop-on-zero", "--best-only", "--quiet"]
-            report["process"] = bounded_process(command, args.seconds, folder / "engine.log", ROOT)
+            report["process"] = bounded_process(
+                command, args.seconds, folder / "engine.log", ROOT,
+                (lambda: checkpoint_best_source(folder, checkpoint_dir))
+                if checkpoint_dir is not None else None)
             outputs = sorted(folder.glob("output-*/source.c"),
                              key=lambda path: int((path.parent / "score.txt").read_text()))
             best = outputs[0] if outputs else base
@@ -182,7 +228,12 @@ def run_search(args):
         report.update(status="error", error=str(error)[-1200:])
         return report
     finally:
+        if checkpoint_dir is not None:
+            checkpoint_best_source(folder, checkpoint_dir)
         (folder / "result.json").write_text(json.dumps(report, indent=2) + "\n")
+        if checkpoint_dir is not None:
+            checkpoint_dir.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(folder / "result.json", checkpoint_dir / "result.json")
 
 
 def main():
@@ -198,6 +249,10 @@ def main():
     parser.add_argument("--symbols-elf", help="optional exact accepted ELF snapshot for renamed symbol aliases")
     parser.add_argument("--tools", default=os.environ.get("MLSS_MUTATION_TOOLS", str(Path.home() / ".cache/mlss-mutation")))
     parser.add_argument("--work-root", default=str(ROOT / "scratch/mutations"))
+    parser.add_argument(
+        "--checkpoint-dir",
+        help="durable directory for current best source and result when work-root is volatile",
+    )
     args = parser.parse_args()
     if args.seconds < 1 or not 1 <= args.jobs <= 32 or args.max_compiles < 1:
         parser.error("positive budgets and 1..32 jobs required")

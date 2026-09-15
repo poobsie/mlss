@@ -7,12 +7,27 @@ import subprocess
 import tempfile
 import unittest
 
-from decomp_mutate import bounded_process, compiler_script
+from decomp_mutate import bounded_process, checkpoint_best_source, compiler_script
 from decomp_local import Runner, build_flags
 from decomp_workflow import is_register_trampoline
 
 
 class MutationSafetyTest(unittest.TestCase):
+    def test_best_source_checkpoint_prefers_lowest_score(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            first = root / 'work' / 'output-20'
+            second = root / 'work' / 'output-5'
+            first.mkdir(parents=True)
+            second.mkdir(parents=True)
+            (first / 'source.c').write_text('int value = 20;\n')
+            (first / 'score.txt').write_text('20\n')
+            (second / 'source.c').write_text('int value = 5;\n')
+            (second / 'score.txt').write_text('5\n')
+            checkpoint_best_source(root / 'work', root / 'durable')
+            self.assertEqual((root / 'durable' / 'best.c').read_text(), 'int value = 5;\n')
+            self.assertEqual((root / 'durable' / 'best-score.txt').read_text(), '5\n')
+
     @unittest.skipUnless(shutil.which('arm-none-eabi-as'), 'requires project ARM toolchain')
     def test_compile_wrapper_removes_temporary_assembly(self):
         with tempfile.TemporaryDirectory() as directory:

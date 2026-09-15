@@ -24,9 +24,11 @@ The Bun download is Linux x86_64 specific; other platforms need their own setup.
 
 ```sh
 python3 scripts/decomp_mutate.py sub_806018C scratch/candidate.c \
-  --engine permuter --seconds 60 --jobs 8 --work-root /tmp/mlss-mutations
+  --engine permuter --seconds 60 --jobs 8 --work-root /tmp/mlss-mutations \
+  --checkpoint-dir scratch/mutations/sub_806018C-durable
 python3 scripts/decomp_mutate.py sub_806018C scratch/candidate.c \
-  --engine transmuter --seconds 60 --jobs 8 --work-root /tmp/mlss-mutations
+  --engine transmuter --seconds 60 --jobs 8 --work-root /tmp/mlss-mutations \
+  --checkpoint-dir scratch/mutations/sub_806018C-durable
 ```
 
 Replace the symbol and source with the assignment. The source must contain one
@@ -38,6 +40,10 @@ separately and do not count as search successes.
 
 Each run uses an independent directory and retains the original preprocessed C,
 target assembly/object, compile wrapper, logs, best source, and `result.json`.
+When the work root is volatile, `--checkpoint-dir` atomically refreshes the current
+best source in ignored repository scratch during the search and copies the final
+result record. Use it for `/tmp` runs under WSL so a subsystem restart cannot erase
+the only copy of an exact result before source review.
 `--tools` selects another installation. Transmuter additionally accepts a compile
 budget through `--max-compiles` and a seed through `--seed`. decomp-permuter's hidden
 seed switch is a failure-reproduction control, not a comparable seeded search mode,
