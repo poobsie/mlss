@@ -191,6 +191,23 @@ void field_initialize_callback_chain_variant_m(
     sub_814448C(context, object);
 }
 
+SEC(field_forward_linked_callback_and_advance_on_sprite_flag)
+void field_forward_linked_callback_and_advance_on_sprite_flag(
+    u32 context, struct FieldSceneObject* object)
+{
+    FieldSceneChainCallback* callback =
+        &object->linkedSceneObject344->callback1A0;
+
+    if (*callback != 0)
+        (*callback)(context, object, callback);
+    if (object->sprite->field_12_3) {
+        s8* flags = (s8*)&object->flags214;
+
+        *flags = (*flags & -8) | 3;
+        object->dispatch198 = field_initialize_callback_chain_variant_m;
+    }
+}
+
 SEC(field_prepare_callback_slot_3_and_dispatch)
 void field_prepare_callback_slot_3_and_dispatch(
     u32 context, struct FieldSceneObject* object,

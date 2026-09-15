@@ -3050,6 +3050,8 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_814432C);
         src/field/event_callbacks.o(.text.text_upper_structural.sub_8145920);
         asm/text08057568.o(.text.after_text_upper_structural_sub_8145920);
+        src/field/callback_chains.o(.text.upper.sub_81459FC);
+        asm/text08057568.o(.text.after_upper_sub_81459FC);
         src/field/callback_chains.o(.text.upper.sub_8145AB0);
         asm/text08057568.o(.text.after_upper_sub_8145AB0);
         src/field/event_callbacks.o(.text.text_upper_structural.sub_8147010);

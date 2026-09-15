@@ -72,6 +72,7 @@
 #define field_initialize_callback_chain_variant_k sub_813D64C
 #define field_promote_dispatch_and_start_callback_chain sub_813D7F8
 #define field_initialize_callback_chain_variant_l sub_814432C
+#define field_forward_linked_callback_and_advance_on_sprite_flag sub_81459FC
 #define field_initialize_callback_chain_variant_m sub_8145AB0
 #define field_apply_indexed_scene_setup sub_814B4C8
 #define field_clear_scene_object_modes sub_8150590

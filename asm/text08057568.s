@@ -417519,7 +417519,9 @@ _081459F6:
 	pop {r0}
 	bx r0
 	thumb_func_start sub_81459FC
-sub_81459FC:
+	.section .discard.upper_sub_81459FC, "ax", %progbits
+	.align 2, 0
+asm_discard_sub_81459FC:
 	push {r4, r5, lr}
 	adds r5, r0, #0x0
 	adds r4, r1, #0x0
@@ -417566,6 +417568,8 @@ _08145A4E:
 	pop {r0}
 	bx r0
 _08145A54: .4byte sub_8145AB0
+	.section .text.after_upper_sub_81459FC, "ax", %progbits
+	.align 2, 0
 	thumb_func_start sub_8145A58
 sub_8145A58:
 	push {r4, r5, lr}
