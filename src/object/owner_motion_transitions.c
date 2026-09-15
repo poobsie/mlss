@@ -6,6 +6,7 @@
     __attribute__((section(".text.owner_motion_transitions." #symbol)))
 
 void sub_807F4FC(struct RuntimeObject* object);
+void sub_807F47C(struct RuntimeObject* object);
 void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
 void sub_8085B38(struct RuntimeObject* object);
@@ -13,6 +14,7 @@ void sub_8066F60(struct RuntimeObject* object);
 void sub_806A204(struct RuntimeObject* object);
 void sub_806A24C(struct RuntimeObject* object);
 void sub_80DAE7C(struct RuntimeObject* object);
+void sub_80DBC84(struct RuntimeObject* object);
 void sub_80DBC3C(struct RuntimeObject* object);
 void sub_80DBBCC(struct RuntimeObject* object);
 
@@ -120,6 +122,48 @@ void sub_80DAC80(struct RuntimeObject* object)
         sub_8085B38(object);
         sub_8082E1C(object, 2, 0, 0);
         object->update = sub_80DAE7C;
+    }
+}
+
+SEC(sub_80DB95C)
+void sub_80DB95C(struct RuntimeObject* object)
+{
+    struct RuntimeObjectState* state;
+    volatile u8* flags;
+    s32* targetStart;
+    s32* target;
+    s32** activeTarget;
+    u16* timerStorage;
+    u16 remaining;
+    s32 gateValue;
+
+    gateValue = object->value80;
+    if (gateValue != 0)
+        return;
+
+    /* Decrement the signed timer through unsigned wrapping storage. */
+    timerStorage = (u16*)&object->timer;
+    remaining = *timerStorage - 1;
+    *timerStorage = *timerStorage - 1;
+    if ((s32)((u32)remaining << 16) <= 0) {
+        sub_807F47C(object);
+        targetStart = &object->value84;
+        target = targetStart;
+        state = object->state;
+        *target = state->valueD8;
+        target++;
+        *target = state->valueDC;
+        /* Retain the cursor alias through the final target write. */
+        activeTarget = &target;
+        target++;
+        **activeTarget = state->floorHeight;
+        flags = &object->flags79;
+        *flags |= 0x20;
+        object->unknown7C = 0x600;
+        object->unknown7A = gateValue;
+        sub_8085B38(object);
+        sub_8082E1C(object, 5, 0, 0);
+        object->update = sub_80DBC84;
     }
 }
 
