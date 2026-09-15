@@ -5,7 +5,9 @@
 
 struct AudioDriverVoice {
     u16 flags;
-    u8 unknown02[0x10];
+    u8 unknown02[0x0C];
+    u8 pan;
+    u8 unknown0F[3];
     u8 voiceIndex;
     u8 playerIndex;
     u8 unknown14[0x0C];
@@ -34,6 +36,9 @@ void sub_819A928(void);
 void sub_819AFA8(void* buffer);
 void sub_819B0AC(u32 player);
 void sub_819B2E0(void);
+
+#define audio_driver_update_voice_stereo_routing sub_819AB78
+void audio_driver_update_voice_stereo_routing(struct AudioDriverVoice* voice);
 
 #define audio_driver_enqueue_command sub_819B418
 #define audio_driver_initialize_sound_hardware sub_819A928

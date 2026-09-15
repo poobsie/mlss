@@ -3977,6 +3977,8 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_819A770);
         src/audio/driver_state.o(.text.audio_driver_state.sub_819A928);
         asm/text08057568.o(.text.after_sub_819A928);
+        src/audio/voice_routing.o(.text.audio_voice_routing.sub_819AB78);
+        asm/text08057568.o(.text.after_sub_819AB78);
         src/runtime/high_state.o(.text.high.sub_819AF88);
         asm/text08057568.o(.text.after_sub_819AF88);
         src/runtime/noop_callbacks.o(.text.nullsub_7);
