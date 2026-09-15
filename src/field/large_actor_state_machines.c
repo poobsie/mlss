@@ -45,6 +45,8 @@ void sub_80A2918(void);
 void sub_80BC408(struct RuntimeObject* object);
 void sub_80C1BB8(struct RuntimeObject* object);
 void sub_80C1CE4(struct RuntimeObject* object);
+void sub_80C971C(struct RuntimeObject* object);
+void sub_80C9854(struct RuntimeObject* object);
 
 #define field_prepare_actor_a_offset_motion_or_idle sub_80C1AE8
 SEC(sub_80C1AE8)
@@ -75,6 +77,37 @@ void field_prepare_actor_a_offset_motion_or_idle(
             }
             action->secondaryTimer &= 0xFFF;
             caller->update = sub_80C1BB8;
+        }
+    }
+}
+
+#define field_prepare_actor_a_offset_motion_or_idle_variant sub_80C964C
+SEC(sub_80C964C)
+void field_prepare_actor_a_offset_motion_or_idle_variant(
+    struct RuntimeObject* caller)
+{
+    struct FieldActor* actorA = gFieldRuntime->actorA;
+    struct RuntimeObject* action = (struct RuntimeObject*)&actorA->action;
+    s32 idleState;
+    s32 motionState;
+
+    if (action->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        if (action->positionZBase == 0) {
+            idleState = actorA->stateFlags & 6;
+            if (idleState == 2 || idleState == 4)
+                action->update = sub_80C9854;
+        } else {
+            motionState = actorA->stateFlags & 6;
+            if (motionState == 2 || motionState == 4) {
+                sub_808843C(action,
+                    action->positionX / 256 + actorA->displayOffsetX - 0x3A,
+                    action->positionY / 256 + actorA->displayOffsetY,
+                    0, -1);
+                actorA->value9A = action->positionZBase / 256 + 8;
+                sub_8088164(action, 0x500);
+            }
+            action->secondaryTimer &= 0xFFF;
+            caller->update = sub_80C971C;
         }
     }
 }
