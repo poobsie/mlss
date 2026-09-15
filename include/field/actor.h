@@ -40,7 +40,8 @@ struct FieldActor {
 struct FieldRuntime {
     u8 unknown00[0x0A];
     u8 flags0A;
-    u8 unknown0B[0x35];
+    u8 flags0B;
+    u8 unknown0C[0x34];
     /* Nonzero while this class of field-object transition is blocked. */
     u32 guard40;
     u8 unknown44[0x10];

@@ -1093,6 +1093,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_807F6D0);
         src/field/value_transfer.o(.text.misc_helpers_01.sub_807F6EC);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_807F6EC);
+        src/field/runtime_motion_process.o(.text.field_runtime_motion_process.sub_807F834);
+        asm/text08057568.o(.text.field_runtime_motion_process_after_sub_807F834);
         src/field/runtime_link_nodes.o(.text.field_runtime_link_nodes.sub_807FA14);
         asm/text08057568.o(.text.field_runtime_link_nodes_after_sub_807FA14);
         src/field/runtime_link_nodes.o(.text.field_runtime_link_nodes.sub_807FA50);

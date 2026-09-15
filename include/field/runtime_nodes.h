@@ -3,6 +3,9 @@
 
 #include "global.h"
 
+struct FieldRuntimeNode;
+typedef void (*FieldRuntimeNodeCallback)(struct FieldRuntimeNode* node);
+
 struct FieldRuntimeNode {
     struct FieldRuntimeNode* next;
     void* ownerOrCallback;
@@ -24,6 +27,7 @@ struct FieldRuntimeNode {
 #define field_runtime_push_external_node sub_807FFD8
 #define field_runtime_recycle_pool_240_node sub_807FA94
 #define field_runtime_push_object_node_list_4c sub_807FE7C
+#define field_runtime_countdown_then_motion sub_807F834
 
 struct FieldRuntimeNode* field_runtime_push_node_list_50(void* ownerOrCallback, void* value);
 struct FieldRuntimeNode* field_runtime_push_node_list_4c(void* ownerOrCallback, void* value);
@@ -34,5 +38,6 @@ struct FieldRuntimeNode* field_runtime_push_external_node(struct FieldRuntimeNod
                                                           void* ownerOrCallback);
 struct FieldRuntimeNode* field_runtime_recycle_pool_240_node(struct FieldRuntimeNode* node);
 void field_runtime_push_object_node_list_4c(void* object);
+void field_runtime_countdown_then_motion(struct FieldRuntimeNode* node);
 
 #endif

@@ -557,3 +557,9 @@ clears flag `0x10` in `flags79`, then clears the process update callback when
 `value80` is zero or the low byte returned by `sub_8085A6C` is nonzero. The
 helper is skipped when the value is already zero. The low-byte test uses an
 unsigned shift to avoid signed overflow; unknown meanings retain structural names.
+
+`field_runtime_countdown_then_motion` sets bit `0x02` in the field runtime's
+update flags on every tick and decrements its motion state's countdown. At zero,
+it reloads the countdown with 20 and hands the node to `sub_80801BC`. The state
+layout establishes fixed-point coordinates, velocities, and the countdown, but
+the effect's gameplay identity and the continuation's semantic name remain unknown.

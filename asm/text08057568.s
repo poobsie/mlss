@@ -70747,6 +70747,7 @@ _0807F828: .4byte 0x0300034C
 _0807F82C: .4byte 0x000001FF
 _0807F830: .4byte 0xFFFF8000
 	thumb_func_start sub_807F834
+.if 0
 sub_807F834:
 	push {r4, lr}
 	adds r4, r0, #0x0
@@ -70773,6 +70774,8 @@ _0807F85A:
 	bx r0
 _0807F860: .4byte 0x03000FD8
 _0807F864: .4byte sub_80801BC
+.endif
+	.section .text.field_runtime_motion_process_after_sub_807F834, "ax", %progbits
 	thumb_func_start sub_807F868
 sub_807F868:
 	push {r4, r5, r6, lr}
