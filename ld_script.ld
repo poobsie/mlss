@@ -3016,6 +3016,8 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_813D64C);
         src/field/flag_dispatch.o(.text.text_late_helpers.sub_813D74C);
         asm/text08057568.o(.text.after_text_late_helpers_sub_813D74C);
+        src/field/callback_chains.o(.text.upper.sub_813D7F8);
+        asm/text08057568.o(.text.after_upper_sub_813D7F8);
         src/field/flag_dispatch.o(.text.text_late_helpers.sub_813D8A0);
         asm/text08057568.o(.text.after_text_late_helpers_sub_813D8A0);
         src/field/event_callbacks.o(.text.text_upper_structural.sub_814260C);

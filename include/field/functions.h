@@ -70,6 +70,7 @@
 #define field_initialize_callback_chain_variant_i sub_813C88C
 #define field_initialize_callback_chain_variant_j sub_813D514
 #define field_initialize_callback_chain_variant_k sub_813D64C
+#define field_promote_dispatch_and_start_callback_chain sub_813D7F8
 #define field_initialize_callback_chain_variant_l sub_814432C
 #define field_initialize_callback_chain_variant_m sub_8145AB0
 #define field_clear_scene_object_modes sub_8150590

@@ -44,6 +44,23 @@ void sub_813C758(
     u32, struct FieldSceneObject*, void*);
 void sub_813C810(
     u32, struct FieldSceneObject*, void*);
+void sub_8136D00(
+    u32, struct FieldSceneObject*, void*);
+
+SEC(field_promote_dispatch_and_start_callback_chain)
+void field_promote_dispatch_and_start_callback_chain(
+    u32 context, struct FieldSceneObject* object)
+{
+    s8* flags;
+
+    sub_8138944(object, 0x0F);
+    object->dispatch198 = object->dispatch19C;
+    object->callback1A0 = sub_8136D00;
+    object->callback1A4 = sub_8136D00;
+    flags = (s8*)&object->flags214;
+    *flags = (*flags & -8) | 1;
+    object->dispatch198(context, object);
+}
 
 SEC(field_initialize_callback_chain_from_definition)
 void field_initialize_callback_chain_from_definition(

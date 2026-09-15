@@ -401749,7 +401749,9 @@ _0813D7F0:
 	bx r0
 	.byte 0x00, 0x00
 	thumb_func_start sub_813D7F8
-sub_813D7F8:
+	.section .discard.upper_sub_813D7F8, "ax", %progbits
+	.align 2, 0
+asm_discard_sub_813D7F8:
 	push {r4, r5, lr}
 	adds r4, r0, #0x0
 	adds r5, r1, #0x0
@@ -401791,6 +401793,8 @@ sub_813D7F8:
 	bx r0
 	.byte 0x00, 0x00
 _0813D84C: .4byte sub_8136D00
+	.section .text.after_upper_sub_813D7F8, "ax", %progbits
+	.align 2, 0
 	thumb_func_start sub_813D850
 sub_813D850:
 	push {r4, r5, lr}
