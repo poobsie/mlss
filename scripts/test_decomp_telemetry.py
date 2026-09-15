@@ -3,10 +3,13 @@ from __future__ import annotations
 
 import unittest
 
-from decomp_telemetry import rate
+from decomp_telemetry import LEGACY_TOTAL_FUNCTIONS, rate
 
 
 class DecompTelemetryTest(unittest.TestCase):
+    def test_legacy_total_remains_available_for_old_records(self):
+        self.assertEqual(LEGACY_TOTAL_FUNCTIONS, 7017)
+
     def test_rate_reports_time_and_usage_efficiency(self):
         first = {
             "timestamp": "2026-09-06T16:00:00Z",

@@ -13,7 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 METRICS = ROOT / "config" / "decomp_metrics.jsonl"
 REJECTIONS = ROOT / "config" / "decomp_rejections.json"
-TOTAL_FUNCTIONS = 7017
+LEGACY_TOTAL_FUNCTIONS = 7017
 
 
 def read_jsonl(path: Path) -> list[dict]:
@@ -39,10 +39,19 @@ def parse_timestamp(value: str) -> datetime:
 
 
 def record_snapshot(args: argparse.Namespace) -> None:
-    if not 0 <= args.functions <= TOTAL_FUNCTIONS:
-        raise SystemExit(f"functions must be between 0 and {TOTAL_FUNCTIONS}")
-    timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     records = read_jsonl(METRICS)
+    total_functions = args.total_functions
+    if total_functions is None:
+        total_functions = (
+            records[-1].get("total_functions", LEGACY_TOTAL_FUNCTIONS)
+            if records
+            else LEGACY_TOTAL_FUNCTIONS
+        )
+    if total_functions <= 0:
+        raise SystemExit("total-functions must be positive")
+    if not 0 <= args.functions <= total_functions:
+        raise SystemExit(f"functions must be between 0 and {total_functions}")
+    timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     previous = next(
         (item for item in reversed(records) if item.get("phase") == args.phase), None
     )
@@ -61,7 +70,7 @@ def record_snapshot(args: argparse.Namespace) -> None:
         "commit": current_commit(),
         "phase": args.phase,
         "functions": args.functions,
-        "total_functions": TOTAL_FUNCTIONS,
+        "total_functions": total_functions,
         "matched_text_bytes": args.matched_bytes,
         "accepted_candidates": args.accepted,
         "accepted_bytes": accepted_bytes,
@@ -87,7 +96,7 @@ def record_snapshot(args: argparse.Namespace) -> None:
     if args.note:
         record["note"] = args.note
     write_jsonl_record(METRICS, record)
-    print(f"Recorded {args.functions}/{TOTAL_FUNCTIONS} at {record['commit'][:8]}.")
+    print(f"Recorded {args.functions}/{total_functions} at {record['commit'][:8]}.")
 
 
 def rate(first: dict, last: dict) -> dict[str, float] | None:
@@ -128,7 +137,8 @@ def report(_: argparse.Namespace) -> None:
         phases.setdefault(item["phase"], []).append(item)
     for phase, items in phases.items():
         first, last = items[0], items[-1]
-        print(f"  {phase}: {len(items)} snapshot(s), {last['functions']}/{TOTAL_FUNCTIONS}")
+        total_functions = last.get("total_functions", LEGACY_TOTAL_FUNCTIONS)
+        print(f"  {phase}: {len(items)} snapshot(s), {last['functions']}/{total_functions}")
         measured = rate(first, last)
         if measured is None:
             print("    awaiting a later snapshot")
@@ -195,6 +205,11 @@ def parser() -> argparse.ArgumentParser:
     snapshot = commands.add_parser("snapshot")
     snapshot.add_argument("--phase", required=True)
     snapshot.add_argument("--functions", type=int, required=True)
+    snapshot.add_argument(
+        "--total-functions",
+        type=int,
+        help="live total reported by make progress; defaults to the previous snapshot",
+    )
     snapshot.add_argument("--matched-bytes", type=int, required=True)
     snapshot.add_argument("--accepted", type=int, default=0)
     snapshot.add_argument("--accepted-bytes", type=int)

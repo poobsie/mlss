@@ -162,14 +162,17 @@ The tracked telemetry ledger provides prospective evidence for workflow changes:
 
 ```sh
 python3 scripts/decomp_telemetry.py snapshot --phase batched-v1 \
-  --functions 2157 --matched-bytes 125442 --accepted 8 --accepted-bytes 632 \
+  --functions 2157 --total-functions 7017 --matched-bytes 125442 \
+  --accepted 8 --accepted-bytes 632 \
   --attempted 12 \
   --rejected 4 --model gpt-5.6-luna --wall-minutes 30 \
   --gate-seconds 10 --coordination-minutes 3 --usage-used-percent 1
 python3 scripts/decomp_telemetry.py report
 ```
 
-Supply the live values printed by the acceptance and progress commands. When available,
+Supply both live function values printed by `make progress`. The total can increase when
+honest symbol recovery identifies a previously unnamed function, so do not reuse an old
+denominator. When available,
 also record the account usage reset timestamp so usage deltas are never compared across
 weekly windows. Record exhausted candidates once:
 
