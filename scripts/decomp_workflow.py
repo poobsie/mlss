@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from bisect import bisect_right
 import json
 import re
 import subprocess
@@ -151,22 +152,22 @@ def raw_byte_count(block: str) -> int:
 
 def discover(map_path: Path, assembly: list[Path]) -> list[Candidate]:
     addresses = map_addresses(map_path)
+    mapped_addresses = sorted(set(addresses.values()))
     parsed: list[tuple[Path, str, str, int, int, str, int, int | None]] = []
     shape_counts: dict[str, int] = {}
     for path in assembly:
         all_blocks = function_blocks(path)
-        block_addresses = [addresses.get(block[0]) for block in all_blocks]
-        for index, (name, mode, start, end, block) in enumerate(all_blocks):
-            address = block_addresses[index]
+        for name, mode, start, end, block in all_blocks:
+            address = addresses.get(name)
             if address is None:
                 continue
             block_shape = shape(block)
-            next_addresses = [item for item in block_addresses[index + 1:] if item is not None and item > address]
-            if next_addresses:
-                boundary = min(next_addresses)
-            else:
-                mapped_after = [item for item in addresses.values() if item > address]
-                boundary = min(mapped_after) if mapped_after else None
+            boundary_index = bisect_right(mapped_addresses, address)
+            boundary = (
+                mapped_addresses[boundary_index]
+                if boundary_index < len(mapped_addresses)
+                else None
+            )
             if (
                 name not in addresses
                 or SWI.search(block)

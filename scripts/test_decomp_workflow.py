@@ -121,6 +121,40 @@ class DecompWorkflowTest(unittest.TestCase):
             self.assertEqual(by_name["last"].size, 8)
             self.assertNotIn("rejected", by_name)
 
+    def test_boundary_stops_at_disabled_c_owned_symbol(self):
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
+            folder = Path(directory)
+            assembly = folder / "carved-boundary.s"
+            assembly.write_text(
+                """\tthumb_func_start first
+first:
+\tmov r0, r0
+\t.if 0
+\tthumb_func_start carved
+carved:
+\tmov r1, r1
+\t.endif
+\tthumb_func_start last
+last:
+\tmov r2, r2
+""",
+                encoding="utf-8",
+            )
+            map_file = folder / "carved-boundary.map"
+            map_file.write_text(
+                "0x08000000 first\n"
+                "0x08000000 first_alias\n"
+                "0x08000008 carved\n"
+                "0x08000010 last\n"
+                "0x08000018 file_end\n",
+                encoding="utf-8",
+            )
+            candidates = discover(map_file, [assembly])
+            by_name = {item.name: item for item in candidates}
+            self.assertEqual(by_name["first"].size, 8)
+            self.assertEqual(by_name["last"].size, 8)
+            self.assertNotIn("carved", by_name)
+
     def test_family_selection_is_contiguous_and_bounded(self):
         family = family_candidates(self.candidates, self.candidate.name, 10)
         self.assertLessEqual(len(family), 10)
