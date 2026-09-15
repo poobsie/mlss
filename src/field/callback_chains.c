@@ -49,6 +49,7 @@ void sub_813C810(
     u32, struct FieldSceneObject*, void*);
 void sub_8136D00(
     u32, struct FieldSceneObject*, void*);
+void sub_81395AC(u32 context, struct FieldSceneObject* object);
 
 SEC(field_promote_dispatch_and_start_callback_chain)
 void field_promote_dispatch_and_start_callback_chain(
@@ -76,6 +77,13 @@ void field_prepare_scene_visual_and_set_callback(
 {
     field_prepare_scene_visual(context, object);
     *callbackSlot = field_update_prepared_scene_visual;
+}
+
+SEC(sub_8139970)
+void sub_8139970(u32 context, struct FieldSceneObject* object)
+{
+    object->dispatch198 = sub_81395AC;
+    object->dispatch198(context, object);
 }
 
 SEC(field_initialize_callback_chain_from_definition)

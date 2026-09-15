@@ -394906,7 +394906,9 @@ _081398EA:
 	.section .text.after_upper_sub_81398FC, "ax", %progbits
 	.section .text.after_upper_sub_813993C, "ax", %progbits
 	thumb_func_start sub_8139970
-sub_8139970:
+	.section .discard.upper_sub_8139970, "ax", %progbits
+	.align 2, 0
+asm_discard_sub_8139970:
 	push {lr}
 	movs r3, #0xCC
 	lsls r3, r3, #0x01
