@@ -890,6 +890,8 @@ SECTIONS
         asm/text08057568.o(.text.runtime_leaf_callbacks_after_sub_807127C);
         src/object/countdown_actions.o(.text.countdown_actions.sub_80712B0);
         asm/text08057568.o(.text.countdown_actions_after_sub_80712B0);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_807223C);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_807223C);
         src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_80722E0);
         asm/text08057568.o(.text.object_small_runtime_after_sub_80722E0);
         src/object/small_value_transitions.o(.text.misc_helpers_01.sub_8072370);

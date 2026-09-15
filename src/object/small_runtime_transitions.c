@@ -71,6 +71,26 @@ s32 object_emit_effect_eff_when_ready(struct RuntimeObject* object)
     return 0;
 }
 
+SEC(sub_807223C)
+void sub_807223C(struct RuntimeObject* object)
+{
+    object->valueA0 += 0x14;
+    if (object->behaviorState == 0) {
+        object->currentPositionX -= object->valueA0;
+        if (object->currentPositionX / 0x100 > -0x20)
+            return;
+        sub_807F47C(object);
+    } else {
+        object->currentPositionX += object->valueA0;
+        if (object->currentPositionX / 0x100 <= 0xFF)
+            return;
+    }
+    sub_807C298(object);
+}
+/* The reference uses zero fill, not a Thumb NOP, for this alignment slot. */
+SEC(sub_807223C)
+const u16 sub_807223C_padding = 0;
+
 SEC(sub_80722E0)
 s32 object_attach_owner_then_begin_horizontal_motion(
     struct RuntimeObject* object, void* owner)
