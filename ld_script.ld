@@ -942,6 +942,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_01_after_sub_80746C4);
         src/object/countdown_handlers.o(.text.countdown_handlers.sub_80746EC);
         asm/text08057568.o(.text.countdown_handlers_after_sub_80746EC);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_807470C);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_807470C);
         src/object/small_value_transitions.o(.text.misc_helpers_02.sub_8075B54);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8075B54);
         src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_8075BB8);

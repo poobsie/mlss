@@ -12,6 +12,7 @@ void sub_80643DC(struct RuntimeObject* object);
 void sub_8064424(struct RuntimeObject* object);
 void sub_8065384(struct RuntimeObject* object);
 void sub_80722F8(struct RuntimeObject* object);
+void sub_8073E4C(struct RuntimeObject* object);
 void sub_8074508(struct RuntimeObject* object);
 void sub_8086090(struct RuntimeObject* object);
 void sub_8088964(struct RuntimeObject* object);
@@ -128,6 +129,22 @@ void object_advance_valueA8_then_wait_for_child(struct RuntimeObject* object)
         object->valueA8 = 0x72;
         object->timer = 0x12C;
         object->update = sub_8074508;
+    }
+}
+
+#define object_wait_for_link_then_start_delayed_transition sub_807470C
+SEC(sub_807470C)
+void object_wait_for_link_then_start_delayed_transition(
+    struct RuntimeObject* object)
+{
+    if (object->linkedObject == 0) {
+        object->update = object_start_animation_6_effect_22e2;
+    } else {
+        object->valueA8++;
+        if (object->valueA8 > 0x8F) {
+            object->timer = 0x12C;
+            object->update = sub_8073E4C;
+        }
     }
 }
 

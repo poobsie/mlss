@@ -50257,6 +50257,7 @@ _080746A4: .4byte sub_80728D0
 	.section .text.after_sub_80746A8, "ax", %progbits
 	.section .text.misc_helpers_01_after_sub_80746C4, "ax", %progbits
 	.section .text.countdown_handlers_after_sub_80746EC, "ax", %progbits
+.if 0
 	thumb_func_start sub_807470C
 sub_807470C:
 	push {lr}
@@ -50288,6 +50289,8 @@ _0807473C:
 	pop {r0}
 	bx r0
 _08074740: .4byte sub_8073E4C
+.endif
+	.section .text.object_small_runtime_after_sub_807470C, "ax", %progbits
 	thumb_func_start sub_8074744
 sub_8074744:
 	push {r4, r5, lr}
