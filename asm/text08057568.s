@@ -45840,6 +45840,7 @@ _080722D0:
 	.byte 0x00, 0x00
 _080722DC: .4byte sub_807223C
 	.section .text.object_small_runtime_after_sub_80722E0, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80722F8
 sub_80722F8:
 	push {r4, lr}
@@ -45889,6 +45890,9 @@ _08072348:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.endif
+
+	.section .text.object_small_runtime_after_sub_80722F8, "ax", %progbits
 	thumb_func_start sub_8072350
 sub_8072350:
 	push {lr}

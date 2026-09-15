@@ -100,6 +100,26 @@ s32 object_attach_owner_then_begin_horizontal_motion(
     return result;
 }
 
+SEC(sub_80722F8)
+void sub_80722F8(struct RuntimeObject* object)
+{
+    object->valueA0 += 0x14;
+    if (object->behaviorState == 0) {
+        object->currentPositionX -= object->valueA0;
+        if (object->currentPositionX / 0x100 > -0x20)
+            return;
+    } else {
+        object->currentPositionX += object->valueA0;
+        if (object->currentPositionX / 0x100 <= 0xFF)
+            return;
+    }
+    sub_807F47C(object);
+    sub_807C298(object);
+}
+/* The reference uses zero fill, not a Thumb NOP, for this alignment slot. */
+SEC(sub_80722F8)
+const u16 sub_80722F8_padding = 0;
+
 SEC(sub_807413C)
 void object_advance_valueA8_then_wait_for_child(struct RuntimeObject* object)
 {
