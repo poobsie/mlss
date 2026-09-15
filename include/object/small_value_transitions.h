@@ -36,6 +36,7 @@
 #define object_move_right_until_past_screen sub_8068A28
 #define object_when_field_ready_play_sound_8d sub_80DAF84
 #define object_update_state_subobject sub_80DA300
+#define object_lower_vertical_position_saturating sub_80DEAC0
 
 void object_when_value80_clear_start_paired_animation_5(struct RuntimeObject* object);
 void object_when_value80_clear_start_animation_16_delay_4(struct RuntimeObject* object);

@@ -145,6 +145,19 @@ DEFINE_VALUE80_DELAY(object_when_value80_clear_delay_12, 12, sub_806A2FC)
     }
 
 DEFINE_LOWER_TO_IDLE(object_lower_vertical_position_then_idle_a)
+
+MISC2_SEC(sub_80DEAC0)
+void sub_80DEAC0(struct RuntimeObject* object)
+{
+    s32 verticalPosition;
+
+    verticalPosition = object->verticalPosition;
+    if (verticalPosition > 0x200)
+        object->verticalPosition = verticalPosition - 0x200;
+    else
+        object->verticalPosition = 0;
+}
+
 DEFINE_VALUE80_DELAY(object_when_value80_clear_delay_8, 8, sub_806B7BC)
 DEFINE_VALUE80_DELAY(object_when_value80_clear_delay_30, 30, sub_8071B14)
 
