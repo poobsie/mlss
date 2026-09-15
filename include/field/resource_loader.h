@@ -3,6 +3,8 @@
 
 #include "process/process.h"
 
+struct FieldValueTransfer;
+
 struct FieldOwnedResource {
     void* allocation;
 };
@@ -64,12 +66,16 @@ struct FieldObjectResourceRuntime {
     const u16* resourceIdsC8;
     u8 unknown0CC[0x24];
     u32 dirtyWorkspaceBlocksF0;
-    u8 unknown0F4[0x17];
+    u8 unknown0F4[8];
+    u8 flagsFC;
+    u8 unknown0FD[0x0E];
     u8 ownedObjectCount10B;
     u8 resourceCount10C;
     u8 unknown10D[5];
     u8 inlineResourceReleaseEnabled112;
     u8 inlineResourceCount113;
+    u8 unknown114[0x200];
+    struct FieldValueTransfer* valueTransfer314;
 };
 
 void* sub_80214A4(s32 owner, s32 resourceId, s32 slot, u8 retain);
@@ -84,6 +90,7 @@ void sub_8082A6C(s32 resourceId);
 #define field_destroy_owned_objects_and_allocations sub_80292EC
 #define field_clear_runtime_flag_and_mode_vram sub_80292A0
 #define field_flush_dirty_workspace_blocks sub_80290E0
+#define field_advance_value_transfer_for_mode_1_or_2 sub_80291C8
 #define field_owned_resource_destroy sub_80E8EFC
 #define field_resource_block_list_destroy sub_80E9484
 
@@ -103,6 +110,8 @@ void field_destroy_owned_objects_and_allocations(
 void field_clear_runtime_flag_and_mode_vram(
     const struct FieldResourceCleanupContext* context);
 void field_flush_dirty_workspace_blocks(
+    struct FieldObjectResourceRuntime* runtime);
+void field_advance_value_transfer_for_mode_1_or_2(
     struct FieldObjectResourceRuntime* runtime);
 void field_owned_resource_destroy(struct FieldOwnedResource* resource, u32 flags);
 void field_resource_block_list_destroy(struct FieldResourceBlockList* list,

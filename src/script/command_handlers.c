@@ -5,6 +5,7 @@
 #include "battle/object.h"
 #include "field/global_object_transitions.h"
 #include "field/linked_object.h"
+#include "field/resource_loader.h"
 #include "field/selection_sequence.h"
 #include "graphics/process_state.h"
 #include "script/command_handlers.h"
@@ -140,11 +141,9 @@ extern void sub_803C424(void*);
 extern void sub_80326F4(void*);
 extern u8 sub_803C4A0(void*);
 extern void sub_80328B4(void*);
-extern void sub_8029380(void*);
 extern void sub_803C8A4(void*, s32, s32);
 extern void sub_8029788(void*);
 extern void sub_8029170(void*, s32);
-extern void sub_80291C8(void*);
 extern void sub_8046A90(void*, s32, s32, s16, u16);
 extern void sub_8046B30(void*, s32, s32, s16, u16);
 extern void sub_8047D84(void*, s32);
@@ -904,7 +903,8 @@ s32 script_command_initialize_field_registry(
     struct ScriptCommandContext* context, void* state, const s32* operation)
 {
     if (*operation == 0)
-        sub_8029380(context->objectRegistry);
+        field_release_inline_resource_objects(
+            (struct FieldObjectResourceRuntime*)context->objectRegistry);
     return 1;
 }
 SEC(sub_80F06EC) const u16 sub_80F06EC_padding = 0;
@@ -941,7 +941,8 @@ s32 script_command_control_battle_registry(
         sub_8029170(context->objectRegistry, *operation);
         break;
     case 2:
-        sub_80291C8(context->objectRegistry);
+        field_advance_value_transfer_for_mode_1_or_2(
+            (struct FieldObjectResourceRuntime*)context->objectRegistry);
         break;
     }
     return 1;

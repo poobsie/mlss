@@ -1,5 +1,6 @@
 #include "field/resource_loader.h"
 #include "field/metadata.h"
+#include "field/value_transfer.h"
 #include "memory/heap.h"
 
 void sub_80E5968(void* resource, s32 flags);
@@ -240,6 +241,21 @@ void field_flush_dirty_workspace_blocks(
             *remainingBlocks >>= 1;
         } while (*remainingBlocks != 0);
     }
+}
+
+EARLY_RESOURCE_SEC(sub_80291C8)
+void field_advance_value_transfer_for_mode_1_or_2(
+    struct FieldObjectResourceRuntime* runtime)
+{
+    s32 minimumMode;
+    s32 mode = ((u32)runtime->flagsFC << 25) >> 28;
+
+    if (mode > 2)
+        return;
+    minimumMode = 1;
+    if (mode < minimumMode)
+        return;
+    sub_8116610(runtime->valueTransfer314);
 }
 
 
