@@ -2073,6 +2073,8 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DB1A4);
         src/object/setup_forwarders.o(.text.misc_helpers_02.sub_80DB1C4);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_80DB1C4);
+        src/object/owner_state_motion.o(.text.object_owner_state_motion.sub_80DB1E4);
+        asm/text08057568.o(.text.object_owner_state_motion_after_sub_80DB1E4);
         src/object/owner_state_motion.o(.text.object_owner_state_motion.sub_80DB5F0);
         asm/text08057568.o(.text.object_owner_state_motion_after_sub_80DB5F0);
         src/object/middle_transitions.o(.text.middle.sub_80DB844);

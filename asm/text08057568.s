@@ -246002,6 +246002,7 @@ _080DB180: .4byte sub_80DAD00
 	.section .text.misc_helpers_02_after_sub_80DB184, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_80DB1A4, "ax", %progbits
 	.section .text.misc_helpers_02_after_sub_80DB1C4, "ax", %progbits
+	.if 0
 	thumb_func_start sub_80DB1E4
 sub_80DB1E4:
 	push {r4, r5, r6, r7, lr}
@@ -246076,6 +246077,8 @@ sub_80DB1E4:
 	bx r0
 	.byte 0x00, 0x00
 _080DB278: .4byte sub_80DB27C
+	.endif
+	.section .text.object_owner_state_motion_after_sub_80DB1E4, "ax", %progbits
 	thumb_func_start sub_80DB27C
 sub_80DB27C:
 	push {r4, r5, lr}
