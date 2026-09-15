@@ -1911,6 +1911,8 @@ SECTIONS
         asm/text08057568.o(.text.large_actor_state_machines_after_sub_80C26E4);
         src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80C33B0);
         asm/text08057568.o(.text.large_actor_state_machines_after_sub_80C33B0);
+        src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80C6330);
+        asm/text08057568.o(.text.large_actor_state_machines_after_sub_80C6330);
         src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80C741C);
         asm/text08057568.o(.text.large_actor_state_machines_after_sub_80C741C);
         src/field/large_actor_state_machines.o(.text.large_actor_state_machines.sub_80C837C);

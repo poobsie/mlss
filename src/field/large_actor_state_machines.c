@@ -48,6 +48,45 @@ void sub_80C1CE4(struct RuntimeObject* object);
 void sub_80C971C(struct RuntimeObject* object);
 void sub_80C9854(struct RuntimeObject* object);
 void sub_80A2428(struct RuntimeObject* object);
+void sub_80C63CC(struct RuntimeObject* object);
+
+SEC(sub_80C6330)
+void sub_80C6330(struct RuntimeObject* caller)
+{
+    struct FieldActor* actorA = gFieldRuntime->actorA;
+    struct RuntimeObject* action = (struct RuntimeObject*)&actorA->action;
+    s32 positionX;
+    s32 positionY;
+    s32 positionZ;
+    s32 state;
+    s8* visualFlags;
+
+    sub_8087CE4(action);
+    if (actorA->flags81 & 0x20) {
+        sound_effect_play(0x2E, SOUND_VOLUME_UNCHANGED);
+        positionX = action->currentPositionX;
+        if (positionX < 0)
+            positionX += 0xFF;
+        positionX >>= 8;
+        positionY = action->currentPositionY;
+        if (positionY < 0)
+            positionY += 0xFF;
+        positionY >>= 8;
+        positionZ = action->verticalPosition;
+        if (positionZ < 0)
+            positionZ += 0xFF;
+        positionZ >>= 8;
+        sub_80DF024(0x1E, positionX, positionY, positionZ, action);
+
+        state = actorA->stateFlags & 6;
+        if (state == 2 || state == 4) {
+            sub_8082E1C(action, 7, 0x2034, 0);
+            visualFlags = (s8*)&action->visual->flags;
+            *visualFlags = (*visualFlags & -7) | 2;
+        }
+        caller->update = sub_80C63CC;
+    }
+}
 
 SEC(sub_80A2374)
 void sub_80A2374(struct RuntimeObject* object)
