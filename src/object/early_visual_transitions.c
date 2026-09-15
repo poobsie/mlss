@@ -20,6 +20,7 @@ void sub_806BC40(struct RuntimeObject*);
 void sub_806D6A8(struct RuntimeObject*);
 void sub_8070424(struct RuntimeObject*);
 void sub_8070534(struct RuntimeObject*);
+void sub_80761AC(struct RuntimeObject*);
 void sub_807F4FC(struct RuntimeObject*);
 u32 sub_8199F30(void);
 
@@ -151,5 +152,20 @@ SEC(sub_80705B4) void sub_80705B4(struct RuntimeObject* object) {
         sub_807F4FC(object);
         object->tertiaryUpdate = sub_8070424;
         object->update = sub_8070534;
+    }
+}
+
+SEC(sub_80760F4)
+void object_on_visual_complete_start_animation_15_timed_followup(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        sound_effect_play(0x157, SOUND_VOLUME_UNCHANGED);
+        sub_8082E1C(object, 0xF, 0, 0);
+        object->timer = 0x10;
+        object->value84 = 0x32;
+        object->value8C = 0;
+        object->update = sub_80761AC;
+        object->secondaryTimer = 0x20;
     }
 }
