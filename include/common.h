@@ -68,7 +68,8 @@ struct Sprite {
     u8 field_12_1 : 2;
     u8 field_12_3 : 1;
     u8 field_12_4 : 1;
-    u8 field_12_5 : 3;
+    u8 activeListEligible : 1;
+    u8 unknown12_6 : 2;
     u8 field_13;
     u8 field_14;
     u8 field_15;
@@ -81,6 +82,11 @@ struct Sprite {
     u8 field_1F_2 : 2;
     u8 field_20[2];
     u8 field_22;
+    u8 unknown23[6];
+    u8 updateFlags29;
+    u8 unknown2A[0x3A];
+    struct Sprite* previousActive;
+    struct Sprite* nextActive;
 };
 
 struct struc_11 {
@@ -100,8 +106,10 @@ struct struc_203FFB8 {
     u8 field_2;
     u8 field_3;
 
-    u8 pad1[0x34];
-
+    u8 pad1[0x28];
+    void* spriteHeap2C;
+    struct Sprite* firstActiveSprite;
+    struct Sprite* lastActiveSprite;
     struct struc_11* field_38;
     u32 field_3C;
 };
