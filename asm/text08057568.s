@@ -318792,6 +318792,8 @@ sub_8106C64:
 	bx r0
 _08106D18: .4byte 0x03000FD8
 _08106D1C: .4byte sub_81072A8
+	.section .text.field_selection_sequence_before_sub_8106D20, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8106D20
 sub_8106D20:
 	push {lr}
@@ -318817,6 +318819,8 @@ sub_8106D20:
 	bx r0
 _08106D4C: .4byte 0x03000FD8
 _08106D50: .4byte sub_81054D4
+	.endif
+	.section .text.field_selection_sequence_after_sub_8106D20, "ax", %progbits
 	thumb_func_start sub_8106D54
 sub_8106D54:
 	push {r4, lr}

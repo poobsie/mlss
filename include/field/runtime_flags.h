@@ -10,6 +10,7 @@ struct ScriptExecutionState;
 
 #define field_clear_nested_flags_1788 sub_80F7590
 #define field_set_nested_flags_1788 sub_80F75B4
+#define field_commit_nested_flags sub_80F7538
 #define field_wait_for_nested_state_179d_clear sub_80F7D3C
 #define field_wait_for_runtime_flag_10_clear sub_80F7E84
 #define field_set_indexed_runtime_byte_350 sub_80F7EA4
@@ -23,6 +24,7 @@ struct ScriptExecutionState;
 
 void field_clear_nested_flags_1788(u32 mask);
 void field_set_nested_flags_1788(u32 mask);
+void field_commit_nested_flags(u32 mask);
 s32 field_wait_for_nested_state_179d_clear(
     struct FieldNestedFlagContainer* container,
     struct ScriptExecutionState* state);

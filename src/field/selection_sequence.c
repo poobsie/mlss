@@ -12,10 +12,29 @@ void sub_80F7068(u8 entry, s32 value);
 void sub_80F75D8(u32 flags);
 void sub_8100D18(struct FieldSelectionProcess* process);
 void sub_8100E5C(struct FieldSelectionProcess* process);
+void sub_81054D4(struct FieldSelectionProcess* process);
 void sub_80FCC78(struct FieldSelectionProcess* process);
 s32 sub_8082B00(void);
 s32 sub_810591C(void);
 void sub_810CB04(s32 actor, s32 value);
+
+SEC(sub_8106D20)
+void sub_8106D20(struct FieldSelectionProcess* process)
+{
+    struct FieldSelectionState* state;
+    s32 mask;
+    s32 flags;
+
+    state = FIELD_RUNTIME->selectionState2D8;
+    flags = state->flags05;
+    mask = 4;
+    mask = -mask;
+    mask &= flags;
+    mask |= 2;
+    state->flags05 = (u8)mask;
+    process->update = sub_81054D4;
+    field_commit_nested_flags(0x200000);
+}
 
 SEC(sub_8106E1C)
 void sub_8106E1C(struct FieldSelectionProcess* process)
@@ -86,3 +105,5 @@ void field_wait_then_prepare_selected_entry(struct FieldSelectionProcess* proces
     __attribute__((alias("sub_8106EB0")));
 void field_wait_then_finish_selection_setup(struct FieldSelectionProcess* process)
     __attribute__((alias("sub_8106D9C")));
+void field_begin_selection_transition(struct FieldSelectionProcess* process)
+    __attribute__((alias("sub_8106D20")));

@@ -3,6 +3,11 @@
 
 #include "global.h"
 
+struct FieldSelectionState {
+    u8 unknown00[5];
+    u8 flags05;
+};
+
 struct FieldSelectionRuntime {
     u8 unknown000[0x0B];
     u8 flags00B;
@@ -13,7 +18,9 @@ struct FieldSelectionRuntime {
     u8 unknown088[0x237];
     u8 flags2BF;
     u8 flags2C0;
-    u8 unknown2C1[0x4F];
+    u8 unknown2C1[0x17];
+    struct FieldSelectionState* selectionState2D8;
+    u8 unknown2DC[0x34];
     s32 blocker310;
     u8 unknown314[0x32];
     u8 mode346;
@@ -30,6 +37,7 @@ void field_wait_then_prepare_active_object(struct FieldSelectionProcess* process
 void field_wait_then_commit_selected_entry(struct FieldSelectionProcess* process);
 void field_wait_then_prepare_selected_entry(struct FieldSelectionProcess* process);
 void field_wait_then_finish_selection_setup(struct FieldSelectionProcess* process);
+void field_begin_selection_transition(struct FieldSelectionProcess* process);
 
 #define field_start_alternate_actor_action sub_80FD8BC
 
