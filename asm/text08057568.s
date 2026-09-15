@@ -147932,8 +147932,12 @@ _080AC670:
 _080AC67C: .4byte 0x0000204D
 _080AC680: .4byte sub_80AA4D8
 	thumb_func_start sub_80AC684
-sub_80AC684:
+	.section .discard.actor_state_transitions_sub_80AC684, "ax", %progbits
+	.align 2, 0
+asm_discard_sub_80AC684:
 	.byte 0x70, 0x47, 0x00, 0x00
+	.section .text.actor_state_transitions_after_sub_80AC684, "ax", %progbits
+	.align 2, 0
 	thumb_func_start sub_80AC688
 sub_80AC688:
 	push {r4, r5, r6, lr}

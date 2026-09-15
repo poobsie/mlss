@@ -49,12 +49,19 @@ extern void sub_80884AC(struct FieldAction* action);
 extern void sub_80A99A8(void);
 extern void sub_80AB404(void);
 extern void sub_80AC610(struct RuntimeObject* object);
-extern void sub_80AC684(struct RuntimeObject* object);
 extern u8 sub_8087CE4(struct RuntimeObject* object);
 extern void sub_8082E1C(struct RuntimeObject* object, s32 animation,
                         s32 command, s32 argument);
 extern void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
                         struct RuntimeObject* object);
+
+#define field_runtime_object_noop_update sub_80AC684
+SEC(sub_80AC684)
+void field_runtime_object_noop_update(struct RuntimeObject* object)
+{
+    (void)object;
+}
+SEC(sub_80AC684) const u16 field_runtime_object_noop_update_padding = 0;
 
 #define field_emit_actor_a_effect_1e_and_animation_8 sub_80AB360
 SEC(sub_80AB360)
