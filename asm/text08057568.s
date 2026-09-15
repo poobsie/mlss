@@ -27538,9 +27538,6 @@ _08067824:
 	bx r0
 	.byte 0x00, 0x00
 _0806782C: .4byte sub_808750C
-	thumb_func_start sub_8067830
-sub_8067830:
-	.byte 0x01, 0x20, 0x40, 0x42, 0x70, 0x47, 0x00, 0x00
 	.section .text.runtime_leaf_callbacks_after_sub_8067838, "ax", %progbits
 	.section .text.countdown_callbacks_after_sub_8067874, "ax", %progbits
 	thumb_func_start sub_8067894

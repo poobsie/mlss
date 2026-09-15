@@ -1,5 +1,6 @@
 #include "audio/sound_effects.h"
 #include "object/functions.h"
+#include "object/runtime_leaf_callbacks.h"
 #include "object/runtime_object.h"
 
 #define SEC(symbol) \
@@ -12,8 +13,6 @@ void sub_8082E1C(
 void sub_8085B38(struct RuntimeObject* object);
 void sub_8066F60(struct RuntimeObject* object);
 void sub_8066FFC(struct RuntimeObject* object);
-s32 sub_8067830(struct RuntimeObject* object);
-s32 sub_8067838(struct RuntimeObject* object);
 void sub_806A204(struct RuntimeObject* object);
 void sub_806A24C(struct RuntimeObject* object);
 void sub_80DAE7C(struct RuntimeObject* object);

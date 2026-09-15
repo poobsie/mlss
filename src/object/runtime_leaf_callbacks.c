@@ -343,6 +343,15 @@ void object_start_animation_6_and_random_repeat_count(
     }
 }
 
+SEC(sub_8067830)
+s32 sub_8067830(struct RuntimeObject* object)
+{
+    (void)object;
+    return -1;
+}
+SEC(sub_8067830)
+const u16 sub_8067830_padding = 0;
+
 SEC(sub_8067838)
 s32 object_begin_countdown_motion_when_ready(struct RuntimeObject* object)
 {
