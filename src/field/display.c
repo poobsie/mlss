@@ -1,4 +1,6 @@
 #include "field/display.h"
+#include "field/display_nodes.h"
+#include "field/runtime_nodes.h"
 #include "object/runtime_object.h"
 
 #define SEC(name) __attribute__((section(".text.field_display." #name)))
@@ -7,6 +9,8 @@
 #define MISC3_SEC(name) \
     __attribute__((section(".text.misc_helpers_03." STRINGIFY(name))))
 #define FIELD_RUNTIME (*(struct FieldDisplayRuntime**)0x03000FD8)
+#define DISPLAY_Y_SHADOW (*(volatile u16*)0x0200001A)
+#define DISPLAY_CONTROL_SHADOW ((volatile u16*)0x02000048)
 
 void sub_807FB34(void* resource);
 void sub_8085260(void* manager, s32 layer);
@@ -15,6 +19,12 @@ void sub_80847B0(void* manager, s32, s32, s32);
 void sub_808520C(void* manager, s32, s32, s32, s32, s32);
 void sub_807C298(struct RuntimeObject* object);
 void sub_810C05C(struct FieldDisplayProcess* process);
+void sub_810CEC0(struct FieldDisplayProcess* process);
+void sub_810AB34(struct FieldDisplayNode* node);
+struct FieldDisplayNode* sub_807D2D0(
+    void (*update)(struct FieldDisplayWindowProcess* process),
+    s32 value,
+    void (*secondary)(struct FieldDisplayNode* node));
 
 MISC3_SEC(field_finish_display_processes_27c_280)
 void field_finish_display_processes_27c_280(void)
@@ -77,6 +87,32 @@ void field_update_display_window_geometry(
         ((*(volatile u16*)0x0200001A + 0x8E) << 8) |
         (((*(volatile u16*)0x0200001A + 0x99) |
           ((*(volatile u16*)0x0200001A + 0x8E) << 8)) << 16);
+}
+
+SEC(sub_810CF04)
+void field_initialize_display_process_290(void)
+{
+    struct FieldDisplayRuntime* runtime;
+    struct FieldDisplayProcess* process;
+    struct FieldDisplayNode* node;
+    u8 flags;
+    s32 mask;
+
+    if (FIELD_RUNTIME->process290 == 0) {
+        process = (struct FieldDisplayProcess*)field_runtime_push_node_list_4c(
+            sub_810CEC0, 0);
+        runtime = FIELD_RUNTIME;
+        runtime->process290 = process;
+        flags = runtime->flags00B;
+        mask = 0x40;
+        runtime->flags00B = (u8)(flags | mask);
+        node = sub_807D2D0(
+            field_update_display_window_geometry, 0x86, sub_810AB34);
+        FIELD_RUNTIME->process290->linkedNode0C = node;
+        node->value16 = DISPLAY_Y_SHADOW;
+        DISPLAY_CONTROL_SHADOW[0] = 0x3F3F;
+        DISPLAY_CONTROL_SHADOW[1] = 0x3F3B;
+    }
 }
 
 MISC3_SEC(field_release_display_object_278)

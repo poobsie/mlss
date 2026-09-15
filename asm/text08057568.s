@@ -330220,6 +330220,8 @@ _0810CEFE:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.section .text.field_display_before_sub_810CF04, "ax", %progbits
+	.if 0
 	thumb_func_start sub_810CF04
 sub_810CF04:
 	push {r4, lr}
@@ -330277,6 +330279,8 @@ _0810CF74: .4byte 0x0200001A
 _0810CF78: .4byte 0x02000048
 _0810CF7C: .4byte 0x00003F3F
 _0810CF80: .4byte 0x00003F3B
+	.endif
+	.section .text.field_display_after_sub_810CF04, "ax", %progbits
 	thumb_func_start sub_810CF84
 sub_810CF84:
 	push {r4, r5, r6, lr}

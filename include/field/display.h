@@ -4,12 +4,14 @@
 #include "global.h"
 
 struct RuntimeObject;
+struct FieldDisplayNode;
 
 struct FieldDisplayProcess {
     u8 unknown00[4];
     void (*update)(struct FieldDisplayProcess* process);
     void* resource;
-    u8 unknown0C[6];
+    struct FieldDisplayNode* linkedNode0C;
+    u8 unknown10[2];
     s16 value12;
 };
 
@@ -45,7 +47,9 @@ struct FieldDisplaySlideFollower {
 };
 
 struct FieldDisplayRuntime {
-    u8 unknown000[0x250];
+    u8 unknown000[0x0B];
+    u8 flags00B;
+    u8 unknown00C[0x244];
     void* displayManager;
     u8 unknown254[0x24];
     struct RuntimeObject* object278;
@@ -62,6 +66,8 @@ void field_release_display_process_28c_and_layers_2_3(void);
 void field_finish_display_process_290_and_layers_4_5(void);
 void field_disable_display_layers_0_1(void);
 void field_configure_display_layer(s32 value);
+#define field_initialize_display_process_290 sub_810CF04
+void field_initialize_display_process_290(void);
 #define field_finish_display_processes_27c_280 sub_810CAD0
 #define field_update_register_pair_when_owner_active sub_810CBDC
 #define field_follow_display_slide_owner sub_810CC0C
