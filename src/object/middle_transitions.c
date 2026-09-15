@@ -511,8 +511,7 @@ SEC(sub_80DA264) void sub_80DA264(struct RuntimeObject* object)
     sub_807F4FC(object);
     object->secondaryUpdate = (RuntimeObjectCallback)sub_80D9E34;
     object->tertiaryUpdate = (RuntimeObjectCallback)sub_80DA300;
-    *(RuntimeObjectCallback*)&object->unknown64[0] =
-        (RuntimeObjectCallback)sub_80DA300;
+    object->quaternaryUpdate = (RuntimeObjectCallback)sub_80DA300;
     sub_8082E1C(object, 5, 0, 0);
     sound_effect_play(0x38, SOUND_VOLUME_UNCHANGED);
     SET_VISUAL_MODE_2(object);

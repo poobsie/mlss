@@ -70360,6 +70360,7 @@ _0807F4BC:
 	pop {r0}
 	bx r0
 	.byte 0x00, 0x00
+	.if 0
 	thumb_func_start sub_807F4C4
 sub_807F4C4:
 	push {lr}
@@ -70389,6 +70390,7 @@ _0807F4F0:
 	bx r0
 _0807F4F4: .4byte 0x03000FD8
 _0807F4F8: .4byte sub_810DD7C
+	.endif
 	.if 0
 	thumb_func_start sub_807F4FC
 sub_807F4FC:

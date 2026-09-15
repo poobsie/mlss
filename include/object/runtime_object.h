@@ -116,7 +116,7 @@ struct RuntimeObject {
     RuntimeObjectCallback auxiliaryUpdate;
     RuntimeObjectCallback secondaryUpdate;
     RuntimeObjectCallback tertiaryUpdate;
-    u8 unknown64[4];
+    RuntimeObjectCallback quaternaryUpdate;
     RuntimeObjectCallback cleanup;
     const void* descriptor;
     u8 unknown70[4];
