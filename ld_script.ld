@@ -2926,6 +2926,7 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_812AA78);
         src/screens/shop_runtime.o(.text.upper.sub_812F4A0);
         asm/text08057568.o(.text.after_upper_sub_812F4A0);
+        src/screens/runtime_helpers.o(.text.upper.sub_812F510);
         src/screens/runtime_helpers.o(.text.upper.sub_812F528);
         asm/text08057568.o(.text.after_upper_sub_812F528);
         src/screens/runtime_helpers.o(.text.upper.sub_812F550);

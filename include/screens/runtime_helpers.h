@@ -13,6 +13,7 @@
 #define screen_configure_layer20_and_mark_69 sub_812A8AC
 #define screen_reset_layer20_copy_control_a2_and_mark_69 sub_812A8E0
 #define screen_poll_layer20_transfer_and_clear_mark_69 sub_812A888
+#define screen_layer20_transfer_is_active sub_812F510
 #define screen_configure_layer20_default sub_812F528
 #define screen_reset_layer20_default sub_812F550
 #define screen_launch_shop sub_812F5A4
@@ -38,6 +39,7 @@ void screen_reset_layer20_copy_control_a2_and_mark_69(
     struct ScreenLayerOwner20* owner);
 s32 screen_poll_layer20_transfer_and_clear_mark_69(
     struct ScreenLayerOwner20* owner);
+s32 screen_layer20_transfer_is_active(struct ScreenLayerOwner20* owner);
 void screen_configure_layer20_default(struct ScreenLayerOwner20* owner);
 void screen_reset_layer20_default(struct ScreenLayerOwner20* owner);
 void screen_launch_shop(s32 firstMode, s32 secondMode);

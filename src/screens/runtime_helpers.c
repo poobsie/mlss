@@ -8,7 +8,7 @@
 
 struct ScreenLayerOwner20 {
     u8 unknown000[0x20];
-    void* layer20;
+    struct FieldValueTransfer* layer20;
     u8 unknown024[0x45];
     u8 initialized69;
     u8 unknown06A[0x38];
@@ -171,6 +171,16 @@ s32 screen_poll_layer20_transfer_and_clear_mark_69(
         result = 0;
     }
     return result;
+}
+
+SEC(screen_layer20_transfer_is_active)
+s32 screen_layer20_transfer_is_active(struct ScreenLayerOwner20* owner)
+{
+    u8 status = field_value_transfer_status(owner->layer20);
+
+    if (status == 0)
+        return 0;
+    return 1;
 }
 
 SEC(screen_configure_layer20_default)
