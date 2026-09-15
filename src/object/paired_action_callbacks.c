@@ -1,4 +1,5 @@
 #include "audio/sound_effects.h"
+#include "field/actor.h"
 #include "field/global_object_transitions.h"
 #include "object/paired_action_callbacks.h"
 
@@ -22,10 +23,14 @@ void sub_80A5808(struct RuntimeObject* object);
 void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
 void sub_8087CE4(struct RuntimeObject* object);
+void sub_8088164(struct RuntimeObject* object, s32 value);
+void sub_808843C(
+    struct RuntimeObject* object, s32 x, s32 y, s32 z, s32 scale);
 void sub_80A6F78(struct RuntimeObject* object);
 void sub_80AC950(struct RuntimeObject* object);
 void sub_80B1508(struct RuntimeObject* object);
 void sub_80B35C8(struct RuntimeObject* object);
+void sub_80B9420(struct RuntimeObject* object);
 void sub_80B95D8(struct RuntimeObject* object);
 void sub_80B9624(struct RuntimeObject* object);
 
@@ -92,6 +97,33 @@ DEFINE_CLEAR_ACTION_THEN_CONTINUE(sub_80B31F0,
 DEFINE_CLEAR_ACTION_THEN_CONTINUE(sub_80B956C,
     object_clear_secondary_action_then_continue, SECONDARY_ACTION_OWNER,
     sub_80B35C8)
+
+SEC(sub_80B85D4)
+void sub_80B85D4(struct RuntimeObject* caller)
+{
+    struct FieldActor* actorB = gFieldRuntime->actorB;
+    struct RuntimeObject* action = (struct RuntimeObject*)&actorB->action;
+    struct RuntimeObjectState* state;
+    s8* visualFlags;
+
+    if (action->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        if ((actorB->stateFlags & 6) == 2 ||
+            (actorB->stateFlags & 6) == 4) {
+            sub_8082E1C(action, 0xB, 0x204D, 0);
+            visualFlags = (s8*)&action->visual->flags;
+            *visualFlags = (*visualFlags & -7) | 2;
+        }
+        if ((action->flags76 & 6) == 2 ||
+            (action->flags76 & 6) == 4) {
+            state = action->state;
+            sub_808843C(action, state->valueD8 / 256,
+                state->valueDC / 256, state->floorHeight / 256, -1);
+            action->motionDuration92 = action->positionZBase / 256 + 0x20;
+            sub_8088164(action, 0x700);
+        }
+        caller->update = object_secondary_action_sound_2e_animation_8;
+    }
+}
 
 #define DEFINE_ACTION_SOUND_HANDOFF(                                    \
         symbol, name, owner, animation, command, next)                  \
