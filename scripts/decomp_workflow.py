@@ -62,6 +62,7 @@ INSTRUCTION = re.compile(r"^\s*([a-z][a-z0-9.]*)\s+", re.MULTILINE)
 DISABLED_IF = re.compile(r"^\s*\.if\s+0(?:\s|$)")
 ASSEMBLER_IF = re.compile(r"^\s*\.if(?:n?def|c|nc|eq|ne|gt|ge|lt|le|b|nb)?(?:\s|$)")
 ASSEMBLER_ENDIF = re.compile(r"^\s*\.endif(?:\s|$)")
+SECTION_DIRECTIVE = re.compile(r"^\s*\.section(?:\s|$)")
 
 
 @dataclass(frozen=True)
@@ -130,6 +131,23 @@ def function_blocks(path: Path) -> list[tuple[str, str, int, int, str]]:
         end = starts[position + 1][2] if position + 1 < len(starts) else len(lines)
         blocks.append((name, mode, start + 1, end, "".join(active_lines[start:end])))
     return blocks
+
+
+def canonical_candidate_block(candidate: Candidate, block: str) -> str:
+    """Drop assembly belonging to a later linker-owned section.
+
+    Disabled C-owned function markers are intentionally hidden from
+    ``function_blocks`` so they cannot become candidates.  Their following
+    assembly can therefore remain in the preceding active block.  A section
+    directive is the ownership boundary: the candidate's map-derived size is
+    checked by the assembler before the returned prefix is used as a mutation
+    target.
+    """
+    lines = block.splitlines(keepends=True)
+    for index, line in enumerate(lines[1:], 1):
+        if SECTION_DIRECTIVE.match(line):
+            return "".join(lines[:index])
+    return block
 
 
 def shape(block: str) -> str:
@@ -289,7 +307,7 @@ def candidate_by_name(name: str, map_path: Path) -> tuple[Candidate, str]:
             path = ROOT / candidate.source
             for block_name, _, _, _, block in function_blocks(path):
                 if block_name == name:
-                    return candidate, block
+                    return candidate, canonical_candidate_block(candidate, block)
     raise SystemExit(f"Assembly function not found: {name}")
 
 

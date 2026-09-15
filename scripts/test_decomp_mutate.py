@@ -15,12 +15,33 @@ from decomp_mutate import (
     compiler_script,
     run_transmuter_process,
     search_checkpoint_error,
+    target_assembly,
 )
 from decomp_local import Runner, build_flags
-from decomp_workflow import is_register_trampoline
+from decomp_workflow import Candidate, is_register_trampoline
 
 
 class MutationSafetyTest(unittest.TestCase):
+    def test_target_assembly_excludes_later_section_and_asserts_mapped_size(self):
+        candidate = Candidate(
+            name="fixture", mode="thumb", source="fixture.s",
+            start_line=1, end_line=12, address=0x08000000, size=24,
+            calls=0, branches=0, raw_bytes=2, repeated_shape=1, score=24,
+        )
+        block = (
+            "\tthumb_func_start fixture\nfixture:\n\t.byte 0x00, 0x00\n"
+            "\t.section .text.after_c_owned, \"ax\", %progbits\n"
+            "\t.if 0\n\tthumb_func_start c_owned\nc_owned:\n\tbx lr\n\t.endif\n"
+            "\t.byte 0x01, 0x20, 0x70, 0x47\n"
+        )
+
+        source = target_assembly(candidate, block)
+
+        self.assertNotIn("after_c_owned", source)
+        self.assertNotIn("c_owned", source)
+        self.assertIn(".if (. - fixture) != 24", source)
+        self.assertIn(".size fixture, .-fixture", source)
+
     def test_best_source_checkpoint_prefers_lowest_score(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -15,7 +15,20 @@ import time
 from pathlib import Path
 
 from decomp_local import ROOT, Runner, build_flags, compare_span, reference_symbols
-from decomp_workflow import candidate_by_name
+from decomp_workflow import candidate_by_name, canonical_candidate_block
+
+
+def target_assembly(candidate, block):
+    """Build a target whose emitted function must equal the canonical span."""
+    block = canonical_candidate_block(candidate, block)
+    return (
+        '.include "asm/macros.inc"\n.syntax unified\n.text\n'
+        + block
+        + f"\n.if (. - {candidate.name}) != {candidate.size}\n"
+        + f'.error "{candidate.name} assembly does not match its mapped span"\n'
+        + ".endif\n"
+        + f".size {candidate.name}, .-{candidate.name}\n"
+    )
 
 
 TRANSMUTER_FINALIZATION_GRACE_SECONDS = 30
@@ -170,8 +183,7 @@ def run_search(args):
         expected = expected_rom[offset:offset + candidate.size]
         symbols = reference_symbols(runner, ROOT / ".decomp-tools/reference/mlss.elf")
         target_asm, target_obj = folder / "target.s", folder / "target.o"
-        target_asm.write_text('.include "asm/macros.inc"\n.syntax unified\n.text\n' + block
-                              + f"\n.text\n.size {args.function}, .-{args.function}\n")
+        target_asm.write_text(target_assembly(candidate, block))
         runner.run(flags["AS"] + flags["ASFLAGS"] + ["-o", str(target_obj), str(target_asm)])
         target_check = link_compare(target_obj, args.function, candidate.address, expected,
                                     folder / "target-check", flags, symbols, aliases)

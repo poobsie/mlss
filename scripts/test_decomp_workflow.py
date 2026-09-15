@@ -9,6 +9,7 @@ from decomp_workflow import (
     ROOT,
     SWI,
     candidate_by_name,
+    canonical_candidate_block,
     discover,
     family_candidates,
     git_tracked_assembly,
@@ -154,6 +155,30 @@ last:
             self.assertEqual(by_name["first"].size, 8)
             self.assertEqual(by_name["last"].size, 8)
             self.assertNotIn("carved", by_name)
+
+    def test_candidate_block_stops_before_disabled_owned_section_fallback(self):
+        candidate = replace(self.candidate, name="active", size=24)
+        block = (
+            "\tthumb_func_start active\n"
+            "active:\n"
+            "\tpush {lr}\n"
+            "\t.byte 0x00, 0x00\n"
+            "\t.section .text.after_c_owned, \"ax\", %progbits\n"
+            "\t.if 0\n"
+            "\tthumb_func_start c_owned\n"
+            "c_owned:\n"
+            "\tbx lr\n"
+            "\t.endif\n"
+            "\t.byte 0x01, 0x20, 0x70, 0x47\n"
+        )
+
+        canonical = canonical_candidate_block(candidate, block)
+
+        self.assertIn("thumb_func_start active", canonical)
+        self.assertIn(".byte 0x00, 0x00", canonical)
+        self.assertNotIn(".text.after_c_owned", canonical)
+        self.assertNotIn("c_owned", canonical)
+        self.assertNotIn("0x01, 0x20", canonical)
 
     def test_family_selection_is_contiguous_and_bounded(self):
         family = family_candidates(self.candidates, self.candidate.name, 10)
