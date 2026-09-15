@@ -75474,6 +75474,8 @@ sub_8081F84:
 _08081FA8: .4byte 0x03000FD8
 _08081FAC: .4byte sub_80FC9A4
 	.section .text.misc_helpers_02_after_sub_8081FB0, "ax", %progbits
+	.section .text.field_action_process_before_sub_8081FD4, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8081FD4
 sub_8081FD4:
 	push {r4, lr}
@@ -75508,6 +75510,8 @@ _0808200A:
 _08082010: .4byte 0x03000FD8
 _08082014: .4byte 0x000002BF
 _08082018: .4byte sub_8081FB0
+	.endif
+	.section .text.field_action_process_after_sub_8081FD4, "ax", %progbits
 	thumb_func_start sub_808201C
 sub_808201C:
 	push {r4, r5, r6, r7, lr}

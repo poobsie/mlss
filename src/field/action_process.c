@@ -1,4 +1,8 @@
 #include "field/action_process.h"
+#include "field/selection_sequence.h"
+#include "process/process.h"
+
+#define FIELD_RUNTIME (*(struct FieldSelectionRuntime**)0x03000FD8)
 
 void sub_807DC8C(struct FieldActionProcess* process);
 void sub_8080A40(struct FieldObjectUpdateProcess* process);
@@ -48,6 +52,27 @@ void field_process_run_global_setup_when_ready(struct FieldActionProcess* proces
         sub_8082A28();
         sub_80813A0();
         process->update = sub_8081288;
+    }
+}
+
+MISC2_SEC(field_action_consume_pending_flag_and_resume_setup)
+void field_action_consume_pending_flag_and_resume_setup(
+    struct FieldActionProcess* process)
+{
+    FieldActionProcessCallback callback;
+    s32 flags;
+    s32 mask;
+
+    flags = FIELD_RUNTIME->flags2BF;
+    if (flags & 0x20) {
+        mask = 0x21;
+        mask = -mask;
+        mask &= flags;
+        FIELD_RUNTIME->flags2BF = (u8)mask;
+        process_disable(FIELD_RUNTIME->processSlot244.process);
+        callback = field_process_run_global_setup_when_ready;
+        process->update = callback;
+        callback(process);
     }
 }
 

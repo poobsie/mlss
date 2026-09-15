@@ -36,6 +36,7 @@ struct FieldObjectUpdateProcess {
 #define field_action_wait_for_visual_then_branch sub_807F648
 #define field_action_finish_when_branch_clear sub_80801A0
 #define field_process_run_global_setup_when_ready sub_8081FB0
+#define field_action_consume_pending_flag_and_resume_setup sub_8081FD4
 #define field_wait_for_runtime_object_update_to_stop sub_8082158
 #define field_action_wait_for_state_flag_clear sub_8081C54
 #define field_wait_for_nested_visual_completion sub_8106A10
@@ -46,6 +47,8 @@ struct FieldObjectUpdateProcess {
 void field_action_wait_for_visual_then_branch(struct FieldActionProcess* process);
 void field_action_finish_when_branch_clear(struct FieldActionProcess* process);
 void field_process_run_global_setup_when_ready(struct FieldActionProcess* process);
+void field_action_consume_pending_flag_and_resume_setup(
+    struct FieldActionProcess* process);
 void field_wait_for_runtime_object_update_to_stop(
     struct FieldObjectUpdateProcess* process);
 void field_action_wait_for_state_flag_clear(struct FieldActionProcess* process);

@@ -3,6 +3,14 @@
 
 #include "global.h"
 
+struct Process;
+struct FieldNestedFlagContainer;
+
+union FieldRuntimeProcessSlot {
+    struct Process* process;
+    struct FieldNestedFlagContainer* flagContainer;
+};
+
 struct FieldSelectionState {
     u8 unknown00[5];
     u8 flags05;
@@ -15,7 +23,9 @@ struct FieldSelectionRuntime {
     void* activeObject;
     void* object80;
     void* object84;
-    u8 unknown088[0x237];
+    u8 unknown088[0x1BC];
+    union FieldRuntimeProcessSlot processSlot244;
+    u8 unknown248[0x77];
     u8 flags2BF;
     u8 flags2C0;
     u8 unknown2C1[0x17];
