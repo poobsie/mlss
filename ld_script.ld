@@ -1215,6 +1215,8 @@ SECTIONS
         asm/text08057568.o(.text.object_small_runtime_after_sub_8089BD4);
         src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8089C00);
         asm/text08057568.o(.text.object_small_runtime_after_sub_8089C00);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8089C88);
+        asm/text08057568.o(.text.object_small_runtime_after_sub_8089C88);
         src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8089D88);
         asm/text08057568.o(.text.object_small_runtime_after_sub_8089D88);
         src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8089EC4);

@@ -37,6 +37,11 @@ void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
                  struct RuntimeObject* object);
 void sub_809C954(struct RuntimeObject* object);
 void sub_80A2BC0(struct RuntimeObject* object);
+void sub_80895D8(struct RuntimeObject* object);
+s32 sub_808552C(s16* secondaryTimer, u16* stateValue,
+                 s16* verticalVelocity, s32 deltaX, s32 deltaY, s32 deltaZ,
+                 s32 horizontalScale, s32 verticalScale, s32 depthScale,
+                 s32 flags);
 
 SEC(sub_8064274)
 s32 object_continue_slow_exit_motion_when_ready(
@@ -271,6 +276,36 @@ void object_clear_behavior_on_visual_complete(struct RuntimeObject* object)
 }
 SEC(sub_8089C00)
 const u16 object_clear_behavior_on_visual_complete_padding = 0;
+
+SEC(sub_8089C88)
+void object_start_owner_offset_motion_and_sound_8d(struct RuntimeObject* object)
+{
+    struct ObjectPositionOwner* owner;
+    struct ObjectPositionSource* positionSource;
+    s32* targetX;
+    s32* targetY;
+    s32* targetZSlot;
+    s32 targetZ;
+
+    owner = object->positionOwner;
+    targetX = &object->value84;
+    positionSource = owner->positionSource;
+    *targetX = positionSource->positionX + 0x3000;
+    targetY = &object->value88;
+    *targetY = positionSource->positionY;
+    targetZSlot = &object->value8C;
+    targetZ = object->state->floorHeight;
+    *targetZSlot = targetZ;
+    /* Preserve the original reuse of the Z-target address for stateValueB0. */
+    object->verticalAcceleration = sub_808552C(
+        &object->secondaryTimer,
+        (u16*)((u8*)targetZSlot + 0x24), &object->verticalVelocity,
+        *targetX - object->positionX, *targetY - object->positionY,
+        targetZ - object->positionZBase,
+        0x400, 0x400, 0x100, 0);
+    sound_effect_play(0x8D, SOUND_VOLUME_UNCHANGED);
+    object->update = sub_80895D8;
+}
 
 SEC(sub_8089F44)
 void object_update_x_then_finish_below_transformed_x_limit(
