@@ -27,12 +27,16 @@ struct FieldSceneObject {
     u8 mode054;
     u8 unknown055[0x143];
     FieldSceneDispatch dispatch198;
-    u8 unknown19C[4];
+    FieldSceneDispatch dispatch19C;
     FieldSceneChainCallback callback1A0;
     FieldSceneChainCallback callback1A4;
     u8 unknown1A8[4];
     FieldSceneChainCallback callback1AC;
-    u8 unknown1B0[0x5C];
+    const u8* selectionTable;
+    u8 unknown1B4[0x1C];
+    u16 selectionIndex;
+    u16 selectedValue;
+    u8 unknown1D4[0x38];
     u8 flags20C;
     u8 flags20D;
     u8 unknown20E;

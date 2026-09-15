@@ -200,7 +200,14 @@ The small field-runtime utilities now have typed homes: a visual-completion bran
 
 Ten event callback helpers now share `FieldEventContext`. Three read a byte from the context's selection table using its current index and a variant-specific displacement, store it as the selected value, and install the same callback-chain endpoints. Five enable event processing and install continuations, with three also clearing the proven reset halfword at `0x1D4`. Two replace a caller-owned callback after one of the two asynchronous gates clears. The variant suffixes remain because their owning event scripts are still assembly-only.
 
-Fifteen upper-region callbacks now expose the callback-chain portion of `FieldSceneObject`. The dispatcher sits at `0x198`, the active and linked chain callbacks at `0x1A0` and `0x1A4`, and an optional auxiliary callback at `0x1AC`. Initializers select a preparation profile, install a dispatcher and starting callback, then invoke the dispatcher immediately. One chain callback conditionally runs the existing field cleanup operation when flag `0x40` at `0x214` is set before forwarding through the next slot. Two variants also prepare the linked scene object at `0x344`. Variant letters remain because the installed assembly callbacks expose mechanics but not stable scene identities.
+Fifteen upper-region callbacks now expose the callback-chain portion of `FieldSceneObject`. The primary dispatcher sits at `0x198`, with a second dispatcher at `0x19C`; the active and linked chain callbacks are at `0x1A0` and `0x1A4`, and an optional auxiliary callback is at `0x1AC`. Initializers select a preparation profile, install a dispatcher and starting callback, then invoke the dispatcher immediately. One chain callback conditionally runs the existing field cleanup operation when flag `0x40` at `0x214` is set before forwarding through the next slot. Two variants also prepare the linked scene object at `0x344`. Variant letters remain because the installed assembly callbacks expose mechanics but not stable scene identities.
+
+The same scene object owns a byte selection table at `0x1B0`, its current index
+and selected value at `0x1D0` and `0x1D2`, and a sprite at `0x294`.
+`field_select_random_event_table_entry` selects one of four table entries, copies
+the table's paired values into the object and sprite, then installs the next
+callback. The random scaler is the upper word of an unsigned 32 by 32 product;
+its shared interface is kept in `runtime/random.h`.
 
 The final two upper field helpers now share those types. `field_clear_scene_object_modes` clears the proven low mode bit at `0x20C` and invokes the adjacent still-unidentified mode setter with zero. `field_prepare_callback_slot_3_and_dispatch` resets its scene object, installs the known callback in slot three of a four-entry callback packet, and invokes it immediately.
 

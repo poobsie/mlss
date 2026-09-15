@@ -1,4 +1,6 @@
 #include "field/event_callbacks.h"
+#include "field/scene_object.h"
+#include "runtime/random.h"
 
 #define SEC(name) __attribute__((section(".text.text_upper_structural." #name)))
 
@@ -7,6 +9,21 @@ extern u32 sub_813B650(struct FieldEventContext* context);
 extern void sub_813E974(void);
 extern void sub_814706C(void);
 extern void sub_8139AA0(struct FieldEventContext* context);
+extern void sub_81407A0(
+    u32 context, struct FieldSceneObject* object, void* callbackSlot);
+
+SEC(sub_81429BC)
+void sub_81429BC(struct FieldSceneObject* object)
+{
+    const u8* table = object->selectionTable;
+
+    object->selectionIndex = (u16)runtime_scale_random_u32(
+        4, runtime_random_u32());
+    object->sprite->field_20[0] = table[0x1A + object->selectionIndex];
+    object->selectedValue =
+        object->selectionTable[0x16 + object->selectionIndex];
+    object->callback1A0 = sub_81407A0;
+}
 
 #define DEFINE_SELECTED_EVENT_SETUP(name, table_offset, next)            \
 SEC(name) void name(                                                     \
@@ -100,3 +117,5 @@ void field_replace_callback_when_primary_gate_clears(
 void field_replace_callback_when_secondary_gate_clears(
     void*, struct FieldEventContext*, FieldEventCallback*)
     __attribute__((alias("sub_814704C")));
+void field_select_random_event_table_entry(struct FieldSceneObject*)
+    __attribute__((alias("sub_81429BC")));

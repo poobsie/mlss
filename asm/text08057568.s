@@ -411463,7 +411463,9 @@ _081429B0: .4byte 0x0000033E
 _081429B4: .4byte sub_81410D0
 _081429B8: .4byte sub_81428FC
 	thumb_func_start sub_81429BC
-sub_81429BC:
+	.section .discard.text_upper_structural_sub_81429BC, "ax", %progbits
+	.align 2, 0
+asm_discard_sub_81429BC:
 	push {r4, r5, r6, lr}
 	adds r6, r0, #0x0
 	movs r0, #0xD8
@@ -411503,6 +411505,8 @@ sub_81429BC:
 	pop {r0}
 	bx r0
 _08142A0C: .4byte sub_81407A0
+	.section .text.after_text_upper_structural_sub_81429BC, "ax", %progbits
+	.align 2, 0
 	thumb_func_start sub_8142A10
 sub_8142A10:
 	push {r4, r5, r6, r7, lr}
