@@ -76,8 +76,24 @@ void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
 #define GLOBAL_EFFECT_OBJECT (*(struct RuntimeObject**)0x03000E3C)
 
 void sub_80695E4(struct RuntimeObject* object);
+void sub_8062188(struct RuntimeObject* object);
 void sub_8069558(struct RuntimeObject* object);
 void sub_806A47C(struct RuntimeObject* object);
+
+SEC(sub_80620F8)
+s32 object_select_behavior_from_owner_variant_and_clear_value(
+    struct RuntimeObject* object)
+{
+    struct ObjectPositionOwner* owner = object->positionOwner;
+
+    if (owner->positionSource->variantEC == -1)
+        object->behaviorState = 0;
+    else
+        object->behaviorState = 1;
+    object->valueA0 = 0;
+    object->update = sub_8062188;
+    return 1;
+}
 void sub_806A510(struct RuntimeObject* object);
 void sub_806A77C(struct RuntimeObject* object);
 void sub_806AFEC(struct RuntimeObject* object);

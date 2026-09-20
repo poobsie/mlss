@@ -28,6 +28,8 @@ struct ObjectPositionSource {
     s32 positionX;
     s32 positionY;
     s32 positionZ;
+    u8 unknownE4[8];
+    s16 variantEC;
 };
 
 struct ObjectPositionOwner {

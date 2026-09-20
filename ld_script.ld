@@ -392,6 +392,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8061F3C);
         src/object/fixed_visual_transitions.o(.text.misc_helpers_03.sub_8061FC8);
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8061FC8);
+        src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_80620F8);
         src/object/linked_transitions.o(.text.misc_helpers_02.sub_8062134);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8062134);
         src/object/small_setup_transitions.o(.text.small_functions_01.sub_8062150);

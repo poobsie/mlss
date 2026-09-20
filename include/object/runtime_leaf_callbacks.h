@@ -9,6 +9,7 @@ struct ObjectRuntimePollOwner;
 #define object_emit_effect_12cd_stop_release_and_finish sub_80633D0
 #define object_start_animation_2_and_effect_12a3_when_ready sub_8063420
 #define object_restore_saved_xy_and_start_animation_6 sub_80639C0
+#define object_select_behavior_from_owner_variant_and_clear_value sub_80620F8
 #define object_move_left_2_until_screen_exit sub_8063BF0
 #define object_move_left_and_down_slow_until_screen_exit sub_80643DC
 #define object_count_to_15_then_stop_on_visual_complete sub_80644DC
@@ -39,6 +40,8 @@ struct ObjectRuntimePollOwner;
 #define object_prepare_fixed_motion_on_visual_complete sub_8066DA4
 #define object_start_animation_6_and_random_repeat_count sub_8066E5C
 s32 sub_8067830(struct RuntimeObject* object);
+s32 object_select_behavior_from_owner_variant_and_clear_value(
+    struct RuntimeObject* object);
 #define object_begin_countdown_motion_when_ready sub_8067838
 #define object_advance_alternating_visual_countdown sub_8067F94
 #define object_emit_effect_10c6_when_ready sub_806800C
