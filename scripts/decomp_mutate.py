@@ -75,7 +75,7 @@ def bounded_process(command, seconds, log, cwd, checkpoint=None):
 
 
 def checkpoint_best_source(folder, checkpoint_dir):
-    """Persist the current best source outside a volatile mutation work root."""
+    """Persist the current engine checkpoint outside a volatile work root."""
     candidates = []
     direct_best = folder / "best.c"
     if direct_best.exists():
@@ -99,6 +99,15 @@ def checkpoint_best_source(folder, checkpoint_dir):
     temporary.replace(checkpoint_dir / "best.c")
     score_text = "unknown" if score is None else str(score)
     (checkpoint_dir / "best-score.txt").write_text(score_text + "\n")
+    engine = folder / "engine.json"
+    try:
+        engine_payload = engine.read_bytes()
+        json.loads(engine_payload)
+    except (OSError, ValueError):
+        return
+    engine_temporary = checkpoint_dir / "engine.json.tmp"
+    engine_temporary.write_bytes(engine_payload)
+    engine_temporary.replace(checkpoint_dir / "engine.json")
 
 
 def run_transmuter_process(command, seconds, log, cwd, checkpoint=None):

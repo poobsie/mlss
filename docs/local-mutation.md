@@ -57,6 +57,11 @@ search workers and compiler descendants, including after a failed parent exits.
 Transmuter gets up to thirty seconds of outer finalization allowance beyond its
 internal search timeout so it can drain workers and write `best.c` and
 `engine.json`. The process group is still terminated after that allowance.
+The engine adapter also writes atomic `best.c` and `engine.json` checkpoints when
+the baseline is ready, whenever the best branch improves, during periodic progress
+events, and immediately on a termination signal. A stalled engine shutdown therefore
+retains a reviewable best candidate instead of losing the entire bounded search. When
+`--checkpoint-dir` is set, both files are copied there during the run as well.
 Preparation and independent verification have separate bounds. If compiler work
 was launched but no final checkpoint exists at the outer deadline, the adapter
 reports an infrastructure timeout with an unavailable search outcome; it does not

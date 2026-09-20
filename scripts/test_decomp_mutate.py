@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import json
 from pathlib import Path
 import sys
 import shutil
@@ -22,6 +23,15 @@ from decomp_workflow import Candidate, is_register_trampoline
 
 
 class MutationSafetyTest(unittest.TestCase):
+    @unittest.skipUnless(shutil.which('node'), 'requires Node.js for adapter mock')
+    def test_transmuter_checkpoint_adapter(self):
+        subprocess.run(
+            ['node', '--test', 'scripts/test_transmuter_checkpoint.mjs'],
+            cwd=Path(__file__).resolve().parent.parent,
+            check=True,
+            timeout=15,
+        )
+
     def test_target_assembly_excludes_later_section_and_asserts_mapped_size(self):
         candidate = Candidate(
             name="fixture", mode="thumb", source="fixture.s",
@@ -53,9 +63,13 @@ class MutationSafetyTest(unittest.TestCase):
             (first / 'score.txt').write_text('20\n')
             (second / 'source.c').write_text('int value = 5;\n')
             (second / 'score.txt').write_text('5\n')
+            (root / 'work' / 'engine.json').write_text(
+                '{"baseScore": 9, "bestScore": 5, "checkpoint": true}\n')
             checkpoint_best_source(root / 'work', root / 'durable')
             self.assertEqual((root / 'durable' / 'best.c').read_text(), 'int value = 5;\n')
             self.assertEqual((root / 'durable' / 'best-score.txt').read_text(), '5\n')
+            self.assertEqual(
+                json.loads((root / 'durable' / 'engine.json').read_text())['bestScore'], 5)
 
     def test_transmuter_allows_delayed_final_checkpoint_within_grace(self):
         command = ["mock-transmuter"]
@@ -73,6 +87,11 @@ class MutationSafetyTest(unittest.TestCase):
         self.assertIsNone(search_checkpoint_error(
             "transmuter", {"timed_out": True}, 1409, True,
             {"baseScore": 13, "bestScore": 13}))
+
+    def test_transmuter_timeout_accepts_periodic_engine_checkpoint(self):
+        self.assertIsNone(search_checkpoint_error(
+            "transmuter", {"timed_out": True}, 1144, True,
+            {"baseScore": 12, "bestScore": 4, "checkpoint": True}))
 
     def test_transmuter_timeout_after_launches_reports_missing_checkpoint(self):
         error = search_checkpoint_error(
