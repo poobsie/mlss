@@ -91,8 +91,26 @@ void object_finish_visual_countdown_with_animation_8(
 
 void sub_80695E4(struct RuntimeObject* object);
 void sub_8062188(struct RuntimeObject* object);
+void sub_806589C(struct RuntimeObject* object);
 void sub_8069558(struct RuntimeObject* object);
 void sub_806A47C(struct RuntimeObject* object);
+
+SEC(sub_8065AE4)
+s32 object_start_animation_1_delay_8_when_runtime_ready(
+    struct RuntimeObject* object)
+{
+    s32 result = sub_8087124(object);
+
+    if (result == 0) {
+        if (object->linkedObject != NULL)
+            sub_807C298(object->linkedObject);
+        sub_8082E1C(object, 1, 0, 0);
+        object->timer = 8;
+        object->update = sub_806589C;
+        return 0;
+    }
+    return result;
+}
 
 SEC(sub_80620F8)
 s32 object_select_behavior_from_owner_variant_and_clear_value(

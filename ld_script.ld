@@ -511,6 +511,7 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_806541C);
         src/object/countdown_transitions.o(.text.timer_callbacks.sub_8065A5C);
         asm/text08057568.o(.text.after_sub_8065A5C);
+        src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_8065AE4);
         src/object/linked_transitions.o(.text.misc_helpers_02.sub_8065B20);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8065B20);
         src/object/gated_setup_transitions.o(.text.misc_helpers_03.sub_8065B48);
