@@ -10,8 +10,6 @@
     __attribute__((section(".text.misc_helpers_03." STRINGIFY(name))))
 #define FIELD_VIEW_RUNTIME (*(struct FieldSlideRuntime**)0x03000FD8)
 
-void sub_8082CCC(FieldViewState* view, s16* record, s32 x, s32 y, s32 z,
-                 s32 baseline);
 void sub_805A99C(FieldViewState* view, s32 value, const void* descriptor);
 void sub_8082C20(
     FieldViewState* view, s32* x, s32* y, s32* depth, s32 unused);
@@ -37,7 +35,20 @@ MISC3_SEC(field_adjust_record_for_view)
 void field_adjust_record_for_view(
     s16* record, s32 x, s32 y, s32 z, s32 baseline)
 {
-    sub_8082CCC(FIELD_VIEW_RUNTIME->view, record, x, y, z, baseline);
+    field_view_project_record_coordinates(
+        FIELD_VIEW_RUNTIME->view, record, x, y, z, baseline);
+}
+
+SEC(sub_8082CCC)
+void field_view_project_record_coordinates(
+    FieldViewState* view, s16* record, s32 x, s32 y, s32 z,
+    s32 unusedBaseline)
+{
+    s32 projectedY = y - z;
+
+    record[0] = x - view->originX;
+    record[1] = projectedY - view->originY;
+    record[7] = 0x1F0 - y;
 }
 
 MISC_SEC(field_view_set_pan_delta)

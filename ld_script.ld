@@ -1165,6 +1165,7 @@ SECTIONS
         asm/text08057568.o(.text.field_resource_filter_after_sub_8082A6C);
         src/field/runtime_flags.o(.text.small_functions_01.sub_8082B00);
         asm/text08057568.o(.text.field_runtime_flags_after_sub_8082B00);
+        src/field/view_state.o(.text.field_view_state.sub_8082CCC);
         src/field/view_state.o(.text.field_view_state.sub_8082D00);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8082D00);
         src/field/view_state.o(.text.field_view_state.sub_8082D24);

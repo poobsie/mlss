@@ -19,6 +19,7 @@ typedef struct FieldViewState {
 #define field_view_set_pan_delta sub_805A954
 #define field_adjust_world_values_for_view sub_807FBD8
 #define field_adjust_record_for_view sub_807FC54
+#define field_view_project_record_coordinates sub_8082CCC
 
 void field_view_add_pan(FieldViewState *view, s32 x, s32 y);
 void field_view_set_pan(FieldViewState *view, s16 x, s16 y);
@@ -29,6 +30,9 @@ void field_adjust_world_values_for_view(
     s32* x, s32* y, s32* depth, s32 unused);
 void field_adjust_record_for_view(
     s16* record, s32 x, s32 y, s32 z, s32 baseline);
+void field_view_project_record_coordinates(
+    FieldViewState* view, s16* record, s32 x, s32 y, s32 z,
+    s32 unusedBaseline);
 #define field_view_install_default_definition sub_8082D60
 void field_view_install_default_definition(FieldViewState* view, s32 value);
 
