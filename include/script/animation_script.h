@@ -17,6 +17,10 @@ struct AnimationScriptState {
     s16 originZ;
 };
 
+#define animation_script_create_display_scale_from_record sub_80E18D8
+
+void animation_script_create_display_scale_from_record(
+    struct AnimationScriptState* state);
 void animation_script_enter_10_byte_stream(struct AnimationScriptState* state);
 void animation_script_enter_4_byte_stream(struct AnimationScriptState* state);
 void animation_script_enter_command_stream(struct AnimationScriptState* state);

@@ -5,6 +5,10 @@
 
 struct FieldDisplayScale;
 
+struct FieldDisplayScale* sub_8084338(
+    s32 id, s32 value, s32 mode, s32 slot);
+void sub_807BC90(struct FieldDisplayScale* resource);
+
 struct FieldDisplayScaleProcess {
     u8 unknown00[4];
     void (*update)(struct FieldDisplayScaleProcess* process);
