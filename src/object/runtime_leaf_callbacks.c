@@ -112,6 +112,23 @@ s32 object_start_animation_1_delay_8_when_runtime_ready(
     return result;
 }
 
+SEC(sub_8065BD8)
+void object_advance_visual_timer_with_sounds_af_d5(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        object->timer--;
+        if (object->timer > 0) {
+            sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
+        } else {
+            sub_8082E1C(object, 0x0A, 0, 0);
+            object->timer = object->valueA8 - 1;
+            object->update = object_advance_visual_timer_with_sound_d5;
+            sound_effect_play(0xD5, SOUND_VOLUME_UNCHANGED);
+        }
+    }
+}
+
 SEC(sub_80620F8)
 s32 object_select_behavior_from_owner_variant_and_clear_value(
     struct RuntimeObject* object)
