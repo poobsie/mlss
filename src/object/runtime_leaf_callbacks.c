@@ -75,6 +75,20 @@ void sub_80DF024(s32 effect, s32 x, s32 y, s32 z,
 #define SHARED_MOTION_HANDLE (*(void**)0x03000E18)
 #define GLOBAL_EFFECT_OBJECT (*(struct RuntimeObject**)0x03000E3C)
 
+SEC(sub_8065C5C)
+void object_finish_visual_countdown_with_animation_8(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        object->timer--;
+        if (object->timer <= 0) {
+            sub_8082E1C(object, 8, 0, 0);
+            object->timer = object->valueA8;
+            object->update = object_start_animation_9_effect_112b_on_visual_complete;
+        }
+    }
+}
+
 void sub_80695E4(struct RuntimeObject* object);
 void sub_8062188(struct RuntimeObject* object);
 void sub_8069558(struct RuntimeObject* object);

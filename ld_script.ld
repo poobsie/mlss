@@ -517,6 +517,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_03_after_sub_8065B48);
         src/object/readiness_animation_transitions.o(.text.misc_helpers_02.sub_8065C34);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8065C34);
+        src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_8065C5C);
         src/object/direct_animation_transitions.o(.text.misc_helpers_02.sub_8065CA0);
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8065CA0);
         src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_8065CC4);

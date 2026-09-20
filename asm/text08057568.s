@@ -24876,41 +24876,6 @@ _08065C28:
 	.byte 0x00, 0x00
 _08065C30: .4byte sub_8065CC4
 	.section .text.misc_helpers_02_after_sub_8065C34, "ax", %progbits
-	thumb_func_start sub_8065C5C
-sub_8065C5C:
-	push {r4, r5, lr}
-	adds r5, r0, #0x0
-	ldr r0, [r5, #0x08]
-	ldrb r1, [r0, #0x12]
-	movs r0, #0x08
-	ands r0, r1
-	cmp r0, #0x00
-	beq _08065C94
-	adds r4, r5, #0x0
-	adds r4, #0xAC
-	ldrh r0, [r4, #0x00]
-	subs r0, #0x01
-	strh r0, [r4, #0x00]
-	lsls r0, r0, #0x10
-	cmp r0, #0x00
-	bgt _08065C94
-	adds r0, r5, #0x0
-	movs r1, #0x08
-	movs r2, #0x00
-	movs r3, #0x00
-	bl sub_8082E1C
-	adds r0, r5, #0x0
-	adds r0, #0xA8
-	ldr r0, [r0, #0x00]
-	strh r0, [r4, #0x00]
-	ldr r0, _08065C9C @ =0x08065D11
-	str r0, [r5, #0x4C]
-_08065C94:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.byte 0x00, 0x00
-_08065C9C: .4byte sub_8065D10
 	.section .text.misc_helpers_02_after_sub_8065CA0, "ax", %progbits
 	.section .text.runtime_leaf_callbacks_after_sub_8065CC4, "ax", %progbits
 	.section .text.runtime_leaf_callbacks_after_sub_8065D10, "ax", %progbits
