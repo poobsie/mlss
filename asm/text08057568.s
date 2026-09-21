@@ -445834,6 +445834,7 @@ sub_8158258:
 	bx r0
 	.byte 0x00, 0x00
 	.section .text.after_81582C4, "ax", %progbits
+	.if 0
 	thumb_func_start sub_81582CC
 sub_81582CC:
 	push {lr}
@@ -445869,6 +445870,7 @@ _081582FE:
 	bl sub_8158258
 	pop {r0}
 	bx r0
+	.endif
 	.section .text.after_8158308, "ax", %progbits
 	.if 0
 	thumb_func_start sub_8158310
