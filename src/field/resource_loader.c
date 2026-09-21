@@ -258,6 +258,32 @@ void field_advance_value_transfer_for_mode_1_or_2(
     sub_8116610(runtime->valueTransfer314);
 }
 
+EARLY_RESOURCE_SEC(sub_8029120)
+void field_restore_workspace_blocks_and_mark_dirty(
+    struct FieldObjectResourceRuntime* runtime, u16 highMask, u16 lowMask)
+{
+    u32 blockMask = lowMask;
+    const u8* source;
+    u8* destination;
+    u32 dirtyBit;
+
+    blockMask |= (u32)highMask << 16;
+    source = (const u8*)0x02000080;
+    destination = runtime->workspace24;
+    dirtyBit = 1;
+
+    while (blockMask != 0) {
+        if (blockMask & 1) {
+            CpuFastSet(source, destination, 8);
+            runtime->dirtyWorkspaceBlocksF0 |= dirtyBit;
+        }
+        source += 0x20;
+        destination += 0x20;
+        dirtyBit <<= 1;
+        blockMask >>= 1;
+    }
+}
+
 
 EARLY_RESOURCE_SEC(sub_80293F8)
 void field_load_object_resource_handles(
