@@ -447187,6 +447187,7 @@ _08159282:
 	pop {r0}
 	bx r0
 _08159288: .4byte 0x00001CAC
+	.if 0
 	thumb_func_start sub_815928C
 sub_815928C:
 	push {r4, lr}
@@ -447233,6 +447234,8 @@ _081592DC: .4byte 0x04000018
 _081592E0: .4byte 0x03001014
 _081592E4: .4byte 0x03001018
 _081592E8: .4byte 0x00001CC4
+	.endif
+	.section .text.after_sub_815928C, "ax", %progbits
 	thumb_func_start sub_81592EC
 sub_81592EC:
 	push {r4, lr}

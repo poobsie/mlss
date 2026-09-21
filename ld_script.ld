@@ -3251,6 +3251,8 @@ SECTIONS
         asm/text08057568.o(.text.after_8158F28);
         src/battle/scene_countdown.o(.text.text_late_helpers.sub_8158F60);
         asm/text08057568.o(.text.after_text_late_helpers_sub_8158F60);
+        src/battle/scanline_display.o(.text.battle_scanline.sub_815928C);
+        asm/text08057568.o(.text.after_sub_815928C);
         src/runtime/noop_callbacks.o(.text.nullsub_21);
         asm/text08057568.o(.text.after_nullsub_21);
         src/battle/destructors.o(.text.freeing_destructors.sub_8159378);
