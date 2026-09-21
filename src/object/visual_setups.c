@@ -1,4 +1,5 @@
 #include "global.h"
+#include "object/runtime_leaf_callbacks.h"
 #include "object/runtime_object.h"
 
 #define FIELD(object, type, offset) (*(type *)((u8 *)(object) + (offset)))
@@ -24,7 +25,8 @@ struct ObjectSnapshotRuntime {
     (*(struct ObjectSnapshotRuntime**)0x03000FF4)
 
 SEC(sub_8093F08)
-s32 sub_8093F08(struct RuntimeObject* object)
+s32 object_initialize_snapshot_animation_with_random_duration(
+    struct RuntimeObject* object)
 {
     struct ObjectSnapshotDisplayState* display;
     volatile u8* objectFlags;

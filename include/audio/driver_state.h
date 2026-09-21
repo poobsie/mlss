@@ -34,8 +34,11 @@ void sub_819B19C(u32 player);
 u32 sub_819B418(u16 command);
 void sub_819A928(void);
 void sub_819AFA8(void* buffer);
-void sub_819B0AC(u32 player);
-void sub_819B2E0(void);
+
+#define audio_driver_process_player_voices_and_clear_active sub_819B0AC
+#define audio_driver_process_and_clear_flagged_voices sub_819B2E0
+void audio_driver_process_player_voices_and_clear_active(u32 player);
+void audio_driver_process_and_clear_flagged_voices(void);
 
 #define audio_driver_update_voice_stereo_routing sub_819AB78
 void audio_driver_update_voice_stereo_routing(struct AudioDriverVoice* voice);

@@ -1,4 +1,5 @@
 #include "object/functions.h"
+#include "object/runtime_leaf_callbacks.h"
 #include "object/runtime_object.h"
 #include "audio/sound_effects.h"
 
@@ -23,7 +24,8 @@ void sub_809D3F4(struct RuntimeObject* object);
 void sub_80726D4(struct RuntimeObject* object);
 
 SEC(sub_809D300)
-void sub_809D300(struct RuntimeObject* object)
+void object_start_animation_4_effect_1e3d_sound_af(
+    struct RuntimeObject* object)
 {
     sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
     sub_8082E1C(object, 4, 0, 0);
@@ -34,7 +36,8 @@ void sub_809D300(struct RuntimeObject* object)
 }
 
 SEC(sub_8072678)
-void sub_8072678(struct RuntimeObject* object)
+void object_when_value80_clears_start_animation_19_and_effect_2222(
+    struct RuntimeObject* object)
 {
     s32 gateValue;
 

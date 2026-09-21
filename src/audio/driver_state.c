@@ -7,7 +7,7 @@
 
 void sub_819B070(u32 unused, struct AudioDriverVoice* voice);
 
-SEC(sub_819B2E0) void sub_819B2E0(void)
+SEC(sub_819B2E0) void audio_driver_process_and_clear_flagged_voices(void)
 {
     s32 index = 0;
     struct AudioDriverVoice* voice = AUDIO_DRIVER_STATE->voices[0];
@@ -20,7 +20,8 @@ SEC(sub_819B2E0) void sub_819B2E0(void)
     }
 }
 
-SEC(sub_819B0AC) void sub_819B0AC(u32 player)
+SEC(sub_819B0AC)
+void audio_driver_process_player_voices_and_clear_active(u32 player)
 {
     s32 index = 0;
     struct AudioDriverVoice* voice = AUDIO_DRIVER_STATE->voices[player];

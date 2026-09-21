@@ -12,6 +12,10 @@ typedef void (*FieldSceneDispatch)(u32, struct FieldSceneObject*);
 typedef void (*FieldSceneChainCallback)(
     u32, struct FieldSceneObject*, void* callbackSlot);
 
+#define field_install_and_run_scene_dispatch_81395ac sub_8139970
+void field_install_and_run_scene_dispatch_81395ac(
+    u32 context, struct FieldSceneObject* object);
+
 struct FieldCallbackSlots {
     FieldSceneChainCallback slots[4];
 };

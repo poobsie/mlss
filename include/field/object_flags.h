@@ -46,7 +46,13 @@ static inline struct RuntimeObject* field_object_status_runtime_object(
 #define field_try_claim_status_flag_4000 sub_8108D8C
 #define field_try_claim_status_flag_2000 sub_8108DE4
 #define field_try_claim_status_flag_1000 sub_8108E3C
+#define field_object_try_activate_status_0400 sub_81083EC
+#define field_object_try_activate_status_0800 sub_81084B4
 
+s32 field_object_try_activate_status_0400(
+    struct FieldObjectStatus* object, s32 threshold);
+s32 field_object_try_activate_status_0800(
+    struct FieldObjectStatus* object, s32 threshold);
 s32 field_try_claim_status_flag_4000(
     struct FieldObjectStatus* object, s32 threshold);
 s32 field_try_claim_status_flag_2000(

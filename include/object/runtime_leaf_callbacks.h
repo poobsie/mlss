@@ -52,6 +52,9 @@ struct ObjectRuntimePollOwner;
 #define object_after_nonpositive_countdown_begin_forward_motion_3000 sub_808A5DC
 #define object_after_nonpositive_countdown_begin_forward_motion_3400 sub_808954C
 #define object_constant_negative_one_callback sub_8067830
+#define object_initialize_snapshot_animation_with_random_duration sub_8093F08
+#define object_start_animation_4_effect_1e3d_sound_af sub_809D300
+#define object_when_value80_clears_start_animation_19_and_effect_2222 sub_8072678
 s32 object_select_behavior_from_owner_variant_and_clear_value(
     struct RuntimeObject* object);
 void object_finish_visual_countdown_with_animation_8(
@@ -295,6 +298,12 @@ void object_after_nonpositive_countdown_begin_forward_motion_3000(
 void object_after_nonpositive_countdown_begin_forward_motion_3400(
     struct RuntimeObject* object);
 s32 object_constant_negative_one_callback(struct RuntimeObject* object);
+s32 object_initialize_snapshot_animation_with_random_duration(
+    struct RuntimeObject* object);
+void object_start_animation_4_effect_1e3d_sound_af(
+    struct RuntimeObject* object);
+void object_when_value80_clears_start_animation_19_and_effect_2222(
+    struct RuntimeObject* object);
 s32 object_begin_countdown_motion_when_ready(struct RuntimeObject* object);
 void object_advance_alternating_visual_countdown(
     struct RuntimeObject* object);

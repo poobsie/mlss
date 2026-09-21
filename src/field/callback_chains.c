@@ -80,7 +80,8 @@ void field_prepare_scene_visual_and_set_callback(
 }
 
 SEC(sub_8139970)
-void sub_8139970(u32 context, struct FieldSceneObject* object)
+void field_install_and_run_scene_dispatch_81395ac(
+    u32 context, struct FieldSceneObject* object)
 {
     object->dispatch198 = sub_81395AC;
     object->dispatch198(context, object);

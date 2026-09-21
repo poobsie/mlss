@@ -32,7 +32,8 @@ void field_object_prepare_variant_action(
     struct FieldObjectStatusProcess* process);
 
 SEC(sub_81083EC)
-s32 sub_81083EC(struct FieldObjectStatus* object, s32 threshold)
+s32 field_object_try_activate_status_0400(
+    struct FieldObjectStatus* object, s32 threshold)
 {
     u16 previousFlags;
     u8* modeFlags;
@@ -65,7 +66,8 @@ update_control:
 }
 
 SEC(sub_81084B4)
-s32 sub_81084B4(struct FieldObjectStatus* object, s32 threshold)
+s32 field_object_try_activate_status_0800(
+    struct FieldObjectStatus* object, s32 threshold)
 {
     u16 previousFlags;
     u8* modeFlags;
