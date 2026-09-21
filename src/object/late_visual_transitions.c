@@ -448,6 +448,34 @@ void object_start_owner_variant_animation_11_or_12(
     object->update = object_continue_owner_variant_animation_10_or_11;
 }
 
+SEC(sub_8110F5C)
+void object_when_unlinked_start_owner_variant_animation_6_or_9(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner;
+    s32 variant;
+    s32 animation;
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (object->linkedObject == 0) {
+        owner = object->positionOwner;
+        variant = -owner->state->variant;
+        animation = 6;
+        if (variant != 1)
+            animation = 9;
+        sub_8082E1C(object, animation, 0, 0);
+        flags = &object->visual->flags;
+        value = *flags;
+        mask = -7;
+        value &= mask;
+        value |= 2;
+        *flags = value;
+        object->update = object_on_visual_complete_disable_b;
+    }
+}
+
 SEC(sub_8111174)
 void object_continue_owner_variant_animation_10_or_11(
     struct RuntimeObject* object)
