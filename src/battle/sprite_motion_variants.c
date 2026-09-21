@@ -17,6 +17,9 @@ extern void sub_8021308(void*);
 extern void free_heap_8018DA8(void*);
 extern s16 sub_8160854(void*, s32);
 extern void sub_801E150(struct BattleSprite*, s32, s32, s32, s32);
+extern struct BattleSprite* sub_8020DD0(
+    s32, s32, s32, s32, s32, s32, s32);
+extern void sprite_show_8020CBC(struct BattleSprite*);
 
 struct BattleSpritePosition {
     u16 x;
@@ -93,6 +96,32 @@ s32 battle_step_sprite_motion_and_dispatch_a(
         break;
     }
     return 0;
+}
+
+CALLBACK_SEC(battle_initialize_sprite_motion_with_auxiliary_sprite_a)
+void* battle_initialize_sprite_motion_with_auxiliary_sprite_a(
+    struct BattleSpriteMotion* object,
+    const struct BattleSpriteMotionConfig* config, u16 value)
+{
+    struct BattleSprite* sprite;
+    u8 flags;
+
+    battle_initialize_sprite_motion_base(object, config);
+    object->descriptor = (void*)0x08CDC8B0;
+    object->slot34.values.value = value;
+    object->state = 0;
+    object->slot34.values.auxiliary = 0;
+    object->ownedResource40 = 0;
+    object->slot3C.savedY = 0;
+    battle_setup_sprite_motion_size_a(object);
+    object->ownedResource40 = sub_8020DD0(4, 0x5008, 0, -1, -1, -1, -1);
+    sub_801E150(object->ownedResource40, 0x1B, -1, 0, 0);
+    sprite_show_8020CBC(object->ownedResource40);
+    sprite = object->ownedResource40;
+    flags = sprite->flags;
+    flags |= 0x20;
+    sprite->flags = flags;
+    return object;
 }
 
 CALLBACK_SEC(battle_set_sprite_motion_animation_if_changed)

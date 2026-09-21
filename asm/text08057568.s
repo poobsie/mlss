@@ -446632,57 +446632,7 @@ sub_8158B90:
 	.endif
 	.section .text.after_8158B90, "ax", %progbits
 	.section .text.after_upper_sub_8158BB4, "ax", %progbits
-	thumb_func_start sub_8158BE0
-sub_8158BE0:
-	push {r4, r5, r6, lr}
-	add sp, #-0x00C
-	adds r5, r0, #0x0
-	lsls r4, r2, #0x10
-	lsrs r4, r4, #0x10
-	bl sub_815F8F4
-	ldr r0, _08158C48 @ =0x08CDC8B0
-	str r0, [r5, #0x30]
-	movs r1, #0x00
-	movs r6, #0x00
-	strh r4, [r5, #0x34]
-	adds r0, r5, #0x0
-	adds r0, #0x24
-	strb r1, [r0, #0x00]
-	strh r6, [r5, #0x36]
-	str r6, [r5, #0x40]
-	str r6, [r5, #0x3C]
-	adds r0, r5, #0x0
-	bl sub_8158B90
-	ldr r1, _08158C4C @ =0x00005008
-	movs r4, #0x01
-	negs r4, r4
-	str r4, [sp, #0x000]
-	str r4, [sp, #0x004]
-	str r4, [sp, #0x008]
-	movs r0, #0x04
-	movs r2, #0x00
-	adds r3, r4, #0x0
-	bl sub_8020DD0
-	str r0, [r5, #0x40]
-	str r6, [sp, #0x000]
-	movs r1, #0x1B
-	adds r2, r4, #0x0
-	movs r3, #0x00
-	bl sub_801E150
-	ldr r0, [r5, #0x40]
-	bl sprite_show_8020CBC
-	ldr r2, [r5, #0x40]
-	ldrb r0, [r2, #0x12]
-	movs r1, #0x20
-	orrs r0, r1
-	strb r0, [r2, #0x12]
-	adds r0, r5, #0x0
-	add sp, #0x00C
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-_08158C48: .4byte 0x08CDC8B0
-_08158C4C: .4byte 0x00005008
+	.section .text.after_battle_initialize_sprite_motion_with_auxiliary_sprite_a, "ax", %progbits
 	.byte 0x4A, 0x68, 0x09, 0x68, 0x41, 0x60, 0x82, 0x60, 0xC1, 0x60, 0x02, 0x61, 0x00, 0x22, 0x00, 0x21
 	.byte 0x81, 0x82, 0x01, 0x83, 0x24, 0x30, 0x02, 0x70, 0x70, 0x47, 0x00, 0x00
 	.section .text.after_upper_sub_8158C6C, "ax", %progbits
