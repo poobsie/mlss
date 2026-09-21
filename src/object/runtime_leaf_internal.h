@@ -8,7 +8,7 @@ void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
 void sub_80DF024(
     s32 effect, s32 x, s32 y, s32 z, struct RuntimeObject* object);
-void sub_810DD7C(
+s32 sub_810DD7C(
     struct RuntimeObject* object, void* owner, s32 command);
 u32 sub_8199F30(void);
 

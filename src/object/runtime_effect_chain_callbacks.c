@@ -365,6 +365,18 @@ s32 object_emit_effect_1df8_and_remove_when_runtime_ready(
     return result;
 }
 
+SEC(sub_806C7B4)
+s32 object_emit_effect_1e01_forward_related_and_remove(
+    struct RuntimeObject* object, void* relatedObject)
+{
+    sub_80DF024(0x1E01, object->positionX / 256,
+                object->positionY / 256,
+                object->positionZBase / 256, object);
+    sub_810DD7C(object, relatedObject, 0xFF);
+    sub_807C298(object);
+    return 0;
+}
+
 SEC(sub_806CAC0)
 void object_start_animation_21_after_countdown(struct RuntimeObject* object)
 {

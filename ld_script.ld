@@ -773,6 +773,8 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_806C3AC);
         src/object/runtime_effect_chain_callbacks.o(.text.runtime_leaf_callbacks.sub_806C76C);
         asm/text08057568.o(.text.runtime_leaf_callbacks_after_sub_806C76C);
+        src/object/runtime_effect_chain_callbacks.o(.text.runtime_leaf_callbacks.sub_806C7B4);
+        asm/text08057568.o(.text.runtime_leaf_callbacks_after_sub_806C7B4);
         src/object/runtime_visual_gate_callbacks.o(.text.runtime_leaf_callbacks.sub_806C800);
         asm/text08057568.o(.text.runtime_leaf_callbacks_after_sub_806C800);
         src/object/owner_setups.o(.text.misc_helpers_01.sub_806C8C0);
