@@ -80,7 +80,7 @@ SEC(name) void name(void* unused, struct FieldEventContext* context)     \
 {                                                                        \
     ((u8*)context)[0x33E] |= 0x10;                                      \
     sub_8139AA0(context);                                                \
-    *(u16*)((u8*)context + 0x1D4) = 0;                                  \
+    context->resetValue = 0;                                            \
     *(FieldEventCallback*)((u8*)context + 0x198) =                       \
         (FieldEventCallback)0x0813B381;                                  \
     *(FieldEventCallback*)((u8*)context + 0x1A0) =                       \

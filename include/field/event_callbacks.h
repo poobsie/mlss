@@ -12,11 +12,13 @@ struct FieldEventContext {
     FieldEventCallback continuation;
     u8 unknown1A4[0x0C];
     u8* selectionTable;
-    u8 unknown1B4[0x1C];
+    const s16* boundsTable1B4;
+    u8 unknown1B8[0x18];
     u16 selectionIndex;
     u16 selectedValue;
     u16 resetValue;
-    u8 unknown1D6[0x168];
+    u8 callbackStateFlags;
+    u8 unknown1D7[0x167];
     u8 flags33E;
 };
 

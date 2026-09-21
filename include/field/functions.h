@@ -42,8 +42,8 @@
 #define field_reset_sprite_modes sub_8051484
 #define field_set_flags_20d_217 sub_8047784
 #define field_set_flag_20c_01 sub_804776C
-#define field_set_value_239_and_sprite_20 sub_804790C
-#define field_set_value_23e sub_804794C
+#define field_set_sprite_motion_scale sub_804790C
+#define field_set_movement_step_magnitude sub_804794C
 #define field_clear_flags_2b5_high_bits sub_8047994
 #define field_clear_flags_2b6_30 sub_8047958
 #define field_clear_flags_2b5_30 sub_80479A8

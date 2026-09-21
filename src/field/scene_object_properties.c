@@ -14,23 +14,23 @@ void field_step_scene_vertical_motion(struct FieldSceneObject* object)
 
     motionState = &object->motionState25C;
     if (*motionState >= 0) {
-        object->position18 += object->motionVelocity258;
+        object->elevationOffset += object->motionVelocity258;
         object->motionVelocity258 -= object->motionAcceleration248;
         motionLimitFlag = 0x20 & object->flags20D;
         if (motionLimitFlag == 0) {
-            if (object->position18 <= 0) {
+            if (object->elevationOffset <= 0) {
                 sub_8047EB8(object);
-                object->position18 = motionLimitFlag;
+                object->elevationOffset = motionLimitFlag;
                 return;
             }
             goto advance_motion_state;
         }
-        if (object->position14 + object->position18 <=
+        if (object->baseElevation + object->elevationOffset <=
                    object->motionLimit24C) {
             sub_8047EB8(object);
-            basePosition = object->position14;
-            if (basePosition + object->position18 < 0)
-                object->position18 = 0 - basePosition;
+            basePosition = object->baseElevation;
+            if (basePosition + object->elevationOffset < 0)
+                object->elevationOffset = 0 - basePosition;
         } else {
         advance_motion_state:
             *motionState = *motionState + 1;
@@ -44,8 +44,8 @@ void sub_8046980(struct FieldSceneObject* object);
 void sub_8046980(struct FieldSceneObject* object) {
     u32 positionX;
     u32 positionY;
-    u32 position14;
-    u32 position18;
+    u32 baseElevation;
+    u32 elevationOffset;
     s32 mask;
 
     mask = -8;
@@ -55,12 +55,12 @@ void sub_8046980(struct FieldSceneObject* object) {
         positionY = object->positionY;
         object->positionY = (positionY + ((positionY & 0x80) * 2)) & 0xFFFFFF00;
         if ((object->flags20D & 0x40) == 0) {
-            position14 = object->position14;
-            object->position14 =
-                (position14 + ((position14 & 0x80) * 2)) & 0xFFFFFF00;
-            position18 = object->position18;
-            object->position18 =
-                (position18 + ((position18 & 0x80) * 2)) & 0xFFFFFF00;
+            baseElevation = object->baseElevation;
+            object->baseElevation =
+                (baseElevation + ((baseElevation & 0x80) * 2)) & 0xFFFFFF00;
+            elevationOffset = object->elevationOffset;
+            object->elevationOffset =
+                (elevationOffset + ((elevationOffset & 0x80) * 2)) & 0xFFFFFF00;
         }
         object->value2E0 = 0;
         object->positionDeltaX = 0;
@@ -123,17 +123,17 @@ void field_set_flags_20d_217(struct FieldSceneObject* object) {
     ((u8*)object)[0x217] |= 1;
 }
 
-void field_set_value_239_and_sprite_20(struct FieldSceneObject* object, u8 value)
+void field_set_sprite_motion_scale(struct FieldSceneObject* object, u8 value)
     FIELD_SECTION(".text.sub_804790C");
-void field_set_value_239_and_sprite_20(struct FieldSceneObject* object, u8 value) {
-    ((u8*)object)[0x239] = value;
+void field_set_sprite_motion_scale(struct FieldSceneObject* object, u8 value) {
+    object->spriteMotionScale = value;
     ((u8*)object->sprite)[0x20] = value;
 }
 
-void field_set_value_23e(struct FieldSceneObject* object, u16 value)
+void field_set_movement_step_magnitude(struct FieldSceneObject* object, u16 value)
     FIELD_SECTION(".text.sub_804794C");
-void field_set_value_23e(struct FieldSceneObject* object, u16 value) {
-    object->value23E = value;
+void field_set_movement_step_magnitude(struct FieldSceneObject* object, u16 value) {
+    object->movementStepMagnitude = value;
 }
 
 void field_clear_flags_2b6_30(struct FieldSceneObject* object)
