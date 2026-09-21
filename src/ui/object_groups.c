@@ -9,10 +9,6 @@ struct UiObjectGrid {
     struct UiObject* objects[6];
 };
 
-struct UiObjectGroup4 {
-    struct UiObject* objects[4];
-};
-
 struct UiObjectNode {
     u8 unknown00[8];
     struct UiObjectNode* next;
@@ -24,6 +20,28 @@ struct UiObjectNodeList {
 
 extern void sub_8161C9C(void* object, u32 mode, u32 value);
 extern void sub_8161E38(void* object);
+extern void free_heap_8018DA8(void* pointer);
+
+#define DESTROY_UI_OBJECT(object_)                                      \
+    do {                                                                \
+        struct UiObject* object = (object_);                             \
+        if (object != 0) {                                              \
+            const struct UiObjectVtable* vtable = object->vtable;       \
+            vtable->destructor(                                         \
+                (u8*)object + vtable->destructorThisAdjustment, 3);     \
+        }                                                               \
+    } while (0)
+
+SEC(sub_8163528)
+void sub_8163528(struct UiObjectGroup4* group, u32 flags) {
+    DESTROY_UI_OBJECT(group->objects[0]);
+    DESTROY_UI_OBJECT(group->objects[1]);
+    DESTROY_UI_OBJECT(group->objects[2]);
+    DESTROY_UI_OBJECT(group->objects[3]);
+    if (flags & 1)
+        free_heap_8018DA8(group);
+}
+PAD(sub_8163528);
 
 SEC(sub_81634DC)
 void sub_81634DC(struct UiObjectGroup4* group) {

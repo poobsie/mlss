@@ -3482,7 +3482,8 @@ SECTIONS
         asm/text08057568.o(.text.after_8163320);
         asm/text08057568.o(.text.after_8163394);
         src/ui/object_groups.o(.text.ui_groups.sub_81634DC);
-        asm/text08057568.o(.text.after_81634DC);
+        src/ui/object_groups.o(.text.ui_groups.sub_8163528);
+        asm/text08057568.o(.text.after_8163528);
         src/ui/object_groups.o(.text.ui_groups.sub_8163650);
         asm/text08057568.o(.text.after_8163650);
         src/ui/layout_state.o(.text.sub_8163748);

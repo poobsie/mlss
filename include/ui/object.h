@@ -3,8 +3,19 @@
 
 #include "global.h"
 
+typedef void (*UiObjectDestructor)(void* object, u32 flags);
+
+struct UiObjectVtable {
+    u8 unknown00[8];
+    s16 destructorThisAdjustment;
+    u16 unknown0A;
+    UiObjectDestructor destructor;
+};
+
 struct UiObject {
-    u8 unknown00[0x18];
+    u8 unknown00[0x0C];
+    const struct UiObjectVtable* vtable;
+    u8 unknown10[8];
     u32 value18;
     u32 value1C;
     u32 value20;
@@ -14,6 +25,10 @@ struct UiObject {
     u16 counter48;
     u8 unknown4A[8];
     u16 direction52;
+};
+
+struct UiObjectGroup4 {
+    struct UiObject* objects[4];
 };
 
 struct UiObjectPairValues {
