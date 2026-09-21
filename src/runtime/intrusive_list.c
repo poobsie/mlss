@@ -1,4 +1,5 @@
 #include "runtime/intrusive_list.h"
+#include "ui/object.h"
 
 void free_heap_8018DA8(void* object);
 void sub_8163BE4(struct RuntimeIntrusiveListOwner* owner);
@@ -48,6 +49,44 @@ void runtime_intrusive_list_detach(struct RuntimeIntrusiveList* list,
 }
 __attribute__((section(".text.sub_8163C94")))
 const u16 runtime_intrusive_list_detach_padding = 0;
+
+void runtime_intrusive_list_detach_and_destroy(
+    struct RuntimeIntrusiveList* list,
+    struct RuntimeIntrusiveNode* node)
+    __attribute__((section(".text.sub_8163C40")));
+void runtime_intrusive_list_detach_and_destroy(
+    struct RuntimeIntrusiveList* list,
+    struct RuntimeIntrusiveNode* node)
+{
+    struct UiObject* object = (struct UiObject*)node;
+
+    if (node->previous != 0) {
+        if (node->next != 0) {
+            node->previous->next = node->next;
+            node->next->previous = node->previous;
+        } else {
+            node->previous->next = 0;
+            list->tail = node->previous;
+        }
+    } else {
+        struct RuntimeIntrusiveNode* next = node->next;
+        if (next != 0) {
+            next->previous = 0;
+            next = node->next;
+        } else {
+            list->tail = next;
+        }
+        list->head = next;
+    }
+    list->count--;
+    if (object != 0) {
+        const struct UiObjectVtable* vtable = object->vtable;
+        vtable->destructor(
+            (u8*)object + vtable->destructorThisAdjustment, 3);
+    }
+}
+__attribute__((section(".text.sub_8163C40")))
+const u16 runtime_intrusive_list_detach_and_destroy_padding = 0;
 
 SEC(runtime_intrusive_list_append_unique)
 void runtime_intrusive_list_append_unique(

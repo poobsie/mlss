@@ -3532,6 +3532,8 @@ SECTIONS
         asm/text08057568.o(.text.after_8163BB8);
         src/runtime/pointer_list.o(.text.sub_8163BC4);
         asm/text08057568.o(.text.after_8163BC4);
+        asm/text08057568.o(.text.after_8163BE4);
+        src/runtime/intrusive_list.o(.text.sub_8163C40);
         src/runtime/intrusive_list.o(.text.sub_8163C94);
         asm/text08057568.o(.text.after_8163C94);
         src/runtime/intrusive_list.o(.text.upper.sub_8163CD4);
