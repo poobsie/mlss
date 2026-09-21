@@ -3044,6 +3044,8 @@ SECTIONS
         asm/text08057568.o(.text.after_field_scene_select_transition_branch_a);
         src/field/callback_chains.o(.text.upper.sub_81397CC);
         asm/text08057568.o(.text.after_field_scene_begin_positioned_transition_b);
+        src/field/callback_chains.o(.text.upper.sub_813980C);
+        asm/text08057568.o(.text.after_field_scene_select_transition_branch_b);
         src/field/callback_chains.o(.text.upper.sub_81398FC);
         asm/text08057568.o(.text.after_upper_sub_81398FC);
         src/field/callback_chains.o(.text.upper.sub_813993C);

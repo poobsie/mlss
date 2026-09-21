@@ -118,6 +118,40 @@ void field_scene_begin_positioned_transition_b(
     cursor->current = sub_8139758;
 }
 
+SEC(sub_813980C)
+void field_scene_select_transition_branch_b(
+    u32 context, struct FieldSceneObject* object, void* callbackSlot)
+{
+    s32 selected;
+    u8 flags;
+    s32 clearMask;
+
+    if ((u8)sub_8138C8C(context, object) == 1) {
+        sub_81381D4(object);
+        return;
+    }
+
+    selected = object->layout100.selectionValues[
+        runtime_scale_random_u32(4, runtime_random_u32())];
+    object->selectedValue = selected;
+    __asm__("" : "+r"(selected));
+    if ((selected << 16) != 0) {
+        ((struct FieldSceneCallbackCursor*)callbackSlot)->current = sub_813B1E8;
+        object->callback1AC =
+            ((struct FieldSceneCallbackCursor*)callbackSlot)->next;
+    } else {
+        ((struct FieldSceneCallbackCursor*)callbackSlot)->current =
+            ((struct FieldSceneCallbackCursor*)callbackSlot)->next;
+        flags = object->callbackStateFlags;
+        clearMask = 3;
+        clearMask = -clearMask;
+        clearMask &= flags;
+        clearMask |= 1;
+        object->callbackStateFlags = clearMask;
+    }
+}
+SEC(sub_813980C) const u16 field_scene_select_transition_branch_b_padding = 0;
+
 __attribute__((section(".text.field_scene_callbacks.sub_8139364")))
 void field_scene_branch_on_condition_or_advance_callback(
     u32 context, struct FieldSceneObject* object,
