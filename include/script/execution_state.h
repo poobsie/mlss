@@ -16,8 +16,8 @@ struct ScriptConditionalJumpArguments;
 struct ScriptExecutionState {
     u32 cursor;
     u32 endCursor;
-    u32 secondaryValue0;
-    u32 secondaryValue1;
+    u32 secondaryCursor;
+    u32 secondaryEndCursor;
     u32 returnCursor;
     u32 resumeCursor;
     u8 unknown18[0x40];

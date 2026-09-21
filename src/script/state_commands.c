@@ -94,8 +94,8 @@ SEC(sub_80EA514) void script_state_set_secondary_channel(
     void* context, struct ScriptExecutionState* state,
     u32 value0, u32 value1, u16 flags, u8 mode)
 {
-    state->secondaryValue0 = value0;
-    state->secondaryValue1 = value1;
+    state->secondaryCursor = value0;
+    state->secondaryEndCursor = value1;
     state->secondaryFlags = flags;
     state->secondaryMode = mode;
 }
@@ -118,8 +118,8 @@ SEC(sub_80EA550) void script_state_clear_secondary_channel(
 {
     if (state->primaryFlags & 8)
         ((struct ScriptExecutionState*)linkedState)->primaryFlags &= ~4;
-    state->secondaryValue1 = 0;
-    state->secondaryValue0 = 0;
+    state->secondaryEndCursor = 0;
+    state->secondaryCursor = 0;
     state->secondaryMode = 0;
     state->secondaryFlags = 0;
 }

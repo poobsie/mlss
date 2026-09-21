@@ -21,7 +21,9 @@ struct AnimationAttachmentOwner {
 };
 
 struct AnimationOffsetState {
-    u8 unknown00[0x10];
+    struct AnimationOffsetState* next;
+    void (*update)(struct AnimationOffsetState* state);
+    u8 unknown08[8];
     s16 positionX;
     s16 velocityX;
     s16 velocityY;

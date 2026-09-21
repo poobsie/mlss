@@ -7,7 +7,7 @@ struct AnimationScriptState;
 typedef void (*AnimationScriptUpdate)(struct AnimationScriptState* state);
 
 struct AnimationScriptState {
-    u32 unknown0;
+    struct AnimationScriptState* next;
     AnimationScriptUpdate update;
     void* owner;
     const u8* cursor;
