@@ -1,6 +1,7 @@
 #include "global.h"
 #include "audio/sound_effects.h"
 #include "object/functions.h"
+#include "object/runtime_leaf_callbacks.h"
 #include "object/runtime_object.h"
 
 #define SEC(name)   __attribute__((section(".text.middle." #name)))
@@ -32,7 +33,6 @@ DECL_NEXT(sub_80DA368);
 DECL_NEXT(sub_80DA3FC);
 DECL_NEXT(sub_80DAB64);
 DECL_NEXT(sub_80DABD0);
-DECL_NEXT(sub_80DB1E4);
 DECL_NEXT(sub_80DBD88);
 DECL_NEXT(sub_80DBDE8);
 DECL_NEXT(sub_80DC4F4);
@@ -261,7 +261,9 @@ DEFINE_CHECK_UPDATE(sub_80DA9FC, object_finish_when_visual_complete_d)
 
 DEFINE_SET_NEXT_IF_DONE(sub_80D9A7C, object_advance_when_ready_a, sub_80D9B9C)
 DEFINE_SET_NEXT_IF_DONE(sub_80D9B08, object_advance_when_ready_b, sub_80D9BE0)
-DEFINE_SET_NEXT_IF_DONE(sub_80DB844, object_advance_when_ready_c, sub_80DB1E4)
+DEFINE_SET_NEXT_IF_DONE(
+    sub_80DB844, object_advance_when_ready_c,
+    object_begin_owner_position_motion_animation_2)
 DEFINE_SET_NEXT_IF_DONE(sub_80DBD50, object_advance_when_ready_d, sub_80DBD88)
 DEFINE_SET_NEXT_IF_DONE(sub_80DBD6C, object_advance_when_ready_e, sub_80DBDE8)
 DEFINE_SET_NEXT_IF_DONE(sub_80DC4A4, object_advance_when_ready_f, sub_80DC4F4)

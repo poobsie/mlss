@@ -1,5 +1,6 @@
 #include "audio/sound_effects.h"
 #include "object/functions.h"
+#include "object/runtime_leaf_callbacks.h"
 #include "object/runtime_object.h"
 
 #define STRINGIFY_INNER(value) #value
@@ -15,7 +16,6 @@ void sub_8082E1C(
 void sub_807F47C(struct RuntimeObject* object);
 void sub_8085B38(struct RuntimeObject* object);
 void sub_808750C(struct RuntimeObject* object);
-void sub_808A5DC(struct RuntimeObject* object);
 void sub_8111234(struct RuntimeObject* object);
 
 SEC(object_start_animation_2_set_visual_parameter_16)
@@ -33,11 +33,13 @@ void object_reset_and_start_animation_2(struct RuntimeObject* object)
     object->value80 = 0;
     object->timer = 0;
     sub_8082E1C(object, 2, 0, 0);
-    object->update = sub_808A5DC;
+    object->update =
+        object_after_nonpositive_countdown_begin_forward_motion_3000;
 }
 
 SEC(sub_808A5DC)
-void sub_808A5DC(struct RuntimeObject* object)
+void object_after_nonpositive_countdown_begin_forward_motion_3000(
+    struct RuntimeObject* object)
 {
     u32 timer;
     s32 value80 = object->value80;

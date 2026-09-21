@@ -1,4 +1,5 @@
 #include "audio/sound_effects.h"
+#include "object/runtime_leaf_callbacks.h"
 #include "object/runtime_object.h"
 
 #define SEC(name) \
@@ -11,7 +12,8 @@ void sub_80DB27C(struct RuntimeObject* object);
 void sub_80DB694(struct RuntimeObject* object);
 
 SEC(sub_80DB1E4)
-void sub_80DB1E4(struct RuntimeObject* object)
+void object_begin_owner_position_motion_animation_2(
+    struct RuntimeObject* object)
 {
     struct ObjectPositionOwner* owner;
     struct ObjectPositionSource* state;

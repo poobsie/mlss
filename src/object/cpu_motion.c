@@ -1,5 +1,6 @@
 #include "audio/sound_effects.h"
 #include "object/functions.h"
+#include "object/runtime_leaf_callbacks.h"
 #include "object/runtime_object.h"
 
 #define SEC(symbol) \
@@ -11,7 +12,8 @@ void sub_8082E1C(
 void sub_8085B38(struct RuntimeObject* object);
 
 SEC(sub_8088C3C)
-void sub_8088C3C(struct RuntimeObject* object)
+void object_after_nonpositive_countdown_begin_forward_motion_2800(
+    struct RuntimeObject* object)
 {
     u32 timer;
     s32 value80 = object->value80;
@@ -50,7 +52,8 @@ void sub_8088C3C(struct RuntimeObject* object)
 }
 
 SEC(sub_808954C)
-void sub_808954C(struct RuntimeObject* object)
+void object_after_nonpositive_countdown_begin_forward_motion_3400(
+    struct RuntimeObject* object)
 {
     u32 timer;
     s32 value80 = object->value80;

@@ -92,7 +92,6 @@ void object_finish_visual_countdown_with_animation_8(
 void sub_80695E4(struct RuntimeObject* object);
 void sub_8062188(struct RuntimeObject* object);
 void sub_806589C(struct RuntimeObject* object);
-void sub_8069558(struct RuntimeObject* object);
 void sub_806A47C(struct RuntimeObject* object);
 
 SEC(sub_8065AE4)
@@ -410,7 +409,7 @@ void object_start_animation_6_and_random_repeat_count(
 }
 
 SEC(sub_8067830)
-s32 sub_8067830(struct RuntimeObject* object)
+s32 object_constant_negative_one_callback(struct RuntimeObject* object)
 {
     (void)object;
     return -1;
@@ -1200,7 +1199,8 @@ void object_finish_timer_with_effect_1810(struct RuntimeObject* object)
     if (object->timer <= 0) {
         sub_8082E1C(object, 5, 0, 0);
         GLOBAL_EFFECT_OBJECT = (struct RuntimeObject*)sub_8086858(object, 0x1810);
-        object->update = sub_8069558;
+        object->update =
+            object_on_visual_complete_prepare_owner_offset_motion_and_decrement_repeat;
         sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
     }
 }

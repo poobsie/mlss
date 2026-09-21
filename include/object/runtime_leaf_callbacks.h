@@ -42,7 +42,16 @@ struct ObjectRuntimePollOwner;
 #define object_advance_repeating_animation_count sub_8066CEC
 #define object_prepare_fixed_motion_on_visual_complete sub_8066DA4
 #define object_start_animation_6_and_random_repeat_count sub_8066E5C
-s32 sub_8067830(struct RuntimeObject* object);
+#define object_when_value80_clears_begin_owner_offset_motion_countdown sub_8066F60
+#define object_on_visual_complete_prepare_owner_offset_motion_and_decrement_repeat sub_8069558
+#define object_after_negative_countdown_begin_owner_offset_motion_animation_2 sub_80DAC80
+#define object_after_nonpositive_countdown_begin_state_motion_animation_5 sub_80DB95C
+#define object_after_negative_countdown_snap_to_owner_and_begin_short_motion sub_80DBB1C
+#define object_begin_owner_position_motion_animation_2 sub_80DB1E4
+#define object_after_nonpositive_countdown_begin_forward_motion_2800 sub_8088C3C
+#define object_after_nonpositive_countdown_begin_forward_motion_3000 sub_808A5DC
+#define object_after_nonpositive_countdown_begin_forward_motion_3400 sub_808954C
+#define object_constant_negative_one_callback sub_8067830
 s32 object_select_behavior_from_owner_variant_and_clear_value(
     struct RuntimeObject* object);
 void object_finish_visual_countdown_with_animation_8(
@@ -267,6 +276,25 @@ void object_prepare_fixed_motion_on_visual_complete(
     struct RuntimeObject* object);
 void object_start_animation_6_and_random_repeat_count(
     struct RuntimeObject* object);
+void object_when_value80_clears_begin_owner_offset_motion_countdown(
+    struct RuntimeObject* object);
+void object_on_visual_complete_prepare_owner_offset_motion_and_decrement_repeat(
+    struct RuntimeObject* object);
+void object_after_negative_countdown_begin_owner_offset_motion_animation_2(
+    struct RuntimeObject* object);
+void object_after_nonpositive_countdown_begin_state_motion_animation_5(
+    struct RuntimeObject* object);
+void object_after_negative_countdown_snap_to_owner_and_begin_short_motion(
+    struct RuntimeObject* object);
+void object_begin_owner_position_motion_animation_2(
+    struct RuntimeObject* object);
+void object_after_nonpositive_countdown_begin_forward_motion_2800(
+    struct RuntimeObject* object);
+void object_after_nonpositive_countdown_begin_forward_motion_3000(
+    struct RuntimeObject* object);
+void object_after_nonpositive_countdown_begin_forward_motion_3400(
+    struct RuntimeObject* object);
+s32 object_constant_negative_one_callback(struct RuntimeObject* object);
 s32 object_begin_countdown_motion_when_ready(struct RuntimeObject* object);
 void object_advance_alternating_visual_countdown(
     struct RuntimeObject* object);

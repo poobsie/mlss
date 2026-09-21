@@ -11,7 +11,6 @@ void sub_807F47C(struct RuntimeObject* object);
 void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
 void sub_8085B38(struct RuntimeObject* object);
-void sub_8066F60(struct RuntimeObject* object);
 void sub_8066FFC(struct RuntimeObject* object);
 void sub_806A204(struct RuntimeObject* object);
 void sub_806A24C(struct RuntimeObject* object);
@@ -48,13 +47,15 @@ void object_on_visual_complete_begin_owner_offset_motion(
         object->unknown7A = 0;
         sub_8085B38(object);
         sub_8082E1C(object, 3, 0, 0);
-        object->update = sub_8066F60;
+        object->update =
+            object_when_value80_clears_begin_owner_offset_motion_countdown;
         sound_effect_play(0x11C, SOUND_VOLUME_UNCHANGED);
     }
 }
 
 SEC(sub_8066F60)
-void sub_8066F60(struct RuntimeObject* object)
+void object_when_value80_clears_begin_owner_offset_motion_countdown(
+    struct RuntimeObject* object)
 {
     struct RuntimeObject* owner;
     struct RuntimeObjectState* state;
@@ -83,14 +84,16 @@ void sub_8066F60(struct RuntimeObject* object)
     object->unknown7A = gateValue;
     sub_8085B38(object);
     sub_807F4FC(object);
-    object->auxiliaryUpdate = (RuntimeObjectCallback)sub_8067830;
+    object->auxiliaryUpdate =
+        (RuntimeObjectCallback)object_constant_negative_one_callback;
     object->tertiaryUpdate = (RuntimeObjectCallback)sub_8067838;
     object->timer = (sub_8199F30() & 3) + 1;
     object->update = sub_8066FFC;
 }
 
 SEC(sub_8069558)
-void sub_8069558(struct RuntimeObject* object)
+void object_on_visual_complete_prepare_owner_offset_motion_and_decrement_repeat(
+    struct RuntimeObject* object)
 {
     s32 value;
 
@@ -125,7 +128,8 @@ void sub_8069558(struct RuntimeObject* object)
 }
 
 SEC(sub_80DAC80)
-void sub_80DAC80(struct RuntimeObject* object)
+void object_after_negative_countdown_begin_owner_offset_motion_animation_2(
+    struct RuntimeObject* object)
 {
     struct ObjectPositionOwner* owner;
     struct ObjectPositionSource* source;
@@ -165,7 +169,8 @@ void sub_80DAC80(struct RuntimeObject* object)
 }
 
 SEC(sub_80DB95C)
-void sub_80DB95C(struct RuntimeObject* object)
+void object_after_nonpositive_countdown_begin_state_motion_animation_5(
+    struct RuntimeObject* object)
 {
     struct RuntimeObjectState* state;
     volatile u8* flags;
@@ -207,7 +212,8 @@ void sub_80DB95C(struct RuntimeObject* object)
 }
 
 SEC(sub_80DBB1C)
-void sub_80DBB1C(struct RuntimeObject* object)
+void object_after_negative_countdown_snap_to_owner_and_begin_short_motion(
+    struct RuntimeObject* object)
 {
     struct ObjectPositionOwner* owner;
     struct ObjectPositionSource* state;
