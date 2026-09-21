@@ -2371,6 +2371,8 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_script_cmd_wait_frames);
         src/script/state_commands.o(.text.middle.script_cmd_call);
         asm/text08057568.o(.text.after_middle_script_cmd_call);
+        src/script/state_commands.o(.text.middle.script_cmd_return);
+        asm/text08057568.o(.text.after_middle_script_cmd_return);
         src/script/state_commands.o(.text.middle.script_cmd_end);
         asm/text08057568.o(.text.after_middle_script_cmd_end);
         src/graphics/global_resource.o(.text.misc_helpers_02.sub_80F032C);

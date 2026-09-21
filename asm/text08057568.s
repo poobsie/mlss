@@ -271042,24 +271042,7 @@ _080EB214:
 	.byte 0x00, 0x00
 	.endif
 	.section .text.after_middle_script_cmd_call
-	thumb_func_start script_cmd_return
-script_cmd_return: @ 080EB220
-	push {lr}
-	ldr r2, [r1, #0x10]
-	cmp r2, #0x00
-	bne _080EB22E
-	ldr r0, [r1, #0x00]
-	str r0, [r1, #0x04]
-	b _080EB234
-_080EB22E:
-	str r2, [r1, #0x00]
-	movs r0, #0x00
-	str r0, [r1, #0x10]
-_080EB234:
-	movs r0, #0x01
-	pop {r1}
-	bx r1
-	.byte 0x00, 0x00
+	.section .text.after_middle_script_cmd_return, "ax", %progbits
 	.if 0
 	thumb_func_start script_cmd_end
 script_cmd_end: @ 080EB23C

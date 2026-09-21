@@ -255,6 +255,22 @@ SEC(script_cmd_call) int script_command_call(
 }
 SEC(script_cmd_call) const u16 script_cmd_call_padding = 0;
 
+SEC(script_cmd_return)
+u8 script_command_return(
+    void* context, struct ScriptExecutionState* state)
+{
+    register u32 returnCursor asm("r2") = state->returnCursor;
+
+    if (returnCursor == 0) {
+        state->endCursor = state->cursor;
+    } else {
+        state->cursor = returnCursor;
+        state->returnCursor = 0;
+    }
+    return 1;
+}
+SEC(script_cmd_return) const u16 script_command_return_padding = 0;
+
 SEC(script_cmd_wait_frames) int script_command_wait_frames(
     void* context, struct ScriptExecutionState* state, const u32* argument)
 {
