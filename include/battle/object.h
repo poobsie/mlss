@@ -29,6 +29,7 @@ struct BattleEffectObject {
     u8 unknown10[8];
     s16 value18;
     u8 state1A;
+    u8 adjustmentTimer;
 };
 
 struct BattleSpriteOwner {

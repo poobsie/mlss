@@ -15,6 +15,27 @@ void battle_effect_hide_sprite_and_reset(struct BattleEffectObject* object) {
 
 #define EFFECT_SEC(name) __attribute__((section(".text.battle_effect_leaf." #name)))
 
+__attribute__((section(".text.battle_effect_state.sub_815EC4C")))
+void battle_effect_adjust_value(struct BattleEffectObject* object, s16 adjustment) {
+    s32 value = object->value18 + adjustment;
+
+    if (value < 0)
+        value = 0;
+    else
+        value = adjustment + (u16)object->value18;
+    object->value18 = value;
+
+    if (adjustment < 0) {
+        object->adjustmentTimer = 100;
+        object->state1A = 1;
+    } else if (adjustment > 0) {
+        object->adjustmentTimer = 100;
+        object->state1A = 2;
+    }
+}
+__attribute__((section(".text.battle_effect_state.sub_815EC4C")))
+const u16 battle_effect_adjust_value_padding = 0;
+
 EFFECT_SEC(sub_815EC8C)
 s32 sub_815EC8C(struct BattleEffectObject* object) {
     return object->value18;

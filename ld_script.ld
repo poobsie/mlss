@@ -3285,6 +3285,7 @@ SECTIONS
         asm/text08057568.o(.text.after_815EB70);
         src/battle/effect_state.o(.text.sub_815EC3C);
         asm/text08057568.o(.text.after_815EC3C);
+        src/battle/effect_state.o(.text.battle_effect_state.sub_815EC4C);
         src/battle/effect_state.o(.text.battle_effect_leaf.sub_815EC8C);
         asm/text08057568.o(.text.after_815EC8C);
         src/battle/effect_state.o(.text.sub_815ECA8);
