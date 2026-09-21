@@ -188,3 +188,51 @@ void object_start_animation_6_and_random_repeat_count(
         }
     }
 }
+
+SEC(sub_8065C5C)
+void object_finish_visual_countdown_with_animation_8(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        object->timer--;
+        if (object->timer <= 0) {
+            sub_8082E1C(object, 8, 0, 0);
+            object->timer = object->valueA8;
+            object->update = object_start_animation_9_effect_112b_on_visual_complete;
+        }
+    }
+}
+
+SEC(sub_8065AE4)
+s32 object_start_animation_1_delay_8_when_runtime_ready(
+    struct RuntimeObject* object)
+{
+    s32 result = sub_8087124(object);
+
+    if (result == 0) {
+        if (object->linkedObject != NULL)
+            sub_807C298(object->linkedObject);
+        sub_8082E1C(object, 1, 0, 0);
+        object->timer = 8;
+        object->update = sub_806589C;
+        return 0;
+    }
+    return result;
+}
+
+SEC(sub_8065BD8)
+void object_advance_visual_timer_with_sounds_af_d5(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        object->timer--;
+        if (object->timer > 0) {
+            sound_effect_play(0xAF, SOUND_VOLUME_UNCHANGED);
+        } else {
+            sub_8082E1C(object, 0x0A, 0, 0);
+            object->timer = object->valueA8 - 1;
+            object->update = object_advance_visual_timer_with_sound_d5;
+            sound_effect_play(0xD5, SOUND_VOLUME_UNCHANGED);
+        }
+    }
+}

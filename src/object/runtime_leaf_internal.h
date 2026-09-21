@@ -24,6 +24,7 @@ void sub_8064C00(struct RuntimeObject* object);
 void sub_8064E30(struct RuntimeObject* object);
 void sub_80651B0(struct RuntimeObject* object);
 void sub_8065758(struct RuntimeObject* object);
+void sub_806589C(struct RuntimeObject* object);
 void sub_8065D78(struct RuntimeObject* object);
 void sub_8065E4C(struct RuntimeObject* object);
 void sub_8065E68(struct RuntimeObject* object);
