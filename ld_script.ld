@@ -3545,6 +3545,8 @@ SECTIONS
         asm/text08057568.o(.text.freeing_destructors_after_sub_8163D4C);
         src/graphics/high_helpers.o(.text.high.sub_8163D80);
         asm/text08057568.o(.text.after_8163D80);
+        src/graphics/transfer.o(.text.sub_8163DB8);
+        asm/text08057568.o(.text.after_8163DB8);
         src/math/interpolation.o(.text.sub_8163E0C);
         asm/text08057568.o(.text.after_8163E0C);
         src/runtime/word_triplet.o(.text.sub_8163F6C);
