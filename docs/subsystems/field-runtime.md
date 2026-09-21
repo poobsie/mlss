@@ -555,10 +555,12 @@ byte is the owner's back-reference to its current registry slot, while the
 gameplay identities assigned to individual slots remain unresolved.
 
 `field_flush_dirty_workspace_blocks` consumes the dirty-block mask at runtime
-offset `0xF0`. For each set bit, it copies one `0x20`-byte block from the
-workspace referenced at offset `0x24` into the mirror beginning at
-`0x02000080`, then shifts the mask until it is cleared. The higher-level role of
-the workspace and mirror remains unknown.
+offset `0xF0`. For each set bit, it copies one `0x20`-byte block from
+`workspaceBlocks24` into the mirror beginning at `0x02000080`, then shifts the
+mask until it is cleared. `field_restore_workspace_blocks_and_mark_dirty`
+performs the inverse copy for a supplied 32-bit block mask and marks every
+restored block dirty. The higher-level role of the workspace and mirror remains
+unknown.
 
 The field runtime setter at `sub_80F7D64` now uses the typed nested-flag
 container. It clears bit `2`, sets bit `0`, and returns the established success

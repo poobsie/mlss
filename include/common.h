@@ -140,7 +140,6 @@ void sub_8020A78(void);
 void sprite_show_8020CBC(struct Sprite*);
 struct Sprite* sub_8020DD0(int, int, int, int, int, int, int);
 void sub_80210A8(struct Sprite*, int, int, int, int, int, int, int);
-void sub_80213A0(int, int, int, int);
 void sprite_hide_8021F20(struct Sprite*);
 void sub_8021F7C(void);
 void sub_8021FD4(void);

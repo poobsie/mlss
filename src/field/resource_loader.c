@@ -6,7 +6,6 @@
 void sub_80E5968(void* resource, s32 flags);
 void sub_80F94A8(void);
 void sub_80FADD4(struct FieldResourceLoaderProcess* loader);
-void* sub_80213A0(s32 owner, u16 resourceId, s32 slot, s32 retain);
 void sub_80507E0(void* resourceObject);
 
 #define SEC(group, symbol) __attribute__((section(".text." group "." #symbol)))
@@ -154,7 +153,7 @@ void field_load_auxiliary_resource_handles(
     s32 i = 0;
 
     while (i < runtime->resourceCount10C) {
-        runtime->handleStorage1C->auxiliaryResourceHandles15C[i] =
+        runtime->resourceStorage1C->auxiliaryResourceHandles15C[i] =
             sub_80214A4(0, *resourceIds, -1, 1);
         i++;
         resourceIds++;
@@ -230,7 +229,7 @@ void field_flush_dirty_workspace_blocks(
     u8* destination;
 
     if (*dirtyBlocks != 0) {
-        source = runtime->workspace24;
+        source = runtime->workspaceBlocks24;
         destination = (u8*)0x02000080;
         remainingBlocks = dirtyBlocks;
         do {
@@ -269,7 +268,7 @@ void field_restore_workspace_blocks_and_mark_dirty(
 
     blockMask |= (u32)highMask << 16;
     source = (const u8*)0x02000080;
-    destination = runtime->workspace24;
+    destination = runtime->workspaceBlocks24;
     dirtyBit = 1;
 
     while (blockMask != 0) {
@@ -298,7 +297,7 @@ void field_load_object_resource_handles(
     resourceIds = runtime->resourceIdsC8;
     i = 0;
     while (i < runtime->resourceCount10C) {
-        runtime->handleStorage1C->objectResourceHandles5C[i] =
+        runtime->resourceStorage1C->objectResourceHandles5C[i] =
             sub_80213A0(0, *resourceIds, -1, 1);
         i++;
         resourceIds++;

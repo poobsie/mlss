@@ -2,6 +2,7 @@
 #include "audio/music.h"
 #include "audio/sound_effects.h"
 #include "common.h"
+#include "field/resource_loader.h"
 #include "link/multiplayer.h"
 #include "runtime/functions.h"
 #include "save/profile.h"

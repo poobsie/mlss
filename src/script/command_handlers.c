@@ -167,7 +167,6 @@ extern u8 sub_803C4A0(void*);
 extern void sub_80328B4(void*);
 extern void sub_803C8A4(void*, s32, s32);
 extern void sub_8029788(void*);
-extern void sub_8029170(void*, s32);
 extern void sub_8046A90(void*, s32, s32, s16, u16);
 extern void sub_8046B30(void*, s32, s32, s16, u16);
 extern void sub_8047D84(void*, s32);
@@ -1077,7 +1076,9 @@ s32 script_command_control_battle_registry(
     switch (*operation) {
     case 0:
     case 1:
-        sub_8029170(context->objectRegistry, *operation);
+        field_apply_value_transfer_operation_and_advance_phase(
+            (struct FieldObjectResourceRuntime*)context->objectRegistry,
+            *operation);
         break;
     case 2:
         field_advance_value_transfer_for_mode_1_or_2(
