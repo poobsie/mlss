@@ -152,6 +152,21 @@ void field_scene_select_transition_branch_b(
 }
 SEC(sub_813980C) const u16 field_scene_select_transition_branch_b_padding = 0;
 
+SEC(sub_8139880)
+void field_scene_begin_positioned_transition_c(
+    u32 context, struct FieldSceneObject* object, void* callbackSlot)
+{
+    struct FieldSceneCallbackCursor* cursor = callbackSlot;
+
+    (void)context;
+    sub_81370C4(object, 0xFF);
+    sub_81378CC(
+        object, 1, object->transitionCoordinateX * 0x100,
+        object->transitionCoordinateY * 0x100);
+    sub_81381D4(object);
+    cursor->current = sub_813980C;
+}
+
 __attribute__((section(".text.field_scene_callbacks.sub_8139364")))
 void field_scene_branch_on_condition_or_advance_callback(
     u32 context, struct FieldSceneObject* object,

@@ -30,6 +30,9 @@ void field_scene_begin_positioned_transition_b(
 #define field_scene_select_transition_branch_b sub_813980C
 void field_scene_select_transition_branch_b(
     u32 context, struct FieldSceneObject* object, void* callbackSlot);
+#define field_scene_begin_positioned_transition_c sub_8139880
+void field_scene_begin_positioned_transition_c(
+    u32 context, struct FieldSceneObject* object, void* callbackSlot);
 
 #define field_install_and_run_scene_dispatch_81395ac sub_8139970
 void field_install_and_run_scene_dispatch_81395ac(
