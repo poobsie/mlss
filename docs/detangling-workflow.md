@@ -12,7 +12,15 @@ classified and integrated. Inspect it with:
 ```sh
 make detangle-status
 python3 scripts/detangling_status.py next
+python3 scripts/detangling_status.py metrics
 ```
+
+The metrics report uses linked C functions as its denominator. It reports semantic API,
+structured-access, and unique subsystem-placement coverage separately, plus their strict
+intersection. Unlike the queue summary's source-level uncertainty hints, these counts are
+one record per linked function and are suitable for tracking detangling progress. Use
+`metrics --json` for telemetry; a public alias receives semantic credit only when it has a
+public prototype and an owning source definition.
 
 The latest repository-wide completion check is recorded in `docs/detangling-audit.md`.
 
