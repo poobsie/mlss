@@ -339,6 +339,48 @@ s32 script_command_branch_on_active_mask(
     return 1;
 }
 
+SEC(sub_80EAA04)
+s32 script_command_branch_on_selected_mask(
+    void* context, struct ScriptExecutionState* state,
+    const struct ScriptMaskBranchArguments* arguments)
+{
+    register struct ScriptExecutionState* executionState asm("r6") = state;
+    register const struct ScriptMaskBranchArguments* packet asm("r4") = arguments;
+    register struct ScriptInputRuntimePrefix* inputRuntime asm("r1") =
+        &gScriptInputRuntime;
+    register u32 inputMask asm("r5") = inputRuntime->mask28;
+    register u32 expected asm("r2");
+    register u32 testMask asm("r3");
+    s32 normalizedMode;
+
+    if ((packet->options >> 1) == 0)
+        inputMask = inputRuntime->mask2A;
+
+    expected = packet->mask;
+    testMask = expected;
+    normalizedMode = packet->matchMode + 11;
+    switch (normalizedMode) {
+    case 11:
+        expected = 0;
+        break;
+    case 12:
+        expected = ~expected;
+        testMask = expected;
+        break;
+    }
+
+    if (packet->options & 1) {
+        testMask &= inputMask;
+        if (testMask != expected)
+            executionState->cursor = packet->targetCursor;
+    } else {
+        testMask &= inputMask;
+        if (testMask == expected)
+            executionState->cursor = packet->targetCursor;
+    }
+    return 1;
+}
+
 
 SEC(sub_80EAA5C)
 s32 script_command_forward_input_mask(

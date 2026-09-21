@@ -32,6 +32,7 @@ struct ScriptMaskBranchArguments;
 #define script_command_return_from_battle script_cmd_btl_return
 #define script_command_forward_bounded_random sub_80EA968
 #define script_command_branch_on_active_mask sub_80EA9B8
+#define script_command_branch_on_selected_mask sub_80EAA04
 #define script_command_set_runtime_direction_sign sub_80EAD98
 #define script_command_branch_on_resource_flag sub_80EAEBC
 #define script_command_forward_input_mask sub_80EAA5C
@@ -96,6 +97,9 @@ s32 script_command_forward_bounded_random(
     const struct ScriptRandomForwardArguments* arguments,
     void* commandContext);
 s32 script_command_branch_on_active_mask(
+    void* context, struct ScriptExecutionState* state,
+    const struct ScriptMaskBranchArguments* arguments);
+s32 script_command_branch_on_selected_mask(
     void* context, struct ScriptExecutionState* state,
     const struct ScriptMaskBranchArguments* arguments);
 
