@@ -69,6 +69,10 @@ struct ScriptBattleCommandArguments;
 #define script_command_dispatch_selected_runtime sub_80F1B14
 #define script_command_branch_on_selected_runtime_flag sub_80F1BA4
 #define script_command_configure_object_slot_183 sub_80F0BA4
+#define script_command_select_runtime_mode_20 sub_80F0B80
+struct ScriptCommandContext;
+s32 script_command_select_runtime_mode_20(
+    struct ScriptCommandContext* context, void* state, const void* arguments);
 #define script_command_control_value_transfer sub_80F7C3C
 #define script_command_wait_for_matching_visual sub_80F7BB4
 #define script_command_wait_for_value_transfer sub_80F7C78

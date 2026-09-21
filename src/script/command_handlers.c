@@ -28,9 +28,32 @@
 #define field_value_transfer_status sub_8116620
 
 struct FieldValueTransfer;
+struct ScriptFieldRuntimeModeState {
+    u8 unknown000[0x55F];
+    u8 modeFlags55F;
+};
+#define SCRIPT_FIELD_MODE_RUNTIME \
+    (*(struct ScriptFieldRuntimeModeState**)0x03000FD0)
 struct ScriptBattleReturnContext {
     u8 unknown00[0x1C];
 };
+
+SEC(sub_80F0B80)
+s32 script_command_select_runtime_mode_20(
+    struct ScriptCommandContext* context, void* state, const void* arguments)
+{
+    u8 flags = SCRIPT_FIELD_MODE_RUNTIME->modeFlags55F;
+    s32 clearMask = 0x61;
+
+    (void)context;
+    (void)state;
+    (void)arguments;
+    clearMask = -clearMask;
+    clearMask &= flags;
+    clearMask |= 0x20;
+    SCRIPT_FIELD_MODE_RUNTIME->modeFlags55F = clearMask;
+    return 1;
+}
 
 struct ScriptCommandFieldRuntime {
     u8 unknown000[0x248];
