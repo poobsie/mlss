@@ -446090,6 +446090,7 @@ _08158550: .4byte 0x08CDC5F0
 	.section .text.after_text_upper_structural_sub_815852C, "ax", %progbits
 	.align 2, 0
 	.byte 0x70, 0x47, 0x00, 0x00
+	.if 0
 	thumb_func_start sub_8158558
 sub_8158558:
 	push {r4, lr}
@@ -446127,6 +446128,7 @@ _08158592:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.endif
 	.section .text.after_815859C, "ax", %progbits
 	.section .text.render_object_initializers_after_sub_81585B0, "ax", %progbits
 	.section .text.after_81585D8, "ax", %progbits

@@ -19,6 +19,16 @@ struct BattleSpriteMotionConfig {
 
 struct BattleFixedOrigin;
 
+struct BattleMotionDescriptor {
+    u8 unknown00[0x30];
+    s16 offset30;
+    u16 padding32;
+    void (*callback34)(void* state);
+    s16 offset38;
+    u16 padding3A;
+    void (*callback3C)(void* state);
+};
+
 #define battle_initialize_sprite_motion_zeroed_a sub_8158464
 #define battle_sync_sprite_motion_to_origin_a sub_8158738
 #define battle_initialize_sprite_motion_idle_a sub_81589A8
@@ -50,6 +60,8 @@ struct BattleFixedOrigin;
 #define battle_initialize_scaled_sprite_motion sub_815F238
 #define battle_initialize_grounded_sprite_motion_b sub_815F5C8
 #define battle_sprite_motion_capture_delta sub_815FACC
+#define battle_sprite_motion_dispatch_descriptor_a sub_8158558
+#define battle_sprite_motion_dispatch_descriptor_b sub_815EDB0
 
 struct BattleSpriteMotion {
     struct BattleSprite* sprite;
@@ -77,7 +89,7 @@ struct BattleSpriteMotion {
     u8 unknown2D;
     u8 unknown2E;
     u8 unknown2F;
-    const void* descriptor;
+    const struct BattleMotionDescriptor* descriptor;
     union BattleSpriteMotionSlot34 {
         struct {
             u16 value;
@@ -99,6 +111,10 @@ struct BattleSpriteMotion {
 void battle_sprite_motion_apply_velocity(
     struct BattleSpriteMotion* object, s32 yOffset);
 void battle_sprite_motion_capture_delta(struct BattleSpriteMotion* object);
+s32 battle_sprite_motion_dispatch_descriptor_a(
+    struct BattleSpriteMotion*, void*, void*, void*, u8 operation);
+s32 battle_sprite_motion_dispatch_descriptor_b(
+    struct BattleSpriteMotion*, void*, void*, void*, u8 operation);
 void* battle_initialize_sprite_motion_variant_a(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
 void* battle_initialize_sprite_motion_variant_b(
