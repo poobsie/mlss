@@ -206,6 +206,7 @@ s32 sub_808552C(s16* secondaryTimer, u16* stateValue,
 #define object_on_visual_complete_start_animation_4_timer_32 sub_8112030
 #define object_prepare_motion_from_owner_source_xy sub_81120E4
 #define object_when_timer_active_start_animation_13 sub_811213C
+#define object_emit_effect_264c_every_four_ticks_until_motion_flag sub_8112174
 #define object_on_visual_complete_start_animation_13 sub_81122D0
 #define object_start_state_variant_animation_1 sub_811230C
 #define object_continue_when_motion_helper_clear sub_8112394
@@ -298,6 +299,8 @@ void object_on_visual_complete_start_animation_4_timer_32(
 void object_prepare_motion_from_owner_source_xy(
     struct RuntimeObject* object);
 void object_when_timer_active_start_animation_13(
+    struct RuntimeObject* object);
+void object_emit_effect_264c_every_four_ticks_until_motion_flag(
     struct RuntimeObject* object);
 void object_on_visual_complete_start_animation_13(
     struct RuntimeObject* object);

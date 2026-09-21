@@ -629,6 +629,24 @@ void object_when_timer_active_start_animation_13(
     }
 }
 
+SEC(sub_8112174)
+void object_emit_effect_264c_every_four_ticks_until_motion_flag(
+    struct RuntimeObject* object)
+{
+    if (object->valueA8 == 0) {
+        sub_80DF024(0x264C, object->positionX / 256,
+                    object->positionY / 256 - 1,
+                    object->positionZBase / 256 - 1, object);
+        object->valueA8 = 4;
+    }
+    object->valueA8--;
+    sub_8087CE4(object);
+    if (object->motionFlags & 0x20) {
+        sub_807C298(object);
+        object->update = 0;
+    }
+}
+
 SEC(sub_81120E4)
 void object_prepare_motion_from_owner_source_xy(
     struct RuntimeObject* object)
