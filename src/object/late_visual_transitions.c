@@ -57,7 +57,6 @@ void sub_8112498(struct RuntimeObject*);
 void sub_811254C(struct RuntimeObject*);
 void sub_811251C(struct RuntimeObject*);
 s32 sub_8087124(struct RuntimeObject*);
-void sub_81125CC(struct RuntimeObject*);
 void sub_8112D78(struct RuntimeObject*);
 void sub_8114404(struct RuntimeObject*);
 void sub_81147B4(struct RuntimeObject*);
@@ -678,7 +677,7 @@ s32 object_continue_when_motion_helper_clear(struct RuntimeObject* object)
     s32 result = sub_8087124(object);
 
     if (result == 0) {
-        object->update = sub_81125CC;
+        object->update = object_prepare_state_position_animation_12;
         return 0;
     }
     return result;
@@ -812,6 +811,20 @@ void object_start_profile_position_animation_2(struct RuntimeObject* object)
     sub_8082E1C(object, 2, 0, 0);
     object->update = object_complete_profile_position_animation_2;
     sound_effect_play(0x11B, SOUND_VOLUME_UNCHANGED);
+}
+
+SEC(sub_81125CC)
+void object_prepare_state_position_animation_12(struct RuntimeObject* object)
+{
+    struct RuntimeObjectState* state = object->state;
+    s32 x = state->worldPositionX / 256;
+    s32 y = state->worldPositionY / 256;
+    s32 z = state->floorHeight / 256;
+
+    sub_808843C(object, x, y, z, 0x100);
+    sub_80880C4(object, 0x300);
+    sub_8082E1C(object, 0xC, 0, 0);
+    object->update = object_poll_and_disable_update_b;
 }
 
 

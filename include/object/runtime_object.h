@@ -209,6 +209,7 @@ s32 sub_808552C(s16* secondaryTimer, u16* stateValue,
 #define object_start_state_variant_animation_1 sub_811230C
 #define object_continue_when_motion_helper_clear sub_8112394
 #define object_start_profile_position_animation_2 sub_8112578
+#define object_prepare_state_position_animation_12 sub_81125CC
 #define object_when_ready_start_animation_11_and_stop_sound_11b sub_81127B8
 #define object_complete_profile_position_animation_2 sub_81127FC
 #define object_stop_animation_and_sound_11b_when_ready_variant_b sub_8112984
@@ -299,6 +300,8 @@ void object_on_visual_complete_start_animation_13(
 void object_start_state_variant_animation_1(struct RuntimeObject* object);
 s32 object_continue_when_motion_helper_clear(struct RuntimeObject* object);
 void object_start_profile_position_animation_2(struct RuntimeObject* object);
+void object_prepare_state_position_animation_12(
+    struct RuntimeObject* object);
 void object_when_ready_start_animation_11_and_stop_sound_11b(
     struct RuntimeObject* object);
 void object_complete_profile_position_animation_2(struct RuntimeObject* object);
