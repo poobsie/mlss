@@ -3604,6 +3604,8 @@ SECTIONS
         asm/text08057568.o(.text.object_destructors_after_sub_816B0E0);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_816B21C);
         asm/text08057568.o(.text.object_destructors_after_sub_816B21C);
+        src/ui/moving_sprite.o(.text.ui_moving_sprite.sub_816B230);
+        asm/text08057568.o(.text.after_816B230);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_816B2E0);
         asm/text08057568.o(.text.object_destructors_after_sub_816B2E0);
         src/object/descriptor_destructors.o(.text.object_destructors.sub_816B338);

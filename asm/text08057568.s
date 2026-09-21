@@ -470364,6 +470364,7 @@ _0816B20C:
 _0816B214: .4byte 0x08198504
 _0816B218: .4byte 0x08198584
 	.section .text.object_destructors_after_sub_816B21C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_816B230
 sub_816B230:
 	push {r4, r5, r6, lr}
@@ -470410,6 +470411,8 @@ _0816B282:
 	pop {r4, r5, r6}
 	pop {r1}
 	bx r1
+	.endif
+	.section .text.after_816B230, "ax", %progbits
 	thumb_func_start sub_816B288
 sub_816B288:
 	push {r4, r5, r6, lr}
