@@ -49,6 +49,7 @@ void sub_81111C0(struct RuntimeObject*);
 void sub_8110CB0(struct RuntimeObject*);
 void sub_81112C4(struct RuntimeObject*);
 void sub_8111754(struct RuntimeObject*);
+void sub_8111B38(struct RuntimeObject*);
 void sub_8111C24(struct RuntimeObject*);
 void sub_8111E30(struct RuntimeObject*, s32, s32);
 void sub_8112450(struct RuntimeObject*);
@@ -66,7 +67,6 @@ void sub_81325E8(struct RuntimeObject*);
 void object_on_visual_complete_delay_12(struct RuntimeObject*);
 void sub_81109D0(struct RuntimeObject*);
 void sub_8110A94(struct RuntimeObject*);
-void sub_81127B8(struct RuntimeObject*);
 void sub_81135C0(struct RuntimeObject*);
 #define object_when_poll_clear_start_owner_position_effect sub_8132594
 void object_when_poll_clear_start_owner_position_effect(
@@ -703,6 +703,27 @@ void object_complete_profile_position_animation_2(
     }
 }
 
+SEC(sub_81127B8)
+void object_when_ready_start_animation_11_and_stop_sound_11b(
+    struct RuntimeObject* object)
+{
+    volatile u8* flags;
+    s32 value;
+    s32 mask;
+
+    if (sub_8087CE4(object) == 0) {
+        sub_8082E1C(object, 0xB, 0, 0);
+        flags = &object->visual->flags;
+        value = *flags;
+        mask = -7;
+        value &= mask;
+        value |= 2;
+        *flags = value;
+        object->update = sub_8111B38;
+        sound_effect_stop(0x11B);
+    }
+}
+
 SEC(sub_81129B4)
 void object_on_profile_position_complete_start_effect_countdown(
     struct RuntimeObject* object)
@@ -852,7 +873,7 @@ SEC(sub_81124D0) void sub_81124D0(struct RuntimeObject* object)
     sub_808843C(object, 0x8A, 0x6C, 0, 0x100);
     sub_80880C4(object, 0x380);
     sub_8082E1C(object, 0xA, 0, 0);
-    object->update = sub_81127B8;
+    object->update = object_when_ready_start_animation_11_and_stop_sound_11b;
     sound_effect_play(0x11B, SOUND_VOLUME_UNCHANGED);
 }
 
