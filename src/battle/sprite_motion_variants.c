@@ -8,14 +8,11 @@
 #define BATTLE_CAMERA (*(s16**)0x03001014)
 #define BATTLE_RUNTIME (*(u8**)0x03001020)
 
-extern void sub_815F97C(struct BattleSpriteMotion*, s32);
 extern struct BattleSprite* sub_815FA3C(struct BattleSpriteMotion*);
 extern void sub_815FAFC(struct BattleSpriteMotion*);
-extern void sub_815FAA4(struct BattleSpriteMotion*, void*);
 extern void sub_815FACC(struct BattleSpriteMotion*);
 extern void sub_8021308(void*);
 extern void free_heap_8018DA8(void*);
-extern s16 sub_8160854(void*, s32);
 extern void sub_801E150(struct BattleSprite*, s32, s32, s32, s32);
 extern struct BattleSprite* sub_8020DD0(
     s32, s32, s32, s32, s32, s32, s32);
@@ -63,7 +60,7 @@ void* battle_initialize_random_variant_sprite_motion_a(
     *(u16*)&object->savedX = zero;
     object->sizeVariant =
         runtime_scale_random_u32(10, runtime_random_u32()) > 5;
-    sub_815F97C(object, 0);
+    battle_sprite_motion_ensure_sprite(object, 0);
     return object;
 }
 
@@ -78,21 +75,25 @@ s32 battle_step_sprite_motion_and_dispatch_a(
     switch (operation) {
     case 3:
         descriptor = object->descriptor;
-        descriptor->callback34((u8*)object + descriptor->offset30);
+        descriptor->operation3Callback(
+            (u8*)object + descriptor->operation3StateOffset);
         break;
     case 4:
         descriptor = object->descriptor;
-        descriptor->callback3C((u8*)object + descriptor->offset38);
+        descriptor->operation4Callback(
+            (u8*)object + descriptor->operation4StateOffset);
         break;
     default:
         object->velocityX += object->accelerationX;
         object->velocityY += additionalYAcceleration + object->accelerationY;
         object->positionX += object->velocityX;
         object->positionY += object->velocityY;
-        ground = (s16)sub_8160854(heightContext, object->positionX) << 8;
+        ground = (s16)battle_query_height_at_x(
+            heightContext, object->positionX) << 8;
         if (object->positionY > ground)
             object->positionY =
-                (s16)sub_8160854(heightContext, object->positionX) << 8;
+                (s16)battle_query_height_at_x(
+                    heightContext, object->positionX) << 8;
         break;
     }
     return 0;
@@ -153,12 +154,14 @@ s32 battle_sprite_motion_dispatch_descriptor_a(
     switch (operation) {
     case 3: {
         const struct BattleMotionDescriptor* descriptor = object->descriptor;
-        descriptor->callback34((u8*)object + descriptor->offset30);
+        descriptor->operation3Callback(
+            (u8*)object + descriptor->operation3StateOffset);
         break;
     }
     case 4: {
         const struct BattleMotionDescriptor* descriptor = object->descriptor;
-        descriptor->callback3C((u8*)object + descriptor->offset38);
+        descriptor->operation4Callback(
+            (u8*)object + descriptor->operation4StateOffset);
         object->state = 1;
         break;
     }
@@ -176,12 +179,14 @@ s32 battle_sprite_motion_dispatch_descriptor_b(
     switch (operation) {
     case 3: {
         const struct BattleMotionDescriptor* descriptor = object->descriptor;
-        descriptor->callback34((u8*)object + descriptor->offset30);
+        descriptor->operation3Callback(
+            (u8*)object + descriptor->operation3StateOffset);
         break;
     }
     case 4: {
         const struct BattleMotionDescriptor* descriptor = object->descriptor;
-        descriptor->callback3C((u8*)object + descriptor->offset38);
+        descriptor->operation4Callback(
+            (u8*)object + descriptor->operation4StateOffset);
         object->state = 1;
         break;
     }
@@ -216,8 +221,8 @@ struct BattleSpriteMotion* battle_initialize_sprite_motion_base(
     object->collisionHeight = config->collisionHeight;
     object->spriteResourceId = config->spriteResourceId;
     object->initialAnimation = config->initialAnimation;
-    object->unknown2C = config->palette;
-    object->unknown2D = config->renderFlags;
+    object->palette = config->palette;
+    object->renderFlags = config->renderFlags;
     object->sprite = 0;
     object->unknown2E = 0;
     return object;
@@ -241,7 +246,7 @@ CALLBACK_SEC(name) void* name(                                          \
     *(u16*)&object->savedX = 0;                                         \
     if ((next_state) >= 0)                                              \
         object->state = (next_state);                                   \
-    sub_815F97C(object, 0);                                             \
+    battle_sprite_motion_ensure_sprite(object, 0);                      \
     return object;                                                      \
 }
 
@@ -260,7 +265,7 @@ CALLBACK_SEC(name) void* name(                                          \
     object->slot34.values.value = value;                                \
     object->state = 0;                                                  \
     if (initialize_sprite)                                              \
-        sub_815F97C(object, 0);                                         \
+        battle_sprite_motion_ensure_sprite(object, 0);                  \
     return object;                                                      \
 }
 
@@ -274,7 +279,7 @@ CALLBACK_SEC(name) void name(                                           \
 {                                                                       \
     struct BattleSpritePosition* position;                              \
     s32 coordinate;                                                     \
-    sub_815FAA4(object, (void*)origin);                                 \
+    battle_sync_sprite_motion_primary_sprite(object, (void*)origin);   \
     position = object->slot34.ownedResource;                            \
     if (position != 0) {                                                \
         coordinate = origin->x;                                        \
@@ -291,7 +296,7 @@ DEFINE_ORIGIN_SYNC(battle_sync_sprite_motion_to_origin_b)
 #define DEFINE_SPRITE_SIZE_SETUP(name)                                  \
 CALLBACK_SEC(name) void name(struct BattleSpriteMotion* object)         \
 {                                                                       \
-    sub_815F97C(object, 0);                                             \
+    battle_sprite_motion_ensure_sprite(object, 0);                      \
     sub_815FA3C(object)->size04 = 0xC0;                                \
     sub_815FA3C(object)->size06 = 0xC0;                                \
 }
@@ -325,7 +330,7 @@ void battle_sync_sprite_motion_resources_variant_a(
 {
     struct BattleSprite* sprite;
     s32 coordinate;
-    sub_815FAA4(object, (void*)origin);
+    battle_sync_sprite_motion_primary_sprite(object, (void*)origin);
     sprite = object->slot3C.attachedSprite;
     if (sprite != 0) {
         coordinate = origin->x;
@@ -348,7 +353,7 @@ void battle_sync_sprite_motion_resources_variant_b(
 {
     struct BattleSprite* sprite;
     s32 coordinate;
-    sub_815FAA4(object, (void*)origin);
+    battle_sync_sprite_motion_primary_sprite(object, (void*)origin);
     if (object->ownedResource40 != 0) {
         ((struct BattleSpritePosition*)object->ownedResource40)->x =
             sub_815FA3C(object)->xPosition;
@@ -372,7 +377,7 @@ CALLBACK_SEC(name) s32 name(                                            \
 {                                                                       \
     object->positionX -= (s16)object->slot34.values.value;              \
     if (object->positionX - *originX < -0x2000)                         \
-        object->positionX += ((sub_8199F30() & 0x1FF) + 0x200) << 8;    \
+        object->positionX += ((runtime_random_u32() & 0x1FF) + 0x200) << 8; \
     return 0;                                                           \
 }
 
@@ -383,14 +388,15 @@ DEFINE_WRAP_X(battle_wrap_sprite_motion_x)
 CALLBACK_SEC(name) void name(struct BattleSpriteMotion* object)         \
 {                                                                       \
     const struct BattleMotionDescriptor* descriptor;                    \
-    sub_815F97C(object, 0);                                             \
+    battle_sprite_motion_ensure_sprite(object, 0);                      \
     if (object->sizeVariant == 1) {                                   \
         sub_815FA3C(object)->size04 = 0x140;                            \
         sub_815FA3C(object)->size06 = 0x140;                            \
     }                                                                   \
     object->positionY = 0xA000;                                        \
     descriptor = object->descriptor;                                   \
-    descriptor->callback34((u8*)object + descriptor->offset30);        \
+    descriptor->operation3Callback(                                    \
+        (u8*)object + descriptor->operation3StateOffset);              \
 }
 
 DEFINE_SPRITE_ACTIVATION(battle_activate_sprite_motion_a)
@@ -402,7 +408,8 @@ CALLBACK_SEC(sub_815F0CC) const u16 sub_815F0CC_padding = 0;
 CALLBACK_SEC(name) void name(                                           \
     struct BattleSpriteMotion* object, void* heightContext)             \
 {                                                                       \
-    s32 ground = (s16)sub_8160854(heightContext, object->positionX) << 8; \
+    s32 ground = (s16)battle_query_height_at_x(                         \
+        heightContext, object->positionX) << 8;                         \
     object->ownedResource44 = (void*)ground;                            \
     if (object->positionY > ground) {                                   \
         object->positionY = ground;                                    \
@@ -425,7 +432,7 @@ void battle_update_sprite_motion_unless_flagged(
     struct BattleSpriteMotion* object, void* origin)
 {
     if (!(object->slot34.values.auxiliary & 0x800))
-        sub_815FAA4(object, origin);
+        battle_sync_sprite_motion_primary_sprite(object, origin);
 }
 CALLBACK_SEC(sub_8158D80) const u16 sub_8158D80_padding = 0;
 
@@ -449,7 +456,7 @@ void* battle_initialize_grounded_sprite_motion(
     *(u16*)&object->ownedResource40 = 0;
     object->slot3C.child = 0;
     object->ownedResource44 = 0;
-    sub_815F97C(object, 0);
+    battle_sprite_motion_ensure_sprite(object, 0);
     return object;
 }
 
@@ -476,7 +483,7 @@ void battle_sync_sprite_motion_to_camera(
     struct BattleSpritePosition* position;
     s32 originX;
     s32 originY;
-    sub_815FAA4(object, (void*)origin);
+    battle_sync_sprite_motion_primary_sprite(object, (void*)origin);
     position = object->slot34.ownedResource;
     if (position != 0) {
         originX = origin->x;
@@ -496,7 +503,7 @@ void* battle_initialize_scaled_sprite_motion(
     object->descriptor = (void*)0x08CDCD10;
     object->slot34.values.value = value;
     object->state = 0;
-    sub_815F97C(object, 0);
+    battle_sprite_motion_ensure_sprite(object, 0);
     if (object->sizeVariant == 0) {
         object->sprite->size04 = 0x120;
         object->sprite->size06 = 0x120;
@@ -517,7 +524,7 @@ void* battle_initialize_grounded_sprite_motion_b(
     *(u16*)&object->ownedResource40 = 0;
     object->slot3C.child = 0;
     object->ownedResource44 = 0;
-    sub_815F97C(object, 0);
+    battle_sprite_motion_ensure_sprite(object, 0);
     return object;
 }
 
@@ -529,7 +536,7 @@ SEC(name) void* name(                                                    \
     sub_815F8F4(object, config);                                         \
     object->descriptor = (void*)(descriptor_value);                      \
     object->slot34.values.value = value;                                 \
-    sub_815F97C(object, 0);                                              \
+    battle_sprite_motion_ensure_sprite(object, 0);                       \
     return object;                                                       \
 }
 
@@ -547,7 +554,7 @@ SEC(name) void* name(                                                    \
     y = object->positionY;                                               \
     object->savedX = x;                                                  \
     object->slot3C.savedY = y;                                           \
-    sub_815F97C(object, 0);                                              \
+    battle_sprite_motion_ensure_sprite(object, 0);                       \
     return object;                                                       \
 }
 
@@ -623,7 +630,7 @@ DEFINE_PREPARE_STATE(sub_8158ABC, 2)
 #define DEFINE_ATTACHED_POSITION_SYNC(name)                              \
 SEC(name) void name(struct BattleSpriteMotion* object, void* origin)     \
 {                                                                        \
-    sub_815FAA4(object, origin);                                         \
+    battle_sync_sprite_motion_primary_sprite(object, origin);            \
     if (object->ownedResource40 != 0) {                                  \
         ((struct BattleSpritePosition*)object->ownedResource40)->x =     \
             ((struct BattleSpritePosition*)sub_815FA3C(object))->x;      \

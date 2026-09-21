@@ -19,14 +19,16 @@ struct BattleSpriteMotionConfig {
 
 struct BattleFixedOrigin;
 
+typedef void (*BattleMotionOperationCallback)(void* operationState);
+
 struct BattleMotionDescriptor {
     u8 unknown00[0x30];
-    s16 offset30;
+    s16 operation3StateOffset;
     u16 padding32;
-    void (*callback34)(void* state);
-    s16 offset38;
+    BattleMotionOperationCallback operation3Callback;
+    s16 operation4StateOffset;
     u16 padding3A;
-    void (*callback3C)(void* state);
+    BattleMotionOperationCallback operation4Callback;
 };
 
 #define battle_initialize_sprite_motion_zeroed_a sub_8158464
@@ -66,6 +68,11 @@ struct BattleMotionDescriptor {
 #define battle_initialize_random_variant_sprite_motion_a sub_8158B00
 #define battle_step_sprite_motion_and_dispatch_a sub_8158490
 #define battle_initialize_sprite_motion_with_auxiliary_sprite_a sub_8158BE0
+#define battle_handle_sprite_motion_operation_a sub_8158668
+#define battle_track_peer_x_crossings_a sub_8158790
+#define battle_query_height_at_x sub_8160854
+#define battle_sprite_motion_ensure_sprite sub_815F97C
+#define battle_sync_sprite_motion_primary_sprite sub_815FAA4
 
 struct BattleSpriteMotion {
     struct BattleSprite* sprite;
@@ -89,8 +96,8 @@ struct BattleSpriteMotion {
     u8 collisionHeight;
     u8 spriteResourceId;
     u8 initialAnimation;
-    u8 unknown2C;
-    u8 unknown2D;
+    u8 palette;
+    u8 renderFlags;
     u8 unknown2E;
     u8 unknown2F;
     const struct BattleMotionDescriptor* descriptor;
@@ -204,5 +211,14 @@ s32 battle_step_sprite_motion_and_dispatch_a(
     s16 additionalYAcceleration, void*, u8 operation);
 void* battle_initialize_sprite_motion_with_auxiliary_sprite_a(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
+s32 battle_handle_sprite_motion_operation_a(
+    struct BattleSpriteMotion*, void* heightContext,
+    void*, void*, u8 operation);
+s32 battle_track_peer_x_crossings_a(struct BattleSpriteMotion*);
+s16 battle_query_height_at_x(void* heightContext, s32 x);
+void battle_sprite_motion_ensure_sprite(
+    struct BattleSpriteMotion*, s32);
+void battle_sync_sprite_motion_primary_sprite(
+    struct BattleSpriteMotion*, void* origin);
 
 #endif

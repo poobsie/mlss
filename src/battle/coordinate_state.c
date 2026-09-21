@@ -1,10 +1,10 @@
 #include "battle/coordinate_state.h"
+#include "battle/sprite_motion.h"
 #include "common.h"
 #include "graphics/functions.h"
 
 #define SEC(symbol) __attribute__((section(".text.battle_coordinate_state." #symbol)))
 
-s16 sub_8160854(void* heightContext, s32 x);
 void graphics_release_owned_resource(void* owner);
 
 SEC(sub_8161180)
@@ -16,7 +16,7 @@ void battle_update_coordinate_projector_motion(
     projector->positionX = x;
     projector->positionY += projector->velocityY
                           + projector->verticalAcceleration;
-    ground = sub_8160854(projector->heightContext, x) << 8;
+    ground = battle_query_height_at_x(projector->heightContext, x) << 8;
     if (projector->positionY > ground)
         projector->positionY = ground;
 }
