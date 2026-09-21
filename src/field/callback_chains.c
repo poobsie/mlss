@@ -27,6 +27,16 @@ void sub_814D838(
     u32 context, struct FieldSceneObject* object, void* callbackSlot);
 u8 sub_8138C8C(u32 context, struct FieldSceneObject* object);
 void sub_81382A8(struct FieldSceneObject* object);
+void sub_81385A8(struct FieldSceneObject* object);
+
+SEC(sub_81396A8)
+void field_scene_run_active_callback_and_refresh(
+    u32 context, struct FieldSceneObject* object)
+{
+    object->callback1A0(context, object, &object->callback1A0);
+    if (object->flags2B5 & FIELD_SCENE_FLAGS_2B5_08)
+        sub_81385A8(object);
+}
 
 __attribute__((section(".text.field_scene_callbacks.sub_8139364")))
 void field_scene_branch_on_condition_or_advance_callback(

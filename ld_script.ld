@@ -3035,6 +3035,7 @@ SECTIONS
         asm/text08057568.o(.text.after_upper_sub_8139364);
         src/field/callback_chains.o(.text.upper.sub_81393D8);
         asm/text08057568.o(.text.after_upper_sub_81393D8);
+        src/field/callback_chains.o(.text.upper.sub_81396A8);
         src/field/callback_chains.o(.text.upper.sub_81396D8);
         asm/text08057568.o(.text.after_upper_sub_81396D8);
         src/field/callback_chains.o(.text.upper.sub_81398FC);
