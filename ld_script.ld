@@ -3151,6 +3151,8 @@ SECTIONS
         asm/text08057568.o(.text.after_8158198);
         src/battle/single_sprite_destructors.o(.text.upper.sub_81581FC);
         asm/text08057568.o(.text.after_upper_sub_81581FC);
+        src/battle/number_display.o(.text.battle_number_display.sub_8158220);
+        asm/text08057568.o(.text.after_sub_8158220);
         src/graphics/circular_mask.o(.text.sub_81582C4);
         asm/text08057568.o(.text.after_81582C4);
         src/battle/number_display.o(.text.battle_number_display.sub_81582CC);

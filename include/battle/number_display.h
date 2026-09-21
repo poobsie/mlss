@@ -8,6 +8,14 @@ union BattleNumberDisplaySpriteSlot {
     u16 lowHandle;
 };
 
+union BattleNumberDisplayValueState {
+    struct {
+        s16 current;
+        u16 padding;
+    } half;
+    u32 packed;
+};
+
 struct BattleNumberDisplay {
     union BattleNumberDisplaySpriteSlot hundreds;
     union BattleNumberDisplaySpriteSlot tens;
@@ -15,8 +23,7 @@ struct BattleNumberDisplay {
     s32 positionX;
     s32 positionY;
     void* digitWorkspace;
-    s16 value18;
-    u16 padding1A;
+    union BattleNumberDisplayValueState value;
     s32 displayedValue;
     u32 adjustmentDirection;
     u32 adjustmentTimer;

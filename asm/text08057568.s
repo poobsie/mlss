@@ -445756,6 +445756,7 @@ _08158172:
 	.byte 0x48, 0x80, 0x01, 0x20, 0x28, 0x81, 0x03, 0xB0, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
 	.byte 0x05, 0x50, 0x00, 0x00
 	.section .text.after_upper_sub_81581FC, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8158220
 sub_8158220:
 	push {r4, r5, lr}
@@ -445784,6 +445785,8 @@ sub_8158220:
 	bx r1
 	.byte 0x00, 0x00
 _08158254: .4byte 0x03001038
+	.endif
+	.section .text.after_sub_8158220, "ax", %progbits
 	thumb_func_start sub_8158258
 sub_8158258:
 	push {r4, r5, r6, lr}
