@@ -25,6 +25,29 @@ void sub_814E8B0(
 void sub_814DB34(u32 context, struct FieldSceneObject* object);
 void sub_814D838(
     u32 context, struct FieldSceneObject* object, void* callbackSlot);
+u8 sub_8138C8C(u32 context, struct FieldSceneObject* object);
+void sub_81382A8(struct FieldSceneObject* object);
+
+__attribute__((section(".text.field_scene_callbacks.sub_8139364")))
+void field_scene_branch_on_condition_or_advance_callback(
+    u32 context, struct FieldSceneObject* object,
+    struct FieldSceneCallbackCursor* cursor)
+{
+    s32 clearMask;
+    u8 flags;
+
+    if ((u8)sub_8138C8C(context, object) == 1) {
+        sub_81382A8(object);
+    } else {
+        flags = object->callbackStateFlags;
+        clearMask = 3;
+        clearMask = -clearMask;
+        clearMask &= flags;
+        clearMask |= 1;
+        object->callbackStateFlags = clearMask;
+        cursor->current = cursor->next;
+    }
+}
 
 __attribute__((section(".text.field_scene_callbacks.sub_813915C")))
 void field_scene_countdown_linked_selection_then_restore_callback(

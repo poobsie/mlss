@@ -28,9 +28,19 @@ void field_scene_load_scaled_bounds(
 #define field_scene_copy_four_selection_values sub_8139070
 void field_scene_copy_four_selection_values(
     struct FieldSceneObject* object, s32 halfwordOffset);
+struct FieldSceneCallbackCursor;
+#define field_scene_branch_on_condition_or_advance_callback sub_8139364
+void field_scene_branch_on_condition_or_advance_callback(
+    u32 context, struct FieldSceneObject* object,
+    struct FieldSceneCallbackCursor* cursor);
 
 struct FieldCallbackSlots {
     FieldSceneChainCallback slots[4];
+};
+
+struct FieldSceneCallbackCursor {
+    FieldSceneChainCallback current;
+    FieldSceneChainCallback next;
 };
 
 struct FieldSceneLayoutRegion {
