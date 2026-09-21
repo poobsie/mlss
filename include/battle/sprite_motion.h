@@ -6,12 +6,12 @@
 struct BattleSpriteMotionConfig {
     s16 x;
     s16 y;
-    u8 spriteKind;
-    u8 animation;
-    u8 unknown06;
-    u8 unknown07;
-    u8 unknown08;
-    u8 unknown09;
+    u8 collisionWidth;
+    u8 collisionHeight;
+    u8 sizeVariant;
+    u8 spriteFactoryMode;
+    u8 spriteResourceId;
+    u8 initialAnimation;
     u8 palette;
     u8 renderFlags;
     u8 priority;
@@ -79,12 +79,12 @@ struct BattleSpriteMotion {
     u8 unknown22[2];
     u8 state;
     u8 priority;
-    u8 variant26;
-    u8 unknown27;
-    u8 spriteKind;
-    u8 animation;
-    u8 palette;
-    u8 renderFlags;
+    u8 sizeVariant;
+    u8 spriteFactoryMode;
+    u8 collisionWidth;
+    u8 collisionHeight;
+    u8 spriteResourceId;
+    u8 initialAnimation;
     u8 unknown2C;
     u8 unknown2D;
     u8 unknown2E;

@@ -114,12 +114,12 @@ struct BattleSpriteMotion* battle_initialize_sprite_motion_base(
     object->accelerationY = 0;
     object->state = 0;
     object->priority = config->priority;
-    object->variant26 = config->unknown06;
-    object->unknown27 = config->unknown07;
-    object->spriteKind = config->spriteKind;
-    object->animation = config->animation;
-    object->palette = config->unknown08;
-    object->renderFlags = config->unknown09;
+    object->sizeVariant = config->sizeVariant;
+    object->spriteFactoryMode = config->spriteFactoryMode;
+    object->collisionWidth = config->collisionWidth;
+    object->collisionHeight = config->collisionHeight;
+    object->spriteResourceId = config->spriteResourceId;
+    object->initialAnimation = config->initialAnimation;
     object->unknown2C = config->palette;
     object->unknown2D = config->renderFlags;
     object->sprite = 0;
@@ -288,7 +288,7 @@ CALLBACK_SEC(name) void name(struct BattleSpriteMotion* object)         \
 {                                                                       \
     const struct BattleMotionDescriptor* descriptor;                    \
     sub_815F97C(object, 0);                                             \
-    if (object->variant26 == 1) {                                       \
+    if (object->sizeVariant == 1) {                                   \
         sub_815FA3C(object)->size04 = 0x140;                            \
         sub_815FA3C(object)->size06 = 0x140;                            \
     }                                                                   \
@@ -401,7 +401,7 @@ void* battle_initialize_scaled_sprite_motion(
     object->slot34.values.value = value;
     object->state = 0;
     sub_815F97C(object, 0);
-    if (object->variant26 == 0) {
+    if (object->sizeVariant == 0) {
         object->sprite->size04 = 0x120;
         object->sprite->size06 = 0x120;
     }
