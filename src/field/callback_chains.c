@@ -1,5 +1,6 @@
 #include "field/functions.h"
 #include "field/scene_object.h"
+#include "runtime/random.h"
 
 #define STRINGIFY_INNER(value) #value
 #define STRINGIFY(value) STRINGIFY_INNER(value)
@@ -35,6 +36,8 @@ void sub_8137FA4(struct FieldSceneObject* object);
 void sub_81381D4(struct FieldSceneObject* object);
 void sub_8136A84(
     u32 context, struct FieldSceneObject* object, void* callbackSlot);
+void sub_813B1E8(
+    u32 context, struct FieldSceneObject* object, void* callbackSlot);
 
 SEC(sub_81396A8)
 void field_scene_run_active_callback_and_refresh(
@@ -62,6 +65,40 @@ void field_scene_begin_positioned_transition_a(
     sub_81385A8(object);
     cursor->current = sub_8136A84;
 }
+
+SEC(sub_8139758)
+void field_scene_select_transition_branch_a(
+    u32 context, struct FieldSceneObject* object, void* callbackSlot)
+{
+    s32 selected;
+    u8 flags;
+    s32 clearMask;
+
+    if ((u8)sub_8138C8C(context, object) == 1) {
+        sub_81382A8(object);
+        return;
+    }
+
+    selected = object->layout100.selectionValues[
+        runtime_scale_random_u32(4, runtime_random_u32())];
+    object->selectedValue = selected;
+    __asm__("" : "+r"(selected));
+    if ((selected << 16) != 0) {
+        ((struct FieldSceneCallbackCursor*)callbackSlot)->current = sub_813B1E8;
+        object->callback1AC =
+            ((struct FieldSceneCallbackCursor*)callbackSlot)->next;
+    } else {
+        ((struct FieldSceneCallbackCursor*)callbackSlot)->current =
+            ((struct FieldSceneCallbackCursor*)callbackSlot)->next;
+        flags = object->callbackStateFlags;
+        clearMask = 3;
+        clearMask = -clearMask;
+        clearMask &= flags;
+        clearMask |= 1;
+        object->callbackStateFlags = clearMask;
+    }
+}
+SEC(sub_8139758) const u16 field_scene_select_transition_branch_a_padding = 0;
 
 __attribute__((section(".text.field_scene_callbacks.sub_8139364")))
 void field_scene_branch_on_condition_or_advance_callback(
