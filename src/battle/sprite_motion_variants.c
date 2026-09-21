@@ -64,6 +64,37 @@ void* battle_initialize_random_variant_sprite_motion_a(
     return object;
 }
 
+CALLBACK_SEC(battle_step_sprite_motion_and_dispatch_a)
+s32 battle_step_sprite_motion_and_dispatch_a(
+    struct BattleSpriteMotion* object, void* heightContext,
+    s16 additionalYAcceleration, void* unused, u8 operation)
+{
+    const struct BattleMotionDescriptor* descriptor;
+    s32 ground;
+
+    switch (operation) {
+    case 3:
+        descriptor = object->descriptor;
+        descriptor->callback34((u8*)object + descriptor->offset30);
+        break;
+    case 4:
+        descriptor = object->descriptor;
+        descriptor->callback3C((u8*)object + descriptor->offset38);
+        break;
+    default:
+        object->velocityX += object->accelerationX;
+        object->velocityY += additionalYAcceleration + object->accelerationY;
+        object->positionX += object->velocityX;
+        object->positionY += object->velocityY;
+        ground = (s16)sub_8160854(heightContext, object->positionX) << 8;
+        if (object->positionY > ground)
+            object->positionY =
+                (s16)sub_8160854(heightContext, object->positionX) << 8;
+        break;
+    }
+    return 0;
+}
+
 CALLBACK_SEC(battle_set_sprite_motion_animation_if_changed)
 void battle_set_sprite_motion_animation_if_changed(
     struct BattleSpriteMotion* object, s32 animation)
