@@ -20,7 +20,7 @@ s32 ui_moving_sprite_check_proximity(
         if (distanceSquared <= 0x8FFF) {
             sound_effect_play(0x37, SOUND_VOLUME_UNCHANGED);
             other->valueAndFlags6C.halfwords.flags |= enabledFlag;
-            object->valueAndFlags6C.value = 6;
+            object->valueAndFlags6C.state = 6;
             return 1;
         }
     }

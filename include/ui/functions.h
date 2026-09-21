@@ -17,6 +17,7 @@
 #define ui_object_group4_destroy sub_8163528
 #define ui_object_visual_is_idle sub_8163A08
 #define ui_object_update_direction_toward_point sub_8167D50
+#define ui_object_set_motion_target_mode3 sub_8163978
 #define ui_sprite_pair_destroy_base sub_8163B60
 #define ui_sprite_pair_destroy_variant sub_8163D4C
 #define ui_sprite_pair_create_second_sprite sub_8163A80
@@ -50,6 +51,10 @@ u32 ui_object_visual_is_idle(struct UiObject* object);
 void ui_object_update_direction_toward_point(void* unused,
                                              struct UiObject* object,
                                              s32 targetX, s32 targetY);
+void ui_object_set_motion_target_mode3(
+    struct UiObject* object,
+    s32 targetX, s32 targetYOffset, s32 targetY,
+    s32 duration, u8 enableMotion);
 void ui_object_reset(struct UiObject* object, const void* value);
 void ui_sprite_pair_hide(struct UiSpritePair* object);
 void ui_sprite_pair_create_second_sprite(

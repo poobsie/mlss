@@ -2,6 +2,7 @@
 #include "graphics/functions.h"
 #include "graphics/resource.h"
 #include "gba/syscall.h"
+#include "math/interpolation.h"
 
 #define SEC(name)   __attribute__((section(".text.high." #name)))
 #define U16AT(p, o) (*(u16*)((u8*)(p) + (o)))
@@ -14,20 +15,19 @@ void sub_8021308(void*);
 void sprite_hide_8021F20(void*);
 void sub_80184F4(void*);
 void sub_8018218(void*, void*, u32, u32, u32);
-extern s32 sub_8163E50(s32, s32, s32, s32);
 
 SEC(sub_8164FA4) s32 graphics_tile_buffer_interpolation_is_complete(
     struct GraphicsTileBufferOwner* object) {
     s32 value;
     if (object->interpolationProgress9C > object->interpolationDuration98)
         return 1;
-    value = sub_8163E50(
+    value = interpolate_s32_smoothstep_clamped(
         object->interpolationStartX28,
         object->interpolationTargetX90,
         object->interpolationDuration98,
         object->interpolationProgress9C);
     *object->output50 = -value;
-    value = sub_8163E50(
+    value = interpolate_s32_smoothstep_clamped(
         object->interpolationStartY2C,
         object->interpolationTargetY94,
         object->interpolationDuration98,
