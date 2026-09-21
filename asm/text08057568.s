@@ -337956,6 +337956,7 @@ _081120BA:
 _081120E0: .4byte sub_8111C24
 .endif
 	.section .text.object_late_visual_transitions_after_sub_811208C, "ax", %progbits
+	.if 0
 	thumb_func_start sub_81120E4
 sub_81120E4:
 	push {r4, lr}
@@ -338002,6 +338003,8 @@ _08112112:
 	pop {r0}
 	bx r0
 _08112138: .4byte sub_8111C24
+	.endif
+	.section .text.object_late_visual_transitions_after_sub_81120E4, "ax", %progbits
 	.if 0
 	thumb_func_start sub_811213C
 sub_811213C:

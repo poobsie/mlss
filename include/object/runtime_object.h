@@ -203,6 +203,7 @@ s32 sub_808552C(s16* secondaryTimer, u16* stateValue,
 #define object_on_visual_complete_spawn_effect_2669 sub_8111234
 #define object_on_visual_complete_countdown_effect_2700 sub_81116C0
 #define object_on_visual_complete_start_animation_4_timer_32 sub_8112030
+#define object_prepare_motion_from_owner_source_xy sub_81120E4
 #define object_when_timer_active_start_animation_13 sub_811213C
 #define object_on_visual_complete_start_animation_13 sub_81122D0
 #define object_start_state_variant_animation_1 sub_811230C
@@ -288,6 +289,8 @@ void object_on_visual_complete_spawn_effect_2669(
 void object_on_visual_complete_countdown_effect_2700(
     struct RuntimeObject* object);
 void object_on_visual_complete_start_animation_4_timer_32(
+    struct RuntimeObject* object);
+void object_prepare_motion_from_owner_source_xy(
     struct RuntimeObject* object);
 void object_when_timer_active_start_animation_13(
     struct RuntimeObject* object);

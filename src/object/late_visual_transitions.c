@@ -602,6 +602,21 @@ void object_when_timer_active_start_animation_13(
     }
 }
 
+SEC(sub_81120E4)
+void object_prepare_motion_from_owner_source_xy(
+    struct RuntimeObject* object)
+{
+    struct ObjectPositionOwner* owner = object->positionOwner;
+    struct ObjectPositionSource* source = owner->positionSource;
+    s32 x = source->positionX / 256;
+    s32 y = source->positionY / 256;
+    s32 z = object->positionZBase / 256;
+
+    sub_808843C(object, x, y, z, 0x100);
+    sub_8111E30(object, 0x280, 0x3C);
+    object->update = sub_8111C24;
+}
+
 SEC(sub_81121E8)
 void sub_81121E8(struct RuntimeObject* object)
 {
