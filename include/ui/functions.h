@@ -41,7 +41,7 @@ struct UiDelayedCountdown;
 struct UiBouncingObject;
 void ui_object_copy_pair_values(struct UiObjectPairValues* object);
 void ui_object_configure_mode6(struct UiObject* object, s32 value);
-void ui_object_set_visual(struct UiObject* object, void* visual);
+void ui_object_set_visual(struct UiObject* object, const void* visual);
 void ui_object_grid_reset_visual(struct UiObjectGrid* grid, u32 row, u32 column);
 void ui_object_list_apply_state(struct UiObjectNodeList* list, u32 mode, u32 value);
 void ui_object_group4_reset_state(struct UiObjectGroup4* group);
@@ -50,7 +50,7 @@ u32 ui_object_visual_is_idle(struct UiObject* object);
 void ui_object_update_direction_toward_point(void* unused,
                                              struct UiObject* object,
                                              s32 targetX, s32 targetY);
-void ui_object_reset(struct UiObject* object, void* value);
+void ui_object_reset(struct UiObject* object, const void* value);
 void ui_sprite_pair_hide(struct UiSpritePair* object);
 void ui_sprite_pair_create_second_sprite(
     struct UiSpritePair* object, s32 kind, s32 packedPosition, s32 priority,

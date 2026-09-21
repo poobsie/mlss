@@ -4,11 +4,6 @@
 #define SEC(name) __attribute__((section(".text.ui_groups." #name)))
 #define PAD(name) SEC(name) const u16 name##_padding = 0
 
-struct UiObjectGrid {
-    u32 unknown00;
-    struct UiObject* objects[6];
-};
-
 struct UiObjectNode {
     u8 unknown00[8];
     struct UiObjectNode* next;
@@ -63,9 +58,9 @@ void sub_8163650(struct UiObjectGrid* grid, u32 row, u32 column) {
     column--;
     object = grid->objects[row * 3 + column];
 
-    object->value44 = (void*)0x08212934;
-    object->counter48 = 0;
-    object->state40 = 0;
+    object->visualDefinition = (const void*)0x08212934;
+    object->visualStepIndex = 0;
+    object->visualState = 0;
 }
 
 SEC(sub_8163864)

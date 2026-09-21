@@ -3,32 +3,37 @@
 
 #include "global.h"
 
-typedef void (*UiObjectDestructor)(void* object, u32 flags);
+typedef void (*UiObjectAdjustedDestructor)(void* adjustedThis, u32 flags);
 
 struct UiObjectVtable {
     u8 unknown00[8];
     s16 destructorThisAdjustment;
     u16 unknown0A;
-    UiObjectDestructor destructor;
+    UiObjectAdjustedDestructor destructor;
 };
 
 struct UiObject {
     u8 unknown00[0x0C];
     const struct UiObjectVtable* vtable;
     u8 unknown10[8];
-    u32 value18;
-    u32 value1C;
-    u32 value20;
+    s32 positionX;
+    s32 positionYOffset;
+    s32 positionY;
     u8 unknown24[0x1C];
-    u32 state40;
-    void* value44;
-    u16 counter48;
+    u32 visualState;
+    const void* visualDefinition;
+    u16 visualStepIndex;
     u8 unknown4A[8];
-    u16 direction52;
+    u16 directionIndex;
 };
 
 struct UiObjectGroup4 {
     struct UiObject* objects[4];
+};
+
+struct UiObjectGrid {
+    u32 unknown00;
+    struct UiObject* objects[6];
 };
 
 struct UiObjectPairValues {
