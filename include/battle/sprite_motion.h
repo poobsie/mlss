@@ -68,6 +68,7 @@ struct BattleMotionDescriptor {
 #define battle_initialize_randomized_sprite_motion_b sub_815F124
 #define battle_initialize_random_variant_sprite_motion_a sub_8158B00
 #define battle_step_sprite_motion_and_dispatch_a sub_8158490
+#define battle_step_sprite_motion_and_dispatch_b sub_815ECE8
 #define battle_initialize_sprite_motion_with_auxiliary_sprite_a sub_8158BE0
 #define battle_handle_sprite_motion_operation_a sub_8158668
 #define battle_track_peer_x_crossings_a sub_8158790
@@ -210,6 +211,9 @@ void* battle_initialize_randomized_sprite_motion_b(
 void* battle_initialize_random_variant_sprite_motion_a(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
 s32 battle_step_sprite_motion_and_dispatch_a(
+    struct BattleSpriteMotion*, void* heightContext,
+    s16 additionalYAcceleration, void*, u8 operation);
+s32 battle_step_sprite_motion_and_dispatch_b(
     struct BattleSpriteMotion*, void* heightContext,
     s16 additionalYAcceleration, void*, u8 operation);
 void* battle_initialize_sprite_motion_with_auxiliary_sprite_a(

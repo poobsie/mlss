@@ -116,6 +116,41 @@ s32 battle_step_sprite_motion_and_dispatch_a(
     return 0;
 }
 
+CALLBACK_SEC(battle_step_sprite_motion_and_dispatch_b)
+s32 battle_step_sprite_motion_and_dispatch_b(
+    struct BattleSpriteMotion* object, void* heightContext,
+    s16 additionalYAcceleration, void* unused, u8 operation)
+{
+    const struct BattleMotionDescriptor* descriptor;
+    s32 ground;
+
+    switch (operation) {
+    case 3:
+        descriptor = object->descriptor;
+        descriptor->operation3Callback(
+            (u8*)object + descriptor->operation3StateOffset);
+        break;
+    case 4:
+        descriptor = object->descriptor;
+        descriptor->operation4Callback(
+            (u8*)object + descriptor->operation4StateOffset);
+        break;
+    default:
+        object->velocityX += object->accelerationX;
+        object->velocityY += additionalYAcceleration + object->accelerationY;
+        object->positionX += object->velocityX;
+        object->positionY += object->velocityY;
+        ground = (s16)battle_query_height_at_x(
+            heightContext, object->positionX) << 8;
+        if (object->positionY > ground)
+            object->positionY =
+                (s16)battle_query_height_at_x(
+                    heightContext, object->positionX) << 8;
+        break;
+    }
+    return 0;
+}
+
 CALLBACK_SEC(battle_initialize_sprite_motion_with_auxiliary_sprite_a)
 void* battle_initialize_sprite_motion_with_auxiliary_sprite_a(
     struct BattleSpriteMotion* object,

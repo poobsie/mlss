@@ -454900,6 +454900,7 @@ _0815ECE0:
 	.byte 0x00, 0x00
 	.endif
 	.section .text.after_815ECA8, "ax", %progbits
+	.if 0
 	thumb_func_start sub_815ECE8
 sub_815ECE8:
 	push {r4, r5, lr}
@@ -454969,6 +454970,7 @@ _0815ED68:
 	pop {r4, r5}
 	pop {r1}
 	bx r1
+	.endif
 	.section .text.after_815ED70, "ax", %progbits
 	thumb_func_start sub_815ED84
 	.section .discard.text_upper_structural_sub_815ED84, "ax", %progbits
