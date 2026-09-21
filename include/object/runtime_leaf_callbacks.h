@@ -142,7 +142,10 @@ void object_advance_visual_timer_with_sounds_af_d5(
 void object_emit_effect_207a_then_start_countdown_on_visual_complete(
     struct RuntimeObject* object);
 #define object_start_animation_3_dual_callbacks_when_value80_clears sub_8071110
+#define object_prepare_owner_motion_animation_2_and_sound_11b sub_8070E4C
 void object_start_animation_3_dual_callbacks_when_value80_clears(
+    struct RuntimeObject* object);
+void object_prepare_owner_motion_animation_2_and_sound_11b(
     struct RuntimeObject* object);
 #define object_finish_animation_7_after_countdown sub_807127C
 #define object_resume_with_sound_ad_when_ready sub_80742FC

@@ -877,6 +877,7 @@ SECTIONS
         asm/text08057568.o(.text.misc_helpers_02_after_sub_8070D60);
         src/object/early_state_transitions.o(.text.object_early_state_transitions.sub_8070D88);
         asm/text08057568.o(.text.small_functions_04_after_sub_8070D88);
+        src/object/runtime_leaf_callbacks.o(.text.runtime_leaf_callbacks.sub_8070E4C);
         src/object/behavior_transitions.o(.text.sub_8070EC0);
         asm/text08057568.o(.text.after_sub_8070EC0);
         src/object/completion_actions.o(.text.misc_helpers_01.sub_8070EDC);

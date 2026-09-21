@@ -112,6 +112,32 @@ void object_emit_effect_207a_then_start_countdown_on_visual_complete(
     }
 }
 
+SEC(sub_8070E4C)
+void object_prepare_owner_motion_animation_2_and_sound_11b(
+    struct RuntimeObject* object)
+{
+    struct ObjectPositionOwner* owner;
+    struct ObjectPositionSource* source;
+    s32* motionTargetX;
+    u8 flags;
+
+    sub_8082E1C(object, 2, 0, 0);
+    motionTargetX = &object->value84;
+    owner = object->positionOwner;
+    source = owner->positionSource;
+    *motionTargetX = source->positionX + 0x5000;
+    object->value88 = source->positionY;
+    object->value8C = object->positionZBase;
+    object->unknown7C = 0x180;
+    flags = object->flags79;
+    flags |= 0x20;
+    object->flags79 = flags;
+    object->unknown7A = 0;
+    sub_8085B38(object);
+    sound_effect_play(0x11B, SOUND_VOLUME_UNCHANGED);
+    object->update = object_start_animation_3_dual_callbacks_when_value80_clears;
+}
+
 SEC(sub_8071110)
 void object_start_animation_3_dual_callbacks_when_value80_clears(
     struct RuntimeObject* object)
