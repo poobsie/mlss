@@ -72,6 +72,29 @@ s32 battle_sprite_motion_dispatch_descriptor_a(
 CALLBACK_SEC(sub_8158558)
 const u16 battle_sprite_motion_dispatch_descriptor_a_padding = 0;
 
+CALLBACK_SEC(sub_815EDB0)
+s32 battle_sprite_motion_dispatch_descriptor_b(
+    struct BattleSpriteMotion* object, void* unused1, void* unused2,
+    void* unused3, u8 operation)
+{
+    switch (operation) {
+    case 3: {
+        const struct BattleMotionDescriptor* descriptor = object->descriptor;
+        descriptor->callback34((u8*)object + descriptor->offset30);
+        break;
+    }
+    case 4: {
+        const struct BattleMotionDescriptor* descriptor = object->descriptor;
+        descriptor->callback3C((u8*)object + descriptor->offset38);
+        object->state = 1;
+        break;
+    }
+    }
+    return 0;
+}
+CALLBACK_SEC(sub_815EDB0)
+const u16 battle_sprite_motion_dispatch_descriptor_b_padding = 0;
+
 SEC(battle_initialize_sprite_motion_base)
 struct BattleSpriteMotion* battle_initialize_sprite_motion_base(
     struct BattleSpriteMotion* object,

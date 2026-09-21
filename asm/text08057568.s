@@ -455147,6 +455147,7 @@ _0815EDA8: .4byte 0x08CDCB10
 	.section .text.after_text_upper_structural_sub_815ED84, "ax", %progbits
 	.align 2, 0
 	.byte 0x70, 0x47, 0x00, 0x00
+	.if 0
 	thumb_func_start sub_815EDB0
 sub_815EDB0:
 	push {r4, lr}
@@ -455184,6 +455185,7 @@ _0815EDEA:
 	pop {r1}
 	bx r1
 	.byte 0x00, 0x00
+	.endif
 	.section .text.after_815EDF4, "ax", %progbits
 	.section .text.render_object_initializers_after_sub_815EE08, "ax", %progbits
 	.section .text.after_815EE30, "ax", %progbits

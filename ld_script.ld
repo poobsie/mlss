@@ -3292,6 +3292,7 @@ SECTIONS
         asm/text08057568.o(.text.after_815ED70);
         src/battle/sprite_motion_variants.o(.text.text_upper_structural.sub_815ED84);
         asm/text08057568.o(.text.after_text_upper_structural_sub_815ED84);
+        src/battle/sprite_motion_variants.o(.text.battle_sprite_callbacks.sub_815EDB0);
         src/battle/definition_initializers.o(.text.sub_815EDF4);
         asm/text08057568.o(.text.after_815EDF4);
         src/object/render_initializers.o(.text.render_object_initializers.sub_815EE08);
