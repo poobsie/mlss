@@ -229,6 +229,19 @@ struct ScriptRandomForwardArguments {
     u32 upperBound;
 };
 
+enum ScriptMaskMatchMode {
+    SCRIPT_MASK_MATCH_MODE_MIN = -11,
+    SCRIPT_MASK_MATCH_CLEAR_EXPECTED = 0,
+    SCRIPT_MASK_MATCH_INVERT_EXPECTED = 1,
+};
+
+struct ScriptMaskBranchArguments {
+    s32 options;
+    enum ScriptMaskMatchMode matchMode;
+    u32 mask;
+    u32 targetCursor;
+};
+
 struct ScriptSoundVolumeArguments {
     u8 duration;
     u8 padding01[3];
@@ -289,6 +302,40 @@ s32 script_command_forward_bounded_random(
     sub_80E9C4C(
         commandContext, &owner->bridgeDestination18, 0, 0,
         arguments->bridgeValue, value);
+    return 1;
+}
+
+SEC(sub_80EA9B8)
+s32 script_command_branch_on_active_mask(
+    void* context, struct ScriptExecutionState* state,
+    const struct ScriptMaskBranchArguments* arguments)
+{
+    register struct ScriptExecutionState* executionState asm("r6") = state;
+    register const struct ScriptMaskBranchArguments* packet asm("r4") = arguments;
+    register u32 activeMask asm("r5") = gScriptInputRuntime.activeMask;
+    register u32 expected asm("r2") = packet->mask;
+    register u32 testMask asm("r3") = expected;
+    s32 normalizedMode = packet->matchMode + 11;
+
+    switch (normalizedMode) {
+    case 11:
+        expected = 0;
+        break;
+    case 12:
+        expected = ~expected;
+        testMask = expected;
+        break;
+    }
+
+    if (packet->options & 1) {
+        testMask &= activeMask;
+        if (testMask != expected)
+            executionState->cursor = packet->targetCursor;
+    } else {
+        testMask &= activeMask;
+        if (testMask == expected)
+            executionState->cursor = packet->targetCursor;
+    }
     return 1;
 }
 
