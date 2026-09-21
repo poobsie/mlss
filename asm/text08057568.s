@@ -462075,6 +462075,8 @@ sub_8163DB8:
 	bx r0
 _08163E04: .4byte 0x0821280C
 _08163E08: .4byte 0x03000C84
+	.section .text.after_8163DB8, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8163E0C
 sub_8163E0C:
 	push {r4, r5, r6, lr}
@@ -462110,6 +462112,8 @@ _08163E26:
 _08163E44: .4byte 0x03001038
 _08163E48: .4byte 0x0819832C
 _08163E4C: .4byte 0x08198220
+	.endif
+	.section .text.after_8163E0C, "ax", %progbits
 	thumb_func_start sub_8163E50
 sub_8163E50:
 	push {r4, r5, r6, r7, lr}

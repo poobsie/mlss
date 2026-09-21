@@ -19,3 +19,25 @@ void interpolation_clear(struct InterpolationState* state) {
     state->targetValue = 0;
     state->accumulator = 0;
 }
+
+typedef s32 (*RuntimeSignedDivide)(s32 numerator, s32 denominator);
+
+extern u8 loc_8198220[];
+extern u8 loc_819832C[];
+
+#define RUNTIME_DIVIDE \
+    ((RuntimeSignedDivide)(*(u8**)0x03001038 + \
+        (loc_819832C - loc_8198220)))
+
+s32 runtime_interpolate_s32(s32 start, s32 end, s32 duration, s32 elapsed)
+    __attribute__((section(".text.sub_8163E0C")));
+s32 runtime_interpolate_s32(s32 start, s32 end, s32 duration, s32 elapsed)
+{
+    if (duration <= 0)
+        duration = 1;
+    if (elapsed < 0)
+        elapsed = 0;
+    if (elapsed > duration)
+        elapsed = duration;
+    return start + RUNTIME_DIVIDE((end - start) * elapsed, duration);
+}
