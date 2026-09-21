@@ -127,6 +127,25 @@ def search_checkpoint_error(engine, process, compile_attempts, best_exists, sear
     return "search failed to initialize; see engine.log"
 
 
+def finalize_search_verification(search, verification, compile_attempts):
+    """Make canonical linked bytes the only authority for a perfect result."""
+    engine_perfect = bool(
+        search.get("enginePerfectMatch", search.get("perfectMatch", False))
+        or search.get("bestScore") == 0)
+    canonical_match = verification.get("status") == "span_match"
+    search["enginePerfectMatch"] = engine_perfect
+    search["perfectMatch"] = canonical_match
+    search["canonicalVerification"] = verification.get("status", "unavailable")
+    if engine_perfect and not canonical_match:
+        search["falsePerfect"] = True
+        mismatch = verification.get("first_mismatch")
+        iterations = search.get("totalIterations")
+        return ("engine score zero failed independent canonical linked-span "
+                f"verification at byte {mismatch}; "
+                f"{compile_attempts} compiler launches, {iterations} iterations")
+    return None
+
+
 def link_compare(obj, symbol, address, expected, folder, flags, symbols, aliases=None):
     folder.mkdir(exist_ok=True)
     runner = Runner(20, folder)
@@ -266,6 +285,10 @@ def run_search(args):
         report["verification"] = link_compare(best_obj, args.function, candidate.address, expected,
                                                folder / "best-check", flags, symbols, aliases)
         report["best_source"] = str(best)
+        verification_error = finalize_search_verification(
+            report["search"], report["verification"], report["compile_attempts"])
+        if verification_error:
+            raise ValueError(verification_error)
         report["status"] = report["verification"]["status"]
         return report
     except (OSError, ValueError, RuntimeError, subprocess.SubprocessError, SystemExit) as error:

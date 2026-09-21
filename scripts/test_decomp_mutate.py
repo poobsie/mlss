@@ -14,6 +14,7 @@ from decomp_mutate import (
     bounded_process,
     checkpoint_best_source,
     compiler_script,
+    finalize_search_verification,
     run_transmuter_process,
     search_checkpoint_error,
     target_assembly,
@@ -100,6 +101,53 @@ class MutationSafetyTest(unittest.TestCase):
         self.assertIn("timeout before final checkpoint", error)
         self.assertIn("7107 compiler launches", error)
         self.assertNotIn("failed to initialize", error)
+
+    def test_false_engine_perfect_fails_explicitly_after_linked_verification(self):
+        search = {
+            # Legacy checkpoints exposed the engine claim directly.
+            "perfectMatch": True,
+            "bestScore": 0,
+            "baseScore": 0,
+            "totalIterations": 0,
+        }
+        verification = {
+            "status": "mismatch",
+            "actual_bytes": 40,
+            "expected_bytes": 40,
+            "first_mismatch": 6,
+        }
+
+        error = finalize_search_verification(search, verification, 1)
+
+        self.assertIn("engine score zero", error)
+        self.assertIn("byte 6", error)
+        self.assertIn("1 compiler launches, 0 iterations", error)
+        self.assertTrue(search["enginePerfectMatch"])
+        self.assertFalse(search["perfectMatch"])
+        self.assertTrue(search["falsePerfect"])
+        self.assertEqual(search["canonicalVerification"], "mismatch")
+
+    def test_canonical_span_is_the_only_perfect_authority(self):
+        search = {
+            "enginePerfectMatch": False,
+            "perfectMatch": False,
+            "bestScore": 3,
+            "baseScore": 8,
+            "totalIterations": 12,
+        }
+        verification = {
+            "status": "span_match",
+            "actual_bytes": 40,
+            "expected_bytes": 40,
+            "first_mismatch": None,
+        }
+
+        error = finalize_search_verification(search, verification, 13)
+
+        self.assertIsNone(error)
+        self.assertTrue(search["perfectMatch"])
+        self.assertFalse(search["enginePerfectMatch"])
+        self.assertEqual(search["canonicalVerification"], "span_match")
 
     def test_missing_checkpoint_before_launches_remains_initialization_failure(self):
         error = search_checkpoint_error(
