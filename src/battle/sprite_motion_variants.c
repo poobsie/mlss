@@ -45,6 +45,23 @@ void* battle_initialize_randomized_sprite_motion_a(
     return object;
 }
 
+CALLBACK_SEC(battle_initialize_randomized_sprite_motion_b)
+void* battle_initialize_randomized_sprite_motion_b(
+    struct BattleSpriteMotion* object,
+    const struct BattleSpriteMotionConfig* config, u16 value)
+{
+    u16 zero;
+
+    battle_initialize_sprite_motion_base(object, config);
+    object->descriptor = (void*)0x08CDCE50;
+    zero = 0;
+    *(u16*)&object->slot3C.savedY = value;
+    object->slot34.values.value = zero;
+    *(u16*)&object->savedX = zero;
+    object->positionX += ((runtime_random_u32() & 0x1FF) + 0x200) << 8;
+    return object;
+}
+
 CALLBACK_SEC(battle_initialize_random_variant_sprite_motion_a)
 void* battle_initialize_random_variant_sprite_motion_a(
     struct BattleSpriteMotion* object,

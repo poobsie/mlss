@@ -455338,6 +455338,7 @@ _0815F0F4:
 	.endif
 	.section .text.after_815F0CC, "ax", %progbits
 	.section .text.after_815F110, "ax", %progbits
+	.if 0
 	thumb_func_start sub_815F124
 sub_815F124:
 	push {r4, r5, lr}
@@ -455368,6 +455369,8 @@ sub_815F124:
 	.byte 0x00, 0x00
 _0815F15C: .4byte 0x08CDCE50
 _0815F160: .4byte 0x000001FF
+	.endif
+	.section .text.after_815F124, "ax", %progbits
 	.byte 0x00, 0x20, 0x70, 0x47
 	.section .text.after_815F168, "ax", %progbits
 	.byte 0x30, 0xB5, 0x05, 0x1C, 0x14, 0x04, 0x24, 0x0C, 0x00, 0xF0, 0xB6, 0xFB, 0x03, 0x48, 0x28, 0x63
