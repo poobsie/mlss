@@ -3038,6 +3038,8 @@ SECTIONS
         src/field/callback_chains.o(.text.upper.sub_81396A8);
         src/field/callback_chains.o(.text.upper.sub_81396D8);
         asm/text08057568.o(.text.after_upper_sub_81396D8);
+        src/field/callback_chains.o(.text.upper.sub_8139708);
+        asm/text08057568.o(.text.after_field_scene_begin_positioned_transition_a);
         src/field/callback_chains.o(.text.upper.sub_81398FC);
         asm/text08057568.o(.text.after_upper_sub_81398FC);
         src/field/callback_chains.o(.text.upper.sub_813993C);

@@ -12,10 +12,15 @@ struct FieldSceneObject;
 typedef void (*FieldSceneDispatch)(u32, struct FieldSceneObject*);
 typedef void (*FieldSceneChainCallback)(
     u32, struct FieldSceneObject*, void* callbackSlot);
+struct FieldSceneCallbackCursor;
 
 #define field_scene_run_active_callback_and_refresh sub_81396A8
 void field_scene_run_active_callback_and_refresh(
     u32 context, struct FieldSceneObject* object);
+#define field_scene_begin_positioned_transition_a sub_8139708
+void field_scene_begin_positioned_transition_a(
+    u32 context, struct FieldSceneObject* object,
+    void* callbackSlot);
 
 #define field_install_and_run_scene_dispatch_81395ac sub_8139970
 void field_install_and_run_scene_dispatch_81395ac(
@@ -32,7 +37,6 @@ void field_scene_load_scaled_bounds(
 #define field_scene_copy_four_selection_values sub_8139070
 void field_scene_copy_four_selection_values(
     struct FieldSceneObject* object, s32 halfwordOffset);
-struct FieldSceneCallbackCursor;
 #define field_scene_branch_on_condition_or_advance_callback sub_8139364
 void field_scene_branch_on_condition_or_advance_callback(
     u32 context, struct FieldSceneObject* object,
@@ -77,7 +81,9 @@ struct FieldSceneObject {
     FieldSceneChainCallback callback1AC;
     const u8* selectionTable;
     const s16* boundsTable1B4;
-    u8 unknown1B8[0x18];
+    s16 transitionCoordinateX;
+    s16 transitionCoordinateY;
+    u8 unknown1BC[0x14];
     u16 selectionIndex;
     u16 selectedValue;
     u16 selectionResetValue;

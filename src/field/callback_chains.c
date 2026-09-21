@@ -28,6 +28,13 @@ void sub_814D838(
 u8 sub_8138C8C(u32 context, struct FieldSceneObject* object);
 void sub_81382A8(struct FieldSceneObject* object);
 void sub_81385A8(struct FieldSceneObject* object);
+void sub_81370C4(struct FieldSceneObject* object, u32 value);
+void sub_81378CC(
+    struct FieldSceneObject* object, u32 mode, s32 x, s32 y);
+void sub_8137FA4(struct FieldSceneObject* object);
+void sub_81381D4(struct FieldSceneObject* object);
+void sub_8136A84(
+    u32 context, struct FieldSceneObject* object, void* callbackSlot);
 
 SEC(sub_81396A8)
 void field_scene_run_active_callback_and_refresh(
@@ -36,6 +43,24 @@ void field_scene_run_active_callback_and_refresh(
     object->callback1A0(context, object, &object->callback1A0);
     if (object->flags2B5 & FIELD_SCENE_FLAGS_2B5_08)
         sub_81385A8(object);
+}
+
+SEC(sub_8139708)
+void field_scene_begin_positioned_transition_a(
+    u32 context, struct FieldSceneObject* object,
+    void* callbackSlot)
+{
+    struct FieldSceneCallbackCursor* cursor = callbackSlot;
+
+    (void)context;
+    sub_81370C4(object, 0xFF);
+    sub_81378CC(
+        object, 1, object->transitionCoordinateX * 0x100,
+        object->transitionCoordinateY * 0x100);
+    sub_8137FA4(object);
+    sub_81381D4(object);
+    sub_81385A8(object);
+    cursor->current = sub_8136A84;
 }
 
 __attribute__((section(".text.field_scene_callbacks.sub_8139364")))
