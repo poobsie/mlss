@@ -22,9 +22,22 @@ void field_scene_update_vertical_deceleration(struct FieldSceneObject* object);
 void field_scene_countdown_linked_selection_then_restore_callback(
     u32 context, struct FieldSceneObject* object,
     FieldSceneChainCallback* callbackSlot);
+#define field_scene_load_scaled_bounds sub_8139030
+void field_scene_load_scaled_bounds(
+    struct FieldSceneObject* object, s32 halfwordOffset);
 
 struct FieldCallbackSlots {
     FieldSceneChainCallback slots[4];
+};
+
+struct FieldSceneLayoutRegion {
+    u8 unknown100[0x28];
+    u16 selectionValues[4];
+    u8 unknown130[8];
+    s16 boundsYStart;
+    s16 boundsYEnd;
+    s16 boundsXStart;
+    s16 boundsXEnd;
 };
 
 struct FieldSceneObject {
@@ -36,13 +49,8 @@ struct FieldSceneObject {
     s32 elevationOffset;
     u8 unknown01C[0x38];
     u8 mode054;
-    u8 unknown055[0xD3];
-    u16 selectionValues128[4];
-    u8 unknown130[8];
-    s16 boundsYStart;
-    s16 boundsYEnd;
-    s16 boundsXStart;
-    s16 boundsXEnd;
+    u8 unknown055[0xAB];
+    struct FieldSceneLayoutRegion layout100;
     u8 unknown140[0x58];
     FieldSceneDispatch dispatch198;
     FieldSceneDispatch dispatch19C;

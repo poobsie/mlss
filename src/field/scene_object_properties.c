@@ -29,6 +29,21 @@ void field_scene_update_vertical_deceleration(struct FieldSceneObject* object)
 FIELD_SECTION(".text.field_scene_callbacks.sub_8139200")
 const u32 field_scene_update_vertical_deceleration_padding = 0x00004770;
 
+FIELD_SECTION(".text.field_scene_properties.sub_8139030")
+void field_scene_load_scaled_bounds(
+    struct FieldSceneObject* object, s32 halfwordOffset)
+{
+    struct FieldSceneLayoutRegion* layout = &object->layout100;
+    const s16* source = object->boundsTable1B4 + (s16)halfwordOffset;
+
+    layout->boundsXStart = *source * 16 + 8;
+    source++;
+    layout->boundsYStart = *source * 16 + 8;
+    source++;
+    layout->boundsXEnd = *source * 16 + 8;
+    layout->boundsYEnd = source[1] * 16 + 8;
+}
+
 FIELD_SECTION(".text.field_scene_object_motion.sub_80402C4")
 void field_step_scene_vertical_motion(struct FieldSceneObject* object)
 {

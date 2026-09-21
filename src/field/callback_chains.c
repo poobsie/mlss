@@ -11,7 +11,6 @@ void sub_8138B84(struct FieldSceneObject* object, s32 index);
 void sub_8138944(struct FieldSceneObject* object, s32 index);
 void sub_8138FD4(struct FieldSceneObject* object, s32 index);
 void sub_8138FF0(struct FieldSceneObject* object, s32 index);
-void sub_8139030(struct FieldSceneObject* object, s32 index);
 void sub_813B380(u32 context, struct FieldSceneObject* object);
 void sub_81398C4(u32 context, struct FieldSceneObject* object);
 void sub_81396A8(u32 context, struct FieldSceneObject* object);
@@ -190,7 +189,7 @@ void field_initialize_callback_chain_variant_i(
     u32 context, struct FieldSceneObject* object)
 {
     sub_81387C8(object, 0);
-    sub_8139030(object, 0);
+    field_scene_load_scaled_bounds(object, 0);
     object->dispatch198 = sub_813B380;
     object->callback1A0 = sub_813C758;
     object->callback1A4 = sub_813C758;
@@ -201,7 +200,7 @@ void field_initialize_callback_chain_variant_i(
     SEC(name) void name(u32 context, struct FieldSceneObject* object)   \
     {                                                                    \
         sub_8138944(object, 0);                                         \
-        sub_8139030(object, 0);                                         \
+        field_scene_load_scaled_bounds(object, 0);                      \
         sub_8138FD4(object, 0x0B);                                      \
         sub_8138944(object->linkedSceneObject344, 0x0F);                \
         object->dispatch198 = dispatch;                                 \
@@ -220,7 +219,7 @@ void field_initialize_callback_chain_variant_l(
     u32 context, struct FieldSceneObject* object)
 {
     sub_81387C8(object, 0);
-    sub_8139030(object, 0);
+    field_scene_load_scaled_bounds(object, 0);
     sub_8138FD4(object, 0x0B);
     object->dispatch198 = sub_81435E4;
     object->callback1A0 = sub_8139420;
@@ -233,7 +232,7 @@ void field_initialize_callback_chain_variant_m(
     u32 context, struct FieldSceneObject* object)
 {
     sub_8138944(object, 0);
-    sub_8139030(object, 0);
+    field_scene_load_scaled_bounds(object, 0);
     sub_8138FD4(object, 0x0B);
     object->dispatch198 = sub_814448C;
     object->callback1A0 = sub_8139420;
