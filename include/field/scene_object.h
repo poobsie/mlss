@@ -25,6 +25,9 @@ void field_scene_countdown_linked_selection_then_restore_callback(
 #define field_scene_load_scaled_bounds sub_8139030
 void field_scene_load_scaled_bounds(
     struct FieldSceneObject* object, s32 halfwordOffset);
+#define field_scene_copy_four_selection_values sub_8139070
+void field_scene_copy_four_selection_values(
+    struct FieldSceneObject* object, s32 halfwordOffset);
 
 struct FieldCallbackSlots {
     FieldSceneChainCallback slots[4];

@@ -44,6 +44,25 @@ void field_scene_load_scaled_bounds(
     layout->boundsYEnd = source[1] * 16 + 8;
 }
 
+FIELD_SECTION(".text.field_scene_properties.sub_8139070")
+void field_scene_copy_four_selection_values(
+    struct FieldSceneObject* object, s32 halfwordOffset)
+{
+    const u16* source =
+        (const u16*)object->selectionTable + (s16)halfwordOffset;
+    struct FieldSceneLayoutRegion* layout = &object->layout100;
+    s16 index;
+
+    index = 0;
+    while (index <= 3) {
+        layout->selectionValues[index] = *source;
+        index++;
+        source++;
+    }
+}
+FIELD_SECTION(".text.field_scene_properties.sub_8139070")
+const u16 field_scene_copy_four_selection_values_padding = 0;
+
 FIELD_SECTION(".text.field_scene_object_motion.sub_80402C4")
 void field_step_scene_vertical_motion(struct FieldSceneObject* object)
 {
