@@ -198,6 +198,7 @@ s32 sub_808552C(s16* secondaryTimer, u16* stateValue,
 #define object_prepare_vector_setup_from_owner_state sub_81109F4
 #define object_apply_owner_state_motion_setup sub_8110ED8
 #define object_when_unlinked_start_owner_variant_animation_6_or_9 sub_8110F5C
+#define object_when_ready_emit_owner_variant_effect_and_switch_sounds sub_8110FC8
 #define object_start_owner_variant_animation_11_or_12 sub_811104C
 #define object_continue_owner_variant_animation_10_or_11 sub_8111174
 #define object_finish_owner_variant_animation_4_or_7 sub_81111C0
@@ -284,6 +285,8 @@ void object_prepare_vector_setup_from_owner_state(
     struct RuntimeObject* object);
 void object_apply_owner_state_motion_setup(struct RuntimeObject* object);
 void object_when_unlinked_start_owner_variant_animation_6_or_9(
+    struct RuntimeObject* object);
+void object_when_ready_emit_owner_variant_effect_and_switch_sounds(
     struct RuntimeObject* object);
 void object_start_owner_variant_animation_11_or_12(
     struct RuntimeObject* object);

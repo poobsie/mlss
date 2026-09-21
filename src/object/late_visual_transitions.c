@@ -42,8 +42,8 @@ void sub_810F764(struct RuntimeObject*);
 void sub_81101BC(struct RuntimeObject*);
 void sub_8110A30(struct RuntimeObject*);
 void sub_8110B84(struct RuntimeObject*);
-void sub_8110FC8(struct RuntimeObject*);
 void sub_811108C(struct RuntimeObject*);
+void sub_8111100(struct RuntimeObject*);
 void sub_8111174(struct RuntimeObject*);
 void sub_81111C0(struct RuntimeObject*);
 void sub_8110CB0(struct RuntimeObject*);
@@ -473,6 +473,31 @@ void object_when_unlinked_start_owner_variant_animation_6_or_9(
         value |= 2;
         *flags = value;
         object->update = object_on_visual_complete_disable_b;
+    }
+}
+
+SEC(sub_8110FC8)
+void object_when_ready_emit_owner_variant_effect_and_switch_sounds(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObject* owner;
+    s32 variant;
+    s32 effect;
+
+    if (sub_8087CE4(object) == 0) {
+        sub_8082E1C(object, 1, 0, 0);
+        sub_80883A0(object, 4);
+        owner = object->positionOwner;
+        variant = -owner->state->variant;
+        effect = 0x20CD;
+        if (variant != 1)
+            effect = 0x20D5;
+        sub_80DF024(effect, object->positionX / 256,
+                    object->positionY / 256,
+                    object->positionZBase / 256, object);
+        object->update = sub_8111100;
+        sound_effect_stop(0x89);
+        sound_effect_play(0x41, SOUND_VOLUME_UNCHANGED);
     }
 }
 
@@ -1059,7 +1084,7 @@ void object_apply_owner_state_motion_setup(struct RuntimeObject* object)
     object->unknown75 = source->unknown7D - 1;
     sub_807F4FC(object);
     object->secondaryUpdate = (RuntimeObjectCallback)0x08110FC5;
-    object->update = sub_8110FC8;
+    object->update = object_when_ready_emit_owner_variant_effect_and_switch_sounds;
     sound_effect_play(0x89, SOUND_VOLUME_UNCHANGED);
 }
 
