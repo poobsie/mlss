@@ -93,6 +93,26 @@ void sub_80695E4(struct RuntimeObject* object);
 void sub_8062188(struct RuntimeObject* object);
 void sub_806589C(struct RuntimeObject* object);
 void sub_806A47C(struct RuntimeObject* object);
+void sub_8071244(struct RuntimeObject* object);
+void sub_806EDBC(struct RuntimeObject* object);
+
+SEC(sub_8071110)
+void object_start_animation_3_dual_callbacks_when_value80_clears(
+    struct RuntimeObject* object)
+{
+    if (object->value80 == 0) {
+        sound_effect_stop(0x11B);
+        sound_effect_play(0xD2, SOUND_VOLUME_UNCHANGED);
+        sub_8082E1C(object, 3, 0, 0);
+        object->timer = 10;
+        object->behaviorState = 10;
+        sub_807F4FC(object);
+        object->auxiliaryUpdate = sub_8071244;
+        object->tertiaryUpdate =
+            (RuntimeObjectCallback)object_finish_sound_d2_and_begin_animation_1_when_ready;
+        object->update = sub_806EDBC;
+    }
+}
 
 SEC(sub_8065AE4)
 s32 object_start_animation_1_delay_8_when_runtime_ready(
