@@ -20,7 +20,7 @@ void object_update_motion_then_notify_owner_on_flag_20(
 
     owner = object->positionOwner;
     sub_8087EFC(object);
-    if (object->flags79 & 0x20) {
+    if (object->motionFlags & 0x20) {
         sub_810DD7C(owner, object, 0xFF);
         object->update = (RuntimeObjectCallback)0x0809B031;
     }

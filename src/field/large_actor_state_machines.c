@@ -241,11 +241,11 @@ void field_place_actor_b_from_state_then_animation_4(
         if ((actorB->stateFlags & 6) == 2 ||
             (actorB->stateFlags & 6) == 4) {
             state = actionB->state;
-            rawX = state->valueD8;
+            rawX = state->worldPositionX;
             if (rawX < 0)
                 rawX += 0xFF;
             x = rawX >> 8;
-            rawY = state->valueDC;
+            rawY = state->worldPositionY;
             if (rawY < 0)
                 rawY += 0xFF;
             y = rawY >> 8;
@@ -335,7 +335,7 @@ void field_place_actor_a_from_process_state_then_animation_4(
                         -1);
             sub_80880C4(actionA, 0x600);
         }
-        actorState = actionA->flags76 & 6;
+        actorState = actionA->stateFlags & 6;
         if (actorState == 2 || actorState == 4) {
             sub_8082E1C(actionA, 4, 0x2034, 0);
             flags = (s8*)&actionA->visual->flags;
@@ -364,13 +364,13 @@ void field_on_actor_b_complete_animation_7_and_sound_35_a(
             flags = (s8*)&actionB->visual->flags;
             *flags = (*flags & -7) | 2;
         }
-        state = actionB->flags76 & 6;
+        state = actionB->stateFlags & 6;
         if (state == 2 || state == 4) {
-            actionB->unknown7A =
+            actionB->motionDurationOverride =
                 ((SoundFunction)(*(u32*)0x03001038
                     + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 35);
             *(u16*)&actionB->unknown7E[0] = 0;
-            flags = (s8*)&actionB->flags79;
+            flags = (s8*)&actionB->motionFlags;
             *flags &= -0x21;
         }
         process->update = sub_80C18E4;
@@ -398,13 +398,13 @@ void field_on_actor_b_complete_animation_11_and_actor_a_sound_a(
             flags = (s8*)&actionB->visual->flags;
             *flags = (*flags & -7) | 2;
         }
-        state = actionA->flags76 & 6;
+        state = actionA->stateFlags & 6;
         if (state == 2 || state == 4) {
-            actionA->unknown7A =
+            actionA->motionDurationOverride =
                 ((SoundFunction)(*(u32*)0x03001038
                     + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 10);
             *(u16*)&actionA->unknown7E[0] = 0;
-            flags = (s8*)&actionA->flags79;
+            flags = (s8*)&actionA->motionFlags;
             *flags &= -0x21;
         }
         actionA->secondaryTimer &= 0x0FFF;
@@ -433,13 +433,13 @@ void field_on_actor_b_complete_animation_11_and_actor_a_sound_b(
             flags = (s8*)&actionB->visual->flags;
             *flags = (*flags & -7) | 2;
         }
-        state = actionA->flags76 & 6;
+        state = actionA->stateFlags & 6;
         if (state == 2 || state == 4) {
-            actionA->unknown7A =
+            actionA->motionDurationOverride =
                 ((SoundFunction)(*(u32*)0x03001038
                     + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 10);
             *(u16*)&actionA->unknown7E[0] = 0;
-            flags = (s8*)&actionA->flags79;
+            flags = (s8*)&actionA->motionFlags;
             *flags &= -0x21;
         }
         actionA->secondaryTimer &= 0x0FFF;
@@ -464,13 +464,13 @@ void field_complete_actor_b_command_2063_and_arm_sound(
             flags = (s8*)&action->visual->flags;
             *flags &= -7;
         }
-        state = action->flags76 & 6;
+        state = action->stateFlags & 6;
         if (state == 2 || state == 4) {
-            action->unknown7A =
+            action->motionDurationOverride =
                 ((SoundFunction)(*(u32*)0x03001038
                     + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 20);
             *(u16*)&action->unknown7E[0] = 0;
-            flags = (s8*)&action->flags79;
+            flags = (s8*)&action->motionFlags;
             *flags &= -0x21;
         }
         action->secondaryTimer &= 0x0FFF;
@@ -526,13 +526,13 @@ void field_on_actor_b_complete_animation_10_and_sound_20(
             flags = (s8*)&actionB->visual->flags;
             *flags &= -7;
         }
-        state = actionB->flags76 & 6;
+        state = actionB->stateFlags & 6;
         if (state == 2 || state == 4) {
-            actionB->unknown7A =
+            actionB->motionDurationOverride =
                 ((SoundFunction)(*(u32*)0x03001038
                     + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 20);
             *(u16*)&actionB->unknown7E[0] = 0;
-            flags = (s8*)&actionB->flags79;
+            flags = (s8*)&actionB->motionFlags;
             *flags &= -0x21;
         }
         actionB->secondaryTimer &= 0x0FFF;
@@ -558,13 +558,13 @@ void field_on_actor_b_complete_animation_7_and_sound_35_b(
             flags = (s8*)&actionB->visual->flags;
             *flags = (*flags & -7) | 2;
         }
-        state = actionB->flags76 & 6;
+        state = actionB->stateFlags & 6;
         if (state == 2 || state == 4) {
-            actionB->unknown7A =
+            actionB->motionDurationOverride =
                 ((SoundFunction)(*(u32*)0x03001038
                     + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 35);
             *(u16*)&actionB->unknown7E[0] = 0;
-            flags = (s8*)&actionB->flags79;
+            flags = (s8*)&actionB->motionFlags;
             *flags &= -0x21;
         }
         process->update = sub_80C943C;
@@ -619,7 +619,7 @@ void field_on_actor_a_complete_place_animation_11(struct FieldAction* process)
                         0, -1);
             sub_8088274(actionA, 0, 0x66);
         }
-        state = actionA->flags76 & 6;
+        state = actionA->stateFlags & 6;
         if (state == 2 || state == 4) {
             sub_8082E1C(actionA, 11, 0x2036, 0);
             flags = (s8*)&actionA->visual->flags;
@@ -649,7 +649,7 @@ void field_on_actor_a_complete_place_animation_10(struct FieldAction* process)
                         0, -1);
             sub_8088274(actionA, 0, 0x66);
         }
-        state = actionA->flags76 & 6;
+        state = actionA->stateFlags & 6;
         if (state == 2 || state == 4) {
             sub_8082E1C(actionA, 10, 0x2036, 0);
             flags = (s8*)&actionA->visual->flags;
@@ -672,24 +672,24 @@ void field_set_both_actor_animation_7_and_arm_actor_b_sound(
     s32 state;
     s8* flags;
 
-    if ((actionA->flags76 & 6) == 2 || (actionA->flags76 & 6) == 4) {
+    if ((actionA->stateFlags & 6) == 2 || (actionA->stateFlags & 6) == 4) {
         sub_8082E1C(actionA, 7, 0x2035, 0);
         flags = (s8*)&actionA->visual->flags;
         *flags = (*flags & -7) | 2;
     }
-    state = actionB->flags76 & 6;
+    state = actionB->stateFlags & 6;
     if (state == 2 || state == 4) {
         sub_8082E1C(actionB, 7, 0x2064, 0);
         flags = (s8*)&actionB->visual->flags;
         *flags = (*flags & -7) | 2;
     }
-    state = actionB->flags76 & 6;
+    state = actionB->stateFlags & 6;
     if (state == 2 || state == 4) {
-        actionB->unknown7A =
+        actionB->motionDurationOverride =
             ((SoundFunction)(*(u32*)0x03001038
                 + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 8);
         *(u16*)&actionB->unknown7E[0] = 0;
-        flags = (s8*)&actionB->flags79;
+        flags = (s8*)&actionB->motionFlags;
         *flags &= -0x21;
     }
     process->update = sub_80CCA38;
@@ -716,19 +716,19 @@ void field_on_actor_b_complete_set_animation_6_and_arm_sound(
             flags = (s8*)&actionA->visual->flags;
             *flags &= -7;
         }
-        state = actionB->flags76 & 6;
+        state = actionB->stateFlags & 6;
         if (state == 2 || state == 4) {
             sub_8082E1C(actionB, 6, 0x2064, 0);
             flags = (s8*)&actionB->visual->flags;
             *flags &= -7;
         }
-        state = actionB->flags76 & 6;
+        state = actionB->stateFlags & 6;
         if (state == 2 || state == 4) {
-            actionB->unknown7A =
+            actionB->motionDurationOverride =
                 ((SoundFunction)(*(u32*)0x03001038
                     + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 10);
             *(u16*)&actionB->unknown7E[0] = 0;
-            flags = (s8*)&actionB->flags79;
+            flags = (s8*)&actionB->motionFlags;
             *flags &= -0x21;
         }
         actionB->secondaryTimer &= 0x0FFF;
@@ -760,7 +760,7 @@ void field_when_actor_a_idle_finish_actor_b_and_arm_sound(
             flags = (s8*)&actorB->flags81;
             *flags &= -0x21;
         }
-        state = actionA->flags76 & 6;
+        state = actionA->stateFlags & 6;
         if (state == 2 || state == 4) {
             sub_8082E1C(actionA, 0, 0x2024, 0);
             flags = (s8*)&actionA->visual->flags;
@@ -795,7 +795,7 @@ void field_on_actor_b_complete_place_actor_a_linked_object(
         }
         sub_807C298(actionA->linkedObject);
         linked = actionA->linkedObject;
-        state = linked->flags76 & 6;
+        state = linked->stateFlags & 6;
         if (state == 2 || state == 4) {
             sub_808843C(linked,
                         actionA->positionX / 0x100 + actionA->displayOffsetX,
@@ -819,7 +819,7 @@ void field_on_linked_actor_ready_set_visual_and_continue(
     s8* flags;
 
     sub_8087EFC(actionA->linkedObject);
-    if ((actionA->linkedObject->flags79 & 0x20) != 0) {
+    if ((actionA->linkedObject->motionFlags & 0x20) != 0) {
         sound_effect_play(0x9C, SOUND_VOLUME_UNCHANGED);
         state = actorA->stateFlags & 6;
         if (state == 2 || state == 4) {
@@ -827,7 +827,7 @@ void field_on_linked_actor_ready_set_visual_and_continue(
             flags = (s8*)&actionA->visual->flags;
             *flags = (*flags & -7) | 2;
         }
-        state = actionA->linkedObject->flags76 & 6;
+        state = actionA->linkedObject->stateFlags & 6;
         if (state == 2 || state == 4)
             actionA->linkedObject->update = sub_80D0AF8;
         process->update = (void (*)(void))sub_80D08F8;
@@ -889,7 +889,7 @@ void field_on_actor_b_complete_place_and_launch_action(
             flags = (s8*)&actionB->linkedObject->visual->flags;
             *flags &= -7;
         }
-        state = actionB->flags76 & 6;
+        state = actionB->stateFlags & 6;
         if (state == 2 || state == 4) {
             sub_808843C(actionB,
                         actionB->positionX / 0x100 + actionB->displayOffsetX - 24,
@@ -898,7 +898,7 @@ void field_on_actor_b_complete_place_and_launch_action(
             actionB->motionDuration92 = actionB->positionZBase / 0x100 + 12;
             sub_8088164(actionB, 0x400);
         }
-        actionB->unknown7A = 0x2E8;
+        actionB->motionDurationOverride = 0x2E8;
         process->update = sub_80D53F8;
     }
 }
@@ -924,13 +924,13 @@ void field_finish_actor_a_and_arm_actor_b_sound(struct FieldAction* process)
             flags = (s8*)&actionA->visual->flags;
             *flags &= -7;
         }
-        state = actionB->flags76 & 6;
+        state = actionB->stateFlags & 6;
         if (state == 2 || state == 4) {
-            actionB->unknown7A =
+            actionB->motionDurationOverride =
                 ((SoundFunction)(*(u32*)0x03001038
                     + ((u32)loc_819832C - (u32)loc_8198220)))(0x4000, 10);
             *(u16*)&actionB->unknown7E[0] = 0;
-            flags = (s8*)&actionB->flags79;
+            flags = (s8*)&actionB->motionFlags;
             *flags &= -0x21;
         }
         process->update = sub_80D782C;

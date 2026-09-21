@@ -94,7 +94,7 @@ const u16 object_on_visual_complete_invoke_cleanup_callback_padding = 0;
     MISC_SEC(name) void name(struct RuntimeObject* object)              \
     {                                                                   \
         sub_8087CE4();                                                  \
-        if (object->flags79 & 0x20) {                                  \
+        if (object->motionFlags & 0x20) {                                  \
             object->update = 0;                                        \
             object->value74 = 0;                                       \
         }                                                               \
@@ -108,7 +108,7 @@ MISC_SEC(object_poll_then_stop_on_flag20)
 void object_poll_then_stop_on_flag20(struct RuntimeObject* object)
 {
     sub_80884AC();
-    if (object->flags79 & 0x20)
+    if (object->motionFlags & 0x20)
         object->update = 0;
 }
 
@@ -116,7 +116,7 @@ MISC_SEC(object_poll_then_release_on_flag20)
 void object_poll_then_release_on_flag20(struct RuntimeObject* object)
 {
     sub_8087CE4();
-    if (object->flags79 & 0x20)
+    if (object->motionFlags & 0x20)
         sub_807C298(object);
 }
 MISC_SEC(object_poll_then_release_on_flag20)

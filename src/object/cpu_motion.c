@@ -27,13 +27,13 @@ void object_after_nonpositive_countdown_begin_forward_motion_2800(
             object->value88 = object->positionY;
             object->value8C = object->positionZBase;
             {
-                s32 flagValue = object->flags79;
+                s32 flagValue = object->motionFlags;
                 s32 mask = 0x20;
                 flagValue |= mask;
-                object->flags79 = flagValue;
+                object->motionFlags = flagValue;
             }
-            object->unknown7C = 0x400;
-            object->unknown7A = value80;
+            object->motionSpeed = 0x400;
+            object->motionDurationOverride = value80;
             sub_8085B38(object);
             sub_8082E1C(object, 2, 0, 0);
             {
@@ -67,13 +67,13 @@ void object_after_nonpositive_countdown_begin_forward_motion_3400(
             object->value88 = object->positionY;
             object->value8C = object->positionZBase;
             {
-                s32 flagValue = object->flags79;
+                s32 flagValue = object->motionFlags;
                 s32 mask = 0x20;
                 flagValue |= mask;
-                object->flags79 = flagValue;
+                object->motionFlags = flagValue;
             }
-            object->unknown7C = 0x400;
-            object->unknown7A = value80;
+            object->motionSpeed = 0x400;
+            object->motionDurationOverride = value80;
             sub_8085B38(object);
             sub_8082E1C(object, 2, 0, 0);
             {

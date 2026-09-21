@@ -93,7 +93,7 @@ void object_when_nested_poll_clear_reset_state_and_callbacks(
 
     result = sub_8087CE4(object->linkedObject->linkedObject);
     if (result == 0) {
-        object->state->value113 = result;
+        object->state->eventSignal = result;
         object->followup = (RuntimeObjectCallback)0x081141F5;
         object->update = (RuntimeObjectCallback)0x081141F5;
     }

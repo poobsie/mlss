@@ -29,7 +29,7 @@ s32 field_find_object_with_largest_value_span(void* context, s32 threshold)
     do {
         struct FieldRuntimeObjectOwner* owner = owners[index];
 
-        if (owner != NULL && (owner->object.flags76 & 6) == 4) {
+        if (owner != NULL && (owner->object.stateFlags & 6) == 4) {
             s32 span = owner->valueF8 - owner->valueF6;
 
             if (span > threshold) {

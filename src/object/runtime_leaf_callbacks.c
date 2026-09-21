@@ -384,10 +384,10 @@ void object_prepare_saved_motion_on_visual_complete(
         object->value84 = object->secondaryTimer << 8;
         object->value88 = (s16)object->stateValueB0 << 8;
         object->value8C = object->positionZBase;
-        flags = &object->flags79;
+        flags = &object->motionFlags;
         *flags |= 0x20;
-        object->unknown7C = 0x14C;
-        object->unknown7A = 0;
+        object->motionSpeed = 0x14C;
+        object->motionDurationOverride = 0;
         sub_8085B38(object);
         object->update = sub_8066864;
     }
@@ -445,10 +445,10 @@ void object_prepare_fixed_motion_on_visual_complete(
         object->value84 = 0x7800;
         object->value88 = 0x6800;
         object->value8C = object->positionZBase;
-        flags = &object->flags79;
+        flags = &object->motionFlags;
         *flags |= 0x20;
-        object->unknown7C = 0x180;
-        object->unknown7A = 0;
+        object->motionSpeed = 0x180;
+        object->motionDurationOverride = 0;
         sub_8085B38(object);
         sub_8082E1C(object, 3, 0, 0);
         object->update = sub_8066E0C;
@@ -595,10 +595,10 @@ void object_prepare_linked_motion_when_chain_clears(
         object->value84 = object->secondaryTimer << 8;
         object->value88 = (s16)object->stateValueB0 << 8;
         object->value8C = object->positionZBase;
-        flags = &object->flags79;
+        flags = &object->motionFlags;
         *flags |= 0x20;
-        object->unknown7C = 0x166;
-        object->unknown7A = 0;
+        object->motionSpeed = 0x166;
+        object->motionDurationOverride = 0;
         sub_8085B38(object);
         object->update = sub_80689AC;
     }
@@ -1411,11 +1411,11 @@ void object_prepare_saved_position_when_value80_clears(
         object->value84 = (s32)*(s16*)((u8*)object + 0xAE) << 8;
         object->value88 = (s32)*(s16*)((u8*)object + 0xB0) << 8;
         object->value8C = (s32)*(s16*)((u8*)object + 0xB2) << 8;
-        flags = object->flags79;
+        flags = object->motionFlags;
         flags |= 0x20;
-        object->flags79 = flags;
-        object->unknown7C = 0x300;
-        object->unknown7A = (s16)zero;
+        object->motionFlags = flags;
+        object->motionSpeed = 0x300;
+        object->motionDurationOverride = (s16)zero;
         sub_8085B38(object);
         object->update = sub_806B528;
         sound_effect_play(0xD5, SOUND_VOLUME_UNCHANGED);
@@ -1790,11 +1790,11 @@ void object_begin_animation_35_fixed_motion(struct RuntimeObject* object)
     object->value84 = 0x11800;
     *(s32*)((u8*)object + 0x88) = object->positionY;
     object->value8C = object->positionZBase;
-    object->unknown7C = 0x199;
-    flags = object->flags79;
+    object->motionSpeed = 0x199;
+    flags = object->motionFlags;
     flags |= 0x20;
-    object->flags79 = flags;
-    object->unknown7A = 0;
+    object->motionFlags = flags;
+    object->motionDurationOverride = 0;
     sub_8085B38(object);
     object->update = sub_8070F04;
     sound_effect_play(0x11C, SOUND_VOLUME_UNCHANGED);
@@ -1819,11 +1819,11 @@ void object_begin_animation_21_fixed_motion(struct RuntimeObject* object)
     object->value84 = 0x7800;
     *(s32*)((u8*)object + 0x88) = 0x6800;
     object->value8C = object->positionZBase;
-    object->unknown7C = 0x100;
-    flags = object->flags79;
+    object->motionSpeed = 0x100;
+    flags = object->motionFlags;
     flags |= 0x20;
-    object->flags79 = flags;
-    object->unknown7A = 0;
+    object->motionFlags = flags;
+    object->motionDurationOverride = 0;
     sub_8085B38(object);
     object->update = sub_8070F98;
     sound_effect_play(0x11C, SOUND_VOLUME_UNCHANGED);
@@ -1839,11 +1839,11 @@ void object_begin_animation_36_when_value80_clears(
         object->value84 = 0xA800;
         *(s32*)((u8*)object + 0x88) = 0x6800;
         object->value8C = object->positionZBase;
-        object->unknown7C = 0x199;
-        flags = object->flags79;
+        object->motionSpeed = 0x199;
+        flags = object->motionFlags;
         flags |= 0x20;
-        object->flags79 = flags;
-        object->unknown7A = 0;
+        object->motionFlags = flags;
+        object->motionDurationOverride = 0;
         sub_8085B38(object);
         object->update = sub_807116C;
     }
@@ -2375,7 +2375,7 @@ s32 object_finish_effect_2aa6_and_signal_owner_when_runtime_ready(
                     object->positionZBase / 0x100, object);
         sub_807C298(object);
         object->state->valueA4 = 1;
-        object->state->value113 = 1;
+        object->state->eventSignal = 1;
         return -1;
     }
     return result;

@@ -59,7 +59,7 @@ void object_finish_motion_copy_owner_position_then_count_down(
     s32 command;
 
     if (sub_8087CE4(object) == 0) {
-        if ((object->flags76 & 6) == 2) {
+        if ((object->stateFlags & 6) == 2) {
             command = 0x2052;
             if (object == primary)
                 command -= 0x2F;
@@ -85,7 +85,7 @@ void object_start_pair_animation_1_and_spawn_command_208d(
     s8* flags;
     s32 command;
 
-    if ((object->flags76 & 6) == 2) {
+    if ((object->stateFlags & 6) == 2) {
         command = 0x2051;
         if (object == primary)
             command -= 0x2F;
@@ -151,7 +151,7 @@ void object_finish_position_owner_visual_then_release(
 
     owner = object->positionOwner;
     if (owner->visual->flags & 8) {
-        mode = owner->flags76 & 6;
+        mode = owner->stateFlags & 6;
         if (mode == 2 || mode == 4) {
             sub_8082E1C(owner, -1, -1, 0);
             flags = (s8*)&owner->visual->flags;
@@ -245,8 +245,8 @@ void object_on_visual_complete_spawn_secondary_command_2089(
         spawned->unknown78 &= 0x1F;
         object->linkedObject = spawned;
         sub_807FA14(spawned);
-        if ((spawned->flags76 & 6) == 2 ||
-            (spawned->flags76 & 6) == 4)
+        if ((spawned->stateFlags & 6) == 2 ||
+            (spawned->stateFlags & 6) == 4)
             spawned->update = sub_8097C38;
         sub_8097DB4(object);
     }
@@ -266,8 +266,8 @@ void sub_80982DC(struct RuntimeObject* object)
         spawned->unknown78 &= 0x1F;
         object->linkedObject = spawned;
         sub_807FA14(spawned);
-        if ((spawned->flags76 & 6) == 2 ||
-            (spawned->flags76 & 6) == 4)
+        if ((spawned->stateFlags & 6) == 2 ||
+            (spawned->stateFlags & 6) == 4)
             spawned->update = sub_8097C38;
         sub_80987F4(object);
     }
@@ -281,7 +281,7 @@ void sub_80982DC(struct RuntimeObject* object)
         struct RuntimeObject* secondary = SECONDARY_ACTION_OBJECT;         \
                                                                            \
         sub_80884AC(object);                                               \
-        if (object->flags79 & 0x20) {                                      \
+        if (object->motionFlags & 0x20) {                                      \
             if (object == primary && secondary->update == active)          \
                 secondary->update = counterpart;                           \
             if (object == secondary && primary->update == active)          \
@@ -304,7 +304,7 @@ void object_finish_pair_visual_then_prepare_counterpart_a(
     primary = PRIMARY_ACTION_OBJECT;
     secondary = SECONDARY_ACTION_OBJECT;
     sub_8087CE4(object);
-    if (object->flags79 & 0x20) {
+    if (object->motionFlags & 0x20) {
         sub_807FB64(object->visual);
         if (object == primary && !(secondary->visual->flags & 0x20)) {
             if (secondary->linkedObject != 0)
@@ -330,7 +330,7 @@ void object_finish_pair_visual_then_prepare_counterpart_a(
         struct RuntimeObject* secondary = SECONDARY_ACTION_OBJECT;    \
                                                                      \
         sub_8087CE4(object);                                          \
-        if (object->flags79 & 0x20) {                                 \
+        if (object->motionFlags & 0x20) {                                 \
             if (object == primary)                                   \
                 sub_8082E1C(object, 0, 0, 0);                         \
             if (object == secondary)                                 \
@@ -357,7 +357,7 @@ void object_finish_pair_visual_then_prepare_counterpart_b(
     primary = PRIMARY_ACTION_OBJECT;
     secondary = SECONDARY_ACTION_OBJECT;
     sub_8087CE4(object);
-    if (object->flags79 & 0x20) {
+    if (object->motionFlags & 0x20) {
         if (object == primary && secondary->update != 0) {
             if (secondary->linkedObject != 0)
                 sub_80987F4(secondary);

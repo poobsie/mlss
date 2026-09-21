@@ -193,12 +193,12 @@ void sub_8061050(struct RuntimeObject* object)
         object->value88 = object->positionY;
         object->value8C = object->positionZBase - 0x3000;
         {
-            u8 flags = object->flags79;
+            u8 flags = object->motionFlags;
             flags |= 0x20;
-            object->flags79 = flags;
+            object->motionFlags = flags;
         }
-        object->unknown7C = 0x280;
-        object->unknown7A = 0;
+        object->motionSpeed = 0x280;
+        object->motionDurationOverride = 0;
         sub_8085B38(object);
         sub_8082E1C(object, 5, 0, 0);
         sub_807F4FC(object);

@@ -114,7 +114,7 @@ SEC(object_finish_action_on_flags_38_or_visual_complete)
 void object_finish_action_on_flags_38_or_visual_complete(
     struct RuntimeObject* object)
 {
-    if (object->flags76 & 0x38) {
+    if (object->stateFlags & 0x38) {
         runtime_object_finish_action(object);
         return;
     }

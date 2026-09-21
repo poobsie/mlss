@@ -13,7 +13,7 @@ SEC(sub_8086700) s32 sub_8086700(struct RuntimeObject* object)
     u8 flags;
     struct RuntimeObjectState* state;
 
-    maskedFlags = object->flags76 & 6;
+    maskedFlags = object->stateFlags & 6;
     if ((maskedFlags != 6) && (maskedFlags != 2)) {
         state = object->state;
         if (state != NULL) {

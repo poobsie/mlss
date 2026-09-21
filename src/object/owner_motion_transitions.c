@@ -37,14 +37,14 @@ void object_on_visual_complete_begin_owner_offset_motion(
         target = targetStart;
         owner = object->positionOwner;
         state = owner->state;
-        *target = state->valueD8 + 0x3800;
+        *target = state->worldPositionX + 0x3800;
         target++;
-        *target = state->valueDC;
+        *target = state->worldPositionY;
         object->value8C = object->positionZBase;
-        flags = &object->flags79;
+        flags = &object->motionFlags;
         *flags |= 0x20;
-        object->unknown7C = 0x200;
-        object->unknown7A = 0;
+        object->motionSpeed = 0x200;
+        object->motionDurationOverride = 0;
         sub_8085B38(object);
         sub_8082E1C(object, 3, 0, 0);
         object->update =
@@ -74,14 +74,14 @@ void object_when_value80_clears_begin_owner_offset_motion_countdown(
     target = targetStart;
     owner = object->positionOwner;
     state = owner->state;
-    *target = state->valueD8 + 0x1600;
+    *target = state->worldPositionX + 0x1600;
     target++;
-    *target = state->valueDC;
+    *target = state->worldPositionY;
     object->value8C = object->positionZBase;
-    flags = &object->flags79;
+    flags = &object->motionFlags;
     *flags |= 0x20;
-    object->unknown7C = 0x200;
-    object->unknown7A = gateValue;
+    object->motionSpeed = 0x200;
+    object->motionDurationOverride = gateValue;
     sub_8085B38(object);
     sub_807F4FC(object);
     object->auxiliaryUpdate =
@@ -114,10 +114,10 @@ void object_on_visual_complete_prepare_owner_offset_motion_and_decrement_repeat(
         target++;
         *target = source->positionY;
         object->value8C = object->positionZBase;
-        flags = &object->flags79;
+        flags = &object->motionFlags;
         *flags |= 0x20;
-        object->unknown7C = 0x180;
-        object->unknown7A = 0;
+        object->motionSpeed = 0x180;
+        object->motionDurationOverride = 0;
         sub_8085B38(object);
         value = --object->behaviorState;
         if (value > 0)
@@ -158,10 +158,10 @@ void object_after_negative_countdown_begin_owner_offset_motion_animation_2(
         target++;
         *target = source->positionY;
         object->value8C = object->state->floorHeight;
-        flags = &object->flags79;
+        flags = &object->motionFlags;
         *flags |= 0x20;
-        object->unknown7C = 0x400;
-        object->unknown7A = gateValue;
+        object->motionSpeed = 0x400;
+        object->motionDurationOverride = gateValue;
         sub_8085B38(object);
         sub_8082E1C(object, 2, 0, 0);
         object->update = sub_80DAE7C;
@@ -194,17 +194,17 @@ void object_after_nonpositive_countdown_begin_state_motion_animation_5(
         targetStart = &object->value84;
         target = targetStart;
         state = object->state;
-        *target = state->valueD8;
+        *target = state->worldPositionX;
         target++;
-        *target = state->valueDC;
+        *target = state->worldPositionY;
         /* Retain the cursor alias through the final target write. */
         activeTarget = &target;
         target++;
         **activeTarget = state->floorHeight;
-        flags = &object->flags79;
+        flags = &object->motionFlags;
         *flags |= 0x20;
-        object->unknown7C = 0x600;
-        object->unknown7A = gateValue;
+        object->motionSpeed = 0x600;
+        object->motionDurationOverride = gateValue;
         sub_8085B38(object);
         sub_8082E1C(object, 5, 0, 0);
         object->update = sub_80DBC84;
@@ -256,11 +256,11 @@ void object_after_negative_countdown_snap_to_owner_and_begin_short_motion(
         object->value84 = *stateX + 0x400;
         object->value88 = *stateY;
         object->value8C = *stateZ;
-        flags = object->flags79;
+        flags = object->motionFlags;
         flags |= 0x20;
-        object->flags79 = flags;
-        object->unknown7C = (u16)((u32)object->valueA4 << 8);
-        object->unknown7A = gateValue;
+        object->motionFlags = flags;
+        object->motionSpeed = (u16)((u32)object->valueA4 << 8);
+        object->motionDurationOverride = gateValue;
         sub_8085B38(object);
         sub_8082E1C(object, 4, 0, 0);
         object->update = sub_80DBBCC;

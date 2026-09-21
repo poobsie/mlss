@@ -23,7 +23,7 @@ extern void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
         mask = -0x21;                                                    \
         flag_value &= mask;                                              \
         *flags = flag_value;                                             \
-        object->state->snapshot114 =                                    \
+        object->state->displaySnapshot =                                    \
             FIELD(display, u16, 0x2A);                                  \
         sub_8082E1C(object, 4, 0x2000, 0);                              \
         object->visual->parameter20 = sprite_value;                      \

@@ -202,8 +202,8 @@ void object_update_motion_then_start_animation_8(
     u8 mode;
 
     sub_8087CE4(object);
-    if (object->flags79 & 0x20) {
-        mode = object->flags76 & 6;
+    if (object->motionFlags & 0x20) {
+        mode = object->stateFlags & 6;
         if (mode == 2 || mode == 4) {
             if (object->state->variant == -1)
                 sub_8082E1C(object, 8, 0x2000, 0);
@@ -222,8 +222,8 @@ void object_finish_motion_and_restore_saved_update(
 {
     s8* flags;
 
-    if (object->flags79 & 0x20) {
-        if ((object->flags76 & 6) == 2 || (object->flags76 & 6) == 4) {
+    if (object->motionFlags & 0x20) {
+        if ((object->stateFlags & 6) == 2 || (object->stateFlags & 6) == 4) {
             sub_8082E1C(object, 0, -1, 0);
             flags = (s8*)&object->visual->flags11;
             *flags &= -0x41;
@@ -241,7 +241,7 @@ SEC(sub_8088560)
 void object_start_animation_5_then_update_motion(struct RuntimeObject* object)
 {
     s8* flags;
-    u8 mode = object->flags76 & 6;
+    u8 mode = object->stateFlags & 6;
 
     if (mode == 2 || mode == 4) {
         if (object->state->variant == -1)
@@ -258,7 +258,7 @@ SEC(sub_80885C4)
 void object_save_update_then_start_animation_4(struct RuntimeObject* object)
 {
     s8* flags;
-    u8 mode = object->flags76 & 6;
+    u8 mode = object->stateFlags & 6;
 
     if (mode == 2 || mode == 4) {
         if (object->state->variant == -1)
@@ -280,7 +280,7 @@ void object_on_visual_complete_start_animation_6_motion(
     u8 mode;
 
     if (object->visual->flags & 8) {
-        mode = object->flags76 & 6;
+        mode = object->stateFlags & 6;
         if (mode == 2 || mode == 4) {
             if (object->state->variant == -1)
                 sub_8082E1C(object, 6, 0x2000, 0);
@@ -300,8 +300,8 @@ void object_update_motion_then_restore_saved_update(
     s8* flags;
 
     sub_8087CE4(object);
-    if (object->flags79 & 0x20) {
-        if ((object->flags76 & 6) == 2 || (object->flags76 & 6) == 4) {
+    if (object->motionFlags & 0x20) {
+        if ((object->stateFlags & 6) == 2 || (object->stateFlags & 6) == 4) {
             sub_8082E1C(object, 0, -1, 0);
             flags = (s8*)&object->visual->flags11;
             *flags &= -0x41;
@@ -491,7 +491,7 @@ void object_attach_ready_owner_then_finish_countdown(
 {
     struct RuntimeObject* owner = object->positionOwner;
 
-    if ((owner->flags76 & 0x80) == 0 && owner->verticalPosition == 0)
+    if ((owner->stateFlags & 0x80) == 0 && owner->verticalPosition == 0)
         sub_810DD7C(object, owner, 0xFF);
     if (object->timer-- <= 0) {
         if (object->state->value38 == 0)
@@ -565,7 +565,7 @@ void object_attach_ready_owner_then_finish_linked_countdown(
     struct RuntimeObject* owner = object->positionOwner;
     s8* flags;
 
-    if ((owner->flags76 & 0x80) == 0 && owner->verticalPosition == 0)
+    if ((owner->stateFlags & 0x80) == 0 && owner->verticalPosition == 0)
         sub_810DD7C(object, owner, 0xFF);
     if (object->timer-- <= 0) {
         sub_8082E1C(object, 7, 0, 0);
@@ -619,7 +619,7 @@ void runtime_object_finish_action(struct RuntimeObject* object)
 {
     s8* flags;
 
-    if ((object->flags76 & 6) == 2) {
+    if ((object->stateFlags & 6) == 2) {
         if (object->state != 0)
             object->state->flags111 &= -5;
         if (object->linkedObject != 0) {

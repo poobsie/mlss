@@ -314,10 +314,10 @@ s32 sub_8085A6C(struct RuntimeObject* object);
 SEC(sub_810D1A4) void field_clear_display_resource_flag_and_stop_when_idle(
     struct FieldDisplayProcess* process) {
     struct RuntimeObject* object = process->resource;
-    u8 flags = object->flags79;
+    u8 flags = object->motionFlags;
     s32 mask = ~0x10;
     mask &= flags;
-    object->flags79 = mask;
+    object->motionFlags = mask;
     if (object->value80 == 0 || ((u32)sub_8085A6C(object) << 24) != 0)
         process->update = 0;
 }

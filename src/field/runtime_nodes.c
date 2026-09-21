@@ -19,7 +19,7 @@ struct FieldRuntimeNodeLists {
 
 struct FieldRuntimeObject79 {
     u8 unknown00[0x79];
-    u8 flags79;
+    u8 motionFlags;
 };
 
 void sub_807FEB4(struct FieldRuntimeNode* node);
@@ -71,10 +71,10 @@ void field_runtime_push_object_node_list_4c(void* object)
     register u8 flags asm("r1");
     register u32 flagMask asm("r2");
 
-    flags = runtimeObject->flags79;
+    flags = runtimeObject->motionFlags;
     flagMask = 0x10;
     flags |= flagMask;
-    runtimeObject->flags79 = flags;
+    runtimeObject->motionFlags = flags;
     runtime = FIELD_RUNTIME_NODE_LISTS;
     callback = sub_807FEB4;
     node = runtime->freeNodes;

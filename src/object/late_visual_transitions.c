@@ -94,8 +94,8 @@ void object_start_owner_position_effect_and_continue(
     if (object->visual->flags & 8) {
         owner = object->positionOwner;
         state = owner->state;
-        sub_808843C(object, state->valueD8 / 256 + 0x22,
-                    state->valueDC / 256, state->floorHeight / 256, 0x100);
+        sub_808843C(object, state->worldPositionX / 256 + 0x22,
+                    state->worldPositionY / 256, state->floorHeight / 256, 0x100);
         sub_80880C4(object, object->valueA0);
         sub_8082E1C(object, 5, 0, 0);
         object->visual->parameter20 = object->valueA4;
@@ -116,13 +116,13 @@ void object_start_owner_position_effect_variant_and_continue(
         state = owner->state;
         object->unknown75 = owner->unknown75 - 1;
         if (object->behaviorState != 0) {
-            sub_808843C(object, state->valueD8 / 256 + 0x2A,
-                        state->valueDC / 256, state->floorHeight / 4096,
+            sub_808843C(object, state->worldPositionX / 256 + 0x2A,
+                        state->worldPositionY / 256, state->floorHeight / 4096,
                         0x100);
             object->update = sub_810FD94;
         } else {
-            sub_808843C(object, state->valueD8 / 256 + 0x22,
-                        state->valueDC / 256, state->floorHeight / 256,
+            sub_808843C(object, state->worldPositionX / 256 + 0x22,
+                        state->worldPositionY / 256, state->floorHeight / 256,
                         0x100);
             object->update = object_finish_owner_position_effect_when_ready;
         }
@@ -140,7 +140,7 @@ void object_finish_paired_owner_effect(struct RuntimeObject* object)
     struct RuntimeObject* linked;
     s32 effect;
 
-    if (!(owner->flags76 & 0x80) && owner->verticalPosition == 0)
+    if (!(owner->stateFlags & 0x80) && owner->verticalPosition == 0)
         sub_810DD7C(object, owner, 0xFF);
 
     if (sub_80883F0(object) == 0) {
@@ -151,8 +151,8 @@ void object_finish_paired_owner_effect(struct RuntimeObject* object)
                     linked);
         sub_807C298(linked);
         sound_effect_stop(0x10F);
-        sub_808843C(object, object->state->valueD8 / 256,
-                    object->state->valueDC / 256,
+        sub_808843C(object, object->state->worldPositionX / 256,
+                    object->state->worldPositionY / 256,
                     object->state->floorHeight / 256, 0x100);
         sub_80880C4(object, 0x300);
         sound_effect_play(0x11B, SOUND_VOLUME_UNCHANGED);
@@ -172,13 +172,13 @@ void object_start_owner_position_effect_with_auxiliary(
         state = owner->state;
         object->unknown75 = owner->unknown75 - 1;
         if (object->behaviorState != 0) {
-            sub_808843C(object, state->valueD8 / 256 + 0x2A,
-                        state->valueDC / 256, state->floorHeight / 256,
+            sub_808843C(object, state->worldPositionX / 256 + 0x2A,
+                        state->worldPositionY / 256, state->floorHeight / 256,
                         0x100);
             object->update = sub_810FC70;
         } else {
-            sub_808843C(object, state->valueD8 / 256 + 0x22,
-                        state->valueDC / 256, state->floorHeight / 256,
+            sub_808843C(object, state->worldPositionX / 256 + 0x22,
+                        state->worldPositionY / 256, state->floorHeight / 256,
                         0x100);
             object->update = sub_810FC34;
         }
@@ -201,8 +201,8 @@ void object_start_owner_position_effect_to_visual_reset(
     if (object->visual->flags & 8) {
         owner = object->positionOwner;
         state = owner->state;
-        sub_808843C(object, state->valueD8 / 256 + 0x22,
-                    state->valueDC / 256, state->floorHeight / 256, 0x100);
+        sub_808843C(object, state->worldPositionX / 256 + 0x22,
+                    state->worldPositionY / 256, state->floorHeight / 256, 0x100);
         sub_80880C4(object, object->valueA0);
         sub_8082E1C(object, 5, 0, 0);
         object->visual->parameter20 = object->valueA4;
@@ -240,7 +240,7 @@ void object_start_fixed_position_effect_with_auxiliary(
 
     if (object->visual->flags & 8) {
         state = ((struct RuntimeObject*)object->positionOwner)->state;
-        sub_808843C(object, -0x20, state->valueDC / 256,
+        sub_808843C(object, -0x20, state->worldPositionY / 256,
                     state->floorHeight / 256, 0x100);
         sub_80880C4(object, 0x300);
         sub_8082E1C(object, 0xC, 0, 0);
@@ -304,8 +304,8 @@ void object_start_far_owner_position_effect(struct RuntimeObject* object)
     if (object->visual->flags & 8) {
         owner = object->positionOwner;
         state = owner->state;
-        sub_808843C(object, state->valueD8 / 256 + 0x44,
-                    state->valueDC / 256, state->floorHeight / 256, 0x100);
+        sub_808843C(object, state->worldPositionX / 256 + 0x44,
+                    state->worldPositionY / 256, state->floorHeight / 256, 0x100);
         sub_80880C4(object, 0x280);
         sub_8082E1C(object, 3, 0, 0);
         sound_effect_play(0x11B, SOUND_VOLUME_UNCHANGED);
@@ -345,8 +345,8 @@ void object_start_far_owner_position_effect_variant(
     if (object->visual->flags & 8) {
         owner = object->positionOwner;
         state = owner->state;
-        sub_808843C(object, state->valueD8 / 256 + 0x44,
-                    state->valueDC / 256, state->floorHeight / 256, 0x100);
+        sub_808843C(object, state->worldPositionX / 256 + 0x44,
+                    state->worldPositionY / 256, state->floorHeight / 256, 0x100);
         sub_80880C4(object, 0x280);
         sub_8082E1C(object, 3, 0, 0);
         sound_effect_play(0x11B, SOUND_VOLUME_UNCHANGED);
@@ -419,7 +419,7 @@ void object_prepare_vector_setup_from_owner_state(struct RuntimeObject* object)
     value &= mask;
     value |= 2;
     *flags = value;
-    object->state->value113 = 0;
+    object->state->eventSignal = 0;
     object->update = sub_81101BC;
 }
 
@@ -573,8 +573,8 @@ void object_place_at_owner_state_and_prepare_effect(
 {
     struct RuntimeObject* owner = object->positionOwner;
     struct RuntimeObjectState* state = owner->state;
-    s32 x = state->valueD8 / 256;
-    s32 y = state->valueDC / 256;
+    s32 x = state->worldPositionX / 256;
+    s32 y = state->worldPositionY / 256;
     s32 z = object->positionZBase / 256;
 
     sub_808843C(object, x, y, z, 0x100);
@@ -612,8 +612,8 @@ void sub_81121E8(struct RuntimeObject* object)
 
     if (gFieldRuntime->guard40 == 0) {
         state = object->state;
-        x = state->valueD8 / 256;
-        y = state->valueDC / 256;
+        x = state->worldPositionX / 256;
+        y = state->worldPositionY / 256;
         z = state->floorHeight / 256;
         sub_808843C(object, x, y, z, 0x100);
         sub_80880C4(object, 0x400);

@@ -7,7 +7,7 @@
         struct RuntimeObjectState* state = object->state;                \
         if (state != 0)                                                  \
             state->flags111 &= -5;                                      \
-        if (object->flags76 & 0x38)                                     \
+        if (object->stateFlags & 0x38)                                     \
             runtime_object_finish_action(object);                        \
         else if (object->timer++ > limit)                               \
             runtime_object_finish_action(object);                        \

@@ -13,7 +13,7 @@ void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
         struct RuntimeObjectVisual* visual;                              \
         u8 flags;                                                        \
                                                                          \
-        if (object->flags76 & 0x38) {                                    \
+        if (object->stateFlags & 0x38) {                                    \
             runtime_object_finish_action(object);                        \
             return;                                                      \
         }                                                                \

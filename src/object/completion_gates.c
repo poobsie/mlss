@@ -6,7 +6,7 @@
 #define DEFINE_OBJECT_COMPLETION_GATE(name)                              \
     SEC(name) void name(struct RuntimeObject* object)                    \
     {                                                                    \
-        if (object->flags76 & 0x38) {                                   \
+        if (object->stateFlags & 0x38) {                                   \
             runtime_object_finish_action(object);                        \
             return;                                                      \
         }                                                                \

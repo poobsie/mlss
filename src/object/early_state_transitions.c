@@ -169,7 +169,7 @@ SEC(sub_8062C48) void sub_8062C48(struct RuntimeObject* object)
     struct RuntimeObjectState* state;
 
     owner = object->positionOwner;
-    if (!(owner->flags76 & 0x80) && (owner->verticalPosition == 0)) {
+    if (!(owner->stateFlags & 0x80) && (owner->verticalPosition == 0)) {
         sub_810DD7C(object, owner, 0xFF);
     }
     timer = (u16)object->timer;

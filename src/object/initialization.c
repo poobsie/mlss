@@ -21,7 +21,7 @@
         mask = -0x21;                                                    \
         flag_value &= mask;                                              \
         *flags = flag_value;                                             \
-        object->state->snapshot114 =                                    \
+        object->state->displaySnapshot =                                    \
             FIELD(source, u16, 0x2A);                                   \
         object->update = next;                                          \
         return 1;                                                        \

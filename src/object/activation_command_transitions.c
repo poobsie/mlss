@@ -10,7 +10,7 @@ extern void sub_8082E1C(struct RuntimeObject*, s32, s32, s32);
     {                                                                    \
         s8 *flags;                                                       \
         sub_80884AC(object);                                             \
-        if (object->flags79 & 0x20) {                                   \
+        if (object->motionFlags & 0x20) {                                   \
             sub_8082E1C(object, 1, 0x40C2, 0);                          \
             flags = (s8 *)&object->visual->flags;                       \
             *flags = (*flags & -7) | 2;                                 \

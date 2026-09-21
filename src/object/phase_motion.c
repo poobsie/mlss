@@ -32,7 +32,7 @@ void runtime_object_clear_behavior(struct RuntimeObject* object)
     object->update = 0;
     object->descriptor = 0;
     object->positionOwner = 0;
-    if ((object->flags76 & 6) == 2)
+    if ((object->stateFlags & 6) == 2)
         sub_80F75D8(0x40000);
 }
 

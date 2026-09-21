@@ -14,7 +14,7 @@
         flags = (s8 *)&object->flags77;                               \
         *flags &= ~0x40;                                               \
         *flags &= ~0x20;                                               \
-        object->state->snapshot114 =                                  \
+        object->state->displaySnapshot =                                  \
             FIELD(state, u16, 0x2A);                                  \
         object->update = next;                                        \
         return 1;                                                     \

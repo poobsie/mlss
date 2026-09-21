@@ -66,9 +66,9 @@ void object_start_owner_state_motion_animation_2(struct RuntimeObject* object)
         sub_807F47C(object);
         targetX = &object->value84;
         state = object->state;
-        *targetX = state->valueD8;
+        *targetX = state->worldPositionX;
         targetY = &object->value88;
-        *targetY = state->valueDC;
+        *targetY = state->worldPositionY;
         targetZSlot = &object->value8C;
         targetZ = state->floorHeight;
         *targetZSlot = targetZ;

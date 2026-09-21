@@ -31,9 +31,9 @@ void sub_809BA44(struct RuntimeObject* object);
         if (object->state->valueF6 != 0) {                  \
             scale = (RuntimeScaleFunction)(                              \
                 RUNTIME_SCALE_BASE + (loc_819832C - loc_8198220));       \
-            object->unknown7A = scale(0x4000, distance);                 \
+            object->motionDurationOverride = scale(0x4000, distance);                 \
             *(u16*)&object->unknown7E[0] = 0;                            \
-            flags = (s8*)&object->flags79;                              \
+            flags = (s8*)&object->motionFlags;                              \
             *flags &= -0x21;                                            \
         }                                                               \
         object->update = next;                                          \
@@ -53,7 +53,7 @@ DEFINE_FIXED_HEIGHT_MOTION(
         struct RuntimeObject* owner = object->positionOwner;            \
         s8* flags;                                                      \
                                                                         \
-        if (owner->positionZBase == 0 && (owner->flags76 & 0x3E) == 2)  \
+        if (owner->positionZBase == 0 && (owner->stateFlags & 0x3E) == 2)  \
             sub_810DD7C(object, owner, 0xFF);                            \
         if (object->visual->flags & 8) {                                \
             sub_8082E1C(object, 3, 0x40C2, 0);                          \

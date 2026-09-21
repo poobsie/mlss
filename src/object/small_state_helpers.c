@@ -54,7 +54,7 @@ SEC(sub_80886BC)
 void object_restore_saved_update_on_flag_20(struct RuntimeObject* object)
 {
     sub_8087CE4();
-    if (object->flags79 & 0x20) {
+    if (object->motionFlags & 0x20) {
         object->update = object->followup;
         object->followup = 0;
     }
@@ -123,7 +123,7 @@ void object_when_value80_clear_mark_state_2(struct RuntimeObject* object)
         object->update = (RuntimeObjectCallback)value;
         state = object->state;
         state->valueA4 = 2;
-        state->value113 = 2;
+        state->eventSignal = 2;
     }
 }
 
@@ -163,7 +163,7 @@ void object_prepare_and_install_callback_808a201(struct RuntimeObject* object)
 MISC_SEC(object_when_state_value113_clear_delay_16)
 void object_when_state_value113_clear_delay_16(struct RuntimeObject* object)
 {
-    if (object->state->value113 == 0) {
+    if (object->state->eventSignal == 0) {
         object->timer = 16;
         object->update = sub_8111CA8;
     }
@@ -176,11 +176,11 @@ void object_when_flags_38_clear_stop_and_clear_owner_state(
     s32 value;
     struct RuntimeObject* owner;
 
-    value = object->flags76 & 0x38;
+    value = object->stateFlags & 0x38;
     if (value == 0) {
         object->update = (RuntimeObjectCallback)value;
         owner = object->positionOwner;
-        owner->state->value113 = (s8)value;
+        owner->state->eventSignal = (s8)value;
     }
 }
 
@@ -188,5 +188,5 @@ MISC_SEC(object_prepare_and_clear_state_value113)
 void object_prepare_and_clear_state_value113(struct RuntimeObject* object)
 {
     sub_811458C();
-    object->state->value113 = 0;
+    object->state->eventSignal = 0;
 }

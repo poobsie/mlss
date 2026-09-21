@@ -234,9 +234,9 @@ s32 object_forward_state_event_and_return_true(struct RuntimeObject* object)
 {
     object->update =
         (RuntimeObjectCallback)object_invoke_shared_terminal_action_b;
-    if (object->state->value113 & 0x80) {
-        sub_80F7068(object->state->value113 & 0x7F, 1);
-        object->state->value113 = 0;
+    if (object->state->eventSignal & 0x80) {
+        sub_80F7068(object->state->eventSignal & 0x7F, 1);
+        object->state->eventSignal = 0;
     }
     return 1;
 }
@@ -484,7 +484,7 @@ SEC(sub_80DB12C) void sub_80DB12C(struct RuntimeObject* object)
     {                                                                  \
         struct RuntimeObject* owner = object->positionOwner;           \
         sub_8087CE4(object);                                            \
-        if (object->flags79 & 0x20) {                                  \
+        if (object->motionFlags & 0x20) {                                  \
             sound_effect_play(0x2E, SOUND_VOLUME_UNCHANGED);           \
             {                                                          \
                 s32 cleared = 0;                                       \

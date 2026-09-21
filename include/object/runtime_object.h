@@ -57,8 +57,8 @@ struct RuntimeObjectState {
     s8 displayOffsetY;
     s8 displayOffsetZ;
     u8 unknownC6[0x12];
-    s32 valueD8;
-    s32 valueDC;
+    s32 worldPositionX;
+    s32 worldPositionY;
     s32 floorHeight;
     struct RuntimeObjectValueSource* valueSourceE4;
     u8 unknownE8[4];
@@ -71,8 +71,8 @@ struct RuntimeObjectState {
     u8 unknownF8[0x19];
     s8 flags111;
     u8 unknown112;
-    u8 value113;
-    u32 snapshot114;
+    u8 eventSignal;
+    u32 displaySnapshot;
 };
 
 struct RuntimeObject;
@@ -124,12 +124,12 @@ struct RuntimeObject {
     u8 unknown70[4];
     s8 value74;
     u8 unknown75;
-    u8 flags76;
+    u8 stateFlags;
     u8 flags77;
     u8 unknown78;
-    u8 flags79;
-    s16 unknown7A;
-    u16 unknown7C;
+    u8 motionFlags;
+    s16 motionDurationOverride;
+    u16 motionSpeed;
     u8 unknown7E[2];
     s32 value80;
     s32 value84;

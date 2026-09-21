@@ -19,7 +19,7 @@ void object_poll_then_stop_and_resume_owner_on_flag20(
 
     owner = (struct RuntimeObject*)object->positionOwner;
     sub_8087CE4();
-    if (object->flags79 & 0x20) {
+    if (object->motionFlags & 0x20) {
         object->update = 0;
         owner->update = sub_80C0CC0;
     }
@@ -30,7 +30,7 @@ void object_poll_then_deactivate_visual_and_continue_on_flag20(
     struct RuntimeObject* object)
 {
     sub_8087CE4();
-    if (object->flags79 & 0x20) {
+    if (object->motionFlags & 0x20) {
         graphics_deactivate_linked_visual(
             (struct GraphicsLinkedVisual*)object->visual);
         object->update = sub_80B325C;

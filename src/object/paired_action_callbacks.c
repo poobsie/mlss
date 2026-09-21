@@ -63,7 +63,7 @@ void object_sync_actor_actions_then_start_paired_animation(
             visualFlags = (s8*)&actionA->visual->flags;
             *visualFlags = (*visualFlags & -7) | 2;
         }
-        stateB = actionB->flags76 & 6;
+        stateB = actionB->stateFlags & 6;
         if (stateB == 2 || stateB == 4) {
             sub_8082E1C(actionB, 5, 0x2060, 0);
             visualFlags = (s8*)&actionB->visual->flags;
@@ -82,13 +82,13 @@ void object_sync_actor_actions_then_start_paired_animation(
         s8* flags;                                                       \
                                                                          \
         if (action->visual->flags & 8) {                                \
-            if ((action->flags76 & 6) == 2 ||                           \
-                (action->flags76 & 6) == 4) {                           \
+            if ((action->stateFlags & 6) == 2 ||                           \
+                (action->stateFlags & 6) == 4) {                           \
                 scale = (RuntimeScaleFunction)(                         \
                     RUNTIME_SCALE_BASE + (loc_819832C - loc_8198220));  \
-                action->unknown7A = scale(0x4000, distance);             \
+                action->motionDurationOverride = scale(0x4000, distance);             \
                 *(u16*)action->unknown7E = 0;                           \
-                flags = (s8*)&action->flags79;                          \
+                flags = (s8*)&action->motionFlags;                          \
                 *flags &= -0x21;                                       \
             }                                                            \
             caller->update = next;                                      \
@@ -114,9 +114,9 @@ DEFINE_ACTION_POLL(sub_80A5790, object_poll_primary_action_distance_18,
         s8* flags;                                                       \
                                                                          \
         sub_8087CE4(action);                                             \
-        if (action->flags79 & 0x20) {                                   \
-            if ((action->flags76 & 6) == 2 ||                           \
-                (action->flags76 & 6) == 4) {                           \
+        if (action->motionFlags & 0x20) {                                   \
+            if ((action->stateFlags & 6) == 2 ||                           \
+                (action->stateFlags & 6) == 4) {                           \
                 sub_8082E1C(action, 0, -1, 0);                          \
                 flags = (s8*)&action->visual->flags11;                  \
                 *flags &= -0x41;                                       \
@@ -167,11 +167,11 @@ void sub_80B85D4(struct RuntimeObject* caller)
             visualFlags = (s8*)&action->visual->flags;
             *visualFlags = (*visualFlags & -7) | 2;
         }
-        if ((action->flags76 & 6) == 2 ||
-            (action->flags76 & 6) == 4) {
+        if ((action->stateFlags & 6) == 2 ||
+            (action->stateFlags & 6) == 4) {
             state = action->state;
-            sub_808843C(action, state->valueD8 / 256,
-                state->valueDC / 256, state->floorHeight / 256, -1);
+            sub_808843C(action, state->worldPositionX / 256,
+                state->worldPositionY / 256, state->floorHeight / 256, -1);
             action->motionDuration92 = action->positionZBase / 256 + 0x20;
             sub_8088164(action, 0x700);
         }
@@ -188,10 +188,10 @@ void sub_80B85D4(struct RuntimeObject* caller)
         s8* flags;                                                       \
                                                                          \
         sub_8087CE4(action);                                             \
-        if (action->flags79 & 0x20) {                                   \
+        if (action->motionFlags & 0x20) {                                   \
             sound_effect_play(0x2E, -1);                               \
-            if ((action->flags76 & 6) == 2 ||                           \
-                (action->flags76 & 6) == 4) {                           \
+            if ((action->stateFlags & 6) == 2 ||                           \
+                (action->stateFlags & 6) == 4) {                           \
                 sub_8082E1C(action, animation, command, 0);             \
                 flags = (s8*)&action->visual->flags;                    \
                 *flags = (*flags & -7) | 2;                            \
