@@ -62,6 +62,7 @@ struct BattleMotionDescriptor {
 #define battle_sprite_motion_capture_delta sub_815FACC
 #define battle_sprite_motion_dispatch_descriptor_a sub_8158558
 #define battle_sprite_motion_dispatch_descriptor_b sub_815EDB0
+#define battle_initialize_randomized_sprite_motion_a sub_81588DC
 
 struct BattleSpriteMotion {
     struct BattleSprite* sprite;
@@ -190,6 +191,8 @@ void battle_destroy_sprite_motion_base(
 void* battle_initialize_scaled_sprite_motion(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
 void* battle_initialize_grounded_sprite_motion_b(
+    struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
+void* battle_initialize_randomized_sprite_motion_a(
     struct BattleSpriteMotion*, const struct BattleSpriteMotionConfig*, u16);
 
 #endif

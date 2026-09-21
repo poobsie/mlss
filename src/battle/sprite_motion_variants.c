@@ -1,4 +1,5 @@
 #include "battle/sprite_motion.h"
+#include "runtime/random.h"
 
 #define SEC(name) __attribute__((section(".text.text_upper_structural." #name)))
 #define CALLBACK_SEC_INNER(name) \
@@ -14,7 +15,6 @@ extern void sub_815FAA4(struct BattleSpriteMotion*, void*);
 extern void sub_815FACC(struct BattleSpriteMotion*);
 extern void sub_8021308(void*);
 extern void free_heap_8018DA8(void*);
-extern s32 sub_8199F30(void);
 extern s16 sub_8160854(void*, s32);
 extern void sub_801E150(struct BattleSprite*, s32, s32, s32, s32);
 
@@ -27,6 +27,23 @@ struct BattleFixedOrigin {
     s32 x;
     s32 y;
 };
+
+CALLBACK_SEC(battle_initialize_randomized_sprite_motion_a)
+void* battle_initialize_randomized_sprite_motion_a(
+    struct BattleSpriteMotion* object,
+    const struct BattleSpriteMotionConfig* config, u16 value)
+{
+    u16 zero;
+
+    battle_initialize_sprite_motion_base(object, config);
+    object->descriptor = (void*)0x08CDC930;
+    zero = 0;
+    *(u16*)&object->slot3C.savedY = value;
+    object->slot34.values.value = zero;
+    *(u16*)&object->savedX = zero;
+    object->positionX += ((runtime_random_u32() & 0x1FF) + 0x200) << 8;
+    return object;
+}
 
 CALLBACK_SEC(battle_set_sprite_motion_animation_if_changed)
 void battle_set_sprite_motion_animation_if_changed(
