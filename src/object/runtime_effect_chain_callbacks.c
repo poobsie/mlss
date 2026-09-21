@@ -1,4 +1,5 @@
 #include "audio/sound_effects.h"
+#include "object/functions.h"
 #include "object/runtime_leaf_callbacks.h"
 #include "runtime_leaf_internal.h"
 
@@ -372,6 +373,16 @@ void object_start_animation_21_after_countdown(struct RuntimeObject* object)
         sub_8082E1C(object, 0x15, 0, 0);
         object->update = sub_806C454;
     }
+}
+
+SEC(sub_806CAF0)
+void object_start_animation_20_emit_effect_1de6(struct RuntimeObject* object)
+{
+    sub_8082E1C(object, 0x14, 0, 0);
+    sub_80DF024(0x1DE6, object->positionX / 256,
+                object->positionY / 256,
+                object->positionZBase / 256, object);
+    object->update = object_on_visual_complete_animation_21_variant_a;
 }
 
 SEC(sub_806CB6C)
