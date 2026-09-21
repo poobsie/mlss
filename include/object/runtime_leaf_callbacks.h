@@ -387,7 +387,11 @@ s32 object_continue_owner_motion_when_runtime_ready(struct RuntimeObject* object
 void object_stop_on_visual_complete(struct RuntimeObject* object);
 void object_emit_effect_1bfe_on_visual_complete(struct RuntimeObject* object);
 s32 object_emit_effect_1df8_and_remove_when_runtime_ready(struct RuntimeObject* object);
+s32 object_emit_effect_1e01_forward_related_and_remove(
+    struct RuntimeObject* object, void* relatedObject);
 void object_start_animation_21_after_countdown(struct RuntimeObject* object);
+void object_start_animation_20_emit_effect_1de6(
+    struct RuntimeObject* object);
 void object_start_variant_animation_7_or_13(struct RuntimeObject* object);
 void object_emit_effect_212b_until_sequence_advances(struct RuntimeObject* object);
 void object_start_animation_4_after_value80_clears(struct RuntimeObject* object);

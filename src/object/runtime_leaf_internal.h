@@ -9,7 +9,7 @@ void sub_8082E1C(
 void sub_80DF024(
     s32 effect, s32 x, s32 y, s32 z, struct RuntimeObject* object);
 s32 sub_810DD7C(
-    struct RuntimeObject* object, void* owner, s32 command);
+    struct RuntimeObject* object, void* relatedObject, s32 command);
 u32 sub_8199F30(void);
 
 void sub_8063474(struct RuntimeObject* object);
