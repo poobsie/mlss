@@ -338643,6 +338643,7 @@ _08112734:
 	bx r0
 	.byte 0x00, 0x00
 _0811273C: .4byte sub_8112904
+	.if 0
 	thumb_func_start sub_8112740
 sub_8112740:
 	push {r4, lr}
@@ -338703,6 +338704,8 @@ _081127A8:
 	bx r0
 _081127B0: .4byte sub_8112984
 _081127B4: .4byte 0x0000011B
+	.endif
+	.section .text.object_late_visual_transitions_after_sub_8112740, "ax", %progbits
 	.if 0
 	thumb_func_start sub_81127B8
 sub_81127B8:

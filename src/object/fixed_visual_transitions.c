@@ -25,7 +25,6 @@ void sub_8099BE4(struct RuntimeObject* object);
 void sub_809A120(struct RuntimeObject* object);
 void sub_809A14C(struct RuntimeObject* object);
 void sub_8111848(struct RuntimeObject* object);
-void sub_8112740(struct RuntimeObject* object);
 void sub_80603D8(struct RuntimeObject* object);
 void sub_8065D10(struct RuntimeObject* object);
 void sub_8078A5C(struct RuntimeObject* object);
@@ -106,7 +105,7 @@ void object_on_visual_complete_increment_timer_then_continue(
     if (object->visual->flags & 8) {
         object->timer = (u16)object->timer + 1;
         sub_8082E1C(object, -1, -1, 0);
-        object->update = sub_8112740;
+        object->update = object_when_unlinked_prepare_state_position_animation_10;
     }
 }
 

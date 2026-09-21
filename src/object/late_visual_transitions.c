@@ -827,6 +827,28 @@ void object_prepare_state_position_animation_12(struct RuntimeObject* object)
     object->update = object_poll_and_disable_update_b;
 }
 
+SEC(sub_8112740)
+void object_when_unlinked_prepare_state_position_animation_10(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObjectState* state;
+    s32 x;
+    s32 y;
+    s32 z;
+
+    if (object->linkedObject == 0) {
+        state = object->state;
+        x = state->worldPositionX / 256;
+        y = state->worldPositionY / 256;
+        z = state->floorHeight / 256;
+        sub_808843C(object, x, y, z, 0x100);
+        sub_80880C4(object, 0x400);
+        sub_8082E1C(object, 0xA, 0, 0);
+        object->update = object_stop_animation_and_sound_11b_when_ready_variant_b;
+        sound_effect_play(0x11B, SOUND_VOLUME_UNCHANGED);
+    }
+}
+
 
 
 
