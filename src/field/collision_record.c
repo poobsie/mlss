@@ -11,6 +11,17 @@ struct __attribute__((packed)) CollisionRecordActiveFlag {
 
 void sub_8020D40(void* resource);
 
+__attribute__((section(".text.field_collision.sub_804FB3C")))
+s32 field_collision_query_direction_code(
+    struct FieldCollisionDirectionOwner* owner)
+{
+    union FieldCollisionDirectionData* data = owner->directionData;
+
+    if ((data->bytes[0] & 7) == 3 || (data->bytes[2] & 0x0F) == 3)
+        return (data->packed << 1) >> 30;
+    return -1;
+}
+
 void field_collision_record_release_resource(struct FieldCollisionRecord* record)
     __attribute__((section(".text.early_code_helpers.sub_804FAF8")));
 void field_collision_record_release_resource(struct FieldCollisionRecord* record) {
