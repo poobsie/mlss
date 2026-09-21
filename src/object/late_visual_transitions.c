@@ -824,6 +824,26 @@ void object_after_visual_complete_delay_2_start_animation_23(
     }
 }
 
+SEC(sub_8113314)
+void object_emit_effect_297a_every_ten_ticks_until_ready(
+    struct RuntimeObject* object)
+{
+    u8 ready;
+
+    if (object->valueA8 == 0) {
+        sub_80DF024(0x297A, object->positionX / 256,
+                    object->positionY / 256,
+                    object->positionZBase / 256, object);
+        object->valueA8 = 10;
+    }
+    object->valueA8--;
+    ready = sub_8087CE4(object);
+    if (ready == 0) {
+        sub_8082E1C(object, -1, -1, 0);
+        object->update = 0;
+    }
+}
+
 SEC(sub_8113E44)
 void object_on_visual_complete_start_animation_1_timer_40(
     struct RuntimeObject* object)
