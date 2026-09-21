@@ -446675,40 +446675,7 @@ _08158ADA:
 	.section .text.after_text_upper_structural_sub_8158ABC, "ax", %progbits
 	.align 2, 0
 	.section .text.after_8158AEC, "ax", %progbits
-	thumb_func_start sub_8158B00
-sub_8158B00:
-	push {r4, r5, lr}
-	adds r5, r0, #0x0
-	lsls r4, r2, #0x10
-	lsrs r4, r4, #0x10
-	bl sub_815F8F4
-	ldr r0, _08158B44 @ =0x08CDC870
-	str r0, [r5, #0x30]
-	movs r0, #0x00
-	strh r4, [r5, #0x34]
-	strh r0, [r5, #0x36]
-	strh r0, [r5, #0x38]
-	bl sub_8199F30
-	adds r1, r0, #0x0
-	movs r0, #0x0A
-	bl sub_81DD77C
-	movs r1, #0x00
-	cmp r0, #0x05
-	bls _08158B2C
-	movs r1, #0x01
-_08158B2C:
-	adds r0, r5, #0x0
-	adds r0, #0x26
-	strb r1, [r0, #0x00]
-	adds r0, r5, #0x0
-	movs r1, #0x00
-	bl sub_815F97C
-	adds r0, r5, #0x0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.byte 0x00, 0x00
-_08158B44: .4byte 0x08CDC870
+	.section .text.after_battle_initialize_random_variant_sprite_motion_a, "ax", %progbits
 	.byte 0x4A, 0x68, 0x09, 0x68, 0x41, 0x60, 0x82, 0x60, 0xC1, 0x60, 0x02, 0x61, 0x00, 0x22, 0x00, 0x21
 	.byte 0x81, 0x82, 0x01, 0x83, 0x24, 0x30, 0x02, 0x70, 0x70, 0x47, 0x00, 0x00
 	.section .text.after_upper_sub_8158B64, "ax", %progbits
