@@ -8,6 +8,7 @@
 #define runtime_intrusive_list_owner_destroy_b sub_8163D10
 #define runtime_intrusive_list_detach sub_8163C94
 #define runtime_intrusive_list_detach_and_destroy sub_8163C40
+#define runtime_intrusive_list_clear_and_destroy sub_8163BE4
 
 struct RuntimeIntrusiveNode {
     void* value00;
@@ -38,5 +39,7 @@ void runtime_intrusive_list_detach(struct RuntimeIntrusiveList* list,
 void runtime_intrusive_list_detach_and_destroy(
     struct RuntimeIntrusiveList* list,
     struct RuntimeIntrusiveNode* node);
+void runtime_intrusive_list_clear_and_destroy(
+    struct RuntimeIntrusiveList* list);
 
 #endif

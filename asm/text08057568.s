@@ -461829,7 +461829,8 @@ _08163BB4: .4byte 0x0300102C
 	.endif
 	.section .text.after_8163BA0, "ax", %progbits
 	.section .text.after_8163BB8, "ax", %progbits
-	.section .text.after_8163BC4, "ax", %progbits
+.section .text.after_8163BC4, "ax", %progbits
+	.if 0
 	thumb_func_start sub_8163BE4
 sub_8163BE4:
 	push {r4, lr}
@@ -461884,7 +461885,8 @@ _08163C34:
 	pop {r4}
 	pop {r0}
 	bx r0
-	.section .text.after_8163BE4, "ax", %progbits
+	.endif
+.section .text.after_8163BE4, "ax", %progbits
 	.if 0
 	thumb_func_start sub_8163C40
 sub_8163C40:
