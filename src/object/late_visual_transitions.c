@@ -59,6 +59,7 @@ void sub_811251C(struct RuntimeObject*);
 void sub_8112630(struct RuntimeObject*);
 s32 sub_8087124(struct RuntimeObject*);
 void sub_8112D78(struct RuntimeObject*);
+void sub_8112BBC(struct RuntimeObject*);
 void sub_8114404(struct RuntimeObject*);
 void sub_81147B4(struct RuntimeObject*);
 void sub_81147D0(struct RuntimeObject*);
@@ -882,6 +883,18 @@ void object_emit_effect_297a_every_ten_ticks_until_ready(
     if (ready == 0) {
         sub_8082E1C(object, -1, -1, 0);
         object->update = 0;
+    }
+}
+
+SEC(sub_8113384)
+void object_on_visual_complete_start_state_animation_timer_3_sound_8a(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        sub_8082E1C(object, object->state->eventSignal + 5, 0, 0);
+        object->timer = 3;
+        object->update = sub_8112BBC;
+        sound_effect_play(0x8A, SOUND_VOLUME_UNCHANGED);
     }
 }
 
