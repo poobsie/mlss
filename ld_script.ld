@@ -4033,6 +4033,7 @@ SECTIONS
         asm/text08057568.o(.text.after_sub_819A72C);
         src/runtime/high_state.o(.text.high.sub_819A770);
         asm/text08057568.o(.text.after_sub_819A770);
+        src/audio/driver_tables.o(.text.audio_driver_tables.sub_819A8EC);
         src/audio/driver_state.o(.text.audio_driver_state.sub_819A928);
         asm/text08057568.o(.text.after_sub_819A928);
         src/audio/voice_routing.o(.text.audio_voice_routing.sub_819AB78);
