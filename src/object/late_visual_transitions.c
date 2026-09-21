@@ -56,6 +56,7 @@ void sub_8112450(struct RuntimeObject*);
 void sub_8112498(struct RuntimeObject*);
 void sub_811254C(struct RuntimeObject*);
 void sub_811251C(struct RuntimeObject*);
+void sub_8112630(struct RuntimeObject*);
 s32 sub_8087124(struct RuntimeObject*);
 void sub_8112D78(struct RuntimeObject*);
 void sub_8114404(struct RuntimeObject*);
@@ -752,6 +753,21 @@ s32 object_continue_when_motion_helper_clear(struct RuntimeObject* object)
         return 0;
     }
     return result;
+}
+
+SEC(sub_81123B4)
+void object_prepare_state_position_motion_then_continue(
+    struct RuntimeObject* object)
+{
+    struct RuntimeObjectState* state = object->state;
+    s32 x = state->worldPositionX / 256;
+    s32 y = state->worldPositionY / 256;
+    s32 z = state->floorHeight / 256;
+
+    sub_808843C(object, x, y, z, 0x100);
+    sub_80880C4(object, 0x300);
+    object->valueA8 = 0;
+    object->update = sub_8112630;
 }
 
 SEC(sub_8112984)
