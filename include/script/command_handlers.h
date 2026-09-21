@@ -25,8 +25,11 @@ struct ScriptObjectSelectionContext;
 struct ScriptObjectSelectionArguments;
 struct ScriptObjectPropertyArguments;
 struct ScriptBattleCommandArguments;
+struct ScriptBridgeOwner;
+struct ScriptRandomForwardArguments;
 
 #define script_command_return_from_battle script_cmd_btl_return
+#define script_command_forward_bounded_random sub_80EA968
 #define script_command_set_runtime_direction_sign sub_80EAD98
 #define script_command_branch_on_resource_flag sub_80EAEBC
 #define script_command_forward_input_mask sub_80EAA5C
@@ -86,6 +89,10 @@ u8 script_command_return_from_battle(
     struct ScriptBattleReturnContext* context,
     struct ScriptExecutionState* state,
     s32* shouldMarkReturn);
+s32 script_command_forward_bounded_random(
+    void* context, struct ScriptBridgeOwner* owner,
+    const struct ScriptRandomForwardArguments* arguments,
+    void* commandContext);
 
 s32 script_command_set_runtime_direction_sign(
     void* context, void* state, const u32* argument);

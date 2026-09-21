@@ -2328,6 +2328,8 @@ SECTIONS
         asm/text08057568.o(.text.after_middle_sub_80EA91C);
         src/script/state_commands.o(.text.middle.sub_80EA928);
         asm/text08057568.o(.text.after_middle_sub_80EA928);
+        src/script/command_handlers.o(.text.script_command_handlers.sub_80EA968);
+        asm/text08057568.o(.text.after_middle_sub_80EA968);
         src/script/command_handlers.o(.text.script_command_handlers.script_command_set_input_mask);
         asm/text08057568.o(.text.script_command_helpers_after_sub_80EA9A8);
         src/script/command_handlers.o(.text.script_command_handlers.sub_80EAA5C);

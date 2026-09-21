@@ -8,6 +8,7 @@
 #include "field/resource_loader.h"
 #include "field/selection_sequence.h"
 #include "graphics/process_state.h"
+#include "runtime/random.h"
 #include "script/command_handlers.h"
 #include "script/command_context.h"
 #include "script/execution_state.h"
@@ -217,6 +218,17 @@ struct ScriptInputOwner {
     u8* inputState04;
 };
 
+struct ScriptBridgeOwner {
+    u8 unknown00[0x18];
+    u8 bridgeDestination18;
+};
+
+struct ScriptRandomForwardArguments {
+    s16 bridgeValue;
+    u16 padding02;
+    u32 upperBound;
+};
+
 struct ScriptSoundVolumeArguments {
     u8 duration;
     u8 padding01[3];
@@ -264,6 +276,21 @@ struct ScriptArithmeticBridgeArguments {
     s32 result;
     s32 operand;
 };
+
+SEC(sub_80EA968)
+s32 script_command_forward_bounded_random(
+    void* context, struct ScriptBridgeOwner* owner,
+    const struct ScriptRandomForwardArguments* arguments,
+    void* commandContext)
+{
+    s32 value = runtime_scale_random_u32(
+        arguments->upperBound, runtime_random_u32());
+
+    sub_80E9C4C(
+        commandContext, &owner->bridgeDestination18, 0, 0,
+        arguments->bridgeValue, value);
+    return 1;
+}
 
 
 SEC(sub_80EAA5C)
