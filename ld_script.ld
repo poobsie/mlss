@@ -914,6 +914,7 @@ SECTIONS
         asm/text08057568.o(.text.object_small_runtime_after_sub_80722E0);
         src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_80722F8);
         asm/text08057568.o(.text.object_small_runtime_after_sub_80722F8);
+        src/object/small_runtime_transitions.o(.text.object_small_runtime.sub_8072350);
         src/object/small_value_transitions.o(.text.misc_helpers_01.sub_8072370);
         asm/text08057568.o(.text.misc_helpers_01_after_sub_8072370);
         src/field/global_object_transitions.o(.text.misc_helpers_02.sub_8072500);

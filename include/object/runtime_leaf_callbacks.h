@@ -151,6 +151,9 @@ void object_prepare_owner_motion_animation_2_and_sound_11b(
 #define object_start_paired_animation_3_and_owner_motion sub_8071390
 void object_start_paired_animation_3_and_owner_motion(
     struct RuntimeObject* object);
+#define runtime_object_countdown_then_resume_small_motion sub_8072350
+void runtime_object_countdown_then_resume_small_motion(
+    struct RuntimeObject* object);
 #define object_resume_with_sound_ad_when_ready sub_80742FC
 #define object_remove_after_value84_countdown sub_807438C
 #define object_start_animation_6_effect_22e2 sub_80744B4

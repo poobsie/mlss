@@ -121,6 +121,17 @@ void sub_80722F8(struct RuntimeObject* object)
 SEC(sub_80722F8)
 const u16 sub_80722F8_padding = 0;
 
+SEC(sub_8072350)
+void runtime_object_countdown_then_resume_small_motion(
+    struct RuntimeObject* object)
+{
+    u32 remaining = (u16)object->timer - 1U;
+
+    object->timer = remaining;
+    if (OBJECT_TIMER_NONPOSITIVE(remaining))
+        object->update = sub_80722F8;
+}
+
 SEC(sub_807413C)
 void object_advance_valueA8_then_wait_for_child(struct RuntimeObject* object)
 {
