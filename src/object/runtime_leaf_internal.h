@@ -12,6 +12,22 @@ void sub_810DD7C(
     struct RuntimeObject* object, void* owner, s32 command);
 u32 sub_8199F30(void);
 
+void sub_806F84C(struct RuntimeObject* object);
+void sub_8070EDC(struct RuntimeObject* object);
+void sub_8070F64(struct RuntimeObject* object);
+void sub_8070F98(struct RuntimeObject* object);
+void sub_807116C(struct RuntimeObject* object);
+void sub_80728D0(struct RuntimeObject* object);
+void sub_8072944(struct RuntimeObject* object);
+void sub_80731B4(struct RuntimeObject* object);
+void sub_80746C4(struct RuntimeObject* object);
+void sub_80746EC(struct RuntimeObject* object);
+void sub_8074D1C(struct RuntimeObject* object);
+void sub_8074EEC(struct RuntimeObject* object);
+void sub_807536C(struct RuntimeObject* object);
+void sub_80756A4(struct RuntimeObject* object);
+void sub_80757C0(struct RuntimeObject* object);
+void sub_80759E8(struct RuntimeObject* object);
 void sub_80761E8(struct RuntimeObject* object);
 void sub_8076338(struct RuntimeObject* object);
 void sub_8076414(struct RuntimeObject* object);
@@ -26,7 +42,13 @@ void sub_8078894(struct RuntimeObject* object);
 void sub_8078E2C(struct RuntimeObject* object);
 void sub_80798A8(struct RuntimeObject* object);
 void sub_8079C0C(struct RuntimeObject* object);
+void sub_807B7A8(void* object);
 void sub_807F47C(struct RuntimeObject* object);
+void sub_807FE40(void* object);
+void sub_8085B38(struct RuntimeObject* object);
 s32 sub_8086D80(struct RuntimeObject* object);
+s32 sub_8087124(struct RuntimeObject* object);
+void sub_808750C(struct RuntimeObject* object);
+void sub_810CA8C(s32 value);
 
 #endif
