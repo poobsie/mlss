@@ -1,6 +1,7 @@
 #include "field/graphics_block.h"
 #include "common.h"
 #include "gba/syscall.h"
+#include "graphics/decompression.h"
 #include "memory/heap.h"
 
 #define SEC(symbol) __attribute__((section(".text.field_graphics_block." #symbol)))
@@ -9,9 +10,6 @@ struct FieldGraphicsStateOverlay {
     u8 unknown00[0x8C0];
     u8 resourceIndex8C0;
 };
-
-#define GRAPHICS_DECOMPRESS_CALLBACK \
-    (*(void (**)(const void*, void*))0x03000C84)
 
 extern struct FieldGraphicsStateOverlay gFieldGraphicsState __asm__("gGameState");
 

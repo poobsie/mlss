@@ -1,15 +1,10 @@
+#include "graphics/decompression.h"
 #include "graphics/functions.h"
 #include "graphics/resource.h"
 #include "memory/heap.h"
 
 void sub_8018218(void* source, void* destination, u32 size, u32 width, u32 mode);
 int sub_80198B0(int* source);
-
-typedef void (*GraphicsDecompressCallback)(const void* source,
-                                           void* destination);
-
-#define GRAPHICS_DECOMPRESS_CALLBACK \
-    (*(GraphicsDecompressCallback*)0x03000C84)
 
 void graphics_upload_fixed_tile_regions(struct GraphicsUploadOwner* object)
     __attribute__((section(".text.early_code_helpers_3.sub_8029460")));

@@ -41,7 +41,6 @@ struct GraphicsPositionState;
 #define graphics_position_state_reset sub_8163298
 #define graphics_position_state_write_shared sub_816316C
 #define graphics_fill_background_palettes sub_8163D80
-#define graphics_decompress_and_transfer_resource sub_8163DB8
 #define graphics_advance_by_nibble_width sub_810D260
 #define graphics_extract_mode_relative_index sub_8127E38
 #define graphics_extract_owner_mode_relative_index sub_80E8F1C
@@ -75,8 +74,6 @@ void graphics_position_state_begin_timed(struct GraphicsPositionState* state,
 void graphics_position_state_begin_distance(struct GraphicsPositionState* state,
                                             s32 x, s32 y);
 void graphics_fill_background_palettes(u16 value);
-void graphics_decompress_and_transfer_resource(
-    const void* source, void* destination);
 u8* graphics_advance_by_nibble_width(u32 value, u8* base);
 
 #endif
