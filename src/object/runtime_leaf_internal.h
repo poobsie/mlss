@@ -20,5 +20,13 @@ void sub_8076C14(struct RuntimeObject* object);
 void sub_8076D90(struct RuntimeObject* object);
 void sub_807777C(struct RuntimeObject* object);
 void sub_8077924(struct RuntimeObject* object);
+void sub_8078524(struct RuntimeObject* object);
+void sub_8078678(struct RuntimeObject* object);
+void sub_8078894(struct RuntimeObject* object);
+void sub_8078E2C(struct RuntimeObject* object);
+void sub_80798A8(struct RuntimeObject* object);
+void sub_8079C0C(struct RuntimeObject* object);
+void sub_807F47C(struct RuntimeObject* object);
+s32 sub_8086D80(struct RuntimeObject* object);
 
 #endif
