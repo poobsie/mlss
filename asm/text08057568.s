@@ -394005,6 +394005,7 @@ _081397C4:
 	.byte 0x00, 0x00
 	.endif
 	.section .text.after_field_scene_select_transition_branch_a, "ax", %progbits
+	.if 0
 	thumb_func_start sub_81397CC
 sub_81397CC:
 	push {r4, r5, lr}
@@ -394035,6 +394036,8 @@ sub_81397CC:
 	pop {r0}
 	bx r0
 _08139808: .4byte sub_8139758
+	.endif
+	.section .text.after_field_scene_begin_positioned_transition_b, "ax", %progbits
 	thumb_func_start sub_813980C
 sub_813980C:
 	push {r4, r5, lr}

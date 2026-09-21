@@ -38,6 +38,9 @@ void sub_8136A84(
     u32 context, struct FieldSceneObject* object, void* callbackSlot);
 void sub_813B1E8(
     u32 context, struct FieldSceneObject* object, void* callbackSlot);
+void sub_813729C(struct FieldSceneObject* object);
+void sub_8137A4C(
+    struct FieldSceneObject* object, u32 mode, s32 x, s32 y);
 
 SEC(sub_81396A8)
 void field_scene_run_active_callback_and_refresh(
@@ -99,6 +102,21 @@ void field_scene_select_transition_branch_a(
     }
 }
 SEC(sub_8139758) const u16 field_scene_select_transition_branch_a_padding = 0;
+
+SEC(sub_81397CC)
+void field_scene_begin_positioned_transition_b(
+    u32 context, struct FieldSceneObject* object, void* callbackSlot)
+{
+    struct FieldSceneCallbackCursor* cursor = callbackSlot;
+
+    (void)context;
+    sub_813729C(object);
+    sub_8137A4C(
+        object, 0, object->transitionCoordinateX * 0x100,
+        object->transitionCoordinateY * 0x100);
+    sub_81382A8(object);
+    cursor->current = sub_8139758;
+}
 
 __attribute__((section(".text.field_scene_callbacks.sub_8139364")))
 void field_scene_branch_on_condition_or_advance_callback(
