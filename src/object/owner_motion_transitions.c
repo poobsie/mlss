@@ -12,6 +12,7 @@ void sub_8082E1C(
     struct RuntimeObject* object, s32 animation, s32 command, s32 argument);
 void sub_8085B38(struct RuntimeObject* object);
 void sub_8066FFC(struct RuntimeObject* object);
+void sub_8062188(struct RuntimeObject* object);
 void sub_806A204(struct RuntimeObject* object);
 void sub_806A24C(struct RuntimeObject* object);
 void sub_80DAE7C(struct RuntimeObject* object);
@@ -265,4 +266,23 @@ void object_after_negative_countdown_snap_to_owner_and_begin_short_motion(
         sub_8082E1C(object, 4, 0, 0);
         object->update = sub_80DBBCC;
     }
+}
+
+#undef SEC
+#define SEC(symbol) \
+    __attribute__((section(".text.runtime_leaf_callbacks." #symbol)))
+
+SEC(sub_80620F8)
+s32 object_select_behavior_from_owner_variant_and_clear_value(
+    struct RuntimeObject* object)
+{
+    struct ObjectPositionOwner* owner = object->positionOwner;
+
+    if (owner->positionSource->variantEC == -1)
+        object->behaviorState = 0;
+    else
+        object->behaviorState = 1;
+    object->valueA0 = 0;
+    object->update = sub_8062188;
+    return 1;
 }

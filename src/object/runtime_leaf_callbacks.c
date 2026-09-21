@@ -173,20 +173,6 @@ void object_advance_visual_timer_with_sounds_af_d5(
     }
 }
 
-SEC(sub_80620F8)
-s32 object_select_behavior_from_owner_variant_and_clear_value(
-    struct RuntimeObject* object)
-{
-    struct ObjectPositionOwner* owner = object->positionOwner;
-
-    if (owner->positionSource->variantEC == -1)
-        object->behaviorState = 0;
-    else
-        object->behaviorState = 1;
-    object->valueA0 = 0;
-    object->update = sub_8062188;
-    return 1;
-}
 void sub_806CBA0(struct RuntimeObject* object);
 void sub_806FC68(struct RuntimeObject* object);
 void sub_8070534(struct RuntimeObject* object);
