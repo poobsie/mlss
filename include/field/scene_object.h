@@ -18,6 +18,10 @@ void field_install_and_run_scene_dispatch_81395ac(
     u32 context, struct FieldSceneObject* object);
 #define field_scene_update_vertical_deceleration sub_8139200
 void field_scene_update_vertical_deceleration(struct FieldSceneObject* object);
+#define field_scene_countdown_linked_selection_then_restore_callback sub_813915C
+void field_scene_countdown_linked_selection_then_restore_callback(
+    u32 context, struct FieldSceneObject* object,
+    FieldSceneChainCallback* callbackSlot);
 
 struct FieldCallbackSlots {
     FieldSceneChainCallback slots[4];

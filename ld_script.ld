@@ -3015,6 +3015,8 @@ SECTIONS
         asm/text08057568.o(.text.process_destructors_after_sub_81367AC);
         src/process/definition_initializers.o(.text.upper.sub_81367C0);
         asm/text08057568.o(.text.after_upper_sub_81367C0);
+        src/field/callback_chains.o(.text.field_scene_callbacks.sub_813915C);
+        asm/text08057568.o(.text.after_upper_sub_813915C);
         src/field/scene_object_properties.o(.text.field_scene_callbacks.sub_8139200);
         asm/text08057568.o(.text.after_upper_sub_8139200);
         src/field/callback_chains.o(.text.upper.sub_81393D8);
