@@ -5,6 +5,30 @@
 
 void sub_8047EB8(struct FieldSceneObject* object);
 
+FIELD_SECTION(".text.field_scene_callbacks.sub_8139200")
+void field_scene_update_vertical_deceleration(struct FieldSceneObject* object)
+{
+    u8 flags;
+    s32 clearMask;
+
+    if (object->motionState25C != -1) {
+        object->elevationOffset += object->motionVelocity258;
+        object->motionVelocity258 -= object->motionAcceleration248;
+        object->motionState25C++;
+        if (object->elevationOffset <= 0) {
+            object->elevationOffset = 0;
+            object->motionState25C = -1;
+            flags = object->flags2B5;
+            clearMask = FIELD_SCENE_FLAGS_2B5_08 + 1;
+            clearMask = -clearMask;
+            clearMask &= flags;
+            object->flags2B5 = clearMask;
+        }
+    }
+}
+FIELD_SECTION(".text.field_scene_callbacks.sub_8139200")
+const u32 field_scene_update_vertical_deceleration_padding = 0x00004770;
+
 FIELD_SECTION(".text.field_scene_object_motion.sub_80402C4")
 void field_step_scene_vertical_motion(struct FieldSceneObject* object)
 {

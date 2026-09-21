@@ -8,6 +8,7 @@ struct FieldSceneObject;
 #define FIELD_SCENE_FLAGS_2B5_HIGH 0xC0
 #define FIELD_SCENE_FLAGS_2B5_MIDDLE 0x30
 #define FIELD_SCENE_FLAGS_2B5_LOW 0x07
+#define FIELD_SCENE_FLAGS_2B5_08 (1 << 3)
 typedef void (*FieldSceneDispatch)(u32, struct FieldSceneObject*);
 typedef void (*FieldSceneChainCallback)(
     u32, struct FieldSceneObject*, void* callbackSlot);
@@ -15,6 +16,8 @@ typedef void (*FieldSceneChainCallback)(
 #define field_install_and_run_scene_dispatch_81395ac sub_8139970
 void field_install_and_run_scene_dispatch_81395ac(
     u32 context, struct FieldSceneObject* object);
+#define field_scene_update_vertical_deceleration sub_8139200
+void field_scene_update_vertical_deceleration(struct FieldSceneObject* object);
 
 struct FieldCallbackSlots {
     FieldSceneChainCallback slots[4];
