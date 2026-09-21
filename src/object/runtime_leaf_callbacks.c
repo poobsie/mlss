@@ -96,7 +96,38 @@ void sub_806A47C(struct RuntimeObject* object);
 void sub_8071244(struct RuntimeObject* object);
 void sub_806EDBC(struct RuntimeObject* object);
 void sub_80712B0(struct RuntimeObject* object);
+void sub_8071424(struct RuntimeObject* object);
 void sub_810DD7C(struct RuntimeObject* object, void* owner, s32 command);
+
+SEC(sub_8071390)
+void object_start_paired_animation_3_and_owner_motion(
+    struct RuntimeObject* object)
+{
+    struct ObjectPositionOwner* owner;
+    struct ObjectPositionSource* source;
+    s32* motionTargetX;
+    u8 flags;
+
+    if (object->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        sound_effect_play(0x6C, SOUND_VOLUME_UNCHANGED);
+        sub_8082E1C(object, 3, 0x40B4, 0);
+        sub_8082E1C(object->linkedObject, 3, 0, 0);
+        motionTargetX = &object->value84;
+        owner = object->positionOwner;
+        source = owner->positionSource;
+        *motionTargetX = source->positionX + 0xA000;
+        object->value88 = source->positionY;
+        object->value8C = object->positionZBase;
+        object->unknown7C = 0x100;
+        flags = object->flags79;
+        flags |= 0x20;
+        object->flags79 = flags;
+        object->unknown7A = 0;
+        sub_8085B38(object);
+        object->timer = 8;
+        object->update = sub_8071424;
+    }
+}
 
 SEC(sub_80711A4)
 void object_emit_effect_207a_then_start_countdown_on_visual_complete(

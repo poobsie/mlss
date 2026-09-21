@@ -148,6 +148,9 @@ void object_start_animation_3_dual_callbacks_when_value80_clears(
 void object_prepare_owner_motion_animation_2_and_sound_11b(
     struct RuntimeObject* object);
 #define object_finish_animation_7_after_countdown sub_807127C
+#define object_start_paired_animation_3_and_owner_motion sub_8071390
+void object_start_paired_animation_3_and_owner_motion(
+    struct RuntimeObject* object);
 #define object_resume_with_sound_ad_when_ready sub_80742FC
 #define object_remove_after_value84_countdown sub_807438C
 #define object_start_animation_6_effect_22e2 sub_80744B4
