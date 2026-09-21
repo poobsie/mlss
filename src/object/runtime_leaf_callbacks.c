@@ -95,6 +95,22 @@ void sub_806589C(struct RuntimeObject* object);
 void sub_806A47C(struct RuntimeObject* object);
 void sub_8071244(struct RuntimeObject* object);
 void sub_806EDBC(struct RuntimeObject* object);
+void sub_80712B0(struct RuntimeObject* object);
+void sub_810DD7C(struct RuntimeObject* object, void* owner, s32 command);
+
+SEC(sub_80711A4)
+void object_emit_effect_207a_then_start_countdown_on_visual_complete(
+    struct RuntimeObject* object)
+{
+    if (object->visual->flags & OBJECT_VISUAL_COMPLETE) {
+        sub_80DF024(0x207A, object->positionX / 0x100,
+                    object->positionY / 0x100,
+                    object->positionZBase / 0x100, object);
+        sub_810DD7C(object, object->positionOwner, 0xFF);
+        object->timer = 5;
+        object->update = sub_80712B0;
+    }
+}
 
 SEC(sub_8071110)
 void object_start_animation_3_dual_callbacks_when_value80_clears(

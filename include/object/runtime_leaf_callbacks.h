@@ -138,6 +138,9 @@ void object_advance_visual_timer_with_sounds_af_d5(
 #define object_finish_linked_owner_sequence_when_value80_clears sub_8071054
 #define object_emit_effect_209e_and_begin_command_40e7 sub_8071080
 #define object_finish_sound_d2_and_begin_animation_1_when_ready sub_8071204
+#define object_emit_effect_207a_then_start_countdown_on_visual_complete sub_80711A4
+void object_emit_effect_207a_then_start_countdown_on_visual_complete(
+    struct RuntimeObject* object);
 #define object_start_animation_3_dual_callbacks_when_value80_clears sub_8071110
 void object_start_animation_3_dual_callbacks_when_value80_clears(
     struct RuntimeObject* object);
